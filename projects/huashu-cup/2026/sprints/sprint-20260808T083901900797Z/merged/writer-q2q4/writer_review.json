@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T083901900797Z",
+  "task_id": "writer-q2q4",
+  "role": "writer",
+  "problem_id": "C",
+  "question_scope": ["Q1", "Q2", "Q3", "Q4"],
+  "target_gate": "G5",
+  "verdict": "PASS_WITH_REVIEW",
+  "input_integrity": {
+    "passed": true,
+    "rechecked_count": 15,
+    "mismatches": [],
+    "note": "All task-package input hashes were recomputed before drafting."
+  },
+  "evidence_chain_review": {
+    "passed": true,
+    "checks": [
+      "Every Q2-Q4 result in the proposals has a frozen-claim or registered-summary locator.",
+      "Q2 candidate and FIFO baseline use the same input, constraints, and output class.",
+      "Q3 rolling binary-MILP scope, 269/270 audit boundary, rounding residual, and excluded LP probe are stated.",
+      "Q4 sequential coupling, five-scenario scope, low-renewable comparison, and independent 24-hour peak probe are separated.",
+      "No global-optimality claim is made for Q2, Q3, or Q4."
+    ]
+  },
+  "evidence_locators": [
+    {
+      "claim_ids": ["Q2-FULL-COMPLETION-RATE", "Q2-FULL-SLA-VIOLATION-RATE", "Q2-FULL-HARD-AUDIT-PASS", "Q2-FULL-COST-CHANGE-PCT", "Q2-FULL-CARBON-CHANGE-PCT", "Q2-FULL-LATENCY-CHANGE-MS", "Q2-FULL-DETERMINISTIC-REPLAY"],
+      "locator": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json",
+      "fields": ["feasibility", "comparison_vs_fifo", "robustness"],
+      "sha256": "537062db28c59783fc8c0fcc9e26f153b613954a7b3631f5f215013eeecb3670"
+    },
+    {
+      "claim_ids": ["Q3-ROLLING-BINARY-COVERAGE", "Q3-ROLLING-COST-DELTA", "Q3-ROLLING-CARBON-DELTA", "Q3-STRESS-AUDITS-PASSED", "Q3-FACILITY-LOAD-ROUNDING-RESIDUAL", "Q3-EXCLUDED-LP-REGIONF-SIMULTANEOUS"],
+      "locator": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json",
+      "fields": ["rolling_binary_milp", "rolling_aggregate", "deterministic_stress_probes", "load_recomputation", "excluded_full_horizon_lp_probe"],
+      "sha256": "ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35"
+    },
+    {
+      "claim_ids": ["Q4-AUDIT-PASS", "Q4-LOWREN-COST-DELTA", "Q4-LOWREN-CARBON-DELTA", "Q4-PEAK-REDUCTION", "Q4-PEAK-SELECTED-WEIGHT", "Q4-PEAK-DISCRETE-MARGINAL"],
+      "locator": "experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json",
+      "fields": ["audit", "low_renewable_72h", "peak_probe_24h", "scope", "interpretation_limits"],
+      "sha256": "26f46159818b9cc3f52ac6fae14a00e1cdcbee60f1b986e9cfa05158d447db66"
+    },
+    {
+      "claim_ids": ["Q4-LOWREN-COST-DELTA", "Q4-LOWREN-CARBON-DELTA"],
+      "locator": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_aggregate_comparison.csv",
+      "fields": ["renewable_low_empirical.cost_delta_CNY", "renewable_low_empirical.carbon_delta_tCO2"],
+      "sha256": "056dc66bdc9685d0ecd360082980aeb8bf38524e6fb0ae413a7805fa79cf006e"
+    },
+    {
+      "claim_ids": ["Q4-PEAK-REDUCTION", "Q4-PEAK-SELECTED-WEIGHT", "Q4-PEAK-DISCRETE-MARGINAL"],
+      "locator": "sprints/sprint-20260808T051118704690Z/merged/solver-q4/q4_peak_tradeoff.csv",
+      "fields": ["peak_weight", "system_peak_variable_MW", "audit_passed"],
+      "sha256": "8ed32e82b5bd8ba9c64e3b3d6bfd97bd32e306ce8248ceb1afbce3848b204fcc"
+    }
+  ],
+  "findings": [
+    {
+      "id": "WRITER-001",
+      "severity": "REVIEW",
+      "title": "Root must bind frozen-claim macros and formal figure references",
+      "impact": "The staging text uses literal frozen values so it is independently auditable; formal paper assembly should replace repeated literals with generated macros/tables and add the approved Figure Contract IDs."
+    },
+    {
+      "id": "WRITER-002",
+      "severity": "REVIEW",
+      "title": "AI disclosure metadata is intentionally unresolved",
+      "impact": "The appendix states the verified content and requires generation from the formal usage ledger; tool/version/date/prompt fields must be populated by the root agent without invention."
+    },
+    {
+      "id": "WRITER-003",
+      "severity": "INFO",
+      "title": "Q3 facility residual exceeds generic tolerance by 4.499550970e-7 MW",
+      "impact": "The proposal reports the measured residual and attributes it to source rounding; it does not use exact-equality wording."
+    }
+  ],
+  "forbidden_wording_scan": {
+    "passed": true,
+    "forbidden_concepts": ["Q2 global optimum", "Q3 single full-horizon MILP optimum", "Q4 task-storage joint global optimum", "LP dual shadow price", "270/270 audits passed"],
+    "matches": []
+  },
+  "unresolved_for_root": [
+    "Run the formal claim-handoff generator after Q2-Q4 freeze and use generated macros in paper/main.tex.",
+    "Insert final Figure Contract IDs and citations after figure-worker staging is accepted.",
+    "Populate and audit AI工具使用详情.pdf from decision_log.compliance.ai_usage.",
+    "Recheck the official 2026 Huashu Cup/CUMCM rule links at the formal G5/G6 pass."
+  ]
+}

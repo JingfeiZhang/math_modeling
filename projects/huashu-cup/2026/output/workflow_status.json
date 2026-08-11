@@ -1,0 +1,1641 @@
+{
+  "schema_version": 1,
+  "problem": "C",
+  "question": null,
+  "gate": "G5",
+  "passed": true,
+  "checks": [
+    {
+      "name": "question_manifests_exist",
+      "passed": true,
+      "detail": "found 4 question manifest(s)"
+    },
+    {
+      "name": "G0_target",
+      "passed": true,
+      "detail": "Q1",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q1\\question.yaml"
+    },
+    {
+      "name": "G0_inputs",
+      "passed": true,
+      "detail": "Q1",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q1\\question.yaml"
+    },
+    {
+      "name": "G0_constraints",
+      "passed": true,
+      "detail": "Q1",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q1\\question.yaml"
+    },
+    {
+      "name": "G0_metrics",
+      "passed": true,
+      "detail": "Q1",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q1\\question.yaml"
+    },
+    {
+      "name": "G0_target",
+      "passed": true,
+      "detail": "Q2",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q2\\question.yaml"
+    },
+    {
+      "name": "G0_inputs",
+      "passed": true,
+      "detail": "Q2",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q2\\question.yaml"
+    },
+    {
+      "name": "G0_constraints",
+      "passed": true,
+      "detail": "Q2",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q2\\question.yaml"
+    },
+    {
+      "name": "G0_metrics",
+      "passed": true,
+      "detail": "Q2",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q2\\question.yaml"
+    },
+    {
+      "name": "G0_target",
+      "passed": true,
+      "detail": "Q3",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q3\\question.yaml"
+    },
+    {
+      "name": "G0_inputs",
+      "passed": true,
+      "detail": "Q3",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q3\\question.yaml"
+    },
+    {
+      "name": "G0_constraints",
+      "passed": true,
+      "detail": "Q3",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q3\\question.yaml"
+    },
+    {
+      "name": "G0_metrics",
+      "passed": true,
+      "detail": "Q3",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q3\\question.yaml"
+    },
+    {
+      "name": "G0_target",
+      "passed": true,
+      "detail": "Q4",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q4\\question.yaml"
+    },
+    {
+      "name": "G0_inputs",
+      "passed": true,
+      "detail": "Q4",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q4\\question.yaml"
+    },
+    {
+      "name": "G0_constraints",
+      "passed": true,
+      "detail": "Q4",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q4\\question.yaml"
+    },
+    {
+      "name": "G0_metrics",
+      "passed": true,
+      "detail": "Q4",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q4\\question.yaml"
+    },
+    {
+      "name": "G1_main",
+      "passed": true,
+      "detail": "Q1",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q1\\question.yaml"
+    },
+    {
+      "name": "G1_baseline",
+      "passed": true,
+      "detail": "Q1",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q1\\question.yaml"
+    },
+    {
+      "name": "G1_fallback",
+      "passed": true,
+      "detail": "Q1",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q1\\question.yaml"
+    },
+    {
+      "name": "G1_risk_probes",
+      "passed": true,
+      "detail": "Q1",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q1\\question.yaml"
+    },
+    {
+      "name": "G1_main",
+      "passed": true,
+      "detail": "Q2",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q2\\question.yaml"
+    },
+    {
+      "name": "G1_baseline",
+      "passed": true,
+      "detail": "Q2",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q2\\question.yaml"
+    },
+    {
+      "name": "G1_fallback",
+      "passed": true,
+      "detail": "Q2",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q2\\question.yaml"
+    },
+    {
+      "name": "G1_risk_probes",
+      "passed": true,
+      "detail": "Q2",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q2\\question.yaml"
+    },
+    {
+      "name": "G1_main",
+      "passed": true,
+      "detail": "Q3",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q3\\question.yaml"
+    },
+    {
+      "name": "G1_baseline",
+      "passed": true,
+      "detail": "Q3",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q3\\question.yaml"
+    },
+    {
+      "name": "G1_fallback",
+      "passed": true,
+      "detail": "Q3",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q3\\question.yaml"
+    },
+    {
+      "name": "G1_risk_probes",
+      "passed": true,
+      "detail": "Q3",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q3\\question.yaml"
+    },
+    {
+      "name": "G1_main",
+      "passed": true,
+      "detail": "Q4",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q4\\question.yaml"
+    },
+    {
+      "name": "G1_baseline",
+      "passed": true,
+      "detail": "Q4",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q4\\question.yaml"
+    },
+    {
+      "name": "G1_fallback",
+      "passed": true,
+      "detail": "Q4",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q4\\question.yaml"
+    },
+    {
+      "name": "G1_risk_probes",
+      "passed": true,
+      "detail": "Q4",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q4\\question.yaml"
+    },
+    {
+      "name": "G2_human_decision",
+      "passed": true,
+      "detail": "Q1",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q1\\question.yaml"
+    },
+    {
+      "name": "G2_human_decision",
+      "passed": true,
+      "detail": "Q2",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q2\\question.yaml"
+    },
+    {
+      "name": "G2_human_decision",
+      "passed": true,
+      "detail": "Q3",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q3\\question.yaml"
+    },
+    {
+      "name": "G2_human_decision",
+      "passed": true,
+      "detail": "Q4",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q4\\question.yaml"
+    },
+    {
+      "name": "G3_run_refs",
+      "passed": true,
+      "detail": "Q1",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q1\\question.yaml"
+    },
+    {
+      "name": "run_manifest_fields",
+      "passed": true,
+      "detail": "missing: ",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "main_and_baseline_ran",
+      "passed": true,
+      "detail": "roles: ['baseline', 'main']",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "run_status",
+      "passed": true,
+      "detail": "PASS",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "runner_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\run_forecast.py",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\workload_panel.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\descriptive_by_series.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\baseline_selection.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\residual_shrinkage_selection.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\rolling_backtest_predictions.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\validation_predictions.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\blind_test_predictions.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\metrics_by_series.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\metrics_summary.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\model_config.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\claim_proposal.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\staging\\forecast-q1\\hash_manifest.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\run_manifest.json"
+    },
+    {
+      "name": "run_manifest_fields",
+      "passed": true,
+      "detail": "missing: ",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "main_and_baseline_ran",
+      "passed": true,
+      "detail": "roles: ['baseline', 'fallback', 'main']",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "run_status",
+      "passed": true,
+      "detail": "PASS",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "runner_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\retry-staging\\scheduling-q1-attempt-2\\run_scheduling_q1.py",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\retry-staging\\scheduling-q1-attempt-2\\run_scheduling_q1.py",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\retry-staging\\scheduling-q1-attempt-2\\scheduling_metrics.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\retry-staging\\scheduling-q1-attempt-2\\baseline_schedule.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\retry-staging\\scheduling-q1-attempt-2\\optimized_schedule.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\retry-staging\\scheduling-q1-attempt-2\\warmup_task_audit.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\retry-staging\\scheduling-q1-attempt-2\\resource_audit.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\retry-staging\\scheduling-q1-attempt-2\\carry_in.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\retry-staging\\scheduling-q1-attempt-2\\constraint_audit.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\retry-staging\\scheduling-q1-attempt-2\\fallback_test.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\retry-staging\\scheduling-q1-attempt-2\\claim_proposal.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json"
+    },
+    {
+      "name": "G3_run_refs",
+      "passed": true,
+      "detail": "Q2",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q2\\question.yaml"
+    },
+    {
+      "name": "run_manifest_fields",
+      "passed": true,
+      "detail": "missing: ",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "main_and_baseline_ran",
+      "passed": true,
+      "detail": "roles: ['baseline', 'fallback', 'main']",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "run_status",
+      "passed": true,
+      "detail": "PASS",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "runner_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\generate_q2_compat.py",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\q2_compat_summary.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\claim_proposals.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\q2_renewable_accounting.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\q2_renewable_metric_audit.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\risk_probes.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\result_hashes.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-full-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "G3_run_refs",
+      "passed": true,
+      "detail": "Q3",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q3\\question.yaml"
+    },
+    {
+      "name": "run_manifest_fields",
+      "passed": true,
+      "detail": "missing: ",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "main_and_baseline_ran",
+      "passed": true,
+      "detail": "roles: ['baseline', 'main']",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "run_status",
+      "passed": true,
+      "detail": "PASS",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "runner_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023236665505Z\\merged\\solver-q3\\run_solver_q3.py",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023236665505Z\\merged\\solver-q3\\q3_summary.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023236665505Z\\merged\\solver-q3\\q3_constraint_audit.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023236665505Z\\merged\\solver-q3\\q3_load_recompute_audit.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023236665505Z\\merged\\solver-q3\\q3_candidate_metrics.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023236665505Z\\merged\\solver-q3\\q3_baseline_metrics.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023236665505Z\\merged\\solver-q3\\q3_scenario_metrics.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023236665505Z\\merged\\solver-q3\\q3_comparison_summary.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023236665505Z\\merged\\solver-q3\\q3_dispatch.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023236665505Z\\merged\\solver-q3\\q3_baseline_dispatch.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T031200808089Z\\merged\\solver-q3\\q3_claim_boundary_review.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T031200808089Z\\merged\\solver-q3\\q3_evidence_index.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\q3_derived_summary.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\claim_proposals.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-rolling-compat-20260808\\run_manifest.json"
+    },
+    {
+      "name": "run_manifest_fields",
+      "passed": true,
+      "detail": "missing: ",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "main_and_baseline_ran",
+      "passed": true,
+      "detail": "roles: ['baseline', 'main']",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "run_status",
+      "passed": true,
+      "detail": "PASS",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "runner_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_q3_full_audit_fix.py",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\full_cycle_binary_dispatch.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\full_cycle_baseline_dispatch.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\full_cycle_binary_metrics.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\full_cycle_baseline_metrics.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\full_cycle_binary_audit.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\full_cycle_baseline_audit.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\constraint_audit.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\summary.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\claim_proposals.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q3\\q3-full-audit-fix-20260809\\run_manifest.json"
+    },
+    {
+      "name": "G3_run_refs",
+      "passed": true,
+      "detail": "Q4",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q4\\question.yaml"
+    },
+    {
+      "name": "run_manifest_fields",
+      "passed": true,
+      "detail": "missing: ",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formal_run_manifest.json"
+    },
+    {
+      "name": "main_and_baseline_ran",
+      "passed": true,
+      "detail": "roles: ['baseline', 'main']",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formal_run_manifest.json"
+    },
+    {
+      "name": "run_status",
+      "passed": true,
+      "detail": "PASS",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formal_run_manifest.json"
+    },
+    {
+      "name": "runner_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formalize_q4_candidate.py",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formal_run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\q4_formal_summary.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formal_run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\q4_joint_metrics.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formal_run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\q4_joint_constraint_audit.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formal_run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\q4_joint_risk_probes.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formal_run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\q4_joint_summary.json",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formal_run_manifest.json"
+    },
+    {
+      "name": "artifact_hash",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\q4_joint_candidate_schedule.csv",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formal_run_manifest.json"
+    },
+    {
+      "name": "G4_robustness",
+      "passed": true,
+      "detail": "Q1",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q1\\question.yaml"
+    },
+    {
+      "name": "G4_robustness",
+      "passed": true,
+      "detail": "Q2",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q2\\question.yaml"
+    },
+    {
+      "name": "G4_robustness",
+      "passed": true,
+      "detail": "Q3",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q3\\question.yaml"
+    },
+    {
+      "name": "G4_robustness",
+      "passed": true,
+      "detail": "Q4",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\problems\\C\\questions\\Q4\\question.yaml"
+    },
+    {
+      "name": "G4_frozen_claims",
+      "passed": true,
+      "detail": "found 24 frozen claim(s)",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q1-FCST-TEST-WAPE",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q1-FCST-TEST-COVERAGE",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q1-SCHED-FEASIBLE",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q1-SCHED-COMPLETION",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q1-SCHED-SOLVER-STATUS",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q2-FULL-COMPLETION-RATE",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q2-FULL-SLA-VIOLATION-RATE",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q2-FULL-HARD-AUDIT-PASS",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q2-FULL-COST-CHANGE-PCT",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q2-FULL-CARBON-CHANGE-PCT",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q2-FULL-LATENCY-CHANGE-MS",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q2-FULL-DETERMINISTIC-REPLAY",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q3-ROLLING-BINARY-COVERAGE",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q3-ROLLING-COST-DELTA",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q3-ROLLING-CARBON-DELTA",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q3-STRESS-AUDITS-PASSED",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q3-FACILITY-LOAD-ROUNDING-RESIDUAL",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q3-ALL-270-AUDITS-PASS",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q4-AUDIT-PASS",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q4-OBS-COST-DELTA",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q4-LOWREN-COST-DELTA",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q4-LOWREN-CARBON-DELTA",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q4-JOINT-CARBON-DELTA",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G4_frozen_hash",
+      "passed": true,
+      "detail": "Q4-DETERMINISTIC-REPLAY",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    },
+    {
+      "name": "G5_figure_contracts",
+      "passed": true,
+      "detail": "found 12 formal contract(s)",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q1-weekly-demand-structure",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q1-weekly-demand-structure: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q1-weekly-demand-structure: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q1-weekly-demand-structure",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q1-weekly-demand-structure",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q1-weekly-demand-structure",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q1-weekly-demand-structure",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q1-weekly-demand-structure",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q1-weekly-demand-structure",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q1-weekly-demand-structure",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q1-blind-forecast-interval",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q1-blind-forecast-interval: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q1-blind-forecast-interval: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q1-blind-forecast-interval",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q1-blind-forecast-interval",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q1-blind-forecast-interval",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q1-blind-forecast-interval",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q1-blind-forecast-interval",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q1-blind-forecast-interval",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q1-blind-forecast-interval",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q1-series-error-pairing",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q1-series-error-pairing: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q1-series-error-pairing: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q1-series-error-pairing",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q1-series-error-pairing",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q1-series-error-pairing",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q1-series-error-pairing",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q1-series-error-pairing",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q1-series-error-pairing",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q1-series-error-pairing",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q1-schedule-gantt",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q1-schedule-gantt: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q1-schedule-gantt: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q1-schedule-gantt",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q1-schedule-gantt",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q1-schedule-gantt",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q1-schedule-gantt",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q1-schedule-gantt",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q1-schedule-gantt",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q1-schedule-gantt",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q1-resource-headroom",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q1-resource-headroom: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q1-resource-headroom: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q1-resource-headroom",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q1-resource-headroom",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q1-resource-headroom",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q1-resource-headroom",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q1-resource-headroom",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q1-resource-headroom",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q1-resource-headroom",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q2-load-migration",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q2-load-migration: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q2-load-migration: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q2-load-migration",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q2-load-migration",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q2-load-migration",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q2-load-migration",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q2-load-migration",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q2-load-migration",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q2-load-migration",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q2-cumulative-impact",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q2-cumulative-impact: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q2-cumulative-impact: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q2-cumulative-impact",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q2-cumulative-impact",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q2-cumulative-impact",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q2-cumulative-impact",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q2-cumulative-impact",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q2-cumulative-impact",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q2-cumulative-impact",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q2-latency-ecdf",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q2-latency-ecdf: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q2-latency-ecdf: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q2-latency-ecdf",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q2-latency-ecdf",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q2-latency-ecdf",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q2-latency-ecdf",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q2-latency-ecdf",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q2-latency-ecdf",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q2-latency-ecdf",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q3-dispatch-soc",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q3-dispatch-soc: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q3-dispatch-soc: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q3-dispatch-soc",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q3-dispatch-soc",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q3-dispatch-soc",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q3-dispatch-soc",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q3-dispatch-soc",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q3-dispatch-soc",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q3-dispatch-soc",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q3-rolling-runtime-coverage",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q3-rolling-runtime-coverage: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q3-rolling-runtime-coverage: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q3-rolling-runtime-coverage",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q3-rolling-runtime-coverage",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q3-rolling-runtime-coverage",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q3-rolling-runtime-coverage",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q3-rolling-runtime-coverage",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q3-rolling-runtime-coverage",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q3-rolling-runtime-coverage",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q4-scenario-tradeoff",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q4-scenario-tradeoff: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q4-scenario-tradeoff: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q4-scenario-tradeoff",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q4-scenario-tradeoff",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q4-scenario-tradeoff",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q4-scenario-tradeoff",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q4-scenario-tradeoff",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q4-scenario-tradeoff",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q4-scenario-tradeoff",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_claim_frozen",
+      "passed": true,
+      "detail": "fig-q4-system-profile",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_fields",
+      "passed": true,
+      "detail": "fig-q4-system-profile: missing none; version=2.0",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_physical_size",
+      "passed": true,
+      "detail": "fig-q4-system-profile: profile=contest-body, width=158.0, min_font=8",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_label_strategy",
+      "passed": true,
+      "detail": "fig-q4-system-profile",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_data_integrity",
+      "passed": true,
+      "detail": "fig-q4-system-profile",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_panel_policy",
+      "passed": true,
+      "detail": "fig-q4-system-profile",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_sources",
+      "passed": true,
+      "detail": "fig-q4-system-profile",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_exports",
+      "passed": true,
+      "detail": "fig-q4-system-profile",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_axes",
+      "passed": true,
+      "detail": "fig-q4-system-profile",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_figure_evidence_hash",
+      "passed": true,
+      "detail": "fig-q4-system-profile",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\figure_contracts.yaml"
+    },
+    {
+      "name": "G5_no_unfrozen_active_claims",
+      "passed": true,
+      "detail": "",
+      "evidence": "D:\\数学建模\\projects\\huashu-cup\\2026\\results\\C\\claims.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-10T11:51:35.952662+00:00"
+}

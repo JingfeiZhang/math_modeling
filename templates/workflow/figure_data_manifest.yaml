@@ -1,0 +1,45 @@
+schema_version: 1
+manifest_id: figdata-replace-me
+problem_id: TBD
+question_id: Q1
+run_id: replace-me-run
+level: scratch
+status: DATA_READY
+source_run_manifest: experiments/TBD/Q1/scratch/replace-me-run/run_manifest.json
+source_run_manifest_sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+source_artifacts:
+  - path: experiments/TBD/Q1/scratch/replace-me-run/results/figure_data.csv
+    sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+    fields:
+      - scenario_id
+      - main_value
+      - baseline_value
+data_profile:
+  row_count: 0
+  column_count: 3
+  variable_types:
+    scenario_id: identifier
+    main_value: numeric
+    baseline_value: numeric
+  units:
+    scenario_id: dimensionless
+    main_value: replace-me-unit
+    baseline_value: replace-me-unit
+  observation_unit: one row per scenario
+  missingness:
+    scenario_id: 0
+    main_value: 0
+    baseline_value: 0
+comparators:
+  baseline: replace with the comparable baseline definition
+  thresholds: []
+uncertainty:
+  definition: not applicable; replace when intervals or repeated runs exist
+  observation_or_replication_unit: one scenario
+read_only_transformations: []
+reader_question: What single comparison should the reader understand from these fields?
+claim_candidates: []
+paper_targets:
+  - paper/sections/question_1.tex
+contest_evidence_eligible: false
+created_at_utc: replace-at-generation-time

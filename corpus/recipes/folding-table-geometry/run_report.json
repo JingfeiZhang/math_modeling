@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "recipe_id": "folding-table-geometry",
+  "status": "success",
+  "relationship": "modernization_fixture_not_numerical_reproduction",
+  "source_pair": {
+    "candidate_id": "cumcm-2014-b009",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/B16046004_程双泽_李君昌_陈凌勤.pdf",
+      "blob_sha": "89f592540d083ebccd0bbd6a8da934b8f7b58ccb",
+      "sha256": "209094e0ec9d4b412ffc9ceb60a15f56b29bce6ce0880b31a444c391353e468c"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w2_2.m",
+        "blob_sha": "0a7422b4f744774a7441b93a328492af676b0a79",
+        "sha256": "9dc493fb75c3898eab0ca9ded0bfd527fb78ce544d56283bf948fd5707252b4c",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w3_1.m",
+        "blob_sha": "5c284e8fbd8203837282f8ef86a9e8f0e6b37ed2",
+        "sha256": "6cb4afc5e406cc6a7246cc0be6c4e0be79a39cf97bfc3364ccaa60f8858d44ac",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "command": "D:\\anaconda3\\python.exe run.py",
+  "seed": 20260810,
+  "working_directory": "D:\\数学建模\\corpus\\recipes\\folding-table-geometry",
+  "isolation": {
+    "writes_within_recipe_directory": true,
+    "upstream_code_executed": false
+  },
+  "environment": {
+    "python": "3.13.9",
+    "executable": "D:\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.6"
+  },
+  "inputs": [
+    {
+      "path": "run.py",
+      "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+      "bytes": 18492
+    },
+    {
+      "path": "recipe.json",
+      "sha256": "75ac9a367c6dfcb60be86b01ba4d0fe8d4c08e0b086f8d0ada67c4e0d22b6cd1",
+      "bytes": 1533
+    },
+    {
+      "path": "input.json",
+      "sha256": "d1f88fd7b71c25e1bce9f855fbaaff7ab7d5bf2c468870aae2df18f346a1a990",
+      "bytes": 103
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results.json",
+      "sha256": "5593aff2beffeff7c64ed3873d9ebe09db8f92406e8d600d9a5ed5cb50b52071",
+      "bytes": 227
+    },
+    {
+      "path": "series.csv",
+      "sha256": "5869c78f23d82d58777c1c945897b75065552986e94110a51b637a531ce5faa9",
+      "bytes": 16161
+    },
+    {
+      "path": "figure.png",
+      "sha256": "97325d428fcc7a8158fe0b4949a8369181db01c49fad97f3b235306b0cc2c883",
+      "bytes": 261917
+    },
+    {
+      "path": "figure.svg",
+      "sha256": "a89323a571efe2a9bfff4ac65d8211455f51b21009a286aacf2365a1a2d5e85a",
+      "bytes": 102360
+    },
+    {
+      "path": "figure.pdf",
+      "sha256": "f36a701367d3858667d211e1fa70e1470785bfa70f6840f1f5cb8d0e0fd1f5ef",
+      "bytes": 13934
+    }
+  ],
+  "metrics": {
+    "best_angle_deg": 74.36708860759494,
+    "best_footprint_m": 0.19477101174528347,
+    "material_proxy": 13.010126582278481,
+    "feasible_count": 430
+  },
+  "runtime_ms": 821.52
+}

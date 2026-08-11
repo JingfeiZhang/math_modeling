@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "recipe_id": "folding-table-shape-scan",
+  "status": "success",
+  "relationship": "modernization_fixture_not_numerical_reproduction",
+  "source_pair": {
+    "candidate_id": "cumcm-2014-b261",
+    "relationship": "supported_partial",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/B27042017_吴俊锋_谭翔飞_庄重.pdf",
+      "blob_sha": "54a4c815a2fd4fc9ebc3c2da0d886f7c7d4cb691",
+      "sha256": "8ead45a2621844a876124abcc99da07f8f785b2530f7ee6f1ff5a93da5b32aa0"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/程序/hexagon.m",
+        "blob_sha": "dee82ed3ccff297bd70421c41b0115b5db29926d",
+        "sha256": "18967d3286e0dcb7f507e86fc227f7255ddd9394879c3519933dceb73c28df1d",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/程序/zhuojiaosaomiao.m",
+        "blob_sha": "b0f34d6940b84af1ccac1a6aa7e132decb6132d7",
+        "sha256": "05c2aef8639ee9713fc5795d86333053e082788ee672ba2708af7737bf5d784c",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "command": "D:\\anaconda3\\python.exe run.py",
+  "seed": 20260811,
+  "working_directory": "D:\\数学建模\\corpus\\recipes\\folding-table-shape-scan",
+  "isolation": {
+    "writes_within_recipe_directory": true,
+    "upstream_code_executed": false
+  },
+  "environment": {
+    "python": "3.13.9",
+    "executable": "D:\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.6"
+  },
+  "inputs": [
+    {
+      "path": "run.py",
+      "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+      "bytes": 18492
+    },
+    {
+      "path": "recipe.json",
+      "sha256": "a099f5128e8278a74cffdd6b653438ac316d18f92b3c4137ef263c22ceced0f3",
+      "bytes": 1552
+    },
+    {
+      "path": "input.json",
+      "sha256": "d6b3c5a98fc9fe689c0fefc2b1eeea39998984d35ba53d0cff7d38651e6053a8",
+      "bytes": 67
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results.json",
+      "sha256": "9d381add6f9d84886604b6ee9a8d1da96ea3ed58f5e428ca4357517a8aa4ed63",
+      "bytes": 181
+    },
+    {
+      "path": "series.csv",
+      "sha256": "d7f4223b0c3e1d9ab3c3219b63d7f89f6cced54abe0d5c7cb93a7514365433e9",
+      "bytes": 246
+    },
+    {
+      "path": "figure.png",
+      "sha256": "3a00f7aa8a97b76a64afa6dfaa1d6c39519587c4f406fd37637541fce6b52c6b",
+      "bytes": 145408
+    },
+    {
+      "path": "figure.svg",
+      "sha256": "d4bb021c0aad93b6db041e35c22df3bfb0a7d99db6e52f55e1085fe5cd20ac1b",
+      "bytes": 34333
+    },
+    {
+      "path": "figure.pdf",
+      "sha256": "38e107d46f8483aec8159bcb16c2e8aff8d6c7955d18a3acf7f989204d359654",
+      "bytes": 13909
+    }
+  ],
+  "metrics": {
+    "best_side_count": 14,
+    "score": 3.667082612530359,
+    "square_baseline_score": 5.6568542494923815
+  },
+  "runtime_ms": 806.399
+}

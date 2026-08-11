@@ -1,0 +1,9 @@
+{
+  "recipe_id": "storage-slot-sizing",
+  "metrics": {
+    "required_cabinets": 3,
+    "standardized_area_mm2": 7550989.0,
+    "packing_overhead_ratio": 0.13104146633065206,
+    "single_cabinet_baseline_capacity_mm2": 3000000.0
+  }
+}

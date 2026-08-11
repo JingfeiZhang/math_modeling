@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "project_id": "huashu-cup-2026",
+  "problem_id": "C",
+  "generated_at_utc": "2026-08-08T18:46:58.863039+00:00",
+  "baseline_claim_sha256": "00dc4ed7af69a13646174a2c2c3bc7d64b58af3011c5cb36b28c4f1288a08c44",
+  "decisions": {
+    "Q1": {
+      "decision": "RETAIN",
+      "reason": "RMSE and interval-width gates failed",
+      "evidence": "experiments/C/Q1/q1-optimization-20260809/summary.json"
+    },
+    "Q2": {
+      "decision": "RETAIN",
+      "reason": "candidate carbon degradation exceeded 0.1%",
+      "evidence": "experiments/C/Q2/q2-optimization-20260809/summary.json"
+    },
+    "Q3": {
+      "decision": "RETAIN",
+      "reason": "adaptive-window gain was below 0.1% and export semantics require caution",
+      "evidence": "experiments/C/Q3/q3-review-20260809/q3_adaptive_summary.json"
+    },
+    "Q4": {
+      "decision": "PROMOTE",
+      "reason": "all five scenarios non-worse with strict improvement, hard audits and deterministic replay",
+      "evidence": "experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "recipe_id": "folding-table-shape-scan",
+  "kind": "shape_scan",
+  "title": "Tabletop shape trade-off",
+  "seed": 20260811,
+  "source_pair": {
+    "candidate_id": "cumcm-2014-b261",
+    "relationship": "supported_partial",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/B27042017_吴俊锋_谭翔飞_庄重.pdf",
+      "blob_sha": "54a4c815a2fd4fc9ebc3c2da0d886f7c7d4cb691",
+      "sha256": "8ead45a2621844a876124abcc99da07f8f785b2530f7ee6f1ff5a93da5b32aa0"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/程序/hexagon.m",
+        "blob_sha": "dee82ed3ccff297bd70421c41b0115b5db29926d",
+        "sha256": "18967d3286e0dcb7f507e86fc227f7255ddd9394879c3519933dceb73c28df1d",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/程序/zhuojiaosaomiao.m",
+        "blob_sha": "b0f34d6940b84af1ccac1a6aa7e132decb6132d7",
+        "sha256": "05c2aef8639ee9713fc5795d86333053e082788ee672ba2708af7737bf5d784c",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "scope": "controlled synthetic fixture for reusable method testing",
+  "not_a_reproduction": true,
+  "upstream_code_execution": "forbidden"
+}

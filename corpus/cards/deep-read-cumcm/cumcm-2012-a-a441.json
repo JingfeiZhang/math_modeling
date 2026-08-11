@@ -1,0 +1,301 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2012-a-a441",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2012,
+    "problem": "A",
+    "team_id": "",
+    "title": "葡萄酒的评价"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/A441.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2012/A441.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2012,
+    "problem": "A",
+    "team_id": "",
+    "title": "葡萄酒的评价",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "bf211e0d2901698f856b2b75b528419b89fed8c408950a1596970259ebecae84",
+    "pages": 27,
+    "local_path": "corpus/raw/objects/sha256/bf/bf211e0d2901698f856b2b75b528419b89fed8c408950a1596970259ebecae84.pdf",
+    "first_page_phash": "30d0e4e0c09c0000",
+    "text_sha256": "a6a8a88fd551462550e36ceedfedcee8e7adeec9ed5691bcc9b4d69cd4a48f52"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“研究对象与评价任务；按四个问题概括统计方法；摘要给出评价一致性与影响关系结论；关键词”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2012-a-a441/pages/page-01.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：先用分布图检查两组评分数据的形态",
+      "derivation": "mixed",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2012-a-a441/pages/page-04.jpg"
+    },
+    {
+      "page": 5,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：用 Q-Q 图和正态性检验决定后续检验路线",
+      "derivation": "mixed",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2012-a-a441/pages/page-05.jpg"
+    },
+    {
+      "page": 7,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：采用非参数秩和检验判断两组评分是否有显著差异",
+      "derivation": "mixed",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2012-a-a441/pages/page-07.jpg"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：建立多元线性回归连接理化指标与评分",
+      "derivation": "mixed",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2012-a-a441/pages/page-10.jpg"
+    },
+    {
+      "page": 5,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：正态性图形诊断和检验共同支撑检验方法选择",
+      "derivation": "mixed",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2012-a-a441/pages/page-05.jpg"
+    },
+    {
+      "page": 12,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：单列模型检验并讨论残差与样本数限制",
+      "derivation": "mixed",
+      "locator": "PDF p.12",
+      "render": "corpus/rendered/cumcm-2012-a-a441/pages/page-12.jpg"
+    },
+    {
+      "page": 20,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：报告回归系数显著性并在下一页给出模型评价",
+      "derivation": "mixed",
+      "locator": "PDF p.20",
+      "render": "corpus/rendered/cumcm-2012-a-a441/pages/page-20.jpg"
+    },
+    {
+      "page": 21,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：模型评价说明回归解释仍受变量选择与样本条件约束",
+      "derivation": "mixed",
+      "locator": "PDF p.21",
+      "render": "corpus/rendered/cumcm-2012-a-a441/pages/page-21.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "研究对象与评价任务",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "按四个问题概括统计方法",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "摘要给出评价一致性与影响关系结论",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "关键词",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 4,
+      "description": "先用分布图检查两组评分数据的形态",
+      "locator": "PDF p.4"
+    },
+    {
+      "step": 2,
+      "page": 5,
+      "description": "用 Q-Q 图和正态性检验决定后续检验路线",
+      "locator": "PDF p.5"
+    },
+    {
+      "step": 3,
+      "page": 7,
+      "description": "采用非参数秩和检验判断两组评分是否有显著差异",
+      "locator": "PDF p.7"
+    },
+    {
+      "step": 4,
+      "page": 10,
+      "description": "建立多元线性回归连接理化指标与评分",
+      "locator": "PDF p.10"
+    },
+    {
+      "step": 5,
+      "page": 13,
+      "description": "用相关分析筛选理化指标与评分的关系",
+      "locator": "PDF p.13"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 5,
+      "description": "正态性图形诊断和检验共同支撑检验方法选择",
+      "locator": "PDF p.5"
+    },
+    {
+      "step": 2,
+      "page": 12,
+      "description": "单列模型检验并讨论残差与样本数限制",
+      "locator": "PDF p.12"
+    },
+    {
+      "step": 3,
+      "page": 20,
+      "description": "报告回归系数显著性并在下一页给出模型评价",
+      "locator": "PDF p.20"
+    },
+    {
+      "step": 4,
+      "page": 21,
+      "description": "明确列出模型优缺点和解释边界",
+      "locator": "PDF p.21"
+    }
+  ],
+  "figures": [
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "distribution",
+      "caption": "评分分布直方图",
+      "lesson": "在正式检验前展示分布形态",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2012-a-a441/pages/page-04.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "diagnostic",
+      "caption": "Q-Q 图",
+      "lesson": "把正态性假设诊断可视化",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2012-a-a441/pages/page-05.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 4
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 4
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 21
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "c47d14f1eb3e4b691f414718704cb09a74f04bff",
+    "bytes": 913961,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2012-a-a441/extracted-layout.txt",
+      "sha256": "a6a8a88fd551462550e36ceedfedcee8e7adeec9ed5691bcc9b4d69cd4a48f52",
+      "extracted_pages": 27,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 27,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2012-a-a441/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2012-a-a441/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2012-a-a441/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2012-a-a441/contact-25-27.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

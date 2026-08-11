@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "question_id": "Q3",
+  "status": "PASS",
+  "source": "frozen formal Q3 run",
+  "regions": 6,
+  "rolling_block_h": 168,
+  "rolling_block_count": 90,
+  "hard_audit_passed": true,
+  "full_audit_count": 270,
+  "full_audit_passed": 270,
+  "feasibility_only": true,
+  "global_optimality_claim": false
+}

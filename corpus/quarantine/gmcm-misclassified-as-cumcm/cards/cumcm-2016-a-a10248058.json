@@ -1,0 +1,336 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2016-a-a10248058",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2016,
+    "problem": "A",
+    "team_id": "",
+    "title": "参赛密码"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2016%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/A/A10248058.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2016年优秀论文/A/A10248058.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2016,
+    "problem": "A",
+    "team_id": "",
+    "title": "参赛密码",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "1d9bbb0c2a9fd547ff150bd8dc23be7f2138ed0f4f0e65f391cddbbbcec7bb53",
+    "pages": 30,
+    "local_path": "corpus/raw/objects/sha256/1d/1d9bbb0c2a9fd547ff150bd8dc23be7f2138ed0f4f0e65f391cddbbbcec7bb53.pdf",
+    "first_page_phash": "04367068e0c4c000",
+    "text_sha256": "802577166f6054578ffe64a30902d2b7af4ea892ad1e37af0cb82eb95bc2ecae"
+  },
+  "review_status": "content_extracted",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括”的组织结构。",
+      "derivation": "text",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：题 目 多无人机协同任务规划",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：本文以最优化理论为基础，研究了多无人机协同任务规划问题。首先，通过两",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：元素优化算法（2-opt）和基于贪心策略的覆盖法，求解了多无人机协同侦察问题",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：通过定量分析，证明了提出的协同通信策略的可行性；再次，采用最近邻贪心算法和",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：问题一中，分三步求解了多无人机协同侦察模型 MUCRP。通过对比两元素优化算",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-02.jpg"
+    },
+    {
+      "page": 5,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：9. 模型的评价 27",
+      "derivation": "text",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-05.jpg"
+    },
+    {
+      "page": 5,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：9 . 1 模型的优点 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27",
+      "derivation": "text",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-05.jpg"
+    },
+    {
+      "page": 23,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：于是可以将问题一中的覆盖法进行改进，提出基于协同攻击的覆盖法，其算法原理见",
+      "derivation": "text",
+      "locator": "PDF p.23",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-23.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "题 目 多无人机协同任务规划",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "本文以最优化理论为基础，研究了多无人机协同任务规划问题。首先，通过两",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "元素优化算法（2-opt）和基于贪心策略的覆盖法，求解了多无人机协同侦察问题",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "通过定量分析，证明了提出的协同通信策略的可行性；再次，采用最近邻贪心算法和",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 2,
+      "description": "基于协同攻击的覆盖法，将 FY-1 与 FY-3 型无人机的协同作战问题转化为两步优化问",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 6,
+      "page": 2,
+      "description": "并给出了完成规定火力打击任务的规划结果；接着，通过提出巡检待命无人机的设想，",
+      "locator": "PDF p.2"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "问题一中，分三步求解了多无人机协同侦察模型 MUCRP。通过对比两元素优化算",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 5,
+      "description": "9. 模型的评价 27",
+      "locator": "PDF p.5"
+    },
+    {
+      "step": 3,
+      "page": 5,
+      "description": "9 . 1 模型的优点 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27",
+      "locator": "PDF p.5"
+    },
+    {
+      "step": 4,
+      "page": 5,
+      "description": "9 . 2 模型的缺点 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27",
+      "locator": "PDF p.5"
+    },
+    {
+      "step": 5,
+      "page": 8,
+      "description": "由于目标群比较集中，在整个求解过程中，假设：",
+      "locator": "PDF p.8"
+    }
+  ],
+  "figures": [
+    {
+      "page": 2,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "侦察，其最佳路线见文内图 1。在此基础上，采用覆盖法得出，需选择 1 台加载 S-2 型",
+      "lesson": "图题“侦察，其最佳路线见文内图 1。在此基础上，采用覆盖法得出，需选择 1 台加载 S-2 型”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-02.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 2,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "载荷的 FY-1 型无人机进行侦察，其最佳路线见文内图 2。最后通过求解时间差优化问",
+      "lesson": "图题“载荷的 FY-1 型无人机进行侦察，其最佳路线见文内图 2。最后通过求解时间差优化问”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-02.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 2,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "案，其航迹见文内图 8。理论分析表明，在此方案下两台 FY-2 型无人机的飞行时间均",
+      "lesson": "图题“案，其航迹见文内图 8。理论分析表明，在此方案下两台 FY-2 型无人机的飞行时间均”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-02.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 13,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图1 FY-1 型无人机加载 S-1 型载荷进行侦察的航迹图",
+      "lesson": "图题“图1 FY-1 型无人机加载 S-1 型载荷进行侦察的航迹图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.13",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-13.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 13,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "留防御方雷达有效探测范围内的时间为 6h27m57s，其航迹如下图1(a)。",
+      "lesson": "图题“留防御方雷达有效探测范围内的时间为 6h27m57s，其航迹如下图1(a)。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.13",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-13.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 13,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "的滞留在防御方雷达有效探测范围内的时间为 6h9m45s，其航迹如上图1(b)，飞行时间",
+      "lesson": "图题“的滞留在防御方雷达有效探测范围内的时间为 6h9m45s，其航迹如上图1(b)，飞行时间”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.13",
+      "render": "corpus/rendered/cumcm-2016-a-a10248058/pages/page-13.jpg",
+      "visual_checked": false
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 23
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "全页已渲染，但接触表尚未完成逐页人工视觉确认。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "git_blob_sha": "e7efd036a77f335516cb76bf2c8173c918afb727",
+    "bytes": 766029,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2016-a-a10248058/extracted-layout.txt",
+      "sha256": "802577166f6054578ffe64a30902d2b7af4ea892ad1e37af0cb82eb95bc2ecae",
+      "extracted_pages": 30,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 30,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2016-a-a10248058/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2016-a-a10248058/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2016-a-a10248058/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2016-a-a10248058/contact-25-30.jpg"
+      ],
+      "visual_review": "pending"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

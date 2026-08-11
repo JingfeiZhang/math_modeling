@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "question_id": "Q1",
+  "status": "PASS",
+  "source": "frozen formal Q1 run",
+  "forecast": {
+    "horizon_h": 24,
+    "series_count": 18,
+    "blind_test": {
+      "system_wape": 0.89343949172524,
+      "system_rmse_gpu_h": 265.1793127907307,
+      "coverage_95": 0.9467592592592593,
+      "mean_interval_width_gpu_h": 442.47859929946003
+    },
+    "coherence_error_gpu_h": 4.547473508864641e-13
+  },
+  "schedule": {
+    "task_count": 538,
+    "completion_rate": 1,
+    "hard_audit_passed": true
+  },
+  "formal_main_replaced": false
+}

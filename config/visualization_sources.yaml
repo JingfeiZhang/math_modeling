@@ -1,0 +1,97 @@
+schema_version: 1
+snapshot_date: "2026-08-11"
+purpose: >-
+  Pinned read-only method sources for the local visualization-design skill.
+  Repository popularity is discovery evidence only, not an authority over local
+  contest evidence, palette, environment, or release rules.
+
+authoritative_local_rules:
+  palette: config/figure_style.yaml#journal-spectrum-v2
+  state_owner: mathmodel-skill
+  formal_figure_owner: modeling-paper-studio
+  export: [pdf, editable-text-svg, 400-dpi-png]
+  default_primary_plotting_areas: 1
+
+sources:
+  - id: kdense-scientific-visualization
+    repository: https://github.com/K-Dense-AI/scientific-agent-skills
+    skill_path: scientific-visualization
+    commit: d661d27ef4ddad5b9287bdd84887ace27e2320b8
+    license: MIT
+    observed_stars: 33161
+    observed_on: "2026-08-11"
+    mode: pinned-read-only-method-source
+    adopted:
+      - evidence_integrity
+      - uncertainty_and_missing_data_disclosure
+      - physical_size_first
+      - vector_and_raster_export_qa
+    excluded:
+      - external_palettes
+      - runtime_installation
+      - simulated_data
+      - network_and_subprocess_scripts
+
+  - id: anthropic-data-visualization
+    repository: https://github.com/anthropics/knowledge-work-plugins
+    skill_path: data-visualization
+    commit: 2cf42948f0b79c5492bb38981752b815fc6788ec
+    license: Apache-2.0
+    observed_stars: 23427
+    observed_on: "2026-08-11"
+    mode: pinned-read-only-method-source
+    adopted:
+      - relationship_first_chart_selection
+      - visual_narrative
+      - accessibility_and_redundant_encoding
+    excluded:
+      - external_palettes
+      - 150_dpi_default
+      - runtime_installation
+      - network_scripts
+
+  - id: galaxy-dawn-publication-chart
+    repository: https://github.com/Galaxy-Dawn/claude-scholar
+    skill_path: publication-chart-skill
+    commit: 2f7766fd541a723d4ddc6230b3277f948d61b093
+    license: MIT
+    observed_stars: 5064
+    observed_on: "2026-08-11"
+    mode: pinned-read-only-method-source
+    adopted:
+      - figure_table_or_combination_decision
+      - publication_quality_review
+    excluded:
+      - automatic_pubfig_pubtab_installation
+      - external_palettes
+      - gui_and_network_workflows
+      - simulated_data
+
+  - id: tingxiyu-academic-figure
+    repository: https://github.com/TingxiYu/academic-figure-skill
+    skill_path: .
+    commit: 1df9940dd01ac939f072b12fe28d6353b79b90f9
+    license: Apache-2.0
+    observed_on: "2026-08-11"
+    mode: pinned-read-only-method-source
+    adopted:
+      - figure_brief
+      - physical_size_first
+      - statistics_and_integrity
+      - visual_hierarchy
+      - four_round_rendered_qa
+    excluded:
+      - external_palettes
+      - 5_pt_type_default
+      - 300_dpi_default
+      - r_scripts
+      - gui_network_and_subprocess_scripts
+      - simulated_data_and_previews
+
+global_exclusions:
+  - upstream_workflow_state
+  - upstream_color_definitions
+  - upstream_result_values
+  - unscreened_executable_code
+  - automatic_dependency_installation
+

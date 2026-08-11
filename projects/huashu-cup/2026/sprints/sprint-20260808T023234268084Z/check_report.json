@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T023234268084Z",
+  "status": "READY_TO_MERGE",
+  "passed": true,
+  "accepted_tasks": [
+    "solver-q2"
+  ],
+  "retry_tasks": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "tasks": [
+    {
+      "task_id": "solver-q2",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 1,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/run_q2_enhanced.py",
+          "sha256": "aa4152b70735fc7165ccf74338a56a19b89de1e93f83dbfba80cc4713124bd71"
+        },
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_baseline_schedules.csv",
+          "sha256": "45e378f7e7a77a219deeeaff97a53e4f444693aca15e19d761cefe6d79b2be1d"
+        },
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_candidate_schedules.csv",
+          "sha256": "a3bf710460b36da522d0753f4612a2c764d54ba5311177611dce593a1788e05d"
+        },
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_baseline_metrics.csv",
+          "sha256": "b1d94415f7be56e7768eec070d2b0aa56e73073890da1d6e1ca6e136bd6b75d7"
+        },
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_candidate_metrics.csv",
+          "sha256": "09f979f7e9a39f97c9334b0efe71cada0b7a51c2743122d2c73970627b3b4c66"
+        },
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_variant_metrics.csv",
+          "sha256": "af1f396cea7bf8b440e94be8a063c00d65a8b68e807a464084498f7ea9f879ee"
+        },
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_robustness.csv",
+          "sha256": "913df99ff941cb2818367858ad1e1414548abfa8e4c626fbfcd667a55df93605"
+        },
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_pareto.csv",
+          "sha256": "b61af9a3343f27b923d17c25836c8e93f99cd675494179bc8760cc323aac305c"
+        },
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_constraint_audit.json",
+          "sha256": "f3db13dcc42cdb955b8bc17d68e5ac70a457f905c7ace1fb2428b38d75431248"
+        },
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_claim_proposals.json",
+          "sha256": "aee22e8c157dab500a5ddd595639cfc11147ce1286aabe9f5a8b8967e332954d"
+        },
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_enhancement_summary.json",
+          "sha256": "02d2048f466694d15aaa6905080b2c82413a95b71580034a0ff5e888b23b1e62"
+        },
+        {
+          "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_run_manifest.json",
+          "sha256": "e366a6f0aabeb1b993a50259415214f9682081960b98ced970f28b1ec5096958"
+        }
+      ],
+      "handoff": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-08T03:42:38.979001+00:00"
+}

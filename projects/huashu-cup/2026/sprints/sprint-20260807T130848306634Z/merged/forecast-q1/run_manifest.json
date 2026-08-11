@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "run_id": "q1-forecast-sprint-20260807T130848306634Z",
+  "sprint_id": "sprint-20260807T130848306634Z",
+  "problem_id": "C",
+  "question_id": "Q1",
+  "engine": "python",
+  "command": [
+    "D:\\anaconda3\\python.exe",
+    "-s",
+    "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/run_forecast.py",
+    "--project-root",
+    "D:\\数学建模\\projects\\huashu-cup\\2026",
+    "--task",
+    "sprints/sprint-20260807T130848306634Z/tasks/forecast-q1.json"
+  ],
+  "environment": {
+    "python": "3.13.9",
+    "executable": "D:\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "scikit_learn": "1.7.2",
+    "pythonhashseed": "0"
+  },
+  "code": {
+    "runner": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/run_forecast.py",
+    "sha256": "73666e4d1b2ae6554f100c131d80470e1258ae23e40cba360359894415c0a043"
+  },
+  "random_seed": 20260801,
+  "methods": [
+    {
+      "role": "baseline",
+      "name": "seasonal naive lag 168 h",
+      "selection": "four rolling 24 h training-only folds"
+    },
+    {
+      "role": "main",
+      "name": "shared HistGradientBoosting residual model + nonnegative WLS reconciliation + split conformal"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "problems/C/questions/Q1/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "bfbf9747a7dd39b08d897981e5f9a89f4f04ed3c24102a8096d7db369389ec1f"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "problems/C/data/workload_trace.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+    },
+    {
+      "path": "problems/C/data/GPU_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+    },
+    {
+      "path": "problems/C/data/network_latency.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157"
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/power_mapping.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/workload_panel.csv",
+      "sha256": "d0eaf1a81152b3dda4ebcea4f223c31111ed001c1eec16543311fe87aa1ee80b"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/descriptive_by_series.csv",
+      "sha256": "5f54955015f3175444b5227154f8dd8ad3d95d94e8c556285132dfbb6b61543c"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/baseline_selection.csv",
+      "sha256": "432b6bbdb04a13a0cae119c11ccb8944658aa46b9cb1ff4cacb9cd32cb8a4e31"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/residual_shrinkage_selection.csv",
+      "sha256": "1e359a219e6ccbd84337a7170278e7fcf75d75eaaa87d8a833dfe0b2c515ecd4"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/rolling_backtest_predictions.csv",
+      "sha256": "0a949cd1e7b09b4e7096a5b9bb3e5ebedde1796213f32673ea2091064da2e049"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/validation_predictions.csv",
+      "sha256": "52f785106caeceff0e7075d16a021b99716e303e1cb0d2de20c73a9963b08cd5"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/blind_test_predictions.csv",
+      "sha256": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/metrics_by_series.csv",
+      "sha256": "91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/metrics_summary.json",
+      "sha256": "e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/model_config.json",
+      "sha256": "94980158c3f37a3bdfe23c7dec657b4fa043dc56bb6c2476790054a8ca0d89cf"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/claim_proposal.json",
+      "sha256": "4b35bd891c31541e3b010e6500fe7c10231213bdd48075a5a6938a8e20105ab4"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/hash_manifest.json",
+      "sha256": "12b68903ce9b6c66f1eb0982f139915e52ff80c27ebef6658b695e3f42749599"
+    }
+  ],
+  "metrics": [
+    {
+      "name": "MAE",
+      "unit": "GPU.h"
+    },
+    {
+      "name": "RMSE",
+      "unit": "GPU.h"
+    },
+    {
+      "name": "WAPE",
+      "unit": "ratio"
+    },
+    {
+      "name": "MASE",
+      "unit": "ratio",
+      "denominator": "24 h seasonal naive in training"
+    },
+    {
+      "name": "coverage",
+      "unit": "ratio"
+    },
+    {
+      "name": "mean interval width",
+      "unit": "GPU.h"
+    }
+  ],
+  "started_at_utc": "2026-08-07T13:15:46.988871+00:00",
+  "duration_seconds": 13.853658799999948,
+  "status": "PASS"
+}

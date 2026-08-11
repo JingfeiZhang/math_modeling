@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T031146908286Z",
+  "status": "MERGED",
+  "passed": true,
+  "accepted_tasks": [
+    "solver-q2"
+  ],
+  "archived_artifacts": [
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260808T031146908286Z/staging/solver-q2/run_q2_full_horizon.py",
+      "archive": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/run_q2_full_horizon.py",
+      "sha256": "6a39aa6eb6802a73057ae78528b18775ba2181924b7bb4fa8ad263f0214ce45f"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260808T031146908286Z/staging/solver-q2/q2_full_baseline_schedule.csv",
+      "archive": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_baseline_schedule.csv",
+      "sha256": "172d45d624d85f7cf7558606e551f7dee275ab726236c6b933b39d6282df370a"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260808T031146908286Z/staging/solver-q2/q2_full_candidate_schedule.csv",
+      "archive": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_candidate_schedule.csv",
+      "sha256": "d04a57ba3cd830c771bd97fe7a9f0efa62e97978139dbcfd094cc0f098ebad54"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260808T031146908286Z/staging/solver-q2/q2_full_exchange_log.csv",
+      "archive": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_exchange_log.csv",
+      "sha256": "6bc223a7e692b799a871ee7433413d89516cf6d78d06d61a77e933d8bd2bcd56"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260808T031146908286Z/staging/solver-q2/q2_full_hourly_profiles.csv",
+      "archive": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_hourly_profiles.csv",
+      "sha256": "129c23e73ed9d0ec7398f1a787d9426f0a8d54851a9153f3f96741871404dd47"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260808T031146908286Z/staging/solver-q2/q2_full_block_robustness.csv",
+      "archive": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_block_robustness.csv",
+      "sha256": "2ac7d8a6da49d09319359317931371b7f16c7f9e872a81f2d64a11e58dfdbaa4"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260808T031146908286Z/staging/solver-q2/q2_full_risk_probes.csv",
+      "archive": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_risk_probes.csv",
+      "sha256": "a92c7ce125292aba537fe4b9ff37c234745f5d1e78f0189cd8329875fa3a7b47"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260808T031146908286Z/staging/solver-q2/q2_full_constraint_audit.json",
+      "archive": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_constraint_audit.json",
+      "sha256": "5828246813e019dfa0a49226a37eca61bc7ed6ee3a4c7d2eefe44ce5994b06aa"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260808T031146908286Z/staging/solver-q2/q2_full_summary.json",
+      "archive": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_summary.json",
+      "sha256": "68f503df0646e34d9e76680b5c104c3720a5af443c662ba32427299ee02f8cb1"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260808T031146908286Z/staging/solver-q2/q2_full_claim_proposals.json",
+      "archive": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_claim_proposals.json",
+      "sha256": "c46b83127d677bd0450f4b7f71d7a256907ea659c31a3d9e210c92feb972fc09"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260808T031146908286Z/staging/solver-q2/q2_full_run_manifest.json",
+      "archive": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_run_manifest.json",
+      "sha256": "b6b6f96959c8c6af6561c9866c1ec3f5f29d3b0061ab375bdd4a11e3a62e570d"
+    }
+  ],
+  "retry_packages": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "formal_state_modified": false,
+  "generated_at_utc": "2026-08-08T05:15:28.251485+00:00"
+}

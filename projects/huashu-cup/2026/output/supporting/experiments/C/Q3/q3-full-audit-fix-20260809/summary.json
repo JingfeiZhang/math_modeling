@@ -1,0 +1,248 @@
+{
+  "audit_boundary": {
+    "all_270_audits_passed": true,
+    "corrected_full_cycle_probe_count": 6,
+    "corrected_full_cycle_probes_passed": 6,
+    "legacy_formal_audit_count": 264,
+    "legacy_formal_audits_passed": 264,
+    "maximum_mip_gap": 0.0,
+    "maximum_simultaneous_charge_discharge_MW": 0.0,
+    "same_output_baseline_audits_passed": true,
+    "total_audit_count": 270,
+    "total_audits_passed": 270
+  },
+  "candidate_status": "CANDIDATE",
+  "interpretation_limits": [
+    "The six full-horizon models are solved independently by region; no inter-region power flow is modeled.",
+    "The corrected probe supports feasibility and audit completeness, not a new performance comparison.",
+    "The result does not establish a single system-wide full-horizon global optimum.",
+    "The previous relaxed-LP 269/270 result remains historical evidence and is superseded only for the formal audit boundary."
+  ],
+  "method": {
+    "binary_charge_discharge_mutex": true,
+    "binary_grid_import_export_mutex": true,
+    "combined_grid_import_cap": true,
+    "hours_per_region": 2407,
+    "mip_rel_gap": 1e-07,
+    "name": "six-region independent full-horizon binary-MILP audit probe",
+    "terminal_rule": "terminal SOC >= initial SOC",
+    "time_limit_s_per_region": 300.0
+  },
+  "problem_id": "C",
+  "project_id": "huashu-cup-2026",
+  "question_id": "Q3",
+  "run_id": "q3-full-audit-fix-20260809",
+  "schema_version": 2,
+  "solver_records": [
+    {
+      "mip_gap": 0.0,
+      "mip_node_count": 1,
+      "objective": 0.01291136808569349,
+      "region": "RegionA",
+      "solver_mode": "full_cycle_binary_MILP_audit_probe",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true
+    },
+    {
+      "mip_gap": 0.0,
+      "mip_node_count": 1,
+      "objective": 0.013102503644544853,
+      "region": "RegionB",
+      "solver_mode": "full_cycle_binary_MILP_audit_probe",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true
+    },
+    {
+      "mip_gap": 0.0,
+      "mip_node_count": 1,
+      "objective": 0.012805625604929063,
+      "region": "RegionC",
+      "solver_mode": "full_cycle_binary_MILP_audit_probe",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true
+    },
+    {
+      "mip_gap": 0.0,
+      "mip_node_count": 1,
+      "objective": -1.0588228955611756,
+      "region": "RegionD",
+      "solver_mode": "full_cycle_binary_MILP_audit_probe",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true
+    },
+    {
+      "mip_gap": 0.0,
+      "mip_node_count": 1,
+      "objective": -1.0798298129760275,
+      "region": "RegionE",
+      "solver_mode": "full_cycle_binary_MILP_audit_probe",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true
+    },
+    {
+      "mip_gap": 0.0,
+      "mip_node_count": 61,
+      "objective": -1.0903866797556785,
+      "region": "RegionF",
+      "solver_mode": "full_cycle_binary_MILP_audit_probe",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true
+    }
+  ],
+  "sources": {
+    "base_runner": {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/run_solver_q3.py",
+      "sha256": "81a665d910b5b21bde693873bd0844799acb5398d4684a37f0e6425461d5c1b5"
+    },
+    "legacy_audit": {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_constraint_audit.json",
+      "sha256": "2f94f0580363d8f3b8a1ea413b554546da08f9637b740795c82d3c3fe26e0ee1"
+    },
+    "legacy_summary": {
+      "path": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json",
+      "sha256": "ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35"
+    },
+    "pinned_inputs": [
+      {
+        "accepted_current_manifest": true,
+        "current": {
+          "exists": true,
+          "kind": "file",
+          "path": "problems/C/questions/Q3/question.yaml",
+          "sha256": "4ed8205f9cbe02e7d9a107d4fd1b9959db2d397b6605263f23115351699b3f32"
+        },
+        "expected_at_original_run": {
+          "exists": true,
+          "kind": "file",
+          "path": "problems/C/questions/Q3/question.yaml",
+          "sha256": "a5457a859ff3e4141c0a34e5b3835f64193ea4d8ba08ed91c73af0b8428a363f"
+        },
+        "match": false,
+        "path": "problems/C/questions/Q3/question.yaml"
+      },
+      {
+        "accepted_current_manifest": false,
+        "current": {
+          "exists": true,
+          "kind": "file",
+          "path": "contest.yaml",
+          "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+        },
+        "expected_at_original_run": {
+          "exists": true,
+          "kind": "file",
+          "path": "contest.yaml",
+          "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+        },
+        "match": true,
+        "path": "contest.yaml"
+      },
+      {
+        "accepted_current_manifest": false,
+        "current": {
+          "exists": true,
+          "kind": "file",
+          "path": "config/workflow.yaml",
+          "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+        },
+        "expected_at_original_run": {
+          "exists": true,
+          "kind": "file",
+          "path": "config/workflow.yaml",
+          "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+        },
+        "match": true,
+        "path": "config/workflow.yaml"
+      },
+      {
+        "accepted_current_manifest": false,
+        "current": {
+          "exists": true,
+          "kind": "file",
+          "path": "problems/C/source/problem-C.pdf",
+          "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+        },
+        "expected_at_original_run": {
+          "exists": true,
+          "kind": "file",
+          "path": "problems/C/source/problem-C.pdf",
+          "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+        },
+        "match": true,
+        "path": "problems/C/source/problem-C.pdf"
+      },
+      {
+        "accepted_current_manifest": false,
+        "current": {
+          "exists": true,
+          "kind": "file",
+          "path": "problems/C/data/region_time_data.xlsx",
+          "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+        },
+        "expected_at_original_run": {
+          "exists": true,
+          "kind": "file",
+          "path": "problems/C/data/region_time_data.xlsx",
+          "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+        },
+        "match": true,
+        "path": "problems/C/data/region_time_data.xlsx"
+      },
+      {
+        "accepted_current_manifest": false,
+        "current": {
+          "exists": true,
+          "kind": "file",
+          "path": "problems/C/data/power_mapping.xlsx",
+          "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+        },
+        "expected_at_original_run": {
+          "exists": true,
+          "kind": "file",
+          "path": "problems/C/data/power_mapping.xlsx",
+          "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+        },
+        "match": true,
+        "path": "problems/C/data/power_mapping.xlsx"
+      },
+      {
+        "accepted_current_manifest": false,
+        "current": {
+          "exists": true,
+          "kind": "file",
+          "path": "problems/C/data/storage_information.xlsx",
+          "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+        },
+        "expected_at_original_run": {
+          "exists": true,
+          "kind": "file",
+          "path": "problems/C/data/storage_information.xlsx",
+          "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+        },
+        "match": true,
+        "path": "problems/C/data/storage_information.xlsx"
+      },
+      {
+        "accepted_current_manifest": false,
+        "current": {
+          "exists": true,
+          "kind": "directory",
+          "path": "sprints/sprint-20260807T194315250Z/merged/q3-pilot",
+          "sha256": "15298d1ed91c9882993f93ddb430f1f2430632743e651ea60b54871ff273ce63"
+        },
+        "expected_at_original_run": {
+          "exists": true,
+          "kind": "directory",
+          "path": "sprints/sprint-20260807T194315250Z/merged/q3-pilot",
+          "sha256": "15298d1ed91c9882993f93ddb430f1f2430632743e651ea60b54871ff273ce63"
+        },
+        "match": true,
+        "path": "sprints/sprint-20260807T194315250Z/merged/q3-pilot"
+      }
+    ],
+    "task_package": {
+      "path": "sprints/sprint-20260808T023236665505Z/tasks/solver-q3.json",
+      "sha256": "790f0961fcbd648a184096aff4b58f28f4676ac742ddd1bb9eef43269a87b113"
+    }
+  }
+}

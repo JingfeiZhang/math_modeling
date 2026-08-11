@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T023236665505Z",
+  "task_id": "solver-q3",
+  "question": "Q3",
+  "run_id": "solver-q3-20260808T032702Z",
+  "command": "D:/anaconda3/envs/math-modeling/python.exe run_solver_q3.py",
+  "working_directory": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023236665505Z\\staging\\solver-q3",
+  "started_at_utc": "2026-08-08T03:27:02.676929+00:00",
+  "ended_at_utc": "2026-08-08T03:27:18.798021+00:00",
+  "runtime_s": 16.121092,
+  "seed": 20260808,
+  "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.22631-SP0",
+  "packages": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "scipy": "1.18.0"
+  },
+  "code": {
+    "path": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/run_solver_q3.py",
+    "sha256": "81a665d910b5b21bde693873bd0844799acb5398d4684a37f0e6425461d5c1b5"
+  },
+  "input_hashes": [
+    {
+      "path": "problems/C/questions/Q3/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "a5457a859ff3e4141c0a34e5b3835f64193ea4d8ba08ed91c73af0b8428a363f"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/power_mapping.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+    },
+    {
+      "path": "problems/C/data/storage_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+    },
+    {
+      "path": "sprints/sprint-20260807T194315250Z/merged/q3-pilot",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "15298d1ed91c9882993f93ddb430f1f2430632743e651ea60b54871ff273ce63"
+    }
+  ],
+  "data_rows": {
+    "region_time_data": 14442,
+    "storage_information": 6,
+    "power_mapping": 3
+  },
+  "horizons_h": [
+    72,
+    168
+  ],
+  "rolling_block_h": 168,
+  "solver": {
+    "library": "scipy.optimize.milp",
+    "time_limit_s_per_window": 20.0,
+    "mip_rel_gap": 1e-07,
+    "full_cycle_mode": "LP probe only"
+  },
+  "metric_definitions_and_units": {
+    "cost_CNY": "CNY",
+    "carbon_tCO2": "tCO2",
+    "peak_net_import_MW": "MW",
+    "load_std_MW": "MW",
+    "renewable_utilization_ratio": "dimensionless",
+    "terminal_SOC_MWh": "MWh"
+  },
+  "outputs": [
+    "q3_summary.json",
+    "q3_constraint_audit.json",
+    "q3_load_recompute_audit.csv",
+    "q3_candidate_metrics.csv",
+    "q3_baseline_metrics.csv",
+    "q3_scenario_metrics.csv",
+    "q3_comparison_summary.csv",
+    "q3_dispatch.csv",
+    "q3_baseline_dispatch.csv"
+  ]
+}

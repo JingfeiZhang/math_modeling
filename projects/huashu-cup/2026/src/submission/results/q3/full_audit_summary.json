@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "question_id": "Q3",
+  "status": "PASS",
+  "audit_boundary": "six-region independent full-horizon binary-MILP feasibility audit",
+  "total_audit_count": 270,
+  "total_audits_passed": 270,
+  "maximum_mip_gap": 0.0,
+  "maximum_simultaneous_charge_discharge_MW": 0.0,
+  "same_output_baseline_audits_passed": true,
+  "global_optimality_claim": false
+}

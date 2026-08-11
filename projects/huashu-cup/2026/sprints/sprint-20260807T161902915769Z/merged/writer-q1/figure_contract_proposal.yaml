@@ -1,0 +1,539 @@
+schema_version: 2
+sprint_id: sprint-20260807T161902915769Z
+status: staging/supporting
+contest_evidence_eligible: false
+palette_id: journal-spectrum-v2
+contracts:
+- contract_version: '2.0'
+  id: q1-fig-01-workload-ranking
+  question_id: Q1
+  claim_id: pending:Q1-EDA-WORKLOAD
+  claim_status: pending
+  core_conclusion: 不同区域与任务类型的 GPU 工作量结构存在明显差异。
+  evidence_chain:
+  - locator: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/descriptive_by_series.csv:$.gpu_workload_gpu_h
+    sha256: 5f54955015f3175444b5227154f8dd8ad3d95d94e8c556285132dfbb6b61543c
+    fields:
+    - SourceRegion
+    - TaskType
+    - gpu_workload_gpu_h
+  kind: data
+  archetype: sorted-bar
+  backend: python
+  source_data:
+  - sprints/sprint-20260807T130848306634Z/merged/forecast-q1/descriptive_by_series.csv
+  source_script: sprints/sprint-20260807T161902915769Z/staging/writer-q1/generate_q1_writer.py
+  outputs:
+    pdf: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_01_workload_ranking.pdf
+    svg: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_01_workload_ranking.svg
+    png: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_01_workload_ranking.png
+    png_dpi: 400
+  baseline: 历史总量排序，不含预测基线
+  axes:
+  - variable: 累计 GPU 工作量
+    unit: GPU·h
+  - variable: 区域与任务类型
+    unit: 类别
+  caption: 图 1 基于全历史到达任务按区域和类型排序展示 GPU 工作量；柱长比较总工作量，颜色与任务类型的文字标签共同编码类别。
+  panel_map:
+  - panel: main
+    role: single primary plotting area
+    subclaim: 不同区域与任务类型的 GPU 工作量结构存在明显差异。
+  statistics:
+  - 18 条区域×任务类型序列
+  - 全历史累计量
+  review_risks:
+  - 总量排序不表示短期峰值
+  - 未冻结主张
+  target_size_profile: contest-body
+  final_width_mm: 158.0
+  min_font_pt: 8
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: main_model
+    meaning: reconciled residual model
+    secondary_encoding: solid line + circle
+  - role: baseline
+    meaning: seasonal/FIFO baseline
+    secondary_encoding: dashed line + square
+  visual_hierarchy:
+    primary_evidence: main model or observed workload
+    secondary_context: baseline/capacity
+    deemphasized: grid and uncertainty fill
+  label_strategy:
+    mode: reserved legend or direct endpoint labels
+    collision_checked: true
+  statistics_report:
+    sample_size: derived from source CSV; pending claim freeze
+    center: mean or maximum as stated in caption
+    interval: 95% split-conformal where available
+    test: not applicable
+    multiplicity: not applicable
+  data_integrity:
+    source_hashes:
+    - path: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/descriptive_by_series.csv
+      sha256: 5f54955015f3175444b5227154f8dd8ad3d95d94e8c556285132dfbb6b61543c
+    transformation: read-only derivation from merged evidence
+    manual_values_forbidden: true
+  status: staging/supporting
+  synthetic_fixture: false
+  contest_evidence_eligible: false
+- contract_version: '2.0'
+  id: q1-fig-02-demand-heatmap
+  question_id: Q1
+  claim_id: pending:Q1-EDA-STRUCTURE
+  claim_status: pending
+  core_conclusion: 盲测窗口内需求在区域与任务类型之间呈现异质性。
+  evidence_chain:
+  - locator: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv:$.actual_gpu_h
+    sha256: 118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d
+    fields:
+    - hour
+    - region
+    - task_type
+    - actual_gpu_h
+  kind: data
+  archetype: heatmap
+  backend: python
+  source_data:
+  - sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv
+  source_script: sprints/sprint-20260807T161902915769Z/staging/writer-q1/generate_q1_writer.py
+  outputs:
+    pdf: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_02_demand_heatmap.pdf
+    svg: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_02_demand_heatmap.svg
+    png: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_02_demand_heatmap.png
+    png_dpi: 400
+  baseline: 无模型基线；仅展示实际工作量
+  axes:
+  - variable: 盲测小时
+    unit: h
+  - variable: 实际 GPU 工作量
+    unit: GPU·h
+  caption: 图 2 展示盲测 24 小时内 18 条底层序列的实际 GPU 工作量；色条表示 GPU·h，行顺序按盲测总量排序。
+  panel_map:
+  - panel: main
+    role: single primary plotting area
+    subclaim: 盲测窗口内需求在区域与任务类型之间呈现异质性。
+  statistics:
+  - 24×18 个小时—序列观测
+  - 共享顺序色标
+  review_risks:
+  - 色阶受峰值序列影响
+  - 稀疏序列 WAPE 需独立解释
+  - 未冻结主张
+  target_size_profile: contest-body
+  final_width_mm: 158.0
+  min_font_pt: 8
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: main_model
+    meaning: reconciled residual model
+    secondary_encoding: solid line + circle
+  - role: baseline
+    meaning: seasonal/FIFO baseline
+    secondary_encoding: dashed line + square
+  visual_hierarchy:
+    primary_evidence: main model or observed workload
+    secondary_context: baseline/capacity
+    deemphasized: grid and uncertainty fill
+  label_strategy:
+    mode: reserved legend or direct endpoint labels
+    collision_checked: true
+  statistics_report:
+    sample_size: derived from source CSV; pending claim freeze
+    center: mean or maximum as stated in caption
+    interval: 95% split-conformal where available
+    test: not applicable
+    multiplicity: not applicable
+  data_integrity:
+    source_hashes:
+    - path: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv
+      sha256: 118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d
+    transformation: read-only derivation from merged evidence
+    manual_values_forbidden: true
+  status: staging/supporting
+  synthetic_fixture: false
+  contest_evidence_eligible: false
+- contract_version: '2.0'
+  id: q1-fig-03-system-forecast
+  question_id: Q1
+  claim_id: pending:Q1-FCST-TEST-COVERAGE
+  claim_status: pending
+  core_conclusion: 主模型与季节基线共同给出系统总量的盲测预测及区间。
+  evidence_chain:
+  - locator: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv:$.main_gpu_h
+    sha256: 118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d
+    fields:
+    - hour
+    - actual_gpu_h
+    - main_gpu_h
+    - baseline_gpu_h
+    - main_lower_95_gpu_h
+    - main_upper_95_gpu_h
+  kind: data
+  archetype: prediction-interval
+  backend: python
+  source_data:
+  - sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv
+  source_script: sprints/sprint-20260807T161902915769Z/staging/writer-q1/generate_q1_writer.py
+  outputs:
+    pdf: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_03_system_forecast.pdf
+    svg: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_03_system_forecast.svg
+    png: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_03_system_forecast.png
+    png_dpi: 400
+  baseline: 168 h 季节朴素基线
+  axes:
+  - variable: 到达小时
+    unit: h
+  - variable: 系统 GPU 工作量
+    unit: GPU·h
+  caption: 图 3 汇总盲测窗口的系统实际工作量、主模型、季节基线及主模型 95% 预测区间；实线和虚线区分主模型与基线。
+  panel_map:
+  - panel: main
+    role: single primary plotting area
+    subclaim: 主模型与季节基线共同给出系统总量的盲测预测及区间。
+  statistics:
+  - 系统聚合
+  - 95% split-conformal 区间
+  - 盲测 24 小时
+  review_risks:
+  - 盲测结果尚未由根 Agent 冻结
+  - 区间覆盖为经验覆盖率
+  target_size_profile: contest-body
+  final_width_mm: 158.0
+  min_font_pt: 8
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: main_model
+    meaning: reconciled residual model
+    secondary_encoding: solid line + circle
+  - role: baseline
+    meaning: seasonal/FIFO baseline
+    secondary_encoding: dashed line + square
+  visual_hierarchy:
+    primary_evidence: main model or observed workload
+    secondary_context: baseline/capacity
+    deemphasized: grid and uncertainty fill
+  label_strategy:
+    mode: reserved legend or direct endpoint labels
+    collision_checked: true
+  statistics_report:
+    sample_size: derived from source CSV; pending claim freeze
+    center: mean or maximum as stated in caption
+    interval: 95% split-conformal where available
+    test: not applicable
+    multiplicity: not applicable
+  data_integrity:
+    source_hashes:
+    - path: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv
+      sha256: 118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d
+    transformation: read-only derivation from merged evidence
+    manual_values_forbidden: true
+  status: staging/supporting
+  synthetic_fixture: false
+  contest_evidence_eligible: false
+- contract_version: '2.0'
+  id: q1-fig-04-error-comparison
+  question_id: Q1
+  claim_id: pending:Q1-FCST-TEST-WAPE
+  claim_status: pending
+  core_conclusion: 主模型与季节基线的逐序列盲测 MAE 可直接比较。
+  evidence_chain:
+  - locator: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_by_series.csv:period=blind_test
+    sha256: 91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4
+    fields:
+    - region
+    - task_type
+    - method
+    - mae_gpu_h
+  kind: data
+  archetype: model-comparison
+  backend: python
+  source_data:
+  - sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_by_series.csv
+  source_script: sprints/sprint-20260807T161902915769Z/staging/writer-q1/generate_q1_writer.py
+  outputs:
+    pdf: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_04_error_comparison.pdf
+    svg: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_04_error_comparison.svg
+    png: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_04_error_comparison.png
+    png_dpi: 400
+  baseline: 季节朴素基线
+  axes:
+  - variable: 盲测 MAE
+    unit: GPU·h
+  - variable: 区域与任务类型
+    unit: 类别
+  caption: 图 4 以配对点和连线比较 18 条区域—任务序列的盲测 MAE；每条水平连线连接同一序列的主模型和基线。
+  panel_map:
+  - panel: main
+    role: single primary plotting area
+    subclaim: 主模型与季节基线的逐序列盲测 MAE 可直接比较。
+  statistics:
+  - 逐序列 MAE
+  - 同口径盲测样本
+  review_risks:
+  - WAPE 对稀疏分母敏感
+  - 图中使用 MAE 以避免单一比例误读
+  - 未冻结主张
+  target_size_profile: contest-body
+  final_width_mm: 158.0
+  min_font_pt: 8
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: main_model
+    meaning: reconciled residual model
+    secondary_encoding: solid line + circle
+  - role: baseline
+    meaning: seasonal/FIFO baseline
+    secondary_encoding: dashed line + square
+  visual_hierarchy:
+    primary_evidence: main model or observed workload
+    secondary_context: baseline/capacity
+    deemphasized: grid and uncertainty fill
+  label_strategy:
+    mode: reserved legend or direct endpoint labels
+    collision_checked: true
+  statistics_report:
+    sample_size: derived from source CSV; pending claim freeze
+    center: mean or maximum as stated in caption
+    interval: 95% split-conformal where available
+    test: not applicable
+    multiplicity: not applicable
+  data_integrity:
+    source_hashes:
+    - path: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_by_series.csv
+      sha256: 91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4
+    transformation: read-only derivation from merged evidence
+    manual_values_forbidden: true
+  status: staging/supporting
+  synthetic_fixture: false
+  contest_evidence_eligible: false
+- contract_version: '2.0'
+  id: q1-fig-05-schedule-gantt
+  question_id: Q1
+  claim_id: pending:Q1-SCHED-001
+  claim_status: pending
+  core_conclusion: 不可抢占任务在 Q1 到达和收尾窗口内被映射到可行执行区域。
+  evidence_chain:
+  - locator: sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/optimized_schedule.csv:$.StartMinute
+    sha256: 3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a
+    fields:
+    - TaskID
+    - TaskType
+    - ExecutionRegion
+    - StartMinute
+    - EndMinute
+  kind: data
+  archetype: gantt
+  backend: python
+  source_data:
+  - sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/optimized_schedule.csv
+  source_script: sprints/sprint-20260807T161902915769Z/staging/writer-q1/generate_q1_writer.py
+  outputs:
+    pdf: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_05_schedule_gantt.pdf
+    svg: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_05_schedule_gantt.svg
+    png: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_05_schedule_gantt.png
+    png_dpi: 400
+  baseline: FIFO/local-first schedule is not plotted in this primary staging figure
+  axes:
+  - variable: 时间
+    unit: h
+  - variable: 执行区域
+    unit: 区域
+  caption: 图 5 展示优化排程中每个任务的开始—结束区间；颜色与任务类型标签共同编码，虚线标记 Q1 起点和收尾起点。
+  panel_map:
+  - panel: main
+    role: single primary plotting area
+    subclaim: 不可抢占任务在 Q1 到达和收尾窗口内被映射到可行执行区域。
+  statistics:
+  - 596 条排程记录（含 carry-in）
+  - 不可抢占区间
+  review_risks:
+  - 图形密集，正式稿可按区域拆成 supporting 图
+  - 主 CP-SAT 为 FEASIBLE 而非全局最优
+  - 未冻结主张
+  target_size_profile: contest-body
+  final_width_mm: 158.0
+  min_font_pt: 8
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: main_model
+    meaning: reconciled residual model
+    secondary_encoding: solid line + circle
+  - role: baseline
+    meaning: seasonal/FIFO baseline
+    secondary_encoding: dashed line + square
+  visual_hierarchy:
+    primary_evidence: main model or observed workload
+    secondary_context: baseline/capacity
+    deemphasized: grid and uncertainty fill
+  label_strategy:
+    mode: reserved legend or direct endpoint labels
+    collision_checked: true
+  statistics_report:
+    sample_size: derived from source CSV; pending claim freeze
+    center: mean or maximum as stated in caption
+    interval: 95% split-conformal where available
+    test: not applicable
+    multiplicity: not applicable
+  data_integrity:
+    source_hashes:
+    - path: sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/optimized_schedule.csv
+      sha256: 3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a
+    transformation: read-only derivation from merged evidence
+    manual_values_forbidden: true
+  status: staging/supporting
+  synthetic_fixture: false
+  contest_evidence_eligible: false
+- contract_version: '2.0'
+  id: q1-fig-06-gpu-utilization
+  question_id: Q1
+  claim_id: pending:Q1-SCHED-001
+  claim_status: pending
+  core_conclusion: 各区域峰值 GPU 利用率与容量上限的相对裕度不同。
+  evidence_chain:
+  - locator: sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/resource_audit.csv:Schedule=optimized
+    sha256: 466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82
+    fields:
+    - Hour
+    - Region
+    - GPU_occupancy
+    - GPU_capacity
+  kind: data
+  archetype: capacity-comparison
+  backend: python
+  source_data:
+  - sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/resource_audit.csv
+  source_script: sprints/sprint-20260807T161902915769Z/staging/writer-q1/generate_q1_writer.py
+  outputs:
+    pdf: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_06_gpu_utilization.pdf
+    svg: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_06_gpu_utilization.svg
+    png: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_06_gpu_utilization.png
+    png_dpi: 400
+  baseline: GPU 容量上限 100%
+  axes:
+  - variable: 峰值 GPU 利用率
+    unit: '%'
+  - variable: 执行区域
+    unit: 区域
+  caption: 图 6 对比优化排程在六个区域的峰值 GPU 利用率与容量上限；彩色条按区域区分，红色虚线表示 100% 容量界线。
+  panel_map:
+  - panel: main
+    role: single primary plotting area
+    subclaim: 各区域峰值 GPU 利用率与容量上限的相对裕度不同。
+  statistics:
+  - 小时级资源审计
+  - 峰值占用/容量
+  review_risks:
+  - 只反映 GPU，不代表 IT/设施功率裕度
+  - 未冻结主张
+  target_size_profile: contest-body
+  final_width_mm: 158.0
+  min_font_pt: 8
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: main_model
+    meaning: reconciled residual model
+    secondary_encoding: solid line + circle
+  - role: baseline
+    meaning: seasonal/FIFO baseline
+    secondary_encoding: dashed line + square
+  visual_hierarchy:
+    primary_evidence: main model or observed workload
+    secondary_context: baseline/capacity
+    deemphasized: grid and uncertainty fill
+  label_strategy:
+    mode: reserved legend or direct endpoint labels
+    collision_checked: true
+  statistics_report:
+    sample_size: derived from source CSV; pending claim freeze
+    center: mean or maximum as stated in caption
+    interval: 95% split-conformal where available
+    test: not applicable
+    multiplicity: not applicable
+  data_integrity:
+    source_hashes:
+    - path: sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/resource_audit.csv
+      sha256: 466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82
+    transformation: read-only derivation from merged evidence
+    manual_values_forbidden: true
+  status: staging/supporting
+  synthetic_fixture: false
+  contest_evidence_eligible: false
+- contract_version: '2.0'
+  id: q1-fig-07-residual-coverage
+  question_id: Q1
+  claim_id: pending:Q1-FCST-TEST-COVERAGE
+  claim_status: pending
+  core_conclusion: 残差与区间覆盖可以在同一盲测索引下定位预测偏差和区间外观测。
+  evidence_chain:
+  - locator: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv:$.main_gpu_h
+    sha256: 118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d
+    fields:
+    - hour
+    - actual_gpu_h
+    - main_gpu_h
+    - main_lower_95_gpu_h
+    - main_upper_95_gpu_h
+  kind: data
+  archetype: residual-diagnostic
+  backend: python
+  source_data:
+  - sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv
+  source_script: sprints/sprint-20260807T161902915769Z/staging/writer-q1/generate_q1_writer.py
+  outputs:
+    pdf: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_07_residual_coverage.pdf
+    svg: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_07_residual_coverage.svg
+    png: sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_07_residual_coverage.png
+    png_dpi: 400
+  baseline: 主模型 95% 预测区间
+  axes:
+  - variable: 盲测到达小时
+    unit: h
+  - variable: 主模型残差
+    unit: GPU·h
+  caption: 图 7 以残差为纵轴、盲测小时为横轴；圆点表示观测落在 95% 区间内，叉号表示区间外观测，零线用于识别系统性偏差。
+  panel_map:
+  - panel: main
+    role: single primary plotting area
+    subclaim: 残差与区间覆盖可以在同一盲测索引下定位预测偏差和区间外观测。
+  statistics:
+  - 432 条盲测观测
+  - 区间内/外二元标记
+  review_risks:
+  - 散点重叠时只做总体诊断
+  - 区间覆盖需结合逐序列结果
+  - 未冻结主张
+  target_size_profile: contest-body
+  final_width_mm: 158.0
+  min_font_pt: 8
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: main_model
+    meaning: reconciled residual model
+    secondary_encoding: solid line + circle
+  - role: baseline
+    meaning: seasonal/FIFO baseline
+    secondary_encoding: dashed line + square
+  visual_hierarchy:
+    primary_evidence: main model or observed workload
+    secondary_context: baseline/capacity
+    deemphasized: grid and uncertainty fill
+  label_strategy:
+    mode: reserved legend or direct endpoint labels
+    collision_checked: true
+  statistics_report:
+    sample_size: derived from source CSV; pending claim freeze
+    center: mean or maximum as stated in caption
+    interval: 95% split-conformal where available
+    test: not applicable
+    multiplicity: not applicable
+  data_integrity:
+    source_hashes:
+    - path: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv
+      sha256: 118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d
+    transformation: read-only derivation from merged evidence
+    manual_values_forbidden: true
+  status: staging/supporting
+  synthetic_fixture: false
+  contest_evidence_eligible: false

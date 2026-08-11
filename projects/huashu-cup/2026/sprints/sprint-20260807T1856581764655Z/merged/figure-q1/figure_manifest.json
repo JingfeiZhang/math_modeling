@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T1856581764655Z",
+  "input_sprint_id": "sprint-20260807T130848306634Z",
+  "generated_at_utc": "2026-08-07T19:25:04.359288+00:00",
+  "status": "staging/supporting",
+  "contest_evidence_eligible": false,
+  "backend": "python",
+  "palette_id": "journal-spectrum-v2",
+  "input_fingerprint_checks": [
+    {
+      "path": "problems/C/questions/Q1/question.yaml",
+      "expected": "5da57a9d755d7615fbc9673e0d2e1641ab53738b38f1e76da23898eb2b91b703",
+      "actual": "5da57a9d755d7615fbc9673e0d2e1641ab53738b38f1e76da23898eb2b91b703",
+      "match": true
+    },
+    {
+      "path": "contest.yaml",
+      "expected": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272",
+      "actual": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272",
+      "match": true
+    },
+    {
+      "path": "config/workflow.yaml",
+      "expected": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469",
+      "actual": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469",
+      "match": true
+    },
+    {
+      "path": "results/C/claims.json",
+      "expected": "ea9ffef1ec03131a92ee93a1f8dd65eca8b61946487d3ec64efc9d987447300f",
+      "actual": "ea9ffef1ec03131a92ee93a1f8dd65eca8b61946487d3ec64efc9d987447300f",
+      "match": true
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged",
+      "expected": "5706e86a75d2c3e51b6b1de1d1e25ae33d0ea51689e021fc8758ced09327f303",
+      "actual": "5706e86a75d2c3e51b6b1de1d1e25ae33d0ea51689e021fc8758ced09327f303",
+      "match": true
+    },
+    {
+      "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1",
+      "expected": "d6425597a98f8186140920b5b198028303ddb82e278aff567f709023b50de781",
+      "actual": "d6425597a98f8186140920b5b198028303ddb82e278aff567f709023b50de781",
+      "match": true
+    }
+  ],
+  "source_files": [
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv",
+      "sha256": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_by_series.csv",
+      "sha256": "91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/optimized_schedule.csv",
+      "sha256": "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_summary.json",
+      "sha256": "e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/scheduling_metrics.json",
+      "sha256": "cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511"
+    }
+  ],
+  "figures": [
+    {
+      "id": "fig-q1-forecast-interval",
+      "question_id": "Q1",
+      "claim_id": "Q1-FCST-TEST-COVERAGE",
+      "claim_status": "frozen",
+      "source_data": [
+        "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv",
+        "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_summary.json"
+      ],
+      "outputs": {
+        "pdf": "sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_forecast_interval.pdf",
+        "svg": "sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_forecast_interval.svg",
+        "png": "sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_forecast_interval.png",
+        "png_dpi": 400
+      },
+      "sha256": {
+        "pdf": "685415fdf403d2552a9f2529b733dd74f25b8a36e64ec51d9c52dc11011b1f52",
+        "svg": "ef4c88d9a28e2863951d4b8bd279d0eaecee59c09184829b6c8529d904a66cfb",
+        "png": "279e6f39e29ca734a773cabb35eeb424bacacba6d179cafe945e59c79492ad95"
+      },
+      "physical_size_mm": {
+        "width": 158.0,
+        "height": 104.0
+      },
+      "png_size_px": [
+        2488,
+        1637
+      ],
+      "png_dpi": [
+        399.9992,
+        399.9992
+      ],
+      "layout_qa": {
+        "passed": true,
+        "text_count": 6,
+        "collision_count": 0
+      }
+    },
+    {
+      "id": "fig-q1-error-comparison",
+      "question_id": "Q1",
+      "claim_id": "Q1-FCST-TEST-WAPE",
+      "claim_status": "frozen",
+      "source_data": [
+        "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_by_series.csv",
+        "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_summary.json"
+      ],
+      "outputs": {
+        "pdf": "sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_error_comparison.pdf",
+        "svg": "sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_error_comparison.svg",
+        "png": "sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_error_comparison.png",
+        "png_dpi": 400
+      },
+      "sha256": {
+        "pdf": "1ab744545ce953e5e9265d6635214f918eb01f84edece88146ee23ed5f0a50c2",
+        "svg": "ef207e36fe431afec9ce49619b9bd03eb29797dac387c750c37d2b04693dc7f1",
+        "png": "4317635246f1094d121797d54c2f9fa3f3f0e6526b94fbf0a8420d85fcc1cd34"
+      },
+      "physical_size_mm": {
+        "width": 158.0,
+        "height": 108.0
+      },
+      "png_size_px": [
+        2488,
+        1700
+      ],
+      "png_dpi": [
+        399.9992,
+        399.9992
+      ],
+      "layout_qa": {
+        "passed": true,
+        "text_count": 4,
+        "collision_count": 0
+      }
+    },
+    {
+      "id": "fig-q1-feasible-schedule",
+      "question_id": "Q1",
+      "claim_id": "Q1-SCHED-FEASIBLE",
+      "claim_status": "frozen",
+      "source_data": [
+        "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/optimized_schedule.csv",
+        "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/scheduling_metrics.json"
+      ],
+      "outputs": {
+        "pdf": "sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_feasible_schedule.pdf",
+        "svg": "sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_feasible_schedule.svg",
+        "png": "sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_feasible_schedule.png",
+        "png_dpi": 400
+      },
+      "sha256": {
+        "pdf": "38709a4334c5d9a8a4e00dfef11835a6fb8ee4f83638c0e5f502c4d152e04016",
+        "svg": "3379745cb0f8e5c91af85705e5ddab603393d9d2b658c4ce67de1d445829a7ff",
+        "png": "1293ab212a241dfe3ea47fb61081f88278160167249bd9e6df53a4d2a026a315"
+      },
+      "physical_size_mm": {
+        "width": 158.0,
+        "height": 112.0
+      },
+      "png_size_px": [
+        2488,
+        1763
+      ],
+      "png_dpi": [
+        399.9992,
+        399.9992
+      ],
+      "layout_qa": {
+        "passed": true,
+        "text_count": 7,
+        "collision_count": 0
+      }
+    }
+  ]
+}

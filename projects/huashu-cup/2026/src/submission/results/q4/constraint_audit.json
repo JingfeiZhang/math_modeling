@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "question_id": "Q4",
+  "status": "PASS",
+  "horizon_h": 72,
+  "scenario_count": 5,
+  "task_hard_constraints_passed": true,
+  "storage_hard_constraints_passed": true,
+  "deterministic_replay_passed": true,
+  "global_optimality_claim": false
+}

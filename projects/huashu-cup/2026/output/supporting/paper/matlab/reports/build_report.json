@@ -1,0 +1,416 @@
+{
+  "schema_version": 1,
+  "project_id": "huashu-cup-2026",
+  "problem_id": "C",
+  "backend": "MATLAB",
+  "matlab_version": "26.1.0.3312084 (R2026a) Update 4",
+  "matlab_release": "2026a",
+  "platform": "PCWIN64",
+  "generated_at": "2026-08-09T17:16:25+08:00",
+  "palette_id": "journal-spectrum-v2",
+  "figure_width_mm": 158,
+  "minimum_font_pt": 8,
+  "png_dpi": 400,
+  "input_manifest_sha256": "2c90549aeb720bfe55db84785ae463eb89bc989ab5229e134daf671879f8e0c4",
+  "source_hashes": [
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\build_all_figures.m",
+      "sha256": "90daf8697b1ce653b0db94d725797559e184bd783efaa780fc93b0d9c677d37e",
+      "bytes": 4579
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\prepare_figure_data.m",
+      "sha256": "7a3536ade3d759b0367fb39da2ed5496aed433db5a58293f8d3d616a83c2c59e",
+      "bytes": 17834
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\helpers\\mf_apply_axes.m",
+      "sha256": "57363aef725af8ba33c3be97d3cca91798462175c4dd6b9b28df1f255cb948fd",
+      "bytes": 601
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\helpers\\mf_colorbar.m",
+      "sha256": "3964af67c21617e4ea3bbd766d8a5995393e2272c76a77cfcb22ed234ce4b7d4",
+      "bytes": 609
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\helpers\\mf_colormap.m",
+      "sha256": "7a7b84d471cf03bec586926fa7d30677330657d076e52e6fc5e2cd299b6b7926",
+      "bytes": 669
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\helpers\\mf_export_triplet.m",
+      "sha256": "c92b7461f11a2a69c290b3a8614ffb1992c8eaea69b867f8b4f99ee8251a105d",
+      "bytes": 1086
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\helpers\\mf_legend.m",
+      "sha256": "09195c668840b3d56b7fd70daa345a43ea034c582a9c66389774feeee43d0220",
+      "bytes": 274
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\helpers\\mf_publication_figure.m",
+      "sha256": "c868be775ced014862a7c42c1f3757351de1c6664230138f64ddf93c725c2012",
+      "bytes": 669
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\helpers\\mf_require_columns.m",
+      "sha256": "3e01aa2d1495aa63504b572a5a35a1dce5ffad241d9064efa6a8ec995e69450f",
+      "bytes": 502
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\helpers\\mf_sha256.m",
+      "sha256": "26a79c72fd5058de1da971b8f80f831d010dc7db1ecc62aa5cc5b33d02c51127",
+      "bytes": 493
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\helpers\\mf_style.m",
+      "sha256": "0dbe65aaca84aacd229d44d8628f6b7917423c5098072e351324e8ea85faaf0e",
+      "bytes": 1222
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\helpers\\mf_write_json.m",
+      "sha256": "5a2099cbceabae44c64c21eaebaf07cec6364ad431fc7a57e8fda7f2f9fb89eb",
+      "bytes": 381
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q1_blind_forecast_interval.m",
+      "sha256": "b4dedf2dea558fc3f2ca2b11e95429b2ef2cd4efdd57ef191f523c9e4435d048",
+      "bytes": 1374
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q1_resource_headroom.m",
+      "sha256": "1e474bd892b689abc9d043cfebc5afe12b3c6da041b7ba450187202dfc16e5c6",
+      "bytes": 945
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q1_schedule_gantt.m",
+      "sha256": "a781b02e9394a3c8da4b978f6b4c5c2d81ddb06c0e64d3f6ce066fafceb8849e",
+      "bytes": 2465
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q1_series_error_pairing.m",
+      "sha256": "51c970509f8739139c4bfeee9f537c7a4d8bfd4b2e7ff300bf35f1e60af25f4c",
+      "bytes": 1340
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q1_weekly_demand_structure.m",
+      "sha256": "19598c1fa1d58a73aba5b2460141d9beae46f8a2473590dd91890dcb64f89ed7",
+      "bytes": 1197
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q2_cumulative_impact.m",
+      "sha256": "6fda02aa520d2bd92730837e64bbb44ea8e21c562db36c0a15533f3f53415c49",
+      "bytes": 1105
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q2_latency_ecdf.m",
+      "sha256": "e435b5e20ffc7ae1b415be6f1430f07bfab5d9061c44ac33ab251a60f5656656",
+      "bytes": 1063
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q2_load_migration.m",
+      "sha256": "9bcc1a7ea52e275b0a0de42281010cf37f132bad4b38f25fe99b0dc0ee2c3b5b",
+      "bytes": 1155
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q3_dispatch_soc.m",
+      "sha256": "6945ddff4984bbfe67099698adb38a2072a68a64a95264a05269934ab4ee97b5",
+      "bytes": 1732
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q3_rolling_runtime_coverage.m",
+      "sha256": "dc71ed0e904e021cdc4a205cce1bd651d1c91a49edcfe82af520277b03c5010d",
+      "bytes": 905
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q4_scenario_tradeoff.m",
+      "sha256": "97964d5dae01f4707dc100b22052ebde11d13e0fb62407e706c8b1f4f1985aec",
+      "bytes": 1953
+    },
+    {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\matlab\\figures\\fig_q4_system_profile.m",
+      "sha256": "92fdc7943fec763466503c2babe24ff3f7d86a6c598caf47309b44ee23d840b2",
+      "bytes": 4694
+    }
+  ],
+  "figures": [
+    {
+      "stem": "fig-q1-weekly-demand-structure",
+      "status": "PASS",
+      "duration_s": 7.1694051,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q1-weekly-demand-structure.pdf",
+          "sha256": "1aaff18588bc8661f3116b9323c0065376c7d1e85e2556739ee6b54a53404534",
+          "bytes": 100552
+        },
+        {
+          "path": "outputs\\fig-q1-weekly-demand-structure.svg",
+          "sha256": "d484183a098f43131363b742da30ef96ffa5ca035ad67b4214665ab3dd5b3eed",
+          "bytes": 41103
+        },
+        {
+          "path": "outputs\\fig-q1-weekly-demand-structure.png",
+          "sha256": "41ddd7ad2d49dd191613a88582fd2fde626d6ee65d0477b232e9823943e44bc1",
+          "bytes": 427441
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q1-blind-forecast-interval",
+      "status": "PASS",
+      "duration_s": 3.5124957,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q1-blind-forecast-interval.pdf",
+          "sha256": "a5efd81ef9afc3082f426e9e35d9878efad18d370cb0eb400dc85796091cad99",
+          "bytes": 17497
+        },
+        {
+          "path": "outputs\\fig-q1-blind-forecast-interval.svg",
+          "sha256": "d56692fc83e125b8260a61b1a0365bf83a0ffd6dcc38840cb4dd80d447ff6d3f",
+          "bytes": 21664
+        },
+        {
+          "path": "outputs\\fig-q1-blind-forecast-interval.png",
+          "sha256": "2e18a1523e1f6aa8d4b13a5c11ab470ee21b56030cbf31daec71523d5ef5d053",
+          "bytes": 344034
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q1-series-error-pairing",
+      "status": "PASS",
+      "duration_s": 2.747364,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q1-series-error-pairing.pdf",
+          "sha256": "647339eda7a87cddf4c69d4fd6577f49560fabb11689c7e13ee0655326ac6f39",
+          "bytes": 16208
+        },
+        {
+          "path": "outputs\\fig-q1-series-error-pairing.svg",
+          "sha256": "63a9cbf71a0810e5067d83cf9f7bb187f865dcd716a2e2d45d1a88f7d3ad2ad3",
+          "bytes": 42987
+        },
+        {
+          "path": "outputs\\fig-q1-series-error-pairing.png",
+          "sha256": "c847632eafdbc6bf5eb96406026a8191eb0b351a490d020f56439989786ba7e0",
+          "bytes": 177638
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q1-schedule-gantt",
+      "status": "PASS",
+      "duration_s": 5.8968357,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q1-schedule-gantt.pdf",
+          "sha256": "5c07bc78db1bf9947a13de1bd45f1fa389d02bc8b6372fc85fc060cd4acbb23e",
+          "bytes": 25971
+        },
+        {
+          "path": "outputs\\fig-q1-schedule-gantt.svg",
+          "sha256": "3d4c5ebfc94529d46c9409515a6fcca33a057d6bfd660076b056a5c0e6df7e42",
+          "bytes": 267118
+        },
+        {
+          "path": "outputs\\fig-q1-schedule-gantt.png",
+          "sha256": "3662fadf8dfbf894d728ab85640e057aa674f0b633d71f14b0d58d28a88ca1a3",
+          "bytes": 238109
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q1-resource-headroom",
+      "status": "PASS",
+      "duration_s": 2.5307273,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q1-resource-headroom.pdf",
+          "sha256": "e5623d23b63ab55b25ec4b9b93c7e1cbde7d0d914871e67cfd8d0e5e6cf72c38",
+          "bytes": 43364
+        },
+        {
+          "path": "outputs\\fig-q1-resource-headroom.svg",
+          "sha256": "72bdab8ace1d62aae8fa0dad18ac4d7d7d184fa79fd6f68e368b7bbad356ae5b",
+          "bytes": 22746
+        },
+        {
+          "path": "outputs\\fig-q1-resource-headroom.png",
+          "sha256": "88b6634b5c31f3085002c0e917d364b2d094254d096d4b638946148d6ef72058",
+          "bytes": 155919
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q2-load-migration",
+      "status": "PASS",
+      "duration_s": 2.026485,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q2-load-migration.pdf",
+          "sha256": "bbbfcab4fa13fa0c0f6b8bb5fda1ac61e92bfcd212cac80622b1bc1cb1a14354",
+          "bytes": 63309
+        },
+        {
+          "path": "outputs\\fig-q2-load-migration.svg",
+          "sha256": "9520c43e6b6e3db88f6ea71da3d4263388edd53cfa9776c8815659aa541d533b",
+          "bytes": 22420
+        },
+        {
+          "path": "outputs\\fig-q2-load-migration.png",
+          "sha256": "435fdd2f5ee3cdbb81b35ae73435552389d27485005cf133413c8e5416bc60da",
+          "bytes": 189698
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q2-cumulative-impact",
+      "status": "PASS",
+      "duration_s": 2.1355059,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q2-cumulative-impact.pdf",
+          "sha256": "2eeb86b8cdc4a6a4491fd458f302ad3f45cb66b869dcf96d16c1dd8526a99764",
+          "bytes": 64243
+        },
+        {
+          "path": "outputs\\fig-q2-cumulative-impact.svg",
+          "sha256": "f101c5eefba440c752c6669283840f3dc914050d94bd3caaa416467bd38f7558",
+          "bytes": 93906
+        },
+        {
+          "path": "outputs\\fig-q2-cumulative-impact.png",
+          "sha256": "29b9d93d73eb810e2e632e499eccced48a7071754e1968382aac9667b6b908cf",
+          "bytes": 230927
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q2-latency-ecdf",
+      "status": "PASS",
+      "duration_s": 2.277795,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q2-latency-ecdf.pdf",
+          "sha256": "ec3c4218f1367d92a03c3d66c234a40769b9ff13c8be76d6b50b795437384ba5",
+          "bytes": 15054
+        },
+        {
+          "path": "outputs\\fig-q2-latency-ecdf.svg",
+          "sha256": "f0f86a45432a7fcd1260136ef5a84677c9a1587c22f6100bdde064fda06cb522",
+          "bytes": 15744
+        },
+        {
+          "path": "outputs\\fig-q2-latency-ecdf.png",
+          "sha256": "710a9ebef42bc39be236a4ad81412a3c8d3cc9fc1220a6c7d6aca7b749651871",
+          "bytes": 119535
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q3-dispatch-soc",
+      "status": "PASS",
+      "duration_s": 2.6235362,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q3-dispatch-soc.pdf",
+          "sha256": "0f37dce3b94b261bfd371871cd45416cb0099b6b0c10716d60ceb654fddca5e2",
+          "bytes": 26760
+        },
+        {
+          "path": "outputs\\fig-q3-dispatch-soc.svg",
+          "sha256": "fe98aeecdb636c054e3cd0341fa0dab32ad482984d763755160290958b2f1821",
+          "bytes": 29072
+        },
+        {
+          "path": "outputs\\fig-q3-dispatch-soc.png",
+          "sha256": "87cec4e772f1684973672d393ddec557a9fe02131c17fdc3ebec4b7e27334553",
+          "bytes": 220630
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q3-rolling-runtime-coverage",
+      "status": "PASS",
+      "duration_s": 1.9941468,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q3-rolling-runtime-coverage.pdf",
+          "sha256": "392fc580682fb7304ca8e423d0294af31e2fa81e6f87da6953b9719dac2a5547",
+          "bytes": 32925
+        },
+        {
+          "path": "outputs\\fig-q3-rolling-runtime-coverage.svg",
+          "sha256": "0774603ce2ba4e0b722b984a190f1a0b2ed74864a3f9205de01e407c9e4876ff",
+          "bytes": 19821
+        },
+        {
+          "path": "outputs\\fig-q3-rolling-runtime-coverage.png",
+          "sha256": "3f849e506a6392e6e975786bdde4b85d93d1c4e7e1ea36ecadc02aa5d9fa3408",
+          "bytes": 141771
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q4-scenario-tradeoff",
+      "status": "PASS",
+      "duration_s": 2.0931871,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q4-scenario-tradeoff.pdf",
+          "sha256": "1b47989e46d80c0a57b944db038176ad5f735d94aac00549acfbf9672a1ef832",
+          "bytes": 33291
+        },
+        {
+          "path": "outputs\\fig-q4-scenario-tradeoff.svg",
+          "sha256": "569e60b2a2399edb685165959f6a9f262a827897d75b9a1356b793c3fc07554e",
+          "bytes": 23921
+        },
+        {
+          "path": "outputs\\fig-q4-scenario-tradeoff.png",
+          "sha256": "6f96ed7d1ffede1a7bba1f7da31cff6814ee299735f72e5e5cf5f45b7bb2c839",
+          "bytes": 290041
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q4-system-profile",
+      "status": "PASS",
+      "duration_s": 3.9705124,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q4-system-profile.pdf",
+          "sha256": "da1ce2bbbce2c3b1797b53db9f0ee0a1f6b6356902d3bfa01976d98443b0ffb7",
+          "bytes": 21832
+        },
+        {
+          "path": "outputs\\fig-q4-system-profile.svg",
+          "sha256": "e06bbc553da70dcdd8fc6b6e458515abea0d04af8b65110fa4d7ca1aa5e348f5",
+          "bytes": 28292
+        },
+        {
+          "path": "outputs\\fig-q4-system-profile.png",
+          "sha256": "3e687241aaa4b0e0f12f632ef130c37b56a3b24b26e03953508b35d30d020612",
+          "bytes": 151494
+        }
+      ],
+      "error": ""
+    }
+  ],
+  "all_passed": true
+}

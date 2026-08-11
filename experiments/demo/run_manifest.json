@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "run_id": "demo",
+  "problem_id": "DEMO",
+  "question_id": "Q1",
+  "engine": "python",
+  "command": [
+    "conda",
+    "run",
+    "--no-capture-output",
+    "-p",
+    "D:\\anaconda3",
+    "python",
+    "src/modeling/run_demo.py",
+    "--experiment-id",
+    "demo",
+    "--seed",
+    "20260801",
+    "--output-root",
+    "experiments"
+  ],
+  "environment": {
+    "conda_name": "base",
+    "conda_prefix": "D:\\anaconda3",
+    "matlab_root": null,
+    "python": "3.13.9"
+  },
+  "code": {
+    "runner": "src/modeling/run_demo.py",
+    "sha256": "4045f1fd431c59c25fdac67bb3ff8e2d80b9ae4fd5e14c7aedcb8a512455d8ba"
+  },
+  "random_seed": 20260801,
+  "methods": [
+    {
+      "name": "ordinary_least_squares",
+      "role": "main"
+    },
+    {
+      "name": "linear_programming",
+      "role": "baseline"
+    }
+  ],
+  "inputs": [],
+  "artifacts": [
+    {
+      "path": "experiments/demo/config.yaml",
+      "bytes": 78,
+      "sha256": "34b437c5b1ec6581ac70035c6ad005c0157523e454ffd5a04b23370b7351caaa"
+    },
+    {
+      "path": "experiments/demo/figures/demo_linear_program.pdf",
+      "bytes": 18325,
+      "sha256": "7dd9e26d13e6672bdf978f1557c238d4ec65fb78840290e26a743f42fccb7959"
+    },
+    {
+      "path": "experiments/demo/figures/demo_linear_program.png",
+      "bytes": 193236,
+      "sha256": "0e2a9d82895b20cd0bca336ed45d913f45d97261e22222515f51ffda2588d261"
+    },
+    {
+      "path": "experiments/demo/figures/demo_linear_program.svg",
+      "bytes": 53867,
+      "sha256": "d652131e4df42c6386c7f15c73d502bb75ad1eba431da46db533509e86d90c17"
+    },
+    {
+      "path": "experiments/demo/figures/demo_regression.pdf",
+      "bytes": 16291,
+      "sha256": "b532b1afafa93f4dc703f69b896a4abcfb870e764899eab346ca115fc3f0e74c"
+    },
+    {
+      "path": "experiments/demo/figures/demo_regression.png",
+      "bytes": 262729,
+      "sha256": "4a72fc814151eafe540754e4df330cfb871a9aeca99878b2d9c7748c382c068b"
+    },
+    {
+      "path": "experiments/demo/figures/demo_regression.svg",
+      "bytes": 51426,
+      "sha256": "38b9c951a75967276fb86bdad30a6a674194dcae3018d1ff7374619ab62f4388"
+    },
+    {
+      "path": "experiments/demo/results/experiment_data.mat",
+      "bytes": 384,
+      "sha256": "e6f347e9948c123d6a5c5e7c8b86ac81613c255ebb4a5876da9c1fd3c7b5b487"
+    },
+    {
+      "path": "experiments/demo/results/experiment_result.json",
+      "bytes": 2398,
+      "sha256": "7bb0e9769769fc419e5063359ff1a7aaf5af461b9bd8862314f57f4785181895"
+    },
+    {
+      "path": "experiments/demo/results/regression_predictions.csv",
+      "bytes": 4480,
+      "sha256": "3d120153bafa291ae69bb65680a5ce9c65f5385dc5097ae522711ef16e144187"
+    }
+  ],
+  "metrics": [
+    {
+      "name": "regression_r2",
+      "unit": "dimensionless",
+      "locator": "experiments/demo/results/experiment_result.json:metrics.regression.r2"
+    },
+    {
+      "name": "linear_program_objective",
+      "unit": "dimensionless",
+      "locator": "experiments/demo/results/experiment_result.json:metrics.linear_program.objective"
+    }
+  ],
+  "started_at_utc": "2026-08-03T10:50:35.1053208+00:00",
+  "duration_seconds": 3.981411,
+  "status": "PASS"
+}

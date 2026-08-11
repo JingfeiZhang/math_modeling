@@ -1,0 +1,93 @@
+version: "1.0"
+policy:
+  input: real_experiment_artifacts_only
+  synthetic_fallback: forbidden
+  one_backend_per_figure: true
+  exports: [pdf, svg, png_400dpi]
+recipes:
+  - id: model-comparison
+    role: model estimate and uncertainty relative to a comparable baseline
+    backend: python
+    script: python/plot_model_comparison.py
+    required_columns: [model, estimate, lower, upper, is_baseline, is_primary]
+  - id: prediction-interval
+    role: prediction uncertainty and baseline comparison
+    backend: python
+    script: python/plot_prediction_interval.py
+    required_columns: [x, observed, predicted, lower, upper, baseline]
+  - id: calibration
+    role: observed-versus-predicted calibration
+    backend: python
+    script: python/plot_calibration.py
+    required_columns: [series, predicted_mean, observed_mean, ci95_half, is_baseline]
+  - id: pareto-frontier
+    role: multi-objective trade-off and recommended solution
+    backend: python
+    script: python/plot_pareto_frontier.py
+    required_columns: [objective_x, objective_y, is_feasible, is_pareto, is_recommended, baseline_x, baseline_y]
+  - id: optimization-convergence
+    role: algorithm convergence relative to a comparable baseline
+    backend: matlab
+    script: matlab/plot_optimization_convergence.m
+    required_columns: [iteration, objective, baseline_objective]
+  - id: optimization-convergence-python
+    role: multi-run optimization convergence relative to a comparable baseline
+    backend: python
+    script: python/plot_optimization_convergence.py
+    required_columns: [iteration, run, objective, baseline_objective]
+  - id: sensitivity-curve
+    role: parameter-response sensitivity by scenario
+    backend: matlab
+    script: matlab/plot_sensitivity_curve.m
+    required_columns: [parameter, response, baseline_response, scenario]
+  - id: sensitivity-ranking
+    role: global first-order and total-effect sensitivity ranking
+    backend: python
+    script: python/plot_sensitivity_ranking.py
+    required_columns: [parameter, first_order, first_low, first_high, total_effect, total_low, total_high]
+  - id: residual-diagnostics
+    role: residual scale and heteroscedasticity diagnosis
+    backend: python
+    script: python/plot_residual_diagnostics.py
+    required_columns: [series, fitted_mean, rmse, ci_low, ci_high, is_baseline]
+  - id: robustness-matrix
+    role: scenario-by-metric change from baseline
+    backend: python
+    script: python/plot_robustness_matrix.py
+    required_columns: [scenario, metric, value, baseline]
+  - id: network-flow
+    role: topology, flow magnitude, and baseline change
+    backend: python
+    script: python/plot_network_flow.py
+    required_columns: [source, target, flow, baseline_flow]
+  - id: spatial-distribution
+    role: spatial change from baseline
+    backend: matlab
+    script: matlab/plot_spatial_distribution.m
+    required_columns: [x, y, value, baseline_value]
+  - id: paired-distribution
+    role: paired before-after or method comparison
+    backend: matlab
+    script: matlab/plot_paired_distribution.m
+    required_columns: [pair_id, before, after]
+  - id: model-flowchart
+    role: model structure and actual data flow
+    backend: matlab
+    script: matlab/plot_model_flowchart.m
+    required_columns: [source, target]
+compatibility_recipes:
+  - id: residual-calibration
+    role: legacy two-panel calibration and residual view
+    backend: python
+    script: python/plot_residual_calibration.py
+    required_columns: [observed, predicted, baseline_prediction]
+  - id: roc-pr
+    role: legacy two-panel discrimination diagnostic
+    backend: python
+    script: python/plot_roc_pr.py
+    required_columns: [fold, fpr, tpr, recall, precision, prevalence]
+  - id: multipanel-main-result
+    role: legacy coordinated multi-panel result
+    backend: python
+    script: python/plot_multipanel_main_result.py
+    required_columns: [panel, series, x, value, baseline]

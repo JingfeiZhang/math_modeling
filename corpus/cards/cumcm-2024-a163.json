@@ -1,0 +1,282 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2024-a163",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "A",
+    "team_id": "A163",
+    "title": "基于几何模型的板凳龙运动路径问题"
+  },
+  "source": {
+    "url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024atlw/241104/1977935.shtml",
+    "publisher": "official",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public_page_images"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024atlw/241104/1977935.shtml",
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "A",
+    "team_id": "A163",
+    "title": "基于几何模型的板凳龙运动路径问题",
+    "award": "全国大学生数学建模竞赛组委会官方论文展示"
+  },
+  "authenticity": {
+    "level": "A",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": true,
+      "mirror_publisher": false,
+      "fulltext_available": true,
+      "official_award_verified": true,
+      "identity_aligned": true
+    },
+    "reasons": [
+      "official source or official result is directly verifiable"
+    ]
+  },
+  "pdf": {
+    "sha256": "43d0dedc0565c64d1d65a7aa3daa86c22b6fad96e913b2a9b45384a72d511f22",
+    "pages": 30,
+    "local_path": "corpus/raw/cumcm-2024-a163/source_manifest.json",
+    "kind": "official_page_image_set",
+    "source_pdf_available": false,
+    "derived_review_pdf": "",
+    "reported_total_pages": 45,
+    "cached_pages": 30
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要按“问题背景与目标；五个子问题的方法链；位置、速度和约束结论；关键词”组织。",
+      "derivation": "visual",
+      "locator": "official page image 1",
+      "render": "corpus/raw/cumcm-2024-a163/page-01.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用阿基米德螺线和极坐标描述龙头与龙身把手位置",
+      "derivation": "visual",
+      "locator": "official page image 4",
+      "render": "corpus/raw/cumcm-2024-a163/page-04.jpg"
+    },
+    {
+      "page": 13,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "以位置迭代和速度迭代计算盘入过程的整队状态",
+      "derivation": "visual",
+      "locator": "official page image 13",
+      "render": "corpus/raw/cumcm-2024-a163/page-13.jpg"
+    },
+    {
+      "page": 26,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "复用几何迭代计算调头路径前后关键时刻的位置",
+      "derivation": "visual",
+      "locator": "official page image 26",
+      "render": "corpus/raw/cumcm-2024-a163/page-26.jpg"
+    },
+    {
+      "page": 28,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用速度比和最大速度约束确定龙头允许速度",
+      "derivation": "visual",
+      "locator": "official page image 28",
+      "render": "corpus/raw/cumcm-2024-a163/page-28.jpg"
+    },
+    {
+      "page": 13,
+      "tags": [
+        "validation"
+      ],
+      "observation": "同页给出全局/局部几何图以及关键把手位置和速度表",
+      "derivation": "visual",
+      "locator": "official page image 13",
+      "render": "corpus/raw/cumcm-2024-a163/page-13.jpg"
+    },
+    {
+      "page": 26,
+      "tags": [
+        "validation"
+      ],
+      "observation": "在统一单位的关键时刻表中检查多节点位置演化",
+      "derivation": "visual",
+      "locator": "official page image 26",
+      "render": "corpus/raw/cumcm-2024-a163/page-26.jpg"
+    },
+    {
+      "page": 28,
+      "tags": [
+        "validation"
+      ],
+      "observation": "以最大速度诊断曲线检查限制条件并在模型评价中说明计算复杂度",
+      "derivation": "visual",
+      "locator": "official page image 28",
+      "render": "corpus/raw/cumcm-2024-a163/page-28.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景与目标",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "五个子问题的方法链",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "位置、速度和约束结论",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "关键词",
+      "locator": "official page image 1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 4,
+      "description": "用阿基米德螺线和极坐标描述龙头与龙身把手位置",
+      "locator": "official page image 4"
+    },
+    {
+      "step": 2,
+      "page": 13,
+      "description": "以位置迭代和速度迭代计算盘入过程的整队状态",
+      "locator": "official page image 13"
+    },
+    {
+      "step": 3,
+      "page": 26,
+      "description": "复用几何迭代计算调头路径前后关键时刻的位置",
+      "locator": "official page image 26"
+    },
+    {
+      "step": 4,
+      "page": 28,
+      "description": "用速度比和最大速度约束确定龙头允许速度",
+      "locator": "official page image 28"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 13,
+      "description": "同页给出全局/局部几何图以及关键把手位置和速度表",
+      "locator": "official page image 13"
+    },
+    {
+      "step": 2,
+      "page": 26,
+      "description": "在统一单位的关键时刻表中检查多节点位置演化",
+      "locator": "official page image 26"
+    },
+    {
+      "step": 3,
+      "page": 28,
+      "description": "以最大速度诊断曲线检查限制条件并在模型评价中说明计算复杂度",
+      "locator": "official page image 28"
+    }
+  ],
+  "figures": [
+    {
+      "page": 4,
+      "role": "model explanation",
+      "chart_type": "mechanism",
+      "caption": "板凳龙盘入几何示意",
+      "lesson": "固定板凳实体、螺线和碰撞点的语义编码",
+      "locator": "official page image 4",
+      "render": "corpus/raw/cumcm-2024-a163/page-04.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 13,
+      "role": "result evidence",
+      "chart_type": "multi-panel",
+      "caption": "盘入终止时刻全局与局部视图",
+      "lesson": "全局状态、局部放大和数值表互补",
+      "locator": "official page image 13",
+      "render": "corpus/raw/cumcm-2024-a163/page-13.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 26,
+      "role": "result evidence",
+      "chart_type": "trajectory",
+      "caption": "调头过程关键时刻位置图",
+      "lesson": "用相同坐标与颜色比较时刻变化",
+      "locator": "official page image 26",
+      "render": "corpus/raw/cumcm-2024-a163/page-26.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 28,
+      "role": "result evidence",
+      "chart_type": "diagnostic",
+      "caption": "关键把手最大速度曲线",
+      "lesson": "把速度约束的激活位置显式化",
+      "locator": "official page image 28",
+      "render": "corpus/raw/cumcm-2024-a163/page-28.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "机理题的每个几何约束应配变量清晰的示意图",
+      "evidence_page": 4
+    },
+    {
+      "rule": "主结果用全局图、局部放大和关键数值表联合表达",
+      "evidence_page": 13
+    },
+    {
+      "rule": "统一实体颜色和参考线颜色以支持跨页追踪",
+      "evidence_page": 26
+    }
+  ],
+  "risks": [
+    "本地只缓存官方展示的前 30/45 页，结尾与附录未进入本次视觉复核",
+    "并排图标题存在断行，默认折线图字号和留白仍可改进",
+    "官方展示标签不等同于独立奖级声明；卡片不推断具体奖项。"
+  ],
+  "provenance": {
+    "source_manifest": "corpus/raw/cumcm-2024-a163/source_manifest.json",
+    "source_artifact_kind": "official_page_images",
+    "derived_review_pdf": false,
+    "reported_total_pages": 45,
+    "cached_pages": 30,
+    "coverage": 0.6666666666666666,
+    "visual_review": "selected evidence pages complete",
+    "review_scope": "cached prefix and selected evidence pages",
+    "page_image_manifest_sha256": "43d0dedc0565c64d1d65a7aa3daa86c22b6fad96e913b2a9b45384a72d511f22"
+  }
+}

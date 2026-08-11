@@ -1,0 +1,237 @@
+schema_version: 1
+figures:
+- contract_version: '2.0'
+  id: fig-q3-rolling-comparison
+  question_id: Q3
+  claim_id: Q3-ROLLING-COST-DELTA
+  core_conclusion: The rolling storage policy improves the cost-versus-peak trade-off
+    in Regions D-F, while deterministic 72-hour probes show scenario-dependent but
+    directionally comparable changes.
+  core_message: Rolling regional storage dispatch and deterministic stress-probe comparisons
+    are shown together; the excluded full-horizon LP is a boundary, not evidence.
+  evidence_chain:
+  - locator: experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json:$.rolling_binary_milp.total_block_solves
+    sha256: ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35
+    fields:
+    - rolling_binary_milp.total_block_solves
+    - excluded_full_horizon_lp_probe.claim_eligible
+  - locator: sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_comparison_summary.csv:rolling_aggregate
+      and scenario rows
+    sha256: f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f
+    fields:
+    - evaluation
+    - region
+    - cost_saving_CNY
+    - peak_reduction_MW
+  - locator: sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_scenario_metrics.csv:24
+      candidate scenario rows
+    sha256: 4b67097a73bcc30720301f9fb1068ab354f289b21a9219c7e6edd92227aba3d8
+    fields:
+    - scenario
+    - region
+    - solver_success
+  kind: data
+  archetype: robustness-comparison
+  backend: python/matplotlib
+  source_data:
+  - experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json
+  - sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_comparison_summary.csv
+  - sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_scenario_metrics.csv
+  source_script: sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/generate_q3_q4_figures.py
+  outputs:
+    pdf: sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q3_rolling_comparison.pdf
+    svg: sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q3_rolling_comparison.svg
+    png: sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q3_rolling_comparison.png
+    png_dpi: 400
+  baseline: Matched deterministic no-storage renewable-first policy in each Q3 comparison
+    row.
+  axes:
+  - variable: peak reduction relative to baseline
+    unit: MW
+  - variable: operating-cost saving relative to baseline
+    unit: million CNY
+  caption: Q3 rolling storage comparison and deterministic stress probes. Circles
+    are six-region rolling aggregates from 90 binary-MILP blocks; triangles are 24
+    candidate rows from four observed-data-derived 72-hour probes, each compared with
+    the matched no-storage baseline. The gray annotation records the permanently excluded
+    full-horizon LP probe; the plot does not imply global optimality or probabilistic
+    guarantees.
+  panel_map:
+  - panel: main
+    role: cost-versus-peak comparison
+    subclaim: rolling and stress-probe trade-offs
+  statistics:
+  - Six rolling aggregate rows and 24 scenario comparison rows; deterministic audits
+    only.
+  review_risks:
+  - Scenario points are 72-hour probes, not full-horizon forecasts.
+  - The full-horizon LP probe is excluded and not plotted as evidence.
+  - Overlapping zero-improvement points can conceal multiplicity; region labels identify
+    rolling points.
+  target_size_profile: contest-body
+  final_width_mm: 158
+  min_font_pt: 8
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: rolling_aggregate
+    meaning: main rolling policy
+    color: '#5292F7'
+    secondary_encoding: circle
+  - role: peak_price_empirical
+    meaning: peak-price probe
+    color: '#4EA660'
+    secondary_encoding: triangle
+  - role: high_carbon_empirical
+    meaning: high-carbon probe
+    color: '#AA77E9'
+    secondary_encoding: triangle
+  - role: renewable_low_empirical
+    meaning: low-renewable probe
+    color: '#F7A24F'
+    secondary_encoding: triangle
+  - role: joint_stress
+    meaning: joint-stress probe
+    color: '#CC247C'
+    secondary_encoding: triangle
+  visual_hierarchy:
+    primary_evidence: rolling aggregate and scenario trade-off points
+    secondary_context: matched baseline deltas and direct region labels
+    deemphasized: zero reference axes and boundary annotation
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+  statistics_report:
+    sample_size: 6 rolling aggregate rows + 24 scenario rows
+    center: none
+    interval: none
+    test: none
+    multiplicity: descriptive comparison
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json
+      sha256: ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35
+    - path: sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_comparison_summary.csv
+      sha256: f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f
+    - path: sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_scenario_metrics.csv
+      sha256: 4b67097a73bcc30720301f9fb1068ab354f289b21a9219c7e6edd92227aba3d8
+    transformation: Read-only CSV/JSON parsing; cost is divided by 1e6 only for axis
+      display; no manual values.
+    manual_values_forbidden: true
+  rasterized_layers: []
+- contract_version: '2.0'
+  id: fig-q4-peak-tradeoff
+  question_id: Q4
+  claim_id: Q4-PEAK-REDUCTION
+  core_conclusion: The independent 24-hour low-renewable discrete scan exhibits stepwise
+    peak reduction as the peak-weight increases, with the selected point at w=0.0003.
+  core_message: The peak-weight response is a 17-point discrete MILP sensitivity scan;
+    it is not a continuous dual-price curve or a global optimum proof.
+  evidence_chain:
+  - locator: experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json:$.peak_probe_24h.peak_reduction_MW
+    sha256: 26f46159818b9cc3f52ac6fae14a00e1cdcbee60f1b986e9cfa05158d447db66
+    fields:
+    - peak_probe_24h.peak_reduction_MW
+    - peak_probe_24h.selected_peak_weight
+    - peak_probe_24h.zero_weight_peak_MW
+  - locator: sprints/sprint-20260808T051118704690Z/merged/solver-q4/q4_peak_tradeoff.csv:17
+      audited scan rows
+    sha256: 8ed32e82b5bd8ba9c64e3b3d6bfd97bd32e306ce8248ceb1afbce3848b204fcc
+    fields:
+    - peak_weight
+    - system_peak_variable_MW
+    - audit_passed
+  - locator: sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_aggregate_comparison.csv:five
+      72-hour scenario rows
+    sha256: 056dc66bdc9685d0ecd360082980aeb8bf38524e6fb0ae413a7805fa79cf006e
+    fields:
+    - scenario
+    - cost_delta_CNY
+    - carbon_delta_tCO2
+  - locator: sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_system_hourly.csv:720
+      hourly rows
+    sha256: e9b327a767c6a321752e780b1e36d3255e5dc2f91156f7269c4be9be94c1dedc
+    fields:
+    - Hour
+    - SystemNetGridImport_MW
+    - Scenario
+  kind: data
+  archetype: sensitivity-scan
+  backend: python/matplotlib
+  source_data:
+  - experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json
+  - sprints/sprint-20260808T051118704690Z/merged/solver-q4/q4_peak_tradeoff.csv
+  - sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_aggregate_comparison.csv
+  - sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_system_hourly.csv
+  source_script: sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/generate_q3_q4_figures.py
+  outputs:
+    pdf: sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q4_peak_tradeoff.pdf
+    svg: sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q4_peak_tradeoff.svg
+    png: sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q4_peak_tradeoff.png
+    png_dpi: 400
+  baseline: Zero peak-weight row in the same independent 24-hour low-renewable probe.
+  axes:
+  - variable: peak-weight scan point w
+    unit: dimensionless
+  - variable: system positive peak net import
+    unit: MW
+  caption: Q4 independent 24-hour low-renewable peak-weight scan. The line connects
+    17 audited discrete MILP points in increasing weight order; the square is the
+    zero-weight reference and the diamond marks the selected discrete point at w=0.0003.
+    The displayed reduction is relative to the zero-weight row. This scan is independent
+    of the 72-hour sequential comparison and does not establish a continuous shadow
+    price or full-horizon global optimum.
+  panel_map:
+  - panel: main
+    role: discrete peak-weight response
+    subclaim: selected point and zero-weight reference
+  statistics:
+  - 17 audited discrete scan points; all solver and hard-constraint audits passed.
+  review_risks:
+  - The x-axis is ordered scan points with actual weights as tick labels; it is not
+    a continuous parameterization.
+  - The selected point is a discrete decision, not an LP dual variable.
+  - The probe covers 24 hours only and is separate from the 72-hour sequential comparison.
+  target_size_profile: contest-body
+  final_width_mm: 158
+  min_font_pt: 8
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: discrete_scan
+    meaning: audited MILP scan
+    color: '#5292F7'
+    secondary_encoding: solid line + circle
+  - role: zero_weight_reference
+    meaning: zero-weight row
+    color: '#79CAFB'
+    secondary_encoding: square
+  - role: selected_discrete_point
+    meaning: selected scan point
+    color: '#F7A24F'
+    secondary_encoding: diamond + direct annotation
+  visual_hierarchy:
+    primary_evidence: 17-point discrete peak response
+    secondary_context: zero-weight reference and selected point
+    deemphasized: grid and scope annotation
+  label_strategy:
+    mode: direct
+    collision_checked: true
+  statistics_report:
+    sample_size: 17 discrete scan rows
+    center: none
+    interval: none
+    test: audit_passed per row
+    multiplicity: descriptive sensitivity scan
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json
+      sha256: 26f46159818b9cc3f52ac6fae14a00e1cdcbee60f1b986e9cfa05158d447db66
+    - path: sprints/sprint-20260808T051118704690Z/merged/solver-q4/q4_peak_tradeoff.csv
+      sha256: 8ed32e82b5bd8ba9c64e3b3d6bfd97bd32e306ce8248ceb1afbce3848b204fcc
+    - path: sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_aggregate_comparison.csv
+      sha256: 056dc66bdc9685d0ecd360082980aeb8bf38524e6fb0ae413a7805fa79cf006e
+    - path: sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_system_hourly.csv
+      sha256: e9b327a767c6a321752e780b1e36d3255e5dc2f91156f7269c4be9be94c1dedc
+    transformation: Read-only CSV/JSON parsing; no interpolation or continuous optimization;
+      no manual values.
+    manual_values_forbidden: true
+  rasterized_layers: []

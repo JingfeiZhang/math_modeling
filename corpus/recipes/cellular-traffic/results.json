@@ -1,0 +1,8 @@
+{
+  "recipe_id": "cellular-traffic",
+  "metrics": {
+    "simulated_flow_vehicles": 96,
+    "mean_speed_cells_per_step": 2.447361111111111,
+    "free_flow_baseline": 200.0
+  }
+}

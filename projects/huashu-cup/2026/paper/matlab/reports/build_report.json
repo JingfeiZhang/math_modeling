@@ -1,0 +1,416 @@
+{
+  "schema_version": 1,
+  "project_id": "huashu-cup-2026",
+  "problem_id": "C",
+  "backend": "MATLAB",
+  "matlab_version": "26.1.0.3312084 (R2026a) Update 4",
+  "matlab_release": "2026a",
+  "platform": "PCWIN64",
+  "generated_at": "2026-08-10T12:34:03+08:00",
+  "palette_id": "journal-spectrum-v2",
+  "figure_width_mm": 158,
+  "minimum_font_pt": 8,
+  "png_dpi": 400,
+  "input_manifest_sha256": "2adca6c8be29d15c6aece050cd3ee63967690a90fd67fcac576f9324f0326ffe",
+  "source_hashes": [
+    {
+      "path": "build_all_figures.m",
+      "sha256": "90daf8697b1ce653b0db94d725797559e184bd783efaa780fc93b0d9c677d37e",
+      "bytes": 4579
+    },
+    {
+      "path": "prepare_figure_data.m",
+      "sha256": "3efe4c465f972599ed294b48a3d974941acbe34bd7ac2b332ad8240aca9226a7",
+      "bytes": 20022
+    },
+    {
+      "path": "helpers\\mf_apply_axes.m",
+      "sha256": "57363aef725af8ba33c3be97d3cca91798462175c4dd6b9b28df1f255cb948fd",
+      "bytes": 601
+    },
+    {
+      "path": "helpers\\mf_colorbar.m",
+      "sha256": "3964af67c21617e4ea3bbd766d8a5995393e2272c76a77cfcb22ed234ce4b7d4",
+      "bytes": 609
+    },
+    {
+      "path": "helpers\\mf_colormap.m",
+      "sha256": "7a7b84d471cf03bec586926fa7d30677330657d076e52e6fc5e2cd299b6b7926",
+      "bytes": 669
+    },
+    {
+      "path": "helpers\\mf_export_triplet.m",
+      "sha256": "c92b7461f11a2a69c290b3a8614ffb1992c8eaea69b867f8b4f99ee8251a105d",
+      "bytes": 1086
+    },
+    {
+      "path": "helpers\\mf_legend.m",
+      "sha256": "09195c668840b3d56b7fd70daa345a43ea034c582a9c66389774feeee43d0220",
+      "bytes": 274
+    },
+    {
+      "path": "helpers\\mf_publication_figure.m",
+      "sha256": "c868be775ced014862a7c42c1f3757351de1c6664230138f64ddf93c725c2012",
+      "bytes": 669
+    },
+    {
+      "path": "helpers\\mf_require_columns.m",
+      "sha256": "3e01aa2d1495aa63504b572a5a35a1dce5ffad241d9064efa6a8ec995e69450f",
+      "bytes": 502
+    },
+    {
+      "path": "helpers\\mf_sha256.m",
+      "sha256": "26a79c72fd5058de1da971b8f80f831d010dc7db1ecc62aa5cc5b33d02c51127",
+      "bytes": 493
+    },
+    {
+      "path": "helpers\\mf_style.m",
+      "sha256": "0dbe65aaca84aacd229d44d8628f6b7917423c5098072e351324e8ea85faaf0e",
+      "bytes": 1222
+    },
+    {
+      "path": "helpers\\mf_write_json.m",
+      "sha256": "5a2099cbceabae44c64c21eaebaf07cec6364ad431fc7a57e8fda7f2f9fb89eb",
+      "bytes": 381
+    },
+    {
+      "path": "figures\\fig_q1_blind_forecast_interval.m",
+      "sha256": "b4dedf2dea558fc3f2ca2b11e95429b2ef2cd4efdd57ef191f523c9e4435d048",
+      "bytes": 1374
+    },
+    {
+      "path": "figures\\fig_q1_resource_headroom.m",
+      "sha256": "1e474bd892b689abc9d043cfebc5afe12b3c6da041b7ba450187202dfc16e5c6",
+      "bytes": 945
+    },
+    {
+      "path": "figures\\fig_q1_schedule_gantt.m",
+      "sha256": "8c34c27a450b9d04547aa917ce9d5c7b15a89f4b9a3027f79e1bf16070937a96",
+      "bytes": 2542
+    },
+    {
+      "path": "figures\\fig_q1_series_error_pairing.m",
+      "sha256": "51c970509f8739139c4bfeee9f537c7a4d8bfd4b2e7ff300bf35f1e60af25f4c",
+      "bytes": 1340
+    },
+    {
+      "path": "figures\\fig_q1_weekly_demand_structure.m",
+      "sha256": "19598c1fa1d58a73aba5b2460141d9beae46f8a2473590dd91890dcb64f89ed7",
+      "bytes": 1197
+    },
+    {
+      "path": "figures\\fig_q2_cumulative_impact.m",
+      "sha256": "6fda02aa520d2bd92730837e64bbb44ea8e21c562db36c0a15533f3f53415c49",
+      "bytes": 1105
+    },
+    {
+      "path": "figures\\fig_q2_latency_ecdf.m",
+      "sha256": "b2e159320fde528fe32df2eaf8962ac92772fab79cf8b69005c8fe2cc7578a41",
+      "bytes": 4967
+    },
+    {
+      "path": "figures\\fig_q2_load_migration.m",
+      "sha256": "9bcc1a7ea52e275b0a0de42281010cf37f132bad4b38f25fe99b0dc0ee2c3b5b",
+      "bytes": 1155
+    },
+    {
+      "path": "figures\\fig_q3_dispatch_soc.m",
+      "sha256": "6945ddff4984bbfe67099698adb38a2072a68a64a95264a05269934ab4ee97b5",
+      "bytes": 1732
+    },
+    {
+      "path": "figures\\fig_q3_rolling_runtime_coverage.m",
+      "sha256": "dc71ed0e904e021cdc4a205cce1bd651d1c91a49edcfe82af520277b03c5010d",
+      "bytes": 905
+    },
+    {
+      "path": "figures\\fig_q4_scenario_tradeoff.m",
+      "sha256": "97964d5dae01f4707dc100b22052ebde11d13e0fb62407e706c8b1f4f1985aec",
+      "bytes": 1953
+    },
+    {
+      "path": "figures\\fig_q4_system_profile.m",
+      "sha256": "d57ce3036e3fa3c903a59009bef9fb3a0cad8dcebe885a3da24b315cfdc55452",
+      "bytes": 4715
+    }
+  ],
+  "figures": [
+    {
+      "stem": "fig-q1-weekly-demand-structure",
+      "status": "PASS",
+      "duration_s": 7.404752,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q1-weekly-demand-structure.pdf",
+          "sha256": "a3023e523ca1d5064e4ec3aecf05dff2df7379aa7b6ca98f34bb8b857f96819f",
+          "bytes": 100552
+        },
+        {
+          "path": "outputs\\fig-q1-weekly-demand-structure.svg",
+          "sha256": "d484183a098f43131363b742da30ef96ffa5ca035ad67b4214665ab3dd5b3eed",
+          "bytes": 41103
+        },
+        {
+          "path": "outputs\\fig-q1-weekly-demand-structure.png",
+          "sha256": "6ac628277d85ff950e6fcee106e6c330c170f2a66a3c7fd42dd86d6c12bdf99c",
+          "bytes": 427441
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q1-blind-forecast-interval",
+      "status": "PASS",
+      "duration_s": 3.12496,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q1-blind-forecast-interval.pdf",
+          "sha256": "ca9b5cc9d77901434abdb19bcd623cf249c395867ca9a0cfc9d2fd5afdea6c53",
+          "bytes": 17497
+        },
+        {
+          "path": "outputs\\fig-q1-blind-forecast-interval.svg",
+          "sha256": "d56692fc83e125b8260a61b1a0365bf83a0ffd6dcc38840cb4dd80d447ff6d3f",
+          "bytes": 21664
+        },
+        {
+          "path": "outputs\\fig-q1-blind-forecast-interval.png",
+          "sha256": "c8c2cc603bf31f120c352660a065bc1ddf612666550c2d2b1d13481e28e909c2",
+          "bytes": 344034
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q1-series-error-pairing",
+      "status": "PASS",
+      "duration_s": 2.4339298,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q1-series-error-pairing.pdf",
+          "sha256": "e615abcf00847755f077a1d82af1dff45bf90e1fd26b80c3a0e9a603756a1e22",
+          "bytes": 16208
+        },
+        {
+          "path": "outputs\\fig-q1-series-error-pairing.svg",
+          "sha256": "63a9cbf71a0810e5067d83cf9f7bb187f865dcd716a2e2d45d1a88f7d3ad2ad3",
+          "bytes": 42987
+        },
+        {
+          "path": "outputs\\fig-q1-series-error-pairing.png",
+          "sha256": "650304ac68dfae57fb3fdc9039bd3938a0ce5bbc4f6987a2f2525423a783fd9c",
+          "bytes": 177638
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q1-schedule-gantt",
+      "status": "PASS",
+      "duration_s": 5.0099849,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q1-schedule-gantt.pdf",
+          "sha256": "077f4a505a9286e0c06e94bfccc345e98b63eaf16a5349e5fe2e314b1d72a98c",
+          "bytes": 25965
+        },
+        {
+          "path": "outputs\\fig-q1-schedule-gantt.svg",
+          "sha256": "28160f8e9d894c9998a96d1cfe4e98b0c5c87351c95e776efa59a45af9918b5c",
+          "bytes": 267117
+        },
+        {
+          "path": "outputs\\fig-q1-schedule-gantt.png",
+          "sha256": "75acabaa282377e627c266d87c9e7d6a6d0c819ad5dc79c897146a8852cd67e6",
+          "bytes": 237090
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q1-resource-headroom",
+      "status": "PASS",
+      "duration_s": 2.0077789,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q1-resource-headroom.pdf",
+          "sha256": "6e358d61f01328127f796bce7b2ba7746ed4b3ee45b3f9b5eeaa305ebd707267",
+          "bytes": 43364
+        },
+        {
+          "path": "outputs\\fig-q1-resource-headroom.svg",
+          "sha256": "72bdab8ace1d62aae8fa0dad18ac4d7d7d184fa79fd6f68e368b7bbad356ae5b",
+          "bytes": 22746
+        },
+        {
+          "path": "outputs\\fig-q1-resource-headroom.png",
+          "sha256": "1c4e5fecc064afd87d50bb2ebc2c218a54d897eae03bdf41f58dbb4403128cfd",
+          "bytes": 155919
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q2-load-migration",
+      "status": "PASS",
+      "duration_s": 1.7203784,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q2-load-migration.pdf",
+          "sha256": "883b167dadec6c4970a756da81ebd67f6c6acc8543cebdb850905df8163f74ad",
+          "bytes": 63309
+        },
+        {
+          "path": "outputs\\fig-q2-load-migration.svg",
+          "sha256": "9520c43e6b6e3db88f6ea71da3d4263388edd53cfa9776c8815659aa541d533b",
+          "bytes": 22420
+        },
+        {
+          "path": "outputs\\fig-q2-load-migration.png",
+          "sha256": "a64aac415a91e2975a75ff7d0bdc55601737532c8e9a86130599cfd64f534180",
+          "bytes": 189698
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q2-cumulative-impact",
+      "status": "PASS",
+      "duration_s": 1.9457088,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q2-cumulative-impact.pdf",
+          "sha256": "f991a269400e21558e570414bcdccf3fb81c3518181d9c1fd8d0da0566d7141a",
+          "bytes": 64243
+        },
+        {
+          "path": "outputs\\fig-q2-cumulative-impact.svg",
+          "sha256": "f101c5eefba440c752c6669283840f3dc914050d94bd3caaa416467bd38f7558",
+          "bytes": 93906
+        },
+        {
+          "path": "outputs\\fig-q2-cumulative-impact.png",
+          "sha256": "1205209b05a470bf175a81965775f157dc94dcf5018221c9e20006db2cb41754",
+          "bytes": 230927
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q2-latency-ecdf",
+      "status": "PASS",
+      "duration_s": 1.9895267,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q2-latency-ecdf.pdf",
+          "sha256": "b46780db5423c1ed8e2f186ba98f82c4b59c4c8ee357f2d2be8eb59ee3ef61e4",
+          "bytes": 17632
+        },
+        {
+          "path": "outputs\\fig-q2-latency-ecdf.svg",
+          "sha256": "4f1a6e2d1a5ffbdde6e1bf48680534a9d1c7e1d3bc5bdcc073d15ff076077830",
+          "bytes": 26926
+        },
+        {
+          "path": "outputs\\fig-q2-latency-ecdf.png",
+          "sha256": "26c10c12b27fbb4fa9fb4dc8b46b4d131eddca040f4d52a745a04322655f20c1",
+          "bytes": 245575
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q3-dispatch-soc",
+      "status": "PASS",
+      "duration_s": 2.2494965,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q3-dispatch-soc.pdf",
+          "sha256": "5053e01f753effe61b41867a61b3698c5a5ded07a9c477ebaab18a9cd6fe5ee1",
+          "bytes": 26760
+        },
+        {
+          "path": "outputs\\fig-q3-dispatch-soc.svg",
+          "sha256": "fe98aeecdb636c054e3cd0341fa0dab32ad482984d763755160290958b2f1821",
+          "bytes": 29072
+        },
+        {
+          "path": "outputs\\fig-q3-dispatch-soc.png",
+          "sha256": "dcff78b061c66397b2ba42fde728e275292a50821fccc282e57094c6394d8da2",
+          "bytes": 220630
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q3-rolling-runtime-coverage",
+      "status": "PASS",
+      "duration_s": 1.7379952,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q3-rolling-runtime-coverage.pdf",
+          "sha256": "5301ce26c92e6d449eabbc7ebafc5592900cf936a63c25ec365cf1dde34d8781",
+          "bytes": 32925
+        },
+        {
+          "path": "outputs\\fig-q3-rolling-runtime-coverage.svg",
+          "sha256": "0774603ce2ba4e0b722b984a190f1a0b2ed74864a3f9205de01e407c9e4876ff",
+          "bytes": 19821
+        },
+        {
+          "path": "outputs\\fig-q3-rolling-runtime-coverage.png",
+          "sha256": "cddf1be07cadce20e32b7eebec600a63c309b9c30b516443df8f5ed5ed7795ff",
+          "bytes": 141771
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q4-scenario-tradeoff",
+      "status": "PASS",
+      "duration_s": 1.7716888,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q4-scenario-tradeoff.pdf",
+          "sha256": "07193984238875e2389cb17292dc4a6fd3e51470c99f4f51327ea809422cc999",
+          "bytes": 33291
+        },
+        {
+          "path": "outputs\\fig-q4-scenario-tradeoff.svg",
+          "sha256": "569e60b2a2399edb685165959f6a9f262a827897d75b9a1356b793c3fc07554e",
+          "bytes": 23921
+        },
+        {
+          "path": "outputs\\fig-q4-scenario-tradeoff.png",
+          "sha256": "1a7bdce65ac5d6db6fde04cd02c62ecc3f25429a65cc3fd842b241b0ec25f07c",
+          "bytes": 290041
+        }
+      ],
+      "error": ""
+    },
+    {
+      "stem": "fig-q4-system-profile",
+      "status": "PASS",
+      "duration_s": 3.3202116,
+      "outputs": [
+        {
+          "path": "outputs\\fig-q4-system-profile.pdf",
+          "sha256": "b431f91f54d7ad9c80f79d08d5890d7593c88fdba9be31cf8a2645e10dc2f073",
+          "bytes": 21877
+        },
+        {
+          "path": "outputs\\fig-q4-system-profile.svg",
+          "sha256": "179b4404fe255aa78a444fdae26d862eaab1800d587798b8de18084efaec41cb",
+          "bytes": 28303
+        },
+        {
+          "path": "outputs\\fig-q4-system-profile.png",
+          "sha256": "4224191365ef75f2931879a78cfc222c94ec35928ecc5e0769adba9be2e3169b",
+          "bytes": 162845
+        }
+      ],
+      "error": ""
+    }
+  ],
+  "all_passed": true
+}

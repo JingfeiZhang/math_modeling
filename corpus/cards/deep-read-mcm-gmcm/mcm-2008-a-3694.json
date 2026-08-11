@@ -1,0 +1,253 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "mcm-2008-a-3694",
+  "identity": {
+    "contest": "MCM",
+    "year": 2008,
+    "problem": "A",
+    "team_id": "3694",
+    "title": "Mathematically Modeling Sea Level Rise"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/zhanwen/MathModel/git/blobs/874a47b26f67b7813044c938b0bdddd82abfd195",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "美赛论文/2008美赛特等奖原版论文集/A-3694-Outstanding.pdf"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://www.contest.comap.com/undergraduate/contests/mcm/contests/2008/results/MCM-A-Results-2008.pdf",
+    "contest": "MCM",
+    "year": 2008,
+    "problem": "A",
+    "team_id": "3694",
+    "title": "Mathematically Modeling Sea Level Rise",
+    "award": "Outstanding Winner",
+    "locator": "official PDF page 2; extracted text line 83",
+    "matched_text": "3694      Duke University                                        USA           Scott McKinley   A         Outstanding Winner   MAA Award"
+  },
+  "authenticity": {
+    "level": "B",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": true
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "The control number, contest year, problem, and Outstanding Winner label match a COMAP official result PDF.",
+      "The paper itself is not served from an official paper-display page, so the level is B rather than A."
+    ]
+  },
+  "pdf": {
+    "sha256": "16f89d4916a963165935324e81dfae87bda88a589a6befc9d71fba06cf03e74d",
+    "pages": 37,
+    "local_path": "corpus/raw/mcm-gmcm/mcm-2008-a-3694/paper.pdf",
+    "first_page_phash": "dhash64:96b0c4c4c0200000",
+    "text_sha256": "a492330cd23ee33797c8b91dada2e2623cef6c973a52f44c2c218e9b204a0e6b"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "layout",
+        "contents"
+      ],
+      "observation": "A linked table of contents opens the paper; no result-bearing abstract is present.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-a-3694/page-01.png"
+    },
+    {
+      "page": 6,
+      "tags": [
+        "model",
+        "figure"
+      ],
+      "observation": "A colored flowchart connects emission scenarios, ice mass balance, thermal expansion, and inundation outputs.",
+      "derivation": "mixed",
+      "locator": "PDF page 6",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-a-3694/page-06.png"
+    },
+    {
+      "page": 17,
+      "tags": [
+        "robustness",
+        "map"
+      ],
+      "observation": "Maps at 0, 10, and 100 meters of sea-level rise provide a qualitative extreme-case check.",
+      "derivation": "mixed",
+      "locator": "PDF page 17",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-a-3694/page-17.png"
+    },
+    {
+      "page": 20,
+      "tags": [
+        "result",
+        "table"
+      ],
+      "observation": "Scenario impacts are reported with years, submerged cities, displaced population, and area.",
+      "derivation": "mixed",
+      "locator": "PDF page 20",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-a-3694/page-20.png"
+    },
+    {
+      "page": 23,
+      "tags": [
+        "comparison",
+        "conclusion"
+      ],
+      "observation": "Scenario tables lead directly into discussion and external agreement checks.",
+      "derivation": "mixed",
+      "locator": "PDF page 23",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-a-3694/page-23.png"
+    },
+    {
+      "page": 25,
+      "tags": [
+        "boundary",
+        "risk"
+      ],
+      "observation": "The discussion identifies simplified thermal expansion, accumulation, and climate-scenario assumptions.",
+      "derivation": "mixed",
+      "locator": "PDF page 25",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-a-3694/page-25.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "role": "missing-abstract",
+      "observation": "The paper starts with contents rather than a summary, so methods and outputs are not synthesized on the first page."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 6,
+      "step": "scenario-input",
+      "observation": "Use emissions and temperature scenarios as forcing inputs.",
+      "order": 1
+    },
+    {
+      "page": 6,
+      "step": "physical-process",
+      "observation": "Combine Greenland ice-sheet mass balance with thermal expansion.",
+      "order": 2
+    },
+    {
+      "page": 17,
+      "step": "spatial-inundation",
+      "observation": "Map modeled sea-level rise onto coastal elevation and city data.",
+      "order": 3
+    },
+    {
+      "page": 20,
+      "step": "impact-accounting",
+      "observation": "Convert inundation into displaced population and submerged area.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 17,
+      "method": "extreme-case-map",
+      "observation": "Check spatial behavior at 0, 10, and 100 meter sea-level rise.",
+      "order": 1
+    },
+    {
+      "page": 23,
+      "method": "external-range-check",
+      "observation": "Compare 50-year estimates with values attributed to IPCC, NRC, and EPA sources.",
+      "order": 2
+    },
+    {
+      "page": 25,
+      "method": "structural-limit",
+      "observation": "Identify physical processes that are simplified or omitted.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 6,
+      "role": "model-overview",
+      "chart_type": "colored flowchart",
+      "lesson": "Expose inputs, physical branches, and outputs in one vertical route."
+    },
+    {
+      "page": 17,
+      "role": "robustness",
+      "chart_type": "matched inundation maps",
+      "lesson": "Keep geography and color scale fixed while varying sea level."
+    },
+    {
+      "page": 20,
+      "role": "decision-output",
+      "chart_type": "scenario table",
+      "lesson": "Translate physical outputs into place, population, and area impacts."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 6,
+      "rule": "For coupled physical models, show forcing, submodels, and outputs before derivation.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 17,
+      "rule": "Use fixed-map extreme cases to reveal spatial logic and implementation defects.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 23,
+      "rule": "Compare modeled magnitudes with independent published ranges before claiming plausibility.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 1,
+      "risk": "No abstract communicates the final scenario results.",
+      "severity": "medium"
+    },
+    {
+      "page": 25,
+      "risk": "Key climate and physical processes are simplified, limiting long-horizon inference.",
+      "severity": "high"
+    },
+    {
+      "page": 6,
+      "risk": "The flowchart palette is vivid but lacks a legend for color semantics.",
+      "severity": "medium"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/mcm-2008-a-3694/source_manifest.json",
+    "selected_pages": [
+      1,
+      6,
+      17,
+      20,
+      23,
+      25
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

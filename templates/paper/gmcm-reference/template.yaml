@@ -1,0 +1,12 @@
+id: gmcm-reference
+engine: xelatex
+paper_size: a4
+columns: 1
+margin_mm: 25
+automatic_toc: false
+identity_fields: false
+abstract_separate_page: true
+rule_status: historical_reference_refresh_from_current_gmcm_rules
+notes:
+  - Keep this family separate from CUMCM.
+  - Do not restore identity fields or an automatic table of contents from historical templates without an explicit current rule.

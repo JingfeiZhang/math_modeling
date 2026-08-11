@@ -1,0 +1,53 @@
+schema_version: 1
+policy:
+  mode: pinned-read-only
+  default_download: metadata_only
+  filename_claims_are_evidence: false
+  public_full_text: content_addressed_cache
+  restricted_full_text: index_only
+  execute_upstream_code: false
+
+download:
+  max_blob_bytes: 1000000
+  allowed_extensions: [.m, .tex, .md, .txt, .csv, .json, .yaml, .yml]
+
+repositories:
+  - id: zhanwen-mathmodel
+    repository: https://github.com/zhanwen/MathModel
+    commit: cd5be91735ebf11d5ee52eb170e86a6d07131977
+    read_only: true
+    observed_inventory:
+      pdf: 1006
+      gmcm_pdf_2004_2023: 685
+      mcm_pdf: 245
+      matlab: 11
+    adopted: [gmcm-paper-index, historical-layout-samples, paper-taxonomy]
+    identity_warning: "The repository's 国赛论文 tree is GMCM (China Postgraduate Mathematical Contest in Modeling), not CUMCM."
+
+  - id: personqianduixue-math-model
+    repository: https://github.com/personqianduixue/Math_Model
+    commit: 8783d0d822f89f98aa6182dd933cc2e9f3e2ddce
+    read_only: true
+    observed_inventory:
+      pdf: 1627
+      cumcm_pdf: 332
+      mcm_pdf: 417
+      matlab: 1457
+    adopted: [paper-code-pair-index, matlab-static-index, mcm-paper-index]
+
+deep_read_program:
+  target: 42
+  groups:
+    cumcm_historical_2012_2020: 18
+    cumcm_official_2024: 6
+    mcm_icm: 12
+    gmcm: 6
+  minimum_paper_code_pairs: 20
+  modernized_runnable_recipes: 12
+  required_card_schema: 3
+  required_evidence: [authenticity, pdf_sha256, page_evidence, abstract_structure, model_chain, validation_chain, figures]
+
+matlab_static_policy:
+  index_all_files: true
+  execute_after_static_scan: false
+  flagged_patterns: [absolute_path, delete_or_overwrite, system_call, network, interactive_gui, dynamic_execution, toolbox_dependency]

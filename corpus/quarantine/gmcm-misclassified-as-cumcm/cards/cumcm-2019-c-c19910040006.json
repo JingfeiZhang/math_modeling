@@ -1,0 +1,349 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2019-c-c19910040006",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2019,
+    "problem": "C",
+    "team_id": "",
+    "title": "中国研究生创新实践系列大赛"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2019%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/C/C19910040006.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2019年优秀论文/C/C19910040006.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2019,
+    "problem": "C",
+    "team_id": "",
+    "title": "中国研究生创新实践系列大赛",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "91d572b37b035dd06da1572fa42ae842fefb47ddf93f1cfa6e762fee0ad94dd2",
+    "pages": 52,
+    "local_path": "corpus/raw/objects/sha256/91/91d572b37b035dd06da1572fa42ae842fefb47ddf93f1cfa6e762fee0ad94dd2.pdf",
+    "first_page_phash": "b2baf870d8d8f800",
+    "text_sha256": "6a9fd1a22ea9c497728a564c1e5e070f5f538cd4e75139ab0467c4890c1dcf5f"
+  },
+  "review_status": "content_extracted",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括”的组织结构。",
+      "derivation": "text",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：本文综合运用图像几何量测的多种数学模型以及求解优化问题的牛顿方法，完成了题",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：任务 1 单幅图像距离信息分析：首先建立了直线上交比测量模型与平面矩形测量模型，",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：解决了同一平面上两物体相对距离的量测，并将模型推广到跨平面求解。该模型能对图 1、",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：图 2 中两车相对距离、图 4 中梯形尺寸进行一定精度的求解。以上模型的优点是基于较少",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：图 2 中两车相对距离、图 4 中梯形尺寸进行一定精度的求解。以上模型的优点是基于较少",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：已知条件即可完成求解，但存在不能求解绝对深度且在跨平面求解时误差累计严重的问",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：定实验表明，该优化模型将测量误差由 6%以内降到 3%以内（page26 表 2），任务 1 的测",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：解决了同一平面上两物体相对距离的量测，并将模型推广到跨平面求解。该模型能对图 1、",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-02.jpg"
+    },
+    {
+      "page": 8,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：8 总结与分析 ............................................................................................",
+      "derivation": "text",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-08.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "本文综合运用图像几何量测的多种数学模型以及求解优化问题的牛顿方法，完成了题",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "任务 1 单幅图像距离信息分析：首先建立了直线上交比测量模型与平面矩形测量模型，",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "解决了同一平面上两物体相对距离的量测，并将模型推广到跨平面求解。该模型能对图 1、",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "图 2 中两车相对距离、图 4 中梯形尺寸进行一定精度的求解。以上模型的优点是基于较少",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 2,
+      "description": "（Actual Point to Image Point)方程，完成了空间几何信息的测量模型。利用以上两个模型，",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 6,
+      "page": 2,
+      "description": "完成了任务 1 所有图片距离的初步求解。鉴于训练空间几何信息测量模型参数时方程组为",
+      "locator": "PDF p.2"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "图 2 中两车相对距离、图 4 中梯形尺寸进行一定精度的求解。以上模型的优点是基于较少",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "已知条件即可完成求解，但存在不能求解绝对深度且在跨平面求解时误差累计严重的问",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "定实验表明，该优化模型将测量误差由 6%以内降到 3%以内（page26 表 2），任务 1 的测",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "任务 2 中，针对视频场景狭窄容易带来较大测量误差的特点，假设视频拍摄过程中没",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 3,
+      "description": "结果如 page43 表 13 所示。为了进一步比较测量结果，另选停车场卫生间门高和宽作为已",
+      "locator": "PDF p.3"
+    }
+  ],
+  "figures": [
+    {
+      "page": 2,
+      "role": "model explanation",
+      "chart_type": "result-figure",
+      "caption": "解决了同一平面上两物体相对距离的量测，并将模型推广到跨平面求解。该模型能对图 1、",
+      "lesson": "图题“解决了同一平面上两物体相对距离的量测，并将模型推广到跨平面求解。该模型能对图 1、”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-02.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 2,
+      "role": "model explanation",
+      "chart_type": "result-figure",
+      "caption": "图 2 中两车相对距离、图 4 中梯形尺寸进行一定精度的求解。以上模型的优点是基于较少",
+      "lesson": "图题“图 2 中两车相对距离、图 4 中梯形尺寸进行一定精度的求解。以上模型的优点是基于较少”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-02.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "附件图 1 中红色车辆 A 车头和白色车辆 B 车头之间的距离(m) 24.95 25.10",
+      "lesson": "图题“附件图 1 中红色车辆 A 车头和白色车辆 B 车头之间的距离(m) 24.95 25.10”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-04.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "附件图 1 中拍照者距马路左侧边界的距离(m) 14.73 15.34",
+      "lesson": "图题“附件图 1 中拍照者距马路左侧边界的距离(m) 14.73 15.34”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-04.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "附件图 2 中黑色车辆 A 车头和灰色车辆 C 车尾之间的距离(m) 30.276 30.22",
+      "lesson": "图题“附件图 2 中黑色车辆 A 车头和灰色车辆 C 车尾之间的距离(m) 30.276 30.22”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-04.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "附件图 2 中拍照者距白色车辆 B 车头的距离(m) 27.5 26.9",
+      "lesson": "图题“附件图 2 中拍照者距白色车辆 B 车头的距离(m) 27.5 26.9”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2019-c-c19910040006/pages/page-04.jpg",
+      "visual_checked": false
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 2
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "全页已渲染，但接触表尚未完成逐页人工视觉确认。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "git_blob_sha": "7149c880bcf04b467a4be258441dd1918bc87b6d",
+    "bytes": 3005072,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2019-c-c19910040006/extracted-layout.txt",
+      "sha256": "6a9fd1a22ea9c497728a564c1e5e070f5f538cd4e75139ab0467c4890c1dcf5f",
+      "extracted_pages": 52,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 52,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2019-c-c19910040006/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2019-c-c19910040006/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2019-c-c19910040006/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2019-c-c19910040006/contact-25-32.jpg",
+        "corpus/rendered/cumcm-2019-c-c19910040006/contact-33-40.jpg",
+        "corpus/rendered/cumcm-2019-c-c19910040006/contact-41-48.jpg",
+        "corpus/rendered/cumcm-2019-c-c19910040006/contact-49-52.jpg"
+      ],
+      "visual_review": "pending"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

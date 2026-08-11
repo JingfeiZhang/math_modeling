@@ -1,0 +1,270 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "gmcm-2018-f-f18100030032",
+  "identity": {
+    "contest": "GMCM",
+    "year": 2018,
+    "problem": "F",
+    "team_id": "F18100030032",
+    "title": "中转航班调度：从 MILP 模型到启发式算法"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/2cd8129cb005bb640c09cebc6e64ced85db29e30",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-0研赛题目+论文/优秀论文按年份/2018年优秀论文/F/F18100030032.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "GMCM",
+    "year": 2018,
+    "problem": "F",
+    "team_id": "F18100030032",
+    "title": "中转航班调度：从 MILP 模型到启发式算法",
+    "award": "镜像目录称优秀论文，未独立核验",
+    "locator": "No independent official locator",
+    "matched_text": "No independent official award locator found; the mirror directory label is not award evidence."
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": false
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "No independent official award list or official paper-display locator was found for this record.",
+      "Repository popularity and an 'excellent papers' folder name do not establish an award."
+    ]
+  },
+  "pdf": {
+    "sha256": "40924f0509f433c15ec3da83fb1ed71484c4c287f53f6ca359e7bdc5a1ff0f20",
+    "pages": 59,
+    "local_path": "corpus/raw/mcm-gmcm/gmcm-2018-f-f18100030032/paper.pdf",
+    "first_page_phash": "dhash64:0078f0d4c4c4c488",
+    "text_sha256": "01e3f1b59e5cb113813fad3e320bab80a9669cd88f8152038642c42297be2707"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "result"
+      ],
+      "observation": "The summary states 0-1 and MILP formulations, CPLEX and greedy solvers, flight/gate counts, and passenger-time objectives.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-f-f18100030032/page-01.png"
+    },
+    {
+      "page": 9,
+      "tags": [
+        "model",
+        "equation"
+      ],
+      "observation": "Binary decision variables, objective, and assignment/compatibility constraints start the main model.",
+      "derivation": "mixed",
+      "locator": "PDF page 9",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-f-f18100030032/page-09.png"
+    },
+    {
+      "page": 25,
+      "tags": [
+        "algorithm",
+        "figure"
+      ],
+      "observation": "A heuristic flowchart is followed by parameter trials and highlighted selected values.",
+      "derivation": "mixed",
+      "locator": "PDF page 25",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-f-f18100030032/page-25.png"
+    },
+    {
+      "page": 36,
+      "tags": [
+        "result",
+        "figure"
+      ],
+      "observation": "Passenger counts and proportions are shown by transfer-time interval.",
+      "derivation": "mixed",
+      "locator": "PDF page 36",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-f-f18100030032/page-36.png"
+    },
+    {
+      "page": 41,
+      "tags": [
+        "baseline",
+        "table"
+      ],
+      "observation": "CPLEX and heuristic results are compared on flights, gates, passengers, and transfer-time objectives.",
+      "derivation": "mixed",
+      "locator": "PDF page 41",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-f-f18100030032/page-41.png"
+    },
+    {
+      "page": 43,
+      "tags": [
+        "review",
+        "boundary"
+      ],
+      "observation": "The conclusion answers each problem and separates method strengths and weaknesses.",
+      "derivation": "mixed",
+      "locator": "PDF page 43",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-f-f18100030032/page-43.png"
+    },
+    {
+      "page": 59,
+      "tags": [
+        "code",
+        "risk"
+      ],
+      "observation": "Only a small code excerpt is embedded; the complete solver model and data package are absent.",
+      "derivation": "mixed",
+      "locator": "PDF page 59",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-f-f18100030032/page-59.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "role": "formulation-solver-result",
+      "observation": "For each subproblem, name the formulation, solver or heuristic, and quantified gate, flight, or transfer-time result."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 9,
+      "step": "binary-assignment",
+      "observation": "Formulate flight-to-gate assignment as a 0-1 integer program.",
+      "order": 1
+    },
+    {
+      "page": 25,
+      "step": "greedy-fallback",
+      "observation": "Design a lower-cost greedy interval-scheduling heuristic.",
+      "order": 2
+    },
+    {
+      "page": 36,
+      "step": "passenger-flow",
+      "observation": "Extend the assignment to minimize transfer process time.",
+      "order": 3
+    },
+    {
+      "page": 41,
+      "step": "solver-comparison",
+      "observation": "Compare CPLEX and heuristic outputs under the same KPIs.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 25,
+      "method": "parameter-sensitivity",
+      "observation": "Sweep heuristic parameters and show the selected setting.",
+      "order": 1
+    },
+    {
+      "page": 41,
+      "method": "baseline-comparison",
+      "observation": "Use CPLEX as a comparable optimization baseline for the heuristic.",
+      "order": 2
+    },
+    {
+      "page": 43,
+      "method": "question-closure",
+      "observation": "Answer every subproblem and identify solver and data limitations.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 25,
+      "role": "algorithm",
+      "chart_type": "flowchart plus parameter table",
+      "lesson": "Present control flow and calibrated parameters together."
+    },
+    {
+      "page": 36,
+      "role": "decision-impact",
+      "chart_type": "dual-axis interval chart",
+      "lesson": "Show both passenger count and proportion across transfer-time bins."
+    },
+    {
+      "page": 41,
+      "role": "baseline",
+      "chart_type": "solver comparison table",
+      "lesson": "Compare exact and heuristic methods with the same output contract."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 1,
+      "rule": "Put solver names and quantified optimization outputs in the abstract.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 25,
+      "rule": "Treat heuristic parameters as experimental factors and record the selected setting.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 41,
+      "rule": "Compare a heuristic with an exact solver on identical KPIs and constraints.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 1,
+      "risk": "The summary is dense and relies on red inline emphasis rather than a compact result table.",
+      "severity": "medium"
+    },
+    {
+      "page": 36,
+      "risk": "Dual-axis charts can imply relationships that should also be reported numerically.",
+      "severity": "medium"
+    },
+    {
+      "page": 59,
+      "risk": "The embedded code fragment is insufficient to reproduce the CPLEX and heuristic experiments.",
+      "severity": "high"
+    },
+    {
+      "page": 1,
+      "risk": "The mirror's award label has no independent official locator.",
+      "severity": "high"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/gmcm-2018-f-f18100030032/source_manifest.json",
+    "selected_pages": [
+      1,
+      9,
+      25,
+      36,
+      41,
+      43,
+      59
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

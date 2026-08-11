@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "recipe_id": "traffic-capacity-ga",
+  "kind": "traffic_capacity_ga",
+  "title": "Traffic capacity optimization",
+  "seed": 20260802,
+  "source_pair": {
+    "candidate_id": "cumcm-2013-a056",
+    "relationship": "strong_partial",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2013/A056/5486/5486.pdf",
+      "blob_sha": "29ce09bd0b75f5ff763168407005295d2af714bc",
+      "sha256": "bae180e8fe47c11e9096a3bd2484fc08e66fcfe6969e65c6c644679ed7cab02d"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem3_2.m",
+        "blob_sha": "56f0ca01dee1c6113006154c411d286de971c83c",
+        "sha256": "351dcbb9a19bbe890812f3949f778c2c2ac071363a731f6d75115ee7d0bb5160",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem4.m",
+        "blob_sha": "ea61dbf80797be6eedd9bf1430bbbf8c6f947f70",
+        "sha256": "f57a1d47d29b551c29a7dd4c2e8dc189d005b480180b4ab3caf33b671109e8cb",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "scope": "controlled synthetic fixture for reusable method testing",
+  "not_a_reproduction": true,
+  "upstream_code_execution": "forbidden"
+}

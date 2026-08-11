@@ -1,0 +1,57 @@
+{
+  "claims": [
+    {
+      "id": "Q2-FULL-COMPLETION-RATE",
+      "locator": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json:$.feasibility.candidate_completion_rate",
+      "statement": "全时域滚动交换排程覆盖了输入任务集中的全部任务；该主张仅说明经审计的可行性，不说明全局最优性。",
+      "status": "verified",
+      "unit": "ratio"
+    },
+    {
+      "id": "Q2-FULL-SLA-VIOLATION-RATE",
+      "locator": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json:$.feasibility.candidate_sla_violation_rate",
+      "statement": "在题设输入、分钟级容量与时延约束下，滚动交换排程未产生经审计的 SLA 违约。",
+      "status": "verified",
+      "unit": "ratio"
+    },
+    {
+      "id": "Q2-FULL-HARD-AUDIT-PASS",
+      "locator": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json:$.feasibility.all_hard_audits_passed",
+      "statement": "主排程与同输入同约束 FIFO 基线均通过任务唯一分配、非抢占、释放、时延、截止时间及容量审计。",
+      "status": "verified",
+      "unit": "boolean"
+    },
+    {
+      "id": "Q2-FULL-COST-CHANGE-PCT",
+      "locator": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json:$.comparison_vs_fifo.cost_change_pct",
+      "statement": "相对同输入同约束 FIFO 基线，确定性滚动交换启发式改变了全时域设施用能成本。",
+      "status": "verified",
+      "unit": "percent"
+    },
+    {
+      "id": "Q2-FULL-CARBON-CHANGE-PCT",
+      "locator": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json:$.comparison_vs_fifo.carbon_change_pct",
+      "statement": "相对同输入同约束 FIFO 基线，确定性滚动交换启发式改变了全时域碳排放。",
+      "status": "verified",
+      "unit": "percent"
+    },
+    {
+      "id": "Q2-FULL-LATENCY-CHANGE-MS",
+      "locator": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json:$.comparison_vs_fifo.latency_change_ms",
+      "statement": "相对 FIFO 基线，滚动交换启发式的任务加权平均网络时延发生变化，但所有分配路由仍满足任务各自的题设时延上限。",
+      "status": "verified",
+      "unit": "ms"
+    },
+    {
+      "id": "Q2-FULL-DETERMINISTIC-REPLAY",
+      "locator": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json:$.robustness.deterministic_replay_passed",
+      "statement": "在固定输入与随机种子下，第二次完整交换运行复现了相同的任务、执行区域和开始时间；这不证明解的唯一性。",
+      "status": "verified",
+      "unit": "boolean"
+    }
+  ],
+  "problem_id": "C",
+  "question_id": "Q2",
+  "schema_version": 1,
+  "status": "root-review-required"
+}

@@ -1,0 +1,271 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "icm-2007-c-2052",
+  "identity": {
+    "contest": "ICM",
+    "year": 2007,
+    "problem": "C",
+    "team_id": "2052",
+    "title": "Optimizing the Effectiveness of Organ Allocation"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/zhanwen/MathModel/git/blobs/454faf0b282cc2be3a672e4235fe2a0c98f2eaf2",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "美赛论文/2007美赛特等奖原版论文集/C-2052-Outstanding.pdf"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://www.contest.comap.com/undergraduate/contests/mcm/contests/2007/results/ICMResults2007.pdf",
+    "contest": "ICM",
+    "year": 2007,
+    "problem": "C",
+    "team_id": "2052",
+    "title": "Optimizing the Effectiveness of Organ Allocation",
+    "award": "Outstanding Winner",
+    "locator": "official PDF page 2; extracted text line 76",
+    "matched_text": "2052 Duke University                                              USA                 David   Kraines   C         Outstanding Winner"
+  },
+  "authenticity": {
+    "level": "B",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": true
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "The control number, contest year, problem, and Outstanding Winner label match a COMAP official result PDF.",
+      "The paper itself is not served from an official paper-display page, so the level is B rather than A."
+    ]
+  },
+  "pdf": {
+    "sha256": "aaba16bca00083ff73d65ed52e6bbb00fa265cc0d66f4f2d98ad3ace8d4c95d1",
+    "pages": 27,
+    "local_path": "corpus/raw/mcm-gmcm/icm-2007-c-2052/paper.pdf",
+    "first_page_phash": "dhash64:c470d2c6c6c2c200",
+    "text_sha256": "e1903e80179bc0d52ca61439cc7b20b8c088aa1a45c4fcdcd827b1f503da2e71"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "title",
+        "layout"
+      ],
+      "observation": "The paper begins with title and contents but no standalone abstract.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/icm-2007-c-2052/page-01.png"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "model",
+        "network"
+      ],
+      "observation": "The US transplant network is represented as a rooted tree and discrete-time process.",
+      "derivation": "mixed",
+      "locator": "PDF page 4",
+      "render": "corpus/rendered/mcm-gmcm/icm-2007-c-2052/page-04.png"
+    },
+    {
+      "page": 6,
+      "tags": [
+        "result",
+        "assumption"
+      ],
+      "observation": "Base-model objectives and assumptions are stated beside the first results.",
+      "derivation": "mixed",
+      "locator": "PDF page 6",
+      "render": "corpus/rendered/mcm-gmcm/icm-2007-c-2052/page-06.png"
+    },
+    {
+      "page": 7,
+      "tags": [
+        "model",
+        "figure"
+      ],
+      "observation": "A full process flowchart exposes patient, organ, matching, operation, failure, and death transitions.",
+      "derivation": "mixed",
+      "locator": "PDF page 7",
+      "render": "corpus/rendered/mcm-gmcm/icm-2007-c-2052/page-07.png"
+    },
+    {
+      "page": 9,
+      "tags": [
+        "validation",
+        "figure"
+      ],
+      "observation": "Policy scenarios are compared through aligned outcome curves.",
+      "derivation": "mixed",
+      "locator": "PDF page 9",
+      "render": "corpus/rendered/mcm-gmcm/icm-2007-c-2052/page-09.png"
+    },
+    {
+      "page": 16,
+      "tags": [
+        "sensitivity",
+        "figure"
+      ],
+      "observation": "A parameter sweep shows the effect of an allocation parameter on outcomes.",
+      "derivation": "mixed",
+      "locator": "PDF page 16",
+      "render": "corpus/rendered/mcm-gmcm/icm-2007-c-2052/page-16.png"
+    },
+    {
+      "page": 21,
+      "tags": [
+        "boundary",
+        "review"
+      ],
+      "observation": "Strengths and weaknesses cover flexibility, ethics, data manipulation, and computational cost.",
+      "derivation": "mixed",
+      "locator": "PDF page 21",
+      "render": "corpus/rendered/mcm-gmcm/icm-2007-c-2052/page-21.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "role": "missing-abstract",
+      "observation": "No result-bearing abstract is present; the contents reveal coverage but not recommendations or quantitative results."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 4,
+      "step": "network-and-arrivals",
+      "observation": "Represent the transplant system as a rooted tree with time-dependent patient and organ arrivals.",
+      "order": 1
+    },
+    {
+      "page": 7,
+      "step": "discrete-event-allocation",
+      "observation": "Simulate priority matching, operations, failure, survival, and death updates.",
+      "order": 2
+    },
+    {
+      "page": 9,
+      "step": "policy-comparison",
+      "observation": "Apply alternative-country policies and kidney-exchange rules within the same simulator.",
+      "order": 3
+    },
+    {
+      "page": 16,
+      "step": "ethical-extension",
+      "observation": "Add patient choice and ethical or political decision effects.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 6,
+      "method": "base-case-check",
+      "observation": "Quantify the base allocation model under explicit assumptions.",
+      "order": 1
+    },
+    {
+      "page": 9,
+      "method": "policy-scenario",
+      "observation": "Compare outcome curves for alternative policies.",
+      "order": 2
+    },
+    {
+      "page": 16,
+      "method": "parameter-sensitivity",
+      "observation": "Sweep a decision parameter and inspect outcome stability.",
+      "order": 3
+    },
+    {
+      "page": 21,
+      "method": "scope-audit",
+      "observation": "Separate computational, data, ethical, and policy limitations.",
+      "order": 4
+    }
+  ],
+  "figures": [
+    {
+      "page": 7,
+      "role": "model-architecture",
+      "chart_type": "process flowchart",
+      "lesson": "Make state transitions and feedback loops visible before policy variants."
+    },
+    {
+      "page": 9,
+      "role": "policy-comparison",
+      "chart_type": "aligned scenario curves",
+      "lesson": "Use repeated axes to compare transplant outcomes across policies."
+    },
+    {
+      "page": 16,
+      "role": "sensitivity",
+      "chart_type": "parameter-response line chart",
+      "lesson": "Show how a policy parameter changes the outcome before recommending it."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 7,
+      "rule": "For discrete-event policy models, draw the complete state-transition loop before equations.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 9,
+      "rule": "Evaluate policy variants inside one common simulator and common output contract.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 21,
+      "rule": "Treat ethical scope limits separately from numerical-model weaknesses.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 1,
+      "risk": "Missing abstract delays access to the decision and result.",
+      "severity": "medium"
+    },
+    {
+      "page": 21,
+      "risk": "The model's flexibility permits data manipulation and raises computational cost, as the authors acknowledge.",
+      "severity": "high"
+    },
+    {
+      "page": 9,
+      "risk": "Several line plots use very small legends and labels.",
+      "severity": "medium"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/icm-2007-c-2052/source_manifest.json",
+    "selected_pages": [
+      1,
+      4,
+      6,
+      7,
+      9,
+      16,
+      21
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

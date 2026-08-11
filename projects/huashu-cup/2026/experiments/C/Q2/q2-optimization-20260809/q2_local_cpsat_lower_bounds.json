@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "relaxation": "capacity coupling omitted; same release/deadline/latency-capped hourly options; values are task-marginal cost/carbon bounds and exclude fixed non-AI load",
+  "probes": [
+    {
+      "start_hour": 0,
+      "duration_hours": 6,
+      "latency_cap_ms": 25.0,
+      "task_count": 40,
+      "option_count": 318,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 272143.43580580124,
+      "lower_bound_carbon_tCO2": 301.0663133929994,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 0,
+      "duration_hours": 6,
+      "latency_cap_ms": 15.0,
+      "task_count": 40,
+      "option_count": 190,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 286228.1613150004,
+      "lower_bound_carbon_tCO2": 366.8871323659993,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 600,
+      "duration_hours": 6,
+      "latency_cap_ms": 25.0,
+      "task_count": 59,
+      "option_count": 483,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 263499.6405910461,
+      "lower_bound_carbon_tCO2": 274.4586715341228,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 600,
+      "duration_hours": 6,
+      "latency_cap_ms": 15.0,
+      "task_count": 59,
+      "option_count": 291,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 278955.4696488495,
+      "lower_bound_carbon_tCO2": 346.6298894418685,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1200,
+      "duration_hours": 6,
+      "latency_cap_ms": 25.0,
+      "task_count": 43,
+      "option_count": 357,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 246664.77242927032,
+      "lower_bound_carbon_tCO2": 299.53352945884876,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1200,
+      "duration_hours": 6,
+      "latency_cap_ms": 15.0,
+      "task_count": 43,
+      "option_count": 229,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 253760.06742415152,
+      "lower_bound_carbon_tCO2": 332.2518502654831,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1800,
+      "duration_hours": 6,
+      "latency_cap_ms": 25.0,
+      "task_count": 44,
+      "option_count": 390,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 162636.84164899192,
+      "lower_bound_carbon_tCO2": 172.35011868382838,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1800,
+      "duration_hours": 6,
+      "latency_cap_ms": 15.0,
+      "task_count": 44,
+      "option_count": 228,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 174503.16210703948,
+      "lower_bound_carbon_tCO2": 238.1096970110705,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 0,
+      "duration_hours": 24,
+      "latency_cap_ms": 25.0,
+      "task_count": 288,
+      "option_count": 9381,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 3202646.4568089843,
+      "lower_bound_carbon_tCO2": 2268.2043349980095,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 0,
+      "duration_hours": 24,
+      "latency_cap_ms": 15.0,
+      "task_count": 288,
+      "option_count": 5415,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 3385735.935046864,
+      "lower_bound_carbon_tCO2": 2854.7442478556604,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 600,
+      "duration_hours": 24,
+      "latency_cap_ms": 25.0,
+      "task_count": 309,
+      "option_count": 10782,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 3381784.6508816713,
+      "lower_bound_carbon_tCO2": 2193.9761670872704,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 600,
+      "duration_hours": 24,
+      "latency_cap_ms": 15.0,
+      "task_count": 309,
+      "option_count": 6246,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 3594731.6459963205,
+      "lower_bound_carbon_tCO2": 2830.5073721350586,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1200,
+      "duration_hours": 24,
+      "latency_cap_ms": 25.0,
+      "task_count": 295,
+      "option_count": 9804,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 3440748.6002127496,
+      "lower_bound_carbon_tCO2": 2435.380156675089,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1200,
+      "duration_hours": 24,
+      "latency_cap_ms": 15.0,
+      "task_count": 295,
+      "option_count": 5656,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 3654628.212395531,
+      "lower_bound_carbon_tCO2": 3135.3963647997753,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1800,
+      "duration_hours": 24,
+      "latency_cap_ms": 25.0,
+      "task_count": 316,
+      "option_count": 10494,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 3382077.9581405376,
+      "lower_bound_carbon_tCO2": 2305.987634913827,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1800,
+      "duration_hours": 24,
+      "latency_cap_ms": 15.0,
+      "task_count": 316,
+      "option_count": 5918,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 3613756.7675256324,
+      "lower_bound_carbon_tCO2": 3001.165429074447,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 0,
+      "duration_hours": 72,
+      "latency_cap_ms": 25.0,
+      "task_count": 976,
+      "option_count": 101772,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 8827454.542714559,
+      "lower_bound_carbon_tCO2": 8512.238607522568,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 0,
+      "duration_hours": 72,
+      "latency_cap_ms": 15.0,
+      "task_count": 976,
+      "option_count": 58924,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 9338047.497713426,
+      "lower_bound_carbon_tCO2": 10623.716100681719,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 600,
+      "duration_hours": 72,
+      "latency_cap_ms": 25.0,
+      "task_count": 970,
+      "option_count": 104478,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 8707768.07095029,
+      "lower_bound_carbon_tCO2": 7676.193076048118,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 600,
+      "duration_hours": 72,
+      "latency_cap_ms": 15.0,
+      "task_count": 970,
+      "option_count": 59408,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 9223077.739986273,
+      "lower_bound_carbon_tCO2": 9729.430383093519,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1200,
+      "duration_hours": 72,
+      "latency_cap_ms": 25.0,
+      "task_count": 997,
+      "option_count": 105573,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 9079300.846492833,
+      "lower_bound_carbon_tCO2": 8465.623260952743,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1200,
+      "duration_hours": 72,
+      "latency_cap_ms": 15.0,
+      "task_count": 997,
+      "option_count": 59393,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 9613533.961566195,
+      "lower_bound_carbon_tCO2": 10833.661391958534,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1800,
+      "duration_hours": 72,
+      "latency_cap_ms": 25.0,
+      "task_count": 994,
+      "option_count": 104763,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 8184084.015706207,
+      "lower_bound_carbon_tCO2": 8056.923972720351,
+      "objective_bound_gap": 0.0
+    },
+    {
+      "start_hour": 1800,
+      "duration_hours": 72,
+      "latency_cap_ms": 15.0,
+      "task_count": 994,
+      "option_count": 58745,
+      "status": "OPTIMAL",
+      "lower_bound_cost_CNY": 8678990.45594995,
+      "lower_bound_carbon_tCO2": 10241.48539106399,
+      "objective_bound_gap": 0.0
+    }
+  ]
+}

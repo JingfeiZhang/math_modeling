@@ -1,0 +1,22 @@
+schema_version: 1
+experiment_id: demo
+problem: DEMO
+question: Q1
+engine: python
+runner: src/modeling/run_demo.py
+seed: 20260801
+output_root: experiments
+arguments: []
+methods:
+  - name: ordinary_least_squares
+    role: main
+  - name: linear_programming
+    role: baseline
+inputs: []
+metrics:
+  - name: regression_r2
+    unit: dimensionless
+    locator: experiments/demo/results/experiment_result.json:metrics.regression.r2
+  - name: linear_program_objective
+    unit: dimensionless
+    locator: experiments/demo/results/experiment_result.json:metrics.linear_program.objective

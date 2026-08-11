@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "run_id": "q2-optimization-20260809",
+  "artifacts": {
+    "experiments/C/Q2/q2-optimization-20260809/run_q2_optimization.py": "a98e1f4fb56ad76b551b460a83e3a6747d73eb5bad2791394052bd0de8984388",
+    "experiments/C/Q2/q2-optimization-20260809/run_manifest.json": "5e5e6c2a628cc6625a1d228fff79f6fa956e077431fcfd5990bd1e7368408a31",
+    "experiments/C/Q2/q2-optimization-20260809/q2_fifo_baseline_schedule.csv": "172d45d624d85f7cf7558606e551f7dee275ab726236c6b933b39d6282df370a",
+    "experiments/C/Q2/q2-optimization-20260809/q2_current_schedule.csv": "8b0d753e46c4a157fa12f62f5f833468403a980e42460857f238a770d8db0004",
+    "experiments/C/Q2/q2-optimization-20260809/q2_latency_guarded_schedule.csv": "255624dd5419c000542c9487f6ab62dac560f34ab0cf2516c2ec596fa2904370",
+    "experiments/C/Q2/q2-optimization-20260809/q2_pareto_candidate_schedule.csv": "d8c744c123aefd1813770f1f86fc3adc1735f8de9619adc44093c47bdd2108c8",
+    "experiments/C/Q2/q2-optimization-20260809/q2_latency_guarded_exchange_log.csv": "d29eedc322c8f9de20c184d68ad0579db548ac58a0894fef78628b09b4d38758",
+    "experiments/C/Q2/q2-optimization-20260809/q2_pareto_candidate_exchange_log.csv": "4dd7e038f3990057ff9f9828a27a809aeb852c7209d3b4c997278db45231ba0a",
+    "experiments/C/Q2/q2-optimization-20260809/q2_comparison_hourly_profiles.csv": "75c9249161395aa0406bf8430461a743b85b4b8c80515c2ece6afb254ac7c8d3",
+    "experiments/C/Q2/q2-optimization-20260809/q2_pareto_metrics.csv": "c4b1092de4b22d8c3214fa843c0128780d9cc5bdd3073098cfad3ec38f0bde54",
+    "experiments/C/Q2/q2-optimization-20260809/q2_local_cpsat_lower_bounds.json": "31579a19edcb545c33403645f59c1c5f5369433a9c8ec6f5852d4dee2d1d4b01",
+    "experiments/C/Q2/q2-optimization-20260809/constraint_audit.json": "3a3696afc937df4426b8047a6fadcb1c8ef3d5fcb06c42a50c1dc02295b56b55",
+    "experiments/C/Q2/q2-optimization-20260809/summary.json": "364e275a1996e8b252967954eeb330bc5dc9a38f97815b224861930be2d76e27"
+  }
+}

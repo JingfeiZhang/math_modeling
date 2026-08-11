@@ -1,0 +1,434 @@
+schema_version: 2
+state_owner: mathmodel-skill
+derived_status: output/workflow_status.json
+workspace_layout: config/workspace_layout.yaml
+workspace_output:
+  verification_root: output/_verification
+  demos_root: output/_demos
+  archive_root: output/_archive
+  release_root: output/release
+project_isolation:
+  registry: config/projects.json
+  profiles: config/competition_profiles.yaml
+  explicit_project_routing: true
+  legacy_root_compatibility: true
+  active_project_pointer: false
+  project_pattern: projects/{competition}/{year}
+  shared_read_only:
+    - config
+    - templates
+    - corpus
+    - skills
+    - environment.yml
+    - environment-extended.yml
+  project_mutable:
+    - problems
+    - src
+    - experiments
+    - results
+    - paper
+    - output
+    - state
+    - sprints
+    - logs
+  cross_project_writes: forbidden
+precontest:
+  problem_sentinel: TBD
+  forbid_state_creation: true
+  allowed_actions: [preflight, status, corpus, template, tooling]
+competition_timing:
+  clock_source: contest_profile
+  scale_to_event_duration: true
+  progress_metric: elapsed_fraction
+  model_lock_fraction: 0.60
+  deep_release_audit_start_fraction: 0.85
+  phases:
+    P0:
+      name: precontest-preflight
+      window: precontest
+      objective: verify-tools-templates-and-empty-project-skeleton
+    P1:
+      name: decomposition-and-paper-skeleton
+      window: [0.00, 0.05]
+      objective: problem-interfaces-data-readability-and-question-dependencies
+    P2:
+      name: executable-baselines
+      window: [0.05, 0.20]
+      objective: one-comparable-output-baseline-per-question
+    P3a:
+      name: minimum-main-model
+      window: [0.20, 0.45]
+      objective: runnable-main-model-and-first-complete-results
+    P3b:
+      name: model-convergence
+      window: [0.45, 0.60]
+      objective: optimization-robustness-and-model-selection-lock
+    P4:
+      name: evidence-freeze
+      window: [0.60, 0.75]
+      objective: formal-runs-frozen-claims-and-main-manuscript
+    P5:
+      name: paper-figures-and-supplemental-evidence
+      window: [0.75, 0.85]
+      objective: figures-tables-layout-and-controlled-paper-evidence
+    P6a:
+      name: release-audit-and-package
+      window: [0.85, 0.95]
+      objective: g5-g6-deep-audit-and-whitelist-package
+    P6b:
+      name: release-buffer
+      window: [0.95, 1.00]
+      objective: blocking-fixes-only
+  progress_exclusions: [page-count, figure-count, audit-record-count]
+experiment_lifecycle:
+  levels: [scratch, candidate, formal, paper-evidence]
+  root_pattern: experiments/{problem}/{question}/{level}/{run-id}
+  scratch:
+    receipt: probe_receipt.json
+    allowed_outputs: exploratory-only
+    forbidden_outputs: [claims, figure-contracts, formal-question-evidence]
+    gates: []
+  candidate:
+    receipt: candidate_receipt.json
+    checks: [input-output-unit-match, runner-starts, comparable-baseline, core-hard-constraints, determinism, promotion-value]
+    forbidden_gates: [G3, G4]
+  formal:
+    manifest: run_manifest.json
+    gates: [G3, G4]
+    requirements: [main-model, comparable-baseline, fixed-inputs, fixed-seed, fixed-environment, artifact-hashes, hard-constraint-audit, robustness, independent-rerun, frozen-claims]
+  paper-evidence:
+    manifest: paper_evidence_manifest.json
+    parent_required: formal
+    scopes: [diagnostic, sensitivity, mechanism, figure_support]
+    primary_model_mutation: forbidden
+    reopen_on_primary_drift: true
+    accept_gate: G4-paper-evidence
+  per_question_limits:
+    main_models: 1
+    baselines: 1
+    fallbacks: 1
+literature_guided_modeling:
+  owner_skill: literature-guided-modeling
+  state_owner: mathmodel-skill
+  scope: academic-papers-only
+  excluded_sources: [contest-papers, blogs, encyclopedias, ai-generated-citations]
+  question_schema_version: 3
+  schemas:
+    search_plan: config/schemas/literature_search_plan.schema.json
+    search_receipt: config/schemas/literature_search_receipt.schema.json
+    reference_card: config/schemas/academic_reference_card.schema.json
+    model_evidence_brief: config/schemas/model_evidence_brief.schema.json
+  root_pattern: problems/{problem}/questions/{question}/literature
+  source_order:
+    T1: [crossref, openalex, arxiv]
+    T2: [semantic-scholar]
+    T3_manual: [google-scholar, cnki, wanfang]
+  time_budget:
+    per_question_initial_minutes: 20
+    project_initial_minutes: 90
+    screening_limit: 10
+    targeted_read_default: [2, 4]
+    targeted_read_maximum: 6
+  review_depths: [METADATA_ONLY, ABSTRACT_SCREENED, TARGETED_READ, DEEP_READ]
+  lifecycle: [PLAN_READY, DISCOVERED, SOURCES_VERIFIED, CARDS_READY, SYNTHESIS_READY, CITATION_READY, STALE]
+  early_gate_policy: warning-only
+  strict_gate: G5
+  formal_numbers_from_literature: forbidden
+  commands: [literature-plan, literature-search, literature-register, literature-read, literature-synthesize, literature-audit]
+engines:
+  paper: xelatex
+  optional_paper: typst
+  data_figures: [python, matlab]
+  schematics: [mermaid, drawio]
+environments:
+  core:
+    policy: existing_first
+    selected_default: base
+    python_observed: 3.13.9
+    mutate_existing: false
+  extended:
+    name: math-modeling
+    strategy: clean_local_python_313
+    preferred_python: "3.13.*"
+    package_scope: target_prefix_only
+    mutate_base: false
+  pdf_audit:
+    policy: explicit_prefix_only
+    selected_default: math-modeling
+    required_package: pypdf
+    disable_user_site: true
+corpus:
+  owner_skill: modeling-paper-miner
+  card_schema: 3
+  authenticity_levels: [A, B, C, D]
+  deep_read_target: 42
+  composition: {cumcm: 24, mcm_icm: 12, gmcm: 6}
+  cumcm_composition: {historical_mirror_2012_2020: 18, official_display_2024: 6}
+  identity_gate: "Reject GMCM/研究生赛 documents from CUMCM counts even when repository folders say 国赛论文."
+  derived_pdf_policy: "An assembled review PDF must retain page-image provenance and cannot be labeled as an official source PDF."
+  minimum_code_pairs: 20
+  runnable_recipe_target: 12
+templates:
+  default: cumcm-2026
+  families: [cumcm-2026, mcm-current, gmcm-reference]
+  official_rules_override: true
+paper_contract:
+  version: cumcm-paper-structure-v3
+  template: templates/paper/cumcm-2026/template.yaml
+  manifest_schema: config/schemas/question.schema.json
+  generated_question_structure: paper/generated/question_structure.tex
+  source_mode: tex-only
+  legacy_markdown_workspace: compatibility-only
+  chapter_order:
+    - abstract
+    - problem_restatement
+    - problem_analysis
+    - assumptions_notation
+    - data_processing
+    - questions
+    - model_evaluation
+    - ai_statement_when_required
+    - references
+    - appendix
+  question_argument_contract:
+    - objective_interface
+    - model_choice
+    - formulation
+    - algorithm
+    - result
+    - validation
+    - conclusion
+  global_notation_policy: high-frequency-only
+  local_notation_policy: define-after-first-formula
+  appendix_symbol_table: forbidden
+  evidence_policy: frozen-only-at-g5
+  official_rules_override: true
+competition_profiles:
+  huashu-cup:
+    default_rule_profile: cumcm
+    override_policy: event_specific_rules_win
+    default_template: cumcm-2026
+  cumcm:
+    default_template: cumcm-2026
+  mcm-icm:
+    default_template: mcm-current
+  gmcm:
+    default_template: gmcm-reference
+figure_contract:
+  schema_version: 2
+  schema: config/schemas/figure_contract.schema.json
+  template: templates/figures/figure_contract_v2.template.yaml
+  formal_manifest: paper/figure_contracts.yaml
+  create_only_after_initialize: true
+  required_exports: [pdf, svg, png]
+  png_dpi: 400
+  legacy_missing_enhanced_fields: warning
+  formal_g5_required_fields:
+    - core_message
+    - visual_hierarchy
+    - target_size_profile
+    - statistics_report
+    - data_integrity
+    - label_strategy
+    - rasterized_layers
+  default_primary_axes: 1
+  multipanel_policy: explicit_justification_only
+visualization_design:
+  owner_skill: visualization-design
+  state_owner: mathmodel-skill
+  source_registry: config/visualization_sources.yaml
+  schemas:
+    data_manifest: config/schemas/figure_data_manifest.schema.json
+    visual_intent: config/schemas/visual_intent.schema.json
+    figure_brief: config/schemas/figure_brief.schema.json
+  lifecycle:
+    - DATA_READY
+    - INTENT_READY
+    - BRIEF_READY
+    - DESIGN_APPROVED
+    - RENDERED
+    - QA_PASSED
+    - CONTRACT_READY
+  stale_on_hash_drift: true
+  scratch:
+    maximum_stage: INTENT_READY
+    contest_evidence_eligible: false
+  candidate:
+    maximum_stage: BRIEF_READY
+    allowed_brief_status: [DRAFT, REVIEWED]
+  formal:
+    approved_brief_required_for_declared_figures: true
+    render_required_at_gate: G5
+  paper_evidence:
+    parent_status_required: READY
+    primary_drift_result: REOPEN_REQUIRED
+  commands: [figure-data, figure-intent, figure-brief, figure-render, figure-qa, figure-promote]
+  formal_contract_handoff: design_handoff
+  strict_g5_requires_handoff: true
+  legacy_missing_handoff: warning
+  staging_pattern: experiments/{problem}/{question}/{level}/{run-id}/figure-staging/{figure-id}
+  root_only_action: figure-promote
+figure_style:
+  palette_id: journal-spectrum-v2
+  config: config/figure_style.yaml
+  audit: src/utils/audit_figure_style.py
+  preview: scripts/render_figure_palette.py
+multi_agent:
+  default_enabled: true
+  activation: at-least-two-independent-useful-workstreams
+  coordination: lightweight-delegation
+  explicit_opt_in: false
+  worker_limit: runtime-capacity
+  sprint_mode: legacy-compatibility-only
+  root_is_only_merger: true
+  root_owned:
+    - state/decision_log.json
+    - results/{problem}/claims.json
+    - paper/main.tex
+    - paper/figure_contracts.yaml
+    - output/submission*
+stages:
+  0:
+    name: kickoff-and-preflight
+    primary_skill: mathmodel-skill
+    support_skills: [modeling-paper-studio]
+    command: scripts/workflow.ps1 -Action preflight
+    gate: G0
+  1:
+    name: problem-selection
+    primary_skill: mathmodel-skill
+    support_skills: [math-modeling-solver]
+    gate: G0
+  2:
+    name: problem-analysis
+    primary_skill: math-modeling-solver
+    support_skills: [mathmodel-skill]
+    gate: G0
+    paper_handoff: [problem_restatement, problem_analysis, question_interfaces]
+  3:
+    name: model-selection
+    primary_skill: math-modeling-solver
+    support_skills: [mathmodel-skill]
+    gate: G1
+  4:
+    name: assumptions-symbols-foundation
+    primary_skill: math-modeling-solver
+    support_skills: [mathmodel-skill]
+    gate: G2
+    paper_handoff: [testable_assumptions, global_notation, shared_metrics]
+  5:
+    name: per-question-experiment-loop
+    primary_skill: math-modeling-solver
+    support_skills: [matlab-build-chart, matlab-solve-optimization, matlab-performance-optimizer, matlab-symbolic-math]
+    command: scripts/workflow.ps1 -Action run
+    gate: G3
+    paper_handoff: [main_result, comparable_baseline, validation, figure_or_table, code_entry, conclusion_boundary]
+  6:
+    name: robustness-and-sensitivity
+    primary_skill: math-modeling-solver
+    support_skills: [modeling-paper-studio, ccf-visual-composer]
+    gate: G4
+  7:
+    name: evaluation-and-claim-freeze
+    primary_skill: mathmodel-skill
+    support_skills: [math-modeling-paper, modeling-paper-studio]
+    command: scripts/workflow.ps1 -Action freeze
+    gate: G4
+  8:
+    name: writing-figures-and-typesetting
+    primary_skill: math-modeling-paper
+    support_skills: [modeling-paper-studio, ccf-visual-composer, nature-figure, latex-document-skill]
+    command: scripts/workflow.ps1 -Action build
+    gate: G5
+    figure_qa: [evidence-integrity, code-style, visual-logic, rendered-artifact]
+    manuscript_source: paper/sections/*.tex
+    supplemental_evidence_allowed: true
+    primary_model_mutation: forbidden
+    reopen_on_primary_drift: true
+    supplemental_evidence_scopes: [diagnostic, sensitivity, mechanism, figure_support]
+    incremental_preview_checkpoints: [frontmatter, each-question, full-manuscript]
+  9:
+    name: submission-review-and-package
+    primary_skill: mathmodel-skill
+    support_skills: [modeling-paper-studio, pdf]
+    command: scripts/workflow.ps1 -Action audit
+    gate: G6
+    figure_qa: [paper-page-placement, font-embedding, svg-editability, raster-resolution, caption-linkage]
+gates:
+  G0: problem-formed
+  G1: method-screened
+  G2: human-decision-recorded
+  G3: experiment-reviewed
+  G4: claims-frozen
+  G5: manuscript-evidence-ready
+  G6: submission-ready
+audit_layers:
+  G0-G4: [problem-contract, method-contract, run-evidence, claim-integrity]
+  G5: [paper-structure, evidence-coverage, latex-static, figure-contract]
+  G6: [pdf-visual, package-whitelist, anonymity, release-integrity]
+audit_policy:
+  severities: [blocking, warning, final]
+  quickcheck:
+    target_runtime_seconds: 180
+    blocking: [problem-files, data-readable, runner-starts, input-output-contract, core-hard-constraints]
+    warning: [references-incomplete, figure-contract-incomplete, prose-unpolished, appendix-incomplete, nonformal-hash-incomplete, layout-not-final]
+  checkpoint:
+    triggers: [baseline-complete, candidate-ready-for-promotion]
+    checks: [output-conservation, metric-definition, hard-constraints, baseline-comparability, fixed-seed, promotion-value]
+  early_gate_forbidden_actions:
+    gates: [G0, G1, G2, G3, G4]
+    actions: [pdf-render, font-audit, pdf-visual-audit, package-audit, release-integrity-audit]
+  final_deep_audit:
+    gates: [G5, G6]
+    starts_after_fraction: 0.85
+artifact_governance:
+  experiments: reproducible-runs
+  results: frozen-claims-and-results
+  paper: single-tex-source-and-formal-figures
+  verification: output/_verification
+  release: output/release
+  release_upload_files_only: [submission.pdf, supporting.zip]
+  package_source: src/submission
+  package_policy: explicit-whitelist
+  experiment_layers:
+    scratch: transient-exploration
+    candidate: promotion-candidates
+    formal: immutable-formal-evidence
+    paper-evidence: controlled-derivations-from-formal
+  archive_policy:
+    action: archive-work
+    root: output/_archive
+    includes: [scratch, failed-probes, preview-worktrees, package-staging, caches]
+    never_archive_as_formal: [scratch, candidate, logs, caches]
+  git_tracking:
+    track: [src, templates, paper-source, formal-evidence, paper-evidence-manifests, audit-scripts]
+    ignore: [scratch-payloads, caches, preview-worktrees, package-staging, generated-latex-aux]
+upstream:
+  lupynow:
+    repository: https://github.com/Lupynow/math-modeling-skills
+    commit: 3a9428c006cc1b977c6a72a531b739a62868a4bc
+    adopted: [problem-decomposition, model-selection-matrix, algorithm-cookbooks, code-templates, contest-writing]
+  mathmodelagent:
+    repository: https://github.com/jihe520/MathModelAgent
+    commit: 11f38624cd9128bc2ce22d7b3254106e624490cd
+    adopted: [stage-handoffs, data-vs-schematic-boundary, composite-figure-catalog, evaluator-rerun-loop, optional-dual-typesetting]
+  zhnnky:
+    repository: https://github.com/zhnnky329/MathModeling-skills
+    commit: 50a2942007a98e74cd0948b44d7cb8e4826d15c9
+    adopted: [per-question-manifests, runnable-baseline, conditional-fallback, risk-probes, decision-ledger, frozen-claims, scoped-reaudit]
+  zhanwen_mathmodel:
+    repository: https://github.com/zhanwen/MathModel
+    commit: cd5be91735ebf11d5ee52eb170e86a6d07131977
+    mode: read-only-index
+    adopted: [historical-gmcm-corpus, layout-evidence, model-and-validation-patterns]
+  personqianduixue_math_model:
+    repository: https://github.com/personqianduixue/Math_Model
+    commit: 8783d0d822f89f98aa6182dd933cc2e9f3e2ddce
+    mode: read-only-index
+    adopted: [cumcm-and-mcm-corpus, matlab-static-index, paper-code-pairing]
+  academic_figure_skill:
+    repository: https://github.com/TingxiYu/academic-figure-skill
+    commit: 1df9940dd01ac939f072b12fe28d6353b79b90f9
+    mode: reference-only
+    adopted: [figure-brief, physical-size-first, statistical-reporting, editable-vector-export, four-round-qa]
+    rejected: [external-palette, five-point-type, 300-dpi-default, required-r-runtime, unreviewed-copy-first-execution]

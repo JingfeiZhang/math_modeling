@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T113706086579Z",
+  "status": "BLOCKED",
+  "passed": false,
+  "accepted_tasks": [],
+  "retry_tasks": [],
+  "blocked_tasks": [
+    "reviewer-q1q2-formulation",
+    "solver-q4-joint-probe",
+    "figure-q1q4-system"
+  ],
+  "protected_changes": [
+    "output"
+  ],
+  "tasks": [
+    {
+      "task_id": "reviewer-q1q2-formulation",
+      "declared_status": "PARTIAL",
+      "disposition": "BLOCKED",
+      "attempt": 1,
+      "issues": [
+        {
+          "kind": "input_snapshot_mismatch",
+          "path": "reviewer-q1q2-formulation"
+        },
+        {
+          "kind": "artifact_hash_mismatch",
+          "path": "sprints/sprint-20260808T113706086579Z/staging/reviewer-q1q2-formulation/handoff.json"
+        },
+        {
+          "kind": "root_owned_path_changed",
+          "path": "output"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260808T113706086579Z/staging/reviewer-q1q2-formulation/formulation_code_review_q1q2.json",
+          "sha256": "3956ffff1fb18c1da3d8cd919524a86ce251ea737908b1b87f3b10ddac4a379f"
+        }
+      ],
+      "handoff": "sprints/sprint-20260808T113706086579Z/staging/reviewer-q1q2-formulation/handoff.json"
+    },
+    {
+      "task_id": "solver-q4-joint-probe",
+      "declared_status": "READY_FOR_REVIEW",
+      "disposition": "BLOCKED",
+      "attempt": 1,
+      "issues": [
+        {
+          "kind": "sprint_id_mismatch",
+          "path": "None"
+        },
+        {
+          "kind": "attempt_mismatch",
+          "path": "None"
+        },
+        {
+          "kind": "invalid_status",
+          "path": "READY_FOR_REVIEW"
+        },
+        {
+          "kind": "input_snapshot_mismatch",
+          "path": "solver-q4-joint-probe"
+        },
+        {
+          "kind": "expected_output_not_declared",
+          "path": "sprints/sprint-20260808T113706086579Z/staging/solver-q4-joint-probe/run_q4_joint_probe.py"
+        },
+        {
+          "kind": "expected_output_not_declared",
+          "path": "sprints/sprint-20260808T113706086579Z/staging/solver-q4-joint-probe/q4_joint_probe_summary.json"
+        },
+        {
+          "kind": "expected_output_not_declared",
+          "path": "sprints/sprint-20260808T113706086579Z/staging/solver-q4-joint-probe/q4_joint_probe_audit.json"
+        },
+        {
+          "kind": "expected_output_not_declared",
+          "path": "sprints/sprint-20260808T113706086579Z/staging/solver-q4-joint-probe/run_manifest_q4_joint_probe.json"
+        },
+        {
+          "kind": "expected_output_not_declared",
+          "path": "sprints/sprint-20260808T113706086579Z/staging/solver-q4-joint-probe/claim_proposal_q4_joint_probe.json"
+        },
+        {
+          "kind": "root_owned_path_changed",
+          "path": "output"
+        }
+      ],
+      "artifacts": [],
+      "handoff": "sprints/sprint-20260808T113706086579Z/staging/solver-q4-joint-probe/handoff.json"
+    },
+    {
+      "task_id": "figure-q1q4-system",
+      "declared_status": "SUCCESS",
+      "disposition": "BLOCKED",
+      "attempt": 1,
+      "issues": [
+        {
+          "kind": "stale_input",
+          "path": "workspace://config/figure_style.yaml"
+        },
+        {
+          "kind": "root_owned_path_changed",
+          "path": "output"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260808T113706086579Z/staging/figure-q1q4-system/generate_c_system_workflow.py",
+          "sha256": "cb7b1b1a34d64f568ea1ef0ac426ea2f2e6658745894d9866e2059c0ef2d00a3"
+        },
+        {
+          "path": "sprints/sprint-20260808T113706086579Z/staging/figure-q1q4-system/evidence_figure_coverage.json",
+          "sha256": "3db57699a0d30c2e996d8448030126f941a75c1f1fada5332e4eda199132c5d9"
+        },
+        {
+          "path": "sprints/sprint-20260808T113706086579Z/staging/figure-q1q4-system/figure_contract_proposal.yaml",
+          "sha256": "a72cda570934a2cacb2be54aab4b841ef5e813a9843d184c6d5f123738fdd7a7"
+        },
+        {
+          "path": "sprints/sprint-20260808T113706086579Z/staging/figure-q1q4-system/figure_qa_report.json",
+          "sha256": "85aaca03c35ea843dea1102960769cd045c8c75c7e2161d239a72a8df508be2e"
+        },
+        {
+          "path": "sprints/sprint-20260808T113706086579Z/staging/figure-q1q4-system/fig_c_system_workflow.pdf",
+          "sha256": "b1a231ccdc5f411e480c091590d6ea6a64d2e3ea5b580bf7267cbcf1b2d2f11e"
+        },
+        {
+          "path": "sprints/sprint-20260808T113706086579Z/staging/figure-q1q4-system/fig_c_system_workflow.svg",
+          "sha256": "42723b44cb9170e8f5f89c01e12472f66e66e9d246f4b8dc4198b7ba53ce80d4"
+        },
+        {
+          "path": "sprints/sprint-20260808T113706086579Z/staging/figure-q1q4-system/fig_c_system_workflow.png",
+          "sha256": "ffbdc9c34e15cabc21a5dca1ed6d592e8eed80bc0fc62d44f817d63c62eb85ad"
+        }
+      ],
+      "handoff": "sprints/sprint-20260808T113706086579Z/staging/figure-q1q4-system/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-08T12:30:04.133556+00:00"
+}

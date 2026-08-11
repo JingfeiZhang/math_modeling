@@ -1,0 +1,50 @@
+schema_version: 2
+experiment_id: replace-me-paper-evidence
+problem: TBD
+question: Q1
+engine: python
+runner: src/modeling/REPLACE_ME.py
+seed: 0
+output_root: experiments/TBD/Q1/paper-evidence
+arguments: []
+diagnostic_arguments:
+  - --export-paper-evidence
+run_mode: paper-evidence
+level: paper-evidence
+mode: probe
+purpose: paper
+formal_candidate: false
+parent_run_id: replace-me-formal-run
+source_run_id: replace-me-formal-run
+source_manifest: experiments/TBD/Q1/formal/replace-me-formal-run/run_manifest.json
+source_manifest_sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+evidence_scope: diagnostic
+checkpoint_id: null
+primary_metric: replace_me_primary_metric
+checks:
+  input_output_match: false
+  units_defined: false
+  core_constraints_passed: false
+  deterministic: false
+  baseline_comparable: false
+reuse_contract:
+  seed: true
+  environment: true
+  code: true
+  inputs: true
+  methods: true
+  parameters: true
+replay:
+  required: true
+  count: 2
+methods:
+  - name: replace-me-main
+    role: main
+  - name: replace-me-baseline
+    role: baseline
+inputs: []
+metrics:
+  - name: replace_me_primary_metric
+    unit: replace-me
+    locator: experiments/TBD/Q1/paper-evidence/replace-me-paper-evidence/results.json:metrics.primary
+    primary: true

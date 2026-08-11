@@ -1,0 +1,363 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2017-b-b264",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2017,
+    "problem": "B",
+    "team_id": "",
+    "title": "基于优化理论的任务定价与分配模型"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2017/B264.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2017/B264.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2017,
+    "problem": "B",
+    "team_id": "",
+    "title": "基于优化理论的任务定价与分配模型",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "af2b94a9484dfcc4c471f28459ca65dbf52a1c46622bd52105ac283db68247e5",
+    "pages": 25,
+    "local_path": "corpus/raw/objects/sha256/af/af2b94a9484dfcc4c471f28459ca65dbf52a1c46622bd52105ac283db68247e5.pdf",
+    "first_page_phash": "70f0d0b4e0c4d487",
+    "text_sha256": "9424743fca151a9956696fc5cc4bc7add8c41f5ffb4aecdfbad3b4d343646e7e"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括；按子问题顺序陈述方法与结果；摘要包含量化结果或结果判断；末尾列出关键词”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：基于优化理论的任务定价与分配模型",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：问题 2：首先，针对问题一定价规律中存在的缺陷，我们对问题一中的定价模型进",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：员密集程度时，把一个高信誉会员当做若干个会员处理。建立了新的定价模型。其次，",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：根据新的定价模型，以任务有效完成量最大为目标，以会员预定限额、会员接单期望、",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：到模型约束条件比较复杂，现有方法很难对模型进行求解，我们设计了一种基于最大流",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：的启发式算法，利用 MATLAB 编程，对模型进行求解。求解结果与问题一比较，在总",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：比较大的任务应尽量考虑打包发布。按照该原则，我们对任务进行打包处理，把每个包",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：行改进。（1）对于经济发达的地区，会员的收益期望值较高，在定价时，应当适当提",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：问题三：为了提高项目的完成数量，给出将任务联合打包的方案，改进问题二中的",
+      "derivation": "mixed",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-02.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "按子问题顺序陈述方法与结果",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "摘要包含量化结果或结果判断",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "末尾列出关键词",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "基于优化理论的任务定价与分配模型",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 2,
+      "page": 1,
+      "description": "问题 2：首先，针对问题一定价规律中存在的缺陷，我们对问题一中的定价模型进",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 3,
+      "page": 1,
+      "description": "员密集程度时，把一个高信誉会员当做若干个会员处理。建立了新的定价模型。其次，",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 4,
+      "page": 1,
+      "description": "根据新的定价模型，以任务有效完成量最大为目标，以会员预定限额、会员接单期望、",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 5,
+      "page": 1,
+      "description": "不同城市经济发展水平的用户期望值等条件为约束，建立了任务分配的优化模型。考虑",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 6,
+      "page": 1,
+      "description": "到模型约束条件比较复杂，现有方法很难对模型进行求解，我们设计了一种基于最大流",
+      "locator": "PDF p.1"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "到模型约束条件比较复杂，现有方法很难对模型进行求解，我们设计了一种基于最大流",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 2,
+      "page": 1,
+      "description": "的启发式算法，利用 MATLAB 编程，对模型进行求解。求解结果与问题一比较，在总",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 3,
+      "page": 1,
+      "description": "比较大的任务应尽量考虑打包发布。按照该原则，我们对任务进行打包处理，把每个包",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "附件 3 给出了 2066 个任务的位置信息。",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 2,
+      "description": "问题二：为附件 1 中的项目设计一种新的任务定价方案，并与原方案进行比较；",
+      "locator": "PDF p.2"
+    }
+  ],
+  "figures": [
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "distribution",
+      "caption": "务标价绘制热图。图 4-1 绘制了项目任务的地理位置分布，其中红点表示已完成任务，",
+      "lesson": "图题“务标价绘制热图。图 4-1 绘制了项目任务的地理位置分布，其中红点表示已完成任务，”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-04.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "distribution",
+      "caption": "黑点表示未完成任务；图 4-2 绘制了会员的地理位置分布。根据任务定价绘制热图，颜",
+      "lesson": "图题“黑点表示未完成任务；图 4-2 绘制了会员的地理位置分布。根据任务定价绘制热图，颜”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-04.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "distribution",
+      "caption": "图 4-1 任务分布与标价关联图 图 4-2 会员分布与标价关联图",
+      "lesson": "图题“图 4-1 任务分布与标价关联图 图 4-2 会员分布与标价关联图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-04.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "scatter",
+      "caption": "利用 MATLAB 软件，绘制价格与会员数 mi 的二维散点图 4—3。",
+      "lesson": "图题“利用 MATLAB 软件，绘制价格与会员数 mi 的二维散点图 4—3。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-04.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 4-3 任务定价与会员数关系图",
+      "lesson": "图题“图 4-3 任务定价与会员数关系图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-05.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "scatter",
+      "caption": "利用 MATLAB 软件，绘制价格与任务集中程度 qi 的二维散点图 4—4。",
+      "lesson": "图题“利用 MATLAB 软件，绘制价格与任务集中程度 qi 的二维散点图 4—4。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2017-b-b264/pages/page-05.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 1
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 4
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 1
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "9606abcf5d0fd328a05f0b54aac2b45aadbe5d5d",
+    "bytes": 738431,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2017-b-b264/extracted-layout.txt",
+      "sha256": "9424743fca151a9956696fc5cc4bc7add8c41f5ffb4aecdfbad3b4d343646e7e",
+      "extracted_pages": 25,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 25,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2017-b-b264/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2017-b-b264/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2017-b-b264/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2017-b-b264/contact-25-25.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

@@ -1,0 +1,62 @@
+schema_version: "2.0"
+figures:
+  - contract_version: "2.0"
+    id: fig-demo-regression
+    question_id: DEMO
+    claim_id: demo-regression-fit
+    core_conclusion: "最小二乘基线能解释演示数据中的主要趋势。"
+    evidence_chain:
+      - locator: experiments/demo/results/experiment_result.json:metrics.regression
+        sha256: 7bb0e9769769fc419e5063359ff1a7aaf5af461b9bd8862314f57f4785181895
+        fields: [metrics.regression.r2, metrics.regression.rmse]
+    kind: data
+    archetype: residual-calibration
+    backend: python
+    source_data: [experiments/demo/results/regression_predictions.csv]
+    source_script: src/modeling/run_demo.py
+    outputs:
+      pdf: experiments/demo/figures/demo_regression.pdf
+      svg: experiments/demo/figures/demo_regression.svg
+      png: experiments/demo/figures/demo_regression.png
+      png_dpi: 400
+    baseline: "最小二乘基线"
+    axes:
+      - {variable: "输入", unit: "无量纲"}
+      - {variable: "响应", unit: "无量纲"}
+    caption: "演示数据的观测值、拟合线与基线；数值仅用于测试工作台。"
+    panel_map:
+      - {panel: main, role: "观测与拟合", subclaim: "拟合线跟随观测趋势"}
+    statistics: ["ordinary least squares", "RMSE and R2 from the experiment result"]
+    review_risks: ["演示数据不得进入正式赛题结论"]
+    final_width_mm: 145
+    min_font_pt: 8
+  - contract_version: "2.0"
+    id: fig-demo-linear-program
+    question_id: DEMO
+    claim_id: demo-linear-program-optimum
+    core_conclusion: "演示线性规划的可行域交点给出测试目标的最优点。"
+    evidence_chain:
+      - locator: experiments/demo/results/experiment_result.json:metrics.linear_program
+        sha256: 7bb0e9769769fc419e5063359ff1a7aaf5af461b9bd8862314f57f4785181895
+        fields: [metrics.linear_program.x, metrics.linear_program.y, metrics.linear_program.objective]
+    kind: data
+    archetype: pareto-or-feasible-frontier
+    backend: python
+    source_data: [experiments/demo/results/experiment_result.json]
+    source_script: src/modeling/run_demo.py
+    outputs:
+      pdf: experiments/demo/figures/demo_linear_program.pdf
+      svg: experiments/demo/figures/demo_linear_program.svg
+      png: experiments/demo/figures/demo_linear_program.png
+      png_dpi: 400
+    baseline: "约束交集"
+    axes:
+      - {variable: "决策变量 x", unit: "无量纲"}
+      - {variable: "决策变量 y", unit: "无量纲"}
+    caption: "演示线性规划的可行域和最优点；数值仅用于测试工作台。"
+    panel_map:
+      - {panel: main, role: "可行域", subclaim: "最优点位于可行域内"}
+    statistics: ["deterministic linear programming", "solver status recorded in the experiment result"]
+    review_risks: ["演示模型不得替代正式赛题 baseline"]
+    final_width_mm: 145
+    min_font_pt: 8

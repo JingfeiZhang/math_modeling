@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "q4_joint_candidate_schedule.csv",
+      "sha256": "f841a3e5dd457693720175093d3c19bd742e749e668e23a6761b2ddc679310b0"
+    },
+    {
+      "path": "q4_joint_constraint_audit.json",
+      "sha256": "c53c92a6853d92e4a8dcfe62e72c3d72a4de3a27ae7674c70dc0575744a798c6"
+    },
+    {
+      "path": "q4_joint_joint_stress_joint_candidate_dispatch.csv",
+      "sha256": "2283a354eee1622b97d9b5fb436777c6f3c5527bb1911db28173f58fa7ddbf4b"
+    },
+    {
+      "path": "q4_joint_joint_stress_sequential_baseline_dispatch.csv",
+      "sha256": "27ea38f3932b008dfa1f691b68661189bdfc9df5e4b9001f2ef40f18c4030a12"
+    },
+    {
+      "path": "q4_joint_metrics.csv",
+      "sha256": "72951c3a7c64550373196b2845b53a14d73d74debb1bf7b90e28a1b446c61366"
+    },
+    {
+      "path": "q4_joint_observed_joint_candidate_dispatch.csv",
+      "sha256": "01711dcd85cbf8f7ef43e5e82091ee8215f0d1a4aa9783ddf4d71559c5286125"
+    },
+    {
+      "path": "q4_joint_observed_sequential_baseline_dispatch.csv",
+      "sha256": "582b48be33d4c497ad87ce6dc25bd25894003acb475e23dffb8fd707294d4dab"
+    },
+    {
+      "path": "q4_joint_risk_probes.json",
+      "sha256": "373f15748440ef39b47c23095279613beee52f6efd3e00fbf82062394299df21"
+    },
+    {
+      "path": "q4_joint_search_trace.csv",
+      "sha256": "e5dc54eaba35fc765095598083b40e61f5822b50c88befe46015f2d5d7dda911"
+    },
+    {
+      "path": "q4_joint_summary.json",
+      "sha256": "5352fc0dfa84004c7463cee7797a09fd10c589ca6036c05159f5a4935966ee37"
+    },
+    {
+      "path": "q4_joint_task_moves.csv",
+      "sha256": "24a0da8235f6b0cb54c844799a782255cd71ae9f76e26f5e771287a0d2cd56c2"
+    },
+    {
+      "path": "run_manifest.json",
+      "sha256": "5b55e4acb0cfac9e9a3c5f781f05ddfe39ef29229a5aaa26b9f577b2ca52610f"
+    },
+    {
+      "path": "run_q4_direct_joint_probe.py",
+      "sha256": "a7ea22970d152946404714cd8e87bc00df5121045019f4a6be6df31901819fcd"
+    }
+  ]
+}

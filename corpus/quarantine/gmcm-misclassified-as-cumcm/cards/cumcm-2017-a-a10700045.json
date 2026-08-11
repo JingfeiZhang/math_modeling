@@ -1,0 +1,349 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2017-a-a10700045",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2017,
+    "problem": "A",
+    "team_id": "",
+    "title": "\"华为杯\"第十四届中国研究生数学建模竞赛"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2017%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/A/A10700045.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2017年优秀论文/A/A10700045.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2017,
+    "problem": "A",
+    "team_id": "",
+    "title": "\"华为杯\"第十四届中国研究生数学建模竞赛",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "ba9621606dd9f64708d06f73a45eba22d78884848901d6a61913f8708296b841",
+    "pages": 49,
+    "local_path": "corpus/raw/objects/sha256/ba/ba9621606dd9f64708d06f73a45eba22d78884848901d6a61913f8708296b841.pdf",
+    "first_page_phash": "ec503070d098d800",
+    "text_sha256": "0d73d41312557f86aaa289a3b248bd85731a25bb6de46c4373238fa08548a163"
+  },
+  "review_status": "content_extracted",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括”的组织结构。",
+      "derivation": "text",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：题 目 无人机在抢险救灾中的优化运用",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：规划模型，采用贪心算法，得到飞机的最少架数 5 架，覆盖率达到 94.44%以及",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：域划分为 23 份，建立线性规划模型，采用禁忌搜索算法求得最优分区（见图 5），",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：同。建立线性规划模型，采用模拟退火算法，求得每个扇形域最短探测路径和时",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-02.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：6 模型的评价与改进 ...................................................................................................",
+      "derivation": "text",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-04.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：6.1 模型的优点 ................................................... 31",
+      "derivation": "text",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-04.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：6.2 模型的缺点 ................................................... 32",
+      "derivation": "text",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-04.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：6 模型的评价与改进 .........................................................................................",
+      "derivation": "text",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-04.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：6.3 模型的推广 ................................................... 32",
+      "derivation": "text",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-04.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "题 目 无人机在抢险救灾中的优化运用",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "规划模型，采用贪心算法，得到飞机的最少架数 5 架，覆盖率达到 94.44%以及",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "域划分为 23 份，建立线性规划模型，采用禁忌搜索算法求得最优分区（见图 5），",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "同。建立线性规划模型，采用模拟退火算法，求得每个扇形域最短探测路径和时",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 3,
+      "description": "机构建通信网来覆盖所有地面终端的移动区域，建立线性规划模型，采用蚁群算",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 6,
+      "page": 3,
+      "description": "距离作为变量，建立线性规划模型，采用狼群算法得到最优路线（见图 10）从",
+      "locator": "PDF p.3"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 4,
+      "description": "6 模型的评价与改进 .......................................................................................................................",
+      "locator": "PDF p.4"
+    },
+    {
+      "step": 2,
+      "page": 4,
+      "description": "6.1 模型的优点 ................................................... 31",
+      "locator": "PDF p.4"
+    },
+    {
+      "step": 3,
+      "page": 4,
+      "description": "6.2 模型的缺点 ................................................... 32",
+      "locator": "PDF p.4"
+    },
+    {
+      "step": 4,
+      "page": 5,
+      "description": "人员伤亡和重大的财产损失。由于预测地震比较困难，及时高效的灾后救援是减",
+      "locator": "PDF p.5"
+    },
+    {
+      "step": 5,
+      "page": 8,
+      "description": "短。首先要使得 72 个地面终端用户传输信息达到比较均衡，应使每架飞机的巡",
+      "locator": "PDF p.8"
+    }
+  ],
+  "figures": [
+    {
+      "page": 2,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "每架无人机的飞行路线（见图 3）。对于第二小问，首先，应用等分法将探测区",
+      "lesson": "图题“每架无人机的飞行路线（见图 3）。对于第二小问，首先，应用等分法将探测区”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-02.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 2,
+      "role": "model explanation",
+      "chart_type": "result-figure",
+      "caption": "域划分为 23 份，建立线性规划模型，采用禁忌搜索算法求得最优分区（见图 5），",
+      "lesson": "图题“域划分为 23 份，建立线性规划模型，采用禁忌搜索算法求得最优分区（见图 5），”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-02.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 3,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "法求解得到无人机最小架数为 116 台以及飞行路线（见图 9）。其次，假设任意",
+      "lesson": "图题“法求解得到无人机最小架数为 116 台以及飞行路线（见图 9）。其次，假设任意”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-03.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 3,
+      "role": "model explanation",
+      "chart_type": "result-figure",
+      "caption": "距离作为变量，建立线性规划模型，采用狼群算法得到最优路线（见图 10）从",
+      "lesson": "图题“距离作为变量，建立线性规划模型，采用狼群算法得到最优路线（见图 10）从”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-03.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 3,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "路线（见图 14）以及任务完成时间分别为 3.7445h，3.1720h，3.667h。最终使得",
+      "lesson": "图题“路线（见图 14）以及任务完成时间分别为 3.7445h，3.1720h，3.667h。最终使得”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-03.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 9,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图（见图 1），图中白色部分表示海拔低于 3000 米（巡查区），红色部分表示海",
+      "lesson": "图题“图（见图 1），图中白色部分表示海拔低于 3000 米（巡查区），红色部分表示海”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.9",
+      "render": "corpus/rendered/cumcm-2017-a-a10700045/pages/page-09.jpg",
+      "visual_checked": false
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 4
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "全页已渲染，但接触表尚未完成逐页人工视觉确认。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "git_blob_sha": "0aecaa55d82d4da59ef0732e5f6c73ec1f4cde84",
+    "bytes": 2104379,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2017-a-a10700045/extracted-layout.txt",
+      "sha256": "0d73d41312557f86aaa289a3b248bd85731a25bb6de46c4373238fa08548a163",
+      "extracted_pages": 49,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 49,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2017-a-a10700045/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2017-a-a10700045/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2017-a-a10700045/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2017-a-a10700045/contact-25-32.jpg",
+        "corpus/rendered/cumcm-2017-a-a10700045/contact-33-40.jpg",
+        "corpus/rendered/cumcm-2017-a-a10700045/contact-41-48.jpg",
+        "corpus/rendered/cumcm-2017-a-a10700045/contact-49-49.jpg"
+      ],
+      "visual_review": "pending"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

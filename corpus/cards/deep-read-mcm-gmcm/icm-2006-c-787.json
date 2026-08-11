@@ -1,0 +1,276 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "icm-2006-c-787",
+  "identity": {
+    "contest": "ICM",
+    "year": 2006,
+    "problem": "C",
+    "team_id": "787",
+    "title": "The United Nations and the Quest for the Holy Grail (of AIDS)"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/zhanwen/MathModel/git/blobs/252d51dfd2ad374092ee40326babeccea9f01c54",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "美赛论文/2006美赛特等奖原版论文集/C-787-Outstanding.pdf"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://www.contest.comap.com/undergraduate/contests/mcm/contests/2006/results/ICM%202006%20Final%20Results.pdf",
+    "contest": "ICM",
+    "year": 2006,
+    "problem": "C",
+    "team_id": "787",
+    "title": "The United Nations and the Quest for the Holy Grail (of AIDS)",
+    "award": "Outstanding Winner",
+    "locator": "official PDF page 2; extracted text line 71",
+    "matched_text": "787 Duke University                                          David Kraines      Outstanding Winner   INFORMS Award   C"
+  },
+  "authenticity": {
+    "level": "B",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": true
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "The control number, contest year, problem, and Outstanding Winner label match a COMAP official result PDF.",
+      "The paper itself is not served from an official paper-display page, so the level is B rather than A."
+    ]
+  },
+  "pdf": {
+    "sha256": "71c424eef1b5448d017227b8ca17051cf3c3e0aced3b7ee4caaa2a885ec490b7",
+    "pages": 32,
+    "local_path": "corpus/raw/mcm-gmcm/icm-2006-c-787/paper.pdf",
+    "first_page_phash": "dhash64:0070f0606860e0c0",
+    "text_sha256": "78963b422ab93b8369afa40a7464cad8328d306d42ee39b48a6bef0e8368555c"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "model"
+      ],
+      "observation": "The abstract defines the 2050 horizon and introduces deterministic HIV, intervention, and economic models.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/icm-2006-c-787/page-01.png"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "abstract",
+        "policy"
+      ],
+      "observation": "The summary continues with funding recommendations and uncertainty boundaries.",
+      "derivation": "mixed",
+      "locator": "PDF page 2",
+      "render": "corpus/rendered/mcm-gmcm/icm-2006-c-787/page-02.png"
+    },
+    {
+      "page": 5,
+      "tags": [
+        "assumption",
+        "model"
+      ],
+      "observation": "Experimental and epidemiological assumptions are introduced before intervention models.",
+      "derivation": "mixed",
+      "locator": "PDF page 5",
+      "render": "corpus/rendered/mcm-gmcm/icm-2006-c-787/page-05.png"
+    },
+    {
+      "page": 16,
+      "tags": [
+        "validation",
+        "figure"
+      ],
+      "observation": "Predicted South African prevalence is plotted against historical observations.",
+      "derivation": "mixed",
+      "locator": "PDF page 16",
+      "render": "corpus/rendered/mcm-gmcm/icm-2006-c-787/page-16.png"
+    },
+    {
+      "page": 23,
+      "tags": [
+        "sensitivity",
+        "figure"
+      ],
+      "observation": "Avoidance-rate scenarios are compared on the same HIV population trajectory.",
+      "derivation": "mixed",
+      "locator": "PDF page 23",
+      "render": "corpus/rendered/mcm-gmcm/icm-2006-c-787/page-23.png"
+    },
+    {
+      "page": 26,
+      "tags": [
+        "sensitivity",
+        "figure"
+      ],
+      "observation": "Treatment adherence scenarios expose how ARV effectiveness changes.",
+      "derivation": "mixed",
+      "locator": "PDF page 26",
+      "render": "corpus/rendered/mcm-gmcm/icm-2006-c-787/page-26.png"
+    },
+    {
+      "page": 30,
+      "tags": [
+        "risk",
+        "boundary"
+      ],
+      "observation": "Strengths, weaknesses, and future work identify data and parameter limits.",
+      "derivation": "mixed",
+      "locator": "PDF page 30",
+      "render": "corpus/rendered/mcm-gmcm/icm-2006-c-787/page-30.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "role": "problem-method",
+      "observation": "State the AIDS policy decision, the 2050 forecast horizon, and the three model components."
+    },
+    {
+      "page": 2,
+      "role": "decision-boundary",
+      "observation": "Translate model outputs into intervention priorities while qualifying data uncertainty."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 5,
+      "step": "epidemiological-base",
+      "observation": "Use an iterative deterministic population model for annual HIV progression.",
+      "order": 1
+    },
+    {
+      "page": 23,
+      "step": "education-and-vaccine",
+      "observation": "Parameterize reduced transmission under education and vaccine scenarios.",
+      "order": 2
+    },
+    {
+      "page": 26,
+      "step": "ARV-dynamics",
+      "observation": "Model treatment and adherence effects on HIV/AIDS trajectories.",
+      "order": 3
+    },
+    {
+      "page": 26,
+      "step": "economic-allocation",
+      "observation": "Relate treatment coverage and costs to funding choices.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 16,
+      "method": "historical-fit",
+      "observation": "Overlay model predictions and South African historical data.",
+      "order": 1
+    },
+    {
+      "page": 23,
+      "method": "parameter-sensitivity",
+      "observation": "Sweep avoidance rates and compare long-horizon populations.",
+      "order": 2
+    },
+    {
+      "page": 26,
+      "method": "adherence-sensitivity",
+      "observation": "Compare three adherence levels under the same axes.",
+      "order": 3
+    },
+    {
+      "page": 30,
+      "method": "scope-audit",
+      "observation": "List prospective-data and parameter-estimation limitations.",
+      "order": 4
+    }
+  ],
+  "figures": [
+    {
+      "page": 16,
+      "role": "external-validation",
+      "chart_type": "observed-versus-predicted curve",
+      "lesson": "Show empirical points and the model curve on one axis."
+    },
+    {
+      "page": 23,
+      "role": "policy-sensitivity",
+      "chart_type": "scenario trajectories",
+      "lesson": "Use identical initial conditions and axes for policy levers."
+    },
+    {
+      "page": 26,
+      "role": "treatment-sensitivity",
+      "chart_type": "multi-series time plot",
+      "lesson": "Make adherence assumptions legible through labeled trajectories."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 1,
+      "rule": "A policy abstract should name the horizon, model chain, intervention levers, and decision output.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 16,
+      "rule": "Use observed-versus-predicted overlays before presenting policy scenarios.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 30,
+      "rule": "Separate structural strengths from data and parameter weaknesses.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 30,
+      "risk": "Long-horizon forecasts depend on uncertain prospective demographic and epidemiological parameters.",
+      "severity": "high"
+    },
+    {
+      "page": 23,
+      "risk": "Scenario curves do not include uncertainty bands.",
+      "severity": "medium"
+    },
+    {
+      "page": 1,
+      "risk": "The two-page abstract is information-rich but visually dense.",
+      "severity": "medium"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/icm-2006-c-787/source_manifest.json",
+    "selected_pages": [
+      1,
+      2,
+      5,
+      16,
+      23,
+      26,
+      30
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q2",
+  "status": "PROPOSAL_ONLY_ROOT_REVIEW_REQUIRED",
+  "selected_policy": "lagrangian_balanced",
+  "proposals": [
+    {
+      "claim_id": "Q2-PROP-1",
+      "claim": "The selected rolling shadow-price exchange produced complete, zero-SLA-violation schedules that passed both common and independent hard audits in all three real-data windows.",
+      "evidence": "q2_robustness.csv and q2_constraint_audit.json",
+      "boundary": "Only the disjoint 24 h, 48 h, and 72 h representative windows are covered; this is not a full-horizon proof."
+    },
+    {
+      "claim_id": "Q2-PROP-2",
+      "claim": "Against the same-output FIFO baseline, aggregate cost changed by -1.415061% and carbon by -1.535487% across the evaluated windows.",
+      "evidence": "q2_pareto.csv",
+      "boundary": "Changes include the same non-AI background in both methods; no global-optimality or causal-generalization claim is made."
+    },
+    {
+      "claim_id": "Q2-PROP-3",
+      "claim": "The measured task-weighted mean latency tradeoff was 4.280496 ms while every task remained within its MaxLatency_ms constraint.",
+      "evidence": "q2_robustness.csv and q2_constraint_audit.json",
+      "boundary": "The network model uses the supplied static region-to-region latency matrix and excludes congestion and migration energy, as required by Q2."
+    }
+  ]
+}

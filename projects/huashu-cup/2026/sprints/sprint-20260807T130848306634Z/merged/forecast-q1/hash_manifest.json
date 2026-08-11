@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/workload_panel.csv",
+      "sha256": "d0eaf1a81152b3dda4ebcea4f223c31111ed001c1eec16543311fe87aa1ee80b"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/descriptive_by_series.csv",
+      "sha256": "5f54955015f3175444b5227154f8dd8ad3d95d94e8c556285132dfbb6b61543c"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/baseline_selection.csv",
+      "sha256": "432b6bbdb04a13a0cae119c11ccb8944658aa46b9cb1ff4cacb9cd32cb8a4e31"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/residual_shrinkage_selection.csv",
+      "sha256": "1e359a219e6ccbd84337a7170278e7fcf75d75eaaa87d8a833dfe0b2c515ecd4"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/rolling_backtest_predictions.csv",
+      "sha256": "0a949cd1e7b09b4e7096a5b9bb3e5ebedde1796213f32673ea2091064da2e049"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/validation_predictions.csv",
+      "sha256": "52f785106caeceff0e7075d16a021b99716e303e1cb0d2de20c73a9963b08cd5"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/blind_test_predictions.csv",
+      "sha256": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/metrics_by_series.csv",
+      "sha256": "91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/metrics_summary.json",
+      "sha256": "e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/model_config.json",
+      "sha256": "94980158c3f37a3bdfe23c7dec657b4fa043dc56bb6c2476790054a8ca0d89cf"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/claim_proposal.json",
+      "sha256": "4b35bd891c31541e3b010e6500fe7c10231213bdd48075a5a6938a8e20105ab4"
+    }
+  ]
+}

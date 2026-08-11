@@ -1,0 +1,322 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2020-d-d011",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2020,
+    "problem": "D",
+    "team_id": "",
+    "title": "基于接触式轮廓仪测量数据的工件形状自动标注方法"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2020/D011.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2020/D011.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2020,
+    "problem": "D",
+    "team_id": "",
+    "title": "基于接触式轮廓仪测量数据的工件形状自动标注方法",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "cc9b336fd6a1234becf855de3c0232b30ea4e793f57a0d1615da3c25372ce331",
+    "pages": 26,
+    "local_path": "corpus/raw/objects/sha256/cc/cc9b336fd6a1234becf855de3c0232b30ea4e793f57a0d1615da3c25372ce331.pdf",
+    "first_page_phash": "70e0e8f0d0c0c097",
+    "text_sha256": "faf73c031caed7333feee1770661393b6bf17c6194fb8eb3ea1a7251b7c31ae9"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“轮廓测量背景与四问任务；按问题概括差分识别、滤波拟合、坐标校正和全局修复；摘要说明自动标注方案的输出；关键词”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-01.jpg"
+    },
+    {
+      "page": 5,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：用一阶与二阶差分识别直线段和圆弧段的候选边界",
+      "derivation": "mixed",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-05.jpg"
+    },
+    {
+      "page": 6,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：在滑动窗口中滤除高频扰动并拟合直线与圆弧参数",
+      "derivation": "mixed",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-06.jpg"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：通过直线拟合估计倾斜角并以旋转矩阵校正水平位置",
+      "derivation": "mixed",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-10.jpg"
+    },
+    {
+      "page": 12,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：将多次测量先旋转到统一坐标系再按几何对应关系拼接",
+      "derivation": "mixed",
+      "locator": "PDF p.12",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-12.jpg"
+    },
+    {
+      "page": 8,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：把滤波后的数据、拟合直线和圆弧参数放在同页检查分段效果",
+      "derivation": "mixed",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-08.jpg"
+    },
+    {
+      "page": 11,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：以校正后各水平线的均方偏差比较坐标修正准确性",
+      "derivation": "mixed",
+      "locator": "PDF p.11",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-11.jpg"
+    },
+    {
+      "page": 16,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：汇总多个圆弧参数并用修复前后曲线比较几何一致性",
+      "derivation": "mixed",
+      "locator": "PDF p.16",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-16.jpg"
+    },
+    {
+      "page": 17,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：模型评价将自动标注结论限制在分段直线/圆弧假设和阈值参数条件内",
+      "derivation": "mixed",
+      "locator": "PDF p.17",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-17.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "轮廓测量背景与四问任务",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "按问题概括差分识别、滤波拟合、坐标校正和全局修复",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "摘要说明自动标注方案的输出",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "关键词",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 5,
+      "description": "用一阶与二阶差分识别直线段和圆弧段的候选边界",
+      "locator": "PDF p.5"
+    },
+    {
+      "step": 2,
+      "page": 6,
+      "description": "在滑动窗口中滤除高频扰动并拟合直线与圆弧参数",
+      "locator": "PDF p.6"
+    },
+    {
+      "step": 3,
+      "page": 10,
+      "description": "通过直线拟合估计倾斜角并以旋转矩阵校正水平位置",
+      "locator": "PDF p.10"
+    },
+    {
+      "step": 4,
+      "page": 12,
+      "description": "将多次测量先旋转到统一坐标系再按几何对应关系拼接",
+      "locator": "PDF p.12"
+    },
+    {
+      "step": 5,
+      "page": 15,
+      "description": "采用局部数据修复与全局圆弧拟合完成缺损轮廓标注",
+      "locator": "PDF p.15"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 8,
+      "description": "把滤波后的数据、拟合直线和圆弧参数放在同页检查分段效果",
+      "locator": "PDF p.8"
+    },
+    {
+      "step": 2,
+      "page": 11,
+      "description": "以校正后各水平线的均方偏差比较坐标修正准确性",
+      "locator": "PDF p.11"
+    },
+    {
+      "step": 3,
+      "page": 16,
+      "description": "汇总多个圆弧参数并用修复前后曲线比较几何一致性",
+      "locator": "PDF p.16"
+    },
+    {
+      "step": 4,
+      "page": 17,
+      "description": "模型评价列出分段模型、旋转校正和参数阈值的优点与限制",
+      "locator": "PDF p.17"
+    }
+  ],
+  "figures": [
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "diagnostic",
+      "caption": "一阶与二阶差分数据图",
+      "lesson": "用导数阶次的互补响应定位轮廓突变",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-05.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 8,
+      "role": "result evidence",
+      "chart_type": "fit-curve",
+      "caption": "直线段与圆弧段拟合结果",
+      "lesson": "把原始点、拟合曲线和几何参数组合为验证图",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-08.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 14,
+      "role": "result evidence",
+      "chart_type": "comparison",
+      "caption": "坐标旋转校正前后曲线",
+      "lesson": "用并列小图检查多次测量能否对齐",
+      "locator": "PDF p.14",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-14.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 16,
+      "role": "result evidence",
+      "chart_type": "error-plot",
+      "caption": "多组圆弧拟合误差曲线",
+      "lesson": "以一致坐标和参数表比较修复稳定性",
+      "locator": "PDF p.16",
+      "render": "corpus/rendered/cumcm-2020-d-d011/pages/page-16.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 5
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 5
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 17
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "渲染页带有第三方镜像水印；视觉布局可学习，但该副本不是官方展示原件。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "f587309b4db296f4a458c2f72fc57dbe9c2cb758",
+    "bytes": 9217498,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2020-d-d011/extracted-layout.txt",
+      "sha256": "faf73c031caed7333feee1770661393b6bf17c6194fb8eb3ea1a7251b7c31ae9",
+      "extracted_pages": 26,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 26,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2020-d-d011/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2020-d-d011/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2020-d-d011/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2020-d-d011/contact-25-26.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

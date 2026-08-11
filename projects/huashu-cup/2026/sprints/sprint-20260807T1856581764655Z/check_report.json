@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T1856581764655Z",
+  "status": "READY_TO_MERGE",
+  "passed": true,
+  "accepted_tasks": [
+    "figure-q1",
+    "q234-exploration"
+  ],
+  "retry_tasks": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "tasks": [
+    {
+      "task_id": "figure-q1",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 2,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/figure_contract_proposal.yaml",
+          "sha256": "1cd4f9a68a10ff623383efb84e082782e6d52608ba3e7808ce6b258d7e2e023d"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/figure_manifest.json",
+          "sha256": "8daa9d4bb994be92febf4fe3fa311db0475fe30a17f965eeadaeb14db7458a73"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/figures/fig_q1_forecast_interval.pdf",
+          "sha256": "685415fdf403d2552a9f2529b733dd74f25b8a36e64ec51d9c52dc11011b1f52"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/figures/fig_q1_forecast_interval.svg",
+          "sha256": "ef4c88d9a28e2863951d4b8bd279d0eaecee59c09184829b6c8529d904a66cfb"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/figures/fig_q1_forecast_interval.png",
+          "sha256": "279e6f39e29ca734a773cabb35eeb424bacacba6d179cafe945e59c79492ad95"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/figures/fig_q1_error_comparison.pdf",
+          "sha256": "1ab744545ce953e5e9265d6635214f918eb01f84edece88146ee23ed5f0a50c2"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/figures/fig_q1_error_comparison.svg",
+          "sha256": "ef207e36fe431afec9ce49619b9bd03eb29797dac387c750c37d2b04693dc7f1"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/figures/fig_q1_error_comparison.png",
+          "sha256": "4317635246f1094d121797d54c2f9fa3f3f0e6526b94fbf0a8420d85fcc1cd34"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/figures/fig_q1_feasible_schedule.pdf",
+          "sha256": "38709a4334c5d9a8a4e00dfef11835a6fb8ee4f83638c0e5f502c4d152e04016"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/figures/fig_q1_feasible_schedule.svg",
+          "sha256": "3379745cb0f8e5c91af85705e5ddab603393d9d2b658c4ce67de1d445829a7ff"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/figures/fig_q1_feasible_schedule.png",
+          "sha256": "1293ab212a241dfe3ea47fb61081f88278160167249bd9e6df53a4d2a026a315"
+        }
+      ],
+      "handoff": "sprints/sprint-20260807T1856581764655Z/retry-staging/figure-q1-attempt-2/handoff.json"
+    },
+    {
+      "task_id": "q234-exploration",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 1,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/staging/q234-exploration/question_strategy_matrix.yaml",
+          "sha256": "0b8804c9eea814417f3ee890b9d2a293cb63b82c81375b1af47e528e61e1ae4f"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/staging/q234-exploration/baseline_plan.yaml",
+          "sha256": "83db51ece2fdd5565d184ab11bef96cb33fb32e9ef076eb6e7bc0c76f80b4359"
+        },
+        {
+          "path": "sprints/sprint-20260807T1856581764655Z/staging/q234-exploration/risk_register.yaml",
+          "sha256": "39fc3cd237224b3bf286c564ff7dfd41855b2063aee09a4f78c5a83efd99e171"
+        }
+      ],
+      "handoff": "sprints/sprint-20260807T1856581764655Z/staging/q234-exploration/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-07T19:31:04.323802+00:00"
+}

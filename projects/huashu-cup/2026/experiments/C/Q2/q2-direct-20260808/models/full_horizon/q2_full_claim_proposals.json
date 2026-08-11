@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q2",
+  "status": "PROPOSAL_ONLY_ROOT_REVIEW_REQUIRED",
+  "proposals": [
+    {
+      "claim_id": "Q2-FULL-PROP-1",
+      "claim": "Both the full-horizon FIFO baseline and balanced rolling exchange scheduled all 50000 arrivals exactly once, with zero SLA violations and all minute-level capacity, latency, release, duration, and closeout checks passing.",
+      "evidence": "q2_full_constraint_audit.json and the two full schedule CSV files",
+      "boundary": "This is a feasibility and audit claim, not a global-optimality claim."
+    },
+    {
+      "claim_id": "Q2-FULL-PROP-2",
+      "claim": "Against the same-input, same-constraint FIFO baseline, full-horizon facility-energy cost changed by -1.014937% and carbon by -1.929297%.",
+      "evidence": "q2_full_summary.json, q2_full_hourly_profiles.csv, and q2_full_block_robustness.csv",
+      "boundary": "Metrics include the same fixed non-AI load in both methods and use the supplied hourly regional factors."
+    },
+    {
+      "claim_id": "Q2-FULL-PROP-3",
+      "claim": "The full-horizon task-weighted mean latency changed by 4.189760 ms while every assigned route remained within its task-specific MaxLatency_ms.",
+      "evidence": "q2_full_candidate_schedule.csv and q2_full_constraint_audit.json",
+      "boundary": "Latency uses the supplied static matrix and does not model congestion or transfer energy."
+    },
+    {
+      "claim_id": "Q2-FULL-PROP-4",
+      "claim": "A second complete deterministic exchange run reproduced the identical task-region-start schedule.",
+      "evidence": "q2_full_constraint_audit.json and q2_full_risk_probes.csv",
+      "boundary": "Replay proves implementation determinism for the pinned inputs, not optimization uniqueness."
+    }
+  ]
+}

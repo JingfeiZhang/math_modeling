@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "recipe_count": 12,
+  "passed": 12,
+  "failed": 0,
+  "records": [
+    {
+      "recipe_id": "cellular-traffic",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    },
+    {
+      "recipe_id": "folding-table-geometry",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    },
+    {
+      "recipe_id": "folding-table-shape-scan",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    },
+    {
+      "recipe_id": "fragment-global-matching",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    },
+    {
+      "recipe_id": "fragment-row-matching",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    },
+    {
+      "recipe_id": "lunar-descent-control",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    },
+    {
+      "recipe_id": "normal-uncertainty-monte-carlo",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    },
+    {
+      "recipe_id": "ode-parameter-sensitivity",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    },
+    {
+      "recipe_id": "solar-tilt-sensitivity",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    },
+    {
+      "recipe_id": "storage-slot-sizing",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    },
+    {
+      "recipe_id": "traffic-capacity-ga",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    },
+    {
+      "recipe_id": "trajectory-angle-scan",
+      "returncode": 0,
+      "same_seed": true,
+      "same_metrics": true,
+      "same_output_hashes": true,
+      "status": "passed"
+    }
+  ]
+}

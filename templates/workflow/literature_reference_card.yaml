@@ -1,0 +1,115 @@
+schema_version: 1
+card_id: litcard-q1-replace-me
+problem_id: TBD
+question_id: Q1
+source_search_receipts:
+  - path: problems/TBD/questions/Q1/literature/searches/search-001/search_receipt.json
+    sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+review_depth: TARGETED_READ
+bibliographic_status: VERIFIED
+metadata:
+  title: Replace with the verified academic title
+  authors:
+    - full_name: First Author
+      orcid: null
+  year: 2025
+  publication_type: journal-article
+  venue: Replace with the journal or conference
+  doi: 10.0000/replace-me
+  arxiv_id: null
+  url: https://doi.org/10.0000/replace-me
+  bibtex_key: Author2025ReplaceMe
+metadata_sources:
+  - provider: crossref
+    locator: https://api.crossref.org/works/10.0000/replace-me
+    checked_at_utc: "2026-08-11T00:02:00Z"
+metadata_snapshot:
+  path: work/cache/literature/Q1/litcard-q1-replace-me-metadata.json
+  sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+source_document:
+  available: true
+  kind: pdf
+  path: work/cache/literature/Q1/litcard-q1-replace-me.pdf
+  url: https://example.org/replace-me.pdf
+  sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+evidence_roles:
+  - model-family
+  - parameter
+  - validation
+problem_context:
+  objective: replace with the paper task objective
+  inputs:
+    - replace with a paper input
+  outputs:
+    - replace with a paper output
+  data_scale: replace with the paper sample scale
+  scene: replace with the paper domain scene
+  transferability_note: explain which conditions match or differ from the contest problem
+model:
+  name: replace with the model family
+  assumptions:
+    - replace with an assumption used by the paper
+  variables:
+    - replace with a key variable
+  objective_function: replace with the mathematical objective or fitting criterion
+  constraints:
+    - replace with a relevant constraint
+algorithm:
+  steps:
+    - replace with the first result-relevant step
+  solver: replace with the algorithm or solver
+  initialization: replace with the initialization rule
+  stopping_conditions:
+    - replace with the stopping condition
+  complexity: replace with reported or inferred computational scale
+parameters:
+  - name: replace-me-parameter
+    unit: dimensionless
+    value_or_range: replace with the reported value or range
+    basis: explain how the paper selected it
+    applicability: explain whether the current problem meets the same conditions
+    source_locator: Section 3.2, page 5
+evaluation:
+  baselines:
+    - replace with a same-output baseline
+  metrics:
+    - name: replace-me-metric
+      unit: dimensionless
+      definition: replace with the paper metric definition
+  data_split: replace with train, validation, test, or scenario design
+  validation_methods:
+    - replace with robustness, sensitivity, or feasibility validation
+limitations:
+  - replace with a limitation stated or supported by the paper
+failure_conditions:
+  - replace with a condition under which the method may fail
+non_transferable_elements:
+  - replace with data, assumptions, or infrastructure that cannot be copied to the contest problem
+locators:
+  - kind: section
+    locator: Section 3.2, page 5
+    supports: model formulation and parameter basis
+precision_evidence:
+  - role: parameter
+    statement: replace with a parameter claim supported by the cited locator
+    source_locator: Section 3.2, page 5
+external_results: []
+code:
+  repository: null
+  commit: null
+  license: null
+  reproducibility_status: not-checked
+suggested_experiments:
+  - kind: scratch
+    objective: test whether the model family improves the same-output baseline on a small slice
+    stop_condition: stop when the hard constraint fails or no useful trend appears within half the budget
+paper_handoff:
+  bibtex_key: Author2025ReplaceMe
+  eligible_sections:
+    - model-selection
+    - parameter-basis
+    - model-validation
+  citation_note: cite the method or parameter basis; do not reuse the paper result as project evidence
+substantive_citation_eligible: true
+status: CARD_READY
+created_at_utc: "2026-08-11T00:10:00Z"

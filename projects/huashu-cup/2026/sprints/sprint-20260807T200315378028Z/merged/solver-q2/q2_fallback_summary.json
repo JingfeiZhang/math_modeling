@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q2",
+  "status": "PASS",
+  "pilot_scope": "actual 0-2399 arrivals; rolling six-hour batches in 24/48/72-hour event windows; closeout capped at 2406",
+  "data_counts": {
+    "all_workload_rows": 50000,
+    "selected_window_rows": 3066,
+    "region_count": 6
+  },
+  "methods": {
+    "main_fallback": "rolling_horizon_greedy_then_CP_SAT_repair",
+    "baseline": "FIFO_latency_feasible_local_first",
+    "fallback_trigger": "direct event-boundary CP-SAT had repeated UNKNOWN/no incumbent in prior pilot",
+    "repair_scope": "only unresolved tasks; committed rolling intervals remain fixed",
+    "optimality_statement": "feasible heuristic fallback; no global-optimality claim"
+  },
+  "selection_rule": {
+    "hard_first": [
+      "assignment_once",
+      "nonpreemption",
+      "latency_filter",
+      "realtime_arrival_start",
+      "GPU_capacity",
+      "IT_power",
+      "facility_power",
+      "SLA",
+      "latest_finish",
+      "closeout_end_at_or_before_2406",
+      "no_migration_energy"
+    ],
+    "then": [
+      "completion",
+      "SLA",
+      "runtime",
+      "cost",
+      "carbon",
+      "latency",
+      "renewable utilization"
+    ]
+  },
+  "window_reports": [
+    {
+      "window": {
+        "arrival_start_hour": 0,
+        "arrival_end_hour": 24,
+        "closeout_hour": 30,
+        "selected_task_count": 506,
+        "raw_arrival_task_count": 506,
+        "excluded_local_horizon_count": 0,
+        "excluded_task_ids": [],
+        "latency_candidate_region_count_sum": 2412,
+        "latency_zero_candidate_task_count": 0
+      },
+      "fallback": {
+        "audit_passed": true,
+        "completion_rate": 1.0,
+        "SLA_violation_rate": 0.0,
+        "repair": {
+          "triggered": false,
+          "trigger": "rolling_greedy_unresolved_tasks",
+          "unresolved_before_repair": 0,
+          "repair_status": "NOT_RUN",
+          "unresolved_after_repair": 0,
+          "unresolved_task_ids": [],
+          "chunk_hours": 6
+        }
+      },
+      "baseline": {
+        "audit_passed": true,
+        "completion_rate": 1.0,
+        "SLA_violation_rate": 0.0,
+        "unscheduled_count": 0
+      }
+    },
+    {
+      "window": {
+        "arrival_start_hour": 1176,
+        "arrival_end_hour": 1224,
+        "closeout_hour": 1230,
+        "selected_task_count": 983,
+        "raw_arrival_task_count": 983,
+        "excluded_local_horizon_count": 0,
+        "excluded_task_ids": [],
+        "latency_candidate_region_count_sum": 4866,
+        "latency_zero_candidate_task_count": 0
+      },
+      "fallback": {
+        "audit_passed": true,
+        "completion_rate": 1.0,
+        "SLA_violation_rate": 0.0,
+        "repair": {
+          "triggered": false,
+          "trigger": "rolling_greedy_unresolved_tasks",
+          "unresolved_before_repair": 0,
+          "repair_status": "NOT_RUN",
+          "unresolved_after_repair": 0,
+          "unresolved_task_ids": [],
+          "chunk_hours": 6
+        }
+      },
+      "baseline": {
+        "audit_passed": true,
+        "completion_rate": 1.0,
+        "SLA_violation_rate": 0.0,
+        "unscheduled_count": 0
+      }
+    },
+    {
+      "window": {
+        "arrival_start_hour": 2328,
+        "arrival_end_hour": 2400,
+        "closeout_hour": 2406,
+        "selected_task_count": 1577,
+        "raw_arrival_task_count": 1577,
+        "excluded_local_horizon_count": 0,
+        "excluded_task_ids": [],
+        "latency_candidate_region_count_sum": 7679,
+        "latency_zero_candidate_task_count": 0
+      },
+      "fallback": {
+        "audit_passed": true,
+        "completion_rate": 1.0,
+        "SLA_violation_rate": 0.0,
+        "repair": {
+          "triggered": false,
+          "trigger": "rolling_greedy_unresolved_tasks",
+          "unresolved_before_repair": 0,
+          "repair_status": "NOT_RUN",
+          "unresolved_after_repair": 0,
+          "unresolved_task_ids": [],
+          "chunk_hours": 6
+        }
+      },
+      "baseline": {
+        "audit_passed": true,
+        "completion_rate": 1.0,
+        "SLA_violation_rate": 0.0,
+        "unscheduled_count": 0
+      }
+    }
+  ],
+  "aggregate": {
+    "fallback_mean_cost_CNY": 73606393.65874171,
+    "baseline_mean_cost_CNY": 73606393.65874171,
+    "fallback_mean_carbon_tCO2": 66646.87039908968,
+    "baseline_mean_carbon_tCO2": 66646.87039908968,
+    "fallback_mean_latency_ms": 5.0,
+    "baseline_mean_latency_ms": 5.0,
+    "fallback_feasible_rate": 1.0,
+    "baseline_feasible_rate": 1.0
+  },
+  "schedule_artifact": {
+    "path": "sprints/sprint-20260807T200315378028Z/staging/solver-q2/q2_fallback_schedules.csv",
+    "sha256": "8900d8dfc4c9e5000550197a666c9687d6021a20b5febf7bc57e0d64eb9cc2c0"
+  },
+  "formal_claim_status": "exploratory; root review and freeze required"
+}

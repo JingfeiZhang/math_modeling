@@ -1,0 +1,26 @@
+{
+  "algorithm": "sha256",
+  "files": [
+    {
+      "path": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json",
+      "sha256": "0783a484f2bebac9ddb1ab696988fad823de3cc2805aae8ea9d332039cded88b"
+    },
+    {
+      "path": "experiments/C/Q2/q2-full-compat-20260808/claim_proposals.json",
+      "sha256": "ab346fcf766e9a79a4fc2e1e6f1ec86527104dbad97570535cfa8e3b59998d28"
+    },
+    {
+      "path": "experiments/C/Q2/q2-full-compat-20260808/q2_renewable_accounting.csv",
+      "sha256": "bf668da689f9f8014d8dd1fa7ac8fcd3de5bed66536e16ea0f7495556b71c41c"
+    },
+    {
+      "path": "experiments/C/Q2/q2-full-compat-20260808/q2_renewable_metric_audit.json",
+      "sha256": "9aef319de98901e5a2c010915bca5ff38dbe3a74ffd18269a981329fd25ec2d3"
+    },
+    {
+      "path": "experiments/C/Q2/q2-full-compat-20260808/risk_probes.json",
+      "sha256": "1acf158b1946fee3f4a9faa4402e37b61643cc8aa83256a60f9d1124be6a97f5"
+    }
+  ],
+  "schema_version": 1
+}

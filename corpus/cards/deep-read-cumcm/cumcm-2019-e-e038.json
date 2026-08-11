@@ -1,0 +1,325 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2019-e-e038",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2019,
+    "problem": "E",
+    "team_id": "",
+    "title": "基于打折力度概念的“薄利多销”模型"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2019/E038.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2019/E038.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2019,
+    "problem": "E",
+    "team_id": "",
+    "title": "基于打折力度概念的“薄利多销”模型",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "8eaf89ddadd31d86099b7d99299d5c481a2625fe3a00e925f61e383fb46edbb6",
+    "pages": 23,
+    "local_path": "corpus/raw/objects/sha256/8e/8eaf89ddadd31d86099b7d99299d5c481a2625fe3a00e925f61e383fb46edbb6.pdf",
+    "first_page_phash": "70f0ecd4d4cc8007",
+    "text_sha256": "ee40cb61d5f218fbe5549cf5f013b40cba28bbd3779b2957a6965e9038b05741"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“零售促销背景与四问任务；定义营业额、利润率与打折力度；分问题概括相关检验、稳健回归和分类比较；关键词”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-01.jpg"
+    },
+    {
+      "page": 5,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：用商品销售额和流水成本构造逐日营业额与利润率",
+      "derivation": "mixed",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-05.jpg"
+    },
+    {
+      "page": 7,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：定义结合折扣率、限购量和购买量的打折力度指标",
+      "derivation": "mixed",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-07.jpg"
+    },
+    {
+      "page": 8,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：用 Pearson 相关检验和稳健加权二次回归分析打折力度与营业额",
+      "derivation": "mixed",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-08.jpg"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：用相关检验和稳健回归分析打折力度与商品利润率",
+      "derivation": "mixed",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-10.jpg"
+    },
+    {
+      "page": 8,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：同时报告散点分布、Pearson 检验和 Fisher Z 检验以核对相关关系",
+      "derivation": "mixed",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-08.jpg"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：对营业额与利润率分别拟合并说明相关关系的条件差异",
+      "derivation": "mixed",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-10.jpg"
+    },
+    {
+      "page": 13,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：模型评价讨论缺失数据处理、指标近似和不同品类的适用边界",
+      "derivation": "mixed",
+      "locator": "PDF p.13",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-13.jpg"
+    },
+    {
+      "page": 13,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：模型评价说明促销结论受缺失数据、指标定义和商品类别差异约束",
+      "derivation": "mixed",
+      "locator": "PDF p.13",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-13.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "零售促销背景与四问任务",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "定义营业额、利润率与打折力度",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "分问题概括相关检验、稳健回归和分类比较",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "关键词",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 5,
+      "description": "用商品销售额和流水成本构造逐日营业额与利润率",
+      "locator": "PDF p.5"
+    },
+    {
+      "step": 2,
+      "page": 7,
+      "description": "定义结合折扣率、限购量和购买量的打折力度指标",
+      "locator": "PDF p.7"
+    },
+    {
+      "step": 3,
+      "page": 8,
+      "description": "用 Pearson 相关检验和稳健加权二次回归分析打折力度与营业额",
+      "locator": "PDF p.8"
+    },
+    {
+      "step": 4,
+      "page": 10,
+      "description": "用相关检验和稳健回归分析打折力度与商品利润率",
+      "locator": "PDF p.10"
+    },
+    {
+      "step": 5,
+      "page": 11,
+      "description": "按价格弹性对商品分类后比较打折力度的作用差异",
+      "locator": "PDF p.11"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 8,
+      "description": "同时报告散点分布、Pearson 检验和 Fisher Z 检验以核对相关关系",
+      "locator": "PDF p.8"
+    },
+    {
+      "step": 2,
+      "page": 10,
+      "description": "对营业额与利润率分别拟合并说明相关关系的条件差异",
+      "locator": "PDF p.10"
+    },
+    {
+      "step": 3,
+      "page": 13,
+      "description": "模型评价讨论缺失数据处理、指标近似和不同品类的适用边界",
+      "locator": "PDF p.13"
+    }
+  ],
+  "figures": [
+    {
+      "page": 3,
+      "role": "model explanation",
+      "chart_type": "flowchart",
+      "caption": "四个问题的模型路线图",
+      "lesson": "在正文开端展示数据处理、指标定义和分组分析的依赖关系",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-03.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "distribution",
+      "caption": "订单有效性与流水成本缺失占比",
+      "lesson": "先量化数据质量问题再进入建模",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-04.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 8,
+      "role": "result evidence",
+      "chart_type": "scatter",
+      "caption": "打折力度与营业额散点及检验结果",
+      "lesson": "将点云、相关系数与显著性证据同页呈现",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-08.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 10,
+      "role": "result evidence",
+      "chart_type": "fit-curve",
+      "caption": "打折力度与利润率的稳健回归曲线",
+      "lesson": "用拟合线说明方向并在正文限定适用区间",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-10.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 11,
+      "role": "result evidence",
+      "chart_type": "bar",
+      "caption": "商品类别销售结构",
+      "lesson": "用排序类别图支撑后续分组建模",
+      "locator": "PDF p.11",
+      "render": "corpus/rendered/cumcm-2019-e-e038/pages/page-11.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 5
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 3
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 13
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "渲染页带有第三方镜像水印；视觉布局可学习，但该副本不是官方展示原件。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "237a4696ffb91e231587a818fe93eda02d92a009",
+    "bytes": 1971619,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2019-e-e038/extracted-layout.txt",
+      "sha256": "ee40cb61d5f218fbe5549cf5f013b40cba28bbd3779b2957a6965e9038b05741",
+      "extracted_pages": 23,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 23,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2019-e-e038/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2019-e-e038/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2019-e-e038/contact-17-23.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

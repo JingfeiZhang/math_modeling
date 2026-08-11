@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q2",
+  "status": "PASS",
+  "scope": "complete 0-2399 arrival horizon with 2400-2405 closeout only",
+  "data_counts": {
+    "task_rows": 50000,
+    "regions": 6,
+    "main_hours": 2400,
+    "closeout_hours": 6
+  },
+  "main_method": {
+    "name": "fixed_weight_bounded_rolling_local_exchange_heuristic",
+    "incumbent": "full_horizon_FIFO_latency_feasible_local_first",
+    "decomposition": "6-hour release blocks with a 72-hour bounded option horizon",
+    "decision_rule": "real-time reservations are fixed; flexible task exchanges are accepted only when the declared balanced score improves, cost or carbon improves, and every minute-level hard constraint remains feasible",
+    "policy": {
+      "policy_id": "fixed_weight_balanced",
+      "cost_weight": 1.0,
+      "carbon_weight": 4.0,
+      "wait_weight": 0.015,
+      "latency_weight": 0.015,
+      "renewable_weight": 0.05,
+      "latency_epsilon_ms": 35.0
+    },
+    "optimality_statement": "bounded deterministic one-pass exchange; no global, MILP-optimal, or full joint-system optimality claim"
+  },
+  "baseline": {
+    "name": "full_horizon_FIFO_latency_feasible_local_first",
+    "same_input": true,
+    "same_constraints": true,
+    "same_output_class": true,
+    "construction": "reserve all future real-time arrivals, then place flexible tasks by FIFO arrival order at the earliest feasible start with local-first latency-feasible regions"
+  },
+  "fallback": {
+    "name": "exact_minute_scan_unresolved_flexible_task",
+    "trigger": "hour_grid_unresolved_flexible_task",
+    "triggered": false,
+    "trigger_count": 0,
+    "task_ids": [],
+    "unresolved_after_fallback": 0
+  },
+  "candidate_exchange": {
+    "runtime_seconds": 53.31582189999972,
+    "chunk_hours": 6,
+    "lookahead_hours": 72,
+    "max_start_options_per_region": 8,
+    "moved_task_count": 15985,
+    "moved_region_count": 14347,
+    "moved_start_count": 7724,
+    "evaluated_options": 805538,
+    "fallback": {
+      "name": "exact_minute_scan_unresolved_flexible_task",
+      "triggered": false,
+      "note": "Candidate starts from the complete FIFO incumbent; rejected exchanges retain the old feasible row."
+    }
+  },
+  "results": {
+    "baseline_cost_CNY": 3359955010.883479,
+    "candidate_cost_CNY": 3325853571.1277695,
+    "cost_change_pct_vs_FIFO": -1.0149373918772464,
+    "baseline_carbon_tCO2": 2893907.676691789,
+    "candidate_carbon_tCO2": 2838075.5957927215,
+    "carbon_change_pct_vs_FIFO": -1.929297238773453,
+    "baseline_mean_latency_ms": 5.06846,
+    "candidate_mean_latency_ms": 9.25822,
+    "latency_change_ms_vs_FIFO": 4.18976,
+    "baseline_renewable_utilization_ratio": 0.9999944220444682,
+    "candidate_renewable_utilization_ratio": 0.9992043662036217,
+    "candidate_completion_rate": 1.0,
+    "candidate_SLA_violation_rate": 0.0,
+    "all_hard_audits_passed": true,
+    "deterministic_replay_passed": true
+  },
+  "robustness": {
+    "operation_blocks": {
+      "path": "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_block_robustness.csv",
+      "sha256": "2ac7d8a6da49d09319359317931371b7f16c7f9e872a81f2d64a11e58dfdbaa4"
+    },
+    "risk_probes": {
+      "path": "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_risk_probes.csv",
+      "sha256": "89ab9b43098d8f1cfaa61577d7085727ea6ace23b4a48a43da15245f9020e124"
+    },
+    "note": "Fixed-schedule stress probes identify headroom boundaries and are not substituted for supplied-input feasibility."
+  },
+  "limitations": [
+    "The exchange evaluates a bounded 72-hour option set and can be locally dominated by a joint multi-task or exact full-horizon solve.",
+    "Hourly price, carbon intensity, renewable availability, fixed non-AI load, and static network latency are treated as known supplied inputs.",
+    "The problem specification excludes bandwidth, migration energy, and migration fees; they are not introduced.",
+    "Q2 does not optimize storage or grid exchange decisions; those remain Q3/Q4 interfaces."
+  ],
+  "formal_claim_status": "proposal only; root review and evidence freeze required"
+}

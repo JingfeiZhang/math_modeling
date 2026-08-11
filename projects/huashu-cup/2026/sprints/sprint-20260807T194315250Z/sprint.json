@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T194315250Z",
+  "problem": "C",
+  "agent_mode": "parallel",
+  "max_agents": 1,
+  "status": "MERGED",
+  "profile": "q3-pilot",
+  "input_sprint_id": "sprint-20260807T1856581764655Z",
+  "task_files": [
+    "sprints/sprint-20260807T194315250Z/tasks/q3-pilot.json"
+  ],
+  "root_only_paths": [
+    "state/decision_log.json",
+    "results/C/claims.json",
+    "paper/main.tex",
+    "paper/figure_contracts.yaml",
+    "output/"
+  ],
+  "write_directories": [
+    "sprints/sprint-20260807T194315250Z/staging/q3-pilot"
+  ],
+  "last_merge_report": "sprints/sprint-20260807T194315250Z/merge_report.json"
+}

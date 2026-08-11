@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "recipe_id": "ode-parameter-sensitivity",
+  "status": "success",
+  "relationship": "modernization_fixture_not_numerical_reproduction",
+  "source_pair": {
+    "candidate_id": "cumcm-2014-a499",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/A11141001_陈超_唐梦珏_杨克宇.pdf",
+      "blob_sha": "0cec2ae306ae6a3ca2ee81f36669c96d7b9293e2",
+      "sha256": "59d01bbf09e225d890208bd36166bf2a4d61f0fb56ad4f7edd140cfbacc00d22"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/defen.m",
+        "blob_sha": "f1fe267a11ce5c1582b735ddd235ede9874f47f4",
+        "sha256": "92e779bb4a5fda6b267f59a2e56c2f438cc7e65ea3a07d056912eedf414b7b9b",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/soujie.m",
+        "blob_sha": "da0ec52ad01ceec3f085ec1466e2ff16efe9a82d",
+        "sha256": "084c8e8b8a04c7429556a2b1d9119acb0c1ab7aabd83aaef46bc7e1427d24780",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "command": "D:\\anaconda3\\python.exe run.py",
+  "seed": 20260809,
+  "working_directory": "D:\\数学建模\\corpus\\recipes\\ode-parameter-sensitivity",
+  "isolation": {
+    "writes_within_recipe_directory": true,
+    "upstream_code_executed": false
+  },
+  "environment": {
+    "python": "3.13.9",
+    "executable": "D:\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.6"
+  },
+  "inputs": [
+    {
+      "path": "run.py",
+      "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+      "bytes": 18492
+    },
+    {
+      "path": "recipe.json",
+      "sha256": "1a1a46cdb286f7625bf0fbd7c6faec1b7ae80b6d51491ea5bb281c659c708474",
+      "bytes": 1532
+    },
+    {
+      "path": "input.json",
+      "sha256": "85d5fb104f5c9dfe528d0289f3795d67d7b4ee14039b0386a2700a5dd7b1ea3d",
+      "bytes": 129
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results.json",
+      "sha256": "38b2548c760fbcfb0c8029032ff67480d569a3767effbcdc51fe696bef77d405",
+      "bytes": 204
+    },
+    {
+      "path": "series.csv",
+      "sha256": "4effbe029fc5fdd474a33f5e30aad1747f32dba3d4611c51731b4b2fdbafdf14",
+      "bytes": 3065
+    },
+    {
+      "path": "figure.png",
+      "sha256": "392e2bdaab69a6c54170f5667d2f7a6ab9a0e9ea92d7a9d4224e621d472d3d7f",
+      "bytes": 116660
+    },
+    {
+      "path": "figure.svg",
+      "sha256": "29359e939ad82bb2ccbb1551e00953a3dc506b1919f4992b16cae531f288df28",
+      "bytes": 30211
+    },
+    {
+      "path": "figure.pdf",
+      "sha256": "0ebb684bedc1140b27c389b228463295f633c048ca9d9a5c4199795b0e809685",
+      "bytes": 13407
+    }
+  ],
+  "metrics": {
+    "max_final_state": 97.18579887494279,
+    "max_sensitivity": 399.7518860328364,
+    "baseline_final_state": 70.1903056168661
+  },
+  "runtime_ms": 806.129
+}

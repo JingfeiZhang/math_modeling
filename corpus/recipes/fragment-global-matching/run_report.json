@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "recipe_id": "fragment-global-matching",
+  "status": "success",
+  "relationship": "modernization_fixture_not_numerical_reproduction",
+  "source_pair": {
+    "candidate_id": "cumcm-2013-b254",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/814 姜荣杰 朱佳亭 金建邦.pdf",
+      "blob_sha": "1d6d2b1719420c22d0bb03e5c9fa3addd5c1279b",
+      "sha256": "a760a38dc77d74c73677676897f2bae351a586f138e3003c1c700b091567abd8"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/p3/class.m",
+        "blob_sha": "a746efb2f9a36472a335b3f7a296c1af3c7fb420",
+        "sha256": "0c985db7b46edc535296971266771dd43125338d7951c01a015ea339f0d18019",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/p22/Untitled3.m",
+        "blob_sha": "4ef4eac0461d38aa821a179c51eb6e32d05c6bd3",
+        "sha256": "7f9588570d22ca6c7543b88989a481aea65825f73a6d725704e210e092b3101c",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "command": "D:\\anaconda3\\python.exe run.py",
+  "seed": 20260805,
+  "working_directory": "D:\\数学建模\\corpus\\recipes\\fragment-global-matching",
+  "isolation": {
+    "writes_within_recipe_directory": true,
+    "upstream_code_executed": false
+  },
+  "environment": {
+    "python": "3.13.9",
+    "executable": "D:\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.6"
+  },
+  "inputs": [
+    {
+      "path": "run.py",
+      "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+      "bytes": 18492
+    },
+    {
+      "path": "recipe.json",
+      "sha256": "ac7588d7c58dc4a5b572945aa9268831f3464130c3091666ea499a6fa3a2ea5b",
+      "bytes": 1546
+    },
+    {
+      "path": "input.json",
+      "sha256": "5033816b1bbcc276e44ea5df152e27652c86ce75ff860606f6eedaf8d825e241",
+      "bytes": 21
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results.json",
+      "sha256": "dbabe32ebb6f5a3244188c51208de72423cf2336f64f616d27b678a2ee236e77",
+      "bytes": 246
+    },
+    {
+      "path": "series.csv",
+      "sha256": "03cf8863d54ac8e0116470fbc21f5e08cfb1dd02308f55d96467237e92b5dfec",
+      "bytes": 45
+    },
+    {
+      "path": "figure.png",
+      "sha256": "7d102f9fb0bf76da660062a690d2b9b8a2a56e329562f5f6fb0ffab2602c0b16",
+      "bytes": 129792
+    },
+    {
+      "path": "figure.svg",
+      "sha256": "47ac40f3a0d8b0e2daa2bed6def51e1ebc750dc844c8c526133bb99b5cd1aaf7",
+      "bytes": 33352
+    },
+    {
+      "path": "figure.pdf",
+      "sha256": "4be7d2848214db70812433816912abfd292d8045bbf06496646a1874f437ef0f",
+      "bytes": 13791
+    }
+  ],
+  "metrics": {
+    "optimal_path_cost": 0.0,
+    "adjacency_accuracy": 1.0,
+    "recovered_order": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "runtime_ms": 763.473
+}

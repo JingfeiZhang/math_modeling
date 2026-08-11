@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "run_id": "q3-adaptive-window-20260809",
+  "command": "python experiments/C/Q3/q3-review-20260809/run_q3_adaptive_window.py",
+  "seed": 20260809,
+  "environment": {
+    "python": "3.13.14",
+    "platform": "Windows-11-10.0.22631-SP0"
+  },
+  "code_source": {
+    "path": "experiments/C/Q3/q3-direct-20260808/models/rolling_milp/run_solver_q3.py",
+    "sha256": "81a665d910b5b21bde693873bd0844799acb5398d4684a37f0e6425461d5c1b5"
+  },
+  "inputs": [
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/storage_information.xlsx",
+      "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+    },
+    {
+      "path": "experiments/C/Q3/q3-direct-20260808/sensitivity/q3_sensitivity.csv",
+      "sha256": "178184fb49c0350408ec271c0a51bb892109dfdd8b12b6523df2a48c258d1c1b"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "experiments/C/Q3/q3-review-20260809/q3_adaptive_dispatch.csv",
+      "sha256": "116d379526900592451d9830c4f3c7a3b39cc5e7d16274dec94e08e2a3a5a7e1",
+      "bytes": 4750499
+    },
+    {
+      "path": "experiments/C/Q3/q3-review-20260809/q3_adaptive_window_trace.csv",
+      "sha256": "8b5714e152973eb60588bd64bdbd530e91294e1737ba4f86df57e2deba42a454",
+      "bytes": 27672
+    },
+    {
+      "path": "experiments/C/Q3/q3-review-20260809/q3_adaptive_metrics.csv",
+      "sha256": "71adb2d04297009a5e28b1ac619faa1939398ced3d7016ff159744d5fe7a151e",
+      "bytes": 2615
+    },
+    {
+      "path": "experiments/C/Q3/q3-review-20260809/q3_adaptive_constraint_audit.json",
+      "sha256": "b4442268cb0ff6a1bcb30b1fc5da0c6bd8f7a0b779dde949678e41c7ef6cfd0c",
+      "bytes": 6261
+    },
+    {
+      "path": "experiments/C/Q3/q3-review-20260809/q3_adaptive_comparison.csv",
+      "sha256": "b91d53566cbe765ce8525527b138b4120f73d8b81347054dd0c49e828033fc7a",
+      "bytes": 957
+    },
+    {
+      "path": "experiments/C/Q3/q3-review-20260809/q3_adaptive_summary.json",
+      "sha256": "de47b0dcd8413ab4433b9fcbd1f2483dfb65e756e0675ce4c151ecd679561c77",
+      "bytes": 1378
+    },
+    {
+      "path": "experiments/C/Q3/q3-review-20260809/run_q3_adaptive_window.py",
+      "sha256": "3b9d8d86d897d5b5f6a3b5b28d281d585aabfaf719959e9a1c35ccb0c6bc906f",
+      "bytes": 16308
+    }
+  ],
+  "started_at_utc": "2026-08-08T18:11:46.580678+00:00",
+  "finished_at_utc": "2026-08-08T18:11:58.873392+00:00"
+}

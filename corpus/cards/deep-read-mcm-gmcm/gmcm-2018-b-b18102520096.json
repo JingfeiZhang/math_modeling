@@ -1,0 +1,276 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "gmcm-2018-b-b18102520096",
+  "identity": {
+    "contest": "GMCM",
+    "year": 2018,
+    "problem": "B",
+    "team_id": "B18102520096",
+    "title": "光传送网建模与价值评估"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/625c3ee31307859fc48fdc5a6a80750417d69ba8",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-0研赛题目+论文/优秀论文按年份/2018年优秀论文/B/B18102520096.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "GMCM",
+    "year": 2018,
+    "problem": "B",
+    "team_id": "B18102520096",
+    "title": "光传送网建模与价值评估",
+    "award": "镜像目录称优秀论文，未独立核验",
+    "locator": "No independent official locator",
+    "matched_text": "No independent official award locator found; the mirror directory label is not award evidence."
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": false
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "No independent official award list or official paper-display locator was found for this record.",
+      "Repository popularity and an 'excellent papers' folder name do not establish an award."
+    ]
+  },
+  "pdf": {
+    "sha256": "679ba9753a005474bfc058b82b23314acda18101e38dca3c847dacfd05802d40",
+    "pages": 49,
+    "local_path": "corpus/raw/mcm-gmcm/gmcm-2018-b-b18102520096/paper.pdf",
+    "first_page_phash": "dhash64:006870f0c0c4c0c0",
+    "text_sha256": "702164a4720e77d3dadd64201c34d52474d9eabe797410af00872c285e7a6e1d"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "model"
+      ],
+      "observation": "The abstract spans modulation analysis, network planning, and constellation optimization with named algorithms.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-b-b18102520096/page-01.png"
+    },
+    {
+      "page": 11,
+      "tags": [
+        "validation",
+        "figure"
+      ],
+      "observation": "BER-SNR curves compare QPSK, 8QAM, and 16QAM under a common threshold.",
+      "derivation": "mixed",
+      "locator": "PDF page 11",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-b-b18102520096/page-11.png"
+    },
+    {
+      "page": 18,
+      "tags": [
+        "optimization",
+        "map"
+      ],
+      "observation": "A convergence curve is paired with a map of the selected optical network.",
+      "derivation": "mixed",
+      "locator": "PDF page 18",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-b-b18102520096/page-18.png"
+    },
+    {
+      "page": 22,
+      "tags": [
+        "optimization",
+        "map"
+      ],
+      "observation": "A second topology optimization repeats the convergence-plus-map structure.",
+      "derivation": "mixed",
+      "locator": "PDF page 22",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-b-b18102520096/page-22.png"
+    },
+    {
+      "page": 31,
+      "tags": [
+        "model",
+        "figure"
+      ],
+      "observation": "Original and optimized 8QAM and 16QAM constellations are shown as aligned panels.",
+      "derivation": "mixed",
+      "locator": "PDF page 31",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-b-b18102520096/page-31.png"
+    },
+    {
+      "page": 33,
+      "tags": [
+        "comparison",
+        "figure"
+      ],
+      "observation": "BER curves compare the original and proposed QAM designs.",
+      "derivation": "mixed",
+      "locator": "PDF page 33",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-b-b18102520096/page-33.png"
+    },
+    {
+      "page": 49,
+      "tags": [
+        "code",
+        "risk"
+      ],
+      "observation": "The appendix shows only a short plotting fragment and not a complete runnable package.",
+      "derivation": "mixed",
+      "locator": "PDF page 49",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2018-b-b18102520096/page-49.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "role": "multi-part-method-result",
+      "observation": "Summarize modulation, graph optimization, shortest path, and constellation redesign in the same order as the tasks."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 11,
+      "step": "modulation-baseline",
+      "observation": "Quantify BER-SNR behavior for standard QPSK and QAM schemes.",
+      "order": 1
+    },
+    {
+      "page": 18,
+      "step": "network-value",
+      "observation": "Represent the optical transport network as a graph and optimize topology value with genetic search and TSP ideas.",
+      "order": 2
+    },
+    {
+      "page": 22,
+      "step": "routing",
+      "observation": "Use Dijkstra shortest paths inside the network evaluation.",
+      "order": 3
+    },
+    {
+      "page": 31,
+      "step": "constellation-redesign",
+      "observation": "Move constellation points to improve the SNR tolerance threshold.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 11,
+      "method": "modulation-comparison",
+      "observation": "Compare standard schemes under the same BER threshold.",
+      "order": 1
+    },
+    {
+      "page": 18,
+      "method": "optimization-convergence",
+      "observation": "Show objective convergence and the resulting map.",
+      "order": 2
+    },
+    {
+      "page": 33,
+      "method": "before-after-performance",
+      "observation": "Compare original and redesigned QAM BER-SNR curves.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 11,
+      "role": "baseline",
+      "chart_type": "BER-SNR line chart",
+      "lesson": "Keep schemes and threshold on a common logarithmic response axis."
+    },
+    {
+      "page": 18,
+      "role": "optimization-result",
+      "chart_type": "convergence curve plus network map",
+      "lesson": "Place convergence evidence beside the resulting topology."
+    },
+    {
+      "page": 31,
+      "role": "design-comparison",
+      "chart_type": "four-panel constellation plot",
+      "lesson": "Use matched axes for original and redesigned signal constellations."
+    },
+    {
+      "page": 33,
+      "role": "performance-comparison",
+      "chart_type": "before-after BER curves",
+      "lesson": "Verify that geometric changes improve the target performance curve."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 11,
+      "rule": "Define a common operating threshold when comparing communication schemes.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 18,
+      "rule": "Pair every optimization convergence curve with the actual decision structure it produced.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 31,
+      "rule": "Use matched small multiples for before-after geometric designs.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 1,
+      "risk": "The paper combines loosely coupled modulation and network-planning tasks, so the narrative is broad.",
+      "severity": "medium"
+    },
+    {
+      "page": 49,
+      "risk": "Only partial code appears in the appendix and cannot reproduce the reported network results.",
+      "severity": "high"
+    },
+    {
+      "page": 31,
+      "risk": "Default MATLAB styling and small labels reduce print quality.",
+      "severity": "medium"
+    },
+    {
+      "page": 1,
+      "risk": "The award description remains unverified outside the repository mirror.",
+      "severity": "high"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/gmcm-2018-b-b18102520096/source_manifest.json",
+    "selected_pages": [
+      1,
+      11,
+      18,
+      22,
+      31,
+      33,
+      49
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

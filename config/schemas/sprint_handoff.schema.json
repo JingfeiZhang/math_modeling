@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Worker-to-root sprint handoff",
+  "type": "object",
+  "required": ["schema_version", "sprint_id", "task_id", "attempt", "status", "input_hashes", "written_paths", "artifacts", "gate_result", "summary"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "sprint_id": {"type": "string"},
+    "task_id": {"type": "string"},
+    "attempt": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["SUCCESS", "PARTIAL", "FAILED", "INTERRUPTED"]},
+    "input_hashes": {"type": "array", "items": {"$ref": "#/$defs/fingerprint"}},
+    "written_paths": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}},
+    "gate_result": {
+      "type": "object",
+      "required": ["gate", "passed", "checks"],
+      "properties": {"gate": {"enum": ["G0", "G1", "G2", "G3", "G4", "G5", "G6"]}, "passed": {"type": "boolean"}, "checks": {"type": "array", "items": {"type": "string"}}},
+      "additionalProperties": false
+    },
+    "summary": {"type": "string"}
+  },
+  "$defs": {
+    "fingerprint": {
+      "type": "object",
+      "required": ["path", "kind", "exists", "sha256"],
+      "properties": {"path": {"type": "string"}, "kind": {"enum": ["file", "directory", "missing"]}, "exists": {"type": "boolean"}, "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}},
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}},
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

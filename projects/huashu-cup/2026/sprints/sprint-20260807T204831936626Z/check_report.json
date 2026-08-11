@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T204831936626Z",
+  "status": "BLOCKED",
+  "passed": false,
+  "accepted_tasks": [],
+  "retry_tasks": [],
+  "blocked_tasks": [
+    "solver-q4"
+  ],
+  "protected_changes": [],
+  "tasks": [
+    {
+      "task_id": "solver-q4",
+      "declared_status": "MISSING",
+      "disposition": "BLOCKED",
+      "attempt": 1,
+      "issues": [
+        {
+          "kind": "stale_input",
+          "path": "sprints/sprint-20260807T200315378028Z/merged/solver-q2"
+        },
+        {
+          "kind": "stale_input",
+          "path": "sprints/sprint-20260807T194315250Z/merged/q3-pilot"
+        },
+        {
+          "kind": "missing_handoff",
+          "path": "sprints/sprint-20260807T204831936626Z/staging/solver-q4/handoff.json"
+        },
+        {
+          "kind": "missing_expected_output",
+          "path": "sprints/sprint-20260807T204831936626Z/staging/solver-q4/handoff.json"
+        }
+      ],
+      "artifacts": [],
+      "handoff": "sprints/sprint-20260807T204831936626Z/staging/solver-q4/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-07T20:55:27.023433+00:00"
+}

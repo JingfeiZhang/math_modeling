@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "q4_joint_candidate_schedule.csv",
+      "sha256": "570b3ab7ec55d87663e8481ce254070d3f7c1618c8169d8ffd4c70a5ec64dca4"
+    },
+    {
+      "path": "q4_joint_constraint_audit.json",
+      "sha256": "c6dd11f8b568c404f2f5c78750c5f62d7b4ef1b651bbdbcbd58f5ee4300b3bf4"
+    },
+    {
+      "path": "q4_joint_high_carbon_empirical_joint_candidate_dispatch.csv",
+      "sha256": "e764de810c117445e645a2822870084d8c8c3b2ce3eab0927983ed8185bf267a"
+    },
+    {
+      "path": "q4_joint_high_carbon_empirical_sequential_baseline_dispatch.csv",
+      "sha256": "d083ef5a981536b1a680b037dba0212236a4d53da91148ad6ffe99407bcaf4ce"
+    },
+    {
+      "path": "q4_joint_joint_stress_joint_candidate_dispatch.csv",
+      "sha256": "c9f43f2c39dc8149ce41eec0f5a869f8932ae606533ec53bff0e7ba39a6047e6"
+    },
+    {
+      "path": "q4_joint_joint_stress_sequential_baseline_dispatch.csv",
+      "sha256": "96057f1cd5cebca75ae6895cae6316d036c350f70dc98efd1e2c0598d8ae8124"
+    },
+    {
+      "path": "q4_joint_metrics.csv",
+      "sha256": "1952879320fec6e3810058aa498a2a68352bef9c4ea1cb63a55704ae8682d499"
+    },
+    {
+      "path": "q4_joint_observed_joint_candidate_dispatch.csv",
+      "sha256": "1a917199adfa03030876599e228ef5f669f35b8aea8e26cd851a966d9d2e9b69"
+    },
+    {
+      "path": "q4_joint_observed_sequential_baseline_dispatch.csv",
+      "sha256": "f59ff17d32be791473ac7631446f2547f62e64b251e53b7a11596a63d6323102"
+    },
+    {
+      "path": "q4_joint_peak_price_empirical_joint_candidate_dispatch.csv",
+      "sha256": "7738e1ce7bbfdbad5a30fe70ca8129a2ef0187f1d26a14d47d4d9a64408b975d"
+    },
+    {
+      "path": "q4_joint_peak_price_empirical_sequential_baseline_dispatch.csv",
+      "sha256": "b8933e745433c77b4501b39a650d9a63f55c70dc5acd10de842752eb7a70683e"
+    },
+    {
+      "path": "q4_joint_renewable_low_empirical_joint_candidate_dispatch.csv",
+      "sha256": "86bda15770fdc0149a2088f1a4ff00cd4714c2c78df3cdae56f0441ef4ae64e8"
+    },
+    {
+      "path": "q4_joint_renewable_low_empirical_sequential_baseline_dispatch.csv",
+      "sha256": "9081ac5275827a870a0548a2f1071cbaa795f9c7c32f2511cd0f8746a13d4823"
+    },
+    {
+      "path": "q4_joint_risk_probes.json",
+      "sha256": "e81eab1f13eb71ed65e44b634910ece91f7070b01903ac5e2337d20baa073fa9"
+    },
+    {
+      "path": "q4_joint_search_trace.csv",
+      "sha256": "08271d2185df1f5ec635a4d8e862aff5d358784aa394e8b314e6da5534ceb3c2"
+    },
+    {
+      "path": "q4_joint_summary.json",
+      "sha256": "9f66d827d68dffc6e89f05cb4b70734975bc84cd050adc9b2f1178ca1bf43ec5"
+    },
+    {
+      "path": "q4_joint_task_moves.csv",
+      "sha256": "64c69aa4254702ee80f5de13cccceff88d1e84d0670426f14905f967495eddfa"
+    },
+    {
+      "path": "run_manifest.json",
+      "sha256": "848b11f47862d08e86970832b58dbf496175beb96c987e74c12a921817016f6a"
+    },
+    {
+      "path": "run_q4_joint_optimization.py",
+      "sha256": "30360d5afa256270bc5f898f37072815ad4dbc5787627001d812f1527e50538a"
+    }
+  ]
+}

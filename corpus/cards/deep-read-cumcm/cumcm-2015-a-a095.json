@@ -1,0 +1,363 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2015-a-a095",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2015,
+    "problem": "A",
+    "team_id": "",
+    "title": "太阳影子定位模型"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2015/A095.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2015/A095.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2015,
+    "problem": "A",
+    "team_id": "",
+    "title": "太阳影子定位模型",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "c97e422a5f3cb6419f9a77de7971a429f60a132490c08461cfe603a97ded6567",
+    "pages": 27,
+    "local_path": "corpus/raw/objects/sha256/c9/c97e422a5f3cb6419f9a77de7971a429f60a132490c08461cfe603a97ded6567.pdf",
+    "first_page_phash": "30f0d8d0d0ccc0c7",
+    "text_sha256": "b9c573be47022a9fdc2f006234bd0529533a8ac33f5db1b93af5450c96bc3001"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括；按子问题顺序陈述方法与结果；摘要包含量化结果或结果判断；末尾列出关键词”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：太阳影子定位模型",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：数据类型下的太阳影子定位模型，实现了视频拍摄地点和日期的快速精准确定。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：立双目标规划模型，确立目标函数分别为：min  | Ai  Ai' | , min  | S归i  S归' i | 。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：然后在约束条件下对杆子的地点坐标应用网格逼近算法优化求解，得出最符合题",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：杆长为 2.03米 ，太阳方向角残差比为 1.8% ，影长残差比为 0.9% ，误差均很小。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-01.jpg"
+    },
+    {
+      "page": 6,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：影长数据（具体见附录）。从结果中挑选出几个比较重要的时间点，将相应结果",
+      "derivation": "mixed",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-06.jpg"
+    },
+    {
+      "page": 7,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：从图 4 中可以发现，影长与杆长呈正比关系，这是由于 tan   ，从而验证",
+      "derivation": "mixed",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-07.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：对于模型的推广，根据物体采集到的太阳地理信息进行计算，可以应用到求",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-01.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：减少运算量的角度考虑，有必要改进算法。考虑引入现代优化算法之一的粒子群",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-03.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "按子问题顺序陈述方法与结果",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "摘要包含量化结果或结果判断",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "末尾列出关键词",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "太阳影子定位模型",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 2,
+      "page": 1,
+      "description": "数据类型下的太阳影子定位模型，实现了视频拍摄地点和日期的快速精准确定。",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 3,
+      "page": 1,
+      "description": "立双目标规划模型，确立目标函数分别为：min  | Ai  Ai' | , min  | S归i  S归' i | 。",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 4,
+      "page": 1,
+      "description": "然后在约束条件下对杆子的地点坐标应用网格逼近算法优化求解，得出最符合题",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 5,
+      "page": 1,
+      "description": "对于问题三，首先建立了与问题二相似的目标规划模型，由于日期未知，模",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 6,
+      "page": 1,
+      "description": "型求解的时间复杂度较高。为提高计算速度，引入了粒子群算法。分别对附件 2",
+      "locator": "PDF p.1"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "杆长为 2.03米 ，太阳方向角残差比为 1.8% ，影长残差比为 0.9% ，误差均很小。",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 2,
+      "page": 6,
+      "description": "影长数据（具体见附录）。从结果中挑选出几个比较重要的时间点，将相应结果",
+      "locator": "PDF p.6"
+    },
+    {
+      "step": 3,
+      "page": 7,
+      "description": "从图 4 中可以发现，影长与杆长呈正比关系，这是由于 tan   ，从而验证",
+      "locator": "PDF p.7"
+    },
+    {
+      "step": 4,
+      "page": 10,
+      "description": "及归一化后的影子长度 S归 i 进行求解，从而与实际值作差进行比较，进而得出最",
+      "locator": "PDF p.10"
+    },
+    {
+      "step": 5,
+      "page": 10,
+      "description": "表 6 误差分析表",
+      "locator": "PDF p.10"
+    }
+  ],
+  "figures": [
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图1 太阳方位角示意图",
+      "lesson": "图题“图1 太阳方位角示意图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-05.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "line",
+      "caption": "图 2 影子长度变化曲线",
+      "lesson": "图题“图 2 影子长度变化曲线”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-06.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "line",
+      "caption": "图 3 影长与日期关系曲线 图 4 影长与杆长关系曲线",
+      "lesson": "图题“图 3 影长与日期关系曲线 图 4 影长与杆长关系曲线”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "line",
+      "caption": "图 5 影长与经度关系曲线 图 6 影长与纬度关系曲线",
+      "lesson": "图题“图 5 影长与经度关系曲线 图 6 影长与纬度关系曲线”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "从图 3 中可以发现，影长随着时间的增加，呈现先减小后增大的趋势，影长",
+      "lesson": "图题“从图 3 中可以发现，影长随着时间的增加，呈现先减小后增大的趋势，影长”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "从图 4 中可以发现，影长与杆长呈正比关系，这是由于 tan   ，从而验证",
+      "lesson": "图题“从图 4 中可以发现，影长与杆长呈正比关系，这是由于 tan   ，从而验证”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2015-a-a095/pages/page-07.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 1
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 5
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 1
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "6437c9a1bbec1da6fc257d385f1c470fd6022488",
+    "bytes": 1610191,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2015-a-a095/extracted-layout.txt",
+      "sha256": "b9c573be47022a9fdc2f006234bd0529533a8ac33f5db1b93af5450c96bc3001",
+      "extracted_pages": 27,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 27,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2015-a-a095/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2015-a-a095/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2015-a-a095/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2015-a-a095/contact-25-27.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

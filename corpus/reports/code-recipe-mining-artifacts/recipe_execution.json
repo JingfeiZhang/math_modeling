@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "python": "D:\\anaconda3\\python.exe",
+  "recipe_count": 12,
+  "passed": 12,
+  "failed": 0,
+  "records": [
+    {
+      "recipe_id": "cellular-traffic",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "4bd1ea51d82acfcd621184fc76ff5acd293284d9ae678fe149f0bb28cadd9c3b",
+      "stdout": "{\"recipe_id\": \"cellular-traffic\", \"status\": \"success\", \"metrics\": {\"simulated_flow_vehicles\": 96, \"mean_speed_cells_per_step\": 2.447361111111111, \"free_flow_baseline\": 200.0}}",
+      "stderr": ""
+    },
+    {
+      "recipe_id": "folding-table-geometry",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "c2b58a8ed89d744ad29319c7ecb7127736c28062e0b0030be8b8d45754e341f2",
+      "stdout": "{\"recipe_id\": \"folding-table-geometry\", \"status\": \"success\", \"metrics\": {\"best_angle_deg\": 74.36708860759494, \"best_footprint_m\": 0.19477101174528347, \"material_proxy\": 13.010126582278481, \"feasible_count\": 430}}",
+      "stderr": ""
+    },
+    {
+      "recipe_id": "folding-table-shape-scan",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "913c9a45c920cbd45ed84036aa9e14ad099d00ef6e7fb651746093073c977467",
+      "stdout": "{\"recipe_id\": \"folding-table-shape-scan\", \"status\": \"success\", \"metrics\": {\"best_side_count\": 14, \"score\": 3.667082612530359, \"square_baseline_score\": 5.6568542494923815}}",
+      "stderr": ""
+    },
+    {
+      "recipe_id": "fragment-global-matching",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "cb7433032ea3c3015e7781b523ca3f0d625e05b99a82ebfef5ef41db9d942a42",
+      "stdout": "{\"recipe_id\": \"fragment-global-matching\", \"status\": \"success\", \"metrics\": {\"optimal_path_cost\": 0.0, \"adjacency_accuracy\": 1.0, \"recovered_order\": [0, 1, 2, 3, 4, 5, 6, 7]}}",
+      "stderr": ""
+    },
+    {
+      "recipe_id": "fragment-row-matching",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "363912fc5b909c0ee21a329520c48520713fae74965439b7dfd9b5110c882360",
+      "stdout": "{\"recipe_id\": \"fragment-row-matching\", \"status\": \"success\", \"metrics\": {\"adjacency_accuracy\": 1.0, \"shuffled_baseline\": 0.2222222222222222, \"recovered_order\": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}}",
+      "stderr": ""
+    },
+    {
+      "recipe_id": "lunar-descent-control",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "b5a527f5245b7d1a9030764f4b030e2626884f86e7b59cd0fefd4c5cfbedd7e2",
+      "stdout": "{\"recipe_id\": \"lunar-descent-control\", \"status\": \"success\", \"metrics\": {\"touchdown_speed_mps\": 2.000001554310319, \"fuel_proxy\": 222.99199844568963, \"duration_s\": 121.5, \"constant_thrust_baseline_speed_mps\": 47.68300000000001}}",
+      "stderr": ""
+    },
+    {
+      "recipe_id": "normal-uncertainty-monte-carlo",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "d6312e4136b988760986818ce739faf2cbbfc3752b11540e4beb5999ec951e3b",
+      "stdout": "{\"recipe_id\": \"normal-uncertainty-monte-carlo\", \"status\": \"success\", \"metrics\": {\"mean\": 9.423350658331675, \"std\": 1.6487412913602235, \"q025\": 6.189383809172026, \"q975\": 12.640939520031438, \"baseline_at_means\": 9.5}}",
+      "stderr": ""
+    },
+    {
+      "recipe_id": "ode-parameter-sensitivity",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "1716077065d1c8671fe22252c959fa53d3264b4e911306e6d8358b800821337b",
+      "stdout": "{\"recipe_id\": \"ode-parameter-sensitivity\", \"status\": \"success\", \"metrics\": {\"max_final_state\": 97.18579887494279, \"max_sensitivity\": 399.7518860328364, \"baseline_final_state\": 70.1903056168661}}",
+      "stderr": ""
+    },
+    {
+      "recipe_id": "solar-tilt-sensitivity",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "1642bb396841885a065b5970debf670bb46e2d8cbe30d16ed83851b1108d0646",
+      "stdout": "{\"recipe_id\": \"solar-tilt-sensitivity\", \"status\": \"success\", \"metrics\": {\"best_tilt_deg\": 40.0, \"normalized_energy\": 0.9587562443668256, \"baseline_energy\": 0.943792013670388, \"relative_gain\": 0.015855432637368994}}",
+      "stderr": ""
+    },
+    {
+      "recipe_id": "storage-slot-sizing",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "7bd058c754413a69f090e73fa5b1e95c24ae0dd963161a9437cd892c7d544e4c",
+      "stdout": "{\"recipe_id\": \"storage-slot-sizing\", \"status\": \"success\", \"metrics\": {\"required_cabinets\": 3, \"standardized_area_mm2\": 7550989.0, \"packing_overhead_ratio\": 0.13104146633065206, \"single_cabinet_baseline_capacity_mm2\": 3000000.0}}",
+      "stderr": ""
+    },
+    {
+      "recipe_id": "traffic-capacity-ga",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "3bb0c329b3c7990815277b3926bd9e577a4f71385e2c9973b8c9d87cc43b2b03",
+      "stdout": "{\"recipe_id\": \"traffic-capacity-ga\", \"status\": \"success\", \"metrics\": {\"best_speed_kmh\": 75.0, \"best_headway_s\": 0.8, \"optimized_score\": 3421.0384615384614, \"baseline_score\": 1666.6666666666665}}",
+      "stderr": ""
+    },
+    {
+      "recipe_id": "trajectory-angle-scan",
+      "returncode": 0,
+      "status": "passed",
+      "new_files": [],
+      "required_outputs_present": [
+        "figure.pdf",
+        "figure.png",
+        "figure.svg",
+        "results.json",
+        "run_report.json",
+        "series.csv"
+      ],
+      "run_report_sha256": "fd6cd5e85d602d6b6d3adfe71f17de29e31b623b634bda44568ade8fee4403c8",
+      "stdout": "{\"recipe_id\": \"trajectory-angle-scan\", \"status\": \"success\", \"metrics\": {\"best_angle_deg\": 32.5, \"range_m\": 621.2042364968842, \"absolute_error_m\": 1.204236496884164, \"baseline_error_m\": 65.42303771661568}}",
+      "stderr": ""
+    }
+  ]
+}

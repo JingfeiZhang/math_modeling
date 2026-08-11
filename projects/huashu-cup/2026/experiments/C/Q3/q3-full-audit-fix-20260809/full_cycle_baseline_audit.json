@@ -1,0 +1,150 @@
+{
+  "audits": [
+    {
+      "checks": {
+        "charge_power_violation_MW": 0.0,
+        "charge_split_max_abs_MW": 0.0,
+        "discharge_power_violation_MW": 0.0,
+        "grid_export_violation_MW": 0.0,
+        "grid_import_violation_MW": 0.0,
+        "load_balance_max_abs_MW": 0.0,
+        "renewable_balance_max_abs_MW": 0.0,
+        "simultaneous_charge_discharge_MW": 0.0,
+        "simultaneous_grid_buy_sell_MW": 0.0,
+        "soc_max_violation_MWh": 0.0,
+        "soc_min_violation_MWh": 0.0,
+        "soc_transition_max_abs_MWh": 0.0,
+        "terminal_soc_shortfall_MWh": 0.0
+      },
+      "evaluation": "full_cycle_baseline_reference",
+      "horizon_h": 2407,
+      "method": "no_storage_renewable_first",
+      "passed": true,
+      "region": "RegionA",
+      "scenario": "observed",
+      "window_start_h": 0
+    },
+    {
+      "checks": {
+        "charge_power_violation_MW": 0.0,
+        "charge_split_max_abs_MW": 0.0,
+        "discharge_power_violation_MW": 0.0,
+        "grid_export_violation_MW": 0.0,
+        "grid_import_violation_MW": 0.0,
+        "load_balance_max_abs_MW": 0.0,
+        "renewable_balance_max_abs_MW": 0.0,
+        "simultaneous_charge_discharge_MW": 0.0,
+        "simultaneous_grid_buy_sell_MW": 0.0,
+        "soc_max_violation_MWh": 0.0,
+        "soc_min_violation_MWh": 0.0,
+        "soc_transition_max_abs_MWh": 0.0,
+        "terminal_soc_shortfall_MWh": 0.0
+      },
+      "evaluation": "full_cycle_baseline_reference",
+      "horizon_h": 2407,
+      "method": "no_storage_renewable_first",
+      "passed": true,
+      "region": "RegionB",
+      "scenario": "observed",
+      "window_start_h": 0
+    },
+    {
+      "checks": {
+        "charge_power_violation_MW": 0.0,
+        "charge_split_max_abs_MW": 0.0,
+        "discharge_power_violation_MW": 0.0,
+        "grid_export_violation_MW": 0.0,
+        "grid_import_violation_MW": 0.0,
+        "load_balance_max_abs_MW": 0.0,
+        "renewable_balance_max_abs_MW": 0.0,
+        "simultaneous_charge_discharge_MW": 0.0,
+        "simultaneous_grid_buy_sell_MW": 0.0,
+        "soc_max_violation_MWh": 0.0,
+        "soc_min_violation_MWh": 0.0,
+        "soc_transition_max_abs_MWh": 0.0,
+        "terminal_soc_shortfall_MWh": 0.0
+      },
+      "evaluation": "full_cycle_baseline_reference",
+      "horizon_h": 2407,
+      "method": "no_storage_renewable_first",
+      "passed": true,
+      "region": "RegionC",
+      "scenario": "observed",
+      "window_start_h": 0
+    },
+    {
+      "checks": {
+        "charge_power_violation_MW": 0.0,
+        "charge_split_max_abs_MW": 0.0,
+        "discharge_power_violation_MW": 0.0,
+        "grid_export_violation_MW": 0.0,
+        "grid_import_violation_MW": 0.0,
+        "load_balance_max_abs_MW": 0.0,
+        "renewable_balance_max_abs_MW": 0.0,
+        "simultaneous_charge_discharge_MW": 0.0,
+        "simultaneous_grid_buy_sell_MW": 0.0,
+        "soc_max_violation_MWh": 0.0,
+        "soc_min_violation_MWh": 0.0,
+        "soc_transition_max_abs_MWh": 0.0,
+        "terminal_soc_shortfall_MWh": 0.0
+      },
+      "evaluation": "full_cycle_baseline_reference",
+      "horizon_h": 2407,
+      "method": "no_storage_renewable_first",
+      "passed": true,
+      "region": "RegionD",
+      "scenario": "observed",
+      "window_start_h": 0
+    },
+    {
+      "checks": {
+        "charge_power_violation_MW": 0.0,
+        "charge_split_max_abs_MW": 0.0,
+        "discharge_power_violation_MW": 0.0,
+        "grid_export_violation_MW": 0.0,
+        "grid_import_violation_MW": 0.0,
+        "load_balance_max_abs_MW": 0.0,
+        "renewable_balance_max_abs_MW": 0.0,
+        "simultaneous_charge_discharge_MW": 0.0,
+        "simultaneous_grid_buy_sell_MW": 0.0,
+        "soc_max_violation_MWh": 0.0,
+        "soc_min_violation_MWh": 0.0,
+        "soc_transition_max_abs_MWh": 0.0,
+        "terminal_soc_shortfall_MWh": 0.0
+      },
+      "evaluation": "full_cycle_baseline_reference",
+      "horizon_h": 2407,
+      "method": "no_storage_renewable_first",
+      "passed": true,
+      "region": "RegionE",
+      "scenario": "observed",
+      "window_start_h": 0
+    },
+    {
+      "checks": {
+        "charge_power_violation_MW": 0.0,
+        "charge_split_max_abs_MW": 0.0,
+        "discharge_power_violation_MW": 0.0,
+        "grid_export_violation_MW": 0.0,
+        "grid_import_violation_MW": 0.0,
+        "load_balance_max_abs_MW": 0.0,
+        "renewable_balance_max_abs_MW": 0.0,
+        "simultaneous_charge_discharge_MW": 0.0,
+        "simultaneous_grid_buy_sell_MW": 0.0,
+        "soc_max_violation_MWh": 0.0,
+        "soc_min_violation_MWh": 0.0,
+        "soc_transition_max_abs_MWh": 0.0,
+        "terminal_soc_shortfall_MWh": 0.0
+      },
+      "evaluation": "full_cycle_baseline_reference",
+      "horizon_h": 2407,
+      "method": "no_storage_renewable_first",
+      "passed": true,
+      "region": "RegionF",
+      "scenario": "observed",
+      "window_start_h": 0
+    }
+  ],
+  "schema_version": 1,
+  "tolerance": 5e-05
+}

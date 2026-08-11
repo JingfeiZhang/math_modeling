@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q4",
+  "status": "PASS",
+  "pilot_scope": "three 24-hour scenario probes seeded from merged Q4 task envelope",
+  "methods": {
+    "candidate": "alternating_peak_shadow_MILP",
+    "baseline": "same_envelope_no_storage",
+    "fallback": null,
+    "optimality_statement": "Scenario results are exploratory; regional subproblems have solver status but the alternating coordinator is not a globally optimal integrated solve."
+  },
+  "provenance": {
+    "merged_q4_directory": "sprints/sprint-20260807T210015466011Z/merged/solver-q4",
+    "merged_q4_directory_sha256": "2b72059f04e8ef5955e753c91aba96e985310f5af556d988d66c3c0b0260d3f4",
+    "merged_dispatch_sha256": "c64993e68b22533b19ad5290401eb6dcdd09c310ccf24884d10017588b3a2770",
+    "merged_task_count": 506,
+    "raw_workload_rows": 50000,
+    "envelope_definition": "Total_Load_MW from merged Q4 candidate dispatch; observed AI load is not added again."
+  },
+  "scenario_definitions": [
+    {
+      "name": "observed",
+      "renewable_multiplier": 1.0,
+      "carbon_weight": 0.35
+    },
+    {
+      "name": "high_carbon_price",
+      "renewable_multiplier": 1.0,
+      "carbon_weight": 0.85
+    },
+    {
+      "name": "renewable_low_70pct",
+      "renewable_multiplier": 0.7,
+      "carbon_weight": 0.5
+    }
+  ],
+  "coordination": {
+    "observed": {
+      "target_peak_MW": 0.0,
+      "iterations": [
+        {
+          "iteration": 1,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": -413.5242004167002,
+          "target_MW": 0.0
+        },
+        {
+          "iteration": 2,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": -413.5242004167002,
+          "target_MW": 0.0
+        },
+        {
+          "iteration": 3,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": -413.5242004167002,
+          "target_MW": 0.0
+        },
+        {
+          "iteration": 4,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": -413.5242004167002,
+          "target_MW": 0.0
+        },
+        {
+          "iteration": 5,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": -413.5242004167002,
+          "target_MW": 0.0
+        }
+      ],
+      "final_lambda_peak": 0.0,
+      "coordination_rule": "shared peak-import shadow price updated from regional max net import"
+    },
+    "high_carbon_price": {
+      "target_peak_MW": 0.0,
+      "iterations": [
+        {
+          "iteration": 1,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": -413.5242004167002,
+          "target_MW": 0.0
+        },
+        {
+          "iteration": 2,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": -413.5242004167002,
+          "target_MW": 0.0
+        },
+        {
+          "iteration": 3,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": -413.5242004167002,
+          "target_MW": 0.0
+        },
+        {
+          "iteration": 4,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": -413.5242004167002,
+          "target_MW": 0.0
+        },
+        {
+          "iteration": 5,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": -413.5242004167002,
+          "target_MW": 0.0
+        }
+      ],
+      "final_lambda_peak": 0.0,
+      "coordination_rule": "shared peak-import shadow price updated from regional max net import"
+    },
+    "renewable_low_70pct": {
+      "target_peak_MW": 527.8873541766352,
+      "iterations": [
+        {
+          "iteration": 1,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": 197.08826651333337,
+          "target_MW": 527.8873541766352
+        },
+        {
+          "iteration": 2,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": 197.08826651333337,
+          "target_MW": 527.8873541766352
+        },
+        {
+          "iteration": 3,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": 197.08826651333337,
+          "target_MW": 527.8873541766352
+        },
+        {
+          "iteration": 4,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": 197.08826651333337,
+          "target_MW": 527.8873541766352
+        },
+        {
+          "iteration": 5,
+          "lambda_peak": 0.0,
+          "global_peak_net_import_MW": 197.08826651333337,
+          "target_MW": 527.8873541766352
+        }
+      ],
+      "final_lambda_peak": 0.0,
+      "coordination_rule": "shared peak-import shadow price updated from regional max net import"
+    }
+  },
+  "aggregate_comparison": [
+    {
+      "scenario": "observed",
+      "candidate_method": "alternating_peak_shadow_MILP",
+      "baseline_method": "same_envelope_no_storage",
+      "candidate_cost_CNY": -4579474.319840281,
+      "baseline_cost_CNY": -4262615.413719815,
+      "cost_delta_CNY": -316858.90612046607,
+      "candidate_carbon_tCO2": 0.0,
+      "baseline_carbon_tCO2": 0.0,
+      "candidate_peak_net_import_MW": -413.5242004167002,
+      "baseline_peak_net_import_MW": -250.06480000000016,
+      "candidate_renewable_utilization_ratio": 0.7032535733686822,
+      "baseline_renewable_utilization_ratio": 0.6809116294377865
+    },
+    {
+      "scenario": "high_carbon_price",
+      "candidate_method": "alternating_peak_shadow_MILP",
+      "baseline_method": "same_envelope_no_storage",
+      "candidate_cost_CNY": -4579474.319840281,
+      "baseline_cost_CNY": -4262615.413719815,
+      "cost_delta_CNY": -316858.90612046607,
+      "candidate_carbon_tCO2": 0.0,
+      "baseline_carbon_tCO2": 0.0,
+      "candidate_peak_net_import_MW": -413.5242004167002,
+      "baseline_peak_net_import_MW": -250.06480000000016,
+      "candidate_renewable_utilization_ratio": 0.703238908381747,
+      "baseline_renewable_utilization_ratio": 0.6809116294377865
+    },
+    {
+      "scenario": "renewable_low_70pct",
+      "candidate_method": "alternating_peak_shadow_MILP",
+      "baseline_method": "same_envelope_no_storage",
+      "candidate_cost_CNY": -2572297.679651977,
+      "baseline_cost_CNY": -1699920.630640884,
+      "cost_delta_CNY": -872377.0490110931,
+      "candidate_carbon_tCO2": 452.20751370597844,
+      "baseline_carbon_tCO2": 1198.6496502831376,
+      "candidate_peak_net_import_MW": 197.08826651333337,
+      "baseline_peak_net_import_MW": 555.6708991333003,
+      "candidate_renewable_utilization_ratio": 0.9040245557276544,
+      "baseline_renewable_utilization_ratio": 0.8752120772731028
+    }
+  ],
+  "risk_probes": {
+    "scenarios": [
+      "observed",
+      "high_carbon_price",
+      "renewable_low_70pct"
+    ],
+    "all_hard_constraint_audits_passed": true,
+    "terminal_soc_checked": true,
+    "double_counting_guard": "Total_Load_MW from merged Q4 candidate dispatch; observed AI load is not added again."
+  },
+  "claim_proposals": [
+    {
+      "id": "Q4-ENH-P1",
+      "text": "On the bounded 24-hour probes, the alternating regional storage coordinator maintained all audited energy/SOC/grid constraints under observed and perturbed renewable/carbon conditions.",
+      "status": "proposal_only"
+    },
+    {
+      "id": "Q4-ENH-P2",
+      "text": "Cost and renewable-utilization deltas are scenario-specific exploratory evidence and do not establish global dominance.",
+      "status": "proposal_only"
+    }
+  ],
+  "limitations": [
+    "24-hour bounded horizon",
+    "task assignment/envelope is frozen from merged Q4 evidence",
+    "regional subproblems communicate only through a peak-import shadow price; no physical inter-region power flow is introduced",
+    "carbon price is an objective weight probe, not a new tariff claim",
+    "MILP failure blocks evidence because no fallback is claimed",
+    "formal claims remain root-owned"
+  ]
+}

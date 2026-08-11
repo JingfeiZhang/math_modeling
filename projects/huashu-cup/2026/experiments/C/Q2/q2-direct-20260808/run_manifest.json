@@ -1,0 +1,256 @@
+﻿{
+    "artifacts":  [
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/compat/claim_proposals.json",
+                          "sha256":  "3913e3057d2d274be7a52701d74cec3655578821fcef219f4d9c54476ac24a6e"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/compat/generate_q2_compat.py",
+                          "sha256":  "8a7fddf9c10e0699b98887c84ddd158f2662f3ed6b4f940a00897757bd4c2a26"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/compat/q2_compat_summary.json",
+                          "sha256":  "e5a3408b7175c29c9e011b2ae585465ee4845edace2d66eccac2cedb930aad22"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/compat/q2_renewable_accounting.csv",
+                          "sha256":  "5306c356110bfbb919c139e0f0b80e79589e8e4932cdd2d777c85b72390c123a"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/compat/q2_renewable_metric_audit.json",
+                          "sha256":  "9aef319de98901e5a2c010915bca5ff38dbe3a74ffd18269a981329fd25ec2d3"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/compat/result_hashes.json",
+                          "sha256":  "d171b9db5de30d94e6deac9882c7c3d7b2de8a074531126dd1fa8e387513e739"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/compat/risk_probes.json",
+                          "sha256":  "0fdf3f9cae5c30e368991dd1621887c481be821b42dd5e5bad2db5ee65f48c90"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/compat/run_manifest.json",
+                          "sha256":  "f007b478ddc908e56a68c2e36facdc0434b0ed5a1d570b29e03f8cfad9d073d0"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_cost_carbon_latency_probe.pdf",
+                          "sha256":  "4ad4e388b31741536b9c6c2e8430890c793dabb9b90e000c416344dc64d296e1"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_cost_carbon_latency_probe.png",
+                          "sha256":  "36def3c809a06ef46c99c71e1f3a74d16bb720aef57af2ebe72338be84a97900"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_cost_carbon_latency_probe.svg",
+                          "sha256":  "44e055c64030ee10fbe52082d3277b530d9b33275a8d5a1536d592011953f439"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_dispatch_comparison.pdf",
+                          "sha256":  "0c50d7e0179766c0341336a82040345a6797c0d182c1f692d307536d0b5377e8"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_dispatch_comparison.png",
+                          "sha256":  "66e344dbdd5eed75f0c53ad848f48c7cab26f1d580bc2f300b93b3f6835ad270"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_dispatch_comparison.svg",
+                          "sha256":  "a15d858377cee2d1993083f77a164038c46ebe62eef32759983a5a44396dbe01"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_region_load_probe.pdf",
+                          "sha256":  "81893dab0c3411b3b25f6a64b4f96bcb37f8db86b72c36df5547a263a4a68a8d"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_region_load_probe.png",
+                          "sha256":  "165fa23ff804a26cb1f503d50f4121d11638d48bede693afe2d885868964d025"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_region_load_probe.svg",
+                          "sha256":  "6a7544918006f37cc622eebe55ed8669c8e9440e85a0fd5db039c22b9803e32c"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_task_migration_probe.pdf",
+                          "sha256":  "2e727bbbb9da13fcb4535a5e2586b3f3dd3b324fcd16c9468cc04c296ae07446"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_task_migration_probe.png",
+                          "sha256":  "a3685b19c24ee745d1f39c5df6064c5f38d23ab187ebe25789d89544e4606d3e"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/figures/fig_q2_task_migration_probe.svg",
+                          "sha256":  "5590b3e2de82cc9105e15042b7c4cfcc0268219bfeb9a69d762ee1e5b9611167"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/independent_audit.json",
+                          "sha256":  "309ea95c094ccddf1efb2064278bb6812d4372685a6a2065bda80a419cc0a5fe"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/adaptive_alns/q2_alns_candidate_schedule.csv",
+                          "sha256":  "d2ab08de63496232ec463c651b85f1f35f98bfafaa0121c1ce12d45cdc20c1de"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/adaptive_alns/q2_alns_constraint_audit.json",
+                          "sha256":  "2464564521fb88ef236f07209d2cfde791db65aa93ce331f94ea9a62f9a72afe"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/adaptive_alns/q2_alns_hourly_profiles.csv",
+                          "sha256":  "dbb2f6d66294cb8a50780c59f3410f0d89c4dda90e771dcba0eca78161efa682"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/adaptive_alns/q2_alns_metrics.csv",
+                          "sha256":  "4932b5ff14604eddba7302134c2c52973052f15874dd70ac210f628ad856afe4"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/adaptive_alns/q2_alns_operator_log.csv",
+                          "sha256":  "0d80a5a66f8c3f9ff6094de4cd11125a7ba703a6d20ad60fc3c390e58c02d2ea"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/adaptive_alns/q2_alns_risk_probes.json",
+                          "sha256":  "380e52cf6c71a3c8a5f85897256a076dad3763435de951dc93e91af012014f36"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/adaptive_alns/q2_alns_summary.json",
+                          "sha256":  "7ba92794f6b42cef954cae8de199009b660599cdbdd5d8f5a5aef1116631aa2a"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/adaptive_alns/q2_alns_task_migrations.csv",
+                          "sha256":  "f6113b35ef8275f73a2e6c5f170b1773c9bf44f064152b5bd561ae8aa812ec78"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/adaptive_alns/run_q2_adaptive_alns.py",
+                          "sha256":  "76549da0091863d97832064a3a8c9e43ba981dac446bead969d51e9935d8bd5f"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_baseline_schedule.csv",
+                          "sha256":  "172d45d624d85f7cf7558606e551f7dee275ab726236c6b933b39d6282df370a"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_block_robustness.csv",
+                          "sha256":  "2ac7d8a6da49d09319359317931371b7f16c7f9e872a81f2d64a11e58dfdbaa4"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_candidate_schedule.csv",
+                          "sha256":  "8b0d753e46c4a157fa12f62f5f833468403a980e42460857f238a770d8db0004"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_claim_proposals.json",
+                          "sha256":  "c46b83127d677bd0450f4b7f71d7a256907ea659c31a3d9e210c92feb972fc09"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_constraint_audit.json",
+                          "sha256":  "7cd13ac3a90608513c0f143d157218598a82a334eb1e91ca7791f25b13f97170"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_exchange_log.csv",
+                          "sha256":  "6bc223a7e692b799a871ee7433413d89516cf6d78d06d61a77e933d8bd2bcd56"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_hourly_profiles.csv",
+                          "sha256":  "85e923b393e2b29412b5e1b77c5fef04022a251d8ffcf2fc81475a7974c35435"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_risk_probes.csv",
+                          "sha256":  "89ab9b43098d8f1cfaa61577d7085727ea6ace23b4a48a43da15245f9020e124"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_run_manifest.json",
+                          "sha256":  "414763bf1d7ea01f7481fcf6c8bff340953ba60dccae95a431219f03a0c0f0f6"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_summary.json",
+                          "sha256":  "f2138196c644f17bac887520052526c5727f305faaa537b230541f0ed67768cc"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/run_q2_full_horizon.py",
+                          "sha256":  "16342d79929ecb31acd7e821f66c2c6fbc95df377f7f81999b4a83ad423bce5b"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/risk_probes.json",
+                          "sha256":  "ad31e424efdce507784959712bb3cd73e9f064a989725039a253613cddc544a7"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/sensitivity/incremental_review_q1q2.json",
+                          "sha256":  "51166220596ff0e978713a64a830bdc0604008d01ea4f3baa695baf3b089edb7"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/sensitivity/q2_policy_sensitivity.csv",
+                          "sha256":  "9dbab71c7fcd44e4182930b690801fa6b01f0d5af23bf563781574463890f2b5"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/sensitivity/q2_policy_sensitivity_summary.json",
+                          "sha256":  "7aaa4498017e0d57f167673e4f7ffa21c2b5928a0c41afd2edb915197fa6faea"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/sensitivity/run_manifest_q1q2.json",
+                          "sha256":  "a1ef264dd79139d6bb44db386185e826465c1ebb6ef804821e97029b07250072"
+                      },
+                      {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/sensitivity/run_q2_policy_sensitivity.py",
+                          "sha256":  "5d0dc37cfe88293cae60d1bae393c6a6bd43801ebe76f89c3ef363bd451fcc2f"
+                      }
+                  ],
+    "command":  [
+                    "python",
+                    "scripts/promote_direct_evidence.py",
+                    "--question",
+                    "Q2",
+                    "--run-id",
+                    "q2-direct-20260808"
+                ],
+    "deterministic_replay":  {
+                                 "count":  2,
+                                 "passed":  true,
+                                 "path":  "experiments/C/Q2/q2-direct-20260808/deterministic_replay_audit.json",
+                                 "sha256":  "41487b79e42305975da0f33bbbec1838c883d3ce988c2c789a4d2d143a0f6fa1"
+                             },
+    "gates":  {
+                  "claim_freeze":  "DEFERRED_TO_ROOT_REVIEW",
+                  "promotion_registration":  "PASS"
+              },
+    "methods":  {
+                    "baseline":  "accepted source same-output baseline; see source run manifest",
+                    "fallback":  "source-declared fallback only; no new fallback activated",
+                    "main":  "accepted source main model; see source run manifest",
+                    "probe":  "adaptive_ALNS (PROBE_ONLY; formal main model unchanged)"
+                },
+    "problem_id":  "C",
+    "promotion_only":  true,
+    "question_id":  "Q2",
+    "random_seed":  20260801,
+    "result_hashes":  {
+                          "path":  "experiments/C/Q2/q2-direct-20260808/result_hashes.json",
+                          "sha256":  "de9103b05260e2fc15e0619e970039d3f6a724364740628b273a7aee05f67862"
+                      },
+    "run_id":  "q2-direct-20260808",
+    "schema_version":  1,
+    "source_records":  [
+                           {
+                               "destination":  "models/full_horizon",
+                               "kind":  "main_and_fifo_baseline",
+                               "source":  "sprints/sprint-20260808T031146908286Z/merged/solver-q2"
+                           },
+                           {
+                               "destination":  "compat",
+                               "kind":  "formal_compatibility_derivation",
+                               "source":  "experiments/C/Q2/q2-full-compat-20260808"
+                           },
+                           {
+                               "destination":  "sensitivity",
+                               "kind":  "accepted_policy_sensitivity",
+                               "source":  "sprints/sprint-20260808T101814701038Z/merged/solver-q1q2"
+                           },
+                           {
+                               "destination":  "figures",
+                               "kind":  "candidate_figures",
+                               "source":  "sprints/sprint-20260808T083901900797Z/merged/figure-q2"
+                           },
+                           {
+                               "source":  "experiments/C/Q2/q2-direct-20260808/models/adaptive_alns",
+                               "destination":  "models/adaptive_alns",
+                               "kind":  "direct_adaptive_ALNS_probe_only"
+                           }
+                       ],
+    "started_at_utc":  "2026-08-08T13:31:51.769861+00:00",
+    "status":  "PASS",
+    "status_note":  "Direct Q2 evidence refreshed after full-horizon, compatibility, sensitivity, and adaptive-ALNS probe reruns; all registered artifact hashes verified."
+}

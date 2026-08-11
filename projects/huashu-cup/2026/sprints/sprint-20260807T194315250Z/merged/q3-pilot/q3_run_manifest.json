@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T194315250Z",
+  "task_id": "q3-pilot",
+  "question": "Q3",
+  "run_id": "q3-pilot-20260807T204537Z",
+  "command": "D:/anaconda3/envs/math-modeling/python.exe run_q3_pilot.py",
+  "working_directory": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260807T194315250Z\\staging\\q3-pilot",
+  "started_at_utc": "2026-08-07T20:45:37.264485+00:00",
+  "ended_at_utc": "2026-08-07T20:45:37.400007+00:00",
+  "runtime_s": 0.135522,
+  "seed": 20260801,
+  "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.22631-SP0",
+  "packages": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5"
+  },
+  "code": {
+    "path": "sprints/sprint-20260807T194315250Z/staging/q3-pilot/run_q3_pilot.py",
+    "sha256": "ac4189b48567b25c171e6997b5e9fe399a965362efd392b632e6b4c4245b2c25"
+  },
+  "input_hashes": [
+    {
+      "path": "problems/C/questions/Q3/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "a5457a859ff3e4141c0a34e5b3835f64193ea4d8ba08ed91c73af0b8428a363f"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/storage_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+    },
+    {
+      "path": "problems/C/data/GPU_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+    },
+    {
+      "path": "sprints/sprint-20260807T1856581764655Z/merged/q234-exploration",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "dc7c26111b4507ccdb3918f5332c04826c1269fbcd27f0dc5b7b6ef697c22d0a"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "5706e86a75d2c3e51b6b1de1d1e25ae33d0ea51689e021fc8758ced09327f303"
+    }
+  ],
+  "data_rows": {
+    "region_time_data": 14442,
+    "storage_information": 6,
+    "GPU_information": 6
+  },
+  "horizons_h": [
+    24
+  ],
+  "solver": {
+    "library": "scipy.optimize.milp",
+    "time_limit_s_per_region": 20.0,
+    "mip_rel_gap": 1e-07,
+    "modes": {
+      "24": "binary_MILP"
+    },
+    "deferred_probes": [
+      72,
+      168,
+      2407
+    ]
+  },
+  "outputs": [
+    "q3_pilot_summary.json",
+    "q3_constraint_audit.json",
+    "q3_candidate_metrics.csv",
+    "q3_baseline_metrics.csv",
+    "q3_dispatch.csv",
+    "q3_baseline_dispatch.csv"
+  ]
+}

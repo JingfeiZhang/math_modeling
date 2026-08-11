@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "run_id": "q1-optimization-20260809",
+  "project_id": "huashu-cup-2026",
+  "problem_id": "C",
+  "question_id": "Q1",
+  "status": "PASS",
+  "decision": "PROBE_ONLY",
+  "formal_evidence_modified": false,
+  "forecast": {
+    "candidate": "direct_multi_horizon_hurdle_hgbr",
+    "blind_wape": 0.8337306077408879,
+    "blind_rmse_gpu_h": 283.14052206768577,
+    "coverage_95": 0.9398148148148148,
+    "mean_interval_width_gpu_h": 2057.1601910897652,
+    "series_mae_non_degrading_count": 13,
+    "wape_change_pct_vs_formal": -6.683036124702035,
+    "rmse_change_pct_vs_formal": 6.77323170044164,
+    "interval_width_change_pct_vs_formal": 364.9174433174164,
+    "promotion_gates": {
+      "wape_and_rmse_improve_5pct": false,
+      "at_least_12_of_18_mae_non_degrading": true,
+      "coverage_90_99": true,
+      "interval_width_increase_le_25pct": false,
+      "hierarchy_coherence_near_zero": true,
+      "decision": "PROBE_ONLY"
+    },
+    "decision": "PROBE_ONLY",
+    "reason": "WAPE improves, but RMSE fails the joint 5% gate and conformal width exceeds the 25% allowance."
+  },
+  "schedule": {
+    "candidate": "incumbent_hint_tight_domain_fix_and_opt_12_32_64",
+    "formal_full_objective": 2788,
+    "candidate_best_full_objective": 2788,
+    "full_objective_change_pct": 0.0,
+    "completion_rate": 1.0,
+    "hard_audits_passed": true,
+    "promotion_gates": {
+      "all_538_complete": true,
+      "local_neighborhood_gap_below_1pct": true,
+      "global_gap_below_1pct": false,
+      "full_objective_improves_1pct": false,
+      "decision": "PROBE_ONLY"
+    },
+    "decision": "PROBE_ONLY",
+    "reason": "All neighborhoods are locally optimal and feasible, but the full objective remains 2788 and the formal 3.515% global gap is not closed."
+  },
+  "promotion_recommendation": "Do not promote either Q1 candidate; retain the frozen forecast and schedule."
+}

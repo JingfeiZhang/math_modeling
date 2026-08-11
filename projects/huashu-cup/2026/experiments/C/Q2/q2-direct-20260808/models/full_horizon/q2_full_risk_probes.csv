@@ -1,0 +1,10 @@
+method,probe,passed,violation_count,value,unit,interpretation
+full_horizon_FIFO_latency_feasible_local_first,latency_limit_minus_10pct_fixed_schedule,True,0,0.0,task_ratio,Exposure test only; the main schedule is audited against the supplied latency limits.
+full_horizon_FIFO_latency_feasible_local_first,GPU_capacity_minus_5pct_fixed_schedule,False,2237,2237.0,region_minutes,Stress exposure without rescheduling; failure does not invalidate supplied-capacity feasibility.
+full_horizon_FIFO_latency_feasible_local_first,IT_capacity_minus_5pct_fixed_schedule,False,151131,151131.0,region_minutes,Stress exposure without rescheduling; failure identifies headroom sensitivity.
+full_horizon_FIFO_latency_feasible_local_first,renewable_availability_minus_20pct,True,0,0.9910756436596699,renewable_utilization_ratio,Metric-only scenario; capacity and task feasibility are unchanged.
+fixed_weight_bounded_rolling_local_exchange_heuristic,latency_limit_minus_10pct_fixed_schedule,True,0,0.0,task_ratio,Exposure test only; the main schedule is audited against the supplied latency limits.
+fixed_weight_bounded_rolling_local_exchange_heuristic,GPU_capacity_minus_5pct_fixed_schedule,False,61437,61437.0,region_minutes,Stress exposure without rescheduling; failure does not invalidate supplied-capacity feasibility.
+fixed_weight_bounded_rolling_local_exchange_heuristic,IT_capacity_minus_5pct_fixed_schedule,False,154195,154195.0,region_minutes,Stress exposure without rescheduling; failure identifies headroom sensitivity.
+fixed_weight_bounded_rolling_local_exchange_heuristic,renewable_availability_minus_20pct,True,0,0.9806747875649288,renewable_utilization_ratio,Metric-only scenario; capacity and task feasibility are unchanged.
+fixed_weight_bounded_rolling_local_exchange_heuristic,deterministic_full_exchange_replay,True,0,1.0,boolean,A second full exchange run produced the identical task-region-start schedule.

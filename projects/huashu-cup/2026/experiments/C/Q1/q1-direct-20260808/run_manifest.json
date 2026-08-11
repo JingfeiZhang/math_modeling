@@ -1,0 +1,251 @@
+{
+  "artifacts": [
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/baseline_selection.csv",
+      "sha256": "432b6bbdb04a13a0cae119c11ccb8944658aa46b9cb1ff4cacb9cd32cb8a4e31"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/blind_test_predictions.csv",
+      "sha256": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/claim_proposal.json",
+      "sha256": "4b35bd891c31541e3b010e6500fe7c10231213bdd48075a5a6938a8e20105ab4"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/descriptive_by_series.csv",
+      "sha256": "5f54955015f3175444b5227154f8dd8ad3d95d94e8c556285132dfbb6b61543c"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/hash_manifest.json",
+      "sha256": "12b68903ce9b6c66f1eb0982f139915e52ff80c27ebef6658b695e3f42749599"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_by_series.csv",
+      "sha256": "91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_summary.json",
+      "sha256": "e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/model_config.json",
+      "sha256": "94980158c3f37a3bdfe23c7dec657b4fa043dc56bb6c2476790054a8ca0d89cf"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/residual_shrinkage_selection.csv",
+      "sha256": "1e359a219e6ccbd84337a7170278e7fcf75d75eaaa87d8a833dfe0b2c515ecd4"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/rolling_backtest_predictions.csv",
+      "sha256": "0a949cd1e7b09b4e7096a5b9bb3e5ebedde1796213f32673ea2091064da2e049"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/run_forecast.py",
+      "sha256": "73666e4d1b2ae6554f100c131d80470e1258ae23e40cba360359894415c0a043"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/run_manifest.json",
+      "sha256": "29ac770bad220432b07ef3f2969a3cf53064f7b24c59dde4ebd1af58d9fa3807"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/validation_predictions.csv",
+      "sha256": "52f785106caeceff0e7075d16a021b99716e303e1cb0d2de20c73a9963b08cd5"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/workload_panel.csv",
+      "sha256": "d0eaf1a81152b3dda4ebcea4f223c31111ed001c1eec16543311fe87aa1ee80b"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/baseline_schedule.csv",
+      "sha256": "89e4ab9c6ac1cf6ee0c5c9e5b39596f8276ac5330e3d5ed8e7924350a2fa7a78"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/carry_in.json",
+      "sha256": "cdf9946f180310fd65b1c286580a4aca0aa8f5688581dac4b68ddc13e60c7993"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/claim_proposal.json",
+      "sha256": "36bbfddf0efa214f32e0d52b09cd94a93de16f20d16fba6c82b108e44aff8dfe"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/constraint_audit.json",
+      "sha256": "721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/fallback_test.json",
+      "sha256": "6ae5e9a707204307d863b06580abadcefebfbbeba45662cb1821c7217f36731d"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/hash_manifest.json",
+      "sha256": "9e6aa085934a6dcf18e08cf0c1b30a3d94a903fba622e8271a1783382cddb4b0"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/optimized_schedule.csv",
+      "sha256": "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/resource_audit.csv",
+      "sha256": "466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/run_manifest.json",
+      "sha256": "809018a7f7911b826431d8aed577f72df532674ef37f2c9db3325866b802d86d"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/run_scheduling_q1.py",
+      "sha256": "3d50c74b18fd898a85e58090a047f86ce750697724b34620af24d6a204f57bf6"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/scheduling_metrics.json",
+      "sha256": "cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/warmup_task_audit.csv",
+      "sha256": "e33e84c075a66ca4557f655133a0336303acd8b45a909f896bdd2d1715dc2fed"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/compat/claim_proposals.json",
+      "sha256": "5242acb34e718e5fae18a971214f14ac4eb1b14c1b1d8498f49db58bae638055"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/compat/generate_q1_derived.py",
+      "sha256": "0968df8dab18b37f8c0aa5c568dd2c8b8b8517638d027ea11269d7c6040d7758"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/compat/q1_derived_summary.json",
+      "sha256": "4870b3e45919153df255ad34fd8fc389d4cadc1edbc7418c27de38c1ed218bdd"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/compat/run_manifest.json",
+      "sha256": "808fc726a06d698630434b2a736092cd4723683748adc1108f5b8bdf2e281ec3"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/sensitivity/run_q1_groupwise_conformal.py",
+      "sha256": "0ebd8449ca808ea8456fb90c99d83d0769ab0699b694835fae8a37760f37381a"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/sensitivity/q1_groupwise_conformal.csv",
+      "sha256": "8381bc6f4404398658548873dd79708642d621f1a29dd2befe179c9e011bbc19"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/sensitivity/q1_groupwise_conformal_summary.json",
+      "sha256": "141aaa1aaa7d3620c82739bb7eed328daf5d55a4bc71ec4ccd05d6f91cbf4548"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/sensitivity/incremental_review_q1q2.json",
+      "sha256": "51166220596ff0e978713a64a830bdc0604008d01ea4f3baa695baf3b089edb7"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/sensitivity/run_manifest_q1q2.json",
+      "sha256": "d7020da723aade73fb881a429926c9b8b55892df4e0eeff92738a184343f093d"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/figures/fig_q1_forecast_interval.pdf",
+      "sha256": "685415fdf403d2552a9f2529b733dd74f25b8a36e64ec51d9c52dc11011b1f52"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/figures/fig_q1_forecast_interval.svg",
+      "sha256": "ef4c88d9a28e2863951d4b8bd279d0eaecee59c09184829b6c8529d904a66cfb"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/figures/fig_q1_forecast_interval.png",
+      "sha256": "279e6f39e29ca734a773cabb35eeb424bacacba6d179cafe945e59c79492ad95"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/figures/fig_q1_error_comparison.pdf",
+      "sha256": "1ab744545ce953e5e9265d6635214f918eb01f84edece88146ee23ed5f0a50c2"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/figures/fig_q1_error_comparison.svg",
+      "sha256": "ef207e36fe431afec9ce49619b9bd03eb29797dac387c750c37d2b04693dc7f1"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/figures/fig_q1_error_comparison.png",
+      "sha256": "4317635246f1094d121797d54c2f9fa3f3f0e6526b94fbf0a8420d85fcc1cd34"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/figures/fig_q1_feasible_schedule.pdf",
+      "sha256": "38709a4334c5d9a8a4e00dfef11835a6fb8ee4f83638c0e5f502c4d152e04016"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/figures/fig_q1_feasible_schedule.svg",
+      "sha256": "3379745cb0f8e5c91af85705e5ddab603393d9d2b658c4ce67de1d445829a7ff"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/figures/fig_q1_feasible_schedule.png",
+      "sha256": "1293ab212a241dfe3ea47fb61081f88278160167249bd9e6df53a4d2a026a315"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/independent_audit.json",
+      "sha256": "87176b70b8b3a672986a31a34f737d421c66fdb1c33d23452a103833b98f29cd"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/risk_probes.json",
+      "sha256": "4e66025f277b9fefa3cf0dd708572b0877a5f69f1dbcbef1cf6181a252151ee0"
+    }
+  ],
+  "command": [
+    "python",
+    "scripts/promote_direct_evidence.py",
+    "--question",
+    "Q1",
+    "--run-id",
+    "q1-direct-20260808"
+  ],
+  "deterministic_replay": {
+    "count": 2,
+    "passed": true,
+    "path": "experiments/C/Q1/q1-direct-20260808/deterministic_replay_audit.json",
+    "sha256": "5e2cb200ab5fd1d33dc838d43c8aa118f163d56bcbf793f5b7fabe4f474642b8"
+  },
+  "gates": {
+    "claim_freeze": "DEFERRED_TO_ROOT_REVIEW",
+    "promotion_registration": "PASS"
+  },
+  "methods": {
+    "baseline": "accepted source same-output baseline; see source run manifest",
+    "fallback": "source-declared fallback only; no new fallback activated",
+    "main": "accepted source main model; see source run manifest"
+  },
+  "problem_id": "C",
+  "promotion_only": true,
+  "question_id": "Q1",
+  "random_seed": 20260801,
+  "result_hashes": {
+    "path": "experiments/C/Q1/q1-direct-20260808/result_hashes.json",
+    "sha256": "8616ab233c2b28b43054c3b92c54d8f63450d8903213c20cbac23bbe667e1815"
+  },
+  "run_id": "q1-direct-20260808",
+  "schema_version": 1,
+  "source_records": [
+    {
+      "destination": "models/forecast_q1",
+      "kind": "main_forecast",
+      "source": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1"
+    },
+    {
+      "destination": "models/scheduling_q1",
+      "kind": "same_output_baseline_and_schedule",
+      "source": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1"
+    },
+    {
+      "destination": "compat",
+      "kind": "formal_compatibility_derivation",
+      "source": "experiments/C/Q1/q1-derived-20260807"
+    },
+    {
+      "destination": "sensitivity",
+      "kind": "accepted_conformal_sensitivity",
+      "source": "sprints/sprint-20260808T101814701038Z/merged/solver-q1q2"
+    },
+    {
+      "destination": "figures",
+      "kind": "candidate_figures",
+      "source": "paper/figures"
+    }
+  ],
+  "started_at_utc": "2026-08-08T13:31:51.440369+00:00",
+  "status": "PASS",
+  "status_note": "Direct experiment registration from accepted immutable Sprint evidence."
+}

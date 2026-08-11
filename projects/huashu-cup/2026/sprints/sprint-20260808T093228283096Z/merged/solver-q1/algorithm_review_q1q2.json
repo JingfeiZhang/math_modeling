@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T093228283096Z",
+  "task_id": "solver-q1",
+  "problem": "C",
+  "role": "solver-reviewer",
+  "target_gate": "G5",
+  "review_scope": {
+    "allowed_inputs_only": true,
+    "review_basis": "Frozen claims plus the pinned Q2 full-horizon compatibility summary; no new experiment was executed.",
+    "reviewed_inputs": [
+      "problems/C/questions/Q1/question.yaml",
+      "contest.yaml",
+      "config/workflow.yaml",
+      "problems/C/source/problem-C.pdf",
+      "results/C/claims.json",
+      "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json"
+    ],
+    "frozen_claim_ids": [
+      "Q1-FCST-TEST-WAPE",
+      "Q1-FCST-TEST-COVERAGE",
+      "Q1-SCHED-FEASIBLE",
+      "Q1-SCHED-COMPLETION",
+      "Q1-SCHED-SOLVER-STATUS",
+      "Q2-FULL-COMPLETION-RATE",
+      "Q2-FULL-SLA-VIOLATION-RATE",
+      "Q2-FULL-HARD-AUDIT-PASS",
+      "Q2-FULL-COST-CHANGE-PCT",
+      "Q2-FULL-CARBON-CHANGE-PCT",
+      "Q2-FULL-LATENCY-CHANGE-MS",
+      "Q2-FULL-DETERMINISTIC-REPLAY"
+    ],
+    "not_reviewed": [
+      "formal state or decision-log updates",
+      "formal claims, manuscript, and Figure Contracts",
+      "unfrozen numerical alternatives",
+      "new solver runs or external literature"
+    ]
+  },
+  "per_question": {
+    "Q1": {
+      "verdict": "PASS_WITH_BOUNDARIES",
+      "model_interface": {
+        "input": "Workload trace is aggregated into 18 hourly bottom series: 6 source regions x 3 task types, with GPU.h = GPU_Demand x EstimatedDuration_min / 60.",
+        "forecast_output": "A 24-hour nonnegative forecast for all bottom series, with hierarchy-consistent region, type, and system totals and a nominal 95% normalized pooled split-conformal interval.",
+        "schedule_output": "A minute-level, single-execution-region schedule for the actual final-window arrivals. Forecast values are not silently converted into synthetic tasks; the schedule uses actual arrivals and separately carries historical unfinished work.",
+        "interface_assessment": "The separation is auditable and avoids forecast leakage, but the current evidence does not establish an uncertainty-aware end-to-end forecast-to-schedule gain. Treat forecast and dispatch as two linked modules, not as a proven closed-loop optimizer."
+      },
+      "algorithm_assessment": {
+        "baseline": "Seasonal naive with lag selected from 24 h and 168 h by four training-only rolling 24 h folds.",
+        "main_forecast": "Shared HistGradientBoosting residual model over lag 1, 2, 3, 24, 48, and 168 h, 24/168 h rolling statistics, cyclic hour/weekday terms, and region/task-type indicators; residuals are scaled and nonnegative-clipped.",
+        "hierarchy": "Nonnegative diagonal-WLS reconciliation over 18 bottom series and region/type/system totals; the returned bottom vector defines all aggregate nodes, so coherence is a structural output property.",
+        "interval": "Normalized pooled split conformal with alpha=0.05, calibrated only on the validation window (432 bottom-series-hour scores), then reported on the untouched 2376--2399 blind window.",
+        "scheduling": "Historical event-boundary warm-up creates carry-in; a deterministic minute-level CP-SAT assigns each final task exactly once under release, real-time-at-arrival, latency, GPU, IT, facility-power, nonpreemption, and 2406 closeout constraints.",
+        "objective": "CP-SAT minimizes 100 x waiting minutes plus route latency for the final-window tasks. Energy and carbon are constraint/audit quantities here, not optimized quantities."
+      },
+      "evidence_summary": {
+        "blind_wape": 0.89343949172524,
+        "blind_nominal_95_coverage": 0.9467592592592593,
+        "final_task_count": 538,
+        "task_completion_rate": 1.0,
+        "cp_sat_status": "FEASIBLE",
+        "cp_sat_recorded_optimality_gap": 0.0351506456241033,
+        "evidence_boundaries": [
+          "WAPE is pooled/system-level evidence; it does not imply improvement for every region-task series.",
+          "94.68% is empirical pooled coverage on the blind window, not an exact or conditional 95% guarantee.",
+          "FEASIBLE and the recorded gap must be reported; the 538-task solution is not proven globally optimal."
+        ]
+      },
+      "baseline_comparability": {
+        "forecast": "Pass: same horizon, same rolling origins, same training/validation/blind split, and comparable forecast/interval fields for the seasonal baseline and main model.",
+        "scheduling": "Pass: FIFO/local-first uses the same actual arrivals, carry-in, candidate regions, resource mappings, horizon, hard constraints, and output schema; both schedules receive an independent audit.",
+        "remaining_caveat": "The forecast baseline and scheduling baseline are valid module-level controls, but no frozen evidence compares a schedule driven by forecast intervals against a schedule driven by point forecasts."
+      },
+      "reproducibility_and_risk": {
+        "reproducibility": [
+          "Fixed seed 20260801 and pinned Python/scikit-learn/OR-Tools environments are recorded in the Q1 run manifests.",
+          "Training-only rolling selection, nonnegative forecasts, hierarchy coherence, carry-in conservation, hard audits, solver status, and fallback trigger are recorded as machine-checkable artifacts."
+        ],
+        "risk_probes": [
+          "Time leakage was checked by excluding 2376--2399 from lag/shrinkage selection and calibration inputs.",
+          "Carry-in conservation and unresolved historical-task checks passed; no silent deletion is allowed.",
+          "GPU, IT, facility-power, network-latency, and 2406 boundary checks passed for both main and FIFO schedules.",
+          "The only fallback is a 6 h rolling/12 h lookahead CP-SAT path; it is a smoke-tested contract and was not substituted into the main result.",
+          "Sparse series can show unstable WAPE and groupwise coverage even when pooled metrics are acceptable; this is a modeling risk, not a failed hard audit."
+        ]
+      },
+      "innovation_and_gain": {
+        "verifiable_gain": "The defensible contribution is the auditable composition of hierarchical residual forecasting, nonnegative reconciliation, pooled conformal uncertainty, and constraint-audited dispatch. The blind pooled WAPE and feasible schedule are real-data gains within their stated scopes.",
+        "innovation_boundary": "The current evidence does not prove a novel forecasting theorem, a probabilistic conditional-coverage guarantee, or an end-to-end dispatch improvement caused by the interval. Any novelty language should emphasize the reproducible interface and audit design rather than claim optimality or causality."
+      },
+      "findings": [
+        {
+          "id": "Q1-F1",
+          "severity": "MEDIUM",
+          "title": "Pooled forecast evidence must not be generalized to every sparse series",
+          "impact": "Macro and bottom-level behavior can differ substantially from the pooled WAPE; series-level claims would overstate the evidence.",
+          "action": "Report pooled WAPE/RMSE with per-series diagnostics in a supporting table or figure and state the sparse-series limitation."
+        },
+        {
+          "id": "Q1-F2",
+          "severity": "MEDIUM",
+          "title": "Conformal coverage is pooled empirical coverage",
+          "impact": "Pooling 432 calibration scores supports a marginal diagnostic over cells, not exact 95% coverage for each region-task or horizon.",
+          "action": "Use nominal/empirical wording and test groupwise calibration only as a conditional follow-up."
+        },
+        {
+          "id": "Q1-F3",
+          "severity": "MEDIUM",
+          "title": "The CP-SAT main run is feasible with a nonzero gap",
+          "impact": "Calling it optimal would be false and would invalidate the algorithm description.",
+          "action": "Keep FEASIBLE plus the recorded 3.515% gap; optionally run a bounded time-extension experiment before freezing any stronger scheduling statement."
+        },
+        {
+          "id": "Q1-F4",
+          "severity": "LOW",
+          "title": "Forecast uncertainty is not yet an operational reserve rule",
+          "impact": "The current Q1 result supports two auditable modules, not a measured benefit from feeding conformal upper bounds into scheduling.",
+          "action": "If an end-to-end innovation is needed, run the conditional reserve experiment below and freeze it only after a same-input baseline comparison."
+        },
+        {
+          "id": "Q1-F5",
+          "severity": "LOW",
+          "title": "Metric names should distinguish pooled errors from workload-weighted WAPE",
+          "impact": "The pooled MAE/RMSE fields are aggregated over cells; only WAPE uses total absolute actual workload as its denominator. Calling all of them system-weighted would be ambiguous.",
+          "action": "Define pooled MAE/RMSE and workload-normalized WAPE separately in tables, captions, and the metric dictionary."
+        }
+      ]
+    },
+    "Q2": {
+      "verdict": "PASS_WITH_BOUNDARIES",
+      "model_interface": {
+        "input": "All 50000 actual arrivals in hours 0--2399 plus supplied hourly price, carbon intensity, renewable availability, static latency, capacity, PUE, and power mappings; hours 2400--2405 are closeout only.",
+        "decision_variables": "Each non-real-time task may exchange its execution region and start minute within a bounded 72 h option horizon; real-time reservations remain fixed and each task remains nonpreemptive in one region.",
+        "rolling_rule": "Process six-hour release blocks, start from a complete feasible FIFO/local-first incumbent, evaluate at most eight coarse start options per eligible region plus earliest/old starts, and accept only feasible exchanges that strictly improve the score and reduce cost or carbon.",
+        "score": "score = 1.0 x marginal_cost/1000 + 4.0 x marginal_carbon + 0.015 x wait_min + 0.015 x latency_ms - 0.05 x renewable_MWh; these are fixed policy weights, not learned dual variables."
+      },
+      "objective_and_constraints": {
+        "hard_constraints": [
+          "exactly-one assignment",
+          "nonpreemption and duration identity",
+          "release and real-time-at-arrival",
+          "task-specific latency limit",
+          "latest finish and 2406 closeout",
+          "GPU capacity",
+          "IT power capacity",
+          "facility power capacity",
+          "single execution region"
+        ],
+        "reported_metrics": [
+          "facility-energy cost",
+          "grid-purchase carbon",
+          "task-weighted mean latency",
+          "renewable utilization",
+          "completion and SLA violation rates"
+        ],
+        "scope_boundary": "Q2 does not optimize storage state or grid exchange; those decisions remain Q3/Q4 interfaces. Static latency excludes congestion, migration energy, and migration fees because they are not supplied in the problem."
+      },
+      "evidence_summary": {
+        "task_count": 50000,
+        "candidate_completion_rate": 1.0,
+        "candidate_sla_violation_rate": 0.0,
+        "hard_audits_passed": true,
+        "cost_change_pct_vs_fifo": -1.0149373918772464,
+        "carbon_change_pct_vs_fifo": -1.929297238773453,
+        "latency_change_ms_vs_fifo": 4.18976,
+        "candidate_renewable_utilization_ratio": 0.9992043662036217,
+        "baseline_renewable_utilization_ratio": 0.9999944220444682,
+        "moved_task_count": 15985,
+        "evaluated_options": 805538,
+        "deterministic_replay_passed": true,
+        "robustness_scope": "Six operation blocks have zero supplied-input SLA violation; fixed-schedule -5% GPU/IT probes expose headroom sensitivity and are not rescheduled feasibility results."
+      },
+      "baseline_comparability": {
+        "status": "PASS",
+        "same_input": true,
+        "same_constraints": true,
+        "same_output_class": true,
+        "baseline": "Full-horizon FIFO latency-feasible local-first schedule with identical task rows, capacity audits, cost/carbon/latency/renewable definitions, and closeout boundary.",
+        "interpretation": "The deltas are a same-input deterministic policy comparison, not a causal estimate and not proof that the candidate dominates FIFO on every metric."
+      },
+      "reproducibility_and_risk": {
+        "reproducibility": [
+          "Fixed seed 20260801, pinned Python/numpy/pandas environment, command, code/data hashes, runtime, and metric units are recorded in the Q2 run manifest.",
+          "The second complete exchange replay reproduced the same task-region-start schedule, supporting implementation determinism for the pinned input."
+        ],
+        "risk_probes": [
+          "Latency-limit-minus-10% fixed-schedule probes passed for both methods, but this is exposure only.",
+          "GPU-capacity-minus-5% fixed-schedule probes failed for both methods (candidate has more exposed region-minutes); this does not invalidate supplied-capacity feasibility.",
+          "IT-capacity-minus-5% fixed-schedule probes failed for both methods and identify headroom sensitivity.",
+          "Renewable-availability-minus-20% is a metric-only scenario; it does not re-solve capacity or task feasibility.",
+          "Minute exact-scan fallback for unresolved flexible tasks was not triggered; no fallback performance claim is allowed."
+        ]
+      },
+      "innovation_and_gain": {
+        "verifiable_gain": "A practical auditable combination of fixed real-time reservations, bounded rolling exchanges, minute-level feasibility checks, and same-input FIFO control reduces the reported cost and carbon while preserving all supplied-input hard audits.",
+        "innovation_boundary": "The implementation is a deterministic one-pass heuristic over a bounded option set. The name lagrangian_balanced describes a weighted score, but no multiplier-update or dual-convergence proof is present; describe it as a Lagrangian-style weighted exchange unless an adaptive-dual experiment is actually run."
+      },
+      "findings": [
+        {
+          "id": "Q2-F1",
+          "severity": "MEDIUM",
+          "title": "Bounded exchange is not a global or MILP optimum",
+          "impact": "A full-horizon cumulative improvement can coexist with a jointly better multi-task assignment outside the eight-option local search.",
+          "action": "Use deterministic rolling exchange heuristic wording and retain the 72 h/8-option boundary in the method and figure captions."
+        },
+        {
+          "id": "Q2-F2",
+          "severity": "MEDIUM",
+          "title": "Fixed score weights need sensitivity evidence before being called selected weights",
+          "impact": "Cost, carbon, wait, latency, and renewable terms have different units and are not normalized by an adaptive dual scheme; small weight changes may alter the policy.",
+          "action": "Run the pre-registered policy grid and report a feasible Pareto table or retain the weights as a declared policy choice."
+        },
+        {
+          "id": "Q2-F3",
+          "severity": "MEDIUM",
+          "title": "Capacity stress probes are fixed-schedule exposure tests",
+          "impact": "They cannot support a claim of robustness to reduced capacity because no rescheduling was performed under the perturbation.",
+          "action": "Re-solve candidate and FIFO under the same perturbations before using robustness language."
+        },
+        {
+          "id": "Q2-F4",
+          "severity": "LOW",
+          "title": "Full-horizon replay is not the same as an online information experiment",
+          "impact": "The supplied-input run reads all arrivals, so it should not be described as deployment-ready online control without an information-availability check.",
+          "action": "Use offline deterministic replay wording or run the online-hidden-future ablation."
+        },
+        {
+          "id": "Q2-F5",
+          "severity": "LOW",
+          "title": "The improvement is a trade-off",
+          "impact": "Candidate latency rises by 4.18976 ms and renewable utilization is slightly lower even though cost and carbon improve.",
+          "action": "Report the vector of metrics and do not claim uniform dominance over FIFO."
+        },
+        {
+          "id": "Q2-F6",
+          "severity": "LOW",
+          "title": "Avoid calling initial cross-region placement migration",
+          "impact": "The model enforces one-region nonpreemptive execution and forbids mid-task migration; an artifact field named migration_rate can be misread as an illegal task move.",
+          "action": "Define that field as cross-region placement share (or initial remote assignment rate) and reserve migration terminology for an explicitly modeled transfer event."
+        }
+      ]
+    }
+  },
+  "recommended_next_experiments": [
+    {
+      "experiment_id": "Q1-E1-groupwise-conformal",
+      "question_id": "Q1",
+      "priority": "high",
+      "purpose": "Check whether pooled conformal intervals hide systematic undercoverage in sparse region-task groups.",
+      "minimal_design": "Keep the existing 0--2351 training, 2352--2375 calibration, and 2376--2399 blind windows and the fitted HGBR predictions fixed. Compare pooled calibration with region-by-task-type groupwise calibration using the same normalized score and nonnegative clipping.",
+      "metrics": ["pooled blind coverage", "coverage by region/task type", "mean interval width", "pooled WAPE/RMSE"],
+      "activation_trigger": "Run before making any conditional or per-series coverage statement, or if a blind group-coverage audit shows an absolute deviation from 0.95 greater than 0.05.",
+      "acceptance_rule": "Adopt groupwise intervals only if pooled WAPE is not worsened by more than 1% relative, pooled coverage remains in the declared diagnostic range, and group coverage moves closer to 0.95 without implausible width inflation; otherwise retain pooled intervals.",
+      "claim_boundary": "This experiment can support calibration diagnostics only; it cannot establish finite-sample conditional coverage."
+    },
+    {
+      "experiment_id": "Q1-E2-cpsat-time-extension",
+      "question_id": "Q1",
+      "priority": "medium",
+      "purpose": "Determine whether the feasible Q1 schedule is materially improved by a bounded additional solve budget.",
+      "minimal_design": "Repeat the identical final-task, carry-in, seed, objective, and hard-audit pipeline with a 180 s wall limit; record status, objective, bound, gap, runtime, and all audit fields. Keep the 90 s result as the control.",
+      "metrics": ["objective", "best bound", "optimality gap", "waiting and latency summaries", "all hard audits"],
+      "activation_trigger": "Current main status is FEASIBLE with a recorded nonzero gap; activate if stronger optimization wording or a schedule-quality comparison is desired.",
+      "acceptance_rule": "Use the extended run only if it remains feasible, all audits pass, and the objective improvement is material under a predeclared tolerance; otherwise keep the 90 s result and its gap wording.",
+      "claim_boundary": "Even an improved incumbent is not a global optimum unless the solver proves optimality."
+    },
+    {
+      "experiment_id": "Q1-E3-uncertainty-reserve-interface",
+      "question_id": "Q1",
+      "priority": "conditional",
+      "purpose": "Test an end-to-end innovation without changing the frozen point-forecast or schedule claims.",
+      "minimal_design": "Use the conformal upper workload bound only to construct a deterministic regional reserve scenario for the next 24 h, then rerun the same CP-SAT model and FIFO control with identical task and resource audits. Do not create synthetic task rows or alter real-time arrival rules.",
+      "metrics": ["completion and SLA", "capacity headroom", "waiting/latency", "reserve-induced objective change", "forecast interval width"],
+      "activation_trigger": "Only if an explicit uncertainty-aware capacity policy is needed and an upper bound exceeds a measured regional headroom threshold.",
+      "acceptance_rule": "Keep the reserve policy only when every hard audit passes and the added conservatism has a documented operational benefit; otherwise retain the current modular interface.",
+      "claim_boundary": "This would be a scenario analysis, not a guarantee against future demand shocks."
+    },
+    {
+      "experiment_id": "Q2-E1-policy-weight-grid",
+      "question_id": "Q2",
+      "priority": "high",
+      "purpose": "Test whether the reported cost/carbon gain is stable to the fixed multi-objective score weights.",
+      "minimal_design": "Run a small pre-registered grid varying the carbon-to-cost emphasis (for example 2, 4, and 8 while preserving the same wait/latency/renewable terms), using the same six-hour blocks, 72 h horizon, eight-option cap, seed, baseline, and minute-level audits.",
+      "metrics": ["cost and carbon change vs FIFO", "latency change", "renewable utilization", "completion/SLA", "accepted-move count", "runtime"],
+      "activation_trigger": "Required before describing the current weights as data-selected, robust, or Pareto-efficient; optional if they are explicitly declared policy weights.",
+      "acceptance_rule": "Select a policy only from the feasible nondominated set under a stated preference rule; if no stable choice exists, report the full trade-off table and keep the current policy as a transparent reference.",
+      "claim_boundary": "A finite grid does not prove global Pareto optimality."
+    },
+    {
+      "experiment_id": "Q2-E2-rescheduled-capacity-stress",
+      "question_id": "Q2",
+      "priority": "high",
+      "purpose": "Convert the current fixed-schedule headroom probes into genuine robustness evidence.",
+      "minimal_design": "Reduce GPU and IT capacities by 5% using the existing stress convention, re-run the candidate exchange and the same FIFO baseline from a feasible or explicitly diagnosed incumbent, and independently audit all minute-level constraints. Keep renewable -20% as a metric-only scenario unless the model is extended to re-solve with renewable limits.",
+      "metrics": ["hard-audit pass", "completion/SLA", "fallback activation", "cost/carbon/latency", "capacity margin distribution"],
+      "activation_trigger": "Current fixed-schedule GPU and IT probes fail, so activate before claiming resilience to capacity loss.",
+      "acceptance_rule": "A robustness claim requires re-solved schedules with no unreported violations and explicit fallback/unscheduled-task accounting; otherwise report only headroom exposure.",
+      "claim_boundary": "Perturbations are deterministic sensitivity scenarios, not stochastic reliability probabilities."
+    },
+    {
+      "experiment_id": "Q2-E3-online-hidden-future-ablation",
+      "question_id": "Q2",
+      "priority": "medium",
+      "purpose": "Separate an offline full-horizon replay from an online policy claim.",
+      "minimal_design": "At each six-hour block, hide future task rows and expose only arrivals through the block boundary plus carry-in; preserve the same static price/carbon/renewable inputs and constraints. Run the rolling exchange and FIFO control with identical output schemas.",
+      "metrics": ["cost/carbon change", "latency and wait", "completion/SLA", "hard audits", "runtime"],
+      "activation_trigger": "Run before using online, real-time, or deployment-ready wording; otherwise describe the result as a deterministic offline replay.",
+      "acceptance_rule": "Only claim online applicability if every block remains auditable and the sign/magnitude of improvements is reported with any degradation; no future information may enter the block decision.",
+      "claim_boundary": "This tests information timing, not unseen-distribution generalization."
+    },
+    {
+      "experiment_id": "Q2-E4-small-window-exact-check",
+      "question_id": "Q2",
+      "priority": "conditional",
+      "purpose": "Quantify local heuristic quality without implying a full-horizon exact optimum.",
+      "minimal_design": "On one or more fixed 72 h windows and a documented small task subset, solve an exact MILP/CP-SAT model with the same task, latency, resource, and closeout constraints; compare the heuristic incumbent to the exact objective and metric vector.",
+      "metrics": ["exact objective gap", "cost/carbon/latency trade-off", "audit pass", "runtime"],
+      "activation_trigger": "Only if a quantitative local optimality diagnostic is needed for the algorithm discussion.",
+      "acceptance_rule": "Use the result as a local-window benchmark; never extrapolate its gap to the 2400 h horizon.",
+      "claim_boundary": "The benchmark is window- and subset-specific."
+    }
+  ],
+  "figure_implications": {
+    "global_rules": [
+      "Use journal-spectrum-v2 only, one primary plotting area per figure, and a non-color secondary encoding (line style, marker, or hatch).",
+      "Read every plotted number from frozen evidence locators; no manually typed endpoint or metric values.",
+      "Keep units explicit and do not combine cost, carbon, latency, and renewable utilization on one axis."
+    ],
+    "Q1": [
+      "Forecast interval figure: show actual versus reconciled 24 h forecast in GPU.h with the nominal 95% band; caption it as pooled empirical coverage and avoid per-series guarantee wording.",
+      "Forecast comparison figure: use one metric family per primary axis (for example pooled WAPE/RMSE or an explicitly separated statistics table) and state that aggregate improvement does not imply universal series improvement.",
+      "Schedule feasibility figure: show minute/hour resource occupancy against GPU, IT, and facility limits with carry-in boundary and 2406 closeout marker; annotate CP-SAT FEASIBLE and the recorded gap, never optimal.",
+      "If sparse series are shown, prefer small multiples only when complementary evidence cannot be separated; otherwise use a ranked supporting table to avoid unreadable multi-panel decoration."
+    ],
+    "Q2": [
+      "The staged cumulative facility-energy cost index comparison is suitable as a single-primary-axes figure: candidate solid/circle, FIFO dashed/square, neutral FIFO=100% reference, and 0--2405 h axis.",
+      "Keep carbon, latency, renewable utilization, and fixed-schedule stress probes in separate figures or tables with their own units; do not imply that the cost curve alone proves a multi-objective optimum.",
+      "Add the 72 h option horizon, six-hour release blocks, and bounded-heuristic qualifier to the caption or adjacent method text; do not label the line as an optimal policy.",
+      "A capacity-headroom chart may be used as sensitivity evidence only if its caption says fixed-schedule exposure unless a rescheduled perturbation is subsequently frozen."
+    ]
+  },
+  "verdict": "PASS_WITH_BOUNDARIES",
+  "verdict_rationale": "Q1 and Q2 have coherent model interfaces, same-class baselines, pinned reproducibility records, and audited supplied-input feasibility. The package is suitable for root-agent integration after preserving the stated boundaries: Q1 forecast gains are pooled diagnostics and CP-SAT is feasible rather than optimal; Q2 is a fixed-weight, bounded deterministic exchange heuristic with latency/renewable trade-offs and fixed-schedule capacity stress failures.",
+  "handoff_checks": {
+    "input_hashes_match_task_package": true,
+    "input_hashes_recomputed": true,
+    "read_scope_respected": true,
+    "write_scope_respected": true,
+    "no_new_experiment_executed": true,
+    "formal_state_modified": false,
+    "claims_modified": false,
+    "paper_modified": false,
+    "figure_contracts_modified": false,
+    "target_gate": "G5"
+  }
+}

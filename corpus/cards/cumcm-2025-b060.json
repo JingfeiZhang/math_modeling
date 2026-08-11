@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "analysis_status": "evidence_reviewed",
+  "review_method": "full page cache plus visual review of abstract, framework, model, main-result and validation anchors",
+  "ocr_status": "not_available; observations are page-image visual evidence, not OCR transcription",
+  "competition": "CUMCM",
+  "year": 2025,
+  "problem": "B",
+  "paper_id": "cumcm-2025-b060",
+  "title": "2025高教社杯全国大学生数学建模竞赛B题论文展示（B060）",
+  "source_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2025qgdxssxjmjslwzs_2025btlw/251101/2022733.shtml",
+  "access": "public_page_images",
+  "award_or_label": "全国大学生数学建模竞赛组委会官方论文展示",
+  "page_coverage": {
+    "reported_total_pages": 72,
+    "cached_pages": 72,
+    "coverage": 1.0,
+    "sha256_verified": true
+  },
+  "abstract_layout": {
+    "pages": [
+      1
+    ],
+    "pattern": "独立首屏摘要 + 关键词；方法按问题顺序展开",
+    "density": "medium-to-high",
+    "evidence": [
+      {
+        "page": 1,
+        "file": "raw/cumcm-2025-b060/page-01.jpg",
+        "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+        "locator": "official page image 1"
+      }
+    ]
+  },
+  "problem_framing": "过程参数曲线与策略优化",
+  "models_to_subquestions": {
+    "Q1": "从过程机理建立状态变量和参数关系",
+    "Q2": "用曲线/积分或拟合得到关键参数",
+    "Q3-Q4": "在边界和策略约束下求解方案并以轨迹、表格和敏感性结果验证"
+  },
+  "models": [
+    "过程动力学/衰减曲线",
+    "参数拟合或数值积分",
+    "情景/策略优化",
+    "轨迹与关键指标验证"
+  ],
+  "validation_structure": [
+    "第6-7页用多组曲线核对参数变化下的响应",
+    "第9页用轨迹/时间曲线比较策略",
+    "第10页以关键数值表和误差/指标收束"
+  ],
+  "figure_strategy": [
+    "参数响应曲线",
+    "策略轨迹图",
+    "关键指标表"
+  ],
+  "transferable_patterns": [
+    "参数拟合图要把观测、基线和模型预测用不同线型区分",
+    "每个策略图保留同一坐标范围，便于跨情景比较",
+    "摘要先给总体方法，再给一个能解释策略选择的指标"
+  ],
+  "risks": [
+    "多条曲线的图例较密，应分面或只突出主线",
+    "页面水印和大字号标题不应被复制到正式论文",
+    "页面图片来自官方展示页，水印/压缩伪影不作为原论文排版评价"
+  ],
+  "evidence": [
+    {
+      "page": 1,
+      "file": "raw/cumcm-2025-b060/page-01.jpg",
+      "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 2,
+      "file": "raw/cumcm-2025-b060/page-02.jpg",
+      "observation": "问题重述/背景或数据对象；记录正文如何从摘要进入模型",
+      "locator": "official page image 2"
+    },
+    {
+      "page": 4,
+      "file": "raw/cumcm-2025-b060/page-04.jpg",
+      "observation": "符号表、假设、变量或模型路线图；记录定义顺序",
+      "locator": "official page image 4"
+    },
+    {
+      "page": 7,
+      "file": "raw/cumcm-2025-b060/page-07.jpg",
+      "observation": "代表性主结果图/表；记录图型、图例、单位和比较对象",
+      "locator": "official page image 7"
+    },
+    {
+      "page": 10,
+      "file": "raw/cumcm-2025-b060/page-10.jpg",
+      "observation": "验证、敏感性、方案比较或阶段性结论；记录结果闭环",
+      "locator": "official page image 10"
+    }
+  ],
+  "evidence_boundary": "模型类别和排版判断只写页面中可见的公式、图形、表格和章节位置；未从视觉材料推断奖级、原创性或数学正确性。"
+}

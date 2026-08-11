@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T161902915769Z",
+  "status": "PARTIAL",
+  "passed": false,
+  "accepted_tasks": [
+    "writer-q1"
+  ],
+  "retry_tasks": [
+    "reviewer-q1"
+  ],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "tasks": [
+    {
+      "task_id": "writer-q1",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 1,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/q1_draft.tex",
+          "sha256": "732cfb4295d22758fcfa5fbb3ecaa0113c89f0f1be72ad80613a6caa641bf6c5"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figure_contract_proposal.yaml",
+          "sha256": "453389963d9fe45378561e5231bca37c7f80cf3062b719df5b8568e921e6fcf6"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figure_manifest.json",
+          "sha256": "05daa9a1d8129219bd648c04b14b8aeb7d66703f6fd02115bc5b04faad3deaa2"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_01_workload_ranking.pdf",
+          "sha256": "b57b77ac75669387d94e7312168abdd03b98839a5b04fd358f443fc9d6081c3d"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_01_workload_ranking.svg",
+          "sha256": "3faae00c2b40f8a42f1754707073b0886dd39c038055362ee1dc8f778825b1a4"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_01_workload_ranking.png",
+          "sha256": "604ad22bf50db8f219b72208fcbe0dd144301711c55dccdc21ce963cd17e4622"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_02_demand_heatmap.pdf",
+          "sha256": "f0025c94273f3671a545bbabc15e02b5b5686d324328f6ca3bab33044a1a330c"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_02_demand_heatmap.svg",
+          "sha256": "c58f485ad4a63c649b80b4fba90a9c3b0abf2b32fc451816ad5c70eaf70718f9"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_02_demand_heatmap.png",
+          "sha256": "b1d7e5e548344bfc6fba6f4d2bc548f4b6830ab8531b7ef02981a78ffd145f18"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_03_system_forecast.pdf",
+          "sha256": "421de7284614e43a29b7b02b4fc749d1ba6d2756ecd0ebd57730bb8e02a46612"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_03_system_forecast.svg",
+          "sha256": "832d9a4bd1fd60d51c72c0fbbbdca36d015f8b952471f39369fcb8444dabcdf4"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_03_system_forecast.png",
+          "sha256": "3df7bf04feb7b99551e520e276f1004b0e821f9463b3dd550676788b7d6ae82a"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_04_error_comparison.pdf",
+          "sha256": "8f2e26088f99ee84e51e0af2a310e4821435b4c7ddab6523d17ff1893afa6638"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_04_error_comparison.svg",
+          "sha256": "a90053521730c45d45cfee73c25dc089c1f89d4b31eb507e8a24bedd83295a96"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_04_error_comparison.png",
+          "sha256": "ce27eb4dc40230e88606863d090160f300c33a0a6e1641e488b9ae8213b1dc07"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_05_schedule_gantt.pdf",
+          "sha256": "47b898fa1e67fa75507ce4206d0687c332d71b7b481a11b0ead174e828f5e8c7"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_05_schedule_gantt.svg",
+          "sha256": "12ee29f39f5f333dbfe4293c70e52da0727c841ec9ca3928974d3d6006e142e3"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_05_schedule_gantt.png",
+          "sha256": "4c3d7d8f86cecda04599cc9cc85c993ade90d76f3a3a9f9cc87d1e03f83520bc"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_06_gpu_utilization.pdf",
+          "sha256": "cf8cefa693f09de82e92ad6fdcae0bdbde9d0b17656f0d6c41c807feb61445c1"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_06_gpu_utilization.svg",
+          "sha256": "572951c66bcd0a14df689321fd7aa994c64a5df05ddd89ef79111151be79f0b3"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_06_gpu_utilization.png",
+          "sha256": "d43d3859ff7e4e7a5c024dd2c762b0cdcbfbc5fd426f5a917f920469a547ddf4"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_07_residual_coverage.pdf",
+          "sha256": "3728af511e3da4e38eaaff56a385d835f9d2e29bc49c01a45e9671ec6d7addce"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_07_residual_coverage.svg",
+          "sha256": "fe76f4627059edb4708dcf444b2f471ad6a197b7dc69a4e92566d6e380f492f6"
+        },
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/figures/q1_fig_07_residual_coverage.png",
+          "sha256": "8af53b24906ff3480f39f540aa42fa069a95bf3e57866e5f225e189e9606f550"
+        }
+      ],
+      "handoff": "sprints/sprint-20260807T161902915769Z/staging/writer-q1/handoff.json"
+    },
+    {
+      "task_id": "reviewer-q1",
+      "declared_status": "PARTIAL",
+      "disposition": "RETRY_REQUIRED",
+      "attempt": 2,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260807T161902915769Z/retry-staging/reviewer-q1-attempt-2/q1_review.json",
+          "sha256": "939fe141dec5acb01ed25a2fd1499912f57a0462e2c131b1269493c37eb52e19"
+        }
+      ],
+      "handoff": "sprints/sprint-20260807T161902915769Z/retry-staging/reviewer-q1-attempt-2/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-07T19:14:40.061513+00:00"
+}

@@ -1,0 +1,3 @@
+experiment_id: demo
+random_seed: 20260801
+runner: src/modeling/run_demo.py

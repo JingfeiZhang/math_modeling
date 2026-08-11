@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "analysis_status": "evidence_reviewed",
+  "review_method": "full page cache plus visual review of abstract, framework, model, main-result and validation anchors",
+  "ocr_status": "not_available; observations are page-image visual evidence, not OCR transcription",
+  "competition": "CUMCM",
+  "year": 2024,
+  "problem": "A",
+  "paper_id": "cumcm-2024-a242",
+  "title": "2024高教社杯全国大学生数学建模竞赛A题论文展示（A242）",
+  "source_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024atlw/241104/1977939.shtml",
+  "access": "public_page_images",
+  "award_or_label": "全国大学生数学建模竞赛组委会官方论文展示",
+  "page_coverage": {
+    "reported_total_pages": 54,
+    "cached_pages": 54,
+    "coverage": 1.0,
+    "sha256_verified": true
+  },
+  "abstract_layout": {
+    "pages": [
+      1
+    ],
+    "pattern": "独立首屏摘要 + 关键词；方法按问题顺序展开",
+    "density": "medium-to-high",
+    "evidence": [
+      {
+        "page": 1,
+        "file": "raw/cumcm-2024-a242/page-01.jpg",
+        "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+        "locator": "official page image 1"
+      }
+    ]
+  },
+  "problem_framing": "几何运动模型的轨迹、面积和姿态表达",
+  "models_to_subquestions": {
+    "Q1": "从螺线和几何约束得到运动轨迹",
+    "Q2": "递推位置、速度并计算关键状态",
+    "Q3-Q4": "用积分或几何分解计算面积/覆盖量，并构造姿态或转向方案"
+  },
+  "models": [
+    "极坐标/阿基米德螺线",
+    "位置速度递推",
+    "面积或覆盖量积分",
+    "姿态/路径几何构造"
+  ],
+  "validation_structure": [
+    "第7页轨迹图与多组计算表并列",
+    "第8页用堆叠面积图和折线图展示量随参数变化",
+    "第9-10页给出局部几何图和代入结果"
+  ],
+  "figure_strategy": [
+    "轨迹图",
+    "堆叠面积/折线结果图",
+    "局部姿态示意图"
+  ],
+  "transferable_patterns": [
+    "一张主图只承担一个主张，面积图与轨迹图分工",
+    "复杂几何对象应提供局部放大或状态快照",
+    "结果章节用图先给趋势，再用表给可复核数字"
+  ],
+  "risks": [
+    "面积图颜色较多时要提供图例和灰度可区分的线型",
+    "官方页面水印不属于论文排版，应从经验规则中排除",
+    "页面图片来自官方展示页，水印/压缩伪影不作为原论文排版评价"
+  ],
+  "evidence": [
+    {
+      "page": 1,
+      "file": "raw/cumcm-2024-a242/page-01.jpg",
+      "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 2,
+      "file": "raw/cumcm-2024-a242/page-02.jpg",
+      "observation": "问题重述/背景或数据对象；记录正文如何从摘要进入模型",
+      "locator": "official page image 2"
+    },
+    {
+      "page": 4,
+      "file": "raw/cumcm-2024-a242/page-04.jpg",
+      "observation": "符号表、假设、变量或模型路线图；记录定义顺序",
+      "locator": "official page image 4"
+    },
+    {
+      "page": 7,
+      "file": "raw/cumcm-2024-a242/page-07.jpg",
+      "observation": "代表性主结果图/表；记录图型、图例、单位和比较对象",
+      "locator": "official page image 7"
+    },
+    {
+      "page": 10,
+      "file": "raw/cumcm-2024-a242/page-10.jpg",
+      "observation": "验证、敏感性、方案比较或阶段性结论；记录结果闭环",
+      "locator": "official page image 10"
+    }
+  ],
+  "evidence_boundary": "模型类别和排版判断只写页面中可见的公式、图形、表格和章节位置；未从视觉材料推断奖级、原创性或数学正确性。"
+}

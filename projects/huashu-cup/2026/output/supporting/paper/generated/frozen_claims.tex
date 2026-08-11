@@ -1,0 +1,65 @@
+% Generated from frozen evidence. Do not edit.
+\providecommand{\FrozenClaim}[1]{%
+  \ifcsname mathmodelclaim@#1\endcsname
+    \csname mathmodelclaim@#1\endcsname
+  \else
+    \PackageError{mathmodel}{Frozen claim #1 has not been generated}{}%
+  \fi
+}
+\providecommand{\FrozenClaimUnit}[1]{%
+  \ifcsname mathmodelclaimunit@#1\endcsname
+    \csname mathmodelclaimunit@#1\endcsname
+  \else
+    \PackageError{mathmodel}{Frozen claim unit #1 has not been generated}{}%
+  \fi
+}
+\providecommand{\ClaimBoolean}[1]{\ifstrequal{\FrozenClaim{#1}}{True}{通过}{未通过}}
+\providecommand{\ClaimPass}[1]{\ClaimBoolean{#1}}
+\expandafter\def\csname mathmodelclaim@Q1-FCST-TEST-WAPE\endcsname{0.89343949172524}
+\expandafter\def\csname mathmodelclaimunit@Q1-FCST-TEST-WAPE\endcsname{ratio}
+\expandafter\def\csname mathmodelclaim@Q1-FCST-TEST-COVERAGE\endcsname{0.9467592592592593}
+\expandafter\def\csname mathmodelclaimunit@Q1-FCST-TEST-COVERAGE\endcsname{ratio}
+\expandafter\def\csname mathmodelclaim@Q1-SCHED-FEASIBLE\endcsname{True}
+\expandafter\def\csname mathmodelclaimunit@Q1-SCHED-FEASIBLE\endcsname{boolean}
+\expandafter\def\csname mathmodelclaim@Q1-SCHED-COMPLETION\endcsname{1.0}
+\expandafter\def\csname mathmodelclaimunit@Q1-SCHED-COMPLETION\endcsname{ratio}
+\expandafter\def\csname mathmodelclaim@Q1-SCHED-SOLVER-STATUS\endcsname{FEASIBLE}
+\expandafter\def\csname mathmodelclaimunit@Q1-SCHED-SOLVER-STATUS\endcsname{categorical}
+\expandafter\def\csname mathmodelclaim@Q2-FULL-COMPLETION-RATE\endcsname{1.0}
+\expandafter\def\csname mathmodelclaimunit@Q2-FULL-COMPLETION-RATE\endcsname{ratio}
+\expandafter\def\csname mathmodelclaim@Q2-FULL-SLA-VIOLATION-RATE\endcsname{0.0}
+\expandafter\def\csname mathmodelclaimunit@Q2-FULL-SLA-VIOLATION-RATE\endcsname{ratio}
+\expandafter\def\csname mathmodelclaim@Q2-FULL-HARD-AUDIT-PASS\endcsname{True}
+\expandafter\def\csname mathmodelclaimunit@Q2-FULL-HARD-AUDIT-PASS\endcsname{boolean}
+\expandafter\def\csname mathmodelclaim@Q2-FULL-COST-CHANGE-PCT\endcsname{-1.0149373918772464}
+\expandafter\def\csname mathmodelclaimunit@Q2-FULL-COST-CHANGE-PCT\endcsname{percent}
+\expandafter\def\csname mathmodelclaim@Q2-FULL-CARBON-CHANGE-PCT\endcsname{-1.929297238773453}
+\expandafter\def\csname mathmodelclaimunit@Q2-FULL-CARBON-CHANGE-PCT\endcsname{percent}
+\expandafter\def\csname mathmodelclaim@Q2-FULL-LATENCY-CHANGE-MS\endcsname{4.18976}
+\expandafter\def\csname mathmodelclaimunit@Q2-FULL-LATENCY-CHANGE-MS\endcsname{ms}
+\expandafter\def\csname mathmodelclaim@Q2-FULL-DETERMINISTIC-REPLAY\endcsname{True}
+\expandafter\def\csname mathmodelclaimunit@Q2-FULL-DETERMINISTIC-REPLAY\endcsname{boolean}
+\expandafter\def\csname mathmodelclaim@Q3-ROLLING-BINARY-COVERAGE\endcsname{90}
+\expandafter\def\csname mathmodelclaimunit@Q3-ROLLING-BINARY-COVERAGE\endcsname{solve}
+\expandafter\def\csname mathmodelclaim@Q3-ROLLING-COST-DELTA\endcsname{-38899969.87293261}
+\expandafter\def\csname mathmodelclaimunit@Q3-ROLLING-COST-DELTA\endcsname{CNY}
+\expandafter\def\csname mathmodelclaim@Q3-ROLLING-CARBON-DELTA\endcsname{-8.8505625719}
+\expandafter\def\csname mathmodelclaimunit@Q3-ROLLING-CARBON-DELTA\endcsname{tCO2}
+\expandafter\def\csname mathmodelclaim@Q3-STRESS-AUDITS-PASSED\endcsname{48}
+\expandafter\def\csname mathmodelclaimunit@Q3-STRESS-AUDITS-PASSED\endcsname{audit}
+\expandafter\def\csname mathmodelclaim@Q3-FACILITY-LOAD-ROUNDING-RESIDUAL\endcsname{5.044995509706496e-05}
+\expandafter\def\csname mathmodelclaimunit@Q3-FACILITY-LOAD-ROUNDING-RESIDUAL\endcsname{MW}
+\expandafter\def\csname mathmodelclaim@Q3-ALL-270-AUDITS-PASS\endcsname{270}
+\expandafter\def\csname mathmodelclaimunit@Q3-ALL-270-AUDITS-PASS\endcsname{audit}
+\expandafter\def\csname mathmodelclaim@Q4-AUDIT-PASS\endcsname{True}
+\expandafter\def\csname mathmodelclaimunit@Q4-AUDIT-PASS\endcsname{boolean}
+\expandafter\def\csname mathmodelclaim@Q4-OBS-COST-DELTA\endcsname{-16061.169525038451}
+\expandafter\def\csname mathmodelclaimunit@Q4-OBS-COST-DELTA\endcsname{CNY}
+\expandafter\def\csname mathmodelclaim@Q4-LOWREN-COST-DELTA\endcsname{-41567.4747970365}
+\expandafter\def\csname mathmodelclaimunit@Q4-LOWREN-COST-DELTA\endcsname{CNY}
+\expandafter\def\csname mathmodelclaim@Q4-LOWREN-CARBON-DELTA\endcsname{-7.822675821515936}
+\expandafter\def\csname mathmodelclaimunit@Q4-LOWREN-CARBON-DELTA\endcsname{tCO2}
+\expandafter\def\csname mathmodelclaim@Q4-JOINT-CARBON-DELTA\endcsname{-9.387210985819125}
+\expandafter\def\csname mathmodelclaimunit@Q4-JOINT-CARBON-DELTA\endcsname{tCO2}
+\expandafter\def\csname mathmodelclaim@Q4-DETERMINISTIC-REPLAY\endcsname{True}
+\expandafter\def\csname mathmodelclaimunit@Q4-DETERMINISTIC-REPLAY\endcsname{boolean}

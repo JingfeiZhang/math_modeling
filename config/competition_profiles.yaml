@@ -1,0 +1,99 @@
+schema_version: 1
+profiles:
+  generic-zh:
+    competition: GENERIC_ZH_MODELING
+    display_name: 中文数学建模竞赛
+    language: zh-CN
+    rules:
+      status: pending_official_verification
+      require_verification_before_submission: true
+      sources: []
+    paper:
+      template_family: cumcm-2026
+      template_status: provisional
+    format:
+      paper_body_max_pages: 30
+      abstract_max_pages: 1
+      paper_max_mb: 20
+      support_max_mb: 20
+      min_margin_cm: 2.5
+      searchable_pdf_min_chars_per_page: 20
+      searchable_pdf_min_page_ratio: 0.8
+      require_anonymous: true
+      provisional: true
+    submission:
+      searchable_pdf_policy: recommended
+      hash_algorithms: [md5, sha256]
+      separate_paper_and_support: true
+      publish_dir: submission
+  cumcm:
+    competition: CUMCM
+    display_name: 全国大学生数学建模竞赛
+    language: zh-CN
+    rules:
+      status: verified
+      require_verification_before_submission: true
+      sources:
+        - https://www.mcm.edu.cn/html_cn/node/9d8e511fe7a1447b35f53a82c908e2e0.html
+        - https://www.mcm.edu.cn/html_cn/node/4cd596519c9eb9fbd866398f6df0caa3.html
+    paper:
+      template_family: cumcm-2026
+      template_status: verified
+    format:
+      paper_body_max_pages: 30
+      abstract_max_pages: 1
+      paper_max_mb: 20
+      support_max_mb: 20
+      min_margin_cm: 2.5
+      searchable_pdf_min_chars_per_page: 20
+      searchable_pdf_min_page_ratio: 0.8
+      require_anonymous: true
+      electronic_pdf_excludes_commitment_pages: true
+      provisional: false
+    submission:
+      searchable_pdf_policy: recommended
+      hash_algorithms: [md5, sha256]
+      separate_paper_and_support: true
+      source_code_in_appendix_and_support: true
+      publish_dir: submission
+  huashu-cup:
+    extends: cumcm
+    competition: HUASHU_CUP
+    display_name: 华数杯全国大学生数学建模竞赛
+    rules:
+      status: inherited_cumcm_default
+      require_verification_before_submission: true
+      inheritance_note: 未发现华数杯当届特殊说明时按国赛规则执行；赛事方特殊规则优先覆盖
+    paper:
+      template_family: cumcm-2026
+      template_status: cumcm_compatible_until_override
+    format:
+      provisional: true
+  mcm-icm:
+    competition: MCM_ICM
+    display_name: COMAP Mathematical Contest in Modeling
+    language: en-US
+    rules:
+      status: verify_current_year
+      require_verification_before_submission: true
+      sources: []
+    paper:
+      template_family: mcm-current
+      template_status: verify_current_year
+    format:
+      provisional: true
+    submission:
+      hash_algorithms: [sha256]
+  gmcm:
+    competition: GMCM
+    display_name: 中国研究生数学建模竞赛
+    language: zh-CN
+    rules:
+      status: verify_current_year
+      require_verification_before_submission: true
+      sources: []
+    paper:
+      template_family: gmcm-reference
+      template_status: reference_only
+    format:
+      provisional: true

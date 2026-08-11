@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T120243374139Z",
+  "status": "BLOCKED",
+  "passed": false,
+  "accepted_tasks": [],
+  "retry_tasks": [],
+  "blocked_tasks": [
+    "forecast-q1",
+    "scheduling-q1"
+  ],
+  "protected_changes": [
+    "output"
+  ],
+  "tasks": [
+    {
+      "task_id": "forecast-q1",
+      "declared_status": "SUCCESS",
+      "disposition": "BLOCKED",
+      "attempt": 1,
+      "issues": [
+        {
+          "kind": "stale_input",
+          "path": "problems/C/questions/Q1/question.yaml"
+        },
+        {
+          "kind": "root_owned_path_changed",
+          "path": "output"
+        }
+      ],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/run_forecast.py",
+          "sha256": "e20f17ca47b5a6b6f0935dc2549ef86014c47332b46e386ecc349d3b0b0cf49a"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/workload_panel.csv",
+          "sha256": "d0eaf1a81152b3dda4ebcea4f223c31111ed001c1eec16543311fe87aa1ee80b"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/descriptive_by_series.csv",
+          "sha256": "5f54955015f3175444b5227154f8dd8ad3d95d94e8c556285132dfbb6b61543c"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/baseline_selection.csv",
+          "sha256": "432b6bbdb04a13a0cae119c11ccb8944658aa46b9cb1ff4cacb9cd32cb8a4e31"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/residual_shrinkage_selection.csv",
+          "sha256": "d461fcd206f2730139baf5d3c98d6177ffb0dde7f4b2e12b4da4118e5caeeb55"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/rolling_backtest_predictions.csv",
+          "sha256": "0b82c3d49554e36ddcd3a608253ad1e446eef6fecf610d521e389197adc92a75"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/validation_predictions.csv",
+          "sha256": "75a19cb05d006e1593b10b95a6a8c0e789e848466094d3172834fd8727ba5938"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/blind_test_predictions.csv",
+          "sha256": "fe0514e14d16b509d93007ab7a4b18ddf901c816556f6bc390f2b5f93b04cf57"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/metrics_by_series.csv",
+          "sha256": "c98c1895b65655fb4e81caf4365677fbb8b9597f6de90554f13dc1cd3f0f4bfd"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/metrics_summary.json",
+          "sha256": "a551936c23e6e721c6a3aa75834b688d9975502c4f5db5683488bcede64b0b31"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/model_config.json",
+          "sha256": "94980158c3f37a3bdfe23c7dec657b4fa043dc56bb6c2476790054a8ca0d89cf"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/claim_proposal.json",
+          "sha256": "8ccc7441707ac727452b901e52c2ae0e5a5c7902c12b4527adfa968ac5b63908"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/hash_manifest.json",
+          "sha256": "2b16ea442eeeb6ae10b8ced2a40555bbd74f55aeadb6a6dbe2092e5df096ebd6"
+        },
+        {
+          "path": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/run_manifest.json",
+          "sha256": "d660e269bfda226144eff8c5bbfaa0b6e507925322c0ca5cd135a1ce3dc33763"
+        }
+      ],
+      "handoff": "sprints/sprint-20260807T120243374139Z/staging/forecast-q1/handoff.json"
+    },
+    {
+      "task_id": "scheduling-q1",
+      "declared_status": "MISSING",
+      "disposition": "BLOCKED",
+      "attempt": 1,
+      "issues": [
+        {
+          "kind": "stale_input",
+          "path": "problems/C/questions/Q1/question.yaml"
+        },
+        {
+          "kind": "missing_handoff",
+          "path": "sprints/sprint-20260807T120243374139Z/staging/scheduling-q1/handoff.json"
+        },
+        {
+          "kind": "root_owned_path_changed",
+          "path": "output"
+        }
+      ],
+      "artifacts": [],
+      "handoff": "sprints/sprint-20260807T120243374139Z/staging/scheduling-q1/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-07T12:11:42.298787+00:00"
+}

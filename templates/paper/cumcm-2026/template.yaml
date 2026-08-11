@@ -1,0 +1,87 @@
+id: cumcm-2026
+engine: xelatex
+paper_size: a4
+columns: 1
+margin_mm: 25
+automatic_toc: false
+identity_fields: false
+abstract_separate_page: true
+rule_status: verify_against_official_2026_rules_before_submission
+contract_version: "3.0"
+contract_evidence:
+  report: corpus/reports/cumcm-c-writing-template-2021-2025.md
+  sha256: EB36D0D70F6DA29F21A13C4551F8C93997292E72C139DD9B2159E7878B8A5603
+  scope: 14_official_c_papers_plus_1_supplementary_comparison_2021_2025
+rule_precedence:
+  - current_competition_official_rules
+  - project_contest_profile
+  - this_template_contract
+structure_contract:
+  source_of_truth: paper/sections/*.tex
+  generated_question_structure: paper/generated/question_structure.tex
+  no_parallel_markdown_manuscript: true
+  automatic_toc: false
+  notation_location: front_body
+  appendix_symbol_table: false
+  ai_statement: only_when_current_rules_require
+  section_order:
+    - abstract_keywords
+    - problem_restatement
+    - problem_analysis
+    - assumptions_notation
+    - data_processing_metrics
+    - generated_questions
+    - model_evaluation
+    - conditional_ai_statement
+    - references
+    - appendix
+  question_count:
+    source: parsed_real_problem
+    minimum: 2
+    maximum: 4
+    empty_question_sections_forbidden: true
+  question_argument_contract:
+    - id: objective_interface
+      heading: 目标与上下游接口
+      evidence_role: problem_requirement_and_question_manifest
+    - id: data_mechanism
+      heading: 数据特征或机理依据
+      evidence_role: verified_data_profile_or_domain_relation
+    - id: model_choice
+      heading: 模型选择与备选方案比较
+      evidence_role: problem_fit_baseline_and_verified_literature
+    - id: formulation
+      heading: 模型建立
+      evidence_role: variables_objective_constraints_units_and_boundaries
+    - id: algorithm
+      heading: 求解算法
+      evidence_role: executable_runner_parameters_stopping_and_replay
+    - id: result
+      heading: 核心结果与解释
+      evidence_role: frozen_claims_tables_figures_and_baseline
+    - id: validation
+      heading: 模型检验
+      evidence_role: error_feasibility_sensitivity_or_robustness
+    - id: conclusion
+      heading: 本问结论与适用边界
+      evidence_role: frozen_conclusion_boundary_and_downstream_interface
+  abstract_contract:
+    per_question_required: [method, quantitative_result, validation]
+    first_page_only: true
+  figure_table_contract:
+    first_reference_near_artifact: true
+    explanation_required: [result, mechanism, problem_meaning]
+    decorative_figures_forbidden: true
+  citation_contract:
+    order: first_use
+    all_entries_cited: true
+    verified_sources_only: true
+  writing_boundaries:
+    unverified_numbers_forbidden: true
+    internal_workflow_narration_forbidden: true
+    algorithm_name_fixed_by_template: false
+    current_official_page_limit_overrides_template: true
+notes:
+  - The official current-year rule overrides this template.
+  - Initialize the generated question structure only after a real problem is supplied.
+  - Replace result prompts only with frozen evidence; problem-analysis prompts may be completed earlier.

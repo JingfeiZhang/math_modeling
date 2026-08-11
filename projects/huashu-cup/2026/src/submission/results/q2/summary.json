@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "question_id": "Q2",
+  "status": "PASS",
+  "source": "frozen formal Q2 run",
+  "task_count": 50000,
+  "completion_rate": 1,
+  "sla_violation_rate": 0,
+  "baseline": {
+    "method": "FIFO",
+    "cost_CNY": 3359955010.883479,
+    "carbon_tCO2": 2893907.676691789,
+    "mean_latency_ms": 5.06846
+  },
+  "main": {
+    "method": "bounded rolling exchange",
+    "cost_CNY": 3325853571.1277695,
+    "carbon_tCO2": 2838075.5957927215,
+    "mean_latency_ms": 9.25822,
+    "renewable_utilization_ratio": 0.9992043662036217
+  },
+  "hard_audit_passed": true,
+  "deterministic_replay_passed": true,
+  "formal_main_replaced": false
+}

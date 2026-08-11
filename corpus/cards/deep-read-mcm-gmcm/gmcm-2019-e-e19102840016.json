@@ -1,0 +1,282 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "gmcm-2019-e-e19102840016",
+  "identity": {
+    "contest": "GMCM",
+    "year": 2019,
+    "problem": "E",
+    "team_id": "E19102840016",
+    "title": "全球变暖气候预测分析"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/fa0ef8aa552ca71c43b4fed684ca21f27a52f82e",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-0研赛题目+论文/优秀论文按年份/2019年优秀论文/E/E19102840016.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "GMCM",
+    "year": 2019,
+    "problem": "E",
+    "team_id": "E19102840016",
+    "title": "全球变暖气候预测分析",
+    "award": "镜像目录称优秀论文，未独立核验",
+    "locator": "No independent official locator",
+    "matched_text": "No independent official award locator found; the mirror directory label is not award evidence."
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": false
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "No independent official award list or official paper-display locator was found for this record.",
+      "Repository popularity and an 'excellent papers' folder name do not establish an award."
+    ]
+  },
+  "pdf": {
+    "sha256": "a6e9610bc88e6c7d33a43909ffbd9d9384fc4b6fc9497ed23aab0c47a1ffeb85",
+    "pages": 61,
+    "local_path": "corpus/raw/mcm-gmcm/gmcm-2019-e-e19102840016/paper.pdf",
+    "first_page_phash": "dhash64:00baf8f0e0e0e008",
+    "text_sha256": "503aeb7ea8e6ac98cab80ac28a5486a1fd9f433b5c9c460542c4078518511a15"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "identity",
+        "risk"
+      ],
+      "observation": "The cover exposes school, team number, and member names.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-e-e19102840016/page-01.png"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "abstract",
+        "result"
+      ],
+      "observation": "The abstract reports Mann-Kendall, wavelets, spatial interpolation, PCA, random forest, ARIMA, Prophet, and quantitative fit metrics by task.",
+      "derivation": "mixed",
+      "locator": "PDF page 2",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-e-e19102840016/page-02.png"
+    },
+    {
+      "page": 27,
+      "tags": [
+        "feature",
+        "figure"
+      ],
+      "observation": "A correlation heatmap and scree plot justify reducing climate factors.",
+      "derivation": "mixed",
+      "locator": "PDF page 27",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-e-e19102840016/page-27.png"
+    },
+    {
+      "page": 30,
+      "tags": [
+        "comparison",
+        "figure"
+      ],
+      "observation": "Observed sea temperature is compared with global temperature before forecasting.",
+      "derivation": "mixed",
+      "locator": "PDF page 30",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-e-e19102840016/page-30.png"
+    },
+    {
+      "page": 35,
+      "tags": [
+        "forecast",
+        "figure"
+      ],
+      "observation": "Historical and Prophet forecast segments are visually separated and a year-value table is supplied.",
+      "derivation": "mixed",
+      "locator": "PDF page 35",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-e-e19102840016/page-35.png"
+    },
+    {
+      "page": 40,
+      "tags": [
+        "validation",
+        "table"
+      ],
+      "observation": "Random-forest importance is paired with normality tests and correlation-method choices.",
+      "derivation": "mixed",
+      "locator": "PDF page 40",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-e-e19102840016/page-40.png"
+    },
+    {
+      "page": 48,
+      "tags": [
+        "code",
+        "risk"
+      ],
+      "observation": "Code excerpts contain absolute local paths and a network download call.",
+      "derivation": "mixed",
+      "locator": "PDF page 48",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-e-e19102840016/page-48.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 2,
+      "role": "multi-question-method-metric",
+      "observation": "For each climate task, name the data scope, method, dominant result, and validation metric where available."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 2,
+      "step": "trend-and-change",
+      "observation": "Use climate slope, Mann-Kendall change detection, and wavelet periodicity analysis.",
+      "order": 1
+    },
+    {
+      "page": 27,
+      "step": "factor-reduction",
+      "observation": "Use correlation analysis and PCA to reduce climate drivers.",
+      "order": 2
+    },
+    {
+      "page": 30,
+      "step": "time-series-forecast",
+      "observation": "Fit ARIMA and Prophet models to temperature series.",
+      "order": 3
+    },
+    {
+      "page": 40,
+      "step": "driver-classification",
+      "observation": "Use random forest to rank and classify important climate drivers.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 27,
+      "method": "dimension-check",
+      "observation": "Inspect the correlation matrix and cumulative variance before choosing components.",
+      "order": 1
+    },
+    {
+      "page": 30,
+      "method": "fit-metric",
+      "observation": "Report a high fit score for the selected forecasting model.",
+      "order": 2
+    },
+    {
+      "page": 35,
+      "method": "forecast-table",
+      "observation": "Provide explicit annual forecasts beside the plotted series.",
+      "order": 3
+    },
+    {
+      "page": 40,
+      "method": "distribution-aware-test",
+      "observation": "Choose Pearson or Spearman after normality tests.",
+      "order": 4
+    }
+  ],
+  "figures": [
+    {
+      "page": 27,
+      "role": "feature-reduction",
+      "chart_type": "heatmap plus scree plot",
+      "lesson": "Place correlation and retained-dimension evidence on one page."
+    },
+    {
+      "page": 30,
+      "role": "series-comparison",
+      "chart_type": "aligned time-series plots",
+      "lesson": "Compare related temperatures over the same years before causal discussion."
+    },
+    {
+      "page": 35,
+      "role": "forecast",
+      "chart_type": "history-forecast line plus table",
+      "lesson": "Separate observed and forecast segments and provide exact tabular values."
+    },
+    {
+      "page": 40,
+      "role": "feature-importance",
+      "chart_type": "bar chart plus statistical table",
+      "lesson": "Combine model importance with tests that justify the correlation analysis."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 27,
+      "rule": "Pair a correlation heatmap with a scree or cumulative-variance plot before PCA-based modeling.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 35,
+      "rule": "Put exact forecast values beside the visual forecast when decisions depend on them.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 40,
+      "rule": "Let distribution checks determine the reported correlation statistic.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 1,
+      "risk": "The cover leaks direct identifiers.",
+      "severity": "high"
+    },
+    {
+      "page": 48,
+      "risk": "Embedded code contains absolute local paths and a network call, so it is neither portable nor safe to batch-run.",
+      "severity": "high"
+    },
+    {
+      "page": 2,
+      "risk": "Many algorithms are stacked across subproblems; model-selection logic is not always equally deep.",
+      "severity": "medium"
+    },
+    {
+      "page": 2,
+      "risk": "The award status has no independent official evidence.",
+      "severity": "high"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/gmcm-2019-e-e19102840016/source_manifest.json",
+    "selected_pages": [
+      1,
+      2,
+      27,
+      30,
+      35,
+      40,
+      48
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

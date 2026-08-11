@@ -1,0 +1,257 @@
+{
+  "artifacts": [
+    {
+      "path": "experiments/C/Q3/q3-full-audit-fix-20260809/full_cycle_binary_dispatch.csv",
+      "sha256": "5ecd75a006df7dab2ebbe94044ba86603df64fceddd7f68ead52c3ff0386b271"
+    },
+    {
+      "path": "experiments/C/Q3/q3-full-audit-fix-20260809/full_cycle_baseline_dispatch.csv",
+      "sha256": "388d99f3fb75862787b0aced97d443da6c771e88db97281d7f340a4ac771692e"
+    },
+    {
+      "path": "experiments/C/Q3/q3-full-audit-fix-20260809/full_cycle_binary_metrics.csv",
+      "sha256": "1cfc89a42b6b4a958bf19a4226814a9360f068d0284676de98bad4faa66014e1"
+    },
+    {
+      "path": "experiments/C/Q3/q3-full-audit-fix-20260809/full_cycle_baseline_metrics.csv",
+      "sha256": "5de269ba8a2a406caad923fbdbec888cc2ef374121e07ef66f87f8fafeaefcf9"
+    },
+    {
+      "path": "experiments/C/Q3/q3-full-audit-fix-20260809/full_cycle_binary_audit.json",
+      "sha256": "8cb3da10dd6889e914d5a5e92a4944e1a06fc111a095bb78db385f579b414199"
+    },
+    {
+      "path": "experiments/C/Q3/q3-full-audit-fix-20260809/full_cycle_baseline_audit.json",
+      "sha256": "f1c272b355dcbb6dc93099bdbafb1c915980155036a5d6c5c05d8325462e82ea"
+    },
+    {
+      "path": "experiments/C/Q3/q3-full-audit-fix-20260809/constraint_audit.json",
+      "sha256": "6ed5050b88ca81a23ef90bf243ecf2f969ecb176c296cca006208cb574990cf0"
+    },
+    {
+      "path": "experiments/C/Q3/q3-full-audit-fix-20260809/summary.json",
+      "sha256": "f5b8a2f95c74e6d1bf181fa902a13dab0f60800b11693373cefb80bf7cc65613"
+    },
+    {
+      "path": "experiments/C/Q3/q3-full-audit-fix-20260809/claim_proposals.json",
+      "sha256": "507d0c5cef3985f3817020fdbe0c67f8887eaebfe24502fa6a431de40cf8f5e2"
+    }
+  ],
+  "candidate_status": "CANDIDATE",
+  "code": {
+    "runner": "experiments/C/Q3/q3-full-audit-fix-20260809/run_q3_full_audit_fix.py",
+    "sha256": "8259fd664766239eb954dc1418efdb822b522dc5698125b426824dd95ce7c235"
+  },
+  "command": [
+    "D:\\anaconda3\\envs\\math-modeling\\python.exe",
+    "experiments/C/Q3/q3-full-audit-fix-20260809/run_q3_full_audit_fix.py"
+  ],
+  "determinism": {
+    "OMP_NUM_THREADS": "1"
+  },
+  "duration_seconds": 18.52773330000491,
+  "engine": "python/scipy.optimize.milp (HiGHS)",
+  "environment": {
+    "packages": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "scipy": "1.18.0"
+    },
+    "platform": "Windows-11-10.0.22631-SP0",
+    "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]"
+  },
+  "finished_at_utc": "2026-08-09T04:37:31.733549+00:00",
+  "inputs": [
+    {
+      "accepted_current_manifest": true,
+      "current": {
+        "exists": true,
+        "kind": "file",
+        "path": "problems/C/questions/Q3/question.yaml",
+        "sha256": "4ed8205f9cbe02e7d9a107d4fd1b9959db2d397b6605263f23115351699b3f32"
+      },
+      "expected_at_original_run": {
+        "exists": true,
+        "kind": "file",
+        "path": "problems/C/questions/Q3/question.yaml",
+        "sha256": "a5457a859ff3e4141c0a34e5b3835f64193ea4d8ba08ed91c73af0b8428a363f"
+      },
+      "match": false,
+      "path": "problems/C/questions/Q3/question.yaml"
+    },
+    {
+      "accepted_current_manifest": false,
+      "current": {
+        "exists": true,
+        "kind": "file",
+        "path": "contest.yaml",
+        "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+      },
+      "expected_at_original_run": {
+        "exists": true,
+        "kind": "file",
+        "path": "contest.yaml",
+        "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+      },
+      "match": true,
+      "path": "contest.yaml"
+    },
+    {
+      "accepted_current_manifest": false,
+      "current": {
+        "exists": true,
+        "kind": "file",
+        "path": "config/workflow.yaml",
+        "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+      },
+      "expected_at_original_run": {
+        "exists": true,
+        "kind": "file",
+        "path": "config/workflow.yaml",
+        "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+      },
+      "match": true,
+      "path": "config/workflow.yaml"
+    },
+    {
+      "accepted_current_manifest": false,
+      "current": {
+        "exists": true,
+        "kind": "file",
+        "path": "problems/C/source/problem-C.pdf",
+        "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+      },
+      "expected_at_original_run": {
+        "exists": true,
+        "kind": "file",
+        "path": "problems/C/source/problem-C.pdf",
+        "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+      },
+      "match": true,
+      "path": "problems/C/source/problem-C.pdf"
+    },
+    {
+      "accepted_current_manifest": false,
+      "current": {
+        "exists": true,
+        "kind": "file",
+        "path": "problems/C/data/region_time_data.xlsx",
+        "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+      },
+      "expected_at_original_run": {
+        "exists": true,
+        "kind": "file",
+        "path": "problems/C/data/region_time_data.xlsx",
+        "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+      },
+      "match": true,
+      "path": "problems/C/data/region_time_data.xlsx"
+    },
+    {
+      "accepted_current_manifest": false,
+      "current": {
+        "exists": true,
+        "kind": "file",
+        "path": "problems/C/data/power_mapping.xlsx",
+        "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+      },
+      "expected_at_original_run": {
+        "exists": true,
+        "kind": "file",
+        "path": "problems/C/data/power_mapping.xlsx",
+        "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+      },
+      "match": true,
+      "path": "problems/C/data/power_mapping.xlsx"
+    },
+    {
+      "accepted_current_manifest": false,
+      "current": {
+        "exists": true,
+        "kind": "file",
+        "path": "problems/C/data/storage_information.xlsx",
+        "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+      },
+      "expected_at_original_run": {
+        "exists": true,
+        "kind": "file",
+        "path": "problems/C/data/storage_information.xlsx",
+        "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+      },
+      "match": true,
+      "path": "problems/C/data/storage_information.xlsx"
+    },
+    {
+      "accepted_current_manifest": false,
+      "current": {
+        "exists": true,
+        "kind": "directory",
+        "path": "sprints/sprint-20260807T194315250Z/merged/q3-pilot",
+        "sha256": "15298d1ed91c9882993f93ddb430f1f2430632743e651ea60b54871ff273ce63"
+      },
+      "expected_at_original_run": {
+        "exists": true,
+        "kind": "directory",
+        "path": "sprints/sprint-20260807T194315250Z/merged/q3-pilot",
+        "sha256": "15298d1ed91c9882993f93ddb430f1f2430632743e651ea60b54871ff273ce63"
+      },
+      "match": true,
+      "path": "sprints/sprint-20260807T194315250Z/merged/q3-pilot"
+    }
+  ],
+  "methods": [
+    {
+      "claim_eligible_scope": "feasibility and audit completeness only",
+      "implementation": "experiments/C/Q3/q3-full-audit-fix-20260809/run_q3_full_audit_fix.py",
+      "name": "regional full-horizon binary MILP audit probe",
+      "output_class": "regional hourly storage dispatch and hard-constraint audit",
+      "role": "main"
+    },
+    {
+      "comparable_output": true,
+      "implementation": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/run_solver_q3.py",
+      "name": "deterministic no-storage renewable-first policy",
+      "output_class": "regional hourly dispatch and the same hard-constraint audit",
+      "role": "baseline"
+    }
+  ],
+  "metrics": {
+    "audits_passed": {
+      "unit": "audit",
+      "value": 270
+    },
+    "audits_total": {
+      "unit": "audit",
+      "value": 270
+    },
+    "maximum_mip_gap": {
+      "unit": "ratio",
+      "value": 0.0
+    },
+    "maximum_simultaneous_charge_discharge": {
+      "unit": "MW",
+      "value": 0.0
+    }
+  },
+  "outputs": [
+    "full_cycle_binary_dispatch.csv",
+    "full_cycle_baseline_dispatch.csv",
+    "full_cycle_binary_metrics.csv",
+    "full_cycle_baseline_metrics.csv",
+    "full_cycle_binary_audit.json",
+    "full_cycle_baseline_audit.json",
+    "constraint_audit.json",
+    "summary.json",
+    "claim_proposals.json",
+    "run_manifest.json",
+    "result_hashes.json"
+  ],
+  "problem_id": "C",
+  "question_id": "Q3",
+  "random_seed": 20260809,
+  "run_id": "q3-full-audit-fix-20260809",
+  "schema_version": 1,
+  "started_at_utc": "2026-08-09T04:37:13.205816+00:00",
+  "status": "PASS",
+  "working_directory": "D:\\数学建模\\projects\\huashu-cup\\2026"
+}

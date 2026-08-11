@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="447.874016pt" height="300.472441pt" viewBox="0 0 447.874016 300.472441" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>math-modeling-workbench</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 300.472441 
+L 447.874016 300.472441 
+L 447.874016 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 105.250394 229.861417 
+L 369.496063 229.861417 
+L 369.496063 61.59685 
+L 105.250394 61.59685 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g clip-path="url(#clip-0004)">
+    <image xlink:href="data:image/png;base64,
+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" id="imagea7bcf41cf3" transform="scale(1 -1) translate(0 -168.48)" x="105.250394" y="-61.381417" width="264.96" height="168.48"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="marker-0001" d="M 0 0 
+L 0 3.5 
+" style="stroke: #1f2933; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#marker-0001" x="110.755512" y="229.861417" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="110.755512" y="243.256417" transform="rotate(-0 110.755512 243.256417)">2376</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#marker-0001" x="154.796457" y="229.861417" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="154.796457" y="243.256417" transform="rotate(-0 154.796457 243.256417)">2380</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#marker-0001" x="198.837402" y="229.861417" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="198.837402" y="243.256417" transform="rotate(-0 198.837402 243.256417)">2384</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#marker-0001" x="242.878346" y="229.861417" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="242.878346" y="243.256417" transform="rotate(-0 242.878346 243.256417)">2388</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#marker-0001" x="286.919291" y="229.861417" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="286.919291" y="243.256417" transform="rotate(-0 286.919291 243.256417)">2392</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#marker-0001" x="330.960236" y="229.861417" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="330.960236" y="243.256417" transform="rotate(-0 330.960236 243.256417)">2396</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="237.373228" y="256.039855" transform="rotate(-0 237.373228 256.039855)">盲测时段小时 (h)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_7">
+      <defs>
+       <path id="marker-0002" d="M 0 0 
+L -3.5 0 
+" style="stroke: #1f2933; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="66.270866" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="69.604616" transform="rotate(-0 98.250394 69.604616)">RegionF · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="75.618898" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="78.952648" transform="rotate(-0 98.250394 78.952648)">RegionD · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="84.966929" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="88.300679" transform="rotate(-0 98.250394 88.300679)">RegionE · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="94.314961" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="97.648711" transform="rotate(-0 98.250394 97.648711)">RegionC · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_11">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="103.662992" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="106.996742" transform="rotate(-0 98.250394 106.996742)">RegionB · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="113.011024" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="116.344774" transform="rotate(-0 98.250394 116.344774)">RegionA · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="122.359055" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="125.692805" transform="rotate(-0 98.250394 125.692805)">RegionF · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="131.707087" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_15">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="135.040837" transform="rotate(-0 98.250394 135.040837)">RegionC · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="141.055118" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_16">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="144.408868" transform="rotate(-0 98.250394 144.408868)">RegionC · AI 训练</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="150.40315" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_17">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="153.7569" transform="rotate(-0 98.250394 153.7569)">RegionA · AI 训练</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_17">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="159.751181" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_18">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="163.084931" transform="rotate(-0 98.250394 163.084931)">RegionE · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="169.099213" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_19">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="172.432963" transform="rotate(-0 98.250394 172.432963)">RegionA · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_13">
+     <g id="line2d_19">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="178.447244" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_20">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="181.780994" transform="rotate(-0 98.250394 181.780994)">RegionD · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_14">
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="187.795276" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_21">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="191.129026" transform="rotate(-0 98.250394 191.129026)">RegionB · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_15">
+     <g id="line2d_21">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="197.143307" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_22">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="200.497057" transform="rotate(-0 98.250394 200.497057)">RegionB · AI 训练</text>
+     </g>
+    </g>
+    <g id="ytick_16">
+     <g id="line2d_22">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="206.491339" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_23">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="209.845089" transform="rotate(-0 98.250394 209.845089)">RegionD · AI 训练</text>
+     </g>
+    </g>
+    <g id="ytick_17">
+     <g id="line2d_23">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="215.83937" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_24">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="219.19312" transform="rotate(-0 98.250394 219.19312)">RegionE · AI 训练</text>
+     </g>
+    </g>
+    <g id="ytick_18">
+     <g id="line2d_24">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="225.187402" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_25">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="228.541152" transform="rotate(-0 98.250394 228.541152)">RegionF · AI 训练</text>
+     </g>
+    </g>
+    <g id="text_26">
+     <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="20.598597" y="145.729134" transform="rotate(-90 20.598597 145.729134)">区域与任务类型</text>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 105.250394 229.861417 
+L 105.250394 61.59685 
+" style="fill: none; stroke: #1f2933; stroke-width: 0.75; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 105.250394 229.861417 
+L 369.496063 229.861417 
+" style="fill: none; stroke: #1f2933; stroke-width: 0.75; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_5">
+    <path d="M 382.932283 229.861417 
+L 392.785512 229.861417 
+L 392.785512 61.59685 
+L 382.932283 61.59685 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAA4AAADqCAYAAACSnXRFAAABKElEQVR4nO2YOw7DMAxD5cL3P2inDh3TuCdIhmeYAmNlJ6gPQSpu7893BPh6nAgXPQYEDjkj7nH8TjFjMNxMjz7rSJCcfjhUck49Yq3qJce2kaJVuVklrCNBAM8fzjiocniPCLdJBBhJTm5WTj06XcgIl6JVfcz5OECC5/iUmpGPCLdJBDjZo8/fnI8AMi5khPOyx3pAWMC4w3AmXjsRbpMIcLJHI8n59KgvFcdcg4yNEcYL4nipnLHJGQOOtQdUAN6jvtSZPUIgnmrCHiHjhFblw+Fa1e+xfPWaccJzxKV6ZcfjfTUhWJvaOhIM2ScfZzzHptTKjhvGusnvGMuQFzDWTX4D9LnJ9Z5j1aNPqU4if34+Gt05lY9LGDe4c3YwZKs7p96sLr8/4GIxA/7HFyAAAAAASUVORK5CYII=" id="image0a98a62d43" transform="scale(1 -1) translate(0 -168.48)" x="383.04" y="-61.2" width="10.08" height="168.48"/>
+   <g id="matplotlib.axis_3"/>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_19">
+     <g id="line2d_25">
+      <defs>
+       <path id="marker-0003" d="M 0 0 
+L 3.5 0 
+" style="stroke: #1f2933; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#marker-0003" x="392.785512" y="229.861417" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_27">
+      <text style="font-size: 7px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1f2933" x="399.785512" y="232.65923" transform="rotate(-0 399.785512 232.65923)">0</text>
+     </g>
+    </g>
+    <g id="ytick_20">
+     <g id="line2d_26">
+      <g>
+       <use xlink:href="#marker-0003" x="392.785512" y="206.842799" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_28">
+      <text style="font-size: 7px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1f2933" x="399.785512" y="209.640611" transform="rotate(-0 399.785512 209.640611)">250</text>
+     </g>
+    </g>
+    <g id="ytick_21">
+     <g id="line2d_27">
+      <g>
+       <use xlink:href="#marker-0003" x="392.785512" y="183.82418" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_29">
+      <text style="font-size: 7px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1f2933" x="399.785512" y="186.621993" transform="rotate(-0 399.785512 186.621993)">500</text>
+     </g>
+    </g>
+    <g id="ytick_22">
+     <g id="line2d_28">
+      <g>
+       <use xlink:href="#marker-0003" x="392.785512" y="160.805562" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_30">
+      <text style="font-size: 7px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1f2933" x="399.785512" y="163.603374" transform="rotate(-0 399.785512 163.603374)">750</text>
+     </g>
+    </g>
+    <g id="ytick_23">
+     <g id="line2d_29">
+      <g>
+       <use xlink:href="#marker-0003" x="392.785512" y="137.786943" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_31">
+      <text style="font-size: 7px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1f2933" x="399.785512" y="140.584756" transform="rotate(-0 399.785512 140.584756)">1000</text>
+     </g>
+    </g>
+    <g id="ytick_24">
+     <g id="line2d_30">
+      <g>
+       <use xlink:href="#marker-0003" x="392.785512" y="114.768325" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_32">
+      <text style="font-size: 7px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1f2933" x="399.785512" y="117.566137" transform="rotate(-0 399.785512 117.566137)">1250</text>
+     </g>
+    </g>
+    <g id="ytick_25">
+     <g id="line2d_31">
+      <g>
+       <use xlink:href="#marker-0003" x="392.785512" y="91.749706" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_33">
+      <text style="font-size: 7px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1f2933" x="399.785512" y="94.547519" transform="rotate(-0 399.785512 94.547519)">1500</text>
+     </g>
+    </g>
+    <g id="ytick_26">
+     <g id="line2d_32">
+      <g>
+       <use xlink:href="#marker-0003" x="392.785512" y="68.731088" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_34">
+      <text style="font-size: 7px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #1f2933" x="399.785512" y="71.5289" transform="rotate(-0 399.785512 71.5289)">1750</text>
+     </g>
+    </g>
+    <g id="text_35">
+     <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="426.599887" y="145.729134" transform="rotate(-90 426.599887 145.729134)">GPU 工作量 (GPU·h)</text>
+    </g>
+   </g>
+   <g id="LineCollection_1"/>
+   <g id="patch_6">
+    <path d="M 382.932283 229.861417 
+L 387.858898 229.861417 
+L 392.785512 229.861417 
+L 392.785512 61.59685 
+L 387.858898 61.59685 
+L 382.932283 61.59685 
+L 382.932283 229.861417 
+z
+" style="fill: none; stroke: #1f2933; stroke-width: 0.75; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="clip-0004">
+   <rect x="105.250394" y="61.59685" width="264.245669" height="168.264567"/>
+  </clipPath>
+ </defs>
+</svg>

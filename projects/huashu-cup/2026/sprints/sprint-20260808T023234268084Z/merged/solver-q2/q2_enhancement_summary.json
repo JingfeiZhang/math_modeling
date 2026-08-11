@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q2",
+  "status": "PASS",
+  "scope": "real arrivals in three disjoint representative windows: 0-24 h, 1176-1224 h, and 2328-2400 h; six-hour closeout within the global 2406 h limit",
+  "data_counts": {
+    "all_workload_rows": 50000,
+    "evaluated_task_rows": 3066,
+    "regions": 6
+  },
+  "exploration": {
+    "policies": [
+      {
+        "policy_id": "epsilon_cost_no_carbon_regret",
+        "cost_weight": 1.0,
+        "carbon_weight": 0.0,
+        "wait_weight": 0.015,
+        "latency_weight": 0.02,
+        "renewable_weight": 0.05,
+        "carbon_epsilon_ratio": 0.0,
+        "latency_epsilon_ms": 20.0
+      },
+      {
+        "policy_id": "lagrangian_balanced",
+        "cost_weight": 1.0,
+        "carbon_weight": 4.0,
+        "wait_weight": 0.015,
+        "latency_weight": 0.015,
+        "renewable_weight": 0.05,
+        "carbon_epsilon_ratio": null,
+        "latency_epsilon_ms": 35.0
+      },
+      {
+        "policy_id": "lagrangian_carbon_priority",
+        "cost_weight": 1.0,
+        "carbon_weight": 12.0,
+        "wait_weight": 0.01,
+        "latency_weight": 0.01,
+        "renewable_weight": 0.05,
+        "carbon_epsilon_ratio": null,
+        "latency_epsilon_ms": 65.0
+      }
+    ],
+    "selected_policy": "lagrangian_balanced",
+    "selection_rule": "hard feasibility, completion=1, and SLA=0 first; then minimum declared cost-carbon-latency utility over the evaluated windows",
+    "pareto_artifact": {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_pareto.csv",
+      "sha256": "b61af9a3343f27b923d17c25836c8e93f99cd675494179bc8760cc323aac305c"
+    }
+  },
+  "main_method": {
+    "name": "rolling_shadow_price_exchange::lagrangian_balanced",
+    "initial_incumbent": "FIFO_latency_feasible_local_first",
+    "decomposition": "6-hour arrival chunks with future FIFO reservations retained",
+    "decision_boundary": "real-time tasks are fixed at arrival; only non-real-time tasks are re-timed/reassigned; every accepted move passes a minute-level hard-capacity test",
+    "optimality_statement": "bounded deterministic heuristic; no global or full-horizon optimality claim"
+  },
+  "baseline": {
+    "name": "FIFO_latency_feasible_local_first",
+    "same_input": true,
+    "same_hard_constraints": true,
+    "same_output_class": true
+  },
+  "fallback": {
+    "name": "CP_SAT_unresolved_task_repair",
+    "trigger": "candidate_missing_task_after_exchange",
+    "count_limit": 1,
+    "triggered_any_window": false,
+    "note": "UNKNOWN or empty schedules are never accepted as the main output."
+  },
+  "selected_aggregate": {
+    "policy_id": "lagrangian_balanced",
+    "cost_CNY": 217694453.84457695,
+    "carbon_tCO2": 196870.54995561866,
+    "mean_latency_ms": 9.280495759947815,
+    "renewable_utilization_ratio": 0.9990082204910933,
+    "task_completion_rate": 1.0,
+    "SLA_violation_rate": 0.0,
+    "runtime_seconds": 7.281801900011487,
+    "feasible_all_windows": true,
+    "cost_change_pct_vs_FIFO": -1.415061462430034,
+    "carbon_change_pct_vs_FIFO": -1.5354865743714918,
+    "latency_change_ms_vs_FIFO": 4.280495759947815,
+    "selection_utility": 0.8929095310076917,
+    "pareto_nondominated": true
+  },
+  "limitations": [
+    "Representative-window evidence is not extrapolated as a guaranteed full 0-2400 h result.",
+    "The one-pass rolling exchange can be locally dominated by a joint multi-task exchange.",
+    "Hourly prices, carbon intensities, renewable availability, and static network latency are treated as known supplied inputs.",
+    "The task specification excludes network traffic and migration energy; neither is added to the objective."
+  ],
+  "formal_claim_status": "proposal only; root review and evidence freeze required"
+}

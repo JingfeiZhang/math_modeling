@@ -1,0 +1,135 @@
+{
+  "schema_version": 3,
+  "paper": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\submission.pdf",
+  "strict": true,
+  "checks": [
+    {
+      "name": "paper_exists",
+      "passed": true,
+      "detail": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\submission.pdf"
+    },
+    {
+      "name": "paper_size",
+      "passed": true,
+      "detail": "858714 <= 20971520 bytes"
+    },
+    {
+      "name": "pdf_parser",
+      "passed": true,
+      "detail": "pypdf parsed the PDF"
+    },
+    {
+      "name": "paper_total_pages",
+      "passed": true,
+      "severity": "warning",
+      "detail": "37 pages exceed the recommended 21-page budget but remain within the 38-page hard cap"
+    },
+    {
+      "name": "searchable_pdf",
+      "passed": true,
+      "detail": "searchable page ratio 1.000"
+    },
+    {
+      "name": "abstract_on_first_page",
+      "passed": true,
+      "severity": "warning",
+      "detail": "abstract text was not detected on the first page; confirm it visually"
+    },
+    {
+      "name": "anonymous_identity",
+      "passed": true,
+      "detail": "forbidden tokens: "
+    },
+    {
+      "name": "pdf_metadata_parser",
+      "passed": true,
+      "detail": "PDF metadata parsed"
+    },
+    {
+      "name": "body_page_budget",
+      "passed": true,
+      "severity": "warning",
+      "detail": "22 pages exceed the recommended 20-page budget but remain within the 30-page hard cap"
+    },
+    {
+      "name": "latex_report_passed",
+      "passed": true,
+      "detail": "linked audit report passed: D:\\数学建模\\projects\\huashu-cup\\2026\\output\\paper_audit.json"
+    },
+    {
+      "name": "figures_report_passed",
+      "passed": true,
+      "detail": "linked audit report passed: D:\\数学建模\\projects\\huashu-cup\\2026\\output\\figure_audit.json"
+    },
+    {
+      "name": "figure_style_report_passed",
+      "passed": true,
+      "detail": "linked audit report passed: D:\\数学建模\\projects\\huashu-cup\\2026\\output\\figure_style_audit.json"
+    },
+    {
+      "name": "pdf_visual_report_passed",
+      "passed": true,
+      "detail": "linked audit report passed: D:\\数学建模\\projects\\huashu-cup\\2026\\output\\pdf_visual_audit.json"
+    },
+    {
+      "name": "code_parity_report_passed",
+      "passed": true,
+      "detail": "linked audit report passed: D:\\数学建模\\projects\\huashu-cup\\2026\\output\\code_parity_audit.json"
+    },
+    {
+      "name": "ai_usage_report_passed",
+      "passed": true,
+      "detail": "linked audit report passed: D:\\数学建模\\projects\\huashu-cup\\2026\\output\\ai_usage_audit.json"
+    }
+  ],
+  "warnings": [
+    {
+      "name": "paper_total_pages",
+      "detail": "37 pages exceed the recommended 21-page budget but remain within the 38-page hard cap"
+    },
+    {
+      "name": "abstract_on_first_page",
+      "detail": "abstract text was not detected on the first page; confirm it visually"
+    },
+    {
+      "name": "body_page_budget",
+      "detail": "22 pages exceed the recommended 20-page budget but remain within the 30-page hard cap"
+    }
+  ],
+  "linked_reports": {
+    "latex": {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\paper_audit.json",
+      "passed": true
+    },
+    "figures": {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\figure_audit.json",
+      "passed": true
+    },
+    "figure_style": {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\figure_style_audit.json",
+      "passed": true
+    },
+    "pdf_visual": {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\pdf_visual_audit.json",
+      "passed": true
+    },
+    "code_parity": {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\code_parity_audit.json",
+      "passed": true
+    },
+    "ai_usage": {
+      "path": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\ai_usage_audit.json",
+      "passed": true
+    }
+  },
+  "status": "PASS",
+  "searchable_pdf": {
+    "pages": 37,
+    "searchable_pages": 37,
+    "ratio": 1.0,
+    "min_chars_per_page": 20,
+    "required_ratio": 0.8,
+    "policy": "recommended"
+  },
+  "body_pages": 22
+}

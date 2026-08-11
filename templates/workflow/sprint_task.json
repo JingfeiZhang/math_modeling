@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "sprint_id": "",
+  "task_id": "",
+  "role": "solver",
+  "problem": "",
+  "question": "",
+  "status": "PENDING",
+  "attempt": 1,
+  "max_attempts": 2,
+  "dependencies": [],
+  "input_hashes": [],
+  "allowed_read_paths": [],
+  "write_directory": "",
+  "expected_outputs": [],
+  "target_gate": "G3",
+  "deadline_utc": "",
+  "root_only_paths": []
+}

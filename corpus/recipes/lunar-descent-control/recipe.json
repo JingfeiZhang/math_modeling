@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "recipe_id": "lunar-descent-control",
+  "kind": "lunar_descent_control",
+  "title": "Powered descent feedback control",
+  "seed": 20260807,
+  "source_pair": {
+    "candidate_id": "cumcm-2014-a305",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/A10009072_吉张鹤轩_杨升_陈同广.pdf",
+      "blob_sha": "56100fa1d940da3d7f3ef97385a878d54e000346",
+      "sha256": "f451834248c687e1118160cbdffd18490e80f313f3aeacf3e314f2fbef476ecb"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/genpics.m",
+        "blob_sha": "019ac4dae00f81683bd185c992e878c310a62ae2",
+        "sha256": "3eda8c13a9edc051b12ef8d76916146ff1514debb462fbaf895cb16eb7320650",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/calc2.m",
+        "blob_sha": "2358950d0a5b176e6850be25ccdc880f3f829214",
+        "sha256": "10ef9a0190abdbaf4428181e9ce33050fd79d968b08f0e815a7e479851671635",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "scope": "controlled synthetic fixture for reusable method testing",
+  "not_a_reproduction": true,
+  "upstream_code_execution": "forbidden"
+}

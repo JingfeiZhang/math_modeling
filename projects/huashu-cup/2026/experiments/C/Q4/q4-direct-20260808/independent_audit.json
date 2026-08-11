@@ -1,0 +1,190 @@
+{
+  "artifact_count": 30,
+  "artifact_hashes": [
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_aggregate_comparison.csv",
+      "sha256": "056dc66bdc9685d0ecd360082980aeb8bf38524e6fb0ae413a7805fa79cf006e"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_baseline_dispatch.csv",
+      "sha256": "1d0bcb8ebfb27cebedfe72bfce5c7479ff13ff08318b09f7436992b497b645ce"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_baseline_envelope.csv",
+      "sha256": "69bc2a7f23a8d81e1ec8ee17f2e59f83f3ce27b3d60824802800304853841e46"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_baseline_metrics.csv",
+      "sha256": "3076c8968447f297f3f2197b599d103cb3d5501749d23a08fd6fd9e0789a6614"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_candidate_dispatch.csv",
+      "sha256": "45d0ca82f6efe92172e4ce46d9a518522e71066cf29c2b3eb1cba660b6bad417"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_candidate_envelope.csv",
+      "sha256": "bc0c03230104dddce3f390d0ef2174e93141c695b5e4988ae4879e338df3308f"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_candidate_metrics.csv",
+      "sha256": "9b47b92a12ce8b12d796eee6eb23e6d8341fcf52d6112d6f88875d3408f09e20"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_constraint_audit.json",
+      "sha256": "ba148a8192e0dfafef7053c366673cbf7b2e3b26848ea308c0660f80877c790b"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_run_manifest.json",
+      "sha256": "f0b8648dc89637ee17a661c54e7466ff2c8f22087b633b38b5ef0c7517f482dd"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_summary.json",
+      "sha256": "4185d668ab39448c269dd33139e6c895be99de16752aa37c815cff57fb6235e7"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_system_hourly.csv",
+      "sha256": "e9b327a767c6a321752e780b1e36d3255e5dc2f91156f7269c4be9be94c1dedc"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/run_solver_q4_final.py",
+      "sha256": "53bbde759fb7b089656a8f14e986d824e7e86332b864232f0131f6de17a8c7f3"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/peak_probe/q4_peak_constraint_audit.json",
+      "sha256": "52b190d62209e9373866e33df992046cc4b38f00250283c0e624f4986376ec13"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/peak_probe/q4_peak_run_manifest.json",
+      "sha256": "b280344d00e31ea527f6e109cb914f445b3d11a242abb10841f31ab9d1934406"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/peak_probe/q4_peak_selected_dispatch.csv",
+      "sha256": "3c9a7fc5fcb432c3a0a06dc23b7710b92530eab4c36efa5df57cec2bed91e843"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/peak_probe/q4_peak_summary.json",
+      "sha256": "45f18cee089d3f2ae6978940de4de963b09369451ce5365716945fbea66cb274"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/peak_probe/q4_peak_tradeoff.csv",
+      "sha256": "8ed32e82b5bd8ba9c64e3b3d6bfd97bd32e306ce8248ceb1afbce3848b204fcc"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/peak_probe/run_q4_peak_budget.py",
+      "sha256": "fd0afaf0f4471b4e218363621c1601c1d14c1789e281f84d1eb3bc336dd1de1f"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/compat/claim_proposals.json",
+      "sha256": "551cf812bedbe297a8d09945b95ef0bcf00f64bce780ba8d79472a9fba14aff8"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/compat/generate_q4_compat.py",
+      "sha256": "f46727dd09b57b0edb7b4e764c23e7f55e2d4f9b2baa90f3eba6f1914ec64e45"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/compat/q4_derived_summary.json",
+      "sha256": "26f46159818b9cc3f52ac6fae14a00e1cdcbee60f1b986e9cfa05158d447db66"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/compat/run_manifest.json",
+      "sha256": "3aa51488c02491893189b997eb37e0d2c1ea0485842c65ce7a9409be5f6f4230"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/attribution/run_q4_attribution.py",
+      "sha256": "9020d3b4c0803190abb646ade123194297ce66c5b7eeebb5e701aa04b8d2f07a"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/attribution/q4_attribution.csv",
+      "sha256": "edfbd184640fdc89fa5c34573b47cd4f4091f8b183222fa94e754eedcbacfa06"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/attribution/q4_attribution_summary.json",
+      "sha256": "7d1ac95f17eee2a2c314bca8f8725a9bcdfac46081dc79e6b45da6fb27e696de"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/attribution/incremental_review_q3q4.json",
+      "sha256": "8629ce98f84bebc62d494550bd15cd0d230b6c815ef5607187a4f92e454967b9"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/attribution/run_manifest_q3q4.json",
+      "sha256": "57e5b79381a806e194c0def14a5e0816c54efef7a91d5e006e6f3f8b816ff96a"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/figures/fig_q4_peak_tradeoff.pdf",
+      "sha256": "d96386c8458e203b4f12adacf2bc2625c6bd1cf9a06d4807a29a85b5d76c9aa8"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/figures/fig_q4_peak_tradeoff.svg",
+      "sha256": "eeab5d143b54ce467343590ab0deb92a4851216ae0c66026fa9a31e2896779e1"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/figures/fig_q4_peak_tradeoff.png",
+      "sha256": "458ae75f833e503fd753a5cf78358b2c4b1d9ac881ad25f6b2669ed14e8dddae"
+    }
+  ],
+  "audit_sources": [
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_constraint_audit.json",
+      "sha256": "ba148a8192e0dfafef7053c366673cbf7b2e3b26848ea308c0660f80877c790b"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/peak_probe/q4_peak_constraint_audit.json",
+      "sha256": "52b190d62209e9373866e33df992046cc4b38f00250283c0e624f4986376ec13"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/attribution/incremental_review_q3q4.json",
+      "sha256": "8629ce98f84bebc62d494550bd15cd0d230b6c815ef5607187a4f92e454967b9"
+    }
+  ],
+  "boundary": "Promotion records accepted evidence only; it does not freeze claims or replace a primary model.",
+  "checks": {
+    "blocked_q4_joint_probe_excluded": true,
+    "code_present": true,
+    "csv_or_json_results_present": true,
+    "independent_source_audits_present": true,
+    "main_model_and_baseline_sources_registered": true,
+    "risk_probe_sources_present": true
+  },
+  "promotion_only": true,
+  "question_id": "Q4",
+  "risk_probe_sources": [
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/q4_final_constraint_audit.json",
+      "sha256": "ba148a8192e0dfafef7053c366673cbf7b2e3b26848ea308c0660f80877c790b"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/peak_probe/q4_peak_constraint_audit.json",
+      "sha256": "52b190d62209e9373866e33df992046cc4b38f00250283c0e624f4986376ec13"
+    }
+  ],
+  "run_id": "q4-direct-20260808",
+  "schema_version": 1,
+  "source_records": [
+    {
+      "destination": "models/final_milp",
+      "kind": "sequential_main_and_baseline",
+      "source": "sprints/sprint-20260808T031214934335Z/merged/solver-q4"
+    },
+    {
+      "destination": "models/peak_probe",
+      "kind": "independent_peak_probe",
+      "source": "sprints/sprint-20260808T051118704690Z/merged/solver-q4"
+    },
+    {
+      "destination": "compat",
+      "kind": "formal_compatibility_derivation",
+      "source": "experiments/C/Q4/q4-integrated-compat-20260808"
+    },
+    {
+      "destination": "attribution",
+      "kind": "accepted_sequential_attribution",
+      "source": "sprints/sprint-20260808T101814701038Z/merged/solver-q3q4"
+    },
+    {
+      "destination": "figures",
+      "kind": "candidate_figures",
+      "source": "sprints/sprint-20260808T101814701038Z/merged/figure-q3q4"
+    }
+  ],
+  "status": "PASS"
+}

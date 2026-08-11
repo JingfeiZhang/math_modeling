@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T191756366Z",
+  "status": "RETRY_REQUIRED",
+  "passed": false,
+  "accepted_tasks": [],
+  "retry_tasks": [
+    "q2-pilot"
+  ],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "tasks": [
+    {
+      "task_id": "q2-pilot",
+      "declared_status": "PARTIAL",
+      "disposition": "RETRY_REQUIRED",
+      "attempt": 1,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260807T191756366Z/staging/q2-pilot/q2_pilot_summary.json",
+          "sha256": "a1e3896e8427c0c05a9ecaf674c6ed7efa57d90faf524d9443a1554fa25bec1d"
+        },
+        {
+          "path": "sprints/sprint-20260807T191756366Z/staging/q2-pilot/q2_run_manifest.json",
+          "sha256": "d0a4f1716dbb4218c2f370ad5381ab87bc740626df43eef59656da0d36aaee4b"
+        },
+        {
+          "path": "sprints/sprint-20260807T191756366Z/staging/q2-pilot/q2_constraint_audit.json",
+          "sha256": "27e45d60aaa91bd232402c861ace69fb289e5bfaaaddbb050adbdf9c7211ad00"
+        },
+        {
+          "path": "sprints/sprint-20260807T191756366Z/staging/q2-pilot/q2_candidate_metrics.csv",
+          "sha256": "34d43545ba9a55c3c05cc84cc2ce4a3838d908d905866e090b7a9ef3bec665e1"
+        },
+        {
+          "path": "sprints/sprint-20260807T191756366Z/staging/q2-pilot/q2_baseline_metrics.csv",
+          "sha256": "9dcbc64eb4dba3d28a94fd2a8da726ba4068ecd36d57be0cf4e1fa5a2a63f76d"
+        },
+        {
+          "path": "sprints/sprint-20260807T191756366Z/staging/q2-pilot/run_q2_pilot.py",
+          "sha256": "2934b97258665cd2c5073fd8002c4734262d8af83a995311f691d9010ec9e758"
+        }
+      ],
+      "handoff": "sprints/sprint-20260807T191756366Z/staging/q2-pilot/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-07T19:59:11.675057+00:00"
+}

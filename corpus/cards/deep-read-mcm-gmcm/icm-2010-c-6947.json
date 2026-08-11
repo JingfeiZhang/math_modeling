@@ -1,0 +1,253 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "icm-2010-c-6947",
+  "identity": {
+    "contest": "ICM",
+    "year": 2010,
+    "problem": "C",
+    "team_id": "6947",
+    "title": "A new method for pollution abatement: different solutions to different types"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/zhanwen/MathModel/git/blobs/22d1af27d80083bc5f0b004c1e00d4e7e556b549",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "美赛论文/2010美赛特等奖原版论文集/C-6947-Outstanding.pdf"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://www.contest.comap.com/undergraduate/contests/mcm/contests/2010/results/ICM-2010-Results.pdf",
+    "contest": "ICM",
+    "year": 2010,
+    "problem": "C",
+    "team_id": "6947",
+    "title": "A new method for pollution abatement: different solutions to different types",
+    "award": "Outstanding Winner",
+    "locator": "official PDF page 2; extracted text line 71",
+    "matched_text": "6947      Beijing Jiaotong University                         China       Bingtuan Wang         C         Outstanding Winner"
+  },
+  "authenticity": {
+    "level": "B",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": true
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "The control number, contest year, problem, and Outstanding Winner label match a COMAP official result PDF.",
+      "The paper itself is not served from an official paper-display page, so the level is B rather than A."
+    ]
+  },
+  "pdf": {
+    "sha256": "c5305f349e994358e62a40e7a5a9f40dbfd374e28a438fac79b35b3b234f5132",
+    "pages": 11,
+    "local_path": "corpus/raw/mcm-gmcm/icm-2010-c-6947/paper.pdf",
+    "first_page_phash": "dhash64:b094f0d4c0c4c800",
+    "text_sha256": "55c6110738abaf6731d728dcf9e308eb1a0148920127fbfc346721d670d915dd"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "decision"
+      ],
+      "observation": "The summary states risk ranking, policy differentiation, and three concrete outputs.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/icm-2010-c-6947/page-01.png"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "problem",
+        "boundary"
+      ],
+      "observation": "The introduction narrows the task to floating plastic and marine-organism risk.",
+      "derivation": "mixed",
+      "locator": "PDF page 2",
+      "render": "corpus/rendered/mcm-gmcm/icm-2010-c-6947/page-02.png"
+    },
+    {
+      "page": 6,
+      "tags": [
+        "model",
+        "table"
+      ],
+      "observation": "Raw abundance and mesh-size data are converted into a multi-attribute decision matrix.",
+      "derivation": "mixed",
+      "locator": "PDF page 6",
+      "render": "corpus/rendered/mcm-gmcm/icm-2010-c-6947/page-06.png"
+    },
+    {
+      "page": 8,
+      "tags": [
+        "result",
+        "figure"
+      ],
+      "observation": "A regulated matrix and bar chart rank six plastic categories.",
+      "derivation": "mixed",
+      "locator": "PDF page 8",
+      "render": "corpus/rendered/mcm-gmcm/icm-2010-c-6947/page-08.png"
+    },
+    {
+      "page": 9,
+      "tags": [
+        "review",
+        "boundary"
+      ],
+      "observation": "Strengths, weaknesses, and discussion distinguish data selection from ecological omissions.",
+      "derivation": "mixed",
+      "locator": "PDF page 9",
+      "render": "corpus/rendered/mcm-gmcm/icm-2010-c-6947/page-09.png"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "policy",
+        "table"
+      ],
+      "observation": "Three product classes are mapped to differentiated tax, fines, research, and prohibition policies.",
+      "derivation": "mixed",
+      "locator": "PDF page 10",
+      "render": "corpus/rendered/mcm-gmcm/icm-2010-c-6947/page-10.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "role": "problem-method-ranking-policy",
+      "observation": "State the pollution decision, multi-attribute method, risk ranking, and type-specific policy output."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 6,
+      "step": "attribute-selection",
+      "observation": "Select abundance and size as risk attributes for floating plastic.",
+      "order": 1
+    },
+    {
+      "page": 6,
+      "step": "multi-attribute-ranking",
+      "observation": "Use grey multi-attribute decision and reciprocal-rank weighting.",
+      "order": 2
+    },
+    {
+      "page": 8,
+      "step": "risk-grading",
+      "observation": "Rank plastic categories and group them into high, medium, and low risk.",
+      "order": 3
+    },
+    {
+      "page": 10,
+      "step": "policy-mapping",
+      "observation": "Assign differentiated regulatory actions to the three risk groups.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 9,
+      "method": "data-selection-check",
+      "observation": "Substitute candidate values into the model and compare with ingestion-size evidence.",
+      "order": 1
+    },
+    {
+      "page": 9,
+      "method": "limitation-audit",
+      "observation": "Identify omitted toxicity, shape, and species-behavior factors.",
+      "order": 2
+    },
+    {
+      "page": 10,
+      "method": "decision-consistency",
+      "observation": "Map every risk class to a transparent policy bundle.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 6,
+      "role": "data-to-model",
+      "chart_type": "source table plus decision matrix",
+      "lesson": "Keep raw quantities beside their normalized decision representation."
+    },
+    {
+      "page": 8,
+      "role": "main-result",
+      "chart_type": "ranked bar chart",
+      "lesson": "Display category order after the matrix calculation."
+    },
+    {
+      "page": 10,
+      "role": "policy-output",
+      "chart_type": "decision table",
+      "lesson": "Translate risk classes into directly comparable regulatory actions."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 6,
+      "rule": "Show the raw data table immediately before the normalized decision matrix.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 9,
+      "rule": "For evaluation models, test whether selected indicators agree with an external domain fact.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 10,
+      "rule": "Turn the final score into a transparent action table rather than ending at a ranking.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 9,
+      "risk": "Toxicity, shape, species behavior, and other ecological factors are omitted.",
+      "severity": "high"
+    },
+    {
+      "page": 8,
+      "risk": "The default 3D bar style adds visual distortion without analytical value.",
+      "severity": "medium"
+    },
+    {
+      "page": 10,
+      "risk": "Policy thresholds depend strongly on the chosen attributes and weights.",
+      "severity": "medium"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/icm-2010-c-6947/source_manifest.json",
+    "selected_pages": [
+      1,
+      2,
+      6,
+      8,
+      9,
+      10
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

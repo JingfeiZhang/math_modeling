@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "recipe_id": "storage-slot-sizing",
+  "kind": "storage_slot_sizing",
+  "title": "Storage slot standardization",
+  "seed": 20260812,
+  "source_pair": {
+    "candidate_id": "cumcm-2014-d026",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/D22022011_阎发静_周靖_杨峰.pdf",
+      "blob_sha": "7450ecbf9c51c86f29d79809148f391e75ad495d",
+      "sha256": "f40b9b1ff1a473a1afb7ed10f5aaeb2831a4656ecc5d5e27d65f81d4a228795a"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/G.m",
+        "blob_sha": "a92d124914237936a818ecf7280e3f87e8b6af0f",
+        "sha256": "f8bda5b81836b515fecac2d24e012302af56bd5560bc71b835a5045922455578",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "scope": "controlled synthetic fixture for reusable method testing",
+  "not_a_reproduction": true,
+  "upstream_code_execution": "forbidden"
+}

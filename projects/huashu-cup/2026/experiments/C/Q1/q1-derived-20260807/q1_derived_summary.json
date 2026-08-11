@@ -1,0 +1,87 @@
+{
+  "evidence_type": "deterministic-derived-summary",
+  "forecast": {
+    "blind_empirical_coverage_95": 0.9467592592592593,
+    "blind_system_weighted_wape_baseline": 1.0333179040043832,
+    "blind_system_weighted_wape_main": 0.89343949172524,
+    "blind_system_weighted_wape_relative_improvement": 0.13536822669681514
+  },
+  "interpretation_limits": [
+    "FEASIBLE solver status does not establish global optimality.",
+    "Resource margins describe the nominal optimized schedule only.",
+    "Fixed-schedule perturbation failures do not prove re-optimized infeasibility."
+  ],
+  "question_id": "Q1",
+  "scheduling": {
+    "baseline": {
+      "actual_task_count": 538,
+      "cross_region_task_share": 0.0,
+      "mean_network_latency_ms": 5.0,
+      "mean_wait_minutes": 1.1226765799256506,
+      "median_wait_minutes": 0.0,
+      "p95_network_latency_ms": 5.0,
+      "p95_wait_minutes": 0.0,
+      "row_count_including_carry_in": 596,
+      "sla_met_rate": 1.0
+    },
+    "carry_in_count": 58,
+    "carry_in_record_count": 58,
+    "completion_rate": 1.0,
+    "constraint_audit_passed": true,
+    "final_actual_task_count": 538,
+    "main": {
+      "actual_task_count": 538,
+      "cross_region_task_share": 0.013011152416356878,
+      "mean_network_latency_ms": 5.182156133828996,
+      "mean_wait_minutes": 0.0,
+      "median_wait_minutes": 0.0,
+      "p95_network_latency_ms": 5.0,
+      "p95_wait_minutes": 0.0,
+      "row_count_including_carry_in": 596,
+      "sla_met_rate": 1.0
+    },
+    "mean_wait_relative_improvement": 1.0,
+    "resource": {
+      "maximum_facility_utilization_ratio": 0.9912016268292683,
+      "maximum_gpu_utilization_ratio": 0.9950592885375494,
+      "maximum_it_utilization_ratio": 0.9912016268292682,
+      "minimum_facility_margin_mw": 4.869899550000014,
+      "minimum_gpu_margin": 5.0,
+      "minimum_it_margin_mw": 3.6073330000000396,
+      "row_count": 180
+    },
+    "solver_optimality_gap": 0.0351506456241033,
+    "solver_status": "FEASIBLE"
+  },
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_summary.json",
+      "sha256": "e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/scheduling_metrics.json",
+      "sha256": "cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/carry_in.json",
+      "sha256": "cdf9946f180310fd65b1c286580a4aca0aa8f5688581dac4b68ddc13e60c7993"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/optimized_schedule.csv",
+      "sha256": "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/baseline_schedule.csv",
+      "sha256": "89e4ab9c6ac1cf6ee0c5c9e5b39596f8276ac5330e3d5ed8e7924350a2fa7a78"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/resource_audit.csv",
+      "sha256": "466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/constraint_audit.json",
+      "sha256": "721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858"
+    }
+  ]
+}

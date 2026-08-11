@@ -1,0 +1,18 @@
+schema_version: 1
+project_id: cumcm-2026
+profile_id: cumcm
+competition: CUMCM
+year: 2026
+shared_workspace_root: ../../..
+mutable_roots:
+- problems
+- src
+- experiments
+- results
+- paper
+- output
+- state
+- sprints
+- logs
+state_owner: mathmodel-skill
+created_for_reuse: true

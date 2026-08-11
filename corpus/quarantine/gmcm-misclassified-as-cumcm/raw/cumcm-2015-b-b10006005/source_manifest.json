@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "paper_id": "cumcm-2015-b-b10006005",
+  "contest": "CUMCM",
+  "year": 2015,
+  "problem_id": "B",
+  "source": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2015年优秀论文/B/B10006005.pdf",
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2015%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/B/B10006005.pdf",
+    "accessed": "2026-08-03",
+    "authenticity_level": "C",
+    "authenticity_note": "Community mirror full text; no independent official award locator recorded."
+  },
+  "pdf": {
+    "object": "corpus/raw/objects/sha256/db/db42d90bacce436d9b4bf65a90939d07c610536afa2a032610eba6b654654e2f.pdf",
+    "bytes": 1066507,
+    "git_blob_sha": "c4be3efa16897f5ef6d106d41a62ad7e37d401fe",
+    "sha256": "db42d90bacce436d9b4bf65a90939d07c610536afa2a032610eba6b654654e2f",
+    "pages": 25
+  },
+  "render": {
+    "status": "complete",
+    "method": "pdftoppm-jpeg-110dpi",
+    "pages": [
+      {
+        "page": 1,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-01.jpg",
+        "sha256": "fa3a7681240379782d656dc6182ef13a69005513698dc3ed0e53b5be834ac436",
+        "bytes": 58783,
+        "text_characters": 155
+      },
+      {
+        "page": 2,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-02.jpg",
+        "sha256": "257afca3f043f76aa1d89b83f6a44e2cdb37f6ff44f4f24295d760dd37374839",
+        "bytes": 193306,
+        "text_characters": 1103
+      },
+      {
+        "page": 3,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-03.jpg",
+        "sha256": "230409b63cb196438a6ba86cdad412594cc2ab8e6f37a9792debd79dfd5e2d58",
+        "bytes": 118492,
+        "text_characters": 630
+      },
+      {
+        "page": 4,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-04.jpg",
+        "sha256": "189ee3180af4196fbe302da4a692b4ac00137135f836cf8fbfe4b04852dd700d",
+        "bytes": 190827,
+        "text_characters": 1423
+      },
+      {
+        "page": 5,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-05.jpg",
+        "sha256": "e32997428f620c2dfd9262caaa3053f350095407655ea986f3832b48fd6fad6a",
+        "bytes": 178147,
+        "text_characters": 699
+      },
+      {
+        "page": 6,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-06.jpg",
+        "sha256": "e2e309e0b6d95fb9112c8c9852ce82170b2cd29575e050f34c73b532fb3cb9c4",
+        "bytes": 180255,
+        "text_characters": 1431
+      },
+      {
+        "page": 7,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-07.jpg",
+        "sha256": "4542aeb50a59b0d6bf27db86b868bc0b822cf115e1c9f0e485324e3021ed2c98",
+        "bytes": 198785,
+        "text_characters": 1865
+      },
+      {
+        "page": 8,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-08.jpg",
+        "sha256": "bc13bdad71408a8f835d3bd16322f7776e722835862fc2573baa4cee28062758",
+        "bytes": 198129,
+        "text_characters": 2474
+      },
+      {
+        "page": 9,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-09.jpg",
+        "sha256": "41ac78bdd76c828906f3afcf6794df7f81661a3b59154e9c174f5c5bdd3deaff",
+        "bytes": 179734,
+        "text_characters": 2265
+      },
+      {
+        "page": 10,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-10.jpg",
+        "sha256": "eb34f704ce8da722e8c000e3eedfed26f673b4e0c19b6b82b5ed6aef804242ff",
+        "bytes": 160257,
+        "text_characters": 2953
+      },
+      {
+        "page": 11,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-11.jpg",
+        "sha256": "bdea3c234245e3a8d23f0571a918d1a225543c7ffd0dea697b61271f0c5288f7",
+        "bytes": 176952,
+        "text_characters": 2145
+      },
+      {
+        "page": 12,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-12.jpg",
+        "sha256": "64577312651a64b97527e8b8ead8c1f850c0647a64545ed65297d06622b096a8",
+        "bytes": 182135,
+        "text_characters": 1818
+      },
+      {
+        "page": 13,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-13.jpg",
+        "sha256": "3e35d281158fef080e9a64c8b908bea5167d3bb764bd57ff3a56ffbac3bf8222",
+        "bytes": 134512,
+        "text_characters": 2606
+      },
+      {
+        "page": 14,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-14.jpg",
+        "sha256": "4a52ee17bea01619e8e0ca0d942cb144b09006bd1c9b99cb6401f142ffed0688",
+        "bytes": 162837,
+        "text_characters": 2405
+      },
+      {
+        "page": 15,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-15.jpg",
+        "sha256": "d89db1ca3d45d421c0138ba24f577b09bb2300541c54cc118f3b8ff8adccd608",
+        "bytes": 224907,
+        "text_characters": 1786
+      },
+      {
+        "page": 16,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-16.jpg",
+        "sha256": "09a716a968045b57fa3ca57aa0f130f5adf82afeb8f141b43c7f499e1eb2ff0e",
+        "bytes": 185812,
+        "text_characters": 2395
+      },
+      {
+        "page": 17,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-17.jpg",
+        "sha256": "ed8fd2fa243d57fc9a21834093bf525aa84b21e8c20b97c41201dfe8fef0a75e",
+        "bytes": 150689,
+        "text_characters": 2538
+      },
+      {
+        "page": 18,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-18.jpg",
+        "sha256": "bb157c2a3a69231ac091543d690f622eba07a5e2decfc83b057c036674a51e64",
+        "bytes": 81368,
+        "text_characters": 498
+      },
+      {
+        "page": 19,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-19.jpg",
+        "sha256": "7d7d55932c765ed688017fddd12daf78359f31d577c1e13b15eb3855020ed73e",
+        "bytes": 97214,
+        "text_characters": 744
+      },
+      {
+        "page": 20,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-20.jpg",
+        "sha256": "94bdb7e1a023ca36b29909bbbc4a732c4c81ae9341640ac5d3749c689d6e04cb",
+        "bytes": 100581,
+        "text_characters": 599
+      },
+      {
+        "page": 21,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-21.jpg",
+        "sha256": "89d54388db4dd61b2d932c3ed35052486f48bbea84cf0c17a4171f4ccccfcb69",
+        "bytes": 157236,
+        "text_characters": 1932
+      },
+      {
+        "page": 22,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-22.jpg",
+        "sha256": "dc7a999b997a476133f84911a5a9e19a8933c7ea3143811ab7a1ffaac5772ae9",
+        "bytes": 176443,
+        "text_characters": 4629
+      },
+      {
+        "page": 23,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-23.jpg",
+        "sha256": "035d4813c3769b76f09efdb4ecb7b2cd205663100a60d73b2c9961f68f5dbdc0",
+        "bytes": 108626,
+        "text_characters": 760
+      },
+      {
+        "page": 24,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-24.jpg",
+        "sha256": "553006791725fc42de58ac128f81a5cf7dc8561619fb4cd86804607f9e6a798c",
+        "bytes": 177159,
+        "text_characters": 820
+      },
+      {
+        "page": 25,
+        "file": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-25.jpg",
+        "sha256": "8c2dd9432812f10a656cc26a6ccc34c39e830b478966eb6c0a7d1420d19c58f5",
+        "bytes": 154687,
+        "text_characters": 1870
+      }
+    ],
+    "contact_sheets": [
+      "corpus/rendered/cumcm-2015-b-b10006005/contact-01-08.jpg",
+      "corpus/rendered/cumcm-2015-b-b10006005/contact-09-16.jpg",
+      "corpus/rendered/cumcm-2015-b-b10006005/contact-17-24.jpg",
+      "corpus/rendered/cumcm-2015-b-b10006005/contact-25-25.jpg"
+    ],
+    "visual_review": "pending"
+  },
+  "text": {
+    "file": "corpus/raw/cumcm-2015-b-b10006005/extracted-layout.txt",
+    "sha256": "7611111bf046340350325e9a5c58cee690aab1f4a1628f732fea6d94ca969a07",
+    "extracted_pages": 25,
+    "method": "pdftotext-layout"
+  }
+}

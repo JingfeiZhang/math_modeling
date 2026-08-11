@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "source": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\supporting.zip",
+  "strict": true,
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "info": [
+    {
+      "code": "ENTRY_COUNT",
+      "message": "inspected 62 file entries"
+    }
+  ],
+  "metrics": {
+    "entries": 62
+  }
+}

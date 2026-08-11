@@ -1,0 +1,253 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "mcm-2010-a-6749",
+  "identity": {
+    "contest": "MCM",
+    "year": 2010,
+    "problem": "A",
+    "team_id": "6749",
+    "title": "Modeling the Sweet Spot of Wood, Corked, and Metal Baseball Bats"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/zhanwen/MathModel/git/blobs/df95cccdf8a2d6d4a5386678cf861ebc96db9061",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "美赛论文/2010美赛特等奖原版论文集/A-6749-Outstanding.pdf"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://www.contest.comap.com/undergraduate/contests/mcm/contests/2010/results/2010_MCM_Problem_A.pdf",
+    "contest": "MCM",
+    "year": 2010,
+    "problem": "A",
+    "team_id": "6749",
+    "title": "Modeling the Sweet Spot of Wood, Corked, and Metal Baseball Bats",
+    "award": "Outstanding Winner",
+    "locator": "official PDF page 2; extracted text line 72",
+    "matched_text": "6749      Zhejiang University                                  P. R. China     Xinxin Xu           A         Outstanding Winner"
+  },
+  "authenticity": {
+    "level": "B",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": true
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "The control number, contest year, problem, and Outstanding Winner label match a COMAP official result PDF.",
+      "The paper itself is not served from an official paper-display page, so the level is B rather than A."
+    ]
+  },
+  "pdf": {
+    "sha256": "395f556a108555949451911e9ef4cedabe57aa3049c33964b95df0febf9a0f01",
+    "pages": 52,
+    "local_path": "corpus/raw/mcm-gmcm/mcm-2010-a-6749/paper.pdf",
+    "first_page_phash": "dhash64:000010d4c0d4c0c8",
+    "text_sha256": "53eb47f08dba4b070c9959579e4e9ce254fafc6b0e2cab93530f40f917235202"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "result"
+      ],
+      "observation": "The summary presents mechanics models, empirical matching, a sweet-spot location, corking effects, and design implications.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-a-6749/page-01.png"
+    },
+    {
+      "page": 5,
+      "tags": [
+        "model",
+        "overview"
+      ],
+      "observation": "The model overview separates wood, corked, and metal bat mechanisms.",
+      "derivation": "mixed",
+      "locator": "PDF page 5",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-a-6749/page-05.png"
+    },
+    {
+      "page": 16,
+      "tags": [
+        "model",
+        "schematic"
+      ],
+      "observation": "A corked-bat cross-section supports the double-spring and mass-property derivation.",
+      "derivation": "mixed",
+      "locator": "PDF page 16",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-a-6749/page-16.png"
+    },
+    {
+      "page": 39,
+      "tags": [
+        "validation",
+        "boundary"
+      ],
+      "observation": "Model validation compares simplified mechanics with omitted vibration and hoop effects.",
+      "derivation": "mixed",
+      "locator": "PDF page 39",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-a-6749/page-39.png"
+    },
+    {
+      "page": 43,
+      "tags": [
+        "conclusion",
+        "result"
+      ],
+      "observation": "The problem review restates each requested decision and its practical interpretation.",
+      "derivation": "mixed",
+      "locator": "PDF page 43",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-a-6749/page-43.png"
+    },
+    {
+      "page": 44,
+      "tags": [
+        "risk",
+        "reference"
+      ],
+      "observation": "Weaknesses quantify an error source and note limited empirical formulas and cash data.",
+      "derivation": "mixed",
+      "locator": "PDF page 44",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-a-6749/page-44.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "role": "method-quantified-result-design",
+      "observation": "Move from mechanics and simulation to a reported sweet-spot location, corking mechanism, and metal-bat design conclusion."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 5,
+      "step": "collision-mechanics",
+      "observation": "Model bat-ball collision and batted-ball speed as a function of impact location.",
+      "order": 1
+    },
+    {
+      "page": 16,
+      "step": "corked-bat-extension",
+      "observation": "Add a double-spring representation and modified mass properties.",
+      "order": 2
+    },
+    {
+      "page": 39,
+      "step": "metal-bat-design",
+      "observation": "Relate material and geometry parameters to speed and controllability.",
+      "order": 3
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 1,
+      "method": "empirical-match",
+      "observation": "Claim agreement between simulated batted-ball speed and experimental data.",
+      "order": 1
+    },
+    {
+      "page": 39,
+      "method": "mechanism-review",
+      "observation": "Compare the simplified model with known vibration and hoop-vibration mechanisms.",
+      "order": 2
+    },
+    {
+      "page": 43,
+      "method": "question-closure",
+      "observation": "Answer each requested subproblem in a dedicated problem-review list.",
+      "order": 3
+    },
+    {
+      "page": 44,
+      "method": "error-audit",
+      "observation": "Report an approximately 5 percent omitted-effect error and other data limitations.",
+      "order": 4
+    }
+  ],
+  "figures": [
+    {
+      "page": 16,
+      "role": "mechanism",
+      "chart_type": "annotated cross-section",
+      "lesson": "Introduce the geometric parameters directly on the physical object."
+    },
+    {
+      "page": 39,
+      "role": "derivation-to-conclusion",
+      "chart_type": "equations plus validation prose",
+      "lesson": "Place parameter identities immediately before validation and discussion."
+    },
+    {
+      "page": 43,
+      "role": "result-synthesis",
+      "chart_type": "structured bullet review",
+      "lesson": "Map final conclusions back to every requested problem."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 1,
+      "rule": "A mechanics abstract should report the physical mechanism, calibrated quantity, and design implication.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 16,
+      "rule": "Annotate model geometry on a cross-section before introducing mass and inertia equations.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 43,
+      "rule": "Close a multi-part problem with a one-to-one question review.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 44,
+      "risk": "Transverse-wave and hoop-vibration effects are omitted and contribute a stated error.",
+      "severity": "high"
+    },
+    {
+      "page": 44,
+      "risk": "Some empirical formulas and cash-related data are limited or not independently reproduced.",
+      "severity": "medium"
+    },
+    {
+      "page": 1,
+      "risk": "The summary is dense and lacks a compact comparison table for the three bat types.",
+      "severity": "medium"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/mcm-2010-a-6749/source_manifest.json",
+    "selected_pages": [
+      1,
+      5,
+      16,
+      39,
+      43,
+      44
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

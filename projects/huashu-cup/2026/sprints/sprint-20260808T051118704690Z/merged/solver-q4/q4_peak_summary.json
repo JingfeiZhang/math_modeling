@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q4",
+  "status": "PASS",
+  "scope": "24-hour low-renewable probe on the repaired Q4 envelope",
+  "method": {
+    "name": "integrated six-region binary MILP peak-price scan",
+    "renewable_multiplier": 0.7,
+    "carbon_weight": 0.5,
+    "peak_weights": [
+      0.0,
+      1e-07,
+      3e-07,
+      1e-06,
+      3e-06,
+      1e-05,
+      3e-05,
+      0.0001,
+      0.0003,
+      0.0005,
+      0.0007,
+      0.001,
+      0.01,
+      0.05,
+      0.1,
+      0.2,
+      0.5
+    ],
+    "target_rule": "midpoint between the zero-price peak and the minimum audited peak observed on the declared scan",
+    "optimality_boundary": "Each scan point is an integrated storage MILP with fixed upstream task assignment; no joint task-storage or full-horizon optimality claim."
+  },
+  "provenance": {
+    "repaired_q4_directory": "sprints/sprint-20260808T023235447353Z/merged/solver-q4",
+    "repaired_q4_directory_sha256": "7e1da447b5fc898737084acbbd2487eef535a24832af62a5f7b8f0d39bc9a14c",
+    "integrated_q4_directory": "sprints/sprint-20260808T031214934335Z/merged/solver-q4",
+    "integrated_q4_directory_sha256": "484aaf71b419d07fceffa807e8debf0ba30ed756a09d71128e2a42173503efc2",
+    "repaired_input_provenance": {
+      "merged_q4_directory": "sprints/sprint-20260807T210015466011Z/merged/solver-q4",
+      "merged_q4_directory_sha256": "2b72059f04e8ef5955e753c91aba96e985310f5af556d988d66c3c0b0260d3f4",
+      "merged_dispatch_sha256": "c64993e68b22533b19ad5290401eb6dcdd09c310ccf24884d10017588b3a2770",
+      "merged_task_count": 506,
+      "raw_workload_rows": 50000,
+      "envelope_definition": "Total_Load_MW from merged Q4 candidate dispatch; observed AI load is not added again."
+    }
+  },
+  "coordination_result": {
+    "zero_price_peak_MW": 291.6033004399999,
+    "minimum_audited_peak_MW": 137.2152497808251,
+    "data_derived_target_peak_MW": 214.4092751104125,
+    "selected_peak_weight": 0.0003,
+    "selected_normalized_peak_coefficient_per_MW": 1.0714285714285713e-07,
+    "selected_peak_MW": 197.08826651333345,
+    "peak_reduction_MW": 94.51503392666643,
+    "inactive_to_active_weight_bracket": [
+      0.0001,
+      0.0003
+    ],
+    "discrete_marginal_composite_price_per_MW": 2.35298451326919e-08,
+    "composite_objective_delta_without_peak": 2.223924111005582e-06,
+    "selected_cost_delta_CNY": -48.235117971897125,
+    "selected_carbon_delta_tCO2": 0.21318031106807211,
+    "baseline_no_storage_peak_MW": 555.6708991333003,
+    "price_signal_active": true
+  },
+  "hard_audit": {
+    "all_scan_points_passed": true,
+    "scan_point_count": 17,
+    "selected_weight_audit_key": "0.0003",
+    "charge_discharge_mutex_checked": true,
+    "grid_import_export_mutex_checked": true,
+    "terminal_soc_checked": true,
+    "system_peak_linkage_checked": true
+  },
+  "claim_proposals": [
+    {
+      "id": "Q4-PEAK-P1",
+      "status": "proposal_only",
+      "text": "In the bounded low-renewable probe, a data-derived peak budget activated a nonzero discrete marginal peak signal while all audited storage, grid, and system-peak constraints remained satisfied."
+    },
+    {
+      "id": "Q4-PEAK-P2",
+      "status": "proposal_only",
+      "text": "The peak-price result is a discrete MILP trade-off on a fixed task envelope, not an LP dual, full-horizon result, or globally joint task-storage optimum."
+    }
+  ],
+  "limitations": [
+    "The marginal value is a finite discrete composite-objective estimate, not a continuous LP dual variable.",
+    "The target is derived only from the declared low-renewable 24-hour scan.",
+    "Upstream task assignments are fixed and physical inter-region power flow is excluded.",
+    "Formal claim freezing remains root-owned."
+  ]
+}

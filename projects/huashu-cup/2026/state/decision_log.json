@@ -1,0 +1,1088 @@
+{
+  "_schema_version": "3.1",
+  "_doc": "跨阶段决策日志。每个阶段开头读、结尾写。L2 回检读此文件寻找跨阶段冲突。schema 与 stage_NN.md 实际写入字段一一对齐。v3.1 加入规则核对、AI 使用台账与最终论文元数据。",
+  "competition": "huashu_cup",
+  "task_type": "C_data",
+  "_competition_doc": "enum: cumcm | mcm | diangong (默认 cumcm 兼容老用户). 由 stage 0 kickoff 第一问填入。score_artifact.py / stage 文件按此字段 dispatch competitions/<comp>/* 加载。",
+  "_task_type_doc": "题型代码 (e.g. cumcm:A_optimization, mcm:A_continuous, diangong:A_engineering). 由 stage 1 选题后填入。score_artifact.py 用此字段查 config/dim_weights.json。null 时使用 default 全 1.0 权重 = 等价老逻辑。",
+  "problem": "C",
+  "problem_meta": {
+    "year": 2026,
+    "letter": "C",
+    "title": "算电协同调度与多区域算力优化",
+    "deadline_iso": "2026-08-10T20:00:00+08:00",
+    "team_size": null
+  },
+  "paper_metadata": {
+    "_doc": "最终渲染元数据。CUMCM 要求 title/keywords；MCM 要求 mcm_control_number/problem/title/keywords；电工杯要求 diangong_registration_number/problem/title/keywords。CLI 显式参数可覆盖这些值。不得填写 XXXX、X、TITLE OF YOUR PAPER、keyword1、关键词1 等占位符。",
+    "mcm_control_number": null,
+    "diangong_registration_number": null,
+    "problem": null,
+    "title": null,
+    "keywords": []
+  },
+  "mode": "standard",
+  "started_at": "2026-08-07T11:54:02.312526+00:00",
+  "current_stage": 8,
+  "compliance": {
+    "ruleset": {
+      "competition_year": 2026,
+      "verified_at": "2026-08-07T10:35:05+08:00",
+      "official_urls": [
+        "https://new.saikr.com/vse/chinamcm26"
+      ],
+      "page_limit": "正文建议不超过20页",
+      "font_requirement": null,
+      "file_limits": {
+        "paper_pdf_mb": 20,
+        "supporting_zip_mb": 20
+      },
+      "anonymity_rules": [
+        "正文、附录和支撑材料不得出现个人或学校信息"
+      ],
+      "ai_disclosure_rules": [
+        "使用AI须在参考文献前声明并在附录记录使用详情"
+      ],
+      "notes": "官方Word模板仅作参考；LaTeX为正式写作主线，首页保留参赛类别和参赛编号"
+    },
+    "ai_usage": [
+      {
+        "tool": "OpenAI Codex desktop agent",
+        "model": "GPT-5 coding agent",
+        "version": "2026-08-09 workspace session",
+        "used_at": "2026-08-09T03:00:00+08:00",
+        "use_stage": "Stage 5--9 / 模型优化、代码实现、证据复核、图件与论文装配",
+        "purpose": "在用户给定的性能最大化计划和本地附件范围内，编写与复核 Python/OR-Tools 模型、运行确定性实验、整理冻结证据、生成论文草稿和科研图件，并执行发布门禁。",
+        "paper_sections": [
+          "摘要",
+          "问题分析",
+          "问题一至问题四",
+          "模型评价与改进",
+          "附录与图件"
+        ],
+        "disclosure": "Codex 以本地桌面代理方式读取赛题附件与项目文件，生成或修改模型代码、实验派生产物、LaTeX 草稿和绘图脚本，并调用工作区脚本完成哈希、约束、编译与发布检查。没有引入外部数据；正式数值只从冻结 claims 和其哈希绑定证据派生。",
+        "human_review": "团队要求每个候选与同输出基线比较，并由独立约束审计、固定种子复跑、SHA-256 和 G3/G4 门禁复核。未达到预注册门槛的 Q1、Q2、Q3 候选保留为 PROBE_ONLY；仅 Q4 候选晋升。论文中的模型边界、单位、负成本语义和所有冻结数值由人工逐项核对，最终提交责任由团队承担。",
+        "adoption": "采纳了通过门禁的代码、Q4 受限局部联合优化结果、基于冻结证据的图件和经人工修订的论文表述；舍弃了未达门槛的预测、Pareto 和自适应窗口候选。",
+        "evidence": [
+          "reports/C_optimization_review_20260809.json",
+          "results/C/claims.json",
+          "paper/code_manifest.yaml",
+          "output/ai_usage_log.jsonl"
+        ]
+      }
+    ],
+    "_ai_usage_doc": "初始化为 null，要求团队核对后显式改为数组。[] 只表示确认未使用 AI；每条记录遵循 templates/shared/ai_usage_ledger.json。null 或缺失字段不得被解释为未使用。"
+  },
+  "budget": {
+    "_token_usage_doc": "仅当 harness/API 暴露可观测、可核验的 token usage 时记录 tokens_used/tokens_cap；不可观测时保持 null，不估算或伪造。",
+    "tokens_used": null,
+    "tokens_cap": null,
+    "stage_durations_h": {}
+  },
+  "stages": {
+    "0": {
+      "_label": "kickoff",
+      "team_roles": {
+        "root": "赛事状态、模型最终选择、冻结主张和正式装配",
+        "forecast_agent": "Q1预测与区间校准",
+        "scheduling_agent": "Q1实际任务调度与约束审计"
+      },
+      "tools_ready": [
+        "Python 3.13.9/base",
+        "OR-Tools 9.15.6755/math-modeling",
+        "MATLAB R2026a independent review",
+        "XeLaTeX",
+        "journal-spectrum-v2"
+      ],
+      "checklist_completed": true,
+      "problem_scan": {
+        "problem_id": "C",
+        "domain_keywords": [
+          "多区域算力调度",
+          "GPU需求预测",
+          "碳感知",
+          "储能协同",
+          "多目标优化"
+        ],
+        "data_attachments": [
+          "workload_trace.xlsx",
+          "GPU_information.xlsx",
+          "network_latency.xlsx",
+          "region_time_data.xlsx",
+          "power_mapping.xlsx",
+          "storage_information.xlsx"
+        ],
+        "subproblem_count": 4,
+        "primary_problem_type": "data + scheduling + energy optimization",
+        "secondary_types": [
+          "forecasting",
+          "network optimization",
+          "storage optimization",
+          "robustness"
+        ],
+        "estimated_difficulty": "hard",
+        "data_size_signal": "50000 tasks, 6 regions, 0-2406 hourly system records"
+      },
+      "time_budget_h": {},
+      "collab_protocol": {},
+      "notes": ""
+    },
+    "1": {
+      "_label": "problem_selection",
+      "candidates_assessed": [
+        {
+          "problem": "A",
+          "weighted_score": 6.85,
+          "basis": "三维几何、渗流概率与成本优化，仿真和距离计算复杂"
+        },
+        {
+          "problem": "B",
+          "weighted_score": 7.53,
+          "basis": "矩形装箱和HPWL优化，Q3/Q4约束实现风险高"
+        },
+        {
+          "problem": "C",
+          "weighted_score": 9.03,
+          "basis": "数据完整、预测-调度-储能-协同链条与本地Python/OR-Tools/MATLAB/LaTeX能力匹配"
+        }
+      ],
+      "selected": "C",
+      "rationale": "经数据准备度、工具匹配度、时限可行性、验证闭环和论文表现力五维比较，C题加权9.03最高。50000条任务、六区域和完整电力/网络/储能附件支持可审计的预测、约束调度和多目标协同路线；当前Python 3.13、OR-Tools、MATLAB R2026a、XeLaTeX与专业绘图链均可复用。",
+      "rejected_alternatives": [
+        {
+          "problem": "A",
+          "reason": "三维几何连通、周期边界最短距离和多轮Monte Carlo仿真计算量高，时间内验证风险较大"
+        },
+        {
+          "problem": "B",
+          "reason": "大规模矩形装箱、HPWL与凹多边形扩展需要稳定的碰撞和可行轮廓算子，短时实现风险高"
+        }
+      ],
+      "risks_identified": [
+        "预测目标口径固定为区域×任务类型GPU·h，不能泄漏2376-2399测试段",
+        "历史暖机和末24小时排程保留carry-in，不静默删除未完成任务",
+        "GPU_Utilization_Percent超过100%的异常字段只作探针不作优化结果",
+        "CP-SAT超时仅允许切换同约束滚动窗口fallback",
+        "论文数字必须来自冻结实验证据"
+      ]
+    },
+    "2": {
+      "_label": "analysis",
+      "decomposition": [
+        {
+          "question_id": "Q1",
+          "target": "统计18条区域×任务类型GPU工作量，完成短期预测并对2376-2399实际到达任务进行基础算力调度",
+          "inputs": [
+            "workload_trace.xlsx",
+            "GPU_information.xlsx",
+            "network_latency.xlsx",
+            "region_time_data.xlsx",
+            "power_mapping.xlsx"
+          ],
+          "outputs": [
+            "18条24小时预测序列及95%区间",
+            "2376-2405任务排程",
+            "区域利用率和约束审计"
+          ],
+          "constraints": [
+            "实时任务到达即开工",
+            "不可抢占、不可拆分、不可迁移",
+            "GPU/IT/设施功率上限",
+            "MaxLatency_ms单向时延剪枝",
+            "2400-2405结清末端任务，2406不安排任务"
+          ],
+          "objective": "预测误差与区间覆盖率；调度先保证可行和SLA，再最小化加权等待、时延、峰值利用率和区域不均衡",
+          "type": "forecasting + scheduling"
+        }
+      ],
+      "key_variables": [
+        {
+          "symbol": "W_rkt",
+          "meaning": "区域r、任务类型k在小时t的GPU工作量",
+          "unit": "GPU·h",
+          "type": "response",
+          "used_in": [
+            "Q1"
+          ]
+        },
+        {
+          "symbol": "x_i",
+          "meaning": "任务i执行区域",
+          "unit": "region",
+          "type": "decision",
+          "used_in": [
+            "Q1",
+            "Q2",
+            "Q4"
+          ]
+        },
+        {
+          "symbol": "s_i,e_i",
+          "meaning": "任务i开始和结束时刻",
+          "unit": "hour/minute",
+          "type": "decision",
+          "used_in": [
+            "Q1",
+            "Q2",
+            "Q4"
+          ]
+        },
+        {
+          "symbol": "u_rt",
+          "meaning": "区域r时刻t GPU占用",
+          "unit": "GPU",
+          "type": "state",
+          "used_in": [
+            "Q1",
+            "Q2",
+            "Q4"
+          ]
+        },
+        {
+          "symbol": "P_rt",
+          "meaning": "IT/设施功率占用",
+          "unit": "MW",
+          "type": "state",
+          "used_in": [
+            "Q1",
+            "Q2",
+            "Q4"
+          ]
+        },
+        {
+          "symbol": "L_rr",
+          "meaning": "区域间单向网络时延",
+          "unit": "ms",
+          "type": "parameter",
+          "used_in": [
+            "Q1",
+            "Q2",
+            "Q4"
+          ]
+        }
+      ],
+      "key_constraints": [
+        "训练0-2351、验证2352-2375、盲测2376-2399固定切分",
+        "预测使用GPU_Demand×EstimatedDuration_min/60聚合为GPU·h",
+        "实际排程先暖机0-2375生成carry-in，再排2376-2405",
+        "所有任务恰好执行一次且在2406前完成",
+        "实时任务到达时刻开工，区域时延不超过任务MaxLatency_ms",
+        "GPU、IT功率、设施功率和末端结算边界零违约"
+      ],
+      "objective_per_subproblem": {
+        "Q1": "预测最小化MAE/RMSE/WAPE/MASE并最大化95%覆盖率；调度分层最小化可行解后的等待时间、时延、峰值利用率和不均衡",
+        "Q2": "碳感知任务调度，使用Q1任务与区域电力参数",
+        "Q3": "储能充放电成本-碳排-峰值-波动权衡",
+        "Q4": "算-储-电多区域协同多目标权衡与场景稳健性"
+      },
+      "data_schema": {
+        "workload_trace": "50000 rows, TaskID unique, arrival 0-2399, 3 task types, duration minutes",
+        "GPU_information": "6 regions, GPU capacity, IT/facility power and PUE",
+        "network_latency": "36 directed region pairs, NetworkLatency_ms",
+        "region_time_data": "14442 region-hour rows, hours 0-2406, price/carbon/renewable/load/SOC fields",
+        "power_mapping": "3 task types to GPU power mapping",
+        "storage_information": "6 region storage capacities, SOC and power limits"
+      },
+      "subproblem_dependency": {
+        "Q1": [
+          "raw workload and infrastructure data; no upstream question"
+        ],
+        "Q2": [
+          "Q1 task output and same workload/power/network inputs"
+        ],
+        "Q3": [
+          "given task schedule and hourly loads"
+        ],
+        "Q4": [
+          "Q1-Q3 outputs with unified definitions"
+        ]
+      }
+    },
+    "3": {
+      "_label": "model_selection",
+      "candidate_models": [
+        {
+          "id": "Q1-F1",
+          "question_id": "Q1",
+          "task": "forecast",
+          "name": "季节朴素基线上的共享HistGradientBoosting残差模型",
+          "family": "分层时间序列与机器学习残差校正",
+          "fit_evidence": "18条底层序列共享周期、区域和任务类型特征；共享模型可避免逐序列样本不足，并保留24/168小时季节基线作为可解释参照。",
+          "implementation": "scikit-learn HistGradientBoostingRegressor + 非负截断 + 加权最小二乘层级一致性 + split conformal区间",
+          "verification": "四个滚动24小时回测、固定验证窗、同口径季节基线、区间覆盖率与层级一致性审计",
+          "risk": "需求稀疏时WAPE可能偏高；共享模型可能掩盖局部异质性",
+          "decision": "retain"
+        },
+        {
+          "id": "Q1-F2",
+          "question_id": "Q1",
+          "task": "forecast",
+          "name": "逐序列SARIMA/指数平滑模型",
+          "family": "经典时间序列",
+          "fit_evidence": "可显式表达日/周季节性，适合作为结构性替代候选。",
+          "implementation": "statsmodels SARIMAX或Holt-Winters，逐序列拟合",
+          "verification": "与相同滚动窗和相同18条输出口径比较",
+          "risk": "18条稀疏且异方差序列逐一拟合不稳定，参数选择成本高，难以共享类别信息",
+          "decision": "reject"
+        },
+        {
+          "id": "Q1-S1",
+          "question_id": "Q1",
+          "task": "scheduling",
+          "name": "分钟级不可抢占CP-SAT分层调度",
+          "family": "约束规划与整数调度",
+          "fit_evidence": "任务执行区域、开始时刻和可选区间均为离散决策，实时任务、时延、GPU、IT功率、设施功率和结清边界可显式建模。",
+          "implementation": "OR-Tools CP-SAT，固定随机种子、单线程、固定时限；先历史暖机再排2376-2405",
+          "verification": "独立复算任务唯一性、实时即时开工、网络时延、GPU/功率容量和2406边界，并与同约束FIFO基线比较",
+          "risk": "分钟级候选区间规模大，可能在时限内仅得到可行解而非最优解",
+          "decision": "retain"
+        },
+        {
+          "id": "Q1-S2",
+          "question_id": "Q1",
+          "task": "scheduling",
+          "name": "时间索引混合整数线性规划",
+          "family": "MILP调度",
+          "fit_evidence": "能够表达相同的分配、时刻和容量约束，可作为结构性替代。",
+          "implementation": "Pyomo/HiGHS分钟级0-1时间索引模型",
+          "verification": "同一实例、相同硬约束和目标层级下比较可行性与运行时间",
+          "risk": "任务×区域×分钟变量量级过大，比赛时限内构模与求解内存风险高",
+          "decision": "reject"
+        }
+      ],
+      "selected_per_subproblem": {
+        "Q1": {
+          "name": "共享HistGradientBoosting残差分层预测 + 分钟级不可抢占CP-SAT调度",
+          "library": "scikit-learn + OR-Tools CP-SAT",
+          "rationale": "预测部分以强季节基线为锚，使用共享非线性残差模型、层级一致性和有限样本区间；调度部分直接以实际任务建立不可抢占约束模型，保持预测与排程证据严格分离。",
+          "evidence_paths": [
+            "problems/C/questions/Q1/question.yaml",
+            "sprints/<new-q1-solve>/merged/forecast-q1/run_manifest.json",
+            "sprints/<new-q1-solve>/merged/scheduling-q1/run_manifest.json"
+          ],
+          "status": "provisional_pending_fresh_sprint"
+        }
+      },
+      "rejection_log": [
+        {
+          "candidate_id": "Q1-F2",
+          "reason": "逐序列经典模型无法稳定共享区域与任务类型信息，且18次独立调参在固定时限内验证成本高；保留季节朴素法作为同机制可解释基线。"
+        },
+        {
+          "candidate_id": "Q1-S2",
+          "reason": "分钟级时间索引MILP变量规模过大；CP-SAT的可选区间与累积资源约束更贴合不可抢占排程，并有确定性求解配置。"
+        },
+        {
+          "candidate_id": "Q1-S-BL",
+          "reason": "本地优先FIFO只能作为同约束可行基线，不能替代多目标主模型，因为它不全局权衡等待、时延和区域峰值。"
+        }
+      ],
+      "toy_demos_passed": false,
+      "toy_demo_status": "旧Sprint预测演示已运行但输入快照失效；必须在新q1-solve Sprint中重跑预测与调度后才能置为true。",
+      "red_team": [
+        {
+          "attack": "共享残差模型的增益可能只来自盲测偶然窗口或稀疏序列WAPE定义。",
+          "evidence_required": "四窗滚动回测、逐序列MAE/RMSE/WAPE/MASE、系统加权与宏平均并列报告，盲测禁止参与选模。",
+          "response": "待新Forecast Sprint确定性重跑并由Reviewer独立复核。",
+          "status": "open"
+        },
+        {
+          "attack": "历史暖机可能无法在2376时刻形成真实carry-in，或静默丢弃积压任务。",
+          "evidence_required": "暖机任务守恒、carry-in清单与哈希、2376前已完成/未完成数量、末时域任务唯一性。",
+          "response": "任务合同强制交付carry_in.json与constraint_audit.json。",
+          "status": "open"
+        },
+        {
+          "attack": "CP-SAT在固定时限内的FEASIBLE结果可能被误写为最优。",
+          "evidence_required": "记录status、best bound、objective、gap、wall time、线程数和随机种子；论文区分可行与最优。",
+          "response": "若无可行解才触发唯一滚动窗口fallback；不得把超时结果描述为最优。",
+          "status": "open"
+        }
+      ],
+      "model_family_consistency": "预测输出用于需求刻画和容量压力分析；最后24小时调度始终读取实际到达任务及历史carry-in，不以预测值替换任务。两部分通过统一的区域、任务类型、GPU·h、GPU容量和功率定义衔接。"
+    },
+    "4": {
+      "_label": "foundation",
+      "assumptions": [
+        {
+          "id": "A1",
+          "content": "EstimatedDuration_min以分钟计，任务GPU工作量定义为GPU_Demand乘以EstimatedDuration_min再除以60。",
+          "support": "题面附件字段定义与GPU工作量量纲检查；将在输入审计中复核。",
+          "support_type": "data",
+          "status": "provisional",
+          "impact": "若时长单位解释错误，全部预测目标、功率占用和排程持续时间需重算。"
+        },
+        {
+          "id": "A2",
+          "content": "0-2375小时可用于模型训练与校准，2376-2399小时仅用于最终盲测和实际任务调度。",
+          "support": "题目时间边界与固定数据切分；run manifest必须记录所有拟合窗口。",
+          "support_type": "business",
+          "status": "verified",
+          "impact": "若盲测数据参与选模，预测证据因时间泄漏全部失效。"
+        },
+        {
+          "id": "A3",
+          "content": "附件GPU_Utilization_Percent不作为优化结果或容量约束，利用率由任务重叠占用与区域GPU容量重新计算。",
+          "support": "输入审计发现该字段可能超过100%，故只作为异常探针。",
+          "support_type": "data",
+          "status": "provisional",
+          "impact": "若误用该字段，将导致容量判断和调度结论不可解释。"
+        },
+        {
+          "id": "A4",
+          "content": "任务执行期间GPU需求和映射功率保持不变，AI IT功率由GPU_Demand与power_mapping.xlsx重算，设施功率按区域PUE校验。",
+          "support": "题面给定GPU需求、任务类型功率映射和区域PUE字段；通过独立资源审计复核。",
+          "support_type": "physical",
+          "status": "provisional",
+          "impact": "若任务内功率随时间显著变化，固定区间资源约束需改为分段功率曲线。"
+        },
+        {
+          "id": "A5",
+          "content": "任务不可抢占、不可拆分且执行后不迁移；实时推理任务必须在到达时刻开始。",
+          "support": "题面调度规则。",
+          "support_type": "business",
+          "status": "verified",
+          "impact": "若允许抢占或迁移，决策变量、可行域和基线均需重建。"
+        },
+        {
+          "id": "A6",
+          "content": "network_latency.xlsx中的有向时延与任务MaxLatency_ms可直接比较，候选区域按单向时延剪枝。",
+          "support": "网络附件包含36个有向区域对；调度前验证矩阵完整性与单位。",
+          "support_type": "data",
+          "status": "provisional",
+          "impact": "若时延口径是往返或缺边，需要更正候选区域与SLA审计。"
+        }
+      ],
+      "symbols": [
+        {
+          "symbol": "r",
+          "meaning": "执行区域索引",
+          "unit": "无量纲",
+          "type": "index",
+          "range": "RegionA--RegionF"
+        },
+        {
+          "symbol": "k",
+          "meaning": "任务类型索引",
+          "unit": "无量纲",
+          "type": "index",
+          "range": "实时推理、批量推理、AI训练"
+        },
+        {
+          "symbol": "t",
+          "meaning": "小时索引",
+          "unit": "h",
+          "type": "index",
+          "range": "0--2406"
+        },
+        {
+          "symbol": "i",
+          "meaning": "任务索引",
+          "unit": "无量纲",
+          "type": "index",
+          "range": "1--N"
+        },
+        {
+          "symbol": "W_{rkt}",
+          "meaning": "区域r、类型k在小时t到达任务的GPU工作量",
+          "unit": "GPU·h",
+          "type": "response",
+          "range": "非负"
+        },
+        {
+          "symbol": "\\hat W_{rkt}",
+          "meaning": "GPU工作量点预测",
+          "unit": "GPU·h",
+          "type": "response",
+          "range": "非负"
+        },
+        {
+          "symbol": "a_i",
+          "meaning": "任务i到达时刻",
+          "unit": "min",
+          "type": "parameter",
+          "range": "0--143940"
+        },
+        {
+          "symbol": "d_i",
+          "meaning": "任务i预计持续时间",
+          "unit": "min",
+          "type": "parameter",
+          "range": "正数"
+        },
+        {
+          "symbol": "g_i",
+          "meaning": "任务i的GPU需求",
+          "unit": "GPU",
+          "type": "parameter",
+          "range": "正整数"
+        },
+        {
+          "symbol": "x_i",
+          "meaning": "任务i的执行区域",
+          "unit": "无量纲",
+          "type": "decision",
+          "range": "候选区域集合"
+        },
+        {
+          "symbol": "s_i",
+          "meaning": "任务i开始时刻",
+          "unit": "min",
+          "type": "decision",
+          "range": "不早于到达时刻"
+        },
+        {
+          "symbol": "e_i",
+          "meaning": "任务i结束时刻",
+          "unit": "min",
+          "type": "decision",
+          "range": "e_i=s_i+d_i且不晚于2406小时"
+        },
+        {
+          "symbol": "G_r",
+          "meaning": "区域r可用GPU容量",
+          "unit": "GPU",
+          "type": "parameter",
+          "range": "正整数"
+        },
+        {
+          "symbol": "u_{rt}",
+          "meaning": "区域r在时刻t的GPU占用",
+          "unit": "GPU",
+          "type": "state",
+          "range": "0--G_r"
+        },
+        {
+          "symbol": "P^{IT}_{rt}",
+          "meaning": "区域r在时刻t的IT功率",
+          "unit": "MW",
+          "type": "state",
+          "range": "非负且不超过IT容量"
+        },
+        {
+          "symbol": "P^{fac}_{rt}",
+          "meaning": "区域r在时刻t的设施功率",
+          "unit": "MW",
+          "type": "state",
+          "range": "非负且不超过设施容量"
+        },
+        {
+          "symbol": "L_{or}",
+          "meaning": "任务来源区域o到执行区域r的单向网络时延",
+          "unit": "ms",
+          "type": "parameter",
+          "range": "非负"
+        },
+        {
+          "symbol": "\\ell_i^{max}",
+          "meaning": "任务i允许的最大网络时延",
+          "unit": "ms",
+          "type": "parameter",
+          "range": "非负"
+        }
+      ],
+      "terminology": [
+        {
+          "zh": "图形处理器工作量",
+          "en": "GPU workload",
+          "abbrev": "GPU·h",
+          "first_appearance": "Q1数据处理"
+        },
+        {
+          "zh": "季节朴素预测",
+          "en": "seasonal naive forecast",
+          "abbrev": "SNaive",
+          "first_appearance": "Q1预测模型"
+        },
+        {
+          "zh": "直方图梯度提升回归",
+          "en": "Histogram Gradient Boosting Regressor",
+          "abbrev": "HGBR",
+          "first_appearance": "Q1预测模型"
+        },
+        {
+          "zh": "分裂保序预测区间",
+          "en": "split conformal prediction interval",
+          "abbrev": "split CP",
+          "first_appearance": "Q1区间预测"
+        },
+        {
+          "zh": "约束满足整数规划求解器",
+          "en": "Constraint Programming-SAT solver",
+          "abbrev": "CP-SAT",
+          "first_appearance": "Q1调度模型"
+        },
+        {
+          "zh": "历史遗留任务",
+          "en": "carry-in task",
+          "abbrev": "carry-in",
+          "first_appearance": "Q1历史暖机"
+        },
+        {
+          "zh": "服务等级约束",
+          "en": "Service Level Agreement",
+          "abbrev": "SLA",
+          "first_appearance": "Q1调度约束"
+        }
+      ],
+      "consistency_check": {
+        "with_stage2": "pass",
+        "with_stage3": "pass",
+        "symbol_uniqueness": "pass",
+        "units_complete": "pass",
+        "execution_evidence": "Q1 G3 passed; solve sprint sprint-20260807T130848306634Z merged with forecast and scheduling manifests"
+      }
+    },
+    "5": {
+      "_label": "subproblem_loop",
+      "qi_count": 4,
+      "_qi_count_doc": "题目子问题总数，必须由当前题面实际提取并在 Stage 1 后填入；topic_specs 仅用于题号/task_type 路由，不预设子问数。",
+      "qi_weights": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "_qi_weights_doc": "per-Qi 加权聚合权重数组, 长度=qi_count. 默认均匀 [1.0]*qi_count. score_artifact.py compute_stage5_verdict 用此重加权 mean.",
+      "qi_status": {
+        "Q1": "pass",
+        "Q2": "pass",
+        "Q3": "pass",
+        "Q4": "pass"
+      },
+      "_qi_status_doc": "{Q1: pass | mark_for_review | refine | block, ...}. high-severity issue 必须标记 block；mark_for_review = 该 Qi 单独弱但全 stage 仍 pass, L2 必读。",
+      "review_qis": [],
+      "refine_qis": [],
+      "block_qis": [],
+      "aggregate": {
+        "status": "pass_with_documented_boundaries",
+        "completed_questions": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4"
+        ],
+        "pending_questions": [],
+        "gate": "G4",
+        "gate_status": "PASS",
+        "solve_sprint_id": "sprint-20260807T130848306634Z",
+        "merge_status": "MERGED",
+        "latest_incremental_sprint_id": "sprint-20260808T101814701038Z",
+        "latest_incremental_status": "MERGED",
+        "formal_claims_unchanged_by_latest_sprint": true
+      },
+      "sub_problems": {
+        "Q1": {
+          "model_name": "共享 HGBR 残差分层预测 + split conformal 区间 + 分钟级 CP-SAT 调度",
+          "math_formulation_path": "problems/C/questions/Q1/question.yaml",
+          "code_path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/run_forecast.py; sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/run_scheduling_q1.py",
+          "results_path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1; sprints/sprint-20260807T130848306634Z/merged/scheduling-q1",
+          "figures": [
+            "paper/figure_contracts.yaml#fig-q1-forecast-interval",
+            "paper/figure_contracts.yaml#fig-q1-error-comparison",
+            "paper/figure_contracts.yaml#fig-q1-feasible-schedule"
+          ],
+          "key_metrics": {
+            "blind_system_weighted_wape": 0.89343949172524,
+            "blind_empirical_coverage_95": 0.9467592592592593,
+            "scheduled_actual_tasks": 538,
+            "task_completion_rate": 1.0,
+            "solver_status": "FEASIBLE",
+            "solver_optimality_gap": 0.0351506456241033
+          },
+          "physical_meaning_summary": "预测用于识别未来24小时需求压力；正式调度读取实际到达任务与58条carry-in，并在GPU、IT、设施功率、时延、SLA和2406收尾边界下得到可行排程。",
+          "scores": {
+            "G3": "PASS",
+            "G4": "PASS"
+          },
+          "issues": [
+            "三条实时推理稀疏序列不宜以WAPE单独解释",
+            "RegionB与RegionF的AITraining区间覆盖率低于90%",
+            "主CP-SAT仅为FEASIBLE，不能宣称全局最优"
+          ],
+          "iterations": 2
+        },
+        "Q2": {
+          "model_name": "全时域确定性滚动影子交换 + FIFO local-first 同约束基线",
+          "math_formulation_path": "problems/C/questions/Q2/question.yaml",
+          "code_path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/run_q2_full_horizon.py",
+          "results_path": "experiments/C/Q2/q2-full-compat-20260808",
+          "figures": [
+            "sprints/sprint-20260808T083901900797Z/merged/figure-q2/fig_q2_dispatch_comparison.pdf"
+          ],
+          "key_metrics": {
+            "task_completion_rate": 1.0,
+            "sla_violation_rate": 0.0,
+            "hard_audits_passed": true,
+            "cost_change_pct_vs_fifo": -1.0149373918772464,
+            "carbon_change_pct_vs_fifo": -1.929297238773453,
+            "latency_change_ms_vs_fifo": 4.18976,
+            "deterministic_replay_passed": true
+          },
+          "physical_meaning_summary": "在任务守恒、不可抢占、容量和SLA硬约束下，通过有界滚动交换降低相对FIFO的成本与碳排；算法属于确定性启发式，不作全局最优解释。",
+          "scores": {
+            "G3": "PASS",
+            "G4": "PASS"
+          },
+          "issues": [
+            "当前策略相对FIFO增加平均网络时延，必须与成本和碳排改善并列报告",
+            "latency-guarded仅是敏感性候选，未替换当前冻结主线",
+            "有界影子交换不是MILP全局最优或对偶价格求解"
+          ],
+          "iterations": 3
+        },
+        "Q3": {
+          "model_name": "168 h滚动二进制储能MILP + 同口径无储能基线",
+          "math_formulation_path": "problems/C/questions/Q3/question.yaml",
+          "code_path": "experiments/C/Q3/q3-rolling-compat-20260808/generate_q3_compat.py",
+          "results_path": "experiments/C/Q3/q3-rolling-compat-20260808",
+          "figures": [
+            "sprints/sprint-20260808T101814701038Z/merged/figure-q3q4/figure_contract_proposals.yaml#fig-q3-rolling-comparison"
+          ],
+          "key_metrics": {
+            "rolling_binary_block_solves": 90,
+            "rolling_cost_delta_cny": -38899969.87293261,
+            "rolling_carbon_delta_tco2": -8.8505625719,
+            "deterministic_stress_audits_passed": 48,
+            "window_sensitivity_blocks_passed": 360,
+            "window_sensitivity_blocks_total": 360,
+            "complete_audits_passed": 270,
+            "complete_audits_total": 270,
+            "full_horizon_probe_max_simultaneous_charge_discharge_mw": 0.0,
+            "full_horizon_probe_max_simultaneous_grid_buy_sell_mw": 0.0,
+            "full_horizon_probe_max_mip_gap": 0.0,
+            "deterministic_replay_core_hashes_matched": 9
+          },
+          "formal_audit_code_path": "experiments/C/Q3/q3-full-audit-fix-20260809/run_q3_full_audit_fix.py",
+          "formal_audit_results_path": "experiments/C/Q3/q3-full-audit-fix-20260809",
+          "physical_meaning_summary": "滚动二进制MILP以SOC跨块传递连接六区域储能运行；完整审计中的六个全时域探针分别按区域求解，并显式保证充放电互斥、购售电互斥和总进口上限。完整270项审计全部通过，但不证明2407 h系统级联合全局最优。",
+          "scores": {
+            "G3": "PASS",
+            "G4": "PASS"
+          },
+          "issues": [
+            "六个全时域探针按区域独立求解，不包含区域间物理潮流",
+            "完整审计全通过只支持可行性与审计完整性，不新增成本或性能优越性主张",
+            "滚动块求解结果不等于全时域联合全局最优"
+          ],
+          "iterations": 4
+        },
+        "Q4": {
+          "model_name": "任务调度—储能顺序耦合情景MILP + 离散峰值权重扫描",
+          "math_formulation_path": "problems/C/questions/Q4/question.yaml",
+          "code_path": "experiments/C/Q4/q4-integrated-compat-20260808/generate_q4_compat.py",
+          "results_path": "experiments/C/Q4/q4-integrated-compat-20260808",
+          "figures": [
+            "sprints/sprint-20260808T101814701038Z/merged/figure-q3q4/figure_contract_proposals.yaml#fig-q4-peak-tradeoff"
+          ],
+          "key_metrics": {
+            "final_hard_constraints_passed": true,
+            "low_renewable_cost_delta_cny": -1683494.3771166522,
+            "low_renewable_carbon_delta_tco2": -189.1085063591487,
+            "peak_reduction_mw": 94.51503392666643,
+            "selected_peak_weight": 0.0003,
+            "scenario_cells_passed": 20,
+            "scenario_cells_total": 20
+          },
+          "physical_meaning_summary": "Q4以Q2负荷包络为固定上游输入，在五类情景下顺序求解储能MILP，并以独立24 h离散扫描解释峰值权重机制；结果仅支持条件顺序归因。",
+          "scores": {
+            "G3": "PASS",
+            "G4": "PASS_WITH_BOUNDARY"
+          },
+          "issues": [
+            "任务调度与储能效应是顺序描述分解，不是因果效应",
+            "17点峰值扫描覆盖24 h，不能外推为全时域连续前沿",
+            "离散相邻差分不能称LP对偶或影子价格"
+          ],
+          "iterations": 3
+        },
+        "_template": {
+          "model_name": "",
+          "math_formulation_path": "",
+          "code_path": "",
+          "results_path": "",
+          "figures": [],
+          "key_metrics": {},
+          "physical_meaning_summary": "",
+          "scores": {},
+          "issues": [],
+          "iterations": 0
+        }
+      },
+      "cross_reference_chain": {
+        "Q1_to_Q2": "只交接实际任务排程、资源占用与SLA字段；预测值不替代Q2实际任务输入",
+        "Q2_to_Q3": "交接逐区域逐小时设施负荷包络；Q3不反向修改任务级排程",
+        "Q2_Q3_to_Q4": "Q4读取固定的Q2候选/FIFO负荷包络和Q3储能合同，在统一绝对小时与单位下做顺序耦合"
+      },
+      "assumption_change_history": []
+    },
+    "6": {
+      "_label": "robustness",
+      "params_varied_jointly": [
+        "GPU_Demand",
+        "EstimatedDuration_min",
+        "carry-in timing",
+        "CP-SAT time limit",
+        "Q2 objective weights",
+        "Q3 rolling-window length",
+        "terminal SOC equality",
+        "Q4 scenario family",
+        "peak-weight grid"
+      ],
+      "method": "Q1使用滚动回测、覆盖率审计和固定排程扰动重放；Q2使用四策略同输入全时域敏感性与确定性复跑；Q3比较144/168/192 h窗口和终端SOC等式共360块；Q4对五情景×四组合执行20单元审计并作顺序归因。",
+      "deltas": [
+        -0.2,
+        -0.1,
+        0.1,
+        0.2
+      ],
+      "robust_intervals": {
+        "forecast_rolling_system_weighted_wape_main": 0.9411484478012123,
+        "forecast_rolling_system_weighted_wape_baseline": 1.0804751689966312,
+        "blind_coverage_95": 0.9467592592592593,
+        "q2_policy_cells_hard_audit_pass_rate": 1.0,
+        "q3_window_sensitivity_solve_rate": 1.0,
+        "q4_scenario_cell_audit_pass_rate": 1.0
+      },
+      "stability_verdict": "PASS_WITH_BOUNDARY",
+      "failure_warning": "Q1固定排程在GPU需求或持续时间增加10%/20%时出现违约；Q2权重变化存在成本、碳排与时延权衡；Q3完整270项审计虽全部通过，但六个全时域探针是区域独立可行性检查，不是系统级联合全局最优；Q4仅支持顺序描述归因。以上边界均不证明相应模型族不可行。",
+      "L2_backtrack": {
+        "required": false,
+        "reason": "四问名义证据和增量敏感性均未达到替换当前冻结主线的预注册门槛；边界作为局限性保留，不触发refreeze。"
+      },
+      "figures": []
+    },
+    "7": {
+      "_label": "evaluation",
+      "strengths": [
+        "预测主模型与季节基线使用相同18条序列和时间切分",
+        "实际调度与预测评价严格分离，并完整保留carry-in",
+        "任务唯一性、GPU/功率、时延、SLA和收尾边界均由独立审计复算",
+        "Q2四策略均在同输入、同约束和同输出类下完成全量任务审计",
+        "Q3窗口与终端SOC敏感性共360/360块成功，完整270项审计经双互斥全时域区域探针修复后全部通过",
+        "Q4五情景四组合共20/20单元通过硬约束审计",
+        "Q4 五场景 72 小时局部联合优化通过硬约束、非劣性和确定性复跑门槛"
+      ],
+      "limitations": [
+        "主CP-SAT在90秒内仅得到FEASIBLE解，最优间隙约3.52%",
+        "固定排程对正向需求和时长扰动的备用裕度有限",
+        "稀疏实时推理序列的WAPE与局部覆盖率需结合绝对误差解释",
+        "Q2确定性启发式不能表述为全局最优",
+        "Q3滚动解不能表述为2407 h单体全局最优",
+        "Q4顺序分解不能表述为因果效应或联合全局最优",
+        "Q1--Q3 性能探针未达预注册门槛；Q4 仅为 12 任务邻域和 72 小时局部联合优化"
+      ],
+      "improvements": [
+        "仅在最差组覆盖偏差改善达到0.02且区间宽度受控时重评Q1分组校准",
+        "仅在同输入多指标占优时重评Q2 latency-guarded或ALNS候选",
+        "仅在压力探针触发块边界时开展Q3自适应窗口或SOC安全裕度实验",
+        "仅在情景差异改变权衡结论时开展Q4 epsilon-constraint前沿或联合模型"
+      ],
+      "generalizations": [
+        "预测证据可用于容量压力与储能场景设计",
+        "任务级排程与资源审计字段可作为Q2--Q4的统一算力接口"
+      ]
+    },
+    "8": {
+      "_label": "writing",
+      "section_word_counts": {},
+      "figures_per_subproblem": {},
+      "tables_per_subproblem": {},
+      "abstract_drafts": [],
+      "anchor_phrase_hits": {},
+      "danger_phrase_hits": [],
+      "compliance": {
+        "rules_rechecked": false,
+        "paper_profile": null,
+        "ai_ledger_complete": false
+      },
+      "status": "DEFERRED_BY_USER",
+      "defer_reason": "继续规范推进四问建模算法、验证与学术图件，暂不产出最终论文。",
+      "allowed_interim_work": [
+        "model refinement",
+        "baseline comparison",
+        "risk probes",
+        "robustness",
+        "figure staging QA"
+      ],
+      "forbidden_until_resume": [
+        "paper/main.tex assembly",
+        "formal figure contract replacement",
+        "G5/G6 release workflow"
+      ]
+    },
+    "9": {
+      "_label": "review",
+      "anti_patterns_check": {
+        "total": null,
+        "_total_doc": "由 active competition 的 anti_patterns.md 在 Stage 9 初始化，禁止将任一赛制的条目数硬编码为三赛制通用值。",
+        "passed": 0,
+        "fixed": 0,
+        "deferred": 0,
+        "details": []
+      },
+      "panel_scores": {
+        "panel_v1": {},
+        "aggregate_v1": {},
+        "redo_actions": [],
+        "panel_v2": {}
+      },
+      "weakest_section": null,
+      "redo_log": [],
+      "red_team_record": [],
+      "compliance_checks": {
+        "rules_verified": false,
+        "anonymity_passed": false,
+        "page_limit_passed": false,
+        "ai_disclosure_passed": false,
+        "supporting_materials_passed": false
+      },
+      "final_pdf_path": null,
+      "submission_ready": false
+    }
+  },
+  "scores": {
+    "_doc": "{stage_key: [{iteration, scores:{dim:score}, min, mean, verdict, ts, qi_id?, weighted_mean?, review_qis?, refine_qis?}]}. stage 5 双轨: '5' 存 stage-level, '5_per_qi' 存 per-Qi (entry 含 qi_id). v3.0 verdict 扩展含 'pass_with_review' (任 Qi mark_for_review 但整体 pass) 与 'refine_partial' (仅部分 Qi 需 refine, 其他 Qi 保留). dim key 必须命中 feedback_layer1_critic.md §6 (1_xxx/2_xxx/.../5_xxx) 白名单, 或竞赛 rubric_overlay.json 中 stage_overrides 定义的特化 dim",
+    "0": [],
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "5_per_qi": [],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": []
+  },
+  "iterations": {
+    "_doc": "{stage_key: count_of_iterations}",
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "5_per_qi": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0
+  },
+  "events": {
+    "_doc": "时间线事件: backtrack, panel, red_team, calibration, mode_change, problem_scan",
+    "log": [
+      {
+        "type": "multi_agent_sprint",
+        "timestamp_utc": "2026-08-07T16:02:55+00:00",
+        "stage": 5,
+        "question_id": "Q1",
+        "sprint_id": "sprint-20260807T130848306634Z",
+        "status": "MERGED",
+        "gate": "G3"
+      },
+      {
+        "type": "red_team",
+        "timestamp_utc": "2026-08-07T16:02:55+00:00",
+        "stage": 6,
+        "question_id": "Q1",
+        "status": "PASS_WITH_BOUNDARY",
+        "evidence": "sprints/sprint-20260807T130848306634Z/retry-staging/q1-g4-fast-audit/red_team_review.json"
+      },
+      {
+        "type": "claim_freeze",
+        "timestamp_utc": "2026-08-07T16:02:55+00:00",
+        "stage": 7,
+        "question_id": "Q1",
+        "decision_id": "q1-freeze-20260807",
+        "frozen_claim_count": 5
+      },
+      {
+        "type": "claim_freeze",
+        "timestamp_utc": "2026-08-08T08:25:25.709386+00:00",
+        "stage": 7,
+        "question_id": "Q2",
+        "decision_id": "q2-freeze-20260808",
+        "frozen_claim_count": 7
+      },
+      {
+        "type": "claim_freeze",
+        "timestamp_utc": "2026-08-08T08:32:31.437767+00:00",
+        "stage": 7,
+        "question_id": "Q3",
+        "decision_id": "q3-freeze-20260808",
+        "frozen_claim_count": 6
+      },
+      {
+        "type": "claim_freeze",
+        "timestamp_utc": "2026-08-08T08:18:31.152605+00:00",
+        "stage": 7,
+        "question_id": "Q4",
+        "decision_id": "q4-freeze-20260808",
+        "frozen_claim_count": 6
+      },
+      {
+        "type": "multi_agent_sprint",
+        "timestamp_utc": "2026-08-08T11:09:25.019659+00:00",
+        "stage": 5,
+        "question_id": "Q1-Q4",
+        "sprint_id": "sprint-20260808T101814701038Z",
+        "status": "MERGED",
+        "gate": "G4",
+        "formal_claims_changed": false
+      },
+      {
+        "type": "model_review",
+        "timestamp_utc": "2026-08-08T11:09:25.019659+00:00",
+        "stage": 6,
+        "question_id": "Q1-Q4",
+        "status": "RETAIN_CURRENT_MODELS",
+        "evidence": "reports/C_modeling_workbench.md#7-sprint-20260808t101814701038z-审计记录"
+      },
+      {
+        "type": "optimization_review",
+        "timestamp_utc": "2026-08-08T18:46:58.863039+00:00",
+        "stage": 7,
+        "question_id": "Q1-Q4",
+        "status": "PROMOTE_Q4_ONLY",
+        "evidence": "reports/C_optimization_review_20260809.json"
+      },
+      {
+        "type": "figure_retirement",
+        "timestamp_utc": "2026-08-09T01:06:50.2714295Z",
+        "stage": 8,
+        "question_id": "Q1-Q4",
+        "status": "FORMAL_FIGURES_REMOVED_TABLE_REPLACEMENT",
+        "retired_figure_ids": [
+          "fig-q1-validation-stability",
+          "fig-q2-full-tradeoff",
+          "fig-q4-scenario-improvement",
+          "fig-q4-search-trace"
+        ],
+        "replacement_rule": "论文撰写阶段使用冻结证据生成规范三线表；不使用图形方向校正替代原始数值。",
+        "table_specs": {
+          "Q1": "验证、滚动回测、盲测阶段的 WAPE/RMSE 主模型与季节基线比值，并单列覆盖率。",
+          "Q2": "FIFO、当前方案、绝对差和相对变化；成本、碳排、平均时延、新能源利用率分别标注单位。",
+          "Q4_SCENARIOS": "五类场景逐行列出顺序基线、局部联合候选及成本、碳排、新能源利用率变化。",
+          "Q4_SEARCH": "正文报告初始值、最终值、评估次数和接受次数；逐任务搜索记录放附录表。"
+        },
+        "frozen_evidence_unchanged": true,
+        "formal_claims_unchanged": true
+      },
+      {
+        "type": "claim_refreeze",
+        "timestamp_utc": "2026-08-09T04:31:44.0134708Z",
+        "stage": 7,
+        "question_id": "Q3",
+        "status": "PASS",
+        "decision_id": "q3-audit-refreeze-20260809",
+        "replaced_claim_id": "Q3-EXCLUDED-LP-REGIONF-SIMULTANEOUS",
+        "new_claim_id": "Q3-ALL-270-AUDITS-PASS",
+        "frozen_claim_count": 6,
+        "evidence": "experiments/C/Q3/q3-full-audit-fix-20260809/summary.json",
+        "replay_evidence": "experiments/C/Q3/q3-full-audit-fix-20260809/replay_report.json",
+        "boundary": "six regional independent full-horizon binary-MILP feasibility probes; no system-wide global-optimality or new performance claim"
+      }
+    ]
+  }
+}

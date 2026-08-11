@@ -1,0 +1,282 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "gmcm-2019-d-d19102470244",
+  "identity": {
+    "contest": "GMCM",
+    "year": 2019,
+    "problem": "D",
+    "team_id": "D19102470244",
+    "title": "汽车行驶工况构建"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/8d5e7aad04ccd9d327996e3fcfba20bbe95918ae",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-0研赛题目+论文/优秀论文按年份/2019年优秀论文/D/D19102470244.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "GMCM",
+    "year": 2019,
+    "problem": "D",
+    "team_id": "D19102470244",
+    "title": "汽车行驶工况构建",
+    "award": "镜像目录称优秀论文，未独立核验",
+    "locator": "No independent official locator",
+    "matched_text": "No independent official award locator found; the mirror directory label is not award evidence."
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": false
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "No independent official award list or official paper-display locator was found for this record.",
+      "Repository popularity and an 'excellent papers' folder name do not establish an award."
+    ]
+  },
+  "pdf": {
+    "sha256": "a176fb2f92e108ca1121a0558e959ec7181a46a39f3a76f1979d6244e6301b6b",
+    "pages": 45,
+    "local_path": "corpus/raw/mcm-gmcm/gmcm-2019-d-d19102470244/paper.pdf",
+    "first_page_phash": "dhash64:a2bae870e4e06800",
+    "text_sha256": "471f4d9884164303c6a16caefd216cd4394f4f81ccb491b81900b8829a7d254e"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "identity",
+        "risk"
+      ],
+      "observation": "The cover exposes school, team number, and member names.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-d-d19102470244/page-01.png"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "abstract",
+        "pipeline"
+      ],
+      "observation": "The abstract reports data cleaning counts, motion-segment extraction, 33 features, PCA, K-means, and fuel-consumption verification.",
+      "derivation": "mixed",
+      "locator": "PDF page 2",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-d-d19102470244/page-02.png"
+    },
+    {
+      "page": 14,
+      "tags": [
+        "data-quality",
+        "figure"
+      ],
+      "observation": "Anomaly plots mark suspicious GPS and acceleration records before correction.",
+      "derivation": "mixed",
+      "locator": "PDF page 14",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-d-d19102470244/page-14.png"
+    },
+    {
+      "page": 22,
+      "tags": [
+        "model",
+        "flowchart"
+      ],
+      "observation": "A PCA flowchart explains standardization, covariance, eigenvalues, contribution rate, and component selection.",
+      "derivation": "mixed",
+      "locator": "PDF page 22",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-d-d19102470244/page-22.png"
+    },
+    {
+      "page": 26,
+      "tags": [
+        "model",
+        "figure"
+      ],
+      "observation": "A three-dimensional K-means scatter plot shows clustered driving segments.",
+      "derivation": "mixed",
+      "locator": "PDF page 26",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-d-d19102470244/page-26.png"
+    },
+    {
+      "page": 29,
+      "tags": [
+        "result",
+        "figure"
+      ],
+      "observation": "Feature-weight bars support construction of the representative driving cycle.",
+      "derivation": "mixed",
+      "locator": "PDF page 29",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-d-d19102470244/page-29.png"
+    },
+    {
+      "page": 30,
+      "tags": [
+        "validation",
+        "boundary"
+      ],
+      "observation": "Fuel-consumption relative error is reported before strengths and weaknesses.",
+      "derivation": "mixed",
+      "locator": "PDF page 30",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-d-d19102470244/page-30.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 2,
+      "role": "data-model-validation",
+      "observation": "Quantify data retained after cleaning, describe feature and clustering steps, then name the fuel-consumption validation target."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 14,
+      "step": "data-cleaning",
+      "observation": "Detect GPS, time-gap, acceleration, and idle anomalies and interpolate selectively.",
+      "order": 1
+    },
+    {
+      "page": 2,
+      "step": "segment-and-feature",
+      "observation": "Extract driving segments and compute 33 motion features.",
+      "order": 2
+    },
+    {
+      "page": 22,
+      "step": "dimension-reduction",
+      "observation": "Use PCA to reduce correlated features.",
+      "order": 3
+    },
+    {
+      "page": 26,
+      "step": "segment-clustering",
+      "observation": "Cluster segments with K-means and select representatives.",
+      "order": 4
+    },
+    {
+      "page": 29,
+      "step": "cycle-construction",
+      "observation": "Weight characteristic segments to assemble the driving cycle.",
+      "order": 5
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 14,
+      "method": "data-quality-audit",
+      "observation": "Visualize and list corrected anomalies before modeling.",
+      "order": 1
+    },
+    {
+      "page": 26,
+      "method": "cluster-inspection",
+      "observation": "Inspect separation of motion-segment clusters.",
+      "order": 2
+    },
+    {
+      "page": 30,
+      "method": "domain-output-check",
+      "observation": "Compare estimated fuel consumption with the original record and report relative error.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 14,
+      "role": "data-quality",
+      "chart_type": "annotated anomaly small multiples",
+      "lesson": "Mark corrected records directly on the time series."
+    },
+    {
+      "page": 22,
+      "role": "method",
+      "chart_type": "PCA flowchart",
+      "lesson": "Turn a familiar algorithm into a reproducible ordered procedure."
+    },
+    {
+      "page": 26,
+      "role": "cluster-result",
+      "chart_type": "3D scatter plot",
+      "lesson": "Use color to identify segment classes while acknowledging projection limits."
+    },
+    {
+      "page": 29,
+      "role": "feature-result",
+      "chart_type": "ranked bar chart",
+      "lesson": "Show which characteristics drive representative-cycle selection."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 2,
+      "rule": "Put data-retention counts in the abstract when cleaning materially changes the sample.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 14,
+      "rule": "Show marked anomaly examples before presenting cleaned-data models.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 30,
+      "rule": "Validate a constructed operating cycle through a downstream physical quantity such as fuel use.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 1,
+      "risk": "The cover leaks direct identifiers.",
+      "severity": "high"
+    },
+    {
+      "page": 26,
+      "risk": "A 3D PCA/K-means view can hide overlap and lacks quantitative cluster-quality metrics.",
+      "severity": "medium"
+    },
+    {
+      "page": 30,
+      "risk": "Validation relies heavily on one downstream error summary.",
+      "severity": "medium"
+    },
+    {
+      "page": 2,
+      "risk": "The award status is not independently verified beyond the mirror directory.",
+      "severity": "high"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/gmcm-2019-d-d19102470244/source_manifest.json",
+    "selected_pages": [
+      1,
+      2,
+      14,
+      22,
+      26,
+      29,
+      30
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

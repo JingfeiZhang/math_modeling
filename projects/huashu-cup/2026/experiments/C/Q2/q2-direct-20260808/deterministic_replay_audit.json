@@ -1,0 +1,54 @@
+{
+  "command": [
+    "D:\\anaconda3\\envs\\math-modeling\\python.exe",
+    "-s",
+    "experiments/C/Q2/q2-full-compat-20260808/generate_q2_compat.py"
+  ],
+  "generated_at_utc": "2026-08-08T13:39:30.904183+00:00",
+  "generator": {
+    "path": "experiments/C/Q2/q2-full-compat-20260808/generate_q2_compat.py",
+    "sha256": "cced29e0c121e8109c7ec5951284c07c261fb992c740993d1a35715ec498425a"
+  },
+  "problem_id": "C",
+  "question_id": "Q2",
+  "replay_count": 2,
+  "runtime_metadata_excluded": [
+    "started_at_utc",
+    "duration_seconds"
+  ],
+  "schema_version": 1,
+  "stable_artifacts": [
+    {
+      "first_sha256": "0783a484f2bebac9ddb1ab696988fad823de3cc2805aae8ea9d332039cded88b",
+      "path": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json",
+      "second_sha256": "0783a484f2bebac9ddb1ab696988fad823de3cc2805aae8ea9d332039cded88b"
+    },
+    {
+      "first_sha256": "ab346fcf766e9a79a4fc2e1e6f1ec86527104dbad97570535cfa8e3b59998d28",
+      "path": "experiments/C/Q2/q2-full-compat-20260808/claim_proposals.json",
+      "second_sha256": "ab346fcf766e9a79a4fc2e1e6f1ec86527104dbad97570535cfa8e3b59998d28"
+    },
+    {
+      "first_sha256": "bf668da689f9f8014d8dd1fa7ac8fcd3de5bed66536e16ea0f7495556b71c41c",
+      "path": "experiments/C/Q2/q2-full-compat-20260808/q2_renewable_accounting.csv",
+      "second_sha256": "bf668da689f9f8014d8dd1fa7ac8fcd3de5bed66536e16ea0f7495556b71c41c"
+    },
+    {
+      "first_sha256": "9aef319de98901e5a2c010915bca5ff38dbe3a74ffd18269a981329fd25ec2d3",
+      "path": "experiments/C/Q2/q2-full-compat-20260808/q2_renewable_metric_audit.json",
+      "second_sha256": "9aef319de98901e5a2c010915bca5ff38dbe3a74ffd18269a981329fd25ec2d3"
+    },
+    {
+      "first_sha256": "1acf158b1946fee3f4a9faa4402e37b61643cc8aa83256a60f9d1124be6a97f5",
+      "path": "experiments/C/Q2/q2-full-compat-20260808/risk_probes.json",
+      "second_sha256": "1acf158b1946fee3f4a9faa4402e37b61643cc8aa83256a60f9d1124be6a97f5"
+    },
+    {
+      "first_sha256": "ef888aaf94ad2240d91ba7952ea8619325d63f306ea2cee925567591ae2321de",
+      "path": "experiments/C/Q2/q2-full-compat-20260808/result_hashes.json",
+      "second_sha256": "ef888aaf94ad2240d91ba7952ea8619325d63f306ea2cee925567591ae2321de"
+    }
+  ],
+  "stable_output_hashes_identical": true,
+  "status": "PASS"
+}

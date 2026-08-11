@@ -1,0 +1,433 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T093228283096Z",
+  "task_id": "solver-q3",
+  "problem_id": "C",
+  "role": "reviewer",
+  "target_gate": "G5",
+  "review_scope": {
+    "allowed_inputs_only": true,
+    "reviewed": [
+      "problems/C/questions/Q3/question.yaml",
+      "contest.yaml",
+      "config/workflow.yaml",
+      "problems/C/source/problem-C.pdf",
+      "results/C/claims.json",
+      "paper/figure_contracts.yaml",
+      "sprints/sprint-20260808T083901900797Z/merged/figure-q2",
+      "sprints/sprint-20260808T083901900797Z/merged/figure-q3q4",
+      "experiments/C/Q2",
+      "experiments/C/Q3",
+      "experiments/C/Q4",
+      "sprints/sprint-20260808T023236665505Z/merged/solver-q3",
+      "sprints/sprint-20260808T031146908286Z/merged/solver-q2",
+      "sprints/sprint-20260808T031214934335Z/merged/solver-q4",
+      "sprints/sprint-20260808T051118704690Z/merged/solver-q4"
+    ],
+    "not_reviewed": [
+      "paper/figures/* (Q1 render files are outside the task allow-list)",
+      "paper/figures/generate_q1_figures.py (outside the task allow-list)",
+      "formal paper compilation and final PDF placement",
+      "formal state/decision_log.json and release output"
+    ],
+    "scope_note": "Q1 is reviewed at the formal-contract level only. Q2-Q4 PDF/SVG/PNG, scripts, contracts and pinned source hashes were inspected directly."
+  },
+  "input_hashes": [
+    {
+      "path": "problems/C/questions/Q3/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "6bf051de9ca11fb957dba22ceb905c1107455a4d48d8140caf47fd309543b511"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "results/C/claims.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "cef4f43848ba16de8cf215c8dcc2b8067a4d759d069e51aaaecf6e43cccb8f79"
+    },
+    {
+      "path": "paper/figure_contracts.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "4ea0362eaed0898d6b54403ae79f0217bbc659534884f51c0bfad9e8c620d2db"
+    }
+  ],
+  "per_figure": [
+    {
+      "id": "fig-q1-forecast-interval",
+      "question_id": "Q1",
+      "claim_id": "Q1-FCST-TEST-COVERAGE",
+      "verdict": "CONTRACT_DECLARED_RENDER_NOT_CHECKED",
+      "contract_checks": {
+        "status": "formal",
+        "claim_status": "frozen",
+        "palette_id": "journal-spectrum-v2",
+        "single_primary_panel": true,
+        "final_width_mm": 158.0,
+        "min_font_pt": 8,
+        "tri_format_exports_declared": true,
+        "png_dpi_declared": 400,
+        "axes_have_units": true,
+        "evidence_hashes_declared": true,
+        "manual_values_forbidden": true
+      },
+      "render_checks": {
+        "pdf_page_count": "not_checked_out_of_scope",
+        "pdf_embedded_fonts": "not_checked_out_of_scope",
+        "svg_editable_text": "not_checked_out_of_scope",
+        "png_dimensions_and_dpi": "not_checked_out_of_scope",
+        "visual_collision_check": "contract_declares_pass_but_not_independently_verified"
+      },
+      "statistics_and_boundary": {
+        "evidence_scope": "24 blind-test system-hour aggregates for the nominal 95% split-conformal interval",
+        "valid_interpretation": "empirical coverage diagnostic and forecast-boundary display",
+        "forbidden_interpretation": "guaranteed exact 95% future coverage or universal series-level improvement"
+      },
+      "repair_note": "Expose Q1 figure files and generator in a future reviewer allow-list, then rerun the same PDF/SVG/PNG and grayscale checks before formal G5."
+    },
+    {
+      "id": "fig-q1-error-comparison",
+      "question_id": "Q1",
+      "claim_id": "Q1-FCST-TEST-WAPE",
+      "verdict": "CONTRACT_DECLARED_RENDER_NOT_CHECKED",
+      "contract_checks": {
+        "status": "formal",
+        "claim_status": "frozen",
+        "palette_id": "journal-spectrum-v2",
+        "single_primary_panel": true,
+        "final_width_mm": 158.0,
+        "min_font_pt": 8,
+        "tri_format_exports_declared": true,
+        "png_dpi_declared": 400,
+        "axes_have_units": true,
+        "evidence_hashes_declared": true,
+        "manual_values_forbidden": true
+      },
+      "render_checks": {
+        "pdf_page_count": "not_checked_out_of_scope",
+        "pdf_embedded_fonts": "not_checked_out_of_scope",
+        "svg_editable_text": "not_checked_out_of_scope",
+        "png_dimensions_and_dpi": "not_checked_out_of_scope",
+        "visual_collision_check": "contract_declares_pass_but_not_independently_verified"
+      },
+      "statistics_and_boundary": {
+        "evidence_scope": "18 region-task series paired on the same blind-test window; MAE is the plotted cell-level comparison and WAPE is the frozen pooled metric",
+        "valid_interpretation": "paired error comparison with pooled WAPE context",
+        "forbidden_interpretation": "WAPE alone proves improvement for every bottom-level series"
+      },
+      "repair_note": "Verify the categorical labels, secondary encoding and grayscale readability from the actual Q1 SVG/PNG once those files are in scope."
+    },
+    {
+      "id": "fig-q1-feasible-schedule",
+      "question_id": "Q1",
+      "claim_id": "Q1-SCHED-FEASIBLE",
+      "verdict": "CONTRACT_DECLARED_RENDER_NOT_CHECKED",
+      "contract_checks": {
+        "status": "formal",
+        "claim_status": "frozen",
+        "palette_id": "journal-spectrum-v2",
+        "single_primary_panel": true,
+        "final_width_mm": 158.0,
+        "min_font_pt": 8,
+        "tri_format_exports_declared": true,
+        "png_dpi_declared": 400,
+        "axes_have_units": true,
+        "evidence_hashes_declared": true,
+        "manual_values_forbidden": true
+      },
+      "render_checks": {
+        "pdf_page_count": "not_checked_out_of_scope",
+        "pdf_embedded_fonts": "not_checked_out_of_scope",
+        "svg_editable_text": "not_checked_out_of_scope",
+        "png_dimensions_and_dpi": "not_checked_out_of_scope",
+        "visual_collision_check": "contract_declares_pass_but_not_independently_verified"
+      },
+      "statistics_and_boundary": {
+        "evidence_scope": "596 schedule records including 58 carry-in tasks, with the independent constraint audit as the source of feasibility",
+        "valid_interpretation": "feasible task intervals and region allocation under the audited constraints",
+        "forbidden_interpretation": "CP-SAT FEASIBLE schedule is globally optimal or a power-load time series"
+      },
+      "repair_note": "Verify that the schedule colors and task-type labels remain distinguishable without color, and that 2406-hour boundary annotations are not clipped."
+    },
+    {
+      "id": "fig-q2-dispatch-comparison",
+      "question_id": "Q2",
+      "claim_id": "Q2-FULL-COST-CHANGE-PCT",
+      "verdict": "PASS_WITH_MINOR_PRESENTATION_REVIEW",
+      "evidence_chain": {
+        "all_declared_hashes_match": true,
+        "source_files": [
+          "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json",
+          "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_hourly_profiles.csv",
+          "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_block_robustness.csv"
+        ],
+        "derivation": "Read-only aggregation by Method and Hour over six regions, cumulative cost normalization to FIFO=100%, endpoint cross-check against frozen summary"
+      },
+      "render_checks": {
+        "pdf_page_count": 1,
+        "pdf_size_mm": [158.0, 104.0],
+        "pdf_font": "embedded CID TrueType (ArialMT)",
+        "svg_editable_text": true,
+        "svg_vector_paths": true,
+        "svg_raster_image": false,
+        "png_dimensions_px": [2488, 1637],
+        "png_dpi": [399.9992, 399.9992],
+        "single_primary_axes": true,
+        "registered_colors_only": true,
+        "layout_qa": {
+          "passed": true,
+          "text_count": 4,
+          "collision_count": 0,
+          "clipped_count": 0
+        },
+        "grayscale_secondary_encoding": true
+      },
+      "visual_findings": [
+        "The right-edge labels are readable at full size; keep the current extra right margin when merging so the endpoint labels do not clip.",
+        "The cumulative trajectory is intentionally horizon-wide and does not show local regional variation; the contract correctly keeps carbon, latency and stress probes separate."
+      ],
+      "statistics_and_boundary": {
+        "sample": "2406 hourly observations per method after six-region aggregation",
+        "reported_endpoint": "-1.015% cost change relative to same-input FIFO",
+        "valid_interpretation": "bounded deterministic rolling exchange heuristic is below FIFO on the supplied horizon",
+        "forbidden_interpretation": "global optimum, causal attribution, or transfer to changed inputs"
+      }
+    },
+    {
+      "id": "fig-q3-rolling-comparison",
+      "question_id": "Q3",
+      "claim_id": "Q3-ROLLING-COST-DELTA",
+      "verdict": "REPAIR_REQUIRED",
+      "evidence_chain": {
+        "all_declared_hashes_match": true,
+        "source_files": [
+          "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json",
+          "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_comparison_summary.csv",
+          "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_scenario_metrics.csv"
+        ],
+        "derivation": "Read-only CSV/JSON parsing; cost values divided by 1e6 for the axis only; no manual values"
+      },
+      "render_checks": {
+        "pdf_page_count": 1,
+        "pdf_size_mm": [158.0, 104.0],
+        "pdf_font": "embedded CID TrueType (MicrosoftYaHei)",
+        "svg_editable_text": true,
+        "svg_vector_paths": true,
+        "svg_raster_image": false,
+        "png_dimensions_px": [2488, 1637],
+        "png_dpi": [399.9992, 399.9992],
+        "single_primary_axes": true,
+        "registered_colors_only": true,
+        "declared_collision_check": true,
+        "independent_collision_check": false,
+        "minimum_font_check": false,
+        "grayscale_secondary_encoding": false
+      },
+      "visual_findings": [
+        "Rolling RegionA, RegionB and RegionC have exactly the same (0 MW, 0 million CNY) coordinate and their RA/RB/RC labels are emitted at exactly the same SVG x/y position, so the labels are not readable as three regions.",
+        "The peak-price and high-carbon scenario rows are numerically coincident for each region, and low-renewable and joint-stress rows are numerically coincident for each region; drawing the same triangle marker in sequence hides one member of each pair.",
+        "All four scenario classes use the same triangle marker and differ only by color, which fails the required non-color secondary encoding in grayscale.",
+        "The source script uses 7 pt region labels, legend text and scope annotation (lines 199 and 248 of the merged generator), below the contract minimum of 8 pt.",
+        "The contract declares collision_checked=true, but the generator has no layout collision QA; the emitted SVG confirms the zero-coordinate label collision."
+      ],
+      "statistics_and_boundary": {
+        "sample": "6 rolling aggregate rows plus 24 deterministic 72-hour scenario rows; 90 rolling binary-MILP blocks",
+        "important_audit_boundary": "Only 269 of 270 complete audits pass; the full-horizon LP probe is permanently excluded because RegionF records 116.60975349482445 MW simultaneous charge/discharge.",
+        "valid_interpretation": "descriptive cost-versus-peak comparison for rolling and observed-data-derived deterministic probes",
+        "forbidden_interpretation": "full-horizon stochastic guarantee, one globally optimized 2407-hour MILP, or LP evidence"
+      }
+    },
+    {
+      "id": "fig-q4-peak-tradeoff",
+      "question_id": "Q4",
+      "claim_id": "Q4-PEAK-REDUCTION",
+      "verdict": "PASS_WITH_MINOR_PRESENTATION_REVIEW",
+      "evidence_chain": {
+        "all_declared_hashes_match": true,
+        "source_files": [
+          "experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json",
+          "sprints/sprint-20260808T051118704690Z/merged/solver-q4/q4_peak_tradeoff.csv",
+          "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_aggregate_comparison.csv",
+          "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_system_hourly.csv"
+        ],
+        "derivation": "Read-only extraction of 17 audited discrete scan rows; no interpolation or continuous optimization"
+      },
+      "render_checks": {
+        "pdf_page_count": 1,
+        "pdf_size_mm": [158.0, 104.0],
+        "pdf_font": "embedded CID TrueType (MicrosoftYaHei)",
+        "svg_editable_text": true,
+        "svg_vector_paths": true,
+        "svg_raster_image": false,
+        "png_dimensions_px": [2488, 1637],
+        "png_dpi": [399.9992, 399.9992],
+        "single_primary_axes": true,
+        "registered_colors_only": true,
+        "minimum_font_check": false,
+        "grayscale_secondary_encoding": true,
+        "visual_collision_check": true
+      },
+      "visual_findings": [
+        "The 17 points, zero-weight square, selected diamond and scope annotation are visually legible and have distinct line/marker encodings.",
+        "The script uses 7 pt selected-point and scope annotations (lines 312 and 345 of the merged generator), so the current export does not satisfy the declared 8 pt minimum even though it is readable at review scale.",
+        "The x-axis is an ordered discrete scan index with selected actual weights as tick labels; the line must remain explicitly a visual guide rather than a continuous response curve."
+      ],
+      "statistics_and_boundary": {
+        "sample": "17 audited MILP points from an independent 24-hour low-renewable probe",
+        "reported_selection": "w=0.0003; selected peak 197.1 MW; reduction 94.5 MW relative to zero weight",
+        "valid_interpretation": "discrete sensitivity comparison within the 24-hour probe",
+        "forbidden_interpretation": "continuous shadow price, LP dual, full-horizon optimum, or joint task-storage optimum"
+      }
+    }
+  ],
+  "cross_question_story": {
+    "verdict": "COHERENT_WITH_REPAIRS",
+    "progression": [
+      "Q1: blind-test workload interval and feasible CP-SAT schedule",
+      "Q2: full-horizon deterministic rolling exchange schedule versus same-input FIFO",
+      "Q3: regional rolling binary-MILP storage dispatch with deterministic stress probes",
+      "Q4: fixed-Q2 schedule plus 72-hour storage comparison and independent 24-hour peak-weight scan"
+    ],
+    "unit_map": {
+      "Q1": ["h", "GPU*h", "category"],
+      "Q2": ["h", "%"],
+      "Q3": ["MW", "million CNY"],
+      "Q4": ["dimensionless ordered scan point", "MW"]
+    },
+    "style_checks": {
+      "all_declared_palette_ids": "journal-spectrum-v2",
+      "all_checked_figures_single_primary_axes": true,
+      "all_checked_figures_tri_format": true,
+      "all_checked_png_exports_400dpi": true,
+      "all_checked_svg_text_editable": true,
+      "common_width_mm": 158.0,
+      "common_height_mm": 104.0,
+      "q2_q3_q4_registered_colors": true,
+      "q1_render_style": "contract-declared; render not in scope"
+    },
+    "boundary_consistency": {
+      "q1_cpsat_feasible_not_optimal": true,
+      "q2_bounded_heuristic_not_global_optimal": true,
+      "q3_rolling_blocks_not_one_full_horizon_milp": true,
+      "q3_269_of_270_and_lp_exclusion": "source evidence supports it; figure contract/annotation must state it explicitly",
+      "q4_discrete_scan_not_continuous_shadow_price": true,
+      "q4_not_full_horizon_global_optimum": true
+    },
+    "story_risks": [
+      "Do not place Q2 cost, carbon and latency on one axis or imply a single dominant metric.",
+      "Do not visually merge Q3 deterministic 72-hour probes with full-horizon results.",
+      "Do not let Q4's connected scan line be read as a continuous optimizer curve.",
+      "Preserve the distinction between Q1 predicted workload, Q2 task routing, Q3 regional storage and Q4 integrated scenario evidence."
+    ]
+  },
+  "required_repairs": [
+    {
+      "id": "FIG-Q3-001",
+      "severity": "HIGH",
+      "figure_id": "fig-q3-rolling-comparison",
+      "title": "Resolve exact-coordinate label and marker overlap",
+      "evidence": "The emitted SVG places RA, RB and RC at exactly the same x=78.841117 and y=230.522086. Scenario pairs also share exact coordinates, so one triangle hides its mate.",
+      "repair": "Use deterministic label offsets or leader lines for zero-coordinate regions, and use offset/hollow paired markers or direct pair labels for coincident scenario rows without changing data coordinates. Re-run collision QA and record the result in the Figure Contract."
+    },
+    {
+      "id": "FIG-Q3-002",
+      "severity": "HIGH",
+      "figure_id": "fig-q3-rolling-comparison",
+      "title": "Add non-color encoding for scenario classes",
+      "evidence": "Peak price, high carbon, low renewable and joint stress are all plotted as triangle markers; color is the only class-level visual distinction.",
+      "repair": "Assign distinct marker shapes or line/boundary encodings to the four scenario classes while retaining the registered colors, and verify grayscale separation."
+    },
+    {
+      "id": "FIG-Q3-003",
+      "severity": "HIGH",
+      "figure_id": "fig-q3-rolling-comparison",
+      "title": "Bring audit boundary into the figure contract",
+      "evidence": "The frozen Q3 summary records 269/270 audits and permanently excludes the RegionF full-horizon LP cycling probe, but the merged Q3 contract text only states 90 blocks and LP exclusion.",
+      "repair": "Add the explicit 269/270 boundary and the reason for LP exclusion to the Q3 contract caption or scope annotation; never write all-audits-passed."
+    },
+    {
+      "id": "FIG-Q3Q4-004",
+      "severity": "MEDIUM",
+      "figure_id": "fig-q3-rolling-comparison",
+      "title": "Respect the declared minimum font size",
+      "evidence": "The merged generator uses fontsize=7.0 for Q3 region labels, legend and scope annotation (lines 199 and 248), while the contract declares min_font_pt=8.",
+      "repair": "Use at least 8 pt at the declared 158 mm final size, then recheck clipping and legend footprint."
+    },
+    {
+      "id": "FIG-Q4-005",
+      "severity": "MEDIUM",
+      "figure_id": "fig-q4-peak-tradeoff",
+      "title": "Respect the declared minimum font size",
+      "evidence": "The merged generator uses fontsize=7.0 for the selected-point annotation and scope annotation (lines 312 and 345), while the contract declares min_font_pt=8.",
+      "repair": "Raise annotation and scope text to at least 8 pt or revise the layout to preserve 8 pt without clipping; regenerate all three exports and update hashes."
+    },
+    {
+      "id": "FIG-Q1-006",
+      "severity": "MEDIUM",
+      "figure_id": "Q1 formal figure set",
+      "title": "Complete Q1 render-scope verification",
+      "evidence": "The current task allow-list contains paper/figure_contracts.yaml but not paper/figures or generate_q1_figures.py, so Q1 PDF/SVG/PNG, font, color and collision properties could not be independently checked.",
+      "repair": "Before formal G5, expose hash-pinned Q1 figure artifacts and generator in a reviewer task or have root run the same mechanical and grayscale checks; do not infer visual QA from contract declarations alone."
+    },
+    {
+      "id": "FIG-CONTRACT-007",
+      "severity": "LOW",
+      "figure_id": "Q2-Q4 formal merge",
+      "title": "Record complete output QA in staging contracts",
+      "evidence": "Q2 contract includes qa_report hashes and physical size; Q3/Q4 contracts declare dimensions and exports but do not carry equivalent per-export QA hashes or measured font/collision results.",
+      "repair": "Root should add measured PDF/SVG/PNG hashes, physical dimensions, font embedding, editable-text, DPI and collision results to Q3/Q4 formal Figure Contracts after repairs."
+    }
+  ],
+  "verdict": "PASS_WITH_REPAIRS",
+  "handoff_checks": {
+    "task_input_hashes_match": true,
+    "formal_protected_paths_modified": false,
+    "q1_contract_review_complete": true,
+    "q1_render_review_complete": false,
+    "q2_render_review_complete": true,
+    "q3_render_review_complete": true,
+    "q4_render_review_complete": true,
+    "all_checked_pdf_one_page": true,
+    "all_checked_pdf_fonts_embedded": true,
+    "all_checked_svg_editable_text": true,
+    "all_checked_svg_vector_no_raster_image": true,
+    "all_checked_png_400dpi": true,
+    "all_checked_figures_single_primary_axes": true,
+    "all_checked_data_colors_registered": true,
+    "all_checked_figures_collision_free": false,
+    "all_checked_figures_min_font_8pt": false,
+    "all_checked_figures_grayscale_secondary_encoding": false,
+    "scope_and_global_optimality_boundaries_preserved": true,
+    "root_merge_required": true
+  },
+  "review_metrics": {
+    "formal_q1_figures": 3,
+    "staged_q2_q4_figures": 3,
+    "checked_tri_format_sets": 3,
+    "checked_single_page_pdfs": 3,
+    "checked_svg_text_sets": 3,
+    "checked_png_dpi_sets": 3,
+    "high_repairs": 3,
+    "medium_repairs": 3,
+    "low_repairs": 1
+  },
+  "notes": "This is an independent figure-system review, not a final paper or release approval. Q2-Q4 evidence hashes and exports are internally consistent. Root must repair the listed presentation and boundary issues, merge only frozen evidence, then rerun G5 and final PDF visual QA."
+}

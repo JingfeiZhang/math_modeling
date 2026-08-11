@@ -1,0 +1,530 @@
+{
+  "schema_version": 1,
+  "quarantine": "gmcm-misclassified-as-cumcm",
+  "record_count": 14,
+  "action": "preserved and excluded from CUMCM metrics; no files deleted",
+  "records": [
+    {
+      "paper_id": "cumcm-2012-b-b11646001",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "全国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 2,
+          "marker": "全国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2012年优秀论文/B/B11646001张郭贺.pdf",
+      "pdf_sha256": "57dabe99ff4b0f311a38052451eba486715a607c69451f2c26cf51299f9f4068",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2012-b-b11646001.json"
+    },
+    {
+      "paper_id": "cumcm-2013-a-a1",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "全国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 2,
+          "marker": "全国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2013年优秀论文/A/A1.pdf",
+      "pdf_sha256": "d8638972f64b9c1eb2421247e832a5b5c84b48a8255ee37d580d3eadba2e207d",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2013-a-a1.json"
+    },
+    {
+      "paper_id": "cumcm-2015-b-b10006005",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "全国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 2,
+          "marker": "全国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2015年优秀论文/B/B10006005.pdf",
+      "pdf_sha256": "db42d90bacce436d9b4bf65a90939d07c610536afa2a032610eba6b654654e2f",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2015-b-b10006005.json"
+    },
+    {
+      "paper_id": "cumcm-2016-a-a10248058",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "全国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2016年优秀论文/A/A10248058.pdf",
+      "pdf_sha256": "1d9bbb0c2a9fd547ff150bd8dc23be7f2138ed0f4f0e65f391cddbbbcec7bb53",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2016-a-a10248058.json"
+    },
+    {
+      "paper_id": "cumcm-2017-a-a10700045",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 2,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 3,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.3"
+        },
+        {
+          "page": 3,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.3"
+        },
+        {
+          "page": 4,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.4"
+        },
+        {
+          "page": 4,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.4"
+        },
+        {
+          "page": 5,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.5"
+        },
+        {
+          "page": 5,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.5"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2017年优秀论文/A/A10700045.pdf",
+      "pdf_sha256": "ba9621606dd9f64708d06f73a45eba22d78884848901d6a61913f8708296b841",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2017-a-a10700045.json"
+    },
+    {
+      "paper_id": "cumcm-2018-a-a18105000011",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2018年优秀论文/A/A18105000011.pdf",
+      "pdf_sha256": "b4aef5cb4ee86f3d80c98111de0ff489439e9dc73aeac3a913943599ea3dd96a",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2018-a-a18105000011.json"
+    },
+    {
+      "paper_id": "cumcm-2019-c-c19910040006",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 2,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.2"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2019年优秀论文/C/C19910040006.pdf",
+      "pdf_sha256": "91d572b37b035dd06da1572fa42ae842fefb47ddf93f1cfa6e762fee0ad94dd2",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2019-c-c19910040006.json"
+    },
+    {
+      "paper_id": "cumcm-2020-b-b20102940042",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 2,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.2"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2020年优秀论文/B/B20102940042.pdf",
+      "pdf_sha256": "607f472794360e093fe9d1b21168a6745ecd5032b0a9b2a432915e4f03dca10f",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2020-b-b20102940042.json"
+    },
+    {
+      "paper_id": "cumcm-2021-b-b21102690002",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 2,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.2"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2021年优秀论文/B/B21102690002.pdf",
+      "pdf_sha256": "3d75ccf495b6b22eaf5d544afc105218313d856b1bd9bb1054f5262160fa16af",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2021-b-b21102690002.json"
+    },
+    {
+      "paper_id": "cumcm-2021-c-c21102920013",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.1"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2021年优秀论文/C/C21102920013.pdf",
+      "pdf_sha256": "c1465dc157c4525865cca0843fd9b056e764355777f018f87c9533c6e3eff420",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2021-c-c21102920013.json"
+    },
+    {
+      "paper_id": "cumcm-2022-a-a22116460175",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 2,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2022年优秀论文/A/A22116460175.pdf",
+      "pdf_sha256": "4704bf03e2b2dd6ff5afc593c9940564d075b64079b92468f779b877f71be783",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2022-a-a22116460175.json"
+    },
+    {
+      "paper_id": "cumcm-2022-c-c22105930028",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 2,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2022年优秀论文/C/C22105930028.pdf",
+      "pdf_sha256": "8b44b3955a1d70bd8da21b5a5e0eec8cc4cd2e28295133b8d93262c8d0c6acde",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2022-c-c22105930028.json"
+    },
+    {
+      "paper_id": "cumcm-2023-b-b23100070173",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 2,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.2"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2023年优秀论文/B/B23100070173.pdf",
+      "pdf_sha256": "49bb7b3ca5c8350b5183e4222dc2d46bf1682dfb0df499206fdc483ebb02717c",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2023-b-b23100070173.json"
+    },
+    {
+      "paper_id": "cumcm-2023-c-c23102890004",
+      "original_claimed_contest": "CUMCM",
+      "corrected_contest_family": "GMCM",
+      "reason": "graduate-contest identity marker found in the document; excluded from CUMCM counts",
+      "identity_markers": [
+        {
+          "page": 1,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 1,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.1"
+        },
+        {
+          "page": 2,
+          "marker": "中国研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生数学建模竞赛",
+          "locator": "quarantine PDF p.2"
+        },
+        {
+          "page": 2,
+          "marker": "研究生创新实践",
+          "locator": "quarantine PDF p.2"
+        }
+      ],
+      "source_repository": "https://github.com/zhanwen/MathModel",
+      "source_commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+      "source_path": "国赛论文/2023年优秀论文/C/C23102890004.pdf",
+      "pdf_sha256": "673a7f1386a6bcf5b57cdfbea26340d48d6c007d8d59c665ce3db9c88dbbc930",
+      "quarantined_card": "corpus/quarantine/gmcm-misclassified-as-cumcm/cards/cumcm-2023-c-c23102890004.json"
+    }
+  ]
+}

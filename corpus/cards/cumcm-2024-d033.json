@@ -1,0 +1,298 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2024-d033",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "D",
+    "team_id": "D033",
+    "title": "反潜航空深弹命中概率的优化问题"
+  },
+  "source": {
+    "url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024dtlw/241104/1977965.shtml",
+    "publisher": "official",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public_page_images"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024dtlw/241104/1977965.shtml",
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "D",
+    "team_id": "D033",
+    "title": "反潜航空深弹命中概率的优化问题",
+    "award": "全国大学生数学建模竞赛组委会官方论文展示"
+  },
+  "authenticity": {
+    "level": "A",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": true,
+      "mirror_publisher": false,
+      "fulltext_available": true,
+      "official_award_verified": true,
+      "identity_aligned": true
+    },
+    "reasons": [
+      "official source or official result is directly verifiable"
+    ]
+  },
+  "pdf": {
+    "sha256": "302a881ee9faf724e3c284a4081ea25ebad073dba72a6b6b6021857501946961",
+    "pages": 55,
+    "local_path": "corpus/raw/cumcm-2024-d033/source_manifest.json",
+    "kind": "official_page_image_set",
+    "source_pdf_available": false,
+    "derived_review_pdf": "",
+    "reported_total_pages": 55,
+    "cached_pages": 55
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要按“反潜深弹背景；三问概率模型和优化变量；最大命中概率与参数结论；关键词”组织。",
+      "derivation": "visual",
+      "locator": "official page image 1",
+      "render": "corpus/raw/cumcm-2024-d033/page-01.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用二维正态分布描述潜艇水平定位误差",
+      "derivation": "visual",
+      "locator": "official page image 4",
+      "render": "corpus/raw/cumcm-2024-d033/page-04.jpg"
+    },
+    {
+      "page": 7,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "按引爆深度把命中区域分段并建立二维积分概率",
+      "derivation": "visual",
+      "locator": "official page image 7",
+      "render": "corpus/raw/cumcm-2024-d033/page-07.jpg"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "将投弹落点和深度写入命中概率积分并求最大值",
+      "derivation": "visual",
+      "locator": "official page image 10",
+      "render": "corpus/raw/cumcm-2024-d033/page-10.jpg"
+    },
+    {
+      "page": 20,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用粗网格与细网格搜索定位最优引爆深度",
+      "derivation": "visual",
+      "locator": "official page image 20",
+      "render": "corpus/raw/cumcm-2024-d033/page-20.jpg"
+    },
+    {
+      "page": 21,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "把九枚深弹的相交命中区域拆分并求联合概率",
+      "derivation": "visual",
+      "locator": "official page image 21",
+      "render": "corpus/raw/cumcm-2024-d033/page-21.jpg"
+    },
+    {
+      "page": 20,
+      "tags": [
+        "validation"
+      ],
+      "observation": "先用大步长搜索再在峰值附近缩小步长，检查最优深度是否稳定",
+      "derivation": "visual",
+      "locator": "official page image 20",
+      "render": "corpus/raw/cumcm-2024-d033/page-20.jpg"
+    },
+    {
+      "page": 22,
+      "tags": [
+        "validation"
+      ],
+      "observation": "给出九弹方案的概率结果并单列模型优缺点和推广边界",
+      "derivation": "visual",
+      "locator": "official page image 22",
+      "render": "corpus/raw/cumcm-2024-d033/page-22.jpg"
+    },
+    {
+      "page": 24,
+      "tags": [
+        "validation"
+      ],
+      "observation": "附录公开积分与搜索代码，使正文概率表达可定位到实现",
+      "derivation": "visual",
+      "locator": "official page image 24",
+      "render": "corpus/raw/cumcm-2024-d033/page-24.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "反潜深弹背景",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "三问概率模型和优化变量",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "最大命中概率与参数结论",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "关键词",
+      "locator": "official page image 1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 4,
+      "description": "用二维正态分布描述潜艇水平定位误差",
+      "locator": "official page image 4"
+    },
+    {
+      "step": 2,
+      "page": 7,
+      "description": "按引爆深度把命中区域分段并建立二维积分概率",
+      "locator": "official page image 7"
+    },
+    {
+      "step": 3,
+      "page": 10,
+      "description": "将投弹落点和深度写入命中概率积分并求最大值",
+      "locator": "official page image 10"
+    },
+    {
+      "step": 4,
+      "page": 20,
+      "description": "用粗网格与细网格搜索定位最优引爆深度",
+      "locator": "official page image 20"
+    },
+    {
+      "step": 5,
+      "page": 21,
+      "description": "把九枚深弹的相交命中区域拆分并求联合概率",
+      "locator": "official page image 21"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 20,
+      "description": "先用大步长搜索再在峰值附近缩小步长，检查最优深度是否稳定",
+      "locator": "official page image 20"
+    },
+    {
+      "step": 2,
+      "page": 22,
+      "description": "给出九弹方案的概率结果并单列模型优缺点和推广边界",
+      "locator": "official page image 22"
+    },
+    {
+      "step": 3,
+      "page": 24,
+      "description": "附录公开积分与搜索代码，使正文概率表达可定位到实现",
+      "locator": "official page image 24"
+    }
+  ],
+  "figures": [
+    {
+      "page": 7,
+      "role": "model explanation",
+      "chart_type": "mechanism",
+      "caption": "不同引爆深度下的命中区域",
+      "lesson": "用几何阴影把分段积分边界可视化",
+      "locator": "official page image 7",
+      "render": "corpus/raw/cumcm-2024-d033/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 10,
+      "role": "result evidence",
+      "chart_type": "distribution",
+      "caption": "正态分布与积分范围示意",
+      "lesson": "把定位误差分布和命中区间连接起来",
+      "locator": "official page image 10",
+      "render": "corpus/raw/cumcm-2024-d033/page-10.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 20,
+      "role": "result evidence",
+      "chart_type": "sensitivity",
+      "caption": "命中概率随引爆深度的粗细步长曲线",
+      "lesson": "用两级搜索确认峰值位置",
+      "locator": "official page image 20",
+      "render": "corpus/raw/cumcm-2024-d033/page-20.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 21,
+      "role": "model explanation",
+      "chart_type": "mechanism",
+      "caption": "九枚深弹命中范围相切示意",
+      "lesson": "将联合概率的空间分区和炸弹编号对齐",
+      "locator": "official page image 21",
+      "render": "corpus/raw/cumcm-2024-d033/page-21.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "分段积分前先画出每个积分域及其边界",
+      "evidence_page": 7
+    },
+    {
+      "rule": "数值优化用粗搜加局部细搜呈现峰值稳定性",
+      "evidence_page": 10
+    },
+    {
+      "rule": "附录代码必须能映射到正文公式和图件",
+      "evidence_page": 20
+    }
+  ],
+  "risks": [
+    "论文主要以解析积分和网格搜索验证，缺少外部基线或仿真对照",
+    "部分长公式可移入附录以改善正文节奏",
+    "官方展示标签不等同于独立奖级声明；卡片不推断具体奖项。"
+  ],
+  "provenance": {
+    "source_manifest": "corpus/raw/cumcm-2024-d033/source_manifest.json",
+    "source_artifact_kind": "official_page_images",
+    "derived_review_pdf": false,
+    "reported_total_pages": 55,
+    "cached_pages": 55,
+    "coverage": 1.0,
+    "visual_review": "selected evidence pages complete",
+    "review_scope": "full cached set",
+    "page_image_manifest_sha256": "302a881ee9faf724e3c284a4081ea25ebad073dba72a6b6b6021857501946961"
+  }
+}

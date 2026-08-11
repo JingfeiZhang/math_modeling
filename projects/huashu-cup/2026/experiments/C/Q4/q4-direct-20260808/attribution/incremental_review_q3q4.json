@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T101814701038Z",
+  "task_id": "solver-q3q4",
+  "role": "solver",
+  "problem_id": "C",
+  "questions": ["Q3", "Q4"],
+  "review_scope": "Incremental evidence review for Q3 boundary sensitivity and Q4 four-cell sequential attribution. This staging review does not freeze claims, modify formal figure contracts, or assemble the final paper.",
+  "new_experiments": {
+    "Q3": {
+      "artifact": "sprints/sprint-20260808T101814701038Z/staging/solver-q3q4/q3_sensitivity_summary.json",
+      "status": "SUCCESS",
+      "design": "Six-region rolling binary MILP re-run on the full 0-2406 h rows with the existing 168 h lower-bound policy, 144 h and 192 h nearby windows, and 168 h terminal equality.",
+      "settings": [
+        {"setting_id": "current_H168_lower_bound", "block_h": 168, "terminal_policy": "lower_bound", "blocks": 90, "successful_blocks": 90, "complete_coverage": true, "candidate_audits_passed": true, "baseline_audits_passed": true, "eligible_for_model_review": true},
+        {"setting_id": "near_H144_lower_bound", "block_h": 144, "terminal_policy": "lower_bound", "blocks": 102, "successful_blocks": 102, "complete_coverage": true, "candidate_audits_passed": true, "baseline_audits_passed": true, "eligible_for_model_review": true},
+        {"setting_id": "near_H192_lower_bound", "block_h": 192, "terminal_policy": "lower_bound", "blocks": 78, "successful_blocks": 78, "complete_coverage": true, "candidate_audits_passed": true, "baseline_audits_passed": true, "eligible_for_model_review": true},
+        {"setting_id": "near_H168_terminal_equality", "block_h": 168, "terminal_policy": "equality", "blocks": 90, "successful_blocks": 90, "complete_coverage": true, "candidate_audits_passed": true, "baseline_audits_passed": true, "eligible_for_model_review": true}
+      ],
+      "aggregate_diagnostics": {
+        "current_candidate_cost_CNY": -458720297.6122426,
+        "H144_candidate_cost_CNY": -458536545.29877627,
+        "H192_candidate_cost_CNY": -458688188.53663623,
+        "terminal_equality_candidate_cost_CNY": -458658035.19912505,
+        "baseline_cost_CNY_all_settings": -419820327.7393099,
+        "candidate_carbon_tCO2_all_settings": 0.0,
+        "complete_audit_boundary": "All setting-level checks pass, but the inherited full Q3 audit ledger remains 269/270 and the excluded RegionF relaxed-LP probe remains non-claim-eligible.",
+        "terminal_equality_error_note": "Lower-bound settings report terminal SOC diagnostic differences by design; only the equality setting is required to have zero terminal equality error. This is not an audit failure for lower-bound policy."
+      },
+      "decision": "Retain the current 168 h rolling binary MILP with SOC_T >= SOC_start as the Q3 primary compatibility route. Treat all four variants as sensitivity evidence; no variant is promoted or frozen in this worker handoff.",
+      "figure_staging": {
+        "recommended": "A single-axis diagnostic dot plot of candidate cost delta and renewable-utilization delta by window/terminal setting, plus a separate terminal-SOC boundary plot if root requests it.",
+        "scope": "staging-only; not a formal Figure Contract and not evidence for global optimality",
+        "source": "q3_sensitivity.csv",
+        "style": "journal-spectrum-v2 colors only; one primary plotting area; export PDF, editable-text SVG, and 400 dpi PNG if promoted"
+      }
+    },
+    "Q4": {
+      "artifact": "sprints/sprint-20260808T101814701038Z/staging/solver-q3q4/q4_attribution_summary.json",
+      "status": "SUCCESS",
+      "design": "Five deterministic observed-data-derived scenarios crossed with four cells on the same 72 h window: A FIFO/no storage, B candidate/no storage, C FIFO/integrated storage MILP, D candidate/integrated storage MILP.",
+      "sample_integrity": {"horizon_h": 72, "absolute_hours": "2328-2399", "tasks_per_schedule": 1577, "same_task_id_set": true, "exact_minute_overlap": true, "closeout_spill_recorded": true},
+      "audit_result": {"cell_count": 20, "solver_failures": 0, "hard_audit_failures": 0, "binary_charge_discharge_mutex_checked": true, "binary_grid_import_export_mutex_checked": true, "terminal_soc_equality_checked": true, "system_peak_linkage_checked": true},
+      "observed_attribution": {
+        "A_cost_CNY": -12774919.958399162,
+        "B_cost_CNY": -12582537.371380066,
+        "C_cost_CNY": -13759071.190077428,
+        "D_cost_CNY": -13609606.658806093,
+        "storage_D_minus_B_cost_CNY": -1027069.2874260265,
+        "storage_C_minus_A_cost_CNY": -984151.2316782661,
+        "schedule_B_minus_A_cost_CNY": 192382.5870190952,
+        "schedule_D_minus_C_cost_CNY": 149464.53127133474,
+        "interaction_cost_CNY": -42918.05574776046,
+        "storage_D_minus_B_carbon_tCO2": -20.004313974599256,
+        "schedule_B_minus_A_carbon_tCO2": 20.004313974599256,
+        "positive_part_peak_all_cells_MW": 0.0,
+        "signed_peak_D_minus_B_MW": -139.30619038999987
+      },
+      "stress_attribution": "Under renewable_low_empirical and joint_stress, storage remains the dominant conditional cost/carbon improvement, while candidate task timing without storage is still cost-inferior to FIFO on this bounded envelope. Scenario-wise values are diagnostics, not probabilities.",
+      "decision": "Retain the existing Q4 bounded integrated MILP as the primary model. Use the four-cell table to qualify the bundle result as sequential descriptive attribution; do not replace Q4 or claim causal effects.",
+      "figure_staging": {
+        "recommended": "A single-axis scenario-by-cell delta dot plot for storage and scheduling differences, with signed net-import peak and positive-part peak kept as separate declared metrics.",
+        "scope": "staging-only until root reviews hashes; no formal figure contract changed",
+        "source": "q4_attribution.csv",
+        "style": "journal-spectrum-v2 colors only; one primary plotting area; avoid encoding negative signed peak as positive demand reduction"
+      }
+    }
+  },
+  "risk_review": [
+    {"id": "Q3-R-LP-RELAXATION", "status": "controlled", "evidence": "RegionF full-horizon relaxed LP remains excluded; no relaxed LP output is read by the new scripts."},
+    {"id": "Q3-R-BOUNDARY-SOC", "status": "measured", "evidence": "144/168/192 h and equality settings all solve and pass audits; lower-bound terminal SOC diagnostics are reported rather than relabeled as equality."},
+    {"id": "Q4-R-BUNDLE-CONFOUNDING", "status": "measured", "evidence": "Four cells use the same five scenarios, same 1577 TaskID set, same minute-overlap envelope rule, and all 20 hard audits pass."},
+    {"id": "Q4-R-SIGNED-PEAK", "status": "controlled", "evidence": "CSV contains both positive_part_peak_MW and signed_net_import_peak_MW; negative signed values are explicitly net export."},
+    {"id": "CLAIM-SCOPE", "status": "controlled", "evidence": "Both summaries set primary_claim_eligible=false and explicitly prohibit global optimality and causal language."}
+  ],
+  "formal_state": {"decision_log_modified": false, "claims_modified": false, "paper_modified": false, "formal_figure_contract_modified": false, "output_modified": false},
+  "disposition": "ACCEPTED",
+  "target_gate": "G4",
+  "input_hashes_source": "sprints/sprint-20260808T101814701038Z/tasks/solver-q2.json"
+}

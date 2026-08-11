@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "recipe_id": "folding-table-geometry",
+  "kind": "folding_geometry",
+  "title": "Folding table feasible design",
+  "seed": 20260810,
+  "source_pair": {
+    "candidate_id": "cumcm-2014-b009",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/B16046004_程双泽_李君昌_陈凌勤.pdf",
+      "blob_sha": "89f592540d083ebccd0bbd6a8da934b8f7b58ccb",
+      "sha256": "209094e0ec9d4b412ffc9ceb60a15f56b29bce6ce0880b31a444c391353e468c"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w2_2.m",
+        "blob_sha": "0a7422b4f744774a7441b93a328492af676b0a79",
+        "sha256": "9dc493fb75c3898eab0ca9ded0bfd527fb78ce544d56283bf948fd5707252b4c",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w3_1.m",
+        "blob_sha": "5c284e8fbd8203837282f8ef86a9e8f0e6b37ed2",
+        "sha256": "6cb4afc5e406cc6a7246cc0be6c4e0be79a39cf97bfc3364ccaa60f8858d44ac",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "scope": "controlled synthetic fixture for reusable method testing",
+  "not_a_reproduction": true,
+  "upstream_code_execution": "forbidden"
+}

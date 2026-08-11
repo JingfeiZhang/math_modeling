@@ -1,0 +1,38 @@
+schema_version: 1
+receipt_id: litsearch-q1-crossref-001
+problem_id: TBD
+question_id: Q1
+search_plan: problems/TBD/questions/Q1/literature/search_plan.yaml
+search_plan_sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+query_id: query-method-constraint-en
+query_text: method family key constraint small sample
+provider: crossref
+started_at_utc: "2026-08-11T00:00:00Z"
+finished_at_utc: "2026-08-11T00:01:00Z"
+duration_seconds: 60
+raw_results:
+  path: work/cache/literature/Q1/litsearch-q1-crossref-001.json
+  sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+  content_type: application/json
+results:
+  - canonical_id: doi-10.0000-replace-me
+    title: Replace with the verified academic title
+    authors:
+      - First Author
+    year: 2025
+    publication_type: journal-article
+    doi: 10.0000/replace-me
+    arxiv_id: null
+    url: https://doi.org/10.0000/replace-me
+    abstract_available: true
+    selected_for_screening: true
+    exclusion_reason: null
+deduplication:
+  input_count: 1
+  unique_count: 1
+  key_order:
+    - doi
+    - normalized-title-first-author-year
+  merged_records: []
+academic_sources_only: true
+status: DISCOVERED

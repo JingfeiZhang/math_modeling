@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T031200808089Z",
+  "status": "MERGED",
+  "passed": true,
+  "accepted_tasks": [
+    "solver-q3"
+  ],
+  "archived_artifacts": [
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T031200808089Z/staging/solver-q3/q3_claim_boundary_review.json",
+      "archive": "sprints/sprint-20260808T031200808089Z/merged/solver-q3/q3_claim_boundary_review.json",
+      "sha256": "5bc6f590e3d0d869032acd26d9e65869adf39580ed3bd49015dcdd7a9778787d"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T031200808089Z/staging/solver-q3/q3_claim_proposals.json",
+      "archive": "sprints/sprint-20260808T031200808089Z/merged/solver-q3/q3_claim_proposals.json",
+      "sha256": "e319d39733239a6ab13e696a18de32a8db2bb4ef029b980211f040a2601fb850"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T031200808089Z/staging/solver-q3/q3_evidence_index.json",
+      "archive": "sprints/sprint-20260808T031200808089Z/merged/solver-q3/q3_evidence_index.json",
+      "sha256": "3bb3f13559a1d069edfb367a8f23247f0e298d577356754973c1c12ee04fd04c"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T031200808089Z/staging/solver-q3/review_q3_evidence.py",
+      "archive": "sprints/sprint-20260808T031200808089Z/merged/solver-q3/review_q3_evidence.py",
+      "sha256": "d1d775d96ffcdc58cc0b1da7722645e42ff8549808289b3f9482cf3ceff41b10"
+    }
+  ],
+  "retry_packages": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "formal_state_modified": false,
+  "generated_at_utc": "2026-08-08T05:14:36.497642+00:00"
+}

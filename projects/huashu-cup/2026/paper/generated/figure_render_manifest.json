@@ -1,0 +1,585 @@
+{
+    "manifest_version":  "1.0",
+    "backend":  "python-matplotlib",
+    "palette_id":  "journal-spectrum-v2",
+    "figure_count":  14,
+    "figures":  [
+                    {
+                        "figure_id":  "fig-c-overall-workflow",
+                        "question_id":  "Q1",
+                        "title":  "C题：算力调度—储能协同建模与证据审计流程",
+                        "source_script":  "paper/figures/scripts/fig_c_overall_workflow.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "problems/C/questions/Q1/question.yaml:$.paper.figure_ids",
+                                                   "sha256":  "717a439334618be4223b7c443f2ffb11b618a26c191654848e51db481db775ad",
+                                                   "fields":  [
+                                                                  "question_id",
+                                                                  "method",
+                                                                  "evidence",
+                                                                  "paper.figure_ids"
+                                                              ]
+                                               },
+                                               {
+                                                   "locator":  "problems/C/questions/Q4/question.yaml:$.method.main",
+                                                   "sha256":  "886841e45fe80df19eb1844cf7a7cf0fff96ded6799503b127f393a7ef3d00e2",
+                                                   "fields":  [
+                                                                  "question_id",
+                                                                  "method.main",
+                                                                  "evidence"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_c_overall_workflow.pdf",
+                                                    "sha256":  "115b132ac74981b971fae1bdac66f028d86186dec9dd9fdc645c9b63840edb89",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_c_overall_workflow.svg",
+                                                    "sha256":  "e9debf1e0955052f10e649b1db830ecd47591bbb7f2d7f1844e8826e4080c458",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_c_overall_workflow.png",
+                                                    "sha256":  "b6df617468b3ca9f7df281adb0c0171eee8f650f9838ca37978a5436d746677c",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q1-workload-landscape",
+                        "question_id":  "Q1",
+                        "title":  "问题一：六区域三类任务2400小时标准化工作负荷分布",
+                        "source_script":  "paper/figures/scripts/fig_q1_workload_landscape.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/workload_panel.csv:ArrivalHour",
+                                                   "sha256":  "d0eaf1a81152b3dda4ebcea4f223c31111ed001c1eec16543311fe87aa1ee80b",
+                                                   "fields":  [
+                                                                  "ArrivalHour",
+                                                                  "SourceRegion",
+                                                                  "TaskType",
+                                                                  "GPU_Workload_GPUh"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q1_workload_landscape.pdf",
+                                                    "sha256":  "4c7f6491b80b850ccc4e2d76c68d0dd82632a8796a67374dfe71a8129f3bb529",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q1_workload_landscape.svg",
+                                                    "sha256":  "bc48971e12fa3e3063ebd582a31190704b0c4992615c307d530fbdce6325497b",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q1_workload_landscape.png",
+                                                    "sha256":  "71badf2d43796e1e221b2d026453fc030348c0f5aa28cad4f656f2964c5bb67a",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q1-forecast-interval",
+                        "question_id":  "Q1",
+                        "title":  "问题一：系统工作量24小时盲测预测与95%预测区间",
+                        "source_script":  "paper/figures/scripts/fig_q1_forecast_interval.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/blind_test_predictions.csv:period=blind_test",
+                                                   "sha256":  "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d",
+                                                   "fields":  [
+                                                                  "hour",
+                                                                  "actual_gpu_h",
+                                                                  "main_gpu_h",
+                                                                  "baseline_gpu_h",
+                                                                  "main_lower_95_gpu_h",
+                                                                  "main_upper_95_gpu_h"
+                                                              ]
+                                               },
+                                               {
+                                                   "locator":  "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_summary.json:$.summaries.blind_test.shared_hgbr_reconciled.empirical_coverage_95",
+                                                   "sha256":  "e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a",
+                                                   "fields":  [
+                                                                  "summaries.blind_test.shared_hgbr_reconciled.empirical_coverage_95"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q1_forecast_interval.pdf",
+                                                    "sha256":  "f8c998d7c1a0e9a4acd1f7112292075d187377ded813b698cb065e7e1bfbcf23",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q1_forecast_interval.svg",
+                                                    "sha256":  "28a5d2226dba6b5410e7a7e5316c0235a305b43ec470df13621a60b6017e3dfe",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q1_forecast_interval.png",
+                                                    "sha256":  "24fe57f4f94fae27754d9f282cce9291e1c7fa5ed789a477a84637f68ec1213c",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q1-error-comparison",
+                        "question_id":  "Q1",
+                        "title":  "问题一：18条区域—任务序列盲测平均绝对误差对比",
+                        "source_script":  "paper/figures/scripts/fig_q1_error_comparison.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_by_series.csv:period=blind_test",
+                                                   "sha256":  "91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4",
+                                                   "fields":  [
+                                                                  "period",
+                                                                  "method",
+                                                                  "region",
+                                                                  "task_type",
+                                                                  "mae_gpu_h"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q1_error_comparison.pdf",
+                                                    "sha256":  "79da1ddcbe54966490236dc5020bf16117d8399140e9703f3ad3bb0992e8f753",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q1_error_comparison.svg",
+                                                    "sha256":  "3d4b68c5386169413b62c168d18c093ab16a20fead8781080a271cbffa85d516",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q1_error_comparison.png",
+                                                    "sha256":  "8b1106e67a50cf466bd57211a68be30d02b695c8795fc29fc3c91d92522daae6",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q1-feasible-schedule",
+                        "question_id":  "Q1",
+                        "title":  "问题一：六区域596条任务可行排程与关键时域边界",
+                        "source_script":  "paper/figures/scripts/fig_q1_feasible_schedule.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/optimized_schedule.csv:TaskID",
+                                                   "sha256":  "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a",
+                                                   "fields":  [
+                                                                  "TaskType",
+                                                                  "ExecutionRegion",
+                                                                  "StartMinute",
+                                                                  "EndMinute",
+                                                                  "SchedulePhase",
+                                                                  "SLA_met"
+                                                              ]
+                                               },
+                                               {
+                                                   "locator":  "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/constraint_audit.json:$.main",
+                                                   "sha256":  "721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858",
+                                                   "fields":  [
+                                                                  "main.audit_passed",
+                                                                  "main.final_task_count",
+                                                                  "forbidden_task_hour"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q1_feasible_schedule.pdf",
+                                                    "sha256":  "a905d2937eacf2435714027682fd3ed39d3b3e89df84f60474763856247bad8d",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q1_feasible_schedule.svg",
+                                                    "sha256":  "9aec2d19e0a09386a4ac968a25ede02a3ddbff26144f54f1561e54a3abb54124",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q1_feasible_schedule.png",
+                                                    "sha256":  "8a4c923d3c16324c854d3cfe3c47f1c997218efe3bc9bde8618c388a75ed2beb",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q1-gpu-utilization",
+                        "question_id":  "Q1",
+                        "title":  "问题一：六区域30小时图形处理器利用率与高负载单元",
+                        "source_script":  "paper/figures/scripts/fig_q1_gpu_utilization.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/resource_audit.csv:GPU_occupancy",
+                                                   "sha256":  "466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82",
+                                                   "fields":  [
+                                                                  "Region",
+                                                                  "Hour",
+                                                                  "GPU_occupancy",
+                                                                  "GPU_capacity"
+                                                              ]
+                                               },
+                                               {
+                                                   "locator":  "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/constraint_audit.json:$.main",
+                                                   "sha256":  "721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858",
+                                                   "fields":  [
+                                                                  "main.audit_passed"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q1_gpu_utilization.pdf",
+                                                    "sha256":  "f813b087aaa5b037787787badf13c71f562b49f4a98ea95aa428644cbfcc96cd",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q1_gpu_utilization.svg",
+                                                    "sha256":  "7cffa766b925c242672ae87af1c8418aa0c9cbda7823ea7fa5201c4bbf9ef774",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q1_gpu_utilization.png",
+                                                    "sha256":  "9f0e6c0b6ec9b22795948d45ffcc7031846db1a297381f240f92bbfe4c37bcd7",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q2-load-migration",
+                        "question_id":  "Q2",
+                        "title":  "问题二：跨区域调度相对先进先出基线的全时域负荷差",
+                        "source_script":  "paper/figures/scripts/fig_q2_load_migration.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_hourly_profiles.csv:Method",
+                                                   "sha256":  "85e923b393e2b29412b5e1b77c5fef04022a251d8ffcf2fc81475a7974c35435",
+                                                   "fields":  [
+                                                                  "Method",
+                                                                  "Hour",
+                                                                  "Region",
+                                                                  "Facility_Load_MW"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q2_load_migration.pdf",
+                                                    "sha256":  "d21675c0a0bcbb94097f94ff29ff9aa714773707e72a618e5cc3df934cc213bf",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q2_load_migration.svg",
+                                                    "sha256":  "308fef99f96c47370d2e8308cf9f0320cb691ec9df0c5bec7ba48139ec4b0644",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q2_load_migration.png",
+                                                    "sha256":  "57998c94d82eb384817bf5bac2f9b5ce6a1950175c97d8f24172b6cd6ee69ebf",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q2-cumulative-effect",
+                        "question_id":  "Q2",
+                        "title":  "问题二：跨区域调度相对先进先出基线的全时域累计成本与碳排变化",
+                        "source_script":  "paper/figures/scripts/fig_q2_cumulative_effect.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_hourly_profiles.csv:Hour",
+                                                   "sha256":  "85e923b393e2b29412b5e1b77c5fef04022a251d8ffcf2fc81475a7974c35435",
+                                                   "fields":  [
+                                                                  "Hour",
+                                                                  "Method",
+                                                                  "ElectricityCost_CNY",
+                                                                  "CarbonEmission_tCO2"
+                                                              ]
+                                               },
+                                               {
+                                                   "locator":  "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json:$.comparison_vs_fifo",
+                                                   "sha256":  "0783a484f2bebac9ddb1ab696988fad823de3cc2805aae8ea9d332039cded88b",
+                                                   "fields":  [
+                                                                  "comparison_vs_fifo.cost_change_pct",
+                                                                  "comparison_vs_fifo.carbon_change_pct"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q2_cumulative_effect.pdf",
+                                                    "sha256":  "6664d7c48a5b8d41e9b4c80b97c1548d0fa6f6ee73f0bb679fbb0e433d190de7",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q2_cumulative_effect.svg",
+                                                    "sha256":  "5fe677264739900f3d9586bb49ce57ff017c73e13cb566d231630bbbb54a56fd",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q2_cumulative_effect.png",
+                                                    "sha256":  "8c72cc76c6018083849071d8a64499e098d5b00fe7eb3245c0c8ae9da9349421",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q3-energy-balance",
+                        "question_id":  "Q3",
+                        "title":  "问题三：储能—新能源—电网逐时能量流与平衡关系",
+                        "source_script":  "paper/figures/scripts/fig_q3_energy_balance.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json:$.rolling_binary_milp",
+                                                   "sha256":  "ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35",
+                                                   "fields":  [
+                                                                  "rolling_binary_milp.total_block_solves",
+                                                                  "rolling_binary_milp.block_layout_by_region"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q3_energy_balance.pdf",
+                                                    "sha256":  "0637f803429d45ecff653c6b9b1c2ab6f2f685e3f4c90f0386f05e3d06097d1b",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q3_energy_balance.svg",
+                                                    "sha256":  "7654f298b4cb5aaa0520837ba3903478410a96cf015edeb0cfca45e81a1632fb",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q3_energy_balance.png",
+                                                    "sha256":  "ec3eba76efb37f59273c93894116d28e4726a9a792ae67d5172f4f109a816205",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q3-dispatch-soc",
+                        "question_id":  "Q3",
+                        "title":  "问题三：代表区域72小时功率调度与荷电状态边界",
+                        "source_script":  "paper/figures/scripts/fig_q3_dispatch_soc.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_dispatch.csv:Scenario=observed,Evaluation=fixed,WindowStart_h=0",
+                                                   "sha256":  "d27b9e9f351b2031988080c6f70b3e9881b73a93eb48cfaf59bab058feec374f",
+                                                   "fields":  [
+                                                                  "Scenario",
+                                                                  "Evaluation",
+                                                                  "WindowStart_h",
+                                                                  "Hour",
+                                                                  "Region",
+                                                                  "Total_Load_MW",
+                                                                  "AvailableRenewable_MW",
+                                                                  "NetGridImport_MW",
+                                                                  "ChargePower_MW",
+                                                                  "DischargePower_MW",
+                                                                  "SOC_MWh"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q3_dispatch_soc.pdf",
+                                                    "sha256":  "dc52069ee6bfe90878a82ec03ad06ff2eb28c9fed7473155fda2ec9f46418742",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q3_dispatch_soc.svg",
+                                                    "sha256":  "09939946339021daceb14c366dc88d0d29acf43b89686f2638e965dd7727f123",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q3_dispatch_soc.png",
+                                                    "sha256":  "2fc2cf1f06918e30a8203a616b44c13a60a73ab86642de2d1b6485d2f11499fa",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q3-storage-effect",
+                        "question_id":  "Q3",
+                        "title":  "问题三：储能方案相对无储能基线的六区域五项指标变化",
+                        "source_script":  "paper/figures/scripts/fig_q3_storage_effect.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_comparison_summary.csv:evaluation=rolling_aggregate,scenario=observed",
+                                                   "sha256":  "f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f",
+                                                   "fields":  [
+                                                                  "evaluation",
+                                                                  "scenario",
+                                                                  "region",
+                                                                  "cost_saving_CNY",
+                                                                  "carbon_reduction_tCO2",
+                                                                  "peak_reduction_MW",
+                                                                  "std_reduction_MW",
+                                                                  "renewable_utilization_gain_pp"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q3_storage_effect.pdf",
+                                                    "sha256":  "49181c82b07aedbafc2088277aef8f22db239fd958cd45ee6c0948fabe344655",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q3_storage_effect.svg",
+                                                    "sha256":  "6654cc982cbded2b916dbd9a7a60d8dea82066d4d0e940ff5e9d70622d541f24",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q3_storage_effect.png",
+                                                    "sha256":  "c9bf726d17d2c151d480a18ca9f01535fe7ea675007e5604f4150e1ae1355529",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q3-rolling-coverage",
+                        "question_id":  "Q3",
+                        "title":  "问题三：六区域2407小时滚动优化覆盖与约束审计",
+                        "source_script":  "paper/figures/scripts/fig_q3_rolling_coverage.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json:$.rolling_binary_milp",
+                                                   "sha256":  "ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35",
+                                                   "fields":  [
+                                                                  "rolling_binary_milp.block_layout_by_region",
+                                                                  "rolling_binary_milp.total_block_solves",
+                                                                  "audit_boundary"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q3_rolling_coverage.pdf",
+                                                    "sha256":  "01a913c5d0e1a79e78a1c5853330ccfc4b092bac6140ed2e10f43033bcd7feb2",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q3_rolling_coverage.svg",
+                                                    "sha256":  "17b2d165a9a037def49e1b9e74e14ccfdce407bcf4c414571ec9e843b77c38a1",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q3_rolling_coverage.png",
+                                                    "sha256":  "e7e4113853c6dfcb4c11cc97cef44586ad4cbb9a9f21f914c46d204b99494012",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q4-joint-optimization-loop",
+                        "question_id":  "Q4",
+                        "title":  "问题四：72小时任务—储能局部联合优化迭代流程",
+                        "source_script":  "paper/figures/scripts/fig_q4_joint_optimization_loop.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json:$.audit",
+                                                   "sha256":  "56a0622efffbdffcdf20e0eda963a7f47852f4fdec2bb34cacd198bb7d312f9e",
+                                                   "fields":  [
+                                                                  "audit.all_hard_constraints_passed",
+                                                                  "audit.deterministic_replay_passed"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q4_joint_optimization_loop.pdf",
+                                                    "sha256":  "58b9b51142de56df1135c1d9268a031cbf039c80d6c1e0f2ba59876043dfa9dd",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q4_joint_optimization_loop.svg",
+                                                    "sha256":  "3a6e8b0927ad48f21a09808279ae386f111ae0170755f85d64322a2a02d73df7",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q4_joint_optimization_loop.png",
+                                                    "sha256":  "12c5b833ac6e9ded9a9296b91fb759f62984cf31cddefdceb5de8ae0a1bce733",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    },
+                    {
+                        "figure_id":  "fig-q4-system-profile",
+                        "question_id":  "Q4",
+                        "title":  "问题四：观测场景72小时局部联合与顺序基线净购电功率对比",
+                        "source_script":  "paper/figures/scripts/fig_q4_system_profile.py",
+                        "evidence_chain":  [
+                                               {
+                                                   "locator":  "experiments/C/Q4/q4-optimization-20260809/q4_joint_observed_joint_candidate_dispatch.csv:NetGridImport_MW",
+                                                   "sha256":  "1a917199adfa03030876599e228ef5f669f35b8aea8e26cd851a966d9d2e9b69",
+                                                   "fields":  [
+                                                                  "Hour",
+                                                                  "Region",
+                                                                  "NetGridImport_MW"
+                                                              ]
+                                               },
+                                               {
+                                                   "locator":  "experiments/C/Q4/q4-optimization-20260809/q4_joint_observed_sequential_baseline_dispatch.csv:NetGridImport_MW",
+                                                   "sha256":  "f59ff17d32be791473ac7631446f2547f62e64b251e53b7a11596a63d6323102",
+                                                   "fields":  [
+                                                                  "Hour",
+                                                                  "Region",
+                                                                  "NetGridImport_MW"
+                                                              ]
+                                               }
+                                           ],
+                        "outputs":  {
+                                        "pdf":  {
+                                                    "path":  "paper/figures/fig_q4_system_profile.pdf",
+                                                    "sha256":  "2dc4740594716bc0ef3d854d423778bb25d390b478f409149ac20e32f0bea376",
+                                                    "exists":  true
+                                                },
+                                        "svg":  {
+                                                    "path":  "paper/figures/fig_q4_system_profile.svg",
+                                                    "sha256":  "48984b6436f343d8fdbc0b1c38e659a8084f6b9eb4dadf323c438eedf2cf352a",
+                                                    "exists":  true
+                                                },
+                                        "png":  {
+                                                    "path":  "paper/figures/fig_q4_system_profile.png",
+                                                    "sha256":  "b499278c2f098c20bcf78fd8bb1b677c1c1e9d00b80800c81a90750a0b909099",
+                                                    "exists":  true
+                                                }
+                                    },
+                        "png_dpi":  400,
+                        "deterministic_render":  true
+                    }
+                ]
+}

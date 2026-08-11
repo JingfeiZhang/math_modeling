@@ -1,0 +1,77 @@
+{
+  "code": {
+    "path": "experiments/C/Q1/q1-derived-20260807/generate_q1_derived.py",
+    "sha256": "0968df8dab18b37f8c0aa5c568dd2c8b8b8517638d027ea11269d7c6040d7758"
+  },
+  "command": [
+    "conda",
+    "run",
+    "--no-capture-output",
+    "-n",
+    "base",
+    "python",
+    "experiments/C/Q1/q1-derived-20260807/generate_q1_derived.py"
+  ],
+  "engine": "python",
+  "environment": {
+    "implementation": "CPython",
+    "python": "3.13.9"
+  },
+  "inputs": [
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_summary.json",
+      "sha256": "e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/scheduling_metrics.json",
+      "sha256": "cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/carry_in.json",
+      "sha256": "cdf9946f180310fd65b1c286580a4aca0aa8f5688581dac4b68ddc13e60c7993"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/optimized_schedule.csv",
+      "sha256": "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/baseline_schedule.csv",
+      "sha256": "89e4ab9c6ac1cf6ee0c5c9e5b39596f8276ac5330e3d5ed8e7924350a2fa7a78"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/resource_audit.csv",
+      "sha256": "466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/constraint_audit.json",
+      "sha256": "721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858"
+    }
+  ],
+  "metric_definitions": {
+    "resource_margin": "capacity - audited peak load in the nominal schedule",
+    "wait_minutes": "StartMinute - 60 * ArrivalHour, excluding carry-in",
+    "wape_relative_improvement": "(baseline WAPE - main WAPE) / baseline WAPE"
+  },
+  "outputs": [
+    {
+      "path": "experiments/C/Q1/q1-derived-20260807/q1_derived_summary.json",
+      "sha256": "4870b3e45919153df255ad34fd8fc389d4cadc1edbc7418c27de38c1ed218bdd"
+    },
+    {
+      "path": "experiments/C/Q1/q1-derived-20260807/claim_proposals.json",
+      "sha256": "5242acb34e718e5fae18a971214f14ac4eb1b14c1b1d8498f49db58bae638055"
+    }
+  ],
+  "problem_id": "C",
+  "question_id": "Q1",
+  "random_seed": null,
+  "run_id": "q1-derived-20260807",
+  "schema_version": 1,
+  "units": {
+    "gpu_margin": "GPU",
+    "latency": "ms",
+    "power_margin": "MW",
+    "wait": "min",
+    "wape": "ratio"
+  }
+}

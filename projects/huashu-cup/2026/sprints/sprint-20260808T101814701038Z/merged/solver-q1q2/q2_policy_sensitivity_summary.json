@@ -1,0 +1,382 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T101814701038Z",
+  "problem_id": "C",
+  "question_id": "Q2",
+  "status": "PASS",
+  "evidence_type": "pre-registered-full-horizon-policy-sensitivity",
+  "design": {
+    "baseline": "full_horizon_FIFO_latency_feasible_local_first",
+    "main_method": "full_horizon_rolling_shadow_exchange::lagrangian_balanced",
+    "policy_grid": [
+      {
+        "policy_id": "current",
+        "cost_weight": 1.0,
+        "carbon_weight": 4.0,
+        "wait_weight": 0.015,
+        "latency_weight": 0.015,
+        "renewable_weight": 0.05
+      },
+      {
+        "policy_id": "cost-lean",
+        "cost_weight": 2.0,
+        "carbon_weight": 2.0,
+        "wait_weight": 0.015,
+        "latency_weight": 0.015,
+        "renewable_weight": 0.05
+      },
+      {
+        "policy_id": "carbon-lean",
+        "cost_weight": 0.5,
+        "carbon_weight": 8.0,
+        "wait_weight": 0.015,
+        "latency_weight": 0.015,
+        "renewable_weight": 0.05
+      },
+      {
+        "policy_id": "latency-guarded",
+        "cost_weight": 1.0,
+        "carbon_weight": 4.0,
+        "wait_weight": 0.03,
+        "latency_weight": 0.03,
+        "renewable_weight": 0.05
+      }
+    ],
+    "same_input_same_constraints": true,
+    "hard_constraints": [
+      "task_assignment_once",
+      "nonpreemption_and_duration_identity",
+      "release_time_and_realtime_at_arrival",
+      "network_latency_and_latest_finish",
+      "closeout_end_at_or_before_2406",
+      "GPU_capacity",
+      "IT_power_capacity",
+      "facility_power_capacity"
+    ],
+    "acceptance_rule": "Every variant must complete all tasks with zero SLA violations and pass hard audits. A non-current policy is eligible for root review only when current does not dominate it, one primary metric improves by at least 0.25%, and no primary metric worsens by more than 0.25%."
+  },
+  "baseline_metrics": {
+    "cost_CNY": 3359955010.883479,
+    "carbon_tCO2": 2893907.676691789,
+    "mean_latency_ms": 5.06846,
+    "renewable_utilization_ratio": 0.9999944220444682,
+    "task_completion_rate": 1.0,
+    "SLA_violation_rate": 0.0
+  },
+  "current_policy_id": "current",
+  "policy_results": [
+    {
+      "variant_id": "current",
+      "policy_id": "current",
+      "cost_weight": 1.0,
+      "carbon_weight": 4.0,
+      "wait_weight": 0.015,
+      "latency_weight": 0.015,
+      "renewable_weight": 0.05,
+      "runtime_seconds": 64.81950940001116,
+      "moved_task_count": 15985,
+      "moved_region_count": 14347,
+      "moved_start_count": 7724,
+      "evaluated_options": 805538,
+      "accepted_exchange_count": 15985,
+      "cost_CNY": 3325853571.1277695,
+      "carbon_tCO2": 2838075.5957927215,
+      "mean_latency_ms": 9.25822,
+      "renewable_utilization_ratio": 0.9992043662036217,
+      "mean_wait_hours": 0.71444,
+      "p95_wait_hours": 5.0,
+      "p95_latency_ms": 25.0,
+      "task_completion_rate": 1.0,
+      "SLA_violation_rate": 0.0,
+      "hard_audit_passed": true,
+      "deterministic_constraints_passed": true,
+      "cost_change_pct_vs_FIFO": -1.0149373918772464,
+      "carbon_change_pct_vs_FIFO": -1.929297238773453,
+      "latency_change_pct_vs_FIFO": 82.6633730955754,
+      "cost_change_pct_vs_current": 0.0,
+      "carbon_change_pct_vs_current": 0.0,
+      "latency_change_pct_vs_current": 0.0,
+      "pareto_relation_vs_current": "REFERENCE_CURRENT",
+      "best_primary_improvement_pct": 0.0,
+      "max_primary_worsening_pct": 0.0,
+      "valid_hard_constraints": true,
+      "eligible_for_root_review": false
+    },
+    {
+      "variant_id": "cost-lean",
+      "policy_id": "cost-lean",
+      "cost_weight": 2.0,
+      "carbon_weight": 2.0,
+      "wait_weight": 0.015,
+      "latency_weight": 0.015,
+      "renewable_weight": 0.05,
+      "runtime_seconds": 65.09575209999457,
+      "moved_task_count": 15431,
+      "moved_region_count": 12978,
+      "moved_start_count": 7481,
+      "evaluated_options": 811464,
+      "accepted_exchange_count": 15431,
+      "cost_CNY": 3309042379.245792,
+      "carbon_tCO2": 2851519.676536654,
+      "mean_latency_ms": 8.8196,
+      "renewable_utilization_ratio": 0.9989414751000536,
+      "mean_wait_hours": 0.84912,
+      "p95_wait_hours": 5.0,
+      "p95_latency_ms": 25.0,
+      "task_completion_rate": 1.0,
+      "SLA_violation_rate": 0.0,
+      "hard_audit_passed": true,
+      "deterministic_constraints_passed": true,
+      "cost_change_pct_vs_FIFO": -1.5152771829614498,
+      "carbon_change_pct_vs_FIFO": -1.464732289026982,
+      "latency_change_pct_vs_FIFO": 74.00946244026785,
+      "cost_change_pct_vs_current": -0.5054699950688746,
+      "carbon_change_pct_vs_current": 0.47370411006184554,
+      "latency_change_pct_vs_current": -4.737627751338813,
+      "pareto_relation_vs_current": "NON_DOMINATED_TRADEOFF",
+      "best_primary_improvement_pct": 4.737627751338813,
+      "max_primary_worsening_pct": 0.47370411006184554,
+      "valid_hard_constraints": true,
+      "eligible_for_root_review": false
+    },
+    {
+      "variant_id": "carbon-lean",
+      "policy_id": "carbon-lean",
+      "cost_weight": 0.5,
+      "carbon_weight": 8.0,
+      "wait_weight": 0.015,
+      "latency_weight": 0.015,
+      "renewable_weight": 0.05,
+      "runtime_seconds": 60.45749249999062,
+      "moved_task_count": 17517,
+      "moved_region_count": 15528,
+      "moved_start_count": 8752,
+      "evaluated_options": 811538,
+      "accepted_exchange_count": 17517,
+      "cost_CNY": 3349544491.688015,
+      "carbon_tCO2": 2834410.8136677085,
+      "mean_latency_ms": 9.55204,
+      "renewable_utilization_ratio": 0.999571699098269,
+      "mean_wait_hours": 1.1497600000000001,
+      "p95_wait_hours": 7.0,
+      "p95_latency_ms": 25.0,
+      "task_completion_rate": 1.0,
+      "SLA_violation_rate": 0.0,
+      "hard_audit_passed": true,
+      "deterministic_constraints_passed": true,
+      "cost_change_pct_vs_FIFO": -0.3098410294704146,
+      "carbon_change_pct_vs_FIFO": -2.0559350771029217,
+      "latency_change_pct_vs_FIFO": 88.46040020045535,
+      "cost_change_pct_vs_current": 0.7123260255926356,
+      "carbon_change_pct_vs_current": -0.12912912293265855,
+      "latency_change_pct_vs_current": 3.173612206234022,
+      "pareto_relation_vs_current": "NON_DOMINATED_TRADEOFF",
+      "best_primary_improvement_pct": 0.12912912293265855,
+      "max_primary_worsening_pct": 3.173612206234022,
+      "valid_hard_constraints": true,
+      "eligible_for_root_review": false
+    },
+    {
+      "variant_id": "latency-guarded",
+      "policy_id": "latency-guarded",
+      "cost_weight": 1.0,
+      "carbon_weight": 4.0,
+      "wait_weight": 0.03,
+      "latency_weight": 0.03,
+      "renewable_weight": 0.05,
+      "runtime_seconds": 60.39531320000242,
+      "moved_task_count": 14056,
+      "moved_region_count": 13255,
+      "moved_start_count": 5656,
+      "evaluated_options": 801292,
+      "accepted_exchange_count": 14056,
+      "cost_CNY": 3329189071.6541977,
+      "carbon_tCO2": 2837467.0230723307,
+      "mean_latency_ms": 8.96416,
+      "renewable_utilization_ratio": 0.9991980295609248,
+      "mean_wait_hours": 0.41946,
+      "p95_wait_hours": 4.0,
+      "p95_latency_ms": 25.0,
+      "task_completion_rate": 1.0,
+      "SLA_violation_rate": 0.0,
+      "hard_audit_passed": true,
+      "deterministic_constraints_passed": true,
+      "cost_change_pct_vs_FIFO": -0.9156652136598664,
+      "carbon_change_pct_vs_FIFO": -1.9503266836756628,
+      "latency_change_pct_vs_FIFO": 76.8616108245897,
+      "cost_change_pct_vs_current": 0.10029005953191561,
+      "carbon_change_pct_vs_current": -0.021443146944111202,
+      "latency_change_pct_vs_current": -3.1762044971927694,
+      "pareto_relation_vs_current": "NON_DOMINATED_TRADEOFF",
+      "best_primary_improvement_pct": 3.1762044971927694,
+      "max_primary_worsening_pct": 0.10029005953191561,
+      "valid_hard_constraints": true,
+      "eligible_for_root_review": true
+    }
+  ],
+  "decision": {
+    "eligible_policy_ids": [
+      "latency-guarded"
+    ],
+    "recommendation": "PROPOSE_POLICY_FOR_ROOT_REVIEW",
+    "formal_model_replacement": false
+  },
+  "negative_or_rejected_findings": [
+    {
+      "policy_id": "cost-lean",
+      "relation": "NON_DOMINATED_TRADEOFF",
+      "best_primary_improvement_pct": 4.737627751338813,
+      "max_primary_worsening_pct": 0.47370411006184554,
+      "hard_constraints": true
+    },
+    {
+      "policy_id": "carbon-lean",
+      "relation": "NON_DOMINATED_TRADEOFF",
+      "best_primary_improvement_pct": 0.12912912293265855,
+      "max_primary_worsening_pct": 3.173612206234022,
+      "hard_constraints": true
+    },
+    "The grid is a bounded sensitivity analysis, not a global optimization or causal experiment.",
+    "All metrics use the supplied hourly price, carbon, renewable, fixed-load, and static latency inputs.",
+    "The current policy remains the reference; any eligible alternative still requires root review and evidence freeze."
+  ],
+  "input_hashes_verified": true,
+  "run_record": {
+    "command": [
+      "D:\\anaconda3\\envs\\math-modeling\\python.exe",
+      "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T101814701038Z\\staging\\solver-q1q2\\run_q2_policy_sensitivity.py"
+    ],
+    "environment": {
+      "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.22631-SP0",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "executable": "D:\\anaconda3\\envs\\math-modeling\\python.exe"
+    },
+    "random_seed": 20260801,
+    "pinned_runner": {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/run_q2_full_horizon.py",
+      "sha256": "6a39aa6eb6802a73057ae78528b18775ba2181924b7bb4fa8ad263f0214ce45f"
+    },
+    "input_hashes": [
+      {
+        "path": "problems/C/questions/Q1/question.yaml",
+        "kind": "file",
+        "exists": true,
+        "sha256": "a6d457c3df7d5591f393ffbca5aad8e4cf3514243a6855ebfe56fae4d3ab0333"
+      },
+      {
+        "path": "problems/C/questions/Q2/question.yaml",
+        "kind": "file",
+        "exists": true,
+        "sha256": "494f3a29fe3e99c5515977f13432dccbfeb12c787f78b16cd6eb400b79b6cb11"
+      },
+      {
+        "path": "contest.yaml",
+        "kind": "file",
+        "exists": true,
+        "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+      },
+      {
+        "path": "config/workflow.yaml",
+        "kind": "file",
+        "exists": true,
+        "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+      },
+      {
+        "path": "problems/C/source/problem-C.pdf",
+        "kind": "file",
+        "exists": true,
+        "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+      },
+      {
+        "path": "results/C/claims.json",
+        "kind": "file",
+        "exists": true,
+        "sha256": "cef4f43848ba16de8cf215c8dcc2b8067a4d759d069e51aaaecf6e43cccb8f79"
+      },
+      {
+        "path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/validation_predictions.csv",
+        "kind": "file",
+        "exists": true,
+        "sha256": "52f785106caeceff0e7075d16a021b99716e303e1cb0d2de20c73a9963b08cd5"
+      },
+      {
+        "path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv",
+        "kind": "file",
+        "exists": true,
+        "sha256": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d"
+      },
+      {
+        "path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/run_forecast.py",
+        "kind": "file",
+        "exists": true,
+        "sha256": "73666e4d1b2ae6554f100c131d80470e1258ae23e40cba360359894415c0a043"
+      },
+      {
+        "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/run_q2_full_horizon.py",
+        "kind": "file",
+        "exists": true,
+        "sha256": "6a39aa6eb6802a73057ae78528b18775ba2181924b7bb4fa8ad263f0214ce45f"
+      },
+      {
+        "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_run_manifest.json",
+        "kind": "file",
+        "exists": true,
+        "sha256": "b6b6f96959c8c6af6561c9866c1ec3f5f29d3b0061ab375bdd4a11e3a62e570d"
+      },
+      {
+        "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_summary.json",
+        "kind": "file",
+        "exists": true,
+        "sha256": "68f503df0646e34d9e76680b5c104c3720a5af443c662ba32427299ee02f8cb1"
+      },
+      {
+        "path": "problems/C/data/workload_trace.xlsx",
+        "kind": "file",
+        "exists": true,
+        "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+      },
+      {
+        "path": "problems/C/data/GPU_information.xlsx",
+        "kind": "file",
+        "exists": true,
+        "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+      },
+      {
+        "path": "problems/C/data/network_latency.xlsx",
+        "kind": "file",
+        "exists": true,
+        "sha256": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157"
+      },
+      {
+        "path": "problems/C/data/region_time_data.xlsx",
+        "kind": "file",
+        "exists": true,
+        "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+      },
+      {
+        "path": "problems/C/data/power_mapping.xlsx",
+        "kind": "file",
+        "exists": true,
+        "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+      },
+      {
+        "path": "sprints/sprint-20260808T093228283096Z/merged/solver-q1/algorithm_review_q1q2.json",
+        "kind": "file",
+        "exists": true,
+        "sha256": "f26c7938461253c64bd0aab02a4a2ebad448d2966d6a2533413f1df39d246297"
+      }
+    ],
+    "metric_units": {
+      "cost_CNY": "CNY",
+      "carbon_tCO2": "tCO2",
+      "mean_latency_ms": "ms",
+      "renewable_utilization_ratio": "ratio",
+      "task_completion_rate": "ratio",
+      "SLA_violation_rate": "ratio"
+    },
+    "started_at_utc": "2026-08-08T10:46:09.262701+00:00",
+    "duration_seconds": 270.956186
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Paper-only evidence derived from a formal run",
+  "type": "object",
+  "required": ["schema_version", "evidence_id", "problem_id", "question_id", "source_run_id", "source_manifest", "source_manifest_sha256", "source_status", "evidence_scope", "reuse_contract", "source_metric_snapshot", "derived_metrics", "source_hashes", "primary_metric", "status", "reason", "created_at_utc"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "evidence_id": {"type": "string", "minLength": 1},
+    "problem_id": {"type": "string", "minLength": 1},
+    "question_id": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
+    "source_run_id": {"type": "string", "minLength": 1},
+    "source_manifest": {"type": "string", "minLength": 1},
+    "source_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_status": {"const": "FORMAL"},
+    "evidence_scope": {"enum": ["diagnostic", "sensitivity", "mechanism", "figure_support"]},
+    "reuse_contract": {
+      "type": "object",
+      "required": ["seed", "environment", "code", "inputs", "methods", "parameters"],
+      "properties": {
+        "seed": {"const": true},
+        "environment": {"const": true},
+        "code": {"const": true},
+        "inputs": {"const": true},
+        "methods": {"const": true},
+        "parameters": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "source_metric_snapshot": {"type": "array", "items": {"$ref": "#/$defs/metric"}},
+    "derived_metrics": {"type": "array", "items": {"$ref": "#/$defs/metric"}},
+    "source_hashes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "primary_metric": {
+      "type": "object",
+      "required": ["name", "value", "unit", "source_locator"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "value": {"type": ["string", "number", "boolean", "null"]},
+        "unit": {"type": "string"},
+        "source_locator": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "status": {"enum": ["READY", "REOPEN_REQUIRED"]},
+    "reason": {"type": "string"},
+    "created_at_utc": {"type": "string"}
+  },
+  "$defs": {
+    "metric": {
+      "type": "object",
+      "required": ["name", "value", "unit", "locator"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "value": {"type": ["string", "number", "boolean", "null"]},
+        "unit": {"type": "string"},
+        "locator": {"type": "string"},
+        "primary": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

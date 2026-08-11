@@ -1,0 +1,345 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2022-a-a22116460175",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2022,
+    "problem": "A",
+    "team_id": "",
+    "title": "中国研究生创新实践系列大赛"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2022%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/A/A22116460175.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2022年优秀论文/A/A22116460175.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2022,
+    "problem": "A",
+    "team_id": "",
+    "title": "中国研究生创新实践系列大赛",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "4704bf03e2b2dd6ff5afc593c9940564d075b64079b92468f779b877f71be783",
+    "pages": 23,
+    "local_path": "corpus/raw/objects/sha256/47/4704bf03e2b2dd6ff5afc593c9940564d075b64079b92468f779b877f71be783.pdf",
+    "first_page_phash": "babaf0e0e4e03070",
+    "text_sha256": "376e8e4b98814156487acaa2117501f959dd20bf0a4d607af3054e8332452b9c"
+  },
+  "review_status": "content_extracted",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括”的组织结构。",
+      "derivation": "text",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：本文基于空间谱估计理论，对存在干扰下的多目标超分辨定位问题进行研究。在模型",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：建立和问题求解过程中主要运用了“多信号分类(Multiple Signal Classification, MUSIC)算法”、",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：“最大似然估计”、“压缩感知算法”、“稀疏矩阵补全”等求解思想。此外，还对所提",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：出的算法进行了有效性和精准度验证。验证结果表明，所提出的算法具备较好的求解效果。",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：出的算法进行了有效性和精准度验证。验证结果表明，所提出的算法具备较好的求解效果。",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：迹图。关于验证算法性能的数值实验，通过随机生成两个目标，形成运动轨迹，然后进行",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：差。结果看出，当信噪比 SNR=0dB 时，本文算法对距离的估计误差近乎为 0，对角度的",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-02.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：仿真数据，设计提升定位算法的鲁棒性的改进算法。",
+      "derivation": "text",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-04.jpg"
+    },
+    {
+      "page": 19,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：据，设计提升定位算法的鲁棒性的改进算法。",
+      "derivation": "text",
+      "locator": "PDF p.19",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-19.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "本文基于空间谱估计理论，对存在干扰下的多目标超分辨定位问题进行研究。在模型",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "建立和问题求解过程中主要运用了“多信号分类(Multiple Signal Classification, MUSIC)算法”、",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "“最大似然估计”、“压缩感知算法”、“稀疏矩阵补全”等求解思想。此外，还对所提",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "出的算法进行了有效性和精准度验证。验证结果表明，所提出的算法具备较好的求解效果。",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 2,
+      "description": "针对问题 1，把题目中的无噪中频信号解耦成距离-角度模型，使用 MUSIC 算法分别",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 6,
+      "page": 2,
+      "description": "估计出目标物体相对于天线的距离和角度，然后使用配对算法，将估计出的距离和角度进",
+      "locator": "PDF p.2"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "出的算法进行了有效性和精准度验证。验证结果表明，所提出的算法具备较好的求解效果。",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "迹图。关于验证算法性能的数值实验，通过随机生成两个目标，形成运动轨迹，然后进行",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "差。结果看出，当信噪比 SNR=0dB 时，本文算法对距离的估计误差近乎为 0，对角度的",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "估计误差能达到 0.1°以内。",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 2,
+      "description": "问题来补偿天线的定位误差。利用目标物体角度和扰动矩阵的稀疏性，设计了一种联合估",
+      "locator": "PDF p.2"
+    }
+  ],
+  "figures": [
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 1 场景示意图",
+      "lesson": "图题“图 1 场景示意图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-05.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "如图 1 所示，孔径为 L 的 N a 个等效虚拟天线阵列均匀排布，以天线阵列中心位置建",
+      "lesson": "图题“如图 1 所示，孔径为 L 的 N a 个等效虚拟天线阵列均匀排布，以天线阵列中心位置建”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-05.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 10,
+      "role": "model explanation",
+      "chart_type": "flowchart",
+      "caption": "图 2 细化过程流程图",
+      "lesson": "图题“图 2 细化过程流程图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-10.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 10,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "如图 4 所示，假设 MUSIC 方法得到的估计值为 rˆk ，ˆk ，此时相应目标的笛卡尔坐标可",
+      "lesson": "图题“如图 4 所示，假设 MUSIC 方法得到的估计值为 rˆk ，ˆk ，此时相应目标的笛卡尔坐标可”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-10.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 11,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "使用本节 MUSIC 算法得到的距离估计和角度估计如图 3,4 所示，",
+      "lesson": "图题“使用本节 MUSIC 算法得到的距离估计和角度估计如图 3,4 所示，”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.11",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-11.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 12,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 3 问题一距离估计",
+      "lesson": "图题“图 3 问题一距离估计”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.12",
+      "render": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-12.jpg",
+      "visual_checked": false
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 5
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 4
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "全页已渲染，但接触表尚未完成逐页人工视觉确认。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "git_blob_sha": "dcb8d6e7ee168a9e70f99b9f6af693fbaeb742ce",
+    "bytes": 1181456,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2022-a-a22116460175/extracted-layout.txt",
+      "sha256": "376e8e4b98814156487acaa2117501f959dd20bf0a4d607af3054e8332452b9c",
+      "extracted_pages": 23,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 23,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2022-a-a22116460175/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2022-a-a22116460175/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2022-a-a22116460175/contact-17-23.jpg"
+      ],
+      "visual_review": "pending"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

@@ -1,0 +1,339 @@
+{
+  "task_schedule": {
+    "passed": true,
+    "task_count": 506,
+    "scheduled_count": 506,
+    "task_completion_rate": 1.0,
+    "SLA_violation_rate": 0.0,
+    "mean_latency_ms": 5.0,
+    "violations": [],
+    "checks": {
+      "assignment_once": true,
+      "nonpreemption": true,
+      "latency_filter": true,
+      "realtime_arrival_start": true,
+      "SLA": true
+    }
+  },
+  "regions": {
+    "RegionA": {
+      "candidate": {
+        "method": "region_decomposed_MILP_envelope",
+        "region": "RegionA",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 0.0,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 0.0,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 0.0,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": -0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": -0.0
+        }
+      },
+      "baseline": {
+        "method": "sequential_Q2_then_Q3_no_storage",
+        "region": "RegionA",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 0.0,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 0.0,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 0.0,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": -0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": 0.0
+        }
+      },
+      "solver": {
+        "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "runtime_s": 0.014008099999045953,
+        "mip_gap": 0.0,
+        "objective": 0.012838353094639614,
+        "mip_node_count": 1,
+        "solver_mode": "binary_MILP"
+      }
+    },
+    "RegionB": {
+      "candidate": {
+        "method": "region_decomposed_MILP_envelope",
+        "region": "RegionB",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 1.4210854715202004e-14,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 0.0,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 0.0,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": -0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": -0.0
+        }
+      },
+      "baseline": {
+        "method": "sequential_Q2_then_Q3_no_storage",
+        "region": "RegionB",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 0.0,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 0.0,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 0.0,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": -0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": 0.0
+        }
+      },
+      "solver": {
+        "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "runtime_s": 0.008683899999596179,
+        "mip_gap": 0.0,
+        "objective": 0.012902238566413808,
+        "mip_node_count": 1,
+        "solver_mode": "binary_MILP"
+      }
+    },
+    "RegionC": {
+      "candidate": {
+        "method": "region_decomposed_MILP_envelope",
+        "region": "RegionC",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 0.0,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 0.0,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 0.0,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": -0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": -0.0
+        }
+      },
+      "baseline": {
+        "method": "sequential_Q2_then_Q3_no_storage",
+        "region": "RegionC",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 0.0,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 0.0,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 0.0,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": -0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": 0.0
+        }
+      },
+      "solver": {
+        "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "runtime_s": 0.008263399999123067,
+        "mip_gap": 0.0,
+        "objective": 0.012801271655820564,
+        "mip_node_count": 1,
+        "solver_mode": "binary_MILP"
+      }
+    },
+    "RegionD": {
+      "candidate": {
+        "method": "region_decomposed_MILP_envelope",
+        "region": "RegionD",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 0.0,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 0.0,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": 0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": 0.0
+        }
+      },
+      "baseline": {
+        "method": "sequential_Q2_then_Q3_no_storage",
+        "region": "RegionD",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 0.0,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 0.0,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 0.0,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": 0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": 0.0
+        }
+      },
+      "solver": {
+        "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "runtime_s": 0.00889409999945201,
+        "mip_gap": 6.181866769113399e-12,
+        "objective": -1436183.9935095657,
+        "mip_node_count": 1,
+        "solver_mode": "binary_MILP"
+      }
+    },
+    "RegionE": {
+      "candidate": {
+        "method": "region_decomposed_MILP_envelope",
+        "region": "RegionE",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 1.1368683772161603e-13,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 1.1368683772161603e-13,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 2.842170943040401e-14,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": 0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": 0.0
+        }
+      },
+      "baseline": {
+        "method": "sequential_Q2_then_Q3_no_storage",
+        "region": "RegionE",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 0.0,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 0.0,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 0.0,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": 0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": 0.0
+        }
+      },
+      "solver": {
+        "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "runtime_s": 0.009125500000664033,
+        "mip_gap": 4.8067633386539375e-12,
+        "objective": -1530838.7668816457,
+        "mip_node_count": 1,
+        "solver_mode": "binary_MILP"
+      }
+    },
+    "RegionF": {
+      "candidate": {
+        "method": "region_decomposed_MILP_envelope",
+        "region": "RegionF",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 1.1368683772161603e-13,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 8.526512829121202e-14,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 0.0,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": 0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": 0.0
+        }
+      },
+      "baseline": {
+        "method": "sequential_Q2_then_Q3_no_storage",
+        "region": "RegionF",
+        "horizon_h": 24,
+        "passed": true,
+        "checks": {
+          "soc_transition_max_abs_MWh": 0.0,
+          "charge_split_max_abs_MW": 0.0,
+          "renewable_balance_max_abs_MW": 0.0,
+          "load_balance_max_abs_MW": 0.0,
+          "soc_min_violation_MWh": 0.0,
+          "soc_max_violation_MWh": 0.0,
+          "charge_power_violation_MW": 0.0,
+          "discharge_power_violation_MW": 0.0,
+          "grid_import_violation_MW": 0.0,
+          "grid_export_violation_MW": 0.0,
+          "negative_net_import_violation_MW": 0.0,
+          "terminal_soc_shortfall_MWh": 0.0,
+          "simultaneous_charge_discharge_MW": 0.0
+        }
+      },
+      "solver": {
+        "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "success": true,
+        "runtime_s": 0.014655900002253475,
+        "mip_gap": 5.294114268464294e-12,
+        "objective": -1612451.5426074716,
+        "mip_node_count": 1,
+        "solver_mode": "binary_MILP"
+      }
+    }
+  },
+  "method": "Q2 envelope + regional Q3 subproblems"
+}

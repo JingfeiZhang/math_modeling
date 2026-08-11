@@ -1,0 +1,118 @@
+{
+  "forecast": {
+    "schema_version": 1,
+    "method": "direct_multi_horizon_hurdle_hgbr",
+    "selection_origins": [
+      2256,
+      2280,
+      2304,
+      2328
+    ],
+    "blind_test_excluded_from_selection": true,
+    "fold_metrics": [
+      {
+        "origin": 2256,
+        "mae": 96.24158164668788,
+        "rmse": 240.14863852760598,
+        "wape": 0.8348647765156338
+      },
+      {
+        "origin": 2280,
+        "mae": 93.38937773909664,
+        "rmse": 233.97576963293164,
+        "wape": 0.8340267915706708
+      },
+      {
+        "origin": 2304,
+        "mae": 107.16365687453715,
+        "rmse": 275.9521331472196,
+        "wape": 0.8734442504524954
+      },
+      {
+        "origin": 2328,
+        "mae": 105.4316796514472,
+        "rmse": 249.56036165619673,
+        "wape": 0.8575678392472876
+      }
+    ],
+    "rolling_origin_mean": {
+      "mae": 100.55657397794222,
+      "rmse": 249.9092257409885,
+      "wape": 0.8499759144465219
+    },
+    "conformal": {
+      "method": "normalized pooled conformal using four pre-blind rolling origins",
+      "quantile": 42.15014938845849
+    },
+    "blind_test": {
+      "mae": 115.77037830882138,
+      "rmse": 283.14052206768577,
+      "wape": 0.8337306077408879,
+      "empirical_coverage_95": 0.9398148148148148,
+      "mean_interval_width_gpu_h": 2057.1601910897652,
+      "series_mae_non_degrading_count": 13,
+      "maximum_system_coherence_error_gpu_h": 0.0
+    },
+    "formal_baseline_blind": {
+      "wape": 0.89343949172524,
+      "rmse": 265.1793127907307,
+      "coverage_95": 0.9467592592592593,
+      "mean_interval_width_gpu_h": 442.47859929946003
+    },
+    "promotion_gates": {
+      "wape_and_rmse_improve_5pct": false,
+      "at_least_12_of_18_mae_non_degrading": true,
+      "coverage_90_99": true,
+      "interval_width_increase_le_25pct": false,
+      "hierarchy_coherence_near_zero": true,
+      "decision": "PROBE_ONLY"
+    },
+    "runtime_seconds": 124.19861519999904
+  },
+  "schedule": {
+    "schema_version": 1,
+    "method": "CP-SAT incumbent-hint tight-domain deterministic fix-and-opt",
+    "formal_incumbent_objective": 2788,
+    "formal_global_gap": 0.0351506456241033,
+    "baseline_completion_rate": 1.0,
+    "candidate_completion_rates": {
+      "12": 1.0,
+      "32": 1.0,
+      "64": 1.0
+    },
+    "best_candidate": {
+      "status": "OPTIMAL",
+      "wall_time_seconds": 0.0672578000012436,
+      "selected_task_count": 12,
+      "selected_task_ids": [
+        9572,
+        14419,
+        14619,
+        17673,
+        19289,
+        22175,
+        27509,
+        36680,
+        38894,
+        43423,
+        46184,
+        46424
+      ],
+      "num_conflicts": 0,
+      "num_branches": 347,
+      "objective": 60.0,
+      "best_bound": 60.0,
+      "optimality_gap": 0.0,
+      "full_schedule_objective": 2788
+    },
+    "promotion_gate": {
+      "all_538_complete": true,
+      "local_neighborhood_gap_below_1pct": true,
+      "global_gap_below_1pct": false,
+      "full_objective_improves_1pct": false,
+      "decision": "PROBE_ONLY"
+    },
+    "scope_note": "Optimality certificates apply only to the released 12/32/64-task neighborhoods; fixed tasks retain the frozen incumbent and no global-gap claim is made.",
+    "runtime_seconds": 20.865700500000457
+  }
+}

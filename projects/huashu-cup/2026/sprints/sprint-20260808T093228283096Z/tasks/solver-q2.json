@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T093228283096Z",
+  "task_id": "solver-q2",
+  "role": "solver",
+  "problem": "C",
+  "question": "Q2",
+  "status": "PENDING",
+  "attempt": 1,
+  "max_attempts": 2,
+  "dependencies": [],
+  "input_hashes": [
+    {
+      "path": "problems/C/questions/Q2/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "494f3a29fe3e99c5515977f13432dccbfeb12c787f78b16cd6eb400b79b6cb11"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "results/C/claims.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "cef4f43848ba16de8cf215c8dcc2b8067a4d759d069e51aaaecf6e43cccb8f79"
+    },
+    {
+      "path": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35"
+    },
+    {
+      "path": "experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "26f46159818b9cc3f52ac6fae14a00e1cdcbee60f1b986e9cfa05158d447db66"
+    }
+  ],
+  "allowed_read_paths": [
+    "problems/C/questions/Q2/question.yaml",
+    "contest.yaml",
+    "config/workflow.yaml",
+    "problems/C/source/problem-C.pdf",
+    "src",
+    "experiments",
+    "results/C/claims.json",
+    "paper/figure_contracts.yaml",
+    "sprints/sprint-20260808T083901900797Z/merged",
+    "corpus",
+    "workspace://src",
+    "workspace://corpus"
+  ],
+  "write_directory": "sprints/sprint-20260808T093228283096Z/staging/solver-q2",
+  "expected_outputs": [
+    "sprints/sprint-20260808T093228283096Z/staging/solver-q2/algorithm_review_q3q4.json",
+    "sprints/sprint-20260808T093228283096Z/staging/solver-q2/handoff.json"
+  ],
+  "target_gate": "G5",
+  "deadline_utc": "2026-08-10 20:00:00+08:00",
+  "root_only_paths": [
+    "state/decision_log.json",
+    "results/C/claims.json",
+    "paper/main.tex",
+    "paper/figure_contracts.yaml",
+    "output/"
+  ],
+  "sprint_profile": "default",
+  "input_sprint_id": null
+}

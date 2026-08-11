@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "formal_method": "fixed_weight_bounded_rolling_local_exchange_heuristic",
+  "formal_method_zh": "固定权重有界滚动局部交换启发式",
+  "source_method_label_retained_only_in_compat_provenance": "full_horizon_rolling_shadow_exchange::lagrangian_balanced",
+  "changed_files": [
+    "models/full_horizon/q2_full_candidate_schedule.csv",
+    "models/full_horizon/q2_full_constraint_audit.json",
+    "models/full_horizon/q2_full_hourly_profiles.csv",
+    "models/full_horizon/q2_full_risk_probes.csv",
+    "models/full_horizon/q2_full_run_manifest.json",
+    "models/full_horizon/q2_full_summary.json",
+    "sensitivity/q2_policy_sensitivity_summary.json"
+  ],
+  "sprints_modified": false
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "run_id": "q2-optimization-20260809",
+  "problem_id": "C",
+  "question_id": "Q2",
+  "engine": "python",
+  "command": [
+    "D:\\anaconda3\\envs\\math-modeling\\python.exe",
+    "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q2\\q2-optimization-20260809\\run_q2_optimization.py"
+  ],
+  "environment": {
+    "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "ortools_module": "D:\\anaconda3\\envs\\math-modeling\\Lib\\site-packages\\ortools\\sat\\python\\cp_model.py"
+  },
+  "random_seed": 20260801,
+  "inputs": [
+    {
+      "path": "problems/C/questions/Q2/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "556672527491212f2b290cc1eb27f24ccca129533a201cbc74789baf8d86ddfb"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "problems/C/data/workload_trace.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+    },
+    {
+      "path": "problems/C/data/GPU_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+    },
+    {
+      "path": "problems/C/data/network_latency.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157"
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/power_mapping.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+    }
+  ],
+  "source_runner": {
+    "path": "experiments/C/Q2/q2-direct-20260808/models/full_horizon/run_q2_full_horizon.py",
+    "sha256": "16342d79929ecb31acd7e821f66c2c6fbc95df377f7f81999b4a83ad423bce5b"
+  },
+  "methods": {
+    "baseline": "full_horizon_FIFO_latency_feasible_local_first",
+    "current": "fixed_weight_bounded_rolling_local_exchange_heuristic",
+    "latency_guarded": "epsilon_constraint_new_flexible_placement_cap_25ms",
+    "candidate": "epsilon_constraint_new_flexible_placement_cap_15ms"
+  },
+  "artifacts": [
+    {
+      "path": "experiments/C/Q2/q2-optimization-20260809/q2_fifo_baseline_schedule.csv",
+      "sha256": "172d45d624d85f7cf7558606e551f7dee275ab726236c6b933b39d6282df370a"
+    },
+    {
+      "path": "experiments/C/Q2/q2-optimization-20260809/q2_current_schedule.csv",
+      "sha256": "8b0d753e46c4a157fa12f62f5f833468403a980e42460857f238a770d8db0004"
+    },
+    {
+      "path": "experiments/C/Q2/q2-optimization-20260809/q2_latency_guarded_schedule.csv",
+      "sha256": "255624dd5419c000542c9487f6ab62dac560f34ab0cf2516c2ec596fa2904370"
+    },
+    {
+      "path": "experiments/C/Q2/q2-optimization-20260809/q2_pareto_candidate_schedule.csv",
+      "sha256": "d8c744c123aefd1813770f1f86fc3adc1735f8de9619adc44093c47bdd2108c8"
+    },
+    {
+      "path": "experiments/C/Q2/q2-optimization-20260809/q2_latency_guarded_exchange_log.csv",
+      "sha256": "d29eedc322c8f9de20c184d68ad0579db548ac58a0894fef78628b09b4d38758"
+    },
+    {
+      "path": "experiments/C/Q2/q2-optimization-20260809/q2_pareto_candidate_exchange_log.csv",
+      "sha256": "4dd7e038f3990057ff9f9828a27a809aeb852c7209d3b4c997278db45231ba0a"
+    },
+    {
+      "path": "experiments/C/Q2/q2-optimization-20260809/q2_comparison_hourly_profiles.csv",
+      "sha256": "75c9249161395aa0406bf8430461a743b85b4b8c80515c2ece6afb254ac7c8d3"
+    },
+    {
+      "path": "experiments/C/Q2/q2-optimization-20260809/q2_pareto_metrics.csv",
+      "sha256": "c4b1092de4b22d8c3214fa843c0128780d9cc5bdd3073098cfad3ec38f0bde54"
+    },
+    {
+      "path": "experiments/C/Q2/q2-optimization-20260809/q2_local_cpsat_lower_bounds.json",
+      "sha256": "31579a19edcb545c33403645f59c1c5f5369433a9c8ec6f5852d4dee2d1d4b01"
+    },
+    {
+      "path": "experiments/C/Q2/q2-optimization-20260809/constraint_audit.json",
+      "sha256": "3a3696afc937df4426b8047a6fadcb1c8ef3d5fcb06c42a50c1dc02295b56b55"
+    },
+    {
+      "path": "experiments/C/Q2/q2-optimization-20260809/summary.json",
+      "sha256": "364e275a1996e8b252967954eeb330bc5dc9a38f97815b224861930be2d76e27"
+    }
+  ],
+  "started_at_utc": "2026-08-08T18:26:47.722046+00:00",
+  "duration_seconds": 178.68047619999925,
+  "status": "PASS"
+}

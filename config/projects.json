@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "legacy_root_enabled": true,
+  "default_project": null,
+  "projects": [
+    {
+      "id": "cumcm-2026",
+      "profile": "cumcm",
+      "year": 2026,
+      "root": "projects/cumcm/2026",
+      "overrides": {
+        "deadline": "2026-09-13T20:00:00+08:00",
+        "submission": {
+          "hash_deadline": "2026-09-13T20:00:00+08:00",
+          "upload_start": "2026-09-13T20:30:00+08:00",
+          "upload_deadline": "2026-09-14T14:00:00+08:00"
+        }
+      }
+    },
+    {
+      "id": "huashu-cup-2026",
+      "profile": "huashu-cup",
+      "year": 2026,
+      "root": "projects/huashu-cup/2026",
+      "overrides": {
+        "deadline": null
+      }
+    }
+  ]
+}
+

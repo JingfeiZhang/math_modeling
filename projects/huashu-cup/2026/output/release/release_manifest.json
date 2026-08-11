@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "status": "SEALED",
+  "competition": "HUASHU_CUP",
+  "year": 2026,
+  "problem": "C",
+  "sealed_at_utc": "2026-08-10T10:37:20.239387+00:00",
+  "hash_deadline": null,
+  "upload_window": {
+    "start": null,
+    "end": null
+  },
+  "operator_role": "first_registered_student",
+  "artifacts": [
+    {
+      "path": "output/release/CCM2604653.pdf",
+      "bytes": 861074,
+      "md5": "da8b1aa68ea700084931893ef21d151f",
+      "sha256": "f2a637d4d4359aaf754f444cde40e33490004122b09dc1602aeaaa29fc6f4b1f",
+      "modified_utc": "2026-08-10T10:28:12.070845+00:00"
+    },
+    {
+      "path": "output/release/CCM2604653附件.zip",
+      "bytes": 116816,
+      "md5": "d5636cac6e3df4e38886df9f9e4c8dd5",
+      "sha256": "c69b86a0453290bda03fbfda6901d475661cd57df1d079ce0ba5a9cbe7468ac0",
+      "modified_utc": "2026-08-10T10:33:43.210360+00:00"
+    }
+  ],
+  "audit_evidence": [
+    {
+      "path": "output/paper_audit.json",
+      "bytes": 1389,
+      "md5": "0de8a329695e4f3987443274c8db9be3",
+      "sha256": "fc2e3870e736b8c77c0bf2e859f3a6e6ba9f36ccf18574cdc297fb1db5b2664f",
+      "modified_utc": "2026-08-10T10:36:41.194534+00:00"
+    },
+    {
+      "path": "output/figure_audit.json",
+      "bytes": 331,
+      "md5": "dbe2dd4fcb8fcedd169251c0e722e1e1",
+      "sha256": "17908428327cdbf9e64d780040c61ffc42887bc1fbc48748e928d2a637f6eaba",
+      "modified_utc": "2026-08-10T10:36:42.766506+00:00"
+    },
+    {
+      "path": "output/figure_style_audit.json",
+      "bytes": 827,
+      "md5": "8d1b77dd595675fd4b5393835058933e",
+      "sha256": "50b5a9b2f72c2f6e16216b1c69a127a7b11faa78bc8a68787df8bf01ceb67ef4",
+      "modified_utc": "2026-08-10T10:37:14.151452+00:00"
+    },
+    {
+      "path": "output/pdf_visual_audit.json",
+      "bytes": 26723,
+      "md5": "3c7371fe4c07c84191d576686188f74d",
+      "sha256": "f53c9114836dc28cee79aec12ab7b06fcf8bb77c1af03fbd2decb3a16dae11d6",
+      "modified_utc": "2026-08-10T10:37:13.040433+00:00"
+    },
+    {
+      "path": "output/code_parity_audit.json",
+      "bytes": 11442,
+      "md5": "51beb842b33b12c2109c25c3c1fa6ebc",
+      "sha256": "e37b0e6e98a10dec0de93a3db91e99385bc62b7b6c2bb0b3e3c6de27bdd56b82",
+      "modified_utc": "2026-08-10T10:37:15.178010+00:00"
+    },
+    {
+      "path": "output/ai_usage_audit.json",
+      "bytes": 376,
+      "md5": "294140d1406c7ec34873a6b3938ffbcc",
+      "sha256": "b942e049d241de893260e2064ad1b4f286f3cbbd2fb8cf714b6103cb06719d90",
+      "modified_utc": "2026-08-10T10:37:16.126321+00:00"
+    },
+    {
+      "path": "output/package_audit.json",
+      "bytes": 338,
+      "md5": "abe4b60f348ff3ef032854c4b2e7f663",
+      "sha256": "da706ef52493a3adf1fba338a6db99283f6b54476fc6c6b398a94bf3476c0216",
+      "modified_utc": "2026-08-10T10:37:17.111622+00:00"
+    },
+    {
+      "path": "output/audit.json",
+      "bytes": 4731,
+      "md5": "06797a347cb140427a84d8e313278eb9",
+      "sha256": "fad82e49965518d7eb2112239e6c48cfc486d505b026ddebe403ac8e1ccef2a0",
+      "modified_utc": "2026-08-10T10:37:19.146977+00:00"
+    }
+  ],
+  "checklist": "output/release/submission_checklist.yaml"
+}

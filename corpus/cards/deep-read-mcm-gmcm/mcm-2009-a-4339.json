@@ -1,0 +1,259 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "mcm-2009-a-4339",
+  "identity": {
+    "contest": "MCM",
+    "year": 2009,
+    "problem": "A",
+    "team_id": "4339",
+    "title": "Three steps to make the traffic circle go round"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/zhanwen/MathModel/git/blobs/908389666c5ce8de13e6cfff439eabd0d19c270b",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "美赛论文/2009美赛特等奖原版论文集/A-4339-Outstanding.pdf"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://www.contest.comap.com/undergraduate/contests/mcm/contests/2009/results/MCM-A-Results-2009.pdf",
+    "contest": "MCM",
+    "year": 2009,
+    "problem": "A",
+    "team_id": "4339",
+    "title": "Three steps to make the traffic circle go round",
+    "award": "Outstanding Winner",
+    "locator": "official PDF page 2; extracted text line 73",
+    "matched_text": "4339      Tsinghua University                                  China           Jun Ye          A         Outstanding Winner"
+  },
+  "authenticity": {
+    "level": "B",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": true
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "The control number, contest year, problem, and Outstanding Winner label match a COMAP official result PDF.",
+      "The paper itself is not served from an official paper-display page, so the level is B rather than A."
+    ]
+  },
+  "pdf": {
+    "sha256": "e32d833884b2c471c67401fba41aa1dcc7957929fec6824fd9fe43566ce5e6f0",
+    "pages": 24,
+    "local_path": "corpus/raw/mcm-gmcm/mcm-2009-a-4339/paper.pdf",
+    "first_page_phash": "dhash64:f0d0e8f0c0ccccc0",
+    "text_sha256": "de0103fe5dd3026a0eba35536e50a3fe6097b1d73b2f174b3171c964290f1c41"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "decision"
+      ],
+      "observation": "The summary sheet states two simulation scales, five objectives, a three-step control plan, and stress tests.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2009-a-4339/page-01.png"
+    },
+    {
+      "page": 5,
+      "tags": [
+        "data",
+        "figure"
+      ],
+      "observation": "A labeled aerial image and origin-destination matrix establish geometry and demand.",
+      "derivation": "mixed",
+      "locator": "PDF page 5",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2009-a-4339/page-05.png"
+    },
+    {
+      "page": 9,
+      "tags": [
+        "baseline",
+        "sensitivity"
+      ],
+      "observation": "Macro and micro simulations are compared before parameter sensitivity is introduced.",
+      "derivation": "mixed",
+      "locator": "PDF page 9",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2009-a-4339/page-09.png"
+    },
+    {
+      "page": 16,
+      "tags": [
+        "optimization",
+        "figure"
+      ],
+      "observation": "Signal timing, five objective values, and a traffic snapshot share one result page.",
+      "derivation": "mixed",
+      "locator": "PDF page 16",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2009-a-4339/page-16.png"
+    },
+    {
+      "page": 20,
+      "tags": [
+        "robustness",
+        "figure"
+      ],
+      "observation": "Alternative layouts and a repeated-run sensitivity table test transfer and stability.",
+      "derivation": "mixed",
+      "locator": "PDF page 20",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2009-a-4339/page-20.png"
+    },
+    {
+      "page": 21,
+      "tags": [
+        "risk-probe",
+        "figure"
+      ],
+      "observation": "An emergency breakdown scenario is visualized as a failure-mode probe.",
+      "derivation": "mixed",
+      "locator": "PDF page 21",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2009-a-4339/page-21.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "role": "problem-model-decision-validation",
+      "observation": "Summarize macro and micro simulations, multi-objective scoring, a three-step control policy, and robustness cases on the summary sheet."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 5,
+      "step": "geometry-and-demand",
+      "observation": "Encode a six-arm roundabout and origin-destination flow matrix.",
+      "order": 1
+    },
+    {
+      "page": 9,
+      "step": "dual-simulation",
+      "observation": "Use a macro flow model and cellular-automata-like vehicle simulation.",
+      "order": 2
+    },
+    {
+      "page": 16,
+      "step": "multi-objective-control",
+      "observation": "Optimize signal, sign, and flow-adaptation decisions over five criteria.",
+      "order": 3
+    },
+    {
+      "page": 20,
+      "step": "adaptive-policy",
+      "observation": "Transfer the policy to different traffic circles and demand levels.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 9,
+      "method": "model-cross-check",
+      "observation": "Compare two simulation models on average travel time.",
+      "order": 1
+    },
+    {
+      "page": 20,
+      "method": "repeat-and-transfer",
+      "observation": "Run 50 repetitions and test a different roundabout layout.",
+      "order": 2
+    },
+    {
+      "page": 21,
+      "method": "failure-mode-probe",
+      "observation": "Simulate a blocked vehicle and observe whether traffic continues.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 5,
+      "role": "problem-definition",
+      "chart_type": "annotated aerial image plus OD table",
+      "lesson": "Bind every arm label to the demand matrix before modeling."
+    },
+    {
+      "page": 16,
+      "role": "main-result",
+      "chart_type": "timing strip plus KPI table plus snapshot",
+      "lesson": "Combine decision, metrics, and resulting state on one page."
+    },
+    {
+      "page": 20,
+      "role": "robustness",
+      "chart_type": "layout schematics plus sensitivity table",
+      "lesson": "Show both structural transfer and stochastic variation."
+    },
+    {
+      "page": 21,
+      "role": "risk-probe",
+      "chart_type": "failure-state snapshot",
+      "lesson": "Visualize an adverse event rather than describing robustness only in prose."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 9,
+      "rule": "Use an independently structured second model as a cross-check when direct ground truth is unavailable.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 16,
+      "rule": "Present optimized controls, objective values, and system state together.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 21,
+      "rule": "Design at least one failure-mode probe tied to the operational claim.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 1,
+      "risk": "The summary includes decorative road signs that consume scarce first-page area.",
+      "severity": "medium"
+    },
+    {
+      "page": 16,
+      "risk": "Some result figures and tables use small labels and a light blue Office style.",
+      "severity": "medium"
+    },
+    {
+      "page": 21,
+      "risk": "Emergency testing is qualitative and reports limited quantitative degradation.",
+      "severity": "medium"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/mcm-2009-a-4339/source_manifest.json",
+    "selected_pages": [
+      1,
+      5,
+      9,
+      16,
+      20,
+      21
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

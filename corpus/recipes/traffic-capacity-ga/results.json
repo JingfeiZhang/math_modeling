@@ -1,0 +1,9 @@
+{
+  "recipe_id": "traffic-capacity-ga",
+  "metrics": {
+    "best_speed_kmh": 75.0,
+    "best_headway_s": 0.8,
+    "optimized_score": 3421.0384615384614,
+    "baseline_score": 1666.6666666666665
+  }
+}

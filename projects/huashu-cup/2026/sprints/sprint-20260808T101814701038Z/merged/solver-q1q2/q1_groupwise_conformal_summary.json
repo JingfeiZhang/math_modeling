@@ -1,0 +1,377 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T101814701038Z",
+  "task_id": "solver-q1q2",
+  "problem_id": "C",
+  "question_id": "Q1",
+  "status": "PASS",
+  "evidence_type": "fixed-point-prediction-conformal-diagnostic",
+  "design": {
+    "point_predictions": "pinned shared-HGBR reconciled predictions; no refit",
+    "calibration_hours": [
+      2352,
+      2375
+    ],
+    "blind_hours": [
+      2376,
+      2399
+    ],
+    "groups": "6 regions x 3 task types",
+    "group_count": 18,
+    "calibration_observations_per_group": 24,
+    "alpha": 0.05,
+    "lower_bound": "nonnegative clipping at zero"
+  },
+  "aggregate": {
+    "pooled": {
+      "blind_coverage": 0.9467592592592593,
+      "abs_deviation_from_0_95": 0.003240740740740655,
+      "worst_group_abs_deviation": 0.11666666666666659,
+      "mean_interval_width_gpu_h": 442.478599299456,
+      "blind_wape": 0.8934394917252527,
+      "blind_rmse_gpu_h": 265.179312790732
+    },
+    "groupwise": {
+      "blind_coverage": 0.9629629629629629,
+      "abs_deviation_from_0_95": 0.012962962962962954,
+      "worst_group_abs_deviation": 0.11666666666666659,
+      "mean_interval_width_gpu_h": 447.3852227849384,
+      "blind_wape": 0.8934394917252527,
+      "blind_rmse_gpu_h": 265.179312790732
+    }
+  },
+  "acceptance": {
+    "criteria": {
+      "worst_group_deviation_improves_at_least_0_02": false,
+      "groupwise_pooled_coverage_between_0_90_and_0_99": true,
+      "mean_width_inflation_at_most_0_25": true,
+      "point_wape_unchanged": true,
+      "point_rmse_unchanged": true,
+      "pooled_reproduction_tolerance_passed": true
+    },
+    "worst_group_deviation_improvement": 0.0,
+    "mean_width_inflation_ratio": 0.01108895095322282,
+    "decision": "RETAIN_POOLED",
+    "groupwise_accepted": false
+  },
+  "audits": {
+    "validation_row_count": 432,
+    "blind_row_count": 432,
+    "group_counts_exact": true,
+    "pooled_interval_max_abs_difference_gpu_h": 2.248476960176049e-10,
+    "pooled_reproduction_tolerance_gpu_h": 1e-05,
+    "point_predictions_unchanged": true,
+    "input_hashes_verified": true
+  },
+  "group_comparison": [
+    {
+      "group_id": "RegionA|AITraining",
+      "pooled_coverage": 0.9583333333333334,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.008333333333333415,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 362.450962882925,
+      "groupwise_width_gpu_h": 511.8585293094458
+    },
+    {
+      "group_id": "RegionA|BatchInference",
+      "pooled_coverage": 0.9583333333333334,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.008333333333333415,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 252.48988469037894,
+      "groupwise_width_gpu_h": 202.04815054227916
+    },
+    {
+      "group_id": "RegionA|RealTimeInference",
+      "pooled_coverage": 0.9166666666666666,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.033333333333333326,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 81.21135299641189,
+      "groupwise_width_gpu_h": 93.49961658675834
+    },
+    {
+      "group_id": "RegionB|AITraining",
+      "pooled_coverage": 0.8333333333333334,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.11666666666666659,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 375.87038023701876,
+      "groupwise_width_gpu_h": 534.0824941512333
+    },
+    {
+      "group_id": "RegionB|BatchInference",
+      "pooled_coverage": 1.0,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.050000000000000044,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 308.3714259249905,
+      "groupwise_width_gpu_h": 265.16500438937084
+    },
+    {
+      "group_id": "RegionB|RealTimeInference",
+      "pooled_coverage": 0.9583333333333334,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.008333333333333415,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 124.5656904155802,
+      "groupwise_width_gpu_h": 91.25766837803751
+    },
+    {
+      "group_id": "RegionC|AITraining",
+      "pooled_coverage": 1.0,
+      "groupwise_coverage": 1.0,
+      "pooled_abs_deviation": 0.050000000000000044,
+      "groupwise_abs_deviation": 0.050000000000000044,
+      "pooled_width_gpu_h": 580.4533004246327,
+      "groupwise_width_gpu_h": 499.32531196740837
+    },
+    {
+      "group_id": "RegionC|BatchInference",
+      "pooled_coverage": 1.0,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.050000000000000044,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 205.35272650903744,
+      "groupwise_width_gpu_h": 137.6849852517208
+    },
+    {
+      "group_id": "RegionC|RealTimeInference",
+      "pooled_coverage": 0.9583333333333334,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.008333333333333415,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 87.16112092368222,
+      "groupwise_width_gpu_h": 99.92246982607917
+    },
+    {
+      "group_id": "RegionD|AITraining",
+      "pooled_coverage": 0.9166666666666666,
+      "groupwise_coverage": 0.8333333333333334,
+      "pooled_abs_deviation": 0.033333333333333326,
+      "groupwise_abs_deviation": 0.11666666666666659,
+      "pooled_width_gpu_h": 1833.8287119539934,
+      "groupwise_width_gpu_h": 1622.8631151892375
+    },
+    {
+      "group_id": "RegionD|BatchInference",
+      "pooled_coverage": 0.9583333333333334,
+      "groupwise_coverage": 1.0,
+      "pooled_abs_deviation": 0.008333333333333415,
+      "groupwise_abs_deviation": 0.050000000000000044,
+      "pooled_width_gpu_h": 249.28512111455248,
+      "groupwise_width_gpu_h": 301.62274334590415
+    },
+    {
+      "group_id": "RegionD|RealTimeInference",
+      "pooled_coverage": 0.9166666666666666,
+      "groupwise_coverage": 1.0,
+      "pooled_abs_deviation": 0.033333333333333326,
+      "groupwise_abs_deviation": 0.050000000000000044,
+      "pooled_width_gpu_h": 12.703424050854013,
+      "groupwise_width_gpu_h": 28.92028470692917
+    },
+    {
+      "group_id": "RegionE|AITraining",
+      "pooled_coverage": 0.9583333333333334,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.008333333333333415,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 1687.8841410968373,
+      "groupwise_width_gpu_h": 1687.8841410968373
+    },
+    {
+      "group_id": "RegionE|BatchInference",
+      "pooled_coverage": 0.9583333333333334,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.008333333333333415,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 211.84835839698113,
+      "groupwise_width_gpu_h": 206.94623935927916
+    },
+    {
+      "group_id": "RegionE|RealTimeInference",
+      "pooled_coverage": 0.9166666666666666,
+      "groupwise_coverage": 1.0,
+      "pooled_abs_deviation": 0.033333333333333326,
+      "groupwise_abs_deviation": 0.050000000000000044,
+      "pooled_width_gpu_h": 18.849221174405255,
+      "groupwise_width_gpu_h": 27.30416061383333
+    },
+    {
+      "group_id": "RegionF|AITraining",
+      "pooled_coverage": 0.875,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.07499999999999996,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 1394.1248282470667,
+      "groupwise_width_gpu_h": 1543.2068782884623
+    },
+    {
+      "group_id": "RegionF|BatchInference",
+      "pooled_coverage": 1.0,
+      "groupwise_coverage": 1.0,
+      "pooled_abs_deviation": 0.050000000000000044,
+      "groupwise_abs_deviation": 0.050000000000000044,
+      "pooled_width_gpu_h": 164.87220974714904,
+      "groupwise_width_gpu_h": 182.39609028787922
+    },
+    {
+      "group_id": "RegionF|RealTimeInference",
+      "pooled_coverage": 0.9583333333333334,
+      "groupwise_coverage": 0.9583333333333334,
+      "pooled_abs_deviation": 0.008333333333333415,
+      "groupwise_abs_deviation": 0.008333333333333415,
+      "pooled_width_gpu_h": 13.291926603710882,
+      "groupwise_width_gpu_h": 16.946126838195834
+    }
+  ],
+  "negative_or_rejected_findings": [
+    "Groupwise calibration did not improve worst-group absolute coverage deviation by the required 0.02.",
+    "Coverage deviation worsened for groups: RegionD|AITraining, RegionD|BatchInference, RegionD|RealTimeInference, RegionE|RealTimeInference",
+    "Each region-task group has only 24 calibration scores; the 95% finite-sample groupwise quantile is coarse and must not be described as conditional coverage proof."
+  ],
+  "interpretation_limits": [
+    "This is an interval-calibration diagnostic; it does not refit or replace the HGBR point forecast.",
+    "The blind window is used for model comparison reporting and cannot be reused for future tuning after this diagnostic without declaring a new holdout.",
+    "Groupwise empirical coverage is descriptive and does not prove finite-sample conditional coverage."
+  ],
+  "run_record": {
+    "command": [
+      "D:\\anaconda3\\envs\\math-modeling\\python.exe",
+      "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T101814701038Z\\staging\\solver-q1q2\\run_q1_groupwise_conformal.py"
+    ],
+    "environment": {
+      "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]",
+      "executable": "D:\\anaconda3\\envs\\math-modeling\\python.exe",
+      "platform": "Windows-11-10.0.22631-SP0",
+      "numpy": "2.5.1",
+      "pandas": "3.0.5"
+    },
+    "random_seed": 20260801,
+    "input_hashes": [
+      {
+        "path": "problems/C/questions/Q1/question.yaml",
+        "kind": "file",
+        "exists": true,
+        "sha256": "a6d457c3df7d5591f393ffbca5aad8e4cf3514243a6855ebfe56fae4d3ab0333"
+      },
+      {
+        "path": "problems/C/questions/Q2/question.yaml",
+        "kind": "file",
+        "exists": true,
+        "sha256": "494f3a29fe3e99c5515977f13432dccbfeb12c787f78b16cd6eb400b79b6cb11"
+      },
+      {
+        "path": "contest.yaml",
+        "kind": "file",
+        "exists": true,
+        "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+      },
+      {
+        "path": "config/workflow.yaml",
+        "kind": "file",
+        "exists": true,
+        "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+      },
+      {
+        "path": "problems/C/source/problem-C.pdf",
+        "kind": "file",
+        "exists": true,
+        "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+      },
+      {
+        "path": "results/C/claims.json",
+        "kind": "file",
+        "exists": true,
+        "sha256": "cef4f43848ba16de8cf215c8dcc2b8067a4d759d069e51aaaecf6e43cccb8f79"
+      },
+      {
+        "path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/validation_predictions.csv",
+        "kind": "file",
+        "exists": true,
+        "sha256": "52f785106caeceff0e7075d16a021b99716e303e1cb0d2de20c73a9963b08cd5"
+      },
+      {
+        "path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv",
+        "kind": "file",
+        "exists": true,
+        "sha256": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d"
+      },
+      {
+        "path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/run_forecast.py",
+        "kind": "file",
+        "exists": true,
+        "sha256": "73666e4d1b2ae6554f100c131d80470e1258ae23e40cba360359894415c0a043"
+      },
+      {
+        "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/run_q2_full_horizon.py",
+        "kind": "file",
+        "exists": true,
+        "sha256": "6a39aa6eb6802a73057ae78528b18775ba2181924b7bb4fa8ad263f0214ce45f"
+      },
+      {
+        "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_run_manifest.json",
+        "kind": "file",
+        "exists": true,
+        "sha256": "b6b6f96959c8c6af6561c9866c1ec3f5f29d3b0061ab375bdd4a11e3a62e570d"
+      },
+      {
+        "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_summary.json",
+        "kind": "file",
+        "exists": true,
+        "sha256": "68f503df0646e34d9e76680b5c104c3720a5af443c662ba32427299ee02f8cb1"
+      },
+      {
+        "path": "problems/C/data/workload_trace.xlsx",
+        "kind": "file",
+        "exists": true,
+        "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+      },
+      {
+        "path": "problems/C/data/GPU_information.xlsx",
+        "kind": "file",
+        "exists": true,
+        "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+      },
+      {
+        "path": "problems/C/data/network_latency.xlsx",
+        "kind": "file",
+        "exists": true,
+        "sha256": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157"
+      },
+      {
+        "path": "problems/C/data/region_time_data.xlsx",
+        "kind": "file",
+        "exists": true,
+        "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+      },
+      {
+        "path": "problems/C/data/power_mapping.xlsx",
+        "kind": "file",
+        "exists": true,
+        "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+      },
+      {
+        "path": "sprints/sprint-20260808T093228283096Z/merged/solver-q1/algorithm_review_q1q2.json",
+        "kind": "file",
+        "exists": true,
+        "sha256": "f26c7938461253c64bd0aab02a4a2ebad448d2966d6a2533413f1df39d246297"
+      }
+    ],
+    "code": {
+      "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/run_q1_groupwise_conformal.py",
+      "sha256": "0ebd8449ca808ea8456fb90c99d83d0769ab0699b694835fae8a37760f37381a"
+    },
+    "started_at_utc": "2026-08-08T10:37:09.206150+00:00",
+    "duration_seconds": 0.08828889999131206,
+    "metric_units": {
+      "coverage": "ratio",
+      "absolute_deviation": "ratio",
+      "interval_width": "GPU.h",
+      "WAPE": "ratio",
+      "RMSE": "GPU.h"
+    }
+  }
+}

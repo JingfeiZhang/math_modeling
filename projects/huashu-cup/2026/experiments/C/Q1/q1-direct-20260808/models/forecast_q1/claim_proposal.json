@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q1",
+  "proposals": [
+    {
+      "id": "Q1-FCST-TEST-WAPE",
+      "status": "verified",
+      "statement": "The reconciled residual model blind-test system-weighted WAPE is recorded by the forecast evidence package.",
+      "value": 0.89343949172524,
+      "unit": "ratio",
+      "locator": "metrics_summary.json:$.summaries.blind_test.shared_hgbr_reconciled.system_weighted_wape"
+    },
+    {
+      "id": "Q1-FCST-WAPE-IMPROVEMENT",
+      "status": "exploratory",
+      "statement": "Relative blind-test WAPE change versus the selected seasonal baseline.",
+      "value": 0.13536822669681514,
+      "unit": "ratio",
+      "locator": "claim_proposal.json:$.derived.blind_test_wape_relative_improvement"
+    },
+    {
+      "id": "Q1-FCST-TEST-COVERAGE",
+      "status": "verified",
+      "statement": "The empirical blind-test coverage of the nominal 95% split-conformal interval is recorded.",
+      "value": 0.9467592592592593,
+      "unit": "ratio",
+      "locator": "metrics_summary.json:$.summaries.blind_test.shared_hgbr_reconciled.empirical_coverage_95"
+    }
+  ],
+  "derived": {
+    "blind_test_wape_relative_improvement": 0.13536822669681514
+  },
+  "freeze_eligible": false,
+  "note": "Worker proposal only. Root Agent must review robustness and rewrite locators after merge before freezing."
+}

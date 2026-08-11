@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "copied": [
+    {
+      "id": "fig-q1-weekly-demand-structure",
+      "outputs": {
+        "pdf": "paper/figures/fig-q1-weekly-demand-structure.pdf",
+        "svg": "paper/figures/fig-q1-weekly-demand-structure.svg",
+        "png": "paper/figures/fig-q1-weekly-demand-structure.png"
+      }
+    },
+    {
+      "id": "fig-q1-blind-forecast-interval",
+      "outputs": {
+        "pdf": "paper/figures/fig-q1-blind-forecast-interval.pdf",
+        "svg": "paper/figures/fig-q1-blind-forecast-interval.svg",
+        "png": "paper/figures/fig-q1-blind-forecast-interval.png"
+      }
+    },
+    {
+      "id": "fig-q1-series-error-pairing",
+      "outputs": {
+        "pdf": "paper/figures/fig-q1-series-error-pairing.pdf",
+        "svg": "paper/figures/fig-q1-series-error-pairing.svg",
+        "png": "paper/figures/fig-q1-series-error-pairing.png"
+      }
+    },
+    {
+      "id": "fig-q1-schedule-gantt",
+      "outputs": {
+        "pdf": "paper/figures/fig-q1-schedule-gantt.pdf",
+        "svg": "paper/figures/fig-q1-schedule-gantt.svg",
+        "png": "paper/figures/fig-q1-schedule-gantt.png"
+      }
+    },
+    {
+      "id": "fig-q1-resource-headroom",
+      "outputs": {
+        "pdf": "paper/figures/fig-q1-resource-headroom.pdf",
+        "svg": "paper/figures/fig-q1-resource-headroom.svg",
+        "png": "paper/figures/fig-q1-resource-headroom.png"
+      }
+    },
+    {
+      "id": "fig-q2-load-migration",
+      "outputs": {
+        "pdf": "paper/figures/fig-q2-load-migration.pdf",
+        "svg": "paper/figures/fig-q2-load-migration.svg",
+        "png": "paper/figures/fig-q2-load-migration.png"
+      }
+    },
+    {
+      "id": "fig-q2-cumulative-impact",
+      "outputs": {
+        "pdf": "paper/figures/fig-q2-cumulative-impact.pdf",
+        "svg": "paper/figures/fig-q2-cumulative-impact.svg",
+        "png": "paper/figures/fig-q2-cumulative-impact.png"
+      }
+    },
+    {
+      "id": "fig-q2-latency-ecdf",
+      "outputs": {
+        "pdf": "paper/figures/fig-q2-latency-ecdf.pdf",
+        "svg": "paper/figures/fig-q2-latency-ecdf.svg",
+        "png": "paper/figures/fig-q2-latency-ecdf.png"
+      }
+    },
+    {
+      "id": "fig-q3-dispatch-soc",
+      "outputs": {
+        "pdf": "paper/figures/fig-q3-dispatch-soc.pdf",
+        "svg": "paper/figures/fig-q3-dispatch-soc.svg",
+        "png": "paper/figures/fig-q3-dispatch-soc.png"
+      }
+    },
+    {
+      "id": "fig-q3-rolling-runtime-coverage",
+      "outputs": {
+        "pdf": "paper/figures/fig-q3-rolling-runtime-coverage.pdf",
+        "svg": "paper/figures/fig-q3-rolling-runtime-coverage.svg",
+        "png": "paper/figures/fig-q3-rolling-runtime-coverage.png"
+      }
+    },
+    {
+      "id": "fig-q4-scenario-tradeoff",
+      "outputs": {
+        "pdf": "paper/figures/fig-q4-scenario-tradeoff.pdf",
+        "svg": "paper/figures/fig-q4-scenario-tradeoff.svg",
+        "png": "paper/figures/fig-q4-scenario-tradeoff.png"
+      }
+    },
+    {
+      "id": "fig-q4-system-profile",
+      "outputs": {
+        "pdf": "paper/figures/fig-q4-system-profile.pdf",
+        "svg": "paper/figures/fig-q4-system-profile.svg",
+        "png": "paper/figures/fig-q4-system-profile.png"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "full_task_audit_passed": true,
+  "deterministic_replay_passed": true,
+  "probes": [
+    {
+      "method": "adaptive_ALNS_latency_guarded_probe",
+      "probe": "latency_limit_minus_10pct_fixed_schedule",
+      "passed": true,
+      "violation_count": 0,
+      "value": 0.0,
+      "unit": "task_ratio",
+      "interpretation": "Exposure test only; the main schedule is audited against the supplied latency limits."
+    },
+    {
+      "method": "adaptive_ALNS_latency_guarded_probe",
+      "probe": "GPU_capacity_minus_5pct_fixed_schedule",
+      "passed": false,
+      "violation_count": 58628,
+      "value": 58628.0,
+      "unit": "region_minutes",
+      "interpretation": "Stress exposure without rescheduling; failure does not invalidate supplied-capacity feasibility."
+    },
+    {
+      "method": "adaptive_ALNS_latency_guarded_probe",
+      "probe": "IT_capacity_minus_5pct_fixed_schedule",
+      "passed": false,
+      "violation_count": 155093,
+      "value": 155093.0,
+      "unit": "region_minutes",
+      "interpretation": "Stress exposure without rescheduling; failure identifies headroom sensitivity."
+    },
+    {
+      "method": "adaptive_ALNS_latency_guarded_probe",
+      "probe": "renewable_availability_minus_20pct",
+      "passed": true,
+      "violation_count": 0,
+      "value": 0.9807110863158044,
+      "unit": "renewable_utilization_ratio",
+      "interpretation": "Metric-only scenario; capacity and task feasibility are unchanged."
+    }
+  ]
+}

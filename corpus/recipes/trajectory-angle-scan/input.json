@@ -1,0 +1,8 @@
+{
+  "min_angle_deg": 5.0,
+  "max_angle_deg": 80.0,
+  "points": 151,
+  "speed": 82.0,
+  "gravity": 9.81,
+  "target_range": 620.0
+}

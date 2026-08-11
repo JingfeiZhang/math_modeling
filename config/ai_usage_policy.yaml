@@ -1,0 +1,15 @@
+schema_version: 1
+competition: CUMCM
+year: 2026
+source:
+  title: 全国大学生数学建模竞赛人工智能工具使用规定
+  status: pending_official_source
+  url: null
+  rule_anchor: D:/迅雷下载/10259078.pdf#page=8
+  parent_document_sha256: cf9c59dc9fd329377c0696a83b804d373ab927b4036d28b608c1e9c7909e8ec0
+log:
+  path: output/ai_usage_log.jsonl
+  required_fields: [timestamp, tool, purpose, output_used, human_verification]
+disclosure:
+  required: null
+  paper_locator: null

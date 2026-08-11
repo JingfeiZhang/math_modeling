@@ -1,0 +1,8 @@
+{
+  "classifier": "HistGradientBoostingClassifier",
+  "regressor": "HistGradientBoostingRegressor",
+  "positive_threshold": 1e-10,
+  "activation_threshold": 0.35,
+  "horizon": 24,
+  "seed": 20260801
+}

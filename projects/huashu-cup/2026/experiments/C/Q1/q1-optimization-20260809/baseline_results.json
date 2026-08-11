@@ -1,0 +1,17 @@
+{
+  "forecast": {
+    "wape": 0.89343949172524,
+    "rmse": 265.1793127907307,
+    "coverage_95": 0.9467592592592593,
+    "mean_interval_width_gpu_h": 442.47859929946003
+  },
+  "schedule": {
+    "formal_incumbent_objective": 2788,
+    "formal_global_gap": 0.0351506456241033,
+    "fifo_completion_rate": 1.0
+  },
+  "same_output_files": [
+    "forecast_baseline_predictions.csv",
+    "baseline_schedule.csv"
+  ]
+}

@@ -1,0 +1,134 @@
+schema_version: 2
+palette_id: journal-spectrum-v2
+description: >-
+  User-defined publication palette for mathematical modeling contest figures.
+  The eight data colors are fixed in the declared order. Neutral colors are
+  reserved for text, axes, grids, backgrounds, and uncertainty fills.
+
+categorical_order:
+  - "#CC247C"
+  - "#E95351"
+  - "#F7A24F"
+  - "#FBEB66"
+  - "#4EA660"
+  - "#79CAFB"
+  - "#5292F7"
+  - "#AA77E9"
+
+colors:
+  primary: "#5292F7"
+  baseline: "#79CAFB"
+  improved: "#4EA660"
+  highlight: "#F7A24F"
+  risk: "#E95351"
+  auxiliary: "#AA77E9"
+  accent: "#CC247C"
+  caution: "#FBEB66"
+  ink: "#1F2933"
+  grid: "#D9DEE5"
+  fill: "#EAF0F4"
+  background: "#FFFFFF"
+
+semantic_roles:
+  main_model:
+    color: primary
+    line_style: "-"
+    marker: "o"
+  baseline:
+    color: baseline
+    line_style: "--"
+    marker: "s"
+  improved_model:
+    color: improved
+    line_style: "-"
+    marker: "^"
+  optimum_or_threshold:
+    color: highlight
+    line_style: ":"
+    marker: "D"
+  risk_or_error:
+    color: risk
+    line_style: "-"
+    marker: "x"
+  auxiliary_series:
+    color: auxiliary
+    line_style: "-."
+    marker: "P"
+
+continuous:
+  sequential: [background, auxiliary, primary]
+  diverging: [primary, fill, risk]
+
+style:
+  font_family: ["Times New Roman", "SimSun", "STIXGeneral", "DejaVu Sans"]
+  font_size_pt: 8
+  min_font_pt: 8
+  line_width_pt: 1.6
+  marker_size_pt: 5.2
+  grid_alpha: 0.45
+  confidence_band_alpha: 0.20
+  figure_facecolor: "#FFFFFF"
+  axes_facecolor: "#FFFFFF"
+  export:
+    png_dpi: 400
+    vector_formats: [pdf, svg]
+
+size_profiles:
+  contest-body:
+    purpose: CUMCM, Huashu Cup, and comparable single-column contest papers
+    width_mm: 158
+    height_min_mm: 92
+    height_default_mm: 104
+    height_max_mm: 112
+  journal-single:
+    purpose: external single-column journal figure
+    width_mm: 89
+    height_min_mm: 58
+    height_default_mm: 68
+    height_max_mm: 82
+  journal-double:
+    purpose: external double-column journal figure or justified complex evidence
+    width_mm: 183
+    height_min_mm: 102
+    height_default_mm: 116
+    height_max_mm: 132
+
+profiles:
+  publication-minimal:
+    description: >-
+      Restrained single-figure profile for manuscript evidence. It minimizes
+      colored area, legends, markers, and gridlines while preserving the fixed
+      journal-spectrum-v2 semantic mapping.
+    line_width_pt: 1.4
+    reference_line_width_pt: 0.8
+    marker_size_pt: 3.8
+    confidence_band_alpha: 0.11
+    background_series_alpha: 0.16
+    grid_alpha: 0.20
+    grid_line_width_pt: 0.45
+    direct_label_font_pt: 8.0
+    max_legend_entries: 3
+    max_major_ticks: 6
+    raster_salience:
+      warning_colored_pixel_fraction: 0.32
+      warning_high_saturation_fraction: 0.18
+      warning_dark_pixel_fraction: 0.15
+
+rules:
+  max_categorical_colors: 8
+  color_is_not_only_encoding: true
+  default_size_profile: contest-body
+  default_primary_axes: 1
+  in_figure_title_default: false
+  max_major_ticks_per_axis: 6
+  direct_labels_preferred: true
+  external_legend_fallback: true
+  dense_layer_rasterize_threshold: 5000
+  multipanel_requires_contract_justification: true
+  allowed_derived_colors: ["#000000", "#FFFFFF"]
+  grayscale_min_luminance_delta: 0.05
+  grayscale_pairs:
+    - [primary, baseline]
+    - [primary, risk]
+    - [improved, highlight]
+    - [ink, background]

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "project_id": "huashu-cup-2026",
+  "problem_id": "C",
+  "run_id": "sprint-20260809T020611362Z-optimization",
+  "captured_at_local": "2026-08-09T02:06:11+08:00",
+  "policy": "formal_frozen_artifacts_are_unchanged_until_candidate_promotion",
+  "files": [
+    {"path": "results/C/claims.json", "sha256": "00dc4ed7af69a13646174a2c2c3bc7d64b58af3011c5cb36b28c4f1288a08c44", "bytes": 15964},
+    {"path": "problems/C/questions/Q1/question.yaml", "sha256": "a6d457c3df7d5591f393ffbca5aad8e4cf3514243a6855ebfe56fae4d3ab0333", "bytes": 5684},
+    {"path": "problems/C/questions/Q2/question.yaml", "sha256": "556672527491212f2b290cc1eb27f24ccca129533a201cbc74789baf8d86ddfb", "bytes": 4914},
+    {"path": "problems/C/questions/Q3/question.yaml", "sha256": "6bf051de9ca11fb957dba22ceb905c1107455a4d48d8140caf47fd309543b511", "bytes": 3911},
+    {"path": "problems/C/questions/Q4/question.yaml", "sha256": "5749fcfc0c2f172008d03608949b89881894bfae91069a921df35a56092b286c", "bytes": 6898},
+    {"path": "experiments/C/Q1/q1-direct-20260808/run_manifest.json", "sha256": "5af37dbeb074a89b3fdd954c32edc86d5f9f4006c0059b929f4c43af2f98e341", "bytes": 10929},
+    {"path": "experiments/C/Q2/q2-direct-20260808/run_manifest.json", "sha256": "36d936141b9a66ff06d92d4b05785ccb20ae7be6cdc75399f0b8073a7750f1b5", "bytes": 16225},
+    {"path": "experiments/C/Q3/q3-direct-20260808/run_manifest.json", "sha256": "e855d8f28adf3770c37248a8677dd9fd50981206db098ca167b90f665fbc488d", "bytes": 6737},
+    {"path": "experiments/C/Q4/q4-direct-20260808/run_manifest.json", "sha256": "81a8d0ca58de7a28fe0ea6bdbfbc2c2b05a68ccc41550da11f06fb350832659c", "bytes": 8321}
+  ]
+}

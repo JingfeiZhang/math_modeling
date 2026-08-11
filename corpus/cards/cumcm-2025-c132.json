@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "paper_id": "cumcm-2025-c132",
+  "competition": "CUMCM",
+  "year": 2025,
+  "problem": "C",
+  "title": "基于统计建模与元学习的NIPT检测决策优化与异常识别",
+  "source_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2025qgdxssxjmjslwzs_2025ctlw/251101/2022740.shtml",
+  "access": "public_page_images",
+  "models": ["线性混合效应模型", "高斯过程回归", "遗传算法", "MLP/LSTM", "DeepHit生存分析", "LightGBM与元学习"],
+  "layout_profile": {
+    "abstract": "独立1页，四问逐段报告ICC、AIC提升、最优检测周、预测精度和分类准确率",
+    "body": "数据质量、描述统计、统计建模、决策优化、时序预测和异常识别递进",
+    "visual_rhythm": "框架图、EDA、模型诊断、风险响应曲线和网络结构图分工明确",
+    "median_margins": "左右留白接近15%页面宽度"
+  },
+  "figure_strategy": [
+    "第4页四色四象限总框架按四问分区，并把模型输出写入流程末端",
+    "第9-10页用小多图完成分布、相关矩阵和特征重要性筛查",
+    "第13-14页集中展示Q-Q、直方图、残差-拟合值和LOWESS诊断",
+    "第17页把三阶段决策规则画成带阈值的分支流程",
+    "第24页用风险底色、竖直阈值线和三条BMI组曲线构成决策图",
+    "第29页以模块化网络图解释静态MLP、时序LSTM和DeepHit输出"
+  ],
+  "transferable_patterns": [
+    "统计题应把模型假设诊断集中成一组图，并在每组图后写是否通过及偏离边界",
+    "决策曲线同时展示安全区、风险区、阈值和不同人群响应，图本身即可支持建议",
+    "同类诊断采用小多图共享尺度，避免每个检验单独占页",
+    "网络结构图只画本题实际使用的模块、特征流和输出，不画通用深度学习装饰图",
+    "摘要将ICC 74.3%、预测精度94.7%、分类准确率99.7%等数字与模型名绑定"
+  ],
+  "risks": [
+    "第4页总框架文本仍偏小，信息块过多时应减少框内句子",
+    "第10页散点矩阵在700像素页面图中已接近可读下限，最终版应拆分或放大",
+    "诊断图使用多种颜色但未始终提供线型替代，灰度打印需要复查",
+    "模型组合多，正文必须强调每个模块回答的独立问题，避免算法堆砌"
+  ],
+  "evidence": [
+    {"page": 1, "file": "page-01.jpg", "observation": "摘要报告ICC 74.3%、AIC提升17.2%、94.7%和99.7%等量化结果"},
+    {"page": 4, "file": "page-04.jpg", "observation": "四问总体思路框架"},
+    {"page": 10, "file": "page-10.jpg", "observation": "相关热力图、散点矩阵和特征重要性"},
+    {"page": 13, "file": "page-13.jpg", "observation": "随机截距Q-Q和分布诊断"},
+    {"page": 14, "file": "page-14.jpg", "observation": "四面板同方差诊断与LOWESS平滑"},
+    {"page": 17, "file": "page-17.jpg", "observation": "三阶段分层决策流程"},
+    {"page": 24, "file": "page-24.jpg", "observation": "带风险区间和阈值的准确率响应曲线"},
+    {"page": 29, "file": "page-29.jpg", "observation": "MLP/LSTM/DeepHit混合网络结构"}
+  ]
+}

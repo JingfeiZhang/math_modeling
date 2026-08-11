@@ -1,0 +1,19 @@
+\newcommand{\ContestName}{2026 年全国大学生数学建模竞赛}
+\newcommand{\ProblemNumber}{TBD}
+\newcommand{\PaperTitle}{赛题发布后填写论文题目}
+\newcommand{\PaperKeywords}{关键词一；关键词二；关键词三}
+
+% 当届官方规则要求时，由项目初始化或人工核验结果开启。
+\newif\ifRequireAIStatement
+\RequireAIStatementfalse
+
+% initialize 会根据题面实际子问题数量写入以下开关。
+% 默认按三问赛题预览；四问赛题将 HasQuestionFour 设为 true。
+\newif\ifHasQuestionOne
+\newif\ifHasQuestionTwo
+\newif\ifHasQuestionThree
+\newif\ifHasQuestionFour
+\HasQuestionOnetrue
+\HasQuestionTwotrue
+\HasQuestionThreetrue
+\HasQuestionFourfalse

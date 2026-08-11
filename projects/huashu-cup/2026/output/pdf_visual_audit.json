@@ -1,0 +1,870 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "info": [
+    {
+      "code": "RENDERED_PAGES",
+      "message": "rendered 37 page(s) at 300 dpi"
+    }
+  ],
+  "metrics": {
+    "page_count": 37,
+    "rendered_pages": 37,
+    "fonts": [
+      {
+        "name": "DWNTRA+SimSun",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "DWNTRA+SimSun                        CID TrueType      Identity-H       yes yes yes      4  0"
+      },
+      {
+        "name": "VGPCXC+LMRoman12-Regular-Identity-H",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "VGPCXC+LMRoman12-Regular-Identity-H  CID Type 0C       Identity-H       yes yes yes      6  0"
+      },
+      {
+        "name": "UACRXE+SimHei",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "UACRXE+SimHei                        CID TrueType      Identity-H       yes yes yes      8  0"
+      },
+      {
+        "name": "OJFNKL+LMRoman10-Regular-Identity-H",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "OJFNKL+LMRoman10-Regular-Identity-H  CID Type 0C       Identity-H       yes yes yes     10  0"
+      },
+      {
+        "name": "GMUGTJ+CMSY10",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "GMUGTJ+CMSY10                        Type 1C           Builtin          yes yes yes     12  0"
+      },
+      {
+        "name": "NYLDSO+CMR8",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "NYLDSO+CMR8                          Type 1C           Builtin          yes yes yes     13  0"
+      },
+      {
+        "name": "NAHCEU+LMRoman17-Regular-Identity-H",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "NAHCEU+LMRoman17-Regular-Identity-H  CID Type 0C       Identity-H       yes yes yes     18  0"
+      },
+      {
+        "name": "HKRIDO+LMRoman8-Regular-Identity-H",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "HKRIDO+LMRoman8-Regular-Identity-H   CID Type 0C       Identity-H       yes yes yes     20  0"
+      },
+      {
+        "name": "CZPDRK+CMMI12",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "CZPDRK+CMMI12                        Type 1C           Builtin          yes yes yes     29  0"
+      },
+      {
+        "name": "NACSGL+CMMI10",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "NACSGL+CMMI10                        Type 1C           Builtin          yes yes yes     30  0"
+      },
+      {
+        "name": "PQPSQH+CMMI8",
+        "embedded": true,
+        "subset": true,
+        "unicode": false,
+        "raw": "PQPSQH+CMMI8                         Type 1C           Builtin          yes yes no      31  0"
+      },
+      {
+        "name": "CWCSXT+CMR10",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "CWCSXT+CMR10                         Type 1C           Builtin          yes yes yes     32  0"
+      },
+      {
+        "name": "NLVBTU+CMMI6",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "NLVBTU+CMMI6                         Type 1C           Builtin          yes yes yes     33  0"
+      },
+      {
+        "name": "BPVTAN+CMSY8",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "BPVTAN+CMSY8                         Type 1C           Builtin          yes yes yes     37  0"
+      },
+      {
+        "name": "JDTPVT+CMMIB10",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "JDTPVT+CMMIB10                       Type 1C           Builtin          yes yes yes     38  0"
+      },
+      {
+        "name": "UJITJF+CMR12",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "UJITJF+CMR12                         Type 1C           Builtin          yes yes yes     44  0"
+      },
+      {
+        "name": "HWTRTL+CMEX10",
+        "embedded": true,
+        "subset": true,
+        "unicode": false,
+        "raw": "HWTRTL+CMEX10                        Type 1C           Builtin          yes yes no      45  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes     69  0"
+      },
+      {
+        "name": "ULGDNB+LMSans8-Regular-Identity-H",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "ULGDNB+LMSans8-Regular-Identity-H    CID Type 0C       Identity-H       yes yes yes     86  0"
+      },
+      {
+        "name": "JLSYEZ+LMRomanDemi10-Regular-Identity-H",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "JLSYEZ+LMRomanDemi10-Regular-Identity-H CID Type 0C       Identity-H       yes yes yes     94  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes    107  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes    124  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes    146  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes    169  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes    203  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes    221  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes    241  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes    275  0"
+      },
+      {
+        "name": "TimesNewRomanPS-BoldMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPS-BoldMT               CID TrueType      Identity-H       yes no  yes    282  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes    307  0"
+      },
+      {
+        "name": "ZFKKVS+CMBX12",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "ZFKKVS+CMBX12                        Type 1C           Builtin          yes yes yes    322  0"
+      },
+      {
+        "name": "UMNWCI+CMR6",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "UMNWCI+CMR6                          Type 1C           Builtin          yes yes yes    327  0"
+      },
+      {
+        "name": "TimesNewRomanPS-BoldMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPS-BoldMT               CID TrueType      Identity-H       yes no  yes    340  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes    347  0"
+      },
+      {
+        "name": "TimesNewRomanPSMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPSMT                    CID TrueType      Identity-H       yes no  yes    365  0"
+      },
+      {
+        "name": "TimesNewRomanPS-BoldMT",
+        "embedded": true,
+        "subset": false,
+        "unicode": true,
+        "raw": "TimesNewRomanPS-BoldMT               CID TrueType      Identity-H       yes no  yes    372  0"
+      },
+      {
+        "name": "DFRJNH+CMR7",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "DFRJNH+CMR7                          Type 1C           Builtin          yes yes yes    385  0"
+      },
+      {
+        "name": "SNZKIN+LMMono12-Regular-Identity-H",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "SNZKIN+LMMono12-Regular-Identity-H   CID Type 0C       Identity-H       yes yes yes    390  0"
+      },
+      {
+        "name": "EANSWY+LMRoman12-Italic-Identity-H",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "EANSWY+LMRoman12-Italic-Identity-H   CID Type 0C       Identity-H       yes yes yes    395  0"
+      },
+      {
+        "name": "NJRFSH+LMMono8-Regular-Identity-H",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "NJRFSH+LMMono8-Regular-Identity-H    CID Type 0C       Identity-H       yes yes yes    419  0"
+      },
+      {
+        "name": "DOAZMB+LMMonoLt10-Bold-Identity-H",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "DOAZMB+LMMonoLt10-Bold-Identity-H    CID Type 0C       Identity-H       yes yes yes    424  0"
+      },
+      {
+        "name": "YYTNGV+LMRoman12-Bold-Identity-H",
+        "embedded": true,
+        "subset": true,
+        "unicode": true,
+        "raw": "YYTNGV+LMRoman12-Bold-Identity-H     CID Type 0C       Identity-H       yes yes yes    456  0"
+      }
+    ],
+    "pages": [
+      {
+        "page": 1,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-01.png",
+        "text_chars": 1045,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.06294704061011923,
+        "bbox": [
+          291,
+          295,
+          2188,
+          3300
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 2,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-02.png",
+        "text_chars": 1034,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.06772049101104541,
+        "bbox": [
+          295,
+          296,
+          2184,
+          3300
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 3,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-03.png",
+        "text_chars": 1091,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.063756729019683,
+        "bbox": [
+          296,
+          304,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 4,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-04.png",
+        "text_chars": 961,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.05794195521079934,
+        "bbox": [
+          295,
+          295,
+          2184,
+          3300
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 5,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-05.png",
+        "text_chars": 878,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.049423394307569916,
+        "bbox": [
+          295,
+          296,
+          2185,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 6,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-06.png",
+        "text_chars": 844,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.045973342672268186,
+        "bbox": [
+          296,
+          297,
+          2182,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 7,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-07.png",
+        "text_chars": 956,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.12303380262400171,
+        "bbox": [
+          297,
+          303,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 8,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-08.png",
+        "text_chars": 858,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.04885246459178698,
+        "bbox": [
+          295,
+          296,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 9,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-09.png",
+        "text_chars": 778,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.12479955989350305,
+        "bbox": [
+          295,
+          304,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 10,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-10.png",
+        "text_chars": 858,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.05282966968573473,
+        "bbox": [
+          297,
+          304,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 11,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-11.png",
+        "text_chars": 715,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.0685099573175748,
+        "bbox": [
+          295,
+          296,
+          2184,
+          3300
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 12,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-12.png",
+        "text_chars": 724,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.18537280136333742,
+        "bbox": [
+          296,
+          387,
+          2184,
+          3300
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 13,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-13.png",
+        "text_chars": 938,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.05764092163153765,
+        "bbox": [
+          295,
+          296,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 14,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-14.png",
+        "text_chars": 867,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.1685131974499928,
+        "bbox": [
+          295,
+          296,
+          2184,
+          3300
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 15,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-15.png",
+        "text_chars": 605,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.03815669556129434,
+        "bbox": [
+          297,
+          453,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 16,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-16.png",
+        "text_chars": 837,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.03768251022480085,
+        "bbox": [
+          296,
+          395,
+          2188,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 17,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-17.png",
+        "text_chars": 887,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.05124476236041579,
+        "bbox": [
+          295,
+          296,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 18,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-18.png",
+        "text_chars": 764,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.045069782341232364,
+        "bbox": [
+          295,
+          296,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 19,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-19.png",
+        "text_chars": 761,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.14763272708387623,
+        "bbox": [
+          296,
+          304,
+          2182,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 20,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-20.png",
+        "text_chars": 1092,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.06679510000059748,
+        "bbox": [
+          295,
+          304,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 21,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-21.png",
+        "text_chars": 1189,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.14352453791345585,
+        "bbox": [
+          295,
+          297,
+          2184,
+          3300
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 22,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-22.png",
+        "text_chars": 766,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.05019688974863466,
+        "bbox": [
+          296,
+          322,
+          2182,
+          3300
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 23,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-23.png",
+        "text_chars": 1262,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.07768286411160395,
+        "bbox": [
+          295,
+          296,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 24,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-24.png",
+        "text_chars": 1473,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.04512562292120228,
+        "bbox": [
+          297,
+          295,
+          2185,
+          3300
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 25,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-25.png",
+        "text_chars": 1134,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.037069412828258735,
+        "bbox": [
+          300,
+          307,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 26,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-26.png",
+        "text_chars": 1273,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.0435829981749552,
+        "bbox": [
+          281,
+          295,
+          2198,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 27,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-27.png",
+        "text_chars": 2687,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.046179470245243555,
+        "bbox": [
+          295,
+          331,
+          2198,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 28,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-28.png",
+        "text_chars": 2531,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.04211034650113956,
+        "bbox": [
+          295,
+          317,
+          2198,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 29,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-29.png",
+        "text_chars": 1556,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.02974981581800475,
+        "bbox": [
+          295,
+          317,
+          2198,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 30,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-30.png",
+        "text_chars": 2844,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.04628287872666932,
+        "bbox": [
+          295,
+          331,
+          2198,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 31,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-31.png",
+        "text_chars": 2461,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.039349454945384235,
+        "bbox": [
+          295,
+          317,
+          2198,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 32,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-32.png",
+        "text_chars": 2812,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.043236924457116965,
+        "bbox": [
+          295,
+          317,
+          2198,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 33,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-33.png",
+        "text_chars": 1991,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.029701788323298114,
+        "bbox": [
+          295,
+          317,
+          2198,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 34,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-34.png",
+        "text_chars": 2155,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.04538644209102061,
+        "bbox": [
+          295,
+          317,
+          2198,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 35,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-35.png",
+        "text_chars": 959,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.046221063434439255,
+        "bbox": [
+          299,
+          295,
+          2182,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 36,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-36.png",
+        "text_chars": 796,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.052134764690553566,
+        "bbox": [
+          297,
+          295,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      },
+      {
+        "page": 37,
+        "file": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages\\page-37.png",
+        "text_chars": 1125,
+        "width_px": 2481,
+        "height_px": 3508,
+        "ink_fraction": 0.06682267559564434,
+        "bbox": [
+          121,
+          296,
+          2184,
+          3301
+        ],
+        "edge_ink_fraction": 0.0
+      }
+    ],
+    "render_dir": "D:\\数学建模\\projects\\huashu-cup\\2026\\output\\_verification\\pdf\\rendered-pages"
+  }
+}

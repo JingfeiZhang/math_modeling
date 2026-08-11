@@ -1,0 +1,292 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2024-c038",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "C",
+    "team_id": "C038",
+    "title": "基于差分遗传算法的农作物种植策略优化"
+  },
+  "source": {
+    "url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024ctlw/241104/1977952.shtml",
+    "publisher": "official",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public_page_images"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024ctlw/241104/1977952.shtml",
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "C",
+    "team_id": "C038",
+    "title": "基于差分遗传算法的农作物种植策略优化",
+    "award": "全国大学生数学建模竞赛组委会官方论文展示"
+  },
+  "authenticity": {
+    "level": "A",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": true,
+      "mirror_publisher": false,
+      "fulltext_available": true,
+      "official_award_verified": true,
+      "identity_aligned": true
+    },
+    "reasons": [
+      "official source or official result is directly verifiable"
+    ]
+  },
+  "pdf": {
+    "sha256": "62a259d5d54f505bf8936e1ec6a6e24e5340d5ac5177ba213274ac11b1afcac6",
+    "pages": 33,
+    "local_path": "corpus/raw/cumcm-2024-c038/source_manifest.json",
+    "kind": "official_page_image_set",
+    "source_pdf_available": false,
+    "derived_review_pdf": "",
+    "reported_total_pages": 61,
+    "cached_pages": 33
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要按“种植规划背景与数据；确定性 DEGA 模型；CVaR 与相关性扩展；量化收益、敏感性和关键词”组织。",
+      "derivation": "visual",
+      "locator": "official page image 1",
+      "render": "corpus/raw/cumcm-2024-c038/page-01.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用四象限路线图组织确定性、风险和相关性三层模型",
+      "derivation": "visual",
+      "locator": "official page image 3",
+      "render": "corpus/raw/cumcm-2024-c038/page-03.jpg"
+    },
+    {
+      "page": 21,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用差分进化遗传算法求解地块-作物-季节种植矩阵",
+      "derivation": "visual",
+      "locator": "official page image 21",
+      "render": "corpus/raw/cumcm-2024-c038/page-21.jpg"
+    },
+    {
+      "page": 29,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "将 CVaR 风险项嵌入 DEGA 形成风险约束优化",
+      "derivation": "visual",
+      "locator": "official page image 29",
+      "render": "corpus/raw/cumcm-2024-c038/page-29.jpg"
+    },
+    {
+      "page": 32,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "在同一利润口径下比较风险与非风险模型",
+      "derivation": "visual",
+      "locator": "official page image 32",
+      "render": "corpus/raw/cumcm-2024-c038/page-32.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "摘要同时报告基准、风险情景与敏感性结果",
+      "derivation": "visual",
+      "locator": "official page image 1",
+      "render": "corpus/raw/cumcm-2024-c038/page-01.jpg"
+    },
+    {
+      "page": 23,
+      "tags": [
+        "validation"
+      ],
+      "observation": "用年度利润和累计利润曲线检查优化结果与算法收敛",
+      "derivation": "visual",
+      "locator": "official page image 23",
+      "render": "corpus/raw/cumcm-2024-c038/page-23.jpg"
+    },
+    {
+      "page": 32,
+      "tags": [
+        "validation"
+      ],
+      "observation": "在一致视觉编码下比较 CVaR 与非风险方案的累计利润",
+      "derivation": "visual",
+      "locator": "official page image 32",
+      "render": "corpus/raw/cumcm-2024-c038/page-32.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "种植规划背景与数据",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "确定性 DEGA 模型",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "CVaR 与相关性扩展",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "量化收益、敏感性和关键词",
+      "locator": "official page image 1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 3,
+      "description": "用四象限路线图组织确定性、风险和相关性三层模型",
+      "locator": "official page image 3"
+    },
+    {
+      "step": 2,
+      "page": 21,
+      "description": "用差分进化遗传算法求解地块-作物-季节种植矩阵",
+      "locator": "official page image 21"
+    },
+    {
+      "step": 3,
+      "page": 29,
+      "description": "将 CVaR 风险项嵌入 DEGA 形成风险约束优化",
+      "locator": "official page image 29"
+    },
+    {
+      "step": 4,
+      "page": 32,
+      "description": "在同一利润口径下比较风险与非风险模型",
+      "locator": "official page image 32"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "摘要同时报告基准、风险情景与敏感性结果",
+      "locator": "official page image 1"
+    },
+    {
+      "step": 2,
+      "page": 23,
+      "description": "用年度利润和累计利润曲线检查优化结果与算法收敛",
+      "locator": "official page image 23"
+    },
+    {
+      "step": 3,
+      "page": 32,
+      "description": "在一致视觉编码下比较 CVaR 与非风险方案的累计利润",
+      "locator": "official page image 32"
+    }
+  ],
+  "figures": [
+    {
+      "page": 3,
+      "role": "model explanation",
+      "chart_type": "flowchart",
+      "caption": "四象限总体思路框架",
+      "lesson": "显示问题之间的模型递进而非只列算法名",
+      "locator": "official page image 3",
+      "render": "corpus/raw/cumcm-2024-c038/page-03.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 21,
+      "role": "result evidence",
+      "chart_type": "heatmap",
+      "caption": "分季节地块-作物种植方案矩阵",
+      "lesson": "用稀疏热力图表达组合优化方案",
+      "locator": "official page image 21",
+      "render": "corpus/raw/cumcm-2024-c038/page-21.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 23,
+      "role": "result evidence",
+      "chart_type": "multi-panel",
+      "caption": "年度利润与累计利润收敛图",
+      "lesson": "区分经济结果和求解过程证据",
+      "locator": "official page image 23",
+      "render": "corpus/raw/cumcm-2024-c038/page-23.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 29,
+      "role": "model explanation",
+      "chart_type": "flowchart",
+      "caption": "CVaR-DEGA 求解流程",
+      "lesson": "显示风险函数如何进入搜索循环",
+      "locator": "official page image 29",
+      "render": "corpus/raw/cumcm-2024-c038/page-29.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 32,
+      "role": "result evidence",
+      "chart_type": "comparison",
+      "caption": "风险与非风险累计利润比较",
+      "lesson": "在相同尺度下呈现稳健性代价",
+      "locator": "official page image 32",
+      "render": "corpus/raw/cumcm-2024-c038/page-32.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要同时给最优值、对照值和风险情景值",
+      "evidence_page": 3
+    },
+    {
+      "rule": "组合方案先用矩阵图表达结构，再用表格给精确数值",
+      "evidence_page": 21
+    },
+    {
+      "rule": "收敛曲线只能证明算法行为，不能替代基线比较",
+      "evidence_page": 23
+    }
+  ],
+  "risks": [
+    "本地只缓存官方展示的前 33/61 页，后半正文与附录未进入本次视觉复核",
+    "高维热力图标签密集，利润图仍保留科学计数标记",
+    "官方展示标签不等同于独立奖级声明；卡片不推断具体奖项。"
+  ],
+  "provenance": {
+    "source_manifest": "corpus/raw/cumcm-2024-c038/source_manifest.json",
+    "source_artifact_kind": "official_page_images",
+    "derived_review_pdf": false,
+    "reported_total_pages": 61,
+    "cached_pages": 33,
+    "coverage": 0.5409836065573771,
+    "visual_review": "selected evidence pages complete",
+    "review_scope": "cached prefix and selected evidence pages",
+    "page_image_manifest_sha256": "62a259d5d54f505bf8936e1ec6a6e24e5340d5ac5177ba213274ac11b1afcac6"
+  }
+}

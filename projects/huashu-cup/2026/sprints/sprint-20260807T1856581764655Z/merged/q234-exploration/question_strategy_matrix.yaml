@@ -1,0 +1,135 @@
+schema_version: 1
+sprint_id: sprint-20260807T1856581764655Z
+task_id: q234-exploration
+input_observations:
+  workload_count: 50000
+  task_type_counts:
+    AITraining: 16559
+    BatchInference: 16717
+    RealTimeInference: 16724
+  arrival_hours: [0, 2399]
+  mean_arrivals_per_hour: 20.8333333333
+  max_arrivals_per_hour: 36
+  duration_min_range: [10, 399]
+  gpu_demand_range: [1, 127]
+  feasible_region_count_distribution:
+    1: 488
+    2: 1146
+    3: 15090
+    5: 5364
+    6: 27912
+  region_time_hours: [0, 2406]
+  data_source_hashes:
+    workload_trace.xlsx: 006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba
+    GPU_information.xlsx: 68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f
+    network_latency.xlsx: f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157
+    region_time_data.xlsx: 0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba
+    power_mapping.xlsx: a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e
+    storage_information.xlsx: ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4
+questions:
+  Q2:
+    mathematical_nature: multi_objective_nonpreemptive_task_scheduling
+    decision_variables:
+      - x_task_region: binary assignment after latency filtering
+      - start_hour_or_minute: nonpreemptive start time
+      - optional_workload_region_hour: aggregate load used only for decomposition cuts
+    hard_constraints:
+      - every task is assigned exactly once
+      - RealTimeInference starts at arrival and satisfies MaxLatency_ms
+      - GPU, IT and facility PUE capacities at every active interval
+      - LatestFinishHour and closeout boundary through hour 2406
+      - no migration energy, line-flow or data-transfer cost (per question scope)
+    candidate_methods:
+      - name: event_boundary_CP_SAT_epsilon_constraint
+        role: main_candidate
+        rationale: exact hard-constraint enforcement with cost/carbon/latency/renewable objectives; event boundaries avoid 2400*minute variables
+        novelty_hook: carbon-aware lexicographic stages with renewable utilization as a constrained resource
+        pilot: solve 24-72 hour windows with fixed arrivals, compare objective vectors and feasibility margins
+      - name: hierarchical_decomposition_LNS
+        role: scalable_candidate
+        rationale: assign flexible tasks to region-hour buckets, then CP-SAT/LNS repair at task level
+        novelty_hook: use latency-feasible candidate set and shadow-price-like overload penalties from the repair stage
+        pilot: compare bucket solution repaired by CP-SAT against direct CP-SAT on sampled windows
+      - name: NSGA_II_or_MOEA_D
+        role: multiobjective_candidate
+        rationale: only retain if a Pareto set is needed and exact epsilon runs are too slow; every individual must be repaired to hard feasibility
+        novelty_hook: mixed discrete assignment plus repair operator preserving nonpreemption and latency
+        pilot: use 24 hour sample and report feasible fraction, hypervolume, and constraint violations
+    selection_rule: retain the candidate with feasible_rate=1 on audit, stable metrics over at least three seeded windows, and acceptable runtime; prefer exact epsilon formulation when it finishes within the recorded budget
+    fallback:
+      name: rolling_horizon_greedy_then_CP_SAT_repair
+      trigger: direct CP-SAT has no feasible incumbent or exceeds the agreed wall-time on two independent windows
+      scope: only flexible BatchInference and AITraining jobs; RealTimeInference remains arrival-immediate
+      required_output: same assignment, start, completion, cost, carbon, latency, SLA and renewable metrics as main
+  Q3:
+    mathematical_nature: multi_region_storage_dispatch_MILP
+    decision_variables:
+      - charge_mw_region_hour
+      - discharge_mw_region_hour
+      - soc_mwh_region_hour
+      - grid_purchase_and_export_mw_region_hour
+      - optional_binary_charge_discharge_mode
+    hard_constraints:
+      - fixed Q1/Q2 task schedule and hourly facility load are inputs, not re-optimized here
+      - SOC transition uses charge/discharge efficiencies and end-of-hour convention
+      - MinSOC <= SOC <= StorageCapacity and initial/terminal SOC constraints
+      - charge/discharge and grid import/export power bounds by region
+      - renewable allocation cannot exceed AvailableRenewable_MW
+    candidate_methods:
+      - name: deterministic_MILP_epsilon_constraint
+        role: main_candidate
+        rationale: linear SOC and purchase/export balance support auditable exact optimization at 2407*6 horizon
+        novelty_hook: renewable-first dispatch with carbon-intensity-weighted purchase term and peak-import epigraph
+        pilot: solve each region and all-region model with hourly fixed load; compare against no-storage baseline
+      - name: rolling_MPC_with_terminal_SOC_penalty
+        role: scalability_candidate
+        rationale: supports time-varying scenarios and re-optimization under renewable/price perturbations
+        novelty_hook: terminal SOC band and carbon-aware forecast correction
+        pilot: 24-72 hour horizons, evaluate end effects and scenario stability
+      - name: robust_CVaR_MILP
+        role: risk_candidate
+        rationale: retain only if renewable or price scenarios show material tail risk
+        novelty_hook: CVaR of carbon/cost or peak import under specified scenarios, not invented distributions
+        pilot: scenario perturbations derived from observed historical rows only
+    selection_rule: choose MILP if terminal SOC and all power audits pass with deterministic metrics; choose MPC only when scenario tests demonstrate materially better stability at acceptable optimality evidence
+    fallback:
+      name: rule_based_valley_charge_peak_discharge
+      trigger: MILP cannot find feasible solution under exact terminal SOC or runtime budget
+      scope: obey every SOC, efficiency, power and grid boundary; no claim of optimality
+  Q4:
+    mathematical_nature: integrated_multi_region_multiobjective_coordination
+    decision_variables:
+      - task_region_and_start_for_flexible_tasks
+      - charge_discharge_soc_grid_flows
+      - scalarization_or_epsilon_budget_variables
+    hard_constraints:
+      - reuse and version-lock Q2 assignment rules and Q3 SOC/power rules
+      - nonpreemption, latency/SLA, GPU/IT/facility limits
+      - per-region purchase/export and terminal SOC boundaries
+      - no line-flow or migration-energy variables beyond stated scope
+    candidate_methods:
+      - name: Benders_or_Lagrangian_decomposition
+        role: main_candidate
+        rationale: master assigns tasks and regional load envelopes; subproblems dispatch storage and grid independently by region-hour
+        novelty_hook: cuts from carbon/peak/SOC subproblems feed assignment master, preserving auditable feasibility
+        pilot: 24-168 hour windows, compare integrated objective vector with sequential Q2->Q3 solution
+      - name: ADMM_regional_coordination
+        role: distributed_candidate
+        rationale: suitable when regional subproblems are separable and coupling is through aggregate workload/penalty signals
+        novelty_hook: consensus on flexible workload envelopes and carbon-budget multipliers
+        pilot: track primal/dual residuals and feasibility after repair; do not use unconverged iterates as evidence
+      - name: Pareto_epsilon_scenario_frontier
+        role: decision_candidate
+        rationale: exposes trade-offs across cost, carbon, delay, SLA, renewable utilization and peak import
+        novelty_hook: scenario-stability score based on overlap/rank consistency of selected policies
+        pilot: three carbon-budget and three renewable-volatility scenarios using observed ranges/bootstrapped blocks
+    selection_rule: retain a decomposition method only if repaired incumbent meets all hard audits and objective vector is no worse than the sequential baseline on agreed primary metrics; otherwise report sequential coupling as main and decomposition as exploratory
+    fallback:
+      name: sequential_Q2_assignment_Q3_dispatch_with_local_exchange
+      trigger: integrated master-subproblem loop fails convergence or hard-feasibility repair after two parameter settings
+      scope: run Q2 assignment, Q3 storage dispatch, then bounded flexible-task exchanges followed by Q3 re-dispatch
+      required_output: unified metrics plus explicit non-global-optimality wording
+cross_question_interfaces:
+  Q1_to_Q2: use frozen Q1 workload/forecast definitions only where Q2 requires projected load; actual 0-2399 arrivals remain authoritative
+  Q2_to_Q3: pass task schedule and recomputed hourly regional facility load; do not reuse stale SOC/grid columns as if optimized
+  Q2_Q3_to_Q4: version-lock assignment, load, storage and metric definitions; compare integrated and sequential solutions on identical windows

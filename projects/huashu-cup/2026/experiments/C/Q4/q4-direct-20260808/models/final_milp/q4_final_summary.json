@@ -1,0 +1,501 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q4",
+  "status": "PASS",
+  "scope": "Five Q3-aligned scenario probes on the Q2 w2328_2400 representative window, using exactly 72 hours (absolute hours 2328-2399) and all six regions.",
+  "methods": {
+    "candidate": "Q2_candidate_plus_integrated_storage_MILP",
+    "candidate_description": "Freeze the selected Q2 lagrangian-balanced task schedule, convert it to a 72-hour facility-load envelope, and solve all six storage systems in one binary MILP with a system-hour peak-import epigraph.",
+    "baseline": "Q2_FIFO_plus_no_storage_renewable_first",
+    "baseline_description": "Convert the independently stored Q2 FIFO schedule to its own 72-hour envelope and apply a renewable-first no-storage balance under the same scenario inputs.",
+    "fallback": null,
+    "optimality_statement": "Each storage-dispatch scenario is solved as one integrated six-region MILP. The Q2 task schedules are fixed upstream, so these results do not establish globally joint task-and-storage optimality or full-horizon optimality."
+  },
+  "data_counts": {
+    "regions": 6,
+    "horizon_h": 72,
+    "region_hour_rows_per_envelope": 432,
+    "q2_tasks_per_schedule": 1577,
+    "scenario_count": 5
+  },
+  "provenance": {
+    "q2_enhanced_directory": "sprints/sprint-20260808T023234268084Z/merged/solver-q2",
+    "q2_enhanced_directory_sha256": "a0368efa26729cc590af05527be89328e1c69f394a93fb63255e00917bba419e",
+    "q2_status": "PASS",
+    "q2_selected_policy": "lagrangian_balanced",
+    "q2_candidate_schedule_sha256": "a3bf710460b36da522d0753f4612a2c764d54ba5311177611dce593a1788e05d",
+    "q2_fifo_schedule_sha256": "45e378f7e7a77a219deeeaff97a53e4f444693aca15e19d761cefe6d79b2be1d",
+    "q2_candidate_envelope": {
+      "task_count": 1577,
+      "task_id_sha256": "eda6ecc354076feb099f239b7ab264cdc4c5e92368d3a565df2f071e52a669f4",
+      "spill_task_count": 92,
+      "excluded_closeout_task_minutes": 15940,
+      "excluded_closeout_ai_energy_MWh": 2357.9273333333335,
+      "ai_energy_within_72h_MWh": 21235.104,
+      "facility_energy_within_72h_MWh": 191267.01415206335,
+      "region_hour_rows": 432
+    },
+    "q2_fifo_envelope": {
+      "task_count": 1577,
+      "task_id_sha256": "eda6ecc354076feb099f239b7ab264cdc4c5e92368d3a565df2f071e52a669f4",
+      "spill_task_count": 69,
+      "excluded_closeout_task_minutes": 7675,
+      "excluded_closeout_ai_energy_MWh": 663.9136666666665,
+      "ai_energy_within_72h_MWh": 22929.117666666665,
+      "facility_energy_within_72h_MWh": 193517.73370539665,
+      "region_hour_rows": 432
+    },
+    "q2_service_metrics": {
+      "candidate": {
+        "task_completion_rate": 1.0,
+        "SLA_violation_rate": 0.0,
+        "mean_latency_ms": 9.032974001268231,
+        "q2_audit_passed": true
+      },
+      "baseline": {
+        "task_completion_rate": 1.0,
+        "SLA_violation_rate": 0.0,
+        "mean_latency_ms": 5.0,
+        "q2_audit_passed": true
+      }
+    },
+    "q3_enhanced_directory": "sprints/sprint-20260808T023236665505Z/merged/solver-q3",
+    "q3_enhanced_directory_sha256": "0dd4b68fc5f0ad7b6a262add96bdcd416fa2ebb16afcaec63b9ae7d6ec5d166f",
+    "q3_status": "SUCCESS",
+    "q3_candidate": {
+      "name": "carbon_aware_storage_MILP",
+      "objective": "normalized cost + carbon + peak epigraph + curtailment + tiny throughput regularizer",
+      "terminal_rule": "SOC at window end >= SOC at window start; first window is >= global InitialSOC",
+      "binary_mode": true
+    },
+    "q3_scenarios": {
+      "peak_price_empirical": {
+        "price": 1.2,
+        "carbon": 1.0,
+        "renewable": 1.0,
+        "price_scope": "PricePeriod=Peak",
+        "derivation": "min(1.20,max(1.05,price_q90/price_q50))"
+      },
+      "high_carbon_empirical": {
+        "price": 1.0,
+        "carbon": 1.2,
+        "renewable": 1.0,
+        "carbon_scope": "observed carbon >= q75",
+        "derivation": "min(1.20,max(1.05,carbon_q90/carbon_q50))"
+      },
+      "renewable_low_empirical": {
+        "price": 1.0,
+        "carbon": 1.0,
+        "renewable": 0.85,
+        "renewable_scope": "all hours",
+        "derivation": "clip(renewable_q10/renewable_q50,0.85,0.95)"
+      },
+      "joint_stress": {
+        "price": 1.2,
+        "carbon": 1.2,
+        "renewable": 0.85,
+        "price_scope": "PricePeriod=Peak",
+        "carbon_scope": "observed carbon >= q75",
+        "renewable_scope": "all hours",
+        "derivation": "combined empirical-ratio probes"
+      }
+    },
+    "q3_scenario_observed_quantiles": {
+      "price_q50": 460.415,
+      "price_q90": 936.434,
+      "carbon_q50": 0.47795,
+      "carbon_q75": 0.5822,
+      "carbon_q90": 0.6248,
+      "renewable_q10": 510.22,
+      "renewable_q50": 800.0
+    },
+    "q3_excluded_probe": {
+      "label": "LP_full_cycle_scalability_probe",
+      "claim_eligible": false,
+      "reason": "mode integrality relaxed; simultaneous-cycling audit retained",
+      "audit_pass_regions": [
+        "RegionA",
+        "RegionB",
+        "RegionC",
+        "RegionD",
+        "RegionE"
+      ],
+      "audit_flagged_regions": [
+        "RegionF"
+      ]
+    },
+    "q4_pilot_directory": "sprints/sprint-20260807T210015466011Z/merged/solver-q4",
+    "q4_pilot_directory_sha256": "2b72059f04e8ef5955e753c91aba96e985310f5af556d988d66c3c0b0260d3f4",
+    "q4_pilot_status": "PASS",
+    "q4_pilot_scope": "bounded 24-hour integration using actual Q2 fallback schedule and Q3 regional storage MILP",
+    "q4_repaired_directory": "sprints/sprint-20260808T023235447353Z/merged/solver-q4",
+    "q4_repaired_directory_sha256": "7e1da447b5fc898737084acbbd2487eef535a24832af62a5f7b8f0d39bc9a14c",
+    "q4_repaired_status": "PASS",
+    "q4_repaired_hard_audits_passed": true,
+    "envelope_definition": "Each Q2 schedule is converted independently to hourly-average AI IT load by exact minute overlap, then combined with supplied NonAI_IT_Load_MW and regional PUE. Activity after hour 2399 belongs to Q2 closeout and is outside this bounded 72-hour Q4 horizon."
+  },
+  "scenario_definitions": [
+    {
+      "name": "observed",
+      "price": 1.0,
+      "carbon": 1.0,
+      "renewable": 1.0
+    },
+    {
+      "name": "peak_price_empirical",
+      "price": 1.2,
+      "carbon": 1.0,
+      "renewable": 1.0,
+      "price_scope": "PricePeriod=Peak",
+      "derivation": "min(1.20,max(1.05,price_q90/price_q50))"
+    },
+    {
+      "name": "high_carbon_empirical",
+      "price": 1.0,
+      "carbon": 1.2,
+      "renewable": 1.0,
+      "carbon_scope": "observed carbon >= q75",
+      "derivation": "min(1.20,max(1.05,carbon_q90/carbon_q50))"
+    },
+    {
+      "name": "renewable_low_empirical",
+      "price": 1.0,
+      "carbon": 1.0,
+      "renewable": 0.85,
+      "renewable_scope": "all hours",
+      "derivation": "clip(renewable_q10/renewable_q50,0.85,0.95)"
+    },
+    {
+      "name": "joint_stress",
+      "price": 1.2,
+      "carbon": 1.2,
+      "renewable": 0.85,
+      "price_scope": "PricePeriod=Peak",
+      "carbon_scope": "observed carbon >= q75",
+      "renewable_scope": "all hours",
+      "derivation": "combined empirical-ratio probes"
+    }
+  ],
+  "scenario_response_diagnostics": {
+    "observed": {
+      "candidate_operational_response_active": false,
+      "candidate_aggregate_metric_response_active": false,
+      "max_dispatch_change_vs_observed_MW": 0.0,
+      "aggregate_metric_deltas_vs_observed": {
+        "cost_CNY": 0.0,
+        "carbon_tCO2": 0.0,
+        "peak_net_import_MW": 0.0,
+        "renewable_utilization_ratio": 0.0
+      },
+      "candidate_grid_purchase_MWh": 0.0,
+      "candidate_system_positive_peak_MW": 0.0,
+      "interpretation": "No aggregate response relative to the observed scenario."
+    },
+    "peak_price_empirical": {
+      "candidate_operational_response_active": true,
+      "candidate_aggregate_metric_response_active": false,
+      "max_dispatch_change_vs_observed_MW": 239.99999999999977,
+      "aggregate_metric_deltas_vs_observed": {
+        "cost_CNY": 0.0,
+        "carbon_tCO2": 0.0,
+        "peak_net_import_MW": 0.0,
+        "renewable_utilization_ratio": 0.0
+      },
+      "candidate_grid_purchase_MWh": 0.0,
+      "candidate_system_positive_peak_MW": 0.0,
+      "interpretation": "Purchase-price stress is inactive on aggregate outcomes because the candidate makes no grid purchase; any dispatch difference is an alternative optimal storage pattern."
+    },
+    "high_carbon_empirical": {
+      "candidate_operational_response_active": false,
+      "candidate_aggregate_metric_response_active": false,
+      "max_dispatch_change_vs_observed_MW": 0.0,
+      "aggregate_metric_deltas_vs_observed": {
+        "cost_CNY": 0.0,
+        "carbon_tCO2": 0.0,
+        "peak_net_import_MW": 0.0,
+        "renewable_utilization_ratio": 0.0
+      },
+      "candidate_grid_purchase_MWh": 0.0,
+      "candidate_system_positive_peak_MW": 0.0,
+      "interpretation": "Carbon-intensity stress is inactive because the candidate makes no grid purchase in the observed-renewable envelope."
+    },
+    "renewable_low_empirical": {
+      "candidate_operational_response_active": true,
+      "candidate_aggregate_metric_response_active": true,
+      "max_dispatch_change_vs_observed_MW": 425.0,
+      "aggregate_metric_deltas_vs_observed": {
+        "cost_CNY": 1108495.4948769752,
+        "carbon_tCO2": 12.727595551265917,
+        "peak_net_import_MW": 64.29161039333337,
+        "renewable_utilization_ratio": 0.10278347161980173
+      },
+      "candidate_grid_purchase_MWh": 21.27029907999986,
+      "candidate_system_positive_peak_MW": 0.0,
+      "interpretation": "The scenario changes at least one reported aggregate candidate outcome."
+    },
+    "joint_stress": {
+      "candidate_operational_response_active": true,
+      "candidate_aggregate_metric_response_active": true,
+      "max_dispatch_change_vs_observed_MW": 423.467,
+      "aggregate_metric_deltas_vs_observed": {
+        "cost_CNY": 1108495.4948769752,
+        "carbon_tCO2": 15.273114661519099,
+        "peak_net_import_MW": 64.29161039333337,
+        "renewable_utilization_ratio": 0.10278347161980173
+      },
+      "candidate_grid_purchase_MWh": 21.27029907999986,
+      "candidate_system_positive_peak_MW": 0.0,
+      "interpretation": "The scenario changes at least one reported aggregate candidate outcome."
+    }
+  },
+  "closeout_boundary_diagnostics": {
+    "candidate_spill_task_count": 92,
+    "baseline_spill_task_count": 69,
+    "candidate_excluded_ai_energy_MWh": 2357.9273333333335,
+    "baseline_excluded_ai_energy_MWh": 663.9136666666665,
+    "interpretation": "The 72-hour comparison intentionally follows the fixed Q2 schedules. Different closeout spill means the reported bundle delta combines task-timing and storage effects and is not a storage-only treatment effect."
+  },
+  "system_peak_coordination": {
+    "active_scenarios": [],
+    "inactive_scenarios": [
+      "observed",
+      "peak_price_empirical",
+      "high_carbon_empirical",
+      "renewable_low_empirical",
+      "joint_stress"
+    ],
+    "interpretation": "The linked peak epigraph is zero because the candidate system has no positive aggregate net import in any tested hour. No nonzero shadow or penalty signal was forced."
+  },
+  "solver_records": {
+    "observed": {
+      "success": true,
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "runtime_s": 0.3201191000043764,
+      "mip_gap": 0.0,
+      "mip_node_count": 1,
+      "objective": -0.12705817998616833,
+      "solver_mode": "integrated_binary_MILP",
+      "system_peak_variable_MW": 0.0,
+      "system_peak_net_import_MW": -231.37011085333347
+    },
+    "peak_price_empirical": {
+      "success": true,
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "runtime_s": 0.25333210000098916,
+      "mip_gap": 2.2863433750001054e-16,
+      "mip_node_count": 1,
+      "objective": -0.12139723157562732,
+      "solver_mode": "integrated_binary_MILP",
+      "system_peak_variable_MW": 0.0,
+      "system_peak_net_import_MW": -231.37011085333347
+    },
+    "high_carbon_empirical": {
+      "success": true,
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "runtime_s": 0.3037996999992174,
+      "mip_gap": 0.0,
+      "mip_node_count": 1,
+      "objective": -0.12705817998616833,
+      "solver_mode": "integrated_binary_MILP",
+      "system_peak_variable_MW": 0.0,
+      "system_peak_net_import_MW": -231.37011085333347
+    },
+    "renewable_low_empirical": {
+      "success": true,
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "runtime_s": 0.4197335999997449,
+      "mip_gap": 0.0,
+      "mip_node_count": 33,
+      "objective": -0.11842099588086046,
+      "solver_mode": "integrated_binary_MILP",
+      "system_peak_variable_MW": 0.0,
+      "system_peak_net_import_MW": -167.0785004600001
+    },
+    "joint_stress": {
+      "success": true,
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "runtime_s": 0.4104107999955886,
+      "mip_gap": 0.0,
+      "mip_node_count": 32,
+      "objective": -0.11321808618173254,
+      "solver_mode": "integrated_binary_MILP",
+      "system_peak_variable_MW": 0.0,
+      "system_peak_net_import_MW": -167.0785004600001
+    }
+  },
+  "aggregate_comparison": [
+    {
+      "scenario": "observed",
+      "candidate_method": "Q2_candidate_plus_integrated_storage_MILP",
+      "baseline_method": "Q2_FIFO_plus_no_storage_renewable_first",
+      "candidate_cost_CNY": -13525112.631222378,
+      "baseline_cost_CNY": -12772001.97937427,
+      "cost_delta_CNY": -753110.6518481076,
+      "cost_delta_ratio": -0.05896574813128898,
+      "candidate_carbon_tCO2": 0.0,
+      "baseline_carbon_tCO2": 0.0,
+      "carbon_delta_tCO2": 0.0,
+      "carbon_delta_ratio": 0.0,
+      "candidate_peak_net_import_MW": -231.37011085333347,
+      "baseline_peak_net_import_MW": -294.5922995800001,
+      "peak_delta_MW": 63.222188726666616,
+      "candidate_system_peak_variable_MW": 0.0,
+      "candidate_renewable_utilization_ratio": 0.6805706933700887,
+      "baseline_renewable_utilization_ratio": 0.6774569242438947,
+      "renewable_utilization_delta": 0.003113769126193988,
+      "candidate_system_net_import_std_MW": 65.18149515024639,
+      "baseline_system_net_import_std_MW": 100.55115024486014,
+      "candidate_task_completion_rate": 1.0,
+      "baseline_task_completion_rate": 1.0,
+      "candidate_SLA_violation_rate": 0.0,
+      "baseline_SLA_violation_rate": 0.0,
+      "candidate_mean_latency_ms": 9.032974001268231,
+      "baseline_mean_latency_ms": 5.0
+    },
+    {
+      "scenario": "peak_price_empirical",
+      "candidate_method": "Q2_candidate_plus_integrated_storage_MILP",
+      "baseline_method": "Q2_FIFO_plus_no_storage_renewable_first",
+      "candidate_cost_CNY": -13525112.631222378,
+      "baseline_cost_CNY": -12772001.97937427,
+      "cost_delta_CNY": -753110.6518481076,
+      "cost_delta_ratio": -0.05896574813128898,
+      "candidate_carbon_tCO2": 0.0,
+      "baseline_carbon_tCO2": 0.0,
+      "carbon_delta_tCO2": 0.0,
+      "carbon_delta_ratio": 0.0,
+      "candidate_peak_net_import_MW": -231.37011085333347,
+      "baseline_peak_net_import_MW": -294.5922995800001,
+      "peak_delta_MW": 63.222188726666616,
+      "candidate_system_peak_variable_MW": 0.0,
+      "candidate_renewable_utilization_ratio": 0.6805706933700887,
+      "baseline_renewable_utilization_ratio": 0.6774569242438947,
+      "renewable_utilization_delta": 0.003113769126193988,
+      "candidate_system_net_import_std_MW": 65.18149515024639,
+      "baseline_system_net_import_std_MW": 100.55115024486014,
+      "candidate_task_completion_rate": 1.0,
+      "baseline_task_completion_rate": 1.0,
+      "candidate_SLA_violation_rate": 0.0,
+      "baseline_SLA_violation_rate": 0.0,
+      "candidate_mean_latency_ms": 9.032974001268231,
+      "baseline_mean_latency_ms": 5.0
+    },
+    {
+      "scenario": "high_carbon_empirical",
+      "candidate_method": "Q2_candidate_plus_integrated_storage_MILP",
+      "baseline_method": "Q2_FIFO_plus_no_storage_renewable_first",
+      "candidate_cost_CNY": -13525112.631222378,
+      "baseline_cost_CNY": -12772001.97937427,
+      "cost_delta_CNY": -753110.6518481076,
+      "cost_delta_ratio": -0.05896574813128898,
+      "candidate_carbon_tCO2": 0.0,
+      "baseline_carbon_tCO2": 0.0,
+      "carbon_delta_tCO2": 0.0,
+      "carbon_delta_ratio": 0.0,
+      "candidate_peak_net_import_MW": -231.37011085333347,
+      "baseline_peak_net_import_MW": -294.5922995800001,
+      "peak_delta_MW": 63.222188726666616,
+      "candidate_system_peak_variable_MW": 0.0,
+      "candidate_renewable_utilization_ratio": 0.6805706933700887,
+      "baseline_renewable_utilization_ratio": 0.6774569242438947,
+      "renewable_utilization_delta": 0.003113769126193988,
+      "candidate_system_net_import_std_MW": 65.18149515024639,
+      "baseline_system_net_import_std_MW": 100.55115024486014,
+      "candidate_task_completion_rate": 1.0,
+      "baseline_task_completion_rate": 1.0,
+      "candidate_SLA_violation_rate": 0.0,
+      "baseline_SLA_violation_rate": 0.0,
+      "candidate_mean_latency_ms": 9.032974001268231,
+      "baseline_mean_latency_ms": 5.0
+    },
+    {
+      "scenario": "renewable_low_empirical",
+      "candidate_method": "Q2_candidate_plus_integrated_storage_MILP",
+      "baseline_method": "Q2_FIFO_plus_no_storage_renewable_first",
+      "candidate_cost_CNY": -12416617.136345403,
+      "baseline_cost_CNY": -10733122.759228751,
+      "cost_delta_CNY": -1683494.3771166522,
+      "cost_delta_ratio": -0.15685037941722219,
+      "candidate_carbon_tCO2": 12.727595551265917,
+      "baseline_carbon_tCO2": 201.8361019104146,
+      "carbon_delta_tCO2": -189.1085063591487,
+      "carbon_delta_ratio": -0.936940936577763,
+      "candidate_peak_net_import_MW": -167.0785004600001,
+      "baseline_peak_net_import_MW": 39.57579913333319,
+      "peak_delta_MW": -206.6542995933333,
+      "candidate_system_peak_variable_MW": 0.0,
+      "candidate_renewable_utilization_ratio": 0.7833541649898904,
+      "baseline_renewable_utilization_ratio": 0.7717736702695511,
+      "renewable_utilization_delta": 0.011580494720339285,
+      "candidate_system_net_import_std_MW": 148.5603810824777,
+      "baseline_system_net_import_std_MW": 210.77968624293044,
+      "candidate_task_completion_rate": 1.0,
+      "baseline_task_completion_rate": 1.0,
+      "candidate_SLA_violation_rate": 0.0,
+      "baseline_SLA_violation_rate": 0.0,
+      "candidate_mean_latency_ms": 9.032974001268231,
+      "baseline_mean_latency_ms": 5.0
+    },
+    {
+      "scenario": "joint_stress",
+      "candidate_method": "Q2_candidate_plus_integrated_storage_MILP",
+      "baseline_method": "Q2_FIFO_plus_no_storage_renewable_first",
+      "candidate_cost_CNY": -12416617.136345403,
+      "baseline_cost_CNY": -10733122.759228751,
+      "cost_delta_CNY": -1683494.3771166522,
+      "cost_delta_ratio": -0.15685037941722219,
+      "candidate_carbon_tCO2": 15.273114661519099,
+      "baseline_carbon_tCO2": 240.8805535575944,
+      "carbon_delta_tCO2": -225.6074388960753,
+      "carbon_delta_ratio": -0.9365946547533681,
+      "candidate_peak_net_import_MW": -167.0785004600001,
+      "baseline_peak_net_import_MW": 39.57579913333319,
+      "peak_delta_MW": -206.6542995933333,
+      "candidate_system_peak_variable_MW": 0.0,
+      "candidate_renewable_utilization_ratio": 0.7833541649898904,
+      "baseline_renewable_utilization_ratio": 0.7717736702695511,
+      "renewable_utilization_delta": 0.011580494720339285,
+      "candidate_system_net_import_std_MW": 148.5603810824777,
+      "baseline_system_net_import_std_MW": 210.77968624293044,
+      "candidate_task_completion_rate": 1.0,
+      "baseline_task_completion_rate": 1.0,
+      "candidate_SLA_violation_rate": 0.0,
+      "baseline_SLA_violation_rate": 0.0,
+      "candidate_mean_latency_ms": 9.032974001268231,
+      "baseline_mean_latency_ms": 5.0
+    }
+  ],
+  "risk_probes": {
+    "all_hard_constraint_audits_passed": true,
+    "candidate_and_fifo_envelopes_built_independently": true,
+    "exact_minute_overlap_used": true,
+    "charge_discharge_binary_mutex_checked": true,
+    "grid_import_export_binary_mutex_checked": true,
+    "terminal_soc_equality_checked": true,
+    "system_hour_peak_linkage_checked": true,
+    "q3_relaxed_full_cycle_probe_used_for_claims": false,
+    "closeout_spill_energy_recorded": true,
+    "effect_attribution_is_sequential_bundle": true
+  },
+  "claim_proposals": [
+    {
+      "id": "Q4-FINAL-P1",
+      "text": "Across the bounded 72-hour observed and Q3-derived stress scenarios, the integrated six-region storage MILP satisfied every audited SOC, energy-balance, binary-mutex, grid-cap, terminal-SOC, and system-peak-linkage constraint.",
+      "status": "proposal_only"
+    },
+    {
+      "id": "Q4-FINAL-P2",
+      "text": "In the observed 72-hour window, net operating cost was -13525112.63 CNY versus -12772001.98 CNY (delta -753110.65 CNY); grid-purchase carbon was zero for both. The positive-part system peak was zero for both, while signed maximum net import was -231.3701 MW versus -294.5923 MW. This bounded bundle delta includes both upstream task timing and storage dispatch effects.",
+      "status": "proposal_only"
+    }
+  ],
+  "limitations": [
+    "The 72-hour representative window is not evidence of full 0-2400 h optimality.",
+    "Q2 candidate and FIFO schedules are fixed rather than jointly re-optimized with storage.",
+    "Q2 tasks that continue after hour 2399 are recorded as closeout spill and excluded from this bounded horizon.",
+    "No physical inter-region power flow, migration-energy, or network-traffic model is introduced.",
+    "The Q3 full-cycle LP scalability probe is explicitly excluded because RegionF failed the simultaneous-cycling audit.",
+    "Formal claim freezing and paper inclusion remain root-agent decisions."
+  ]
+}

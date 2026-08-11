@@ -1,0 +1,349 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2023-b-b23100070173",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2023,
+    "problem": "B",
+    "team_id": "",
+    "title": "中国研究生创新实践系列大赛"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2023%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/B/B23100070173.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2023年优秀论文/B/B23100070173.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2023,
+    "problem": "B",
+    "team_id": "",
+    "title": "中国研究生创新实践系列大赛",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "49bb7b3ca5c8350b5183e4222dc2d46bf1682dfb0df499206fdc483ebb02717c",
+    "pages": 49,
+    "local_path": "corpus/raw/objects/sha256/49/49bb7b3ca5c8350b5183e4222dc2d46bf1682dfb0df499206fdc483ebb02717c.pdf",
+    "first_page_phash": "aeae70b090d00000",
+    "text_sha256": "4fe6e2c5e8fe8595893f88e08d66a961868a02fbe427256aa619841676734ffd"
+  },
+  "review_status": "content_extracted",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括”的组织结构。",
+      "derivation": "text",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：题。本文考虑用若干个矩阵连乘的方式拟合逼近 DFT 矩阵，以最小化拟合损失为优化目",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：问题一考虑了矩阵稀疏性约束。本文给出对角矩阵拟合、截尾奇异值分解拟合、Cooley",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：Tukey 2. 分解共四种求解方案。对角矩阵、截尾奇异值分解拟合方案简",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：单直观，通过提取矩阵的部分元素作为原矩阵的近似，但拟合 RMSE 性能不佳。Cooley",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：法性能最优。此外，本文讨论了缩放因子 β 在目标函数中放置位置的影响，仿真验证了其",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：值分解的整数映射算法受误差积累的影响较大。",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-02.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：3 . 3 . 2 方案性能对比与分析 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18",
+      "derivation": "text",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-04.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：分解和改进 Wingrad",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：Tukey 与改进 Wingrad 方案给出 DFT 矩阵的闭式解分解公式，拟合 RMSE 为 0，且在矩阵",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-02.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "题。本文考虑用若干个矩阵连乘的方式拟合逼近 DFT 矩阵，以最小化拟合损失为优化目",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "问题一考虑了矩阵稀疏性约束。本文给出对角矩阵拟合、截尾奇异值分解拟合、Cooley",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "Tukey 2. 分解共四种求解方案。对角矩阵、截尾奇异值分解拟合方案简",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "单直观，通过提取矩阵的部分元素作为原矩阵的近似，但拟合 RMSE 性能不佳。Cooley",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 2,
+      "description": "Tukey 与改进 Wingrad 方案给出 DFT 矩阵的闭式解分解公式，拟合 RMSE 为 0，且在矩阵",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 6,
+      "page": 2,
+      "description": "维数 N 不超过 8 时实现复杂度 C 为 0。综合拟合精度与复杂度两项指标，改进 Wingrad 算",
+      "locator": "PDF p.2"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "法性能最优。此外，本文讨论了缩放因子 β 在目标函数中放置位置的影响，仿真验证了其",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "值分解的整数映射算法受误差积累的影响较大。",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 4,
+      "description": "3 . 3 . 2 方案性能对比与分析 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18",
+      "locator": "PDF p.4"
+    },
+    {
+      "step": 4,
+      "page": 4,
+      "description": "4 . 3 方案性能对比与分析 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28",
+      "locator": "PDF p.4"
+    },
+    {
+      "step": 5,
+      "page": 5,
+      "description": "5 . 3 . 2 方案性能对比与分析 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35",
+      "locator": "PDF p.5"
+    }
+  ],
+  "figures": [
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "thogonal Frequency Division Multiplexing，OFDM) 系统的时频域变换，如图1.1所示。",
+      "lesson": "图题“thogonal Frequency Division Multiplexing，OFDM) 系统的时频域变换，如图1.1所示。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-06.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 6,
+      "role": "model explanation",
+      "chart_type": "flowchart",
+      "caption": "图 1.1 OFDM 系统流程图",
+      "lesson": "图题“图 1.1 OFDM 系统流程图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-06.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "域降噪，如图1.2所示。",
+      "lesson": "图题“域降噪，如图1.2所示。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-06.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 6,
+      "role": "model explanation",
+      "chart_type": "flowchart",
+      "caption": "图 1.2 信道估计处理流程",
+      "lesson": "图题“图 1.2 信道估计处理流程”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-06.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 19,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图3.1给出了上述 4 种算法在给定不同 N 时的性能对比。首先我们聚焦于 RMSE。可",
+      "lesson": "图题“图3.1给出了上述 4 种算法在给定不同 N 时的性能对比。首先我们聚焦于 RMSE。可”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.19",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-19.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 20,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 3.1 4 种算法在不同 N 情况下的性能对比",
+      "lesson": "图题“图 3.1 4 种算法在不同 N 情况下的性能对比”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.20",
+      "render": "corpus/rendered/cumcm-2023-b-b23100070173/pages/page-20.jpg",
+      "visual_checked": false
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 6
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 2
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "全页已渲染，但接触表尚未完成逐页人工视觉确认。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "git_blob_sha": "ed16207fc726dfb04951087621e1b7edb27a41cb",
+    "bytes": 1175715,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2023-b-b23100070173/extracted-layout.txt",
+      "sha256": "4fe6e2c5e8fe8595893f88e08d66a961868a02fbe427256aa619841676734ffd",
+      "extracted_pages": 49,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 49,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2023-b-b23100070173/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2023-b-b23100070173/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2023-b-b23100070173/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2023-b-b23100070173/contact-25-32.jpg",
+        "corpus/rendered/cumcm-2023-b-b23100070173/contact-33-40.jpg",
+        "corpus/rendered/cumcm-2023-b-b23100070173/contact-41-48.jpg",
+        "corpus/rendered/cumcm-2023-b-b23100070173/contact-49-49.jpg"
+      ],
+      "visual_review": "pending"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

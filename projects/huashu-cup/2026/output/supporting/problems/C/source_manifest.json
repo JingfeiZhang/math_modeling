@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "project_id": "huashu-cup-2026",
+  "problem": "C",
+  "files": [
+    {
+      "path": "problems/_official/ai-usage-rules.pdf",
+      "size_bytes": 146000,
+      "sha256": "b3f4a1bcc86a80724b313b9690a59e9fb9ab157780591d3321b0c4d953bd31dc"
+    },
+    {
+      "path": "problems/_official/commitment.docx",
+      "size_bytes": 2437329,
+      "sha256": "9540d4cfb10bd9e44d65223e80bb91475268b0fad354b8ef1c44cec8d0d5ce3f"
+    },
+    {
+      "path": "problems/_official/format-rules.pdf",
+      "size_bytes": 341577,
+      "sha256": "7aa7cc14ad61819a2b30444a6283dc6dba170dcd69c1232bc1b3be19f1ab4e22"
+    },
+    {
+      "path": "problems/_official/paper-template.docx",
+      "size_bytes": 14176,
+      "sha256": "4edf51dbcdb27f842209a54e9becad5e1c7308cbec3a6d7f0edf0dbe860fc07c"
+    },
+    {
+      "path": "problems/C/source/attachment-1.docx",
+      "size_bytes": 35709,
+      "sha256": "e3e15318a42bd51cce1976f6ab5c46fddf796bf99f97b5a592cccf104bb7b10a"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "size_bytes": 185276,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "problems/C/data/GPU_information.xlsx",
+      "size_bytes": 12226,
+      "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+    },
+    {
+      "path": "problems/C/data/network_latency.xlsx",
+      "size_bytes": 13544,
+      "sha256": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157"
+    },
+    {
+      "path": "problems/C/data/power_mapping.xlsx",
+      "size_bytes": 10547,
+      "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "size_bytes": 2845390,
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/storage_information.xlsx",
+      "size_bytes": 11766,
+      "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+    },
+    {
+      "path": "problems/C/data/workload_trace.xlsx",
+      "size_bytes": 3496931,
+      "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+    }
+  ]
+}

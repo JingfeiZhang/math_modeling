@@ -1,0 +1,170 @@
+{
+  "comparison_vs_fifo": {
+    "baseline_carbon_tco2": 2893907.676691789,
+    "baseline_cost_cny": 3359955010.883479,
+    "baseline_mean_latency_ms": 5.06846,
+    "baseline_renewable_utilization_ratio": 0.5639843246979327,
+    "candidate_carbon_tco2": 2838075.5957927215,
+    "candidate_cost_cny": 3325853571.1277695,
+    "candidate_mean_latency_ms": 9.25822,
+    "candidate_renewable_utilization_ratio": 0.5632028060338388,
+    "carbon_change_pct": -1.929297238773453,
+    "cost_change_pct": -1.0149373918772464,
+    "latency_change_ms": 4.18976
+  },
+  "evidence_type": "pinned-full-horizon-compatibility-summary",
+  "feasibility": {
+    "all_hard_audits_passed": true,
+    "baseline_hard_audit_passed": true,
+    "baseline_schedule": {
+      "closeout_end_at_or_before_hour_2406": true,
+      "duplicate_task_count": 0,
+      "maximum_arrival_hour": 2399,
+      "maximum_end_minute": 144336,
+      "method": "fifo_latency_feasible_local_first",
+      "minimum_arrival_hour": 0,
+      "minimum_start_minute": 0,
+      "row_count": 50000,
+      "seed": 20260801,
+      "source_method_label": "full_horizon_FIFO_latency_feasible_local_first",
+      "unique_task_count": 50000
+    },
+    "candidate_completion_rate": 1.0,
+    "candidate_hard_audit_passed": true,
+    "candidate_schedule": {
+      "closeout_end_at_or_before_hour_2406": true,
+      "duplicate_task_count": 0,
+      "maximum_arrival_hour": 2399,
+      "maximum_end_minute": 144360,
+      "method": "fixed_weight_bounded_rolling_local_exchange_heuristic",
+      "minimum_arrival_hour": 0,
+      "minimum_start_minute": 0,
+      "row_count": 50000,
+      "seed": 20260801,
+      "source_method_label": "full_horizon_rolling_shadow_exchange::lagrangian_balanced",
+      "unique_task_count": 50000
+    },
+    "candidate_sla_violation_rate": 0.0
+  },
+  "interpretation_limits": [
+    "bounded deterministic one-pass exchange; no global, MILP-optimal, or full joint-system optimality claim",
+    "The fixed-weight bounded rolling option search is a deterministic one-pass local exchange heuristic, not a Lagrangian or global optimization method.",
+    "The latency comparison uses the supplied static matrix and excludes congestion, transfer energy, and migration fees.",
+    "Q2 does not dispatch storage or renewable export, so RenewableCharge_MW and GridSell_MW are zero in the attachment-defined utilization ratio; those decisions belong to Q3 and Q4."
+  ],
+  "methods": {
+    "baseline": "fifo_latency_feasible_local_first",
+    "baseline_source_label": "full_horizon_FIFO_latency_feasible_local_first",
+    "fallback_name": "exact_minute_scan_unresolved_flexible_task",
+    "fallback_trigger": "hour_grid_unresolved_flexible_task",
+    "fallback_triggered": false,
+    "main": "fixed_weight_bounded_rolling_local_exchange_heuristic",
+    "main_source_label": "full_horizon_rolling_shadow_exchange::lagrangian_balanced",
+    "same_constraints": true,
+    "same_input": true,
+    "same_output_class": true
+  },
+  "problem_id": "C",
+  "question_id": "Q2",
+  "renewable_accounting": {
+    "audit_artifact": "experiments/C/Q2/q2-full-compat-20260808/q2_renewable_metric_audit.json",
+    "baseline": {
+      "accounting_residual_mwh": -9.872019290924072e-08,
+      "available_renewable_mwh": 11545068.36,
+      "curtailment_mwh": 5033830.777394029,
+      "direct_renewable_use_mwh": 6511237.582606069,
+      "grid_sell_mwh": 0.0,
+      "renewable_charge_mwh": 0.0,
+      "renewable_utilization_ratio": 0.5639843246979327
+    },
+    "boundary": {
+      "Curtailment_MW": "available renewable minus direct use under the Q2 boundary",
+      "GridSell_MW": "0 because Q2 does not dispatch renewable export",
+      "RenewableCharge_MW": "0 because Q2 does not dispatch storage"
+    },
+    "candidate": {
+      "accounting_residual_mwh": -1.862645149230957e-08,
+      "available_renewable_mwh": 11545068.36,
+      "curtailment_mwh": 5042853.46379553,
+      "direct_renewable_use_mwh": 6502214.896204488,
+      "grid_sell_mwh": 0.0,
+      "renewable_charge_mwh": 0.0,
+      "renewable_utilization_ratio": 0.5632028060338388
+    },
+    "definition": "(direct renewable use + renewable charging + renewable export) / available renewable energy",
+    "hourly_artifact": "experiments/C/Q2/q2-full-compat-20260808/q2_renewable_accounting.csv",
+    "legacy_values_invalidated": {
+      "baseline": 0.9999944220444682,
+      "candidate": 0.9992043662036217,
+      "reason": "legacy denominator was facility energy rather than available renewable energy"
+    }
+  },
+  "robustness": {
+    "all_blocks_complete": true,
+    "all_blocks_zero_sla_violation": true,
+    "deterministic_replay_passed": true,
+    "fixed_schedule_stress_probe_count": 8,
+    "maximum_block_carbon_change_pct": -1.8692647718898003,
+    "maximum_block_cost_change_pct": -0.9104543588893899,
+    "minimum_block_carbon_change_pct": -2.0231818682363345,
+    "minimum_block_cost_change_pct": -1.0947051308975775,
+    "operation_block_count": 6,
+    "stress_probe_interpretation": "Fixed-schedule perturbations measure headroom exposure only; failed perturbed capacity probes do not invalidate feasibility under the supplied inputs."
+  },
+  "schema_version": 1,
+  "scope": {
+    "arrival_end_hour": 2399,
+    "arrival_start_hour": 0,
+    "closeout_end_hour_exclusive": 2406,
+    "closeout_start_hour": 2400,
+    "input_task_count": 50000,
+    "region_count": 6
+  },
+  "sources": [
+    {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_baseline_schedule.csv",
+      "sha256": "172d45d624d85f7cf7558606e551f7dee275ab726236c6b933b39d6282df370a"
+    },
+    {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_block_robustness.csv",
+      "sha256": "2ac7d8a6da49d09319359317931371b7f16c7f9e872a81f2d64a11e58dfdbaa4"
+    },
+    {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_candidate_schedule.csv",
+      "sha256": "d04a57ba3cd830c771bd97fe7a9f0efa62e97978139dbcfd094cc0f098ebad54"
+    },
+    {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_claim_proposals.json",
+      "sha256": "c46b83127d677bd0450f4b7f71d7a256907ea659c31a3d9e210c92feb972fc09"
+    },
+    {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_constraint_audit.json",
+      "sha256": "5828246813e019dfa0a49226a37eca61bc7ed6ee3a4c7d2eefe44ce5994b06aa"
+    },
+    {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_exchange_log.csv",
+      "sha256": "6bc223a7e692b799a871ee7433413d89516cf6d78d06d61a77e933d8bd2bcd56"
+    },
+    {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_hourly_profiles.csv",
+      "sha256": "129c23e73ed9d0ec7398f1a787d9426f0a8d54851a9153f3f96741871404dd47"
+    },
+    {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_risk_probes.csv",
+      "sha256": "a92c7ce125292aba537fe4b9ff37c234745f5d1e78f0189cd8329875fa3a7b47"
+    },
+    {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_run_manifest.json",
+      "sha256": "b6b6f96959c8c6af6561c9866c1ec3f5f29d3b0061ab375bdd4a11e3a62e570d"
+    },
+    {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_summary.json",
+      "sha256": "68f503df0646e34d9e76680b5c104c3720a5af443c662ba32427299ee02f8cb1"
+    },
+    {
+      "path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/run_q2_full_horizon.py",
+      "sha256": "6a39aa6eb6802a73057ae78528b18775ba2181924b7bb4fa8ad263f0214ce45f"
+    }
+  ],
+  "status": "PASS"
+}

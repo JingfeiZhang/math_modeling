@@ -1,0 +1,24 @@
+{
+  "status": "OPTIMAL",
+  "wall_time_seconds": 0.06614629999967292,
+  "selected_task_count": 12,
+  "selected_task_ids": [
+    9572,
+    14419,
+    14619,
+    17673,
+    19289,
+    22175,
+    27509,
+    36680,
+    38894,
+    43423,
+    46184,
+    46424
+  ],
+  "num_conflicts": 0,
+  "num_branches": 419,
+  "objective": 60.0,
+  "best_bound": 60.0,
+  "optimality_gap": 0.0
+}

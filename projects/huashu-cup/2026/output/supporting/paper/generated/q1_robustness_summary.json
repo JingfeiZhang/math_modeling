@@ -1,0 +1,1208 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T130848306634Z",
+  "problem_id": "C",
+  "question_id": "Q1",
+  "generated_at_utc": "2026-08-07T15:53:09.200555+00:00",
+  "seed": 20260801,
+  "overall_status": "PASS",
+  "forecast": {
+    "status": "PASS",
+    "source_files": [
+      "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\blind_test_predictions.csv",
+      "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\rolling_backtest_predictions.csv",
+      "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\metrics_summary.json"
+    ],
+    "checks": {
+      "required_columns": true,
+      "blind_hours_2376_2399_only": true,
+      "rolling_hours_0_2399": true,
+      "blind_rows_24x18": true,
+      "blind_has_18_series": true,
+      "all_numeric_fields_finite": true,
+      "blind_excluded_from_selection": true,
+      "coherence_error_small": true
+    },
+    "blind_coverage": {
+      "main": 0.9467592592592593,
+      "baseline": 0.9490740740740741,
+      "nominal": 0.95
+    },
+    "rolling_backtest": {
+      "seasonal_baseline": {
+        "macro_mae_gpu_h": 127.73531057098765,
+        "macro_rmse_gpu_h": 179.2544256483392,
+        "macro_wape": 1.34879555755791,
+        "macro_mase_24h": 0.9967693844863388,
+        "system_weighted_mae_gpu_h": 127.73531057098764,
+        "system_weighted_rmse_gpu_h": 276.5625224085109,
+        "system_weighted_wape": 1.0804751689966312
+      },
+      "shared_hgbr_reconciled": {
+        "macro_mae_gpu_h": 111.2639075129598,
+        "macro_rmse_gpu_h": 150.97446868501075,
+        "macro_wape": 1.2022271711477164,
+        "macro_mase_24h": 0.8852738871466639,
+        "system_weighted_mae_gpu_h": 111.26390751295983,
+        "system_weighted_rmse_gpu_h": 236.31516611574824,
+        "system_weighted_wape": 0.9411484478012123
+      }
+    },
+    "sparse_series": [
+      {
+        "region": "RegionF",
+        "task_type": "RealTimeInference",
+        "n_hours": 24,
+        "actual_gpu_h": 63.6166666666,
+        "main_wape": 1.9267915986276414,
+        "baseline_wape": 2.337437778362418,
+        "main_coverage": 0.9583333333333334
+      },
+      {
+        "region": "RegionD",
+        "task_type": "RealTimeInference",
+        "n_hours": 24,
+        "actual_gpu_h": 76.2999999999,
+        "main_wape": 1.6007955327334218,
+        "baseline_wape": 1.3077763215390665,
+        "main_coverage": 0.9166666666666666
+      },
+      {
+        "region": "RegionE",
+        "task_type": "RealTimeInference",
+        "n_hours": 24,
+        "actual_gpu_h": 89.03333333329999,
+        "main_wape": 1.3164212267975726,
+        "baseline_wape": 2.386746536877345,
+        "main_coverage": 0.9166666666666666
+      },
+      {
+        "region": "RegionC",
+        "task_type": "RealTimeInference",
+        "n_hours": 24,
+        "actual_gpu_h": 512.85,
+        "main_wape": 1.061620511492444,
+        "baseline_wape": 1.0815053134450618,
+        "main_coverage": 0.9583333333333334
+      },
+      {
+        "region": "RegionB",
+        "task_type": "RealTimeInference",
+        "n_hours": 24,
+        "actual_gpu_h": 550.7666666665,
+        "main_wape": 1.0517978563713164,
+        "baseline_wape": 0.5776795981356223,
+        "main_coverage": 0.9583333333333334
+      },
+      {
+        "region": "RegionA",
+        "task_type": "RealTimeInference",
+        "n_hours": 24,
+        "actual_gpu_h": 731.3166666666,
+        "main_wape": 0.8426076162943862,
+        "baseline_wape": 1.1766220743407259,
+        "main_coverage": 0.9166666666666666
+      },
+      {
+        "region": "RegionF",
+        "task_type": "BatchInference",
+        "n_hours": 24,
+        "actual_gpu_h": 733.7666666667,
+        "main_wape": 1.3600054426526436,
+        "baseline_wape": 1.872666151819158,
+        "main_coverage": 1.0
+      },
+      {
+        "region": "RegionC",
+        "task_type": "BatchInference",
+        "n_hours": 24,
+        "actual_gpu_h": 953.5833333333001,
+        "main_wape": 0.8727075712420475,
+        "baseline_wape": 1.3085204928779623,
+        "main_coverage": 1.0
+      },
+      {
+        "region": "RegionC",
+        "task_type": "AITraining",
+        "n_hours": 24,
+        "actual_gpu_h": 1423.15,
+        "main_wape": 2.1210192921878925,
+        "baseline_wape": 2.3291641780557213,
+        "main_coverage": 1.0
+      },
+      {
+        "region": "RegionA",
+        "task_type": "AITraining",
+        "n_hours": 24,
+        "actual_gpu_h": 1427.7999999999001,
+        "main_wape": 1.7514440236478324,
+        "baseline_wape": 1.3852547042069185,
+        "main_coverage": 0.9583333333333334
+      },
+      {
+        "region": "RegionE",
+        "task_type": "BatchInference",
+        "n_hours": 24,
+        "actual_gpu_h": 1493.65,
+        "main_wape": 0.7987099805521373,
+        "baseline_wape": 0.9748044499492519,
+        "main_coverage": 0.9583333333333334
+      },
+      {
+        "region": "RegionA",
+        "task_type": "BatchInference",
+        "n_hours": 24,
+        "actual_gpu_h": 1749.0166666668,
+        "main_wape": 0.8662659116831274,
+        "baseline_wape": 1.094300607007778,
+        "main_coverage": 0.9583333333333334
+      },
+      {
+        "region": "RegionD",
+        "task_type": "BatchInference",
+        "n_hours": 24,
+        "actual_gpu_h": 1973.1833333332,
+        "main_wape": 0.9461051900944968,
+        "baseline_wape": 1.326764703398152,
+        "main_coverage": 0.9583333333333334
+      },
+      {
+        "region": "RegionB",
+        "task_type": "BatchInference",
+        "n_hours": 24,
+        "actual_gpu_h": 2082.0999999999003,
+        "main_wape": 0.8585724531266922,
+        "baseline_wape": 0.656036373533147,
+        "main_coverage": 1.0
+      },
+      {
+        "region": "RegionB",
+        "task_type": "AITraining",
+        "n_hours": 24,
+        "actual_gpu_h": 2227.35,
+        "main_wape": 1.569157137690619,
+        "baseline_wape": 1.888836509753788,
+        "main_coverage": 0.8333333333333334
+      },
+      {
+        "region": "RegionD",
+        "task_type": "AITraining",
+        "n_hours": 24,
+        "actual_gpu_h": 11196.266666666499,
+        "main_wape": 1.1302675006616512,
+        "baseline_wape": 1.4530989496499287,
+        "main_coverage": 0.9166666666666666
+      },
+      {
+        "region": "RegionE",
+        "task_type": "AITraining",
+        "n_hours": 24,
+        "actual_gpu_h": 15742.800000000101,
+        "main_wape": 0.7413045773332777,
+        "baseline_wape": 0.806099719660195,
+        "main_coverage": 0.9583333333333334
+      },
+      {
+        "region": "RegionF",
+        "task_type": "AITraining",
+        "n_hours": 24,
+        "actual_gpu_h": 16960.216666666798,
+        "main_wape": 0.5872961477582158,
+        "baseline_wape": 0.6695737967183957,
+        "main_coverage": 0.875
+      }
+    ],
+    "interpretation": "Sparse-series WAPE is denominator-sensitive; report macro and system-weighted metrics together."
+  },
+  "scheduling_nominal": {
+    "status": "PASS",
+    "checks": [
+      {
+        "schedule": "optimized",
+        "check": "all_final_task_ids_exactly_once",
+        "passed": true,
+        "expected": 538,
+        "observed": 538,
+        "missing": [],
+        "extra": [],
+        "duplicates": 0
+      },
+      {
+        "schedule": "optimized",
+        "check": "all_schedule_ids_unique",
+        "passed": true,
+        "duplicates": 0
+      },
+      {
+        "schedule": "optimized",
+        "check": "task_interval_sla_latency_boundary",
+        "passed": true,
+        "violation_count": 0,
+        "examples": []
+      },
+      {
+        "schedule": "optimized",
+        "check": "schedule_input_field_parity",
+        "passed": true,
+        "violation_count": 0,
+        "examples": []
+      },
+      {
+        "schedule": "baseline",
+        "check": "all_final_task_ids_exactly_once",
+        "passed": true,
+        "expected": 538,
+        "observed": 538,
+        "missing": [],
+        "extra": [],
+        "duplicates": 0
+      },
+      {
+        "schedule": "baseline",
+        "check": "all_schedule_ids_unique",
+        "passed": true,
+        "duplicates": 0
+      },
+      {
+        "schedule": "baseline",
+        "check": "task_interval_sla_latency_boundary",
+        "passed": true,
+        "violation_count": 0,
+        "examples": []
+      },
+      {
+        "schedule": "baseline",
+        "check": "schedule_input_field_parity",
+        "passed": true,
+        "violation_count": 0,
+        "examples": []
+      }
+    ],
+    "expected_final_task_count": 538
+  },
+  "scheduling_sensitivity": {
+    "scope": "fixed start/region schedule replay; no re-optimization",
+    "scenarios": 18,
+    "nominal_rows_pass": true,
+    "rows": [
+      {
+        "schedule": "optimized",
+        "scenario": "nominal",
+        "demand_factor": 1.0,
+        "duration_factor": 1.0,
+        "passed": true,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 0,
+        "min_gpu_margin": 5.0,
+        "min_it_margin_mw": 3.607332999999983,
+        "min_facility_margin_mw": 4.8698995499999
+      },
+      {
+        "schedule": "optimized",
+        "scenario": "gpu_+10pct",
+        "demand_factor": 1.1,
+        "duration_factor": 1.0,
+        "passed": false,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 3,
+        "min_gpu_margin": -95.70000000000027,
+        "min_it_margin_mw": -1.3006669999999758,
+        "min_facility_margin_mw": -1.7559004500000128
+      },
+      {
+        "schedule": "optimized",
+        "scenario": "gpu_+20pct",
+        "demand_factor": 1.2,
+        "duration_factor": 1.0,
+        "passed": false,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 4,
+        "min_gpu_margin": -196.4000000000001,
+        "min_it_margin_mw": -6.208667000000105,
+        "min_facility_margin_mw": -8.381700450000153
+      },
+      {
+        "schedule": "optimized",
+        "scenario": "gpu_-10pct",
+        "demand_factor": 0.9,
+        "duration_factor": 1.0,
+        "passed": true,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 0,
+        "min_gpu_margin": 101.10000000000002,
+        "min_it_margin_mw": 7.4206669999999235,
+        "min_facility_margin_mw": 10.24052045999997
+      },
+      {
+        "schedule": "optimized",
+        "scenario": "gpu_-20pct",
+        "demand_factor": 0.8,
+        "duration_factor": 1.0,
+        "passed": true,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 0,
+        "min_gpu_margin": 197.19999999999982,
+        "min_it_margin_mw": 10.314000000000021,
+        "min_facility_margin_mw": 13.923900000000003
+      },
+      {
+        "schedule": "optimized",
+        "scenario": "duration_+10pct",
+        "demand_factor": 1.0,
+        "duration_factor": 1.1,
+        "passed": false,
+        "completion_rate": 0.9043624161073825,
+        "duplicate_task_ids": 0,
+        "invalid_count": 1,
+        "capacity_violation_count": 3,
+        "min_gpu_margin": -156.0,
+        "min_it_margin_mw": -3.078666999999939,
+        "min_facility_margin_mw": -4.156200449999915
+      },
+      {
+        "schedule": "optimized",
+        "scenario": "duration_+20pct",
+        "demand_factor": 1.0,
+        "duration_factor": 1.2,
+        "passed": false,
+        "completion_rate": 0.7953020134228188,
+        "duplicate_task_ids": 0,
+        "invalid_count": 2,
+        "capacity_violation_count": 5,
+        "min_gpu_margin": -346.0,
+        "min_it_margin_mw": -4.958666999999934,
+        "min_facility_margin_mw": -6.694200449999926
+      },
+      {
+        "schedule": "optimized",
+        "scenario": "duration_-10pct",
+        "demand_factor": 1.0,
+        "duration_factor": 0.9,
+        "passed": true,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 0,
+        "min_gpu_margin": 10.0,
+        "min_it_margin_mw": 6.951333000000034,
+        "min_facility_margin_mw": 9.592839540000114
+      },
+      {
+        "schedule": "optimized",
+        "scenario": "duration_-20pct",
+        "demand_factor": 1.0,
+        "duration_factor": 0.8,
+        "passed": true,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 0,
+        "min_gpu_margin": 32.0,
+        "min_it_margin_mw": 10.689999999999998,
+        "min_facility_margin_mw": 14.431499999999915
+      },
+      {
+        "schedule": "baseline",
+        "scenario": "nominal",
+        "demand_factor": 1.0,
+        "duration_factor": 1.0,
+        "passed": true,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 0,
+        "min_gpu_margin": 0.0,
+        "min_it_margin_mw": 3.607332999999983,
+        "min_facility_margin_mw": 4.8698995499999
+      },
+      {
+        "schedule": "baseline",
+        "scenario": "gpu_+10pct",
+        "demand_factor": 1.1,
+        "duration_factor": 1.0,
+        "passed": false,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 3,
+        "min_gpu_margin": -101.20000000000005,
+        "min_it_margin_mw": -1.3846670000000358,
+        "min_facility_margin_mw": -1.7585270900001433
+      },
+      {
+        "schedule": "baseline",
+        "scenario": "gpu_+20pct",
+        "demand_factor": 1.2,
+        "duration_factor": 1.0,
+        "passed": false,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 4,
+        "min_gpu_margin": -202.39999999999986,
+        "min_it_margin_mw": -14.3146670000001,
+        "min_facility_margin_mw": -18.179627090000167
+      },
+      {
+        "schedule": "baseline",
+        "scenario": "gpu_-10pct",
+        "demand_factor": 0.9,
+        "duration_factor": 1.0,
+        "passed": true,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 0,
+        "min_gpu_margin": 101.09999999999991,
+        "min_it_margin_mw": 7.4206669999999235,
+        "min_facility_margin_mw": 10.24052045999997
+      },
+      {
+        "schedule": "baseline",
+        "scenario": "gpu_-20pct",
+        "demand_factor": 0.8,
+        "duration_factor": 1.0,
+        "passed": true,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 0,
+        "min_gpu_margin": 197.20000000000005,
+        "min_it_margin_mw": 10.314000000000021,
+        "min_facility_margin_mw": 13.923900000000003
+      },
+      {
+        "schedule": "baseline",
+        "scenario": "duration_+10pct",
+        "demand_factor": 1.0,
+        "duration_factor": 1.1,
+        "passed": false,
+        "completion_rate": 0.9043624161073825,
+        "duplicate_task_ids": 0,
+        "invalid_count": 1,
+        "capacity_violation_count": 3,
+        "min_gpu_margin": -313.0,
+        "min_it_margin_mw": -23.613333000000125,
+        "min_facility_margin_mw": -29.988932910000244
+      },
+      {
+        "schedule": "baseline",
+        "scenario": "duration_+20pct",
+        "demand_factor": 1.0,
+        "duration_factor": 1.2,
+        "passed": false,
+        "completion_rate": 0.7953020134228188,
+        "duplicate_task_ids": 0,
+        "invalid_count": 2,
+        "capacity_violation_count": 5,
+        "min_gpu_margin": -398.0,
+        "min_it_margin_mw": -37.21333300000015,
+        "min_facility_margin_mw": -47.26093291000029
+      },
+      {
+        "schedule": "baseline",
+        "scenario": "duration_-10pct",
+        "demand_factor": 1.0,
+        "duration_factor": 0.9,
+        "passed": true,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 0,
+        "min_gpu_margin": 28.0,
+        "min_it_margin_mw": 6.951333000000034,
+        "min_facility_margin_mw": 9.592839540000114
+      },
+      {
+        "schedule": "baseline",
+        "scenario": "duration_-20pct",
+        "demand_factor": 1.0,
+        "duration_factor": 0.8,
+        "passed": true,
+        "completion_rate": 1.0,
+        "duplicate_task_ids": 0,
+        "invalid_count": 0,
+        "capacity_violation_count": 0,
+        "min_gpu_margin": 44.0,
+        "min_it_margin_mw": 10.689999999999998,
+        "min_facility_margin_mw": 14.431499999999915
+      }
+    ]
+  },
+  "carry_in_probes": {
+    "scope": "fixed schedule carry-in deletion and one-minute boundary shift; no re-optimization",
+    "probes": [
+      {
+        "schedule": "optimized",
+        "probe": "drop_all_carry_in",
+        "result": {
+          "passed": true,
+          "task_count": 538,
+          "duplicate_task_ids": 0,
+          "completed_by_deadline": 538,
+          "completion_rate": 1.0,
+          "invalid_count": 0,
+          "invalid_examples": [],
+          "capacity_violation_count": 0,
+          "capacity_violations": [],
+          "min_gpu_margin": 5.0,
+          "min_it_margin_mw": 3.607332999999983,
+          "min_facility_margin_mw": 4.8698995499999,
+          "regions": {
+            "RegionA": {
+              "gpu_max": 365.0,
+              "gpu_capacity": 630,
+              "it_max_mw": 413.84999999999997,
+              "it_capacity_mw": 420.0,
+              "facility_max_mw": 558.6975,
+              "facility_capacity_mw": 567.0,
+              "gpu_margin": 265.0,
+              "it_margin_mw": 6.150000000000034,
+              "facility_margin_mw": 8.302500000000009
+            },
+            "RegionB": {
+              "gpu_max": 390.0,
+              "gpu_capacity": 585,
+              "it_max_mw": 406.392667,
+              "it_capacity_mw": 410.0,
+              "facility_max_mw": 548.6301004500001,
+              "facility_capacity_mw": 553.5,
+              "gpu_margin": 195.0,
+              "it_margin_mw": 3.607332999999983,
+              "facility_margin_mw": 4.8698995499999
+            },
+            "RegionC": {
+              "gpu_max": 270.0,
+              "gpu_capacity": 540,
+              "it_max_mw": 401.11333299999995,
+              "it_capacity_mw": 405.0,
+              "facility_max_mw": 553.5363995399999,
+              "facility_capacity_mw": 558.9,
+              "gpu_margin": 270.0,
+              "it_margin_mw": 3.8866670000000454,
+              "facility_margin_mw": 5.363600460000043
+            },
+            "RegionD": {
+              "gpu_max": 1030.0,
+              "gpu_capacity": 1472,
+              "it_max_mw": 488.53599999999994,
+              "it_capacity_mw": 720.0,
+              "facility_max_mw": 625.3260799999999,
+              "facility_capacity_mw": 921.6,
+              "gpu_margin": 442.0,
+              "it_margin_mw": 231.46400000000006,
+              "facility_margin_mw": 296.2739200000001
+            },
+            "RegionE": {
+              "gpu_max": 1002.0,
+              "gpu_capacity": 1012,
+              "it_max_mw": 525.6513329999999,
+              "it_capacity_mw": 560.0,
+              "facility_max_mw": 657.0641662499999,
+              "facility_capacity_mw": 700.0,
+              "gpu_margin": 10.0,
+              "it_margin_mw": 34.34866700000009,
+              "facility_margin_mw": 42.93583375000014
+            },
+            "RegionF": {
+              "gpu_max": 961.0,
+              "gpu_capacity": 966,
+              "it_max_mw": 516.6146669999999,
+              "it_capacity_mw": 540.0,
+              "facility_max_mw": 656.10062709,
+              "facility_capacity_mw": 685.8,
+              "gpu_margin": 5.0,
+              "it_margin_mw": 23.38533300000006,
+              "facility_margin_mw": 29.699372909999965
+            }
+          }
+        }
+      },
+      {
+        "schedule": "optimized",
+        "probe": "shift_carry_in_plus_one_minute",
+        "result": {
+          "passed": true,
+          "task_count": 596,
+          "duplicate_task_ids": 0,
+          "completed_by_deadline": 596,
+          "completion_rate": 1.0,
+          "invalid_count": 0,
+          "invalid_examples": [],
+          "capacity_violation_count": 0,
+          "capacity_violations": [],
+          "min_gpu_margin": 5.0,
+          "min_it_margin_mw": 0.9893330000001015,
+          "min_facility_margin_mw": 1.3355995500000972,
+          "regions": {
+            "RegionA": {
+              "gpu_max": 365.0,
+              "gpu_capacity": 630,
+              "it_max_mw": 413.84999999999997,
+              "it_capacity_mw": 420.0,
+              "facility_max_mw": 558.6975,
+              "facility_capacity_mw": 567.0,
+              "gpu_margin": 265.0,
+              "it_margin_mw": 6.150000000000034,
+              "facility_margin_mw": 8.302500000000009
+            },
+            "RegionB": {
+              "gpu_max": 390.0,
+              "gpu_capacity": 585,
+              "it_max_mw": 409.0106669999999,
+              "it_capacity_mw": 410.0,
+              "facility_max_mw": 552.1644004499999,
+              "facility_capacity_mw": 553.5,
+              "gpu_margin": 195.0,
+              "it_margin_mw": 0.9893330000001015,
+              "facility_margin_mw": 1.3355995500000972
+            },
+            "RegionC": {
+              "gpu_max": 270.0,
+              "gpu_capacity": 540,
+              "it_max_mw": 401.11333299999995,
+              "it_capacity_mw": 405.0,
+              "facility_max_mw": 553.5363995399999,
+              "facility_capacity_mw": 558.9,
+              "gpu_margin": 270.0,
+              "it_margin_mw": 3.8866670000000454,
+              "facility_margin_mw": 5.363600460000043
+            },
+            "RegionD": {
+              "gpu_max": 1030.0,
+              "gpu_capacity": 1472,
+              "it_max_mw": 488.53599999999994,
+              "it_capacity_mw": 720.0,
+              "facility_max_mw": 625.3260799999999,
+              "facility_capacity_mw": 921.6,
+              "gpu_margin": 442.0,
+              "it_margin_mw": 231.46400000000006,
+              "facility_margin_mw": 296.2739200000001
+            },
+            "RegionE": {
+              "gpu_max": 1007.0,
+              "gpu_capacity": 1012,
+              "it_max_mw": 531.971333,
+              "it_capacity_mw": 560.0,
+              "facility_max_mw": 664.96416625,
+              "facility_capacity_mw": 700.0,
+              "gpu_margin": 5.0,
+              "it_margin_mw": 28.02866700000004,
+              "facility_margin_mw": 35.03583375000005
+            },
+            "RegionF": {
+              "gpu_max": 961.0,
+              "gpu_capacity": 966,
+              "it_max_mw": 516.6146669999999,
+              "it_capacity_mw": 540.0,
+              "facility_max_mw": 656.10062709,
+              "facility_capacity_mw": 685.8,
+              "gpu_margin": 5.0,
+              "it_margin_mw": 23.38533300000006,
+              "facility_margin_mw": 29.699372909999965
+            }
+          }
+        }
+      },
+      {
+        "schedule": "baseline",
+        "probe": "drop_all_carry_in",
+        "result": {
+          "passed": true,
+          "task_count": 538,
+          "duplicate_task_ids": 0,
+          "completed_by_deadline": 538,
+          "completion_rate": 1.0,
+          "invalid_count": 0,
+          "invalid_examples": [],
+          "capacity_violation_count": 0,
+          "capacity_violations": [],
+          "min_gpu_margin": 0.0,
+          "min_it_margin_mw": 3.607332999999983,
+          "min_facility_margin_mw": 4.8698995499999,
+          "regions": {
+            "RegionA": {
+              "gpu_max": 365.0,
+              "gpu_capacity": 630,
+              "it_max_mw": 413.84999999999997,
+              "it_capacity_mw": 420.0,
+              "facility_max_mw": 558.6975,
+              "facility_capacity_mw": 567.0,
+              "gpu_margin": 265.0,
+              "it_margin_mw": 6.150000000000034,
+              "facility_margin_mw": 8.302500000000009
+            },
+            "RegionB": {
+              "gpu_max": 390.0,
+              "gpu_capacity": 585,
+              "it_max_mw": 406.392667,
+              "it_capacity_mw": 410.0,
+              "facility_max_mw": 548.6301004500001,
+              "facility_capacity_mw": 553.5,
+              "gpu_margin": 195.0,
+              "it_margin_mw": 3.607332999999983,
+              "facility_margin_mw": 4.8698995499999
+            },
+            "RegionC": {
+              "gpu_max": 270.0,
+              "gpu_capacity": 540,
+              "it_max_mw": 401.11333299999995,
+              "it_capacity_mw": 405.0,
+              "facility_max_mw": 553.5363995399999,
+              "facility_capacity_mw": 558.9,
+              "gpu_margin": 270.0,
+              "it_margin_mw": 3.8866670000000454,
+              "facility_margin_mw": 5.363600460000043
+            },
+            "RegionD": {
+              "gpu_max": 917.0,
+              "gpu_capacity": 1472,
+              "it_max_mw": 488.53599999999994,
+              "it_capacity_mw": 720.0,
+              "facility_max_mw": 625.3260799999999,
+              "facility_capacity_mw": 921.6,
+              "gpu_margin": 555.0,
+              "it_margin_mw": 231.46400000000006,
+              "facility_margin_mw": 296.2739200000001
+            },
+            "RegionE": {
+              "gpu_max": 1012.0,
+              "gpu_capacity": 1012,
+              "it_max_mw": 499.571333,
+              "it_capacity_mw": 560.0,
+              "facility_max_mw": 624.46416625,
+              "facility_capacity_mw": 700.0,
+              "gpu_margin": 0.0,
+              "it_margin_mw": 60.42866700000002,
+              "facility_margin_mw": 75.53583375000005
+            },
+            "RegionF": {
+              "gpu_max": 961.0,
+              "gpu_capacity": 966,
+              "it_max_mw": 528.454667,
+              "it_capacity_mw": 540.0,
+              "facility_max_mw": 671.13742709,
+              "facility_capacity_mw": 685.8,
+              "gpu_margin": 5.0,
+              "it_margin_mw": 11.545333000000028,
+              "facility_margin_mw": 14.662572909999994
+            }
+          }
+        }
+      },
+      {
+        "schedule": "baseline",
+        "probe": "shift_carry_in_plus_one_minute",
+        "result": {
+          "passed": false,
+          "task_count": 596,
+          "duplicate_task_ids": 0,
+          "completed_by_deadline": 596,
+          "completion_rate": 1.0,
+          "invalid_count": 0,
+          "invalid_examples": [],
+          "capacity_violation_count": 1,
+          "capacity_violations": [
+            {
+              "region": "RegionE",
+              "gpu_margin": -43.0,
+              "it_margin_mw": 54.108667000000025,
+              "facility_margin_mw": 67.63583375000007
+            }
+          ],
+          "min_gpu_margin": -43.0,
+          "min_it_margin_mw": 0.9893330000001015,
+          "min_facility_margin_mw": 1.3355995500000972,
+          "regions": {
+            "RegionA": {
+              "gpu_max": 365.0,
+              "gpu_capacity": 630,
+              "it_max_mw": 413.84999999999997,
+              "it_capacity_mw": 420.0,
+              "facility_max_mw": 558.6975,
+              "facility_capacity_mw": 567.0,
+              "gpu_margin": 265.0,
+              "it_margin_mw": 6.150000000000034,
+              "facility_margin_mw": 8.302500000000009
+            },
+            "RegionB": {
+              "gpu_max": 390.0,
+              "gpu_capacity": 585,
+              "it_max_mw": 409.0106669999999,
+              "it_capacity_mw": 410.0,
+              "facility_max_mw": 552.1644004499999,
+              "facility_capacity_mw": 553.5,
+              "gpu_margin": 195.0,
+              "it_margin_mw": 0.9893330000001015,
+              "facility_margin_mw": 1.3355995500000972
+            },
+            "RegionC": {
+              "gpu_max": 270.0,
+              "gpu_capacity": 540,
+              "it_max_mw": 401.11333299999995,
+              "it_capacity_mw": 405.0,
+              "facility_max_mw": 553.5363995399999,
+              "facility_capacity_mw": 558.9,
+              "gpu_margin": 270.0,
+              "it_margin_mw": 3.8866670000000454,
+              "facility_margin_mw": 5.363600460000043
+            },
+            "RegionD": {
+              "gpu_max": 917.0,
+              "gpu_capacity": 1472,
+              "it_max_mw": 488.53599999999994,
+              "it_capacity_mw": 720.0,
+              "facility_max_mw": 625.3260799999999,
+              "facility_capacity_mw": 921.6,
+              "gpu_margin": 555.0,
+              "it_margin_mw": 231.46400000000006,
+              "facility_margin_mw": 296.2739200000001
+            },
+            "RegionE": {
+              "gpu_max": 1055.0,
+              "gpu_capacity": 1012,
+              "it_max_mw": 505.891333,
+              "it_capacity_mw": 560.0,
+              "facility_max_mw": 632.3641662499999,
+              "facility_capacity_mw": 700.0,
+              "gpu_margin": -43.0,
+              "it_margin_mw": 54.108667000000025,
+              "facility_margin_mw": 67.63583375000007
+            },
+            "RegionF": {
+              "gpu_max": 961.0,
+              "gpu_capacity": 966,
+              "it_max_mw": 528.454667,
+              "it_capacity_mw": 540.0,
+              "facility_max_mw": 671.13742709,
+              "facility_capacity_mw": 685.8,
+              "gpu_margin": 5.0,
+              "it_margin_mw": 11.545333000000028,
+              "facility_margin_mw": 14.662572909999994
+            }
+          }
+        }
+      }
+    ]
+  },
+  "solver_timeout": {
+    "status": "PASS",
+    "fixture_task_count": 12,
+    "carry_fixture_count": 2,
+    "runs": [
+      {
+        "max_time_seconds": 1.0,
+        "status": "OPTIMAL",
+        "wall_time_seconds": 0.08494539999992412,
+        "task_count": 12,
+        "objective": 60.0,
+        "best_bound": 60.0,
+        "optimality_gap": 0.0,
+        "error": null,
+        "optimality_claim_allowed": true
+      },
+      {
+        "max_time_seconds": 5.0,
+        "status": "OPTIMAL",
+        "wall_time_seconds": 0.03180720000000292,
+        "task_count": 12,
+        "objective": 60.0,
+        "best_bound": 60.0,
+        "optimality_gap": 0.0,
+        "error": null,
+        "optimality_claim_allowed": true
+      }
+    ],
+    "fallback_contract": {
+      "fallback_name": "6h_rolling_window_12h_lookahead_cp_sat",
+      "trigger": "main CP-SAT has no feasible result or reaches timeout without a feasible result",
+      "actual_triggered": false,
+      "fixture_task_count": 8,
+      "fixture_solver": {
+        "status": "OPTIMAL",
+        "wall_time_seconds": 0.029069500000332482,
+        "task_count": 8,
+        "max_time_seconds": 5.0,
+        "num_conflicts": 0,
+        "num_branches": 208,
+        "objective": 40.0,
+        "best_bound": 40.0,
+        "optimality_gap": 0.0
+      },
+      "fixture_constraint_audit_passed": true,
+      "note": "Smoke fixture only; no fallback result is substituted for the main schedule."
+    },
+    "checks": {
+      "two_limits_recorded": true,
+      "all_statuses_recorded": true,
+      "fallback_trigger_defined": true,
+      "fallback_activation_explicit": true,
+      "fallback_not_substituted": true,
+      "fixture_audit_passed": true
+    },
+    "interpretation": "Small fixture only; statuses validate routing and do not establish full-instance scaling."
+  },
+  "manifest_checks": [
+    {
+      "manifest": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\hash_manifest.json",
+      "exists": true,
+      "all_entries_match": true,
+      "checks": [
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/workload_panel.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\workload_panel.csv",
+          "exists": true,
+          "declared_sha256": "d0eaf1a81152b3dda4ebcea4f223c31111ed001c1eec16543311fe87aa1ee80b",
+          "actual_sha256": "d0eaf1a81152b3dda4ebcea4f223c31111ed001c1eec16543311fe87aa1ee80b",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/descriptive_by_series.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\descriptive_by_series.csv",
+          "exists": true,
+          "declared_sha256": "5f54955015f3175444b5227154f8dd8ad3d95d94e8c556285132dfbb6b61543c",
+          "actual_sha256": "5f54955015f3175444b5227154f8dd8ad3d95d94e8c556285132dfbb6b61543c",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/baseline_selection.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\baseline_selection.csv",
+          "exists": true,
+          "declared_sha256": "432b6bbdb04a13a0cae119c11ccb8944658aa46b9cb1ff4cacb9cd32cb8a4e31",
+          "actual_sha256": "432b6bbdb04a13a0cae119c11ccb8944658aa46b9cb1ff4cacb9cd32cb8a4e31",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/residual_shrinkage_selection.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\residual_shrinkage_selection.csv",
+          "exists": true,
+          "declared_sha256": "1e359a219e6ccbd84337a7170278e7fcf75d75eaaa87d8a833dfe0b2c515ecd4",
+          "actual_sha256": "1e359a219e6ccbd84337a7170278e7fcf75d75eaaa87d8a833dfe0b2c515ecd4",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/rolling_backtest_predictions.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\rolling_backtest_predictions.csv",
+          "exists": true,
+          "declared_sha256": "0a949cd1e7b09b4e7096a5b9bb3e5ebedde1796213f32673ea2091064da2e049",
+          "actual_sha256": "0a949cd1e7b09b4e7096a5b9bb3e5ebedde1796213f32673ea2091064da2e049",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/validation_predictions.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\validation_predictions.csv",
+          "exists": true,
+          "declared_sha256": "52f785106caeceff0e7075d16a021b99716e303e1cb0d2de20c73a9963b08cd5",
+          "actual_sha256": "52f785106caeceff0e7075d16a021b99716e303e1cb0d2de20c73a9963b08cd5",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/blind_test_predictions.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\blind_test_predictions.csv",
+          "exists": true,
+          "declared_sha256": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d",
+          "actual_sha256": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/metrics_by_series.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\metrics_by_series.csv",
+          "exists": true,
+          "declared_sha256": "91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4",
+          "actual_sha256": "91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/metrics_summary.json",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\metrics_summary.json",
+          "exists": true,
+          "declared_sha256": "e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a",
+          "actual_sha256": "e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/model_config.json",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\model_config.json",
+          "exists": true,
+          "declared_sha256": "94980158c3f37a3bdfe23c7dec657b4fa043dc56bb6c2476790054a8ca0d89cf",
+          "actual_sha256": "94980158c3f37a3bdfe23c7dec657b4fa043dc56bb6c2476790054a8ca0d89cf",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/claim_proposal.json",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\claim_proposal.json",
+          "exists": true,
+          "declared_sha256": "4b35bd891c31541e3b010e6500fe7c10231213bdd48075a5a6938a8e20105ab4",
+          "actual_sha256": "4b35bd891c31541e3b010e6500fe7c10231213bdd48075a5a6938a8e20105ab4",
+          "match": true
+        }
+      ]
+    },
+    {
+      "manifest": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\hash_manifest.json",
+      "exists": true,
+      "all_entries_match": true,
+      "checks": [
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/run_scheduling_q1.py",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_scheduling_q1.py",
+          "exists": true,
+          "declared_sha256": "3d50c74b18fd898a85e58090a047f86ce750697724b34620af24d6a204f57bf6",
+          "actual_sha256": "3d50c74b18fd898a85e58090a047f86ce750697724b34620af24d6a204f57bf6",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/scheduling_metrics.json",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\scheduling_metrics.json",
+          "exists": true,
+          "declared_sha256": "cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511",
+          "actual_sha256": "cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/baseline_schedule.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\baseline_schedule.csv",
+          "exists": true,
+          "declared_sha256": "89e4ab9c6ac1cf6ee0c5c9e5b39596f8276ac5330e3d5ed8e7924350a2fa7a78",
+          "actual_sha256": "89e4ab9c6ac1cf6ee0c5c9e5b39596f8276ac5330e3d5ed8e7924350a2fa7a78",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/optimized_schedule.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\optimized_schedule.csv",
+          "exists": true,
+          "declared_sha256": "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a",
+          "actual_sha256": "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/warmup_task_audit.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\warmup_task_audit.csv",
+          "exists": true,
+          "declared_sha256": "e33e84c075a66ca4557f655133a0336303acd8b45a909f896bdd2d1715dc2fed",
+          "actual_sha256": "e33e84c075a66ca4557f655133a0336303acd8b45a909f896bdd2d1715dc2fed",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/resource_audit.csv",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\resource_audit.csv",
+          "exists": true,
+          "declared_sha256": "466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82",
+          "actual_sha256": "466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/carry_in.json",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\carry_in.json",
+          "exists": true,
+          "declared_sha256": "cdf9946f180310fd65b1c286580a4aca0aa8f5688581dac4b68ddc13e60c7993",
+          "actual_sha256": "cdf9946f180310fd65b1c286580a4aca0aa8f5688581dac4b68ddc13e60c7993",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/constraint_audit.json",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\constraint_audit.json",
+          "exists": true,
+          "declared_sha256": "721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858",
+          "actual_sha256": "721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/fallback_test.json",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\fallback_test.json",
+          "exists": true,
+          "declared_sha256": "6ae5e9a707204307d863b06580abadcefebfbbeba45662cb1821c7217f36731d",
+          "actual_sha256": "6ae5e9a707204307d863b06580abadcefebfbbeba45662cb1821c7217f36731d",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/claim_proposal.json",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\claim_proposal.json",
+          "exists": true,
+          "declared_sha256": "36bbfddf0efa214f32e0d52b09cd94a93de16f20d16fba6c82b108e44aff8dfe",
+          "actual_sha256": "36bbfddf0efa214f32e0d52b09cd94a93de16f20d16fba6c82b108e44aff8dfe",
+          "match": true
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/run_manifest.json",
+          "resolved": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\run_manifest.json",
+          "exists": true,
+          "declared_sha256": "809018a7f7911b826431d8aed577f72df532674ef37f2c9db3325866b802d86d",
+          "actual_sha256": "809018a7f7911b826431d8aed577f72df532674ef37f2c9db3325866b802d86d",
+          "match": true
+        }
+      ]
+    }
+  ],
+  "double_hash": {
+    "checks": [
+      {
+        "path": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\blind_test_predictions.csv",
+        "exists": true,
+        "sha256_pass1": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d",
+        "sha256_pass2": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d",
+        "match": true
+      },
+      {
+        "path": "sprints\\sprint-20260807T130848306634Z\\merged\\forecast-q1\\rolling_backtest_predictions.csv",
+        "exists": true,
+        "sha256_pass1": "0a949cd1e7b09b4e7096a5b9bb3e5ebedde1796213f32673ea2091064da2e049",
+        "sha256_pass2": "0a949cd1e7b09b4e7096a5b9bb3e5ebedde1796213f32673ea2091064da2e049",
+        "match": true
+      },
+      {
+        "path": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\optimized_schedule.csv",
+        "exists": true,
+        "sha256_pass1": "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a",
+        "sha256_pass2": "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a",
+        "match": true
+      },
+      {
+        "path": "sprints\\sprint-20260807T130848306634Z\\merged\\scheduling-q1\\baseline_schedule.csv",
+        "exists": true,
+        "sha256_pass1": "89e4ab9c6ac1cf6ee0c5c9e5b39596f8276ac5330e3d5ed8e7924350a2fa7a78",
+        "sha256_pass2": "89e4ab9c6ac1cf6ee0c5c9e5b39596f8276ac5330e3d5ed8e7924350a2fa7a78",
+        "match": true
+      }
+    ],
+    "all_match": true
+  },
+  "red_team": {
+    "status": "PASS",
+    "checks": {
+      "forecast_nominal": true,
+      "schedule_nominal": true,
+      "forecast_source_static_probe": {
+        "blind_token_count": 11,
+        "warning": "Static scan is not proof; inspect runner before freezing."
+      },
+      "worker_input_hashes_rechecked": true,
+      "timeout_fixture": true
+    },
+    "warnings": [
+      "CP-SAT returned FEASIBLE with a nonzero optimality gap; do not claim global optimality."
+    ],
+    "blocking_items": [],
+    "scope_note": "Independent rapid audit; no frozen claims and no formal project files modified."
+  },
+  "warnings": [
+    "CP-SAT returned FEASIBLE with a nonzero optimality gap; do not claim global optimality.",
+    "Stress failures indicate reserve-margin sensitivity under fixed schedules; they are not re-optimized infeasibility results."
+  ],
+  "limitations": [
+    "Fixed schedule demand/duration replay is a reserve-margin probe, not re-optimization.",
+    "1 s/5 s tests use a 12-task representative fixture, not full-instance runtime scaling.",
+    "FEASIBLE solver status with nonzero gap does not establish optimality."
+  ],
+  "runtime_seconds": 20.115579599999364
+}

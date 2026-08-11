@@ -1,0 +1,1079 @@
+schema_version: 2
+status: governed
+palette_id: journal-spectrum-v2
+formal_source: paper/matlab/build_all_figures.m
+figure_count: 12
+figures:
+- contract_version: '2.0'
+  id: fig-q1-weekly-demand-structure
+  question_id: Q1
+  claim_id: Q1-FCST-TEST-WAPE
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: 18 条底层序列具有不同的周内小时结构；归一化图只描述模式，不比较绝对规模。
+  core_message: 18 条底层序列具有不同的周内小时结构；归一化图只描述模式，不比较绝对规模。
+  evidence_chain:
+  - locator: experiments/C/Q1/q1-direct-20260808/models/forecast_q1/workload_panel.csv
+    sha256: d0eaf1a81152b3dda4ebcea4f223c31111ed001c1eec16543311fe87aa1ee80b
+    fields:
+    - ArrivalHour
+    - SourceRegion
+    - TaskType
+    - GPU_Workload_GPUh
+  kind: data
+  archetype: weekly-structure-heatmap
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: normalized_workload
+    meaning: 序列内相对工作量
+    secondary_encoding: 色条连续刻度
+  visual_hierarchy:
+    primary_evidence: 18 条底层序列具有不同的周内小时结构；归一化图只描述模式，不比较绝对规模。
+    secondary_context: 无性能基线；每条序列独立按经验 95% 分位归一化。
+    deemphasized: 网格、背景和辅助标记仅承担定位作用，不覆盖数据轨迹。
+  source_data:
+  - experiments/C/Q1/q1-direct-20260808/models/forecast_q1/workload_panel.csv
+  source_script: paper/matlab/figures/fig_q1_weekly_demand_structure.m
+  outputs:
+    pdf: paper/figures/fig-q1-weekly-demand-structure.pdf
+    svg: paper/figures/fig-q1-weekly-demand-structure.svg
+    png: paper/figures/fig-q1-weekly-demand-structure.png
+    png_dpi: 400
+  baseline: 无性能基线；每条序列独立按经验 95% 分位归一化。
+  axes:
+  - variable: 周内小时
+    unit: h
+  - variable: 区域-任务类型序列
+    unit: 类别
+  caption: 每条序列按自身经验 95% 分位归一化，并在重复周的同一周内小时取中位数；颜色不代表序列间绝对工作量。
+  panel_map:
+  - panel: main
+    role: 主要证据区
+    subclaim: 18 条底层序列具有不同的周内小时结构；归一化图只描述模式，不比较绝对规模。
+  statistics:
+  - 18 条序列
+  - 168 个周内小时
+  - 重复周中位数
+  - 序列内 95% 分位归一化
+  statistics_report:
+    sample_size: 18×2400 条底层序列小时记录
+    center: 同一周内小时的跨周中位数
+    interval: 不适用
+    test: 不适用
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q1/q1-direct-20260808/models/forecast_q1/workload_panel.csv
+      sha256: d0eaf1a81152b3dda4ebcea4f223c31111ed001c1eec16543311fe87aa1ee80b
+    transformation: 每条序列按自身经验 95% 分位归一化，并在重复周的同一周内小时取中位数；颜色不代表序列间绝对工作量。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图例或色条置于数据区外或空白区；直接标签经边界和重叠检查。
+  rasterized_layers: []
+  review_risks:
+  - 不得比较序列绝对规模
+  - 不得将描述性周结构写成性能改进
+  final_width_mm: 158.0
+  final_height_mm: 112.0
+  min_font_pt: 8
+- contract_version: '2.0'
+  id: fig-q1-blind-forecast-interval
+  question_id: Q1
+  claim_id: Q1-FCST-TEST-COVERAGE
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: 固定盲测 24 h 中，系统实际工作量、主模型、季节基线与底层区间汇总可同时复核。
+  core_message: 固定盲测 24 h 中，系统实际工作量、主模型、季节基线与底层区间汇总可同时复核。
+  evidence_chain:
+  - locator: experiments/C/Q1/q1-direct-20260808/models/forecast_q1/blind_test_predictions.csv
+    sha256: 118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d
+    fields:
+    - period
+    - hour
+    - actual_gpu_h
+    - baseline_gpu_h
+    - main_gpu_h
+    - main_lower_95_gpu_h
+    - main_upper_95_gpu_h
+  - locator: experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_summary.json
+    sha256: e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a
+    fields:
+    - summaries.blind_test.shared_hgbr_reconciled.empirical_coverage_95
+  kind: data
+  archetype: prediction-interval
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - &id001
+    role: main_model
+    meaning: 主模型或候选
+    secondary_encoding: 实线与三角标记
+  - &id002
+    role: baseline
+    meaning: 同输入基线
+    secondary_encoding: 虚线与方形标记
+  - role: observed
+    meaning: 实际工作量
+    secondary_encoding: 深色圆点实线
+  visual_hierarchy:
+    primary_evidence: 固定盲测 24 h 中，系统实际工作量、主模型、季节基线与底层区间汇总可同时复核。
+    secondary_context: 168 h 季节朴素基线；与主模型共享盲测样本。
+    deemphasized: 网格、背景和辅助标记仅承担定位作用，不覆盖数据轨迹。
+  source_data:
+  - experiments/C/Q1/q1-direct-20260808/models/forecast_q1/blind_test_predictions.csv
+  - experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_summary.json
+  source_script: paper/matlab/figures/fig_q1_blind_forecast_interval.m
+  outputs:
+    pdf: paper/figures/fig-q1-blind-forecast-interval.pdf
+    svg: paper/figures/fig-q1-blind-forecast-interval.svg
+    png: paper/figures/fig-q1-blind-forecast-interval.png
+    png_dpi: 400
+  baseline: 168 h 季节朴素基线；与主模型共享盲测样本。
+  axes:
+  - variable: 盲测相对小时
+    unit: h
+  - variable: 系统 GPU 工作量
+    unit: GPU·h
+  caption: 18 条序列逐小时求和形成系统曲线；上下界同样逐小时求和且不平滑。冻结覆盖率仍按 432 个底层序列-小时点计算，不等同于系统区间覆盖率。
+  panel_map:
+  - panel: main
+    role: 主要证据区
+    subclaim: 固定盲测 24 h 中，系统实际工作量、主模型、季节基线与底层区间汇总可同时复核。
+  statistics:
+  - 24 个系统小时
+  - 432 个底层盲测点
+  - pooled split-conformal 区间
+  statistics_report:
+    sample_size: 24 个小时、每小时 18 条底层序列
+    center: 逐小时求和
+    interval: 名义 95% pooled split-conformal
+    test: 经验覆盖率审计
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q1/q1-direct-20260808/models/forecast_q1/blind_test_predictions.csv
+      sha256: 118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d
+    - path: experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_summary.json
+      sha256: e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a
+    transformation: 18 条序列逐小时求和形成系统曲线；上下界同样逐小时求和且不平滑。冻结覆盖率仍按 432 个底层序列-小时点计算，不等同于系统区间覆盖率。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图例或色条置于数据区外或空白区；直接标签经边界和重叠检查。
+  rasterized_layers: []
+  review_risks:
+  - 底层经验覆盖率不是未来概率保证
+  - 汇总上下界不应被解释为单独校准的系统区间
+  final_width_mm: 158.0
+  final_height_mm: 104.0
+  min_font_pt: 8
+- contract_version: '2.0'
+  id: fig-q1-series-error-pairing
+  question_id: Q1
+  claim_id: Q1-FCST-TEST-WAPE
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: 同一盲测窗口中 18 条序列的主模型和季节基线 MAE 存在显著异质性。
+  core_message: 同一盲测窗口中 18 条序列的主模型和季节基线 MAE 存在显著异质性。
+  evidence_chain:
+  - locator: experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_by_series.csv
+    sha256: 91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4
+    fields:
+    - period
+    - method
+    - region
+    - task_type
+    - mae_gpu_h
+  kind: data
+  archetype: paired-error-dot-plot
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - *id001
+  - *id002
+  visual_hierarchy:
+    primary_evidence: 同一盲测窗口中 18 条序列的主模型和季节基线 MAE 存在显著异质性。
+    secondary_context: 168 h 季节基线；按区域和任务类型一一配对。
+    deemphasized: 网格、背景和辅助标记仅承担定位作用，不覆盖数据轨迹。
+  source_data:
+  - experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_by_series.csv
+  source_script: paper/matlab/figures/fig_q1_series_error_pairing.m
+  outputs:
+    pdf: paper/figures/fig-q1-series-error-pairing.pdf
+    svg: paper/figures/fig-q1-series-error-pairing.svg
+    png: paper/figures/fig-q1-series-error-pairing.png
+    png_dpi: 400
+  baseline: 168 h 季节基线；按区域和任务类型一一配对。
+  axes:
+  - variable: 模型
+    unit: 类别
+  - variable: 盲测 MAE
+    unit: GPU·h
+  caption: 筛选 blind_test 后，将 shared_hgbr_reconciled 与 seasonal_baseline 按 18 条序列配对；细线只连接同一序列。
+  panel_map:
+  - panel: main
+    role: 主要证据区
+    subclaim: 同一盲测窗口中 18 条序列的主模型和季节基线 MAE 存在显著异质性。
+  statistics:
+  - 18 条配对序列
+  - MAE
+  statistics_report:
+    sample_size: 18 条区域-任务类型序列
+    center: 24 h MAE
+    interval: 不适用
+    test: 同序列配对复核
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_by_series.csv
+      sha256: 91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4
+    transformation: 筛选 blind_test 后，将 shared_hgbr_reconciled 与 seasonal_baseline 按 18 条序列配对；细线只连接同一序列。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图例或色条置于数据区外或空白区；直接标签经边界和重叠检查。
+  rasterized_layers: []
+  review_risks:
+  - 序列 MAE 不等于系统 WAPE
+  - 连接线不是时间轨迹
+  final_width_mm: 158.0
+  final_height_mm: 104.0
+  min_font_pt: 8
+- contract_version: '2.0'
+  id: fig-q1-schedule-gantt
+  question_id: Q1
+  claim_id: Q1-SCHED-FEASIBLE
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: 538 条实际任务和 carry-in 在六区域中形成可执行、不可抢占的最后 24 h 排程。
+  core_message: 538 条实际任务和 carry-in 在六区域中形成可执行、不可抢占的最后 24 h 排程。
+  evidence_chain:
+  - locator: experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/optimized_schedule.csv
+    sha256: 3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a
+    fields:
+    - TaskID
+    - TaskType
+    - ExecutionRegion
+    - StartMinute
+    - EndMinute
+    - SchedulePhase
+    - GPU_Demand
+  - locator: experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/constraint_audit.json
+    sha256: 721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858
+    fields:
+    - main.passed
+    - main.scheduled_final_task_count
+    - carry_in_count
+  - locator: experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/scheduling_metrics.json
+    sha256: cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511
+    fields:
+    - final_task_count
+    - carry_in_count
+    - main.solver.status
+  kind: data
+  archetype: compressed-gantt
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - *id001
+  - *id002
+  - role: carry_in
+    meaning: 历史延续任务
+    secondary_encoding: 菱形起点
+  visual_hierarchy:
+    primary_evidence: 538 条实际任务和 carry-in 在六区域中形成可执行、不可抢占的最后 24 h 排程。
+    secondary_context: 同约束 FIFO 基线不叠加；可行性由独立 constraint audit 判定。
+    deemphasized: 网格、背景和辅助标记仅承担定位作用，不覆盖数据轨迹。
+  source_data:
+  - experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/optimized_schedule.csv
+  - experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/constraint_audit.json
+  - experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/scheduling_metrics.json
+  source_script: paper/matlab/figures/fig_q1_schedule_gantt.m
+  outputs:
+    pdf: paper/figures/fig-q1-schedule-gantt.pdf
+    svg: paper/figures/fig-q1-schedule-gantt.svg
+    png: paper/figures/fig-q1-schedule-gantt.png
+    png_dpi: 400
+  baseline: 同约束 FIFO 基线不叠加；可行性由独立 constraint audit 判定。
+  axes:
+  - variable: 最后调度日相对小时
+    unit: h
+  - variable: 执行区域
+    unit: 类别
+  caption: 任务区间按执行区域压缩，颜色与线型图例区分任务类型，菱形图例标明 carry-in 起点；不显示任务名以避免遮挡。
+  panel_map:
+  - panel: main
+    role: 主要证据区
+    subclaim: 538 条实际任务和 carry-in 在六区域中形成可执行、不可抢占的最后 24 h 排程。
+  statistics:
+  - 538 条正式任务
+  - 58 条 carry-in
+  - 六区域
+  statistics_report:
+    sample_size: 596 条排程记录
+    center: 不可抢占区间
+    interval: 2376--2400 h 显示窗口
+    test: 独立硬约束审计
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/optimized_schedule.csv
+      sha256: 3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a
+    - path: experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/constraint_audit.json
+      sha256: 721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858
+    - path: experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/scheduling_metrics.json
+      sha256: cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511
+    transformation: 任务区间按执行区域压缩，颜色与线型图例区分任务类型，菱形图例标明 carry-in 起点；不显示任务名以避免遮挡。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图例或色条置于数据区外或空白区；直接标签经边界和重叠检查。
+  rasterized_layers: []
+  review_risks:
+  - 可行不等于全局最优
+  - 线宽编码 GPU 需求但不用于精确读数
+  final_width_mm: 158.0
+  final_height_mm: 112.0
+  min_font_pt: 8
+- contract_version: '2.0'
+  id: fig-q1-resource-headroom
+  question_id: Q1
+  claim_id: Q1-SCHED-FEASIBLE
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: Q1 排程在 GPU、IT 与设施功率约束下保持非负余量，但局部时段裕度较窄。
+  core_message: Q1 排程在 GPU、IT 与设施功率约束下保持非负余量，但局部时段裕度较窄。
+  evidence_chain:
+  - locator: experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/resource_audit.csv
+    sha256: 466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82
+    fields:
+    - Hour
+    - Region
+    - GPU_margin
+    - GPU_capacity
+    - IT_margin_MW
+    - IT_capacity_MW
+    - Facility_margin_MW
+    - Facility_capacity_MW
+    - Schedule
+  - locator: experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/constraint_audit.json
+    sha256: 721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858
+    fields:
+    - main.passed
+    - main.checks
+  kind: data
+  archetype: resource-headroom-heatmap
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: headroom
+    meaning: 相对容量余量
+    secondary_encoding: 0--100% 色条刻度
+  visual_hierarchy:
+    primary_evidence: Q1 排程在 GPU、IT 与设施功率约束下保持非负余量，但局部时段裕度较窄。
+    secondary_context: 容量上限为零余量基准；不与 FIFO 混合。
+    deemphasized: 网格、背景和辅助标记仅承担定位作用，不覆盖数据轨迹。
+  source_data:
+  - experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/resource_audit.csv
+  - experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/constraint_audit.json
+  source_script: paper/matlab/figures/fig_q1_resource_headroom.m
+  outputs:
+    pdf: paper/figures/fig-q1-resource-headroom.pdf
+    svg: paper/figures/fig-q1-resource-headroom.svg
+    png: paper/figures/fig-q1-resource-headroom.png
+    png_dpi: 400
+  baseline: 容量上限为零余量基准；不与 FIFO 混合。
+  axes:
+  - variable: 最后调度日相对小时
+    unit: h
+  - variable: 区域与资源
+    unit: 类别
+  caption: 将 GPU、IT 功率和设施功率余量分别除以对应容量并转为百分比；色条承担图例作用。
+  panel_map:
+  - panel: main
+    role: 主要证据区
+    subclaim: Q1 排程在 GPU、IT 与设施功率约束下保持非负余量，但局部时段裕度较窄。
+  statistics:
+  - 6 区域×3 资源×24 小时
+  - 相对容量余量
+  statistics_report:
+    sample_size: 432 个区域-资源-小时单元
+    center: 余量/容量
+    interval: 不适用
+    test: 资源上限审计
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/resource_audit.csv
+      sha256: 466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82
+    - path: experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/constraint_audit.json
+      sha256: 721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858
+    transformation: 将 GPU、IT 功率和设施功率余量分别除以对应容量并转为百分比；色条承担图例作用。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图例或色条置于数据区外或空白区；直接标签经边界和重叠检查。
+  rasterized_layers: []
+  review_risks:
+  - 低余量不是违规
+  - 三类资源单位不同，仅比较归一化余量
+  final_width_mm: 158.0
+  final_height_mm: 104.0
+  min_font_pt: 8
+- contract_version: '2.0'
+  id: fig-q2-load-migration
+  question_id: Q2
+  claim_id: Q2-FULL-COST-CHANGE-PCT
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: 候选相对 FIFO 的设施负荷迁移具有明确的区域和周内时段结构。
+  core_message: 候选相对 FIFO 的设施负荷迁移具有明确的区域和周内时段结构。
+  evidence_chain:
+  - locator: experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_hourly_profiles.csv
+    sha256: 85e923b393e2b29412b5e1b77c5fef04022a251d8ffcf2fc81475a7974c35435
+    fields:
+    - Method
+    - Hour
+    - Region
+    - Facility_Load_MW
+  kind: data
+  archetype: signed-migration-heatmap
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - &id003
+    role: risk_or_error
+    meaning: 正向压力、充电或迁入
+    secondary_encoding: 虚线、正号或暖色端
+  - *id002
+  visual_hierarchy:
+    primary_evidence: 候选相对 FIFO 的设施负荷迁移具有明确的区域和周内时段结构。
+    secondary_context: 同输入同约束 FIFO。
+    deemphasized: 网格、背景和辅助标记仅承担定位作用，不覆盖数据轨迹。
+  source_data:
+  - experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_hourly_profiles.csv
+  source_script: paper/matlab/figures/fig_q2_load_migration.m
+  outputs:
+    pdf: paper/figures/fig-q2-load-migration.pdf
+    svg: paper/figures/fig-q2-load-migration.svg
+    png: paper/figures/fig-q2-load-migration.png
+    png_dpi: 400
+  baseline: 同输入同约束 FIFO。
+  axes:
+  - variable: 周内小时
+    unit: h
+  - variable: 执行区域
+    unit: 类别
+  caption: 按区域与周内小时计算候选减 FIFO 的设施负荷平均差，发散色条以零为中心；正值为迁入，负值为迁出。
+  panel_map:
+  - panel: main
+    role: 主要证据区
+    subclaim: 候选相对 FIFO 的设施负荷迁移具有明确的区域和周内时段结构。
+  statistics:
+  - 6 区域
+  - 168 个周内小时
+  - 候选减 FIFO
+  statistics_report:
+    sample_size: 6×168 个周内聚合单元
+    center: 重复周均值
+    interval: 不适用
+    test: 同输出基线复算
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_hourly_profiles.csv
+      sha256: 85e923b393e2b29412b5e1b77c5fef04022a251d8ffcf2fc81475a7974c35435
+    transformation: 按区域与周内小时计算候选减 FIFO 的设施负荷平均差，发散色条以零为中心；正值为迁入，负值为迁出。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图例或色条置于数据区外或空白区；直接标签经边界和重叠检查。
+  rasterized_layers: []
+  review_risks:
+  - 迁移热图不替代全时域总成本
+  - 区域合计可受任务开始时刻移动影响
+  final_width_mm: 158.0
+  final_height_mm: 104.0
+  min_font_pt: 8
+- contract_version: '2.0'
+  id: fig-q2-cumulative-impact
+  question_id: Q2
+  claim_id: Q2-FULL-CARBON-CHANGE-PCT
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: Q2 的成本和购电碳排改善在全时域逐步形成，最终端点与冻结总量一致。
+  core_message: Q2 的成本和购电碳排改善在全时域逐步形成，最终端点与冻结总量一致。
+  evidence_chain:
+  - locator: experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_hourly_profiles.csv
+    sha256: 85e923b393e2b29412b5e1b77c5fef04022a251d8ffcf2fc81475a7974c35435
+    fields:
+    - Method
+    - Hour
+    - ElectricityCost_CNY
+    - CarbonEmission_tCO2
+  - locator: experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+    sha256: 0783a484f2bebac9ddb1ab696988fad823de3cc2805aae8ea9d332039cded88b
+    fields:
+    - comparison_vs_fifo.cost_change_pct
+    - comparison_vs_fifo.carbon_change_pct
+  kind: data
+  archetype: cumulative-impact-curves
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - *id001
+  - *id002
+  visual_hierarchy:
+    primary_evidence: Q2 的成本和购电碳排改善在全时域逐步形成，最终端点与冻结总量一致。
+    secondary_context: 同输入同约束 FIFO。
+    deemphasized: 网格、背景和辅助标记仅承担定位作用，不覆盖数据轨迹。
+  source_data:
+  - experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_hourly_profiles.csv
+  - experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+  source_script: paper/matlab/figures/fig_q2_cumulative_impact.m
+  outputs:
+    pdf: paper/figures/fig-q2-cumulative-impact.pdf
+    svg: paper/figures/fig-q2-cumulative-impact.svg
+    png: paper/figures/fig-q2-cumulative-impact.png
+    png_dpi: 400
+  baseline: 同输入同约束 FIFO。
+  axes:
+  - variable: 累计运行时间
+    unit: day
+  - variable: 相对 FIFO 累计差
+    unit: '%'
+  caption: 按小时汇总六区域成本和碳排，分别累加后除以 FIFO 同期累计量；曲线未平滑，图例置于数据区外。
+  panel_map:
+  - panel: main
+    role: 主要证据区
+    subclaim: Q2 的成本和购电碳排改善在全时域逐步形成，最终端点与冻结总量一致。
+  statistics:
+  - 2407 个小时
+  - 六区域汇总
+  - 累计百分比差
+  statistics_report:
+    sample_size: 2407 个系统小时
+    center: 逐时累计量
+    interval: 不适用
+    test: 终点与冻结摘要核对
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_hourly_profiles.csv
+      sha256: 85e923b393e2b29412b5e1b77c5fef04022a251d8ffcf2fc81475a7974c35435
+    - path: experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+      sha256: 0783a484f2bebac9ddb1ab696988fad823de3cc2805aae8ea9d332039cded88b
+    transformation: 按小时汇总六区域成本和碳排，分别累加后除以 FIFO 同期累计量；曲线未平滑，图例置于数据区外。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图例或色条置于数据区外或空白区；直接标签经边界和重叠检查。
+  rasterized_layers: []
+  review_risks:
+  - 局部上升不代表最终恶化
+  - 成本与碳排共用百分比轴但物理单位不同
+  final_width_mm: 158.0
+  final_height_mm: 104.0
+  min_font_pt: 8
+- contract_version: '2.0'
+  id: fig-q2-latency-ecdf
+  question_id: Q2
+  claim_id: Q2-FULL-LATENCY-CHANGE-MS
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: 候选排程相对 FIFO 提高平均与上尾网络时延，但两套 50000 任务排程的 SLA 违约均为 0。
+  core_message: Mean、P50、P90、P95、P99 和 Max 的配对哑铃直接显示候选方案的时延代价及尾部范围，并与双边零 SLA 审计分开解释。
+  evidence_chain:
+  - locator: experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_baseline_schedule.csv
+    sha256: 172d45d624d85f7cf7558606e551f7dee275ab726236c6b933b39d6282df370a
+    fields:
+    - TaskID
+    - NetworkLatency_ms
+  - locator: experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_candidate_schedule.csv
+    sha256: 8b0d753e46c4a157fa12f62f5f833468403a980e42460857f238a770d8db0004
+    fields:
+    - TaskID
+    - NetworkLatency_ms
+  - locator: experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+    sha256: 0783a484f2bebac9ddb1ab696988fad823de3cc2805aae8ea9d332039cded88b
+    fields:
+    - feasibility.candidate_sla_violation_rate
+    - comparison_vs_fifo.latency_change_ms
+  - locator: experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_constraint_audit.json
+    sha256: 7cd13ac3a90608513c0f143d157218598a82a334eb1e91ca7791f25b13f97170
+    fields:
+    - baseline.SLA_violation_count
+    - baseline.SLA_violation_rate
+    - baseline.checks.latency_limit
+    - candidate.SLA_violation_count
+    - candidate.SLA_violation_rate
+    - candidate.checks.latency_limit
+  kind: data
+  archetype: paired-summary-dumbbell
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - *id001
+  - *id002
+  visual_hierarchy:
+    primary_evidence: 候选排程相对 FIFO 的 Mean、P90、P95、P99 和 Max 时延差值。
+    secondary_context: 同输入同约束 FIFO。
+    deemphasized: 交替中性行底色、连接线和网格仅承担配对定位作用。
+  source_data:
+  - experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_baseline_schedule.csv
+  - experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_candidate_schedule.csv
+  - experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+  - experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_constraint_audit.json
+  source_script: paper/matlab/figures/fig_q2_latency_ecdf.m
+  outputs:
+    pdf: paper/figures/fig-q2-latency-ecdf.pdf
+    svg: paper/figures/fig-q2-latency-ecdf.svg
+    png: paper/figures/fig-q2-latency-ecdf.png
+    png_dpi: 400
+  baseline: 同输入同约束 FIFO。
+  axes:
+  - variable: 网络时延
+    unit: ms
+  - variable: 汇总统计量
+    unit: category
+  caption: 对相同 50000 个 TaskID 的两套完整排程计算 Mean、P50、P90、P95、P99 和 Max；点和连线表示 FIFO—候选配对，右侧标签为候选减 FIFO。两套排程 SLA 违约均为 0，且分别通过 MaxLatency 硬约束审计。
+  panel_map:
+  - panel: main
+    role: 主要证据区
+    subclaim: 候选排程的平均与上尾网络时延高于 FIFO，但双边 SLA 审计仍为零违约。
+  statistics:
+  - 50000 条任务/方案
+  - 相同 TaskID 配对
+  - Mean、P50、P90、P95、P99、Max
+  - Type-7 线性插值经验分位数
+  - 候选减 FIFO 差值
+  statistics_report:
+    sample_size: 两套各 50000 条任务
+    center: 任务加权均值与经验分位数
+    interval: 不适用
+    test: 双边 SLA 违约计数与逐任务 MaxLatency 独立硬约束审计
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_baseline_schedule.csv
+      sha256: 172d45d624d85f7cf7558606e551f7dee275ab726236c6b933b39d6282df370a
+    - path: experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_candidate_schedule.csv
+      sha256: 8b0d753e46c4a157fa12f62f5f833468403a980e42460857f238a770d8db0004
+    - path: experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+      sha256: 0783a484f2bebac9ddb1ab696988fad823de3cc2805aae8ea9d332039cded88b
+    - path: experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_constraint_audit.json
+      sha256: 7cd13ac3a90608513c0f143d157218598a82a334eb1e91ca7791f25b13f97170
+    transformation: 校验两套排程包含相同的 50000 个唯一 TaskID；从 NetworkLatency_ms 动态计算 Mean、Type-7 P50/P90/P95/P99 和 Max，并将候选减 FIFO 作为差值标签。SLA 计数与 MaxLatency 检查只读取正式约束审计；候选正式 CSV 相对 sprint 原件仅修正 Method 语义标签，图中所用数值字段未变。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: direct
+    collision_checked: true
+    justification: 图例置于右上真实空白区，与左侧 Mean/P50 数据错开；每行差值标签放在较大点右侧，并保留到 100 ms 边界的安全空间。
+  rasterized_layers: []
+  review_risks:
+  - 平均时延增加不等于 SLA 违规
+  - Mean 是中心统计量而非分位数
+  - 汇总分位数不显示任务各自不同的 MaxLatency 上限
+  - Max 是单个观测任务，不表示置信上界
+  final_width_mm: 158.0
+  final_height_mm: 104.0
+  min_font_pt: 8
+- contract_version: '2.0'
+  id: fig-q3-dispatch-soc
+  question_id: Q3
+  claim_id: Q3-ROLLING-COST-DELTA
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: 观测 72 h 中，六区域储能功率流与聚合 SOC 的联动关系可直接复核。
+  core_message: 观测 72 h 中，六区域储能功率流与聚合 SOC 的联动关系可直接复核。
+  evidence_chain:
+  - locator: experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_dispatch.csv
+    sha256: d27b9e9f351b2031988080c6f70b3e9881b73a93eb48cfaf59bab058feec374f
+    fields:
+    - Hour
+    - Region
+    - ChargePower_MW
+    - DischargePower_MW
+    - SOC_MWh
+    - NetGridImport_MW
+    - Evaluation
+    - Scenario
+    - WindowStart_h
+  kind: data
+  archetype: dispatch-and-soc
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - *id001
+  - *id003
+  - role: discharge
+    meaning: 放电
+    secondary_encoding: 点划线
+  visual_hierarchy:
+    primary_evidence: 观测 72 h 中，六区域储能功率流与聚合 SOC 的联动关系可直接复核。
+    secondary_context: 同负荷无储能基线用于经济比较，本图展示滚动二进制 MILP 候选。
+    deemphasized: 网格、背景和辅助标记仅承担定位作用，不覆盖数据轨迹。
+  source_data:
+  - experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_dispatch.csv
+  source_script: paper/matlab/figures/fig_q3_dispatch_soc.m
+  outputs:
+    pdf: paper/figures/fig-q3-dispatch-soc.pdf
+    svg: paper/figures/fig-q3-dispatch-soc.svg
+    png: paper/figures/fig-q3-dispatch-soc.png
+    png_dpi: 400
+  baseline: 同负荷无储能基线用于经济比较，本图展示滚动二进制 MILP 候选。
+  axes:
+  - variable: 观测窗口小时
+    unit: h
+  - variable: 功率
+    unit: MW
+  - variable: 聚合 SOC
+    unit: MWh
+  caption: 筛选 fixed、observed、WindowStart=0 且 Hour<72，按小时汇总六区域功率和 SOC；充放电采用相反线型并共享图例。
+  panel_map:
+  - panel: a
+    role: 功率流
+    subclaim: 充放电与净电网交换的逐时关系
+  - panel: b
+    role: 状态量
+    subclaim: 聚合 SOC 的逐时演化
+  statistics:
+  - 72 小时
+  - 六区域汇总
+  - 充电/放电/净购电/SOC
+  statistics_report:
+    sample_size: 72 个系统小时
+    center: 六区域逐小时求和
+    interval: 不适用
+    test: SOC 与互斥审计
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_dispatch.csv
+      sha256: d27b9e9f351b2031988080c6f70b3e9881b73a93eb48cfaf59bab058feec374f
+    transformation: 筛选 fixed、observed、WindowStart=0 且 Hour<72，按小时汇总六区域功率和 SOC；充放电采用相反线型并共享图例。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图例或色条置于数据区外或空白区；直接标签经边界和重叠检查。
+  rasterized_layers: []
+  review_risks:
+  - 聚合 SOC 不代表任一区域 SOC
+  - 负净购电表示净外送而非负负荷
+  final_width_mm: 158.0
+  final_height_mm: 112.0
+  min_font_pt: 8
+  multipanel_justification: 储能功率决策与 SOC 状态由同一动力学约束连接，拆分后会破坏对充放电作用的解释。
+- contract_version: '2.0'
+  id: fig-q3-rolling-runtime-coverage
+  question_id: Q3
+  claim_id: Q3-ALL-270-AUDITS-PASS
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: 六区域 90 个滚动二进制 MILP 块均成功求解，修复后的完整硬约束审计为 270/270。
+  core_message: 六区域 90 个滚动二进制 MILP 块均成功求解，修复后的完整硬约束审计为 270/270。
+  evidence_chain:
+  - locator: experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_comparison_summary.csv
+    sha256: f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f
+    fields:
+    - evaluation
+    - scenario
+    - window_start_h
+    - region
+    - runtime_s_candidate
+  - locator: experiments/C/Q3/q3-full-audit-fix-20260809/summary.json
+    sha256: f5b8a2f95c74e6d1bf181fa902a13dab0f60800b11693373cefb80bf7cc65613
+    fields:
+    - audit_boundary.total_audits_passed
+    - audit_boundary.total_audit_count
+  kind: data
+  archetype: rolling-runtime-heatmap
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: runtime
+    meaning: MILP 运行时间
+    secondary_encoding: 秒单位色条
+  visual_hierarchy:
+    primary_evidence: 六区域 90 个滚动二进制 MILP 块均成功求解，修复后的完整硬约束审计为 270/270。
+    secondary_context: 无储能同口径基线同时通过对应审计；本图不比较经济指标。
+    deemphasized: 网格、背景和辅助标记仅承担定位作用，不覆盖数据轨迹。
+  source_data:
+  - experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_comparison_summary.csv
+  - experiments/C/Q3/q3-full-audit-fix-20260809/summary.json
+  source_script: paper/matlab/figures/fig_q3_rolling_runtime_coverage.m
+  outputs:
+    pdf: paper/figures/fig-q3-rolling-runtime-coverage.pdf
+    svg: paper/figures/fig-q3-rolling-runtime-coverage.svg
+    png: paper/figures/fig-q3-rolling-runtime-coverage.png
+    png_dpi: 400
+  baseline: 无储能同口径基线同时通过对应审计；本图不比较经济指标。
+  axes:
+  - variable: 滚动窗口起点
+    unit: day
+  - variable: 区域
+    unit: 类别
+  caption: 筛选 observed 的 90 个 rolling_block 记录，绘制区域×窗口运行时间热图；右下空白区直接标注修复后的 270/270 审计。
+  panel_map:
+  - panel: main
+    role: 主要证据区
+    subclaim: 六区域 90 个滚动二进制 MILP 块均成功求解，修复后的完整硬约束审计为 270/270。
+  statistics:
+  - 6 区域×15 块
+  - 90 次求解
+  - 270/270 审计
+  statistics_report:
+    sample_size: 90 个滚动二进制 MILP 块
+    center: 单块运行时间
+    interval: 不适用
+    test: 区域独立全周期二进制探针与确定性复跑
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_comparison_summary.csv
+      sha256: f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f
+    - path: experiments/C/Q3/q3-full-audit-fix-20260809/summary.json
+      sha256: f5b8a2f95c74e6d1bf181fa902a13dab0f60800b11693373cefb80bf7cc65613
+    transformation: 筛选 observed 的 90 个 rolling_block 记录，绘制区域×窗口运行时间热图；右下空白区直接标注修复后的 270/270 审计。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图例或色条置于数据区外或空白区；直接标签经边界和重叠检查。
+  rasterized_layers: []
+  review_risks:
+  - 270/270 不证明系统级全时域全局最优
+  - 六个全周期探针按区域独立求解
+  final_width_mm: 158.0
+  final_height_mm: 104.0
+  min_font_pt: 8
+- contract_version: '2.0'
+  id: fig-q4-scenario-tradeoff
+  question_id: Q4
+  claim_id: Q4-LOWREN-CARBON-DELTA
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: 五场景中局部联合候选相对顺序基线形成可解释的成本、碳排和新能源利用权衡。
+  core_message: 五场景中局部联合候选相对顺序基线形成可解释的成本、碳排和新能源利用权衡。
+  evidence_chain:
+  - locator: experiments/C/Q4/q4-optimization-20260809/q4_joint_metrics.csv
+    sha256: 1952879320fec6e3810058aa498a2a68352bef9c4ea1cb63a55704ae8682d499
+    fields:
+    - scenario
+    - role
+    - cost_CNY
+    - carbon_tCO2
+    - renewable_utilization_ratio
+  - locator: experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json
+    sha256: 56a0622efffbdffcdf20e0eda963a7f47852f4fdec2bb34cacd198bb7d312f9e
+    fields:
+    - audit.all_hard_constraints_passed
+    - low_renewable_72h
+    - joint_stress_72h
+  kind: data
+  archetype: scenario-tradeoff-scatter
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - *id001
+  - *id002
+  visual_hierarchy:
+    primary_evidence: 五场景中局部联合候选相对顺序基线形成可解释的成本、碳排和新能源利用权衡。
+    secondary_context: 固定 Q2 排程加六区域储能 recourse 的顺序基线。
+    deemphasized: 网格、背景和辅助标记仅承担定位作用，不覆盖数据轨迹。
+  source_data:
+  - experiments/C/Q4/q4-optimization-20260809/q4_joint_metrics.csv
+  - experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json
+  source_script: paper/matlab/figures/fig_q4_scenario_tradeoff.m
+  outputs:
+    pdf: paper/figures/fig-q4-scenario-tradeoff.pdf
+    svg: paper/figures/fig-q4-scenario-tradeoff.svg
+    png: paper/figures/fig-q4-scenario-tradeoff.png
+    png_dpi: 400
+  baseline: 固定 Q2 排程加六区域储能 recourse 的顺序基线。
+  axes:
+  - variable: 净运行成本
+    unit: 10^6 CNY
+  - variable: 购电侧碳排
+    unit: tCO2
+  caption: 每个场景连接顺序基线与局部联合候选，候选点面积编码新能源利用率增益；完全重合场景合并标签且不抖动。
+  panel_map:
+  - panel: main
+    role: 主要证据区
+    subclaim: 五场景中局部联合候选相对顺序基线形成可解释的成本、碳排和新能源利用权衡。
+  statistics:
+  - 5 个场景×2 方案
+  - 成本-碳排散点
+  - 点面积编码新能源利用率增益
+  statistics_report:
+    sample_size: 10 个场景-方案单元
+    center: 场景级总量
+    interval: 不适用
+    test: 硬约束与确定性复跑
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q4/q4-optimization-20260809/q4_joint_metrics.csv
+      sha256: 1952879320fec6e3810058aa498a2a68352bef9c4ea1cb63a55704ae8682d499
+    - path: experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json
+      sha256: 56a0622efffbdffcdf20e0eda963a7f47852f4fdec2bb34cacd198bb7d312f9e
+    transformation: 每个场景连接顺序基线与局部联合候选，候选点面积编码新能源利用率增益；完全重合场景合并标签且不抖动。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图例或色条置于数据区外或空白区；直接标签经边界和重叠检查。
+  rasterized_layers: []
+  review_risks:
+  - 重合点不代表场景输入完全相同
+  - 点面积只编码增益方向和相对大小
+  final_width_mm: 158.0
+  final_height_mm: 104.0
+  min_font_pt: 8
+- contract_version: '2.0'
+  id: fig-q4-system-profile
+  question_id: Q4
+  claim_id: Q4-OBS-COST-DELTA
+  claim_status: frozen
+  status: formal_evidence
+  contest_evidence_eligible: true
+  synthetic_fixture: false
+  core_conclusion: 观测 72 h 中，局部联合候选相对顺序基线只在少数事件小时改变六区域聚合 AI IT 负荷与净购电。
+  core_message: 事件对齐双面板分别呈现 AI IT 负荷调整与净购电响应，避免两者量级差异和大量零值小时压缩有效信息。
+  evidence_chain:
+  - locator: experiments/C/Q4/q4-optimization-20260809/q4_joint_observed_joint_candidate_dispatch.csv
+    sha256: 1a917199adfa03030876599e228ef5f669f35b8aea8e26cd851a966d9d2e9b69
+    fields:
+    - Hour
+    - AI_IT_Load_MW
+    - NetGridImport_MW
+  - locator: experiments/C/Q4/q4-optimization-20260809/q4_joint_observed_sequential_baseline_dispatch.csv
+    sha256: f59ff17d32be791473ac7631446f2547f62e64b251e53b7a11596a63d6323102
+    fields:
+    - Hour
+    - AI_IT_Load_MW
+    - NetGridImport_MW
+  - locator: experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json
+    sha256: 56a0622efffbdffcdf20e0eda963a7f47852f4fdec2bb34cacd198bb7d312f9e
+    fields:
+    - scope
+    - observed_72h.cost_delta_CNY
+  kind: data
+  archetype: event-aligned-two-panel-bar
+  backend: matlab
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: ai_it_load_delta
+    meaning: 六区域聚合 AI IT 负荷的候选减顺序基线差值
+    secondary_encoding: 上面板红色有符号柱与深色边框
+  - role: net_grid_import_delta
+    meaning: 六区域聚合净购电的候选减顺序基线差值
+    secondary_encoding: 下面板蓝色有符号柱、深色边框与数值标注
+  visual_hierarchy:
+    primary_evidence: 非零事件小时的 AI IT 负荷调整与净购电响应。
+    secondary_context: 观测场景顺序基线；未绘制小时的两项六区域聚合差均为零。
+    deemphasized: 网格、背景和辅助标记仅承担定位作用，不覆盖数据轨迹。
+  source_data:
+  - experiments/C/Q4/q4-optimization-20260809/q4_joint_observed_joint_candidate_dispatch.csv
+  - experiments/C/Q4/q4-optimization-20260809/q4_joint_observed_sequential_baseline_dispatch.csv
+  - experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json
+  source_script: paper/matlab/figures/fig_q4_system_profile.m
+  outputs:
+    pdf: paper/figures/fig-q4-system-profile.pdf
+    svg: paper/figures/fig-q4-system-profile.svg
+    png: paper/figures/fig-q4-system-profile.png
+    png_dpi: 400
+  baseline: 观测场景顺序基线。
+  axes:
+  - variable: 2328--2399 h 窗口内相对小时
+    unit: h
+  - variable: AI IT 负荷候选减基线
+    unit: MW
+  - variable: 净购电候选减基线
+    unit: MW
+  caption: 两套 dispatch 先按小时汇总六区域 AI IT 负荷和净购电，再计算候选减顺序基线；仅绘制至少一项差值非零的事件小时并保留真实时间间距。净购电差为负表示候选减少净购电或增加净外送，不能单独解释为减排。
+  panel_map:
+  - panel: a
+    role: 任务侧响应
+    subclaim: 六区域聚合 AI IT 负荷只在少数事件小时改变
+  - panel: b
+    role: 电网侧响应
+    subclaim: 储能 recourse 后的六区域聚合净购电仅在更少小时改变
+  statistics:
+  - 72 小时
+  - 六区域汇总
+  - 候选减顺序基线
+  statistics_report:
+    sample_size: 72 个系统小时
+    center: 六区域逐小时求和后作差
+    interval: 不适用
+    test: 任务、储能与电网硬约束审计
+    multiplicity: 不进行多重假设检验；图中比较均为预先定义的描述性或同输入基线比较。
+  data_integrity:
+    source_hashes:
+    - path: experiments/C/Q4/q4-optimization-20260809/q4_joint_observed_joint_candidate_dispatch.csv
+      sha256: 1a917199adfa03030876599e228ef5f669f35b8aea8e26cd851a966d9d2e9b69
+    - path: experiments/C/Q4/q4-optimization-20260809/q4_joint_observed_sequential_baseline_dispatch.csv
+      sha256: f59ff17d32be791473ac7631446f2547f62e64b251e53b7a11596a63d6323102
+    - path: experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json
+      sha256: 56a0622efffbdffcdf20e0eda963a7f47852f4fdec2bb34cacd198bb7d312f9e
+    transformation: 两套 dispatch 分别按 Hour 对六区域 AI_IT_Load_MW 与 NetGridImport_MW 求和，再计算候选减顺序基线；事件集定义为两项差值绝对值最大值大于 1e-9 的小时，未归一化、未插值。
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图例或色条置于数据区外或空白区；直接标签经边界和重叠检查。
+  rasterized_layers: []
+  review_risks:
+  - 两面板共同描述局部联合结果，不支持把净购电变化归因于单一任务移动
+  - 净购电负差可能来自减少购电或增加净外送，不能直接解释为减排
+  - 未绘制小时为零差值，不表示 72 h 窗口被缩短
+  - 72 h 结果不能外推为全时域全局最优
+  final_width_mm: 158.0
+  final_height_mm: 92.0
+  min_font_pt: 8
+  multipanel_justification: AI IT 负荷差与净购电差共享时间轴和 MW 单位，但量级与非零支持集显著不同；拆为上下两面板才能同时保持真实尺度并解释任务侧与电网侧响应。

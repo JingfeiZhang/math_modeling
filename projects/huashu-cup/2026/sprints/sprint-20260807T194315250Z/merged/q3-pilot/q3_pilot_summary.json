@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T194315250Z",
+  "task_id": "q3-pilot",
+  "question": "Q3",
+  "status": "SUCCESS",
+  "window_horizons": [
+    24
+  ],
+  "regions": [
+    "RegionA",
+    "RegionB",
+    "RegionC",
+    "RegionD",
+    "RegionE",
+    "RegionF"
+  ],
+  "candidate": {
+    "name": "deterministic_carbon_aware_MILP",
+    "description": "Binary MILP dispatch for a bounded 24-hour pilot with renewable allocation, carbon-aware normalized objective, peak-import epigraph, charge/discharge mode, and cyclic terminal SOC.",
+    "pilot_only": true,
+    "solver_success": true,
+    "full_cycle_check": "72/168/2407-hour configurations are deferred scalability probes and are not reported as evidence in this bounded pilot."
+  },
+  "baseline": {
+    "name": "no_storage_renewable_first",
+    "description": "No-storage renewable-first balance with region-specific purchase/export caps and zero charge/discharge.",
+    "audit_pass": true
+  },
+  "selection_recommendation": {
+    "retain_milp_for_full_run": true,
+    "fallback_trigger": "Use valley-charge/peak-discharge rule only if exact MILP has no feasible incumbent or exceeds 20 s on two independent windows.",
+    "non_global_optimality_wording": "Pilot evidence is exploratory; solver status and any time limit are reported, and no global optimality claim is made."
+  },
+  "metrics_definition": {
+    "cost_CNY": "sum(GridPurchase*ElectricityPrice - GridSell*SellPrice), one-hour intervals; GridPurchase includes GridCharge",
+    "carbon_tCO2": "sum(GridPurchase*CarbonIntensity); GridPurchase includes GridCharge",
+    "peak_net_import_MW": "max(GridPurchase - GridSell); GridPurchase includes GridCharge",
+    "load_std_MW": "population standard deviation of net grid import over each window",
+    "renewable_utilization_ratio": "sum(AvailableRenewable - Curtailment)/sum(AvailableRenewable)"
+  },
+  "input_hashes": [
+    {
+      "path": "problems/C/questions/Q3/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "a5457a859ff3e4141c0a34e5b3835f64193ea4d8ba08ed91c73af0b8428a363f"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/storage_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+    },
+    {
+      "path": "problems/C/data/GPU_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+    },
+    {
+      "path": "sprints/sprint-20260807T1856581764655Z/merged/q234-exploration",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "dc7c26111b4507ccdb3918f5332c04826c1269fbcd27f0dc5b7b6ef697c22d0a"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "5706e86a75d2c3e51b6b1de1d1e25ae33d0ea51689e021fc8758ced09327f303"
+    }
+  ],
+  "solver_records": [
+    {
+      "horizon_h": 24,
+      "region": "RegionA",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true,
+      "runtime_s": 0.019098600001598243,
+      "mip_gap": 0.0,
+      "objective": 0.01283835308971774,
+      "mip_node_count": 1,
+      "solver_mode": "binary_MILP"
+    },
+    {
+      "horizon_h": 24,
+      "region": "RegionB",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true,
+      "runtime_s": 0.009675900000729598,
+      "mip_gap": 1.3445135646106163e-16,
+      "objective": 0.012902238561491934,
+      "mip_node_count": 1,
+      "solver_mode": "binary_MILP"
+    },
+    {
+      "horizon_h": 24,
+      "region": "RegionC",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true,
+      "runtime_s": 0.011251800002355594,
+      "mip_gap": 0.0,
+      "objective": 0.012801271688508064,
+      "mip_node_count": 1,
+      "solver_mode": "binary_MILP"
+    },
+    {
+      "horizon_h": 24,
+      "region": "RegionD",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true,
+      "runtime_s": 0.008084600001893705,
+      "mip_gap": 6.181866769113399e-12,
+      "objective": -1436183.9935095657,
+      "mip_node_count": 1,
+      "solver_mode": "binary_MILP"
+    },
+    {
+      "horizon_h": 24,
+      "region": "RegionE",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true,
+      "runtime_s": 0.01145889999679639,
+      "mip_gap": 4.806459151882904e-12,
+      "objective": -1530838.7668013708,
+      "mip_node_count": 1,
+      "solver_mode": "binary_MILP"
+    },
+    {
+      "horizon_h": 24,
+      "region": "RegionF",
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "success": true,
+      "runtime_s": 0.011055799997848226,
+      "mip_gap": 5.294114268464294e-12,
+      "objective": -1612451.5426074716,
+      "mip_node_count": 1,
+      "solver_mode": "binary_MILP"
+    }
+  ],
+  "limitations": [
+    "Q2 task-level schedule is not re-optimized in this pilot; Total_Load_MW from the authoritative hourly table is fixed input.",
+    "The bounded pilot begins at Hour 0 and uses InitialSOC as the pre-hour-0 state with a cyclic terminal SOC boundary.",
+    "CVaR/MPC candidates are deferred until deterministic dispatch evidence and observed-data scenario probes justify them."
+  ]
+}

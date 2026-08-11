@@ -1,0 +1,19 @@
+{
+  "fallback_name": "6h_rolling_window_12h_lookahead_cp_sat",
+  "trigger": "main CP-SAT has no feasible result or reaches timeout without a feasible result",
+  "actual_triggered": false,
+  "fixture_task_count": 8,
+  "fixture_solver": {
+    "status": "OPTIMAL",
+    "wall_time_seconds": 0.029069500000332482,
+    "task_count": 8,
+    "max_time_seconds": 5.0,
+    "num_conflicts": 0,
+    "num_branches": 208,
+    "objective": 40.0,
+    "best_bound": 40.0,
+    "optimality_gap": 0.0
+  },
+  "fixture_constraint_audit_passed": true,
+  "note": "Smoke fixture only; no fallback result is substituted for the main schedule."
+}

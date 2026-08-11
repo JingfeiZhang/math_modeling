@@ -1,0 +1,46 @@
+{
+  "probe_scope": "Accepted source audits and boundary reviews are preserved; no new claim is frozen by promotion.",
+  "probes": [
+    {
+      "id": "PROMOTION-HASH-CONSISTENCY",
+      "result": "All copied artifacts were hashed at registration.",
+      "status": "PASS"
+    },
+    {
+      "id": "PROMOTION-SCOPE",
+      "result": "Only accepted source groups were copied; blocked Q4 joint probe excluded.",
+      "status": "PASS"
+    },
+    {
+      "id": "SOURCE-AUDIT-REUSE",
+      "result": "Independent source audit and risk files remain addressable by immutable hash.",
+      "status": "PASS"
+    }
+  ],
+  "question_id": "Q1",
+  "run_id": "q1-direct-20260808",
+  "schema_version": 1,
+  "source_audits": [
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/constraint_audit.json",
+      "sha256": "721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/fallback_test.json",
+      "sha256": "6ae5e9a707204307d863b06580abadcefebfbbeba45662cb1821c7217f36731d"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/resource_audit.csv",
+      "sha256": "466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/warmup_task_audit.csv",
+      "sha256": "e33e84c075a66ca4557f655133a0336303acd8b45a909f896bdd2d1715dc2fed"
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/sensitivity/incremental_review_q1q2.json",
+      "sha256": "51166220596ff0e978713a64a830bdc0604008d01ea4f3baa695baf3b089edb7"
+    }
+  ],
+  "status": "PASS"
+}

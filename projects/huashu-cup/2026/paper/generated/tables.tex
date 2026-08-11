@@ -1,0 +1,114 @@
+% Table definitions. Numeric values come from paper_metrics.tex or frozen claims.
+\newcommand{\ClaimRatio}[1]{\num[round-mode=places,round-precision=4]{\FrozenClaim{#1}}}
+\newcommand{\ClaimPercent}[1]{\num[round-mode=places,round-precision=3]{\FrozenClaim{#1}}}
+\newcommand{\ClaimLatency}[1]{\num[round-mode=places,round-precision=3]{\FrozenClaim{#1}}}
+\newcommand{\ClaimMoney}[1]{\num[round-mode=places,round-precision=0,group-digits=integer]{\FrozenClaim{#1}}}
+\newcommand{\ClaimCarbon}[1]{\num[round-mode=places,round-precision=3]{\FrozenClaim{#1}}}
+\newcommand{\ClaimScientific}[1]{\num[scientific-notation=true,round-mode=figures,round-precision=4]{\FrozenClaim{#1}}}
+\newcommand{\ClaimInteger}[1]{\num[round-mode=places,round-precision=0]{\FrozenClaim{#1}}}
+
+\newcommand{\TableDataInterfaces}{%
+\begin{table}[H]
+  \centering
+  \caption{四个子问题的数据接口、决策输出与证据边界}
+  \label{tab:data-interface}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.08\textwidth}p{0.24\textwidth}p{0.25\textwidth}X}
+    \toprule
+    子问题 & 主要输入 & 主要输出 & 传递规则与边界 \\
+    \midrule
+    Q1 & 任务轨迹、GPU 中心、时延、功率映射 & 18 条 24 h 工作量预测及区间；最后 24 h 实际任务排程 & 预测仅用于需求刻画；排程读取实际到达任务并保留跨窗任务 \\
+    Q2 & 全时域实际任务、Q1 约束接口、电价、碳强度、新能源 & 任务执行区域与开始时刻；逐时设施负荷 & 与 FIFO 使用同输入、同约束、同输出；本问不调度储能和新能源外送 \\
+    Q3 & 给定任务负荷、储能参数、购售电边界 & 六区域充放电、购售电、SOC 与逐区指标 & 逐区滚动求解，块间只传递已实现 SOC；不构成跨区电力流优化 \\
+    Q4 & 给定 Q2 排程、Q3 储能响应、五类场景 & 72 h 局部任务移动与储能响应 & 仅搜索 12 任务邻域；其余任务固定，不外推为全时域联合最优 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}}
+
+\newcommand{\TableQOneEvidence}{%
+\begin{table}[H]
+  \centering
+  \caption{Q1 预测与排程的同口径证据摘要}
+  \label{tab:q1-evidence}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.20\textwidth}p{0.19\textwidth}p{0.19\textwidth}X}
+    \toprule
+    指标 & 季节基线 & 主模型/主排程 & 解释边界 \\
+    \midrule
+    验证集系统 WAPE & \PaperMetric{q1-validation-baseline-wape} & \PaperMetric{q1-validation-main-wape} & 仅用于模型选择与区间校准 \\
+    盲测系统 WAPE & \PaperMetric{q1-blind-baseline-wape} & \ClaimRatio{Q1-FCST-TEST-WAPE} & 盲测不参与拟合、选模与校准 \\
+    盲测系统 RMSE/GPU$\cdot$h & \PaperMetric{q1-blind-baseline-rmse} & \PaperMetric{q1-blind-main-rmse} & 与 WAPE 联合判断大误差影响 \\
+    盲测区间平均宽度/GPU$\cdot$h & \PaperMetric{q1-blind-baseline-width} & \PaperMetric{q1-blind-main-width} & 432 个底层逐时点覆盖率为 \ClaimRatio{Q1-FCST-TEST-COVERAGE}，不是未来概率保证 \\
+    层级一致性最大误差/GPU$\cdot$h & -- & \PaperMetric{q1-coherence-error} & 数值舍入尺度内近零 \\
+    实际任务数/条 & \PaperMetric{q1-task-count} & \PaperMetric{q1-task-count} & 两方案读取相同任务；另有 \PaperMetric{q1-carry-count} 条跨窗任务 \\
+    完成率 & 1.0 & \ClaimRatio{Q1-SCHED-COMPLETION} & 两方案均通过同一硬约束审计 \\
+    CP-SAT 状态与 gap & -- & \FrozenClaim{Q1-SCHED-SOLVER-STATUS}，\PaperMetric{q1-solver-gap-pct} & 固定时限 \PaperMetric{q1-solver-time-s} s，仅声称可行 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}}
+
+\newcommand{\TableQTwoComparison}{%
+\begin{table}[H]
+  \centering
+  \caption{Q2 全时域候选与同约束 FIFO 基线比较}
+  \label{tab:q2-comparison}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.25\textwidth}p{0.21\textwidth}p{0.21\textwidth}X}
+    \toprule
+    指标 & FIFO & 滚动交换候选 & 相对 FIFO \\
+    \midrule
+    设施用能成本/CNY & \PaperMetric{q2-fifo-cost} & \PaperMetric{q2-main-cost} & \ClaimPercent{Q2-FULL-COST-CHANGE-PCT}\% \\
+    购电碳排/tCO$_2$ & \PaperMetric{q2-fifo-carbon} & \PaperMetric{q2-main-carbon} & \ClaimPercent{Q2-FULL-CARBON-CHANGE-PCT}\% \\
+    加权平均网络时延/ms & \PaperMetric{q2-fifo-latency} & \PaperMetric{q2-main-latency} & +\ClaimLatency{Q2-FULL-LATENCY-CHANGE-MS}~ms \\
+    新能源利用率 & \PaperMetric{q2-fifo-renewable} & \PaperMetric{q2-main-renewable} & 略有下降，不构成全指标支配 \\
+    任务完成率 & 1.0 & \ClaimRatio{Q2-FULL-COMPLETION-RATE} & 全部 50000 条任务完成 \\
+    SLA 违约率 & 0.0 & \ClaimRatio{Q2-FULL-SLA-VIOLATION-RATE} & 逐任务 MaxLatency 约束满足 \\
+    硬约束与复跑 & 通过 & 通过 & 审计\ClaimBoolean{Q2-FULL-HARD-AUDIT-PASS}；复跑\ClaimBoolean{Q2-FULL-DETERMINISTIC-REPLAY} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}}
+
+\newcommand{\TableQThreeAudit}{%
+\begin{table}[H]
+  \centering
+  \caption{Q3 经济口径、滚动结果与审计边界}
+  \label{tab:q3-audit}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.27\textwidth}p{0.20\textwidth}p{0.20\textwidth}X}
+    \toprule
+    项目 & 无储能基线 & 滚动二进制 MILP & 说明 \\
+    \midrule
+    净运行成本/CNY & \PaperMetric{q3-baseline-cost} & \PaperMetric{q3-main-cost} & 差值 \ClaimMoney{Q3-ROLLING-COST-DELTA}；负值表示净售电收入 \\
+    购电侧碳排/tCO$_2$ & \PaperMetric{q3-baseline-carbon} & \PaperMetric{q3-main-carbon} & 差值 \ClaimCarbon{Q3-ROLLING-CARBON-DELTA}；售电不产生负排放 \\
+    滚动求解覆盖 & 同口径逐时基线 & \ClaimInteger{Q3-ROLLING-BINARY-COVERAGE} 次 & 每区 $14\times168$ h 加 55 h，覆盖 0--2406 h \\
+    最大 MIP gap & -- & \PaperMetric{q3-max-mip-gap} & 仅描述滚动块求解质量 \\
+    设施负荷最大复算残差/MW & -- & \PaperMetric{q3-load-residual} & 附件舍入尺度，不声称精确相等 \\
+    72 h 压力审计 & -- & \ClaimInteger{Q3-STRESS-AUDITS-PASSED} 项 & 观测数据派生的确定性场景 \\
+    完整硬约束审计 & -- & \ClaimInteger{Q3-ALL-270-AUDITS-PASS}/270 & 六个全时域可行性检验按区域独立求解，只证明约束完整通过 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}}
+
+\newcommand{\TableQFourScenarios}{%
+\begin{table}[H]
+  \centering
+  \caption{Q4 五场景顺序基线与局部联合候选比较}
+  \label{tab:q4-scenarios}
+  \scriptsize
+  \begin{tabularx}{\textwidth}{@{}p{0.12\textwidth}p{0.10\textwidth}p{0.19\textwidth}p{0.14\textwidth}p{0.16\textwidth}X@{}}
+    \toprule
+    场景 & 方案 & 净成本/CNY & 购电碳/tCO$_2$ & 新能源率 & 关键差值 \\
+    \midrule
+    观测 & 顺序基线 & \PaperMetric{q4-obs-base-cost} & 0 & \PaperMetric{q4-obs-base-renew} & -- \\
+    观测 & 联合候选 & \PaperMetric{q4-obs-main-cost} & 0 & \PaperMetric{q4-obs-main-renew} & 成本 \ClaimMoney{Q4-OBS-COST-DELTA} CNY \\
+    峰段电价 & 顺序基线 & \PaperMetric{q4-obs-base-cost} & 0 & \PaperMetric{q4-obs-base-renew} & -- \\
+    峰段电价 & 联合候选 & \PaperMetric{q4-obs-main-cost} & 0 & \PaperMetric{q4-obs-main-renew} & 与观测场景一致 \\
+    高碳 & 顺序基线 & \PaperMetric{q4-obs-base-cost} & 0 & \PaperMetric{q4-obs-base-renew} & -- \\
+    高碳 & 联合候选 & \PaperMetric{q4-obs-main-cost} & 0 & \PaperMetric{q4-obs-main-renew} & 与观测场景一致 \\
+    低新能源 & 顺序基线 & \PaperMetric{q4-low-base-cost} & \PaperMetric{q4-low-base-carbon} & \PaperMetric{q4-low-base-renew} & -- \\
+    低新能源 & 联合候选 & \PaperMetric{q4-low-main-cost} & \PaperMetric{q4-low-main-carbon} & \PaperMetric{q4-low-main-renew} & 成本 \ClaimMoney{Q4-LOWREN-COST-DELTA} CNY；碳排 \ClaimCarbon{Q4-LOWREN-CARBON-DELTA} tCO$_2$ \\
+    联合压力 & 顺序基线 & \PaperMetric{q4-joint-base-cost} & \PaperMetric{q4-joint-base-carbon} & \PaperMetric{q4-joint-base-renew} & -- \\
+    联合压力 & 联合候选 & \PaperMetric{q4-joint-main-cost} & \PaperMetric{q4-joint-main-carbon} & \PaperMetric{q4-joint-main-renew} & 碳排 \ClaimCarbon{Q4-JOINT-CARBON-DELTA} tCO$_2$ \\
+    \bottomrule
+  \end{tabularx}
+\end{table}}

@@ -1,0 +1,101 @@
+{
+  "additional_probes": [
+    {
+      "evidence": "experiments/C/Q2/q2-full-compat-20260808/q2_renewable_metric_audit.json",
+      "passed": true,
+      "probe": "attachment_defined_renewable_accounting"
+    },
+    {
+      "formal_method": "fixed_weight_bounded_rolling_local_exchange_heuristic",
+      "passed": true,
+      "probe": "method_name_matches_implementation",
+      "rejected_label": "full_horizon_rolling_shadow_exchange::lagrangian_balanced"
+    }
+  ],
+  "question_id": "Q2",
+  "schema_version": 1,
+  "source_probes": [
+    {
+      "interpretation": "Exposure test only; the main schedule is audited against the supplied latency limits.",
+      "method": "full_horizon_FIFO_latency_feasible_local_first",
+      "passed": "True",
+      "probe": "latency_limit_minus_10pct_fixed_schedule",
+      "unit": "task_ratio",
+      "value": "0.0",
+      "violation_count": "0"
+    },
+    {
+      "interpretation": "Stress exposure without rescheduling; failure does not invalidate supplied-capacity feasibility.",
+      "method": "full_horizon_FIFO_latency_feasible_local_first",
+      "passed": "False",
+      "probe": "GPU_capacity_minus_5pct_fixed_schedule",
+      "unit": "region_minutes",
+      "value": "2237.0",
+      "violation_count": "2237"
+    },
+    {
+      "interpretation": "Stress exposure without rescheduling; failure identifies headroom sensitivity.",
+      "method": "full_horizon_FIFO_latency_feasible_local_first",
+      "passed": "False",
+      "probe": "IT_capacity_minus_5pct_fixed_schedule",
+      "unit": "region_minutes",
+      "value": "151131.0",
+      "violation_count": "151131"
+    },
+    {
+      "interpretation": "Metric-only scenario; capacity and task feasibility are unchanged.",
+      "method": "full_horizon_FIFO_latency_feasible_local_first",
+      "passed": "True",
+      "probe": "renewable_availability_minus_20pct",
+      "unit": "renewable_utilization_ratio",
+      "value": "0.9910756436596699",
+      "violation_count": "0"
+    },
+    {
+      "interpretation": "Exposure test only; the main schedule is audited against the supplied latency limits.",
+      "method": "full_horizon_rolling_shadow_exchange::lagrangian_balanced",
+      "passed": "True",
+      "probe": "latency_limit_minus_10pct_fixed_schedule",
+      "unit": "task_ratio",
+      "value": "0.0",
+      "violation_count": "0"
+    },
+    {
+      "interpretation": "Stress exposure without rescheduling; failure does not invalidate supplied-capacity feasibility.",
+      "method": "full_horizon_rolling_shadow_exchange::lagrangian_balanced",
+      "passed": "False",
+      "probe": "GPU_capacity_minus_5pct_fixed_schedule",
+      "unit": "region_minutes",
+      "value": "61437.0",
+      "violation_count": "61437"
+    },
+    {
+      "interpretation": "Stress exposure without rescheduling; failure identifies headroom sensitivity.",
+      "method": "full_horizon_rolling_shadow_exchange::lagrangian_balanced",
+      "passed": "False",
+      "probe": "IT_capacity_minus_5pct_fixed_schedule",
+      "unit": "region_minutes",
+      "value": "154195.0",
+      "violation_count": "154195"
+    },
+    {
+      "interpretation": "Metric-only scenario; capacity and task feasibility are unchanged.",
+      "method": "full_horizon_rolling_shadow_exchange::lagrangian_balanced",
+      "passed": "True",
+      "probe": "renewable_availability_minus_20pct",
+      "unit": "renewable_utilization_ratio",
+      "value": "0.9806747875649288",
+      "violation_count": "0"
+    },
+    {
+      "interpretation": "A second full exchange run produced the identical task-region-start schedule.",
+      "method": "full_horizon_rolling_shadow_exchange::lagrangian_balanced",
+      "passed": "True",
+      "probe": "deterministic_full_exchange_replay",
+      "unit": "boolean",
+      "value": "1.0",
+      "violation_count": "0"
+    }
+  ],
+  "status": "PASS"
+}

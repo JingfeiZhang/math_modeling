@@ -1,0 +1,9 @@
+{
+  "recipe_id": "solar-tilt-sensitivity",
+  "metrics": {
+    "best_tilt_deg": 40.0,
+    "normalized_energy": 0.9587562443668256,
+    "baseline_energy": 0.943792013670388,
+    "relative_gain": 0.015855432637368994
+  }
+}

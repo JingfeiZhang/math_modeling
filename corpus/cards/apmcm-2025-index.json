@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "paper_id": "apmcm-2025-index",
+  "analysis_status": "official_results_index_only",
+  "competition": "APMCM",
+  "year": 2025,
+  "problem": "index",
+  "title": "APMCM 2025 official competition index",
+  "source_url": "https://apmcm.org/",
+  "resource_url": "https://www.saikr.com/vse/apmcm/2025",
+  "models": [],
+  "validation": [],
+  "transferable_patterns": [],
+  "risks": [
+    "没有公开全文证据，不推断模型、图表质量或获奖原因"
+  ]
+}

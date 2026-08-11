@@ -1,0 +1,61 @@
+schema_version: 3
+problem_id: DEMO
+question_id: Q1
+source_problem: ""
+problem:
+  target: ""
+  type: ""
+  inputs: []
+  outputs: []
+  constraints: []
+  evaluation_metrics: []
+  dependencies: []
+  key_conflicts: []
+model_selection:
+  primary: ""
+  rationale: ""
+  baseline: ""
+  rejected_alternatives: []
+method:
+  main:
+    name: ""
+    rationale: ""
+    implementation: ""
+  baseline:
+    name: ""
+    implementation: ""
+    comparable_output: false
+  fallback: null
+assumptions: []
+risk_probes: []
+decisions: []
+evidence:
+  runs: []
+  paper_evidence_runs: []
+  robustness: ""
+  figures: []
+  result_claim_ids: []
+  validation_claim_ids: []
+  boundary_claim_ids: []
+literature:
+  search_plan: null
+  search_receipts: []
+  evidence_cards: []
+  model_evidence_brief: null
+  bib_keys: []
+  status: NOT_STARTED
+paper:
+  section: sections/question_1.tex
+  table_ids: []
+  figure_ids: []
+  code_refs: []
+  downstream_interfaces: []
+  argument_contract:
+    objective_interface: pending
+    model_choice: pending
+    formulation: pending
+    algorithm: pending
+    result: pending
+    validation: pending
+    conclusion: pending
+status: DRAFT

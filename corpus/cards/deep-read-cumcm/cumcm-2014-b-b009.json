@@ -1,0 +1,345 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2014-b-b009",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2014,
+    "problem": "B",
+    "team_id": "",
+    "title": "2014 高教社杯全国大学生数学建模竞赛"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/B009/B16046004_%E7%A8%8B%E5%8F%8C%E6%B3%BD_%E6%9D%8E%E5%90%9B%E6%98%8C_%E9%99%88%E5%87%8C%E5%8B%A4/B16046004_%E7%A8%8B%E5%8F%8C%E6%B3%BD_%E6%9D%8E%E5%90%9B%E6%98%8C_%E9%99%88%E5%87%8C%E5%8B%A4.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/B16046004_程双泽_李君昌_陈凌勤.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2014,
+    "problem": "B",
+    "team_id": "",
+    "title": "2014 高教社杯全国大学生数学建模竞赛",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "209094e0ec9d4b412ffc9ceb60a15f56b29bce6ce0880b31a444c391353e468c",
+    "pages": 25,
+    "local_path": "corpus/raw/objects/sha256/20/209094e0ec9d4b412ffc9ceb60a15f56b29bce6ce0880b31a444c391353e468c.pdf",
+    "first_page_phash": "70f0c0c0d0d4c000",
+    "text_sha256": "eff966a747e69c598ade55edd136c38c10056a9acb91a3aa467c58945cd382cc"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-01.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：程；建立多目标优化模型确定折叠桌的设计过程中的折叠角度和钢筋位置，进而可以确",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：定长方形平板材料的长度和折叠桌的最优设计加工参数；通过多目标优化模型可以完成",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：曲面的参数方程. 进一步消去参数可得直纹曲面的方程为",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：令 u = L / 2 ，就可得到桌脚边缘线的方程(5-12)或(5-13). 进一步可以确定设计加工参数，",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-03.jpg"
+    },
+    {
+      "page": 20,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：八、 模型评价与改进",
+      "derivation": "mixed",
+      "locator": "PDF p.20",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-20.jpg"
+    },
+    {
+      "page": 20,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：8.1 模型一评价与改进",
+      "derivation": "mixed",
+      "locator": "PDF p.20",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-20.jpg"
+    },
+    {
+      "page": 20,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：优点：模型简洁，能够准确的描述折叠桌的曲面形状，并能生动的反映出折叠桌的",
+      "derivation": "mixed",
+      "locator": "PDF p.20",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-20.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：针对问题三，先将圆形折叠桌的侧面直纹曲面和桌脚边缘线的方程推广到一般形状",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-03.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：对于问题三，先将圆形折叠桌的侧面直纹曲面和桌脚边缘线的方程推广到一般形状",
+      "derivation": "mixed",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-04.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 3,
+      "description": "程；建立多目标优化模型确定折叠桌的设计过程中的折叠角度和钢筋位置，进而可以确",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 2,
+      "page": 3,
+      "description": "定长方形平板材料的长度和折叠桌的最优设计加工参数；通过多目标优化模型可以完成",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 3,
+      "page": 3,
+      "description": "曲面的参数方程. 进一步消去参数可得直纹曲面的方程为",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 4,
+      "page": 3,
+      "description": "令 u = L / 2 ，就可得到桌脚边缘线的方程(5-12)或(5-13). 进一步可以确定设计加工参数，",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 5,
+      "page": 3,
+      "description": "以及桌子的稳固性作为约束条件，建立多目标优化模型. 利用 Matlab 编程,求得最优结",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 6,
+      "page": 3,
+      "description": "针对问题三，先将圆形折叠桌的侧面直纹曲面和桌脚边缘线的方程推广到一般形状",
+      "locator": "PDF p.3"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 20,
+      "description": "八、 模型评价与改进",
+      "locator": "PDF p.20"
+    },
+    {
+      "step": 2,
+      "page": 20,
+      "description": "8.1 模型一评价与改进",
+      "locator": "PDF p.20"
+    },
+    {
+      "step": 3,
+      "page": 20,
+      "description": "优点：模型简洁，能够准确的描述折叠桌的曲面形状，并能生动的反映出折叠桌的",
+      "locator": "PDF p.20"
+    },
+    {
+      "step": 4,
+      "page": 20,
+      "description": "缺点：本文没有考虑钢筋的粗细 d ，直接将钢筋抽象为一条直线.这样处理是不符",
+      "locator": "PDF p.20"
+    },
+    {
+      "step": 5,
+      "page": 20,
+      "description": "合实际的，也使模型结果出现一定误差",
+      "locator": "PDF p.20"
+    }
+  ],
+  "figures": [
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "由于长方形木板具有对称性，故将长木板按下图 5-1 编号：",
+      "lesson": "图题“由于长方形木板具有对称性，故将长木板按下图 5-1 编号：”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-05.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 5-1：长方形木板编号图 图 5-2：桌子状态下的空间直角坐标系",
+      "lesson": "图题“图 5-1：长方形木板编号图 图 5-2：桌子状态下的空间直角坐标系”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-05.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "直角坐标系，如图 5-2 所示",
+      "lesson": "图题“直角坐标系，如图 5-2 所示”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-05.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "在桌子状态下，将空间直角坐标系中各点位置关系抽象为图 5-3，如下：",
+      "lesson": "图题“在桌子状态下，将空间直角坐标系中各点位置关系抽象为图 5-3，如下：”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-05.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 5-3：桌子状态下的各点符号",
+      "lesson": "图题“图 5-3：桌子状态下的各点符号”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-06.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "分析图 5-4、图 5-5 可得： M ( v, d cos θ + w, d sin θ ) ，其中 NM 的长度用 d 表示，最",
+      "lesson": "图题“分析图 5-4、图 5-5 可得： M ( v, d cos θ + w, d sin θ ) ，其中 NM 的长度用 d 表示，最”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2014-b-b009/pages/page-06.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 3
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 5
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 3
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "89f592540d083ebccd0bbd6a8da934b8f7b58ccb",
+    "bytes": 1048457,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2014-b-b009/extracted-layout.txt",
+      "sha256": "eff966a747e69c598ade55edd136c38c10056a9acb91a3aa467c58945cd382cc",
+      "extracted_pages": 25,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 25,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2014-b-b009/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2014-b-b009/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2014-b-b009/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2014-b-b009/contact-25-25.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

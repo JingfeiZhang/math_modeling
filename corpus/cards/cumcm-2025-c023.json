@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "analysis_status": "evidence_reviewed",
+  "review_method": "full page cache plus visual review of abstract, framework, model, main-result and validation anchors",
+  "ocr_status": "not_available; observations are page-image visual evidence, not OCR transcription",
+  "competition": "CUMCM",
+  "year": 2025,
+  "problem": "C",
+  "paper_id": "cumcm-2025-c023",
+  "title": "2025高教社杯全国大学生数学建模竞赛C题论文展示（C023）",
+  "source_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2025qgdxssxjmjslwzs_2025ctlw/251101/2022736.shtml",
+  "access": "public_page_images",
+  "award_or_label": "全国大学生数学建模竞赛组委会官方论文展示",
+  "page_coverage": {
+    "reported_total_pages": 122,
+    "cached_pages": 122,
+    "coverage": 1.0,
+    "sha256_verified": true
+  },
+  "abstract_layout": {
+    "pages": [
+      1
+    ],
+    "pattern": "独立首屏摘要 + 关键词；方法按问题顺序展开",
+    "density": "medium-to-high",
+    "evidence": [
+      {
+        "page": 1,
+        "file": "raw/cumcm-2025-c023/page-01.jpg",
+        "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+        "locator": "official page image 1"
+      }
+    ]
+  },
+  "problem_framing": "NIPT 检测决策与异常识别",
+  "models_to_subquestions": {
+    "Q1": "整理孕周、GC、BMI、Z 值等检测变量并定义风险目标",
+    "Q2": "用回归/统计模型建立检测结果与异常风险关系",
+    "Q3-Q4": "优化分组和检测时机，比较分类/元学习模型与阈值策略"
+  },
+  "models": [
+    "医学检测流程抽象",
+    "统计回归/风险模型",
+    "分组阈值决策",
+    "元学习/分类或稳健性分析"
+  ],
+  "validation_structure": [
+    "第2-3页用 NIPT 流程、检测对象和模型路线图完成问题抽象",
+    "第4-5页符号表与变量分组表明确数据口径",
+    "第6-10页以热力图、模型指标表、曲线和路线图交叉验证"
+  ],
+  "figure_strategy": [
+    "检测流程/医学机制示意图",
+    "变量热力图",
+    "模型指标表与 ROC/响应曲线"
+  ],
+  "transferable_patterns": [
+    "医学决策题先给流程和变量来源，再给统计模型",
+    "阈值结论必须同时报告样本分组、误差和适用人群",
+    "复杂模型对比用统一指标表，避免只展示最好模型"
+  ],
+  "risks": [
+    "流程图色彩信息量大，灰度打印需增加形状/编号",
+    "模型术语和缩写多，摘要应解释缩写并限定结论边界",
+    "页面图片来自官方展示页，水印/压缩伪影不作为原论文排版评价"
+  ],
+  "evidence": [
+    {
+      "page": 1,
+      "file": "raw/cumcm-2025-c023/page-01.jpg",
+      "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 2,
+      "file": "raw/cumcm-2025-c023/page-02.jpg",
+      "observation": "问题重述/背景或数据对象；记录正文如何从摘要进入模型",
+      "locator": "official page image 2"
+    },
+    {
+      "page": 4,
+      "file": "raw/cumcm-2025-c023/page-04.jpg",
+      "observation": "符号表、假设、变量或模型路线图；记录定义顺序",
+      "locator": "official page image 4"
+    },
+    {
+      "page": 7,
+      "file": "raw/cumcm-2025-c023/page-07.jpg",
+      "observation": "代表性主结果图/表；记录图型、图例、单位和比较对象",
+      "locator": "official page image 7"
+    },
+    {
+      "page": 10,
+      "file": "raw/cumcm-2025-c023/page-10.jpg",
+      "observation": "验证、敏感性、方案比较或阶段性结论；记录结果闭环",
+      "locator": "official page image 10"
+    }
+  ],
+  "evidence_boundary": "模型类别和排版判断只写页面中可见的公式、图形、表格和章节位置；未从视觉材料推断奖级、原创性或数学正确性。"
+}

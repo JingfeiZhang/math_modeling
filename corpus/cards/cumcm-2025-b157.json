@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "analysis_status": "evidence_reviewed",
+  "review_method": "full page cache plus visual review of abstract, framework, model, main-result and validation anchors",
+  "ocr_status": "not_available; observations are page-image visual evidence, not OCR transcription",
+  "competition": "CUMCM",
+  "year": 2025,
+  "problem": "B",
+  "paper_id": "cumcm-2025-b157",
+  "title": "2025高教社杯全国大学生数学建模竞赛B题论文展示（B157）",
+  "source_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2025qgdxssxjmjslwzs_2025btlw/251107/2023197.shtml",
+  "access": "public_page_images",
+  "award_or_label": "全国大学生数学建模竞赛组委会官方论文展示",
+  "page_coverage": {
+    "reported_total_pages": 67,
+    "cached_pages": 67,
+    "coverage": 1.0,
+    "sha256_verified": true
+  },
+  "abstract_layout": {
+    "pages": [
+      1
+    ],
+    "pattern": "独立首屏摘要 + 关键词；方法按问题顺序展开",
+    "density": "medium-to-high",
+    "evidence": [
+      {
+        "page": 1,
+        "file": "raw/cumcm-2025-b157/page-01.jpg",
+        "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+        "locator": "official page image 1"
+      }
+    ]
+  },
+  "problem_framing": "多阶段过程、几何状态与随机波动",
+  "models_to_subquestions": {
+    "Q1": "用几何状态图和变量表定义过程状态",
+    "Q2": "建立阶段转移、动力学或概率表达",
+    "Q3-Q4": "通过多情景模拟/采样比较输出，并报告稳定性或误差"
+  },
+  "models": [
+    "几何/向量状态表达",
+    "阶段过程模型",
+    "随机采样或蒙特卡洛",
+    "多面板敏感性分析"
+  ],
+  "validation_structure": [
+    "第5页以颜色分区几何图说明变量关系",
+    "第7-9页大量使用四联图/多面板曲线比较情景",
+    "第10页用局部示意和曲线结果检查关键状态"
+  ],
+  "figure_strategy": [
+    "彩色状态/区域图",
+    "四联曲线图",
+    "多情景对比图"
+  ],
+  "transferable_patterns": [
+    "多面板图必须共享坐标和图例，面板标题写清情景",
+    "随机模拟要报告样本量、置信区间或重复实验",
+    "图中基准方案保持固定颜色，优化方案用线型区分"
+  ],
+  "risks": [
+    "多面板缩小后字号偏小，正式排版宜减少面板数量或改为两列",
+    "颜色分区较多时需要纹理/边界第二编码",
+    "页面图片来自官方展示页，水印/压缩伪影不作为原论文排版评价"
+  ],
+  "evidence": [
+    {
+      "page": 1,
+      "file": "raw/cumcm-2025-b157/page-01.jpg",
+      "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 2,
+      "file": "raw/cumcm-2025-b157/page-02.jpg",
+      "observation": "问题重述/背景或数据对象；记录正文如何从摘要进入模型",
+      "locator": "official page image 2"
+    },
+    {
+      "page": 4,
+      "file": "raw/cumcm-2025-b157/page-04.jpg",
+      "observation": "符号表、假设、变量或模型路线图；记录定义顺序",
+      "locator": "official page image 4"
+    },
+    {
+      "page": 7,
+      "file": "raw/cumcm-2025-b157/page-07.jpg",
+      "observation": "代表性主结果图/表；记录图型、图例、单位和比较对象",
+      "locator": "official page image 7"
+    },
+    {
+      "page": 10,
+      "file": "raw/cumcm-2025-b157/page-10.jpg",
+      "observation": "验证、敏感性、方案比较或阶段性结论；记录结果闭环",
+      "locator": "official page image 10"
+    }
+  ],
+  "evidence_boundary": "模型类别和排版判断只写页面中可见的公式、图形、表格和章节位置；未从视觉材料推断奖级、原创性或数学正确性。"
+}

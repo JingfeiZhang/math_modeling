@@ -1,0 +1,48 @@
+% CUMCM 2026 rules-aligned working template. No identity information belongs here.
+\documentclass[UTF8,12pt,a4paper,fontset=fandol]{ctexart}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,graphicx,float,booktabs,longtable,multirow,listings,xcolor,hyperref,url,cite,caption,subcaption,enumitem}
+\graphicspath{{figures/}}
+\hypersetup{unicode=true,hidelinks,pdfauthor={},pdftitle={},pdfsubject={},pdfkeywords={}}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\linespread{1.25}
+\captionsetup{font=small,labelfont=bf}
+\lstset{basicstyle=\small\ttfamily,breaklines=true,frame=single,numbers=left,numberstyle=\tiny,showstringspaces=false,columns=fullflexible,keepspaces=true}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcounter{mathmodelbodystartpage}
+\newcounter{mathmodelbodypages}
+\providecommand{\FrozenClaim}[1]{\PackageError{mathmodel}{Frozen claim #1 is unavailable}{Run the claim-freeze workflow before building the paper.}}
+\providecommand{\FrozenClaimUnit}[1]{}
+\InputIfFileExists{generated/frozen_claims.tex}{}{}
+
+\begin{document}
+\pagenumbering{arabic}
+\pagestyle{plain}
+\begin{center}
+  {\zihao{3}\bfseries 数学建模竞赛论文工作模板}\par
+  \vspace{1em}
+  {\zihao{4}\bfseries 摘要}
+\end{center}
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+\par\noindent\textbf{关键词：}数学建模；优化；预测；敏感性分析
+\clearpage
+\setcounter{mathmodelbodystartpage}{\value{page}}
+
+\input{sections/01_problem_restate}
+\input{sections/02_problem_analysis}
+\input{sections/03_assumptions}
+\input{sections/04_data}
+\input{sections/05_models}
+\input{sections/06_sensitivity}
+\input{sections/07_evaluation}
+\input{sections/08_references}
+
+\clearpage
+\setcounter{mathmodelbodypages}{\numexpr\value{page}-\value{mathmodelbodystartpage}\relax}
+\typeout{MATHMODEL:CUMCM_BODY_PAGES=\arabic{mathmodelbodypages}}
+\appendix
+\input{sections/09_appendix}
+\end{document}

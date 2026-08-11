@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "recipe_id": "trajectory-angle-scan",
+  "status": "success",
+  "relationship": "modernization_fixture_not_numerical_reproduction",
+  "source_pair": {
+    "candidate_id": "cumcm-2014-a377",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/A11168020_郑建国_陶禹诺_严洒洒.pdf",
+      "blob_sha": "b9e1e69644c0df8811c48c7360695eaab8c5cd5a",
+      "sha256": "a7a710a4da6200cc3078dab037d54cb47d973ae96f9987d9e575c8d8d0bc2029"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/pro2qiujie.m",
+        "blob_sha": "c91610a36743e5f799732ca3ddcd7aa2a303b4c6",
+        "sha256": "87c9211e3b44a06b096e3a96faa530fc57a1bc9e28d2229c31791d1d2391b6eb",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/guiji.m",
+        "blob_sha": "468e56b00b8830eb7a566a9bd9521a54ebacac45",
+        "sha256": "855428091c609826af7ca967db2412e5c1ffc04bab555ea6ee2db3a197954d1b",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "command": "D:\\anaconda3\\python.exe run.py",
+  "seed": 20260808,
+  "working_directory": "D:\\数学建模\\corpus\\recipes\\trajectory-angle-scan",
+  "isolation": {
+    "writes_within_recipe_directory": true,
+    "upstream_code_executed": false
+  },
+  "environment": {
+    "python": "3.13.9",
+    "executable": "D:\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.6"
+  },
+  "inputs": [
+    {
+      "path": "run.py",
+      "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+      "bytes": 18492
+    },
+    {
+      "path": "recipe.json",
+      "sha256": "3871e428f705454ed495cdd566f6bbe884cbe8aecee689e1ec896df46b80f36b",
+      "bytes": 1543
+    },
+    {
+      "path": "input.json",
+      "sha256": "ed1add162389f46bd3e11ddcf9a6d15c76dd86ef465de3e10b74e7c4db62194a",
+      "bytes": 138
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results.json",
+      "sha256": "92c1a6ce6ff7ddd8c08951dc3aaf1a8e21fd922482b83a4e56dc2aee25f010ee",
+      "bytes": 219
+    },
+    {
+      "path": "series.csv",
+      "sha256": "f3e82c80b88b13df35e9bc1a3ae8fc4f6cdad6717220d451f569f303175fb794",
+      "bytes": 3671
+    },
+    {
+      "path": "figure.png",
+      "sha256": "c96b63359d6449397c00e627765f66d3ed36c131d1dcb9bcbb0ecb9c89c18007",
+      "bytes": 155859
+    },
+    {
+      "path": "figure.svg",
+      "sha256": "e053728e7c63792e0d71969de9300a7e4692cf136c601e133b0ebe72d760043e",
+      "bytes": 32437
+    },
+    {
+      "path": "figure.pdf",
+      "sha256": "bf5e6dfd09451b05aa6a7b3d1e3a28655671be4cc4eef530601ac1916ce400ac",
+      "bytes": 13876
+    }
+  ],
+  "metrics": {
+    "best_angle_deg": 32.5,
+    "range_m": 621.2042364968842,
+    "absolute_error_m": 1.204236496884164,
+    "baseline_error_m": 65.42303771661568
+  },
+  "runtime_ms": 715.097
+}

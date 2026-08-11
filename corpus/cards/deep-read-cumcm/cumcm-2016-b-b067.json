@@ -1,0 +1,363 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2016-b-b067",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2016,
+    "problem": "B",
+    "team_id": "",
+    "title": "小区开放对道路通行的影响"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2016/B067.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2016/B067.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2016,
+    "problem": "B",
+    "team_id": "",
+    "title": "小区开放对道路通行的影响",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "7fa10dbb33fa7f6e7afd7d0353b5dcce5d5ca98340b27d1aa83b8500cf0d2f7b",
+    "pages": 30,
+    "local_path": "corpus/raw/objects/sha256/7f/7fa10dbb33fa7f6e7afd7d0353b5dcce5d5ca98340b27d1aa83b8500cf0d2f7b.pdf",
+    "first_page_phash": "30f0dcc4c0c48487",
+    "text_sha256": "b1b6558421cfb5c45bfab640f7e4cda5fa0e3aa34feb7dc0f776df3eacb2a413"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括；按子问题顺序陈述方法与结果；摘要包含量化结果或结果判断；末尾列出关键词”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：学模型，将“开放式小区”对道路通行能力的影响进行深入研究。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：针对问题一：首先以本题实际为中心，选取出能够评价道路体系的 6 个有效指标即",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：选取出的 6 个指标进行评价；最后，根据以上选取的 6 个指标建立基于隶属度函数的模",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：糊数学评价模型，通过选取一个特定小区，收集其在不同时期不同交通道路情况下的 6",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：针对问题一：首先以本题实际为中心，选取出能够评价道路体系的 6 个有效指标即",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：选取出的 6 个指标进行评价；最后，根据以上选取的 6 个指标建立基于隶属度函数的模",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：糊数学评价模型，通过选取一个特定小区，收集其在不同时期不同交通道路情况下的 6",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：评价功能，可以将其推广到交规等政策评价方面，这对今后的道路通行和现实应用都具",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：其中有关推广街区制的意见中提出：原则上不再建设封闭的住宅小区，建成的住宅小区",
+      "derivation": "mixed",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-02.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "按子问题顺序陈述方法与结果",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "摘要包含量化结果或结果判断",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "末尾列出关键词",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "学模型，将“开放式小区”对道路通行能力的影响进行深入研究。",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 2,
+      "page": 1,
+      "description": "针对问题一：首先以本题实际为中心，选取出能够评价道路体系的 6 个有效指标即",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 3,
+      "page": 1,
+      "description": "选取出的 6 个指标进行评价；最后，根据以上选取的 6 个指标建立基于隶属度函数的模",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 4,
+      "page": 1,
+      "description": "糊数学评价模型，通过选取一个特定小区，收集其在不同时期不同交通道路情况下的 6",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 5,
+      "page": 1,
+      "description": "种指标统计数量（见表 1），用客观的熵权法确定指标权重，根据模型计算结果，即",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 6,
+      "page": 1,
+      "description": "针对问题二：首先，建立基于“电路图”的车辆交通模型，将小区周边道路中车速、",
+      "locator": "PDF p.1"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "针对问题一：首先以本题实际为中心，选取出能够评价道路体系的 6 个有效指标即",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 2,
+      "page": 1,
+      "description": "选取出的 6 个指标进行评价；最后，根据以上选取的 6 个指标建立基于隶属度函数的模",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 3,
+      "page": 1,
+      "description": "糊数学评价模型，通过选取一个特定小区，收集其在不同时期不同交通道路情况下的 6",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 4,
+      "page": 1,
+      "description": "前后周边道路的通行能力，并对其结果进行对比分析。",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 5,
+      "page": 1,
+      "description": "用熵权法客观地确定每个评价指标的权重是本文一大的特色，使的模糊综合评价模",
+      "locator": "PDF p.1"
+    }
+  ],
+  "figures": [
+    {
+      "page": 1,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "密度等参数类比为电路图中的各种元件（见图 2~3），通过科学的分析，得出小区开放后",
+      "lesson": "图题“密度等参数类比为电路图中的各种元件（见图 2~3），通过科学的分析，得出小区开放后”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 1,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "小区对道路通行能力的影响，并利用 CAD 软件绘出 10 种小区类型图（见图 5~14），并",
+      "lesson": "图题“小区对道路通行能力的影响，并利用 CAD 软件绘出 10 种小区类型图（见图 5~14），并”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 1,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "为桥梁建立 Q - m 的关系式，通过 MATLAB 软件画图（见图 15~20），进一步分析“禁",
+      "lesson": "图题“为桥梁建立 Q - m 的关系式，通过 MATLAB 软件画图（见图 15~20），进一步分析“禁”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-01.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 2,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "程图见图 1。",
+      "lesson": "图题“程图见图 1。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-02.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 3,
+      "role": "model explanation",
+      "chart_type": "flowchart",
+      "caption": "图 1 问题一分析流程图",
+      "lesson": "图题“图 1 问题一分析流程图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-03.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 9,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "如图 2 所示，导线相当于小区周围的主干路， U 0 为电压， C 是电容，将联通的整",
+      "lesson": "图题“如图 2 所示，导线相当于小区周围的主干路， U 0 为电压， C 是电容，将联通的整”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.9",
+      "render": "corpus/rendered/cumcm-2016-b-b067/pages/page-09.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 1
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 1
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 1
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "a66571a5023e5c3f86dd97458a3e3a44adb04f87",
+    "bytes": 811809,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2016-b-b067/extracted-layout.txt",
+      "sha256": "b1b6558421cfb5c45bfab640f7e4cda5fa0e3aa34feb7dc0f776df3eacb2a413",
+      "extracted_pages": 30,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 30,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2016-b-b067/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2016-b-b067/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2016-b-b067/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2016-b-b067/contact-25-30.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "core_outputs": {
+    "claim_proposals.json": {
+      "bytes": 591,
+      "sha256": "507d0c5cef3985f3817020fdbe0c67f8887eaebfe24502fa6a431de40cf8f5e2"
+    },
+    "constraint_audit.json": {
+      "bytes": 228379,
+      "sha256": "6ed5050b88ca81a23ef90bf243ecf2f969ecb176c296cca006208cb574990cf0"
+    },
+    "full_cycle_baseline_audit.json": {
+      "bytes": 5130,
+      "sha256": "f1c272b355dcbb6dc93099bdbafb1c915980155036a5d6c5c05d8325462e82ea"
+    },
+    "full_cycle_baseline_dispatch.csv": {
+      "bytes": 5111074,
+      "sha256": "388d99f3fb75862787b0aced97d443da6c771e88db97281d7f340a4ac771692e"
+    },
+    "full_cycle_baseline_metrics.csv": {
+      "bytes": 2266,
+      "sha256": "5de269ba8a2a406caad923fbdbec888cc2ef374121e07ef66f87f8fafeaefcf9"
+    },
+    "full_cycle_binary_audit.json": {
+      "bytes": 5380,
+      "sha256": "8cb3da10dd6889e914d5a5e92a4944e1a06fc111a095bb78db385f579b414199"
+    },
+    "full_cycle_binary_dispatch.csv": {
+      "bytes": 5072689,
+      "sha256": "5ecd75a006df7dab2ebbe94044ba86603df64fceddd7f68ead52c3ff0386b271"
+    },
+    "full_cycle_binary_metrics.csv": {
+      "bytes": 2483,
+      "sha256": "1cfc89a42b6b4a958bf19a4226814a9360f068d0284676de98bad4faa66014e1"
+    },
+    "summary.json": {
+      "bytes": 9149,
+      "sha256": "f5b8a2f95c74e6d1bf181fa902a13dab0f60800b11693373cefb80bf7cc65613"
+    }
+  },
+  "replay_report": {
+    "bytes": 2975,
+    "sha256": "39b495b8f00aa122ea0e858edf8eec0008f1834693d1b839daa4c02382d217ab"
+  },
+  "run_id": "q3-full-audit-fix-20260809",
+  "run_manifest": {
+    "bytes": 9046,
+    "sha256": "d5e533482303a8d212fc6861b9d8d13cdf6c12de6c10e2251da14476d155e4b9"
+  },
+  "schema_version": 1
+}

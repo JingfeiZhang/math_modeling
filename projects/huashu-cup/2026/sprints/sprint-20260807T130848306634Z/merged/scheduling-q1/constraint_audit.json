@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q1",
+  "main": {
+    "passed": true,
+    "violations": [],
+    "checks": [
+      "all_final_tasks_once",
+      "realtime_arrival_start",
+      "latency_filter",
+      "gpu_capacity",
+      "it_power",
+      "facility_power",
+      "latest_finish",
+      "no_task_at_2406"
+    ],
+    "final_task_count": 538,
+    "scheduled_final_task_count": 538
+  },
+  "baseline": {
+    "passed": true,
+    "violations": [],
+    "checks": [
+      "all_final_tasks_once",
+      "realtime_arrival_start",
+      "latency_filter",
+      "gpu_capacity",
+      "it_power",
+      "facility_power",
+      "latest_finish",
+      "no_task_at_2406"
+    ],
+    "final_task_count": 538,
+    "scheduled_final_task_count": 538
+  },
+  "warmup": {
+    "metadata": {
+      "method": "full_history_event_boundary_earliest_feasible",
+      "pre_q1_task_count": 49462,
+      "scheduled_pre_q1_count": 49462,
+      "completed_before_q1_count": 49404,
+      "carry_in_count": 58,
+      "conservation_count": 49462,
+      "conservation_passed": true,
+      "scheduled_id_count": 49462,
+      "unresolved_id_count": 0,
+      "carry_id_count": 58,
+      "event_sources": [
+        "arrival_or_earliest_start",
+        "task_completion",
+        "hour_boundary",
+        "latest_start"
+      ],
+      "minute_scan_used": false,
+      "unresolved_count": 0,
+      "probe_passed": true
+    },
+    "unresolved": []
+  },
+  "solver": {
+    "status": "FEASIBLE",
+    "wall_time_seconds": 90.02738200000022,
+    "task_count": 538,
+    "max_time_seconds": 90.0,
+    "num_conflicts": 287940,
+    "num_branches": 638960,
+    "objective": 2788.0,
+    "best_bound": 2690.0,
+    "optimality_gap": 0.0351506456241033
+  },
+  "baseline_unscheduled": [],
+  "warmup_task_audit": {
+    "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/warmup_task_audit.csv",
+    "rows": 49462,
+    "sha256": "e33e84c075a66ca4557f655133a0336303acd8b45a909f896bdd2d1715dc2fed"
+  },
+  "final_task_count": 538,
+  "carry_in_count": 58,
+  "forbidden_task_hour": 2406
+}

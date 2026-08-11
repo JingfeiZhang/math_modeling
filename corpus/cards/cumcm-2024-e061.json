@@ -1,0 +1,314 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2024-e061",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "E",
+    "team_id": "E061",
+    "title": "基于多目标优化的交通管理评估分析"
+  },
+  "source": {
+    "url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024etlw/241104/1977969.shtml",
+    "publisher": "official",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public_page_images"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024etlw/241104/1977969.shtml",
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "E",
+    "team_id": "E061",
+    "title": "基于多目标优化的交通管理评估分析",
+    "award": "全国大学生数学建模竞赛组委会官方论文展示"
+  },
+  "authenticity": {
+    "level": "A",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": true,
+      "mirror_publisher": false,
+      "fulltext_available": true,
+      "official_award_verified": true,
+      "identity_aligned": true
+    },
+    "reasons": [
+      "official source or official result is directly verifiable"
+    ]
+  },
+  "pdf": {
+    "sha256": "7a52cd93015fdaf60e48b95d19af24c43438e0b964e03143fe8885479a24a27f",
+    "pages": 32,
+    "local_path": "corpus/raw/cumcm-2024-e061/source_manifest.json",
+    "kind": "official_page_image_set",
+    "source_pdf_available": false,
+    "derived_review_pdf": "",
+    "reported_total_pages": 32,
+    "cached_pages": 32
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要按“景区交通背景与数据；四问聚类、优化和需求模型；配时、停车位与管控效果数字；关键词”组织。",
+      "derivation": "visual",
+      "locator": "official page image 1",
+      "render": "corpus/raw/cumcm-2024-e061/page-01.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "汇总交叉口方向流量并用 K-means 划分低中高峰时段",
+      "derivation": "visual",
+      "locator": "official page image 4",
+      "render": "corpus/raw/cumcm-2024-e061/page-04.jpg"
+    },
+    {
+      "page": 7,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用 PSO 估计转向比例并建立马尔可夫决策过程",
+      "derivation": "visual",
+      "locator": "official page image 7",
+      "render": "corpus/raw/cumcm-2024-e061/page-07.jpg"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用 DQN 搜索不同时段的信号相位配时",
+      "derivation": "visual",
+      "locator": "official page image 10",
+      "render": "corpus/raw/cumcm-2024-e061/page-10.jpg"
+    },
+    {
+      "page": 11,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "由轨迹速度和重复访问识别巡游车辆",
+      "derivation": "visual",
+      "locator": "official page image 11",
+      "render": "corpus/raw/cumcm-2024-e061/page-11.jpg"
+    },
+    {
+      "page": 13,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用泊松分布的分位数估计临时停车位需求",
+      "derivation": "visual",
+      "locator": "official page image 13",
+      "render": "corpus/raw/cumcm-2024-e061/page-13.jpg"
+    },
+    {
+      "page": 14,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "建立流量、等待时间和车速的管控前后评价指标",
+      "derivation": "visual",
+      "locator": "official page image 14",
+      "render": "corpus/raw/cumcm-2024-e061/page-14.jpg"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "validation"
+      ],
+      "observation": "用相位时间表和各方向平均等待时间比较优化策略",
+      "derivation": "visual",
+      "locator": "official page image 10",
+      "render": "corpus/raw/cumcm-2024-e061/page-10.jpg"
+    },
+    {
+      "page": 14,
+      "tags": [
+        "validation"
+      ],
+      "observation": "用统一百分比口径比较管控前后流量、等待时间和车速",
+      "derivation": "visual",
+      "locator": "official page image 14",
+      "render": "corpus/raw/cumcm-2024-e061/page-14.jpg"
+    },
+    {
+      "page": 15,
+      "tags": [
+        "validation"
+      ],
+      "observation": "对交通流量、转向比例和信号时长做敏感度与误差来源分析",
+      "derivation": "visual",
+      "locator": "official page image 15",
+      "render": "corpus/raw/cumcm-2024-e061/page-15.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "景区交通背景与数据",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "四问聚类、优化和需求模型",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "配时、停车位与管控效果数字",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "关键词",
+      "locator": "official page image 1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 4,
+      "description": "汇总交叉口方向流量并用 K-means 划分低中高峰时段",
+      "locator": "official page image 4"
+    },
+    {
+      "step": 2,
+      "page": 7,
+      "description": "用 PSO 估计转向比例并建立马尔可夫决策过程",
+      "locator": "official page image 7"
+    },
+    {
+      "step": 3,
+      "page": 10,
+      "description": "用 DQN 搜索不同时段的信号相位配时",
+      "locator": "official page image 10"
+    },
+    {
+      "step": 4,
+      "page": 11,
+      "description": "由轨迹速度和重复访问识别巡游车辆",
+      "locator": "official page image 11"
+    },
+    {
+      "step": 5,
+      "page": 13,
+      "description": "用泊松分布的分位数估计临时停车位需求",
+      "locator": "official page image 13"
+    },
+    {
+      "step": 6,
+      "page": 14,
+      "description": "建立流量、等待时间和车速的管控前后评价指标",
+      "locator": "official page image 14"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 10,
+      "description": "用相位时间表和各方向平均等待时间比较优化策略",
+      "locator": "official page image 10"
+    },
+    {
+      "step": 2,
+      "page": 14,
+      "description": "用统一百分比口径比较管控前后流量、等待时间和车速",
+      "locator": "official page image 14"
+    },
+    {
+      "step": 3,
+      "page": 15,
+      "description": "对交通流量、转向比例和信号时长做敏感度与误差来源分析",
+      "locator": "official page image 15"
+    }
+  ],
+  "figures": [
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "line",
+      "caption": "交叉口 24 小时流量趋势",
+      "lesson": "先展示峰谷结构再进行时段聚类",
+      "locator": "official page image 4",
+      "render": "corpus/raw/cumcm-2024-e061/page-04.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 11,
+      "role": "result evidence",
+      "chart_type": "distribution",
+      "caption": "巡游车辆速度分布直方图",
+      "lesson": "把巡游判定阈值和速度分布联系起来",
+      "locator": "official page image 11",
+      "render": "corpus/raw/cumcm-2024-e061/page-11.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 13,
+      "role": "result evidence",
+      "chart_type": "line",
+      "caption": "每日巡游车辆数量趋势",
+      "lesson": "支撑停车需求的时间变化判断",
+      "locator": "official page image 13",
+      "render": "corpus/raw/cumcm-2024-e061/page-13.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 14,
+      "role": "result evidence",
+      "chart_type": "comparison",
+      "caption": "管控前后指标评价",
+      "lesson": "用一致口径连接优化方案和业务效果",
+      "locator": "official page image 14",
+      "render": "corpus/raw/cumcm-2024-e061/page-14.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "聚类必须用特征统计解释类别语义",
+      "evidence_page": 4
+    },
+    {
+      "rule": "优化结果同时报告相位方案和等待时间",
+      "evidence_page": 11
+    },
+    {
+      "rule": "管控前后指标使用同一口径、单位和比较范围",
+      "evidence_page": 13
+    }
+  ],
+  "risks": [
+    "DQN 与 PSO 的基线比较和重复运行证据不足",
+    "多路段结果图需要更统一的颜色、字号和不确定性表达",
+    "官方展示标签不等同于独立奖级声明；卡片不推断具体奖项。"
+  ],
+  "provenance": {
+    "source_manifest": "corpus/raw/cumcm-2024-e061/source_manifest.json",
+    "source_artifact_kind": "official_page_images",
+    "derived_review_pdf": false,
+    "reported_total_pages": 32,
+    "cached_pages": 32,
+    "coverage": 1.0,
+    "visual_review": "selected evidence pages complete",
+    "review_scope": "full cached set",
+    "page_image_manifest_sha256": "7a52cd93015fdaf60e48b95d19af24c43438e0b964e03143fe8885479a24a27f"
+  }
+}

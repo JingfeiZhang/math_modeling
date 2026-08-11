@@ -1,0 +1,348 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2013-a-a1",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2013,
+    "problem": "A",
+    "team_id": "",
+    "title": "参赛密码"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2013%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/A/A1.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2013年优秀论文/A/A1.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2013,
+    "problem": "A",
+    "team_id": "",
+    "title": "参赛密码",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "d8638972f64b9c1eb2421247e832a5b5c84b48a8255ee37d580d3eadba2e207d",
+    "pages": 41,
+    "local_path": "corpus/raw/objects/sha256/d8/d8638972f64b9c1eb2421247e832a5b5c84b48a8255ee37d580d3eadba2e207d.pdf",
+    "first_page_phash": "0c8ce49098d82000",
+    "text_sha256": "57ecb39291d93e105617b9f6ea4f3aee8f21ed0fef787ba10067470ed107b612"
+  },
+  "review_status": "content_extracted",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括”的组织结构。",
+      "derivation": "text",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：题 目 变循环发动机部件法模型的求解及优化",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：本文对变循环发动机部件法模型的求解和优化相关问题进行了研究，取得",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：1. 进气道、风扇、核心驱动风扇级(CDFS)数学模型的建立。",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：通过建立部件级传递关系模型，计算出了风扇和 CDFS 的出口总温、总压",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：具有初值敏感性，每次计算的结果都基本一致，并且在前几代收敛速度较",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：用某一评价函数来决定是否接受该试探步以及确定下一次迭代的信赖域。",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-02.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：步长系数来消除这一现象。该方法较前两种算法在初值敏感性，迭代收敛",
+      "derivation": "text",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-03.jpg"
+    },
+    {
+      "page": 20,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：信赖域方法从给定的初始解出发，通过迭代、改进直到获得满意的近似最优解",
+      "derivation": "text",
+      "locator": "PDF p.20",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-20.jpg"
+    },
+    {
+      "page": 27,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：本章用 3 种非线性方程求解算法对所提出的模型进行了求解，现总结如下：",
+      "derivation": "text",
+      "locator": "PDF p.27",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-27.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "题 目 变循环发动机部件法模型的求解及优化",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "本文对变循环发动机部件法模型的求解和优化相关问题进行了研究，取得",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "1. 进气道、风扇、核心驱动风扇级(CDFS)数学模型的建立。",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "通过建立部件级传递关系模型，计算出了风扇和 CDFS 的出口总温、总压",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 2,
+      "description": "2. 变循环发动机非线性方程组的建立和求解。",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 6,
+      "page": 2,
+      "description": " 建立了变循环发动机各部件的数学模型，并由发动机的 7 个平衡方程得",
+      "locator": "PDF p.2"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "具有初值敏感性，每次计算的结果都基本一致，并且在前几代收敛速度较",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "用某一评价函数来决定是否接受该试探步以及确定下一次迭代的信赖域。",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 3,
+      "description": "步长系数来消除这一现象。该方法较前两种算法在初值敏感性，迭代收敛",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 4,
+      "page": 3,
+      "description": "传算法求解）验证，两者结果相差很小，表明这种优化策略的可行性以及",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 5,
+      "page": 17,
+      "description": "其中， fi 为各个方程的残差，为了消除各个方程量级的差别，对残差进行",
+      "locator": "PDF p.17"
+    }
+  ],
+  "figures": [
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "line",
+      "caption": "函数值的变化关系。得到的曲线和曲面图如图 1 和 2 所示。",
+      "lesson": "图题“函数值的变化关系。得到的曲线和曲面图如图 1 和 2 所示。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-05.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "line",
+      "caption": "图 1 不同转速情况下风扇流量随压比函数值变化曲线",
+      "lesson": "图题“图 1 不同转速情况下风扇流量随压比函数值变化曲线”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-05.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 2 风扇流量随压比函数值和转速的变化曲面",
+      "lesson": "图题“图 2 风扇流量随压比函数值和转速的变化曲面”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-06.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "从图 1 和图 2 可以看出，在相同的压比函数值的情况下，流量随转速的增",
+      "lesson": "图题“从图 1 和图 2 可以看出，在相同的压比函数值的情况下，流量随转速的增”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-06.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "加而增加。从图 2 可以看出，在转速从 0.4 到 1 变化时，流量的增加并不是线",
+      "lesson": "图题“加而增加。从图 2 可以看出，在转速从 0.4 到 1 变化时，流量的增加并不是线”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-06.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 9,
+      "role": "model explanation",
+      "chart_type": "result-figure",
+      "caption": "进气道、风扇和 CDFS 的整体模型如图 3 所示。",
+      "lesson": "图题“进气道、风扇和 CDFS 的整体模型如图 3 所示。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.9",
+      "render": "corpus/rendered/cumcm-2013-a-a1/pages/page-09.jpg",
+      "visual_checked": false
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 5
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 20
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "全页已渲染，但接触表尚未完成逐页人工视觉确认。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "git_blob_sha": "e048b0ccf1469853b609eacd8908c357105ce7b5",
+    "bytes": 723404,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2013-a-a1/extracted-layout.txt",
+      "sha256": "57ecb39291d93e105617b9f6ea4f3aee8f21ed0fef787ba10067470ed107b612",
+      "extracted_pages": 41,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 41,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2013-a-a1/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2013-a-a1/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2013-a-a1/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2013-a-a1/contact-25-32.jpg",
+        "corpus/rendered/cumcm-2013-a-a1/contact-33-40.jpg",
+        "corpus/rendered/cumcm-2013-a-a1/contact-41-41.jpg"
+      ],
+      "visual_review": "pending"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

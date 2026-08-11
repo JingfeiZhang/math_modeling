@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "sprint_id": "",
+  "task_id": "",
+  "attempt": 1,
+  "status": "INTERRUPTED",
+  "input_hashes": [],
+  "written_paths": [],
+  "artifacts": [],
+  "gate_result": {"gate": "G3", "passed": false, "checks": []},
+  "summary": ""
+}

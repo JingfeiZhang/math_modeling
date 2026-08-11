@@ -1,0 +1,31 @@
+% First-page identity block reconstructed from the official 2026 Huashu Cup Word template.
+\begingroup
+\setlength{\tabcolsep}{0pt}
+\setlength{\arrayrulewidth}{0.5pt}
+\renewcommand{\arraystretch}{1}
+\newcommand{\OfficialHeaderCell}[2]{%
+  \parbox[c][#1][c]{\linewidth}{\centering #2\par}%
+}
+\noindent
+\makebox[\textwidth][c]{%
+  \begin{tabular}{|
+    >{\centering\arraybackslash}m{30.48mm}|
+    >{\centering\arraybackslash}m{101.60mm}|
+    >{\centering\arraybackslash}m{27.85mm}|}
+    \hline
+    \OfficialHeaderCell{6.70mm}{\songti\zihao{5}所属类别} &
+    \multirow{2}{101.60mm}[-5.55mm]{\centering\heiti\zihao{4}\ContestName} &
+    \OfficialHeaderCell{6.70mm}{\songti\zihao{5}参赛编号} \\
+    \cline{1-1}\cline{3-3}
+    \OfficialHeaderCell{13.35mm}{\songti\zihao{5}\ContestCategory} &&
+    \OfficialHeaderCell{13.35mm}{\rmfamily\zihao{5}\RegistrationNumber} \\
+    \hline
+  \end{tabular}%
+}
+
+\vspace{1.05\baselineskip}
+\begin{center}
+  {\heiti\zihao{-3}\PaperTitle\par}
+\end{center}
+\vspace{0.45\baselineskip}
+\endgroup

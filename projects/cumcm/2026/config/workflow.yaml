@@ -1,0 +1,15 @@
+schema_version: 1
+project_id: cumcm-2026
+shared_config: ../../../config/workflow.yaml
+isolation:
+  mutable_roots:
+  - problems
+  - src
+  - experiments
+  - results
+  - paper
+  - output
+  - state
+  - sprints
+  - logs
+  cross_project_writes: forbidden

@@ -1,0 +1,57 @@
+{
+  "authority": "proposal-only",
+  "claims": [
+    {
+      "id": "Q3-ROLLING-BINARY-COVERAGE",
+      "locator": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json:$.rolling_binary_milp.total_block_solves",
+      "review_boundary": "Rolling-block evidence only; no global-optimality claim.",
+      "statement": "Across six regions, 90 successful rolling binary-MILP solves (14 blocks of 168 hours and one block of 55 hours per region) cover supplied hours 0--2406 exactly once; this is not a global 2407-hour MILP result.",
+      "status": "verified",
+      "unit": "solve"
+    },
+    {
+      "id": "Q3-ROLLING-COST-DELTA",
+      "locator": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json:$.rolling_aggregate.cost_delta_cny",
+      "review_boundary": "Regional rolling aggregate, not inter-region power-flow optimization.",
+      "statement": "Summed over six regional rolling policies, the declared net operating-cost metric differs from the comparable no-storage baseline by the reported amount; negative costs denote net export revenue.",
+      "status": "verified",
+      "unit": "CNY"
+    },
+    {
+      "id": "Q3-ROLLING-CARBON-DELTA",
+      "locator": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json:$.rolling_aggregate.carbon_delta_tco2",
+      "review_boundary": "Uses the declared grid-purchase carbon metric only.",
+      "statement": "For the same six regional rolling policies and no-storage baseline, the grid-purchase carbon metric differs by the reported amount.",
+      "status": "verified",
+      "unit": "tCO2"
+    },
+    {
+      "id": "Q3-STRESS-AUDITS-PASSED",
+      "locator": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json:$.deterministic_stress_probes.candidate_and_baseline_audits_passed",
+      "review_boundary": "Deterministic 72-hour probes, not probabilistic or full-horizon guarantees.",
+      "statement": "All candidate and comparable-baseline audits for the four observed-data-derived 72-hour stress probes passed.",
+      "status": "verified",
+      "unit": "audit"
+    },
+    {
+      "id": "Q3-FACILITY-LOAD-ROUNDING-RESIDUAL",
+      "locator": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json:$.load_recomputation.maximum_facility_residual_mw",
+      "review_boundary": "The residual must be reported whenever reproduction is claimed.",
+      "statement": "Facility load is reproduced from the supplied load components and inferred regional PUE only within the reported maximum rounding-scale residual, not by exact equality.",
+      "status": "verified",
+      "unit": "MW"
+    },
+    {
+      "id": "Q3-EXCLUDED-LP-REGIONF-SIMULTANEOUS",
+      "locator": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json:$.excluded_full_horizon_lp_probe.region_f_simultaneous_charge_discharge_mw",
+      "review_boundary": "Exclusion evidence only; no LP metric or dispatch row is claim eligible.",
+      "statement": "The full-horizon relaxed LP probe is permanently excluded from claims because its RegionF audit records the reported simultaneous charge/discharge peak.",
+      "status": "verified",
+      "unit": "MW"
+    }
+  ],
+  "problem_id": "C",
+  "question_id": "Q3",
+  "schema_version": 1,
+  "status": "root-review-required"
+}

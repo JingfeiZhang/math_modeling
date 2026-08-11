@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "recipe_id": "lunar-descent-control",
+  "status": "success",
+  "relationship": "modernization_fixture_not_numerical_reproduction",
+  "source_pair": {
+    "candidate_id": "cumcm-2014-a305",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/A10009072_吉张鹤轩_杨升_陈同广.pdf",
+      "blob_sha": "56100fa1d940da3d7f3ef97385a878d54e000346",
+      "sha256": "f451834248c687e1118160cbdffd18490e80f313f3aeacf3e314f2fbef476ecb"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/genpics.m",
+        "blob_sha": "019ac4dae00f81683bd185c992e878c310a62ae2",
+        "sha256": "3eda8c13a9edc051b12ef8d76916146ff1514debb462fbaf895cb16eb7320650",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/calc2.m",
+        "blob_sha": "2358950d0a5b176e6850be25ccdc880f3f829214",
+        "sha256": "10ef9a0190abdbaf4428181e9ce33050fd79d968b08f0e815a7e479851671635",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "command": "D:\\anaconda3\\python.exe run.py",
+  "seed": 20260807,
+  "working_directory": "D:\\数学建模\\corpus\\recipes\\lunar-descent-control",
+  "isolation": {
+    "writes_within_recipe_directory": true,
+    "upstream_code_executed": false
+  },
+  "environment": {
+    "python": "3.13.9",
+    "executable": "D:\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.6"
+  },
+  "inputs": [
+    {
+      "path": "run.py",
+      "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+      "bytes": 18492
+    },
+    {
+      "path": "recipe.json",
+      "sha256": "1827cbb343c192609e6c736248d02b0ba868b8db3bd56e913c7e5519b0494137",
+      "bytes": 1544
+    },
+    {
+      "path": "input.json",
+      "sha256": "6e13bedf72ca65c5b179829136b29311a39ca5f99f83076b044ba8b914885feb",
+      "bytes": 106
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results.json",
+      "sha256": "34825d600c1a62a10aa86d4bd7d33d7145d8e069382069fe359e319a64af3fde",
+      "bytes": 241
+    },
+    {
+      "path": "series.csv",
+      "sha256": "6d419f392074e013857bdc966c54ff13dab4d1d6407402c81409149e935ce7c3",
+      "bytes": 35569
+    },
+    {
+      "path": "figure.png",
+      "sha256": "5fb72ca42e66688d30f366021f657c30bdeebc52dcaa06a2ae0b2dd764ccb0cd",
+      "bytes": 134813
+    },
+    {
+      "path": "figure.svg",
+      "sha256": "203b540e0a8b23bc6806c086709afb26a157df9ce072b466cf736015fbaa554c",
+      "bytes": 29847
+    },
+    {
+      "path": "figure.pdf",
+      "sha256": "0b8662762522d79a28a0c1a67f766782384643f9800a96f0dd37655a3ebc2391",
+      "bytes": 12634
+    }
+  ],
+  "metrics": {
+    "touchdown_speed_mps": 2.000001554310319,
+    "fuel_proxy": 222.99199844568963,
+    "duration_s": 121.5,
+    "constant_thrust_baseline_speed_mps": 47.68300000000001
+  },
+  "runtime_ms": 750.035
+}

@@ -1,0 +1,10 @@
+{
+  "recipe_id": "normal-uncertainty-monte-carlo",
+  "metrics": {
+    "mean": 9.423350658331675,
+    "std": 1.6487412913602235,
+    "q025": 6.189383809172026,
+    "q975": 12.640939520031438,
+    "baseline_at_means": 9.5
+  }
+}

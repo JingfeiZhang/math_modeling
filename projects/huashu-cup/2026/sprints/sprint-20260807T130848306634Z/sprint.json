@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T130848306634Z",
+  "problem": "C",
+  "agent_mode": "parallel",
+  "max_agents": 2,
+  "status": "MERGED",
+  "created_at_utc": "2026-08-07T13:08:48.306634+00:00",
+  "deadline_utc": "2026-08-10 20:00:00+08:00",
+  "state_input": {
+    "path": "state/decision_log.json",
+    "sha256": "168d01952e82b4d6885af9dd2b170c02caf7b805aabc83309f3ab87e050f993f"
+  },
+  "protected_snapshot": [
+    {
+      "path": "state/decision_log.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "168d01952e82b4d6885af9dd2b170c02caf7b805aabc83309f3ab87e050f993f"
+    },
+    {
+      "path": "results/C/claims.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "3926547283e943baf93128408fa2dfa37e142512aa36a00e873cb903cb2e9781"
+    },
+    {
+      "path": "paper/main.tex",
+      "kind": "file",
+      "exists": true,
+      "sha256": "b23c057187c2b666b75b72995b42b46fb06d8c0bea21a988c3e066bb7c249f88"
+    },
+    {
+      "path": "paper/figure_contracts.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "c5247f5a26fb971654a8ee89d7af7e96a7177e613993aef178a9ffe1bbf1fa69"
+    },
+    {
+      "path": "output",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "65b877383185c2e4bea85aeb296c250432a677becc514e745e9f614d9ea684c3"
+    }
+  ],
+  "task_files": [
+    "sprints/sprint-20260807T130848306634Z/tasks/forecast-q1.json",
+    "sprints/sprint-20260807T130848306634Z/retry/scheduling-q1-attempt-2.json"
+  ],
+  "root_only_paths": [
+    "state/decision_log.json",
+    "results/C/claims.json",
+    "paper/main.tex",
+    "paper/figure_contracts.yaml",
+    "output/"
+  ],
+  "profile": "q1-solve",
+  "question": "Q1",
+  "input_sprint_id": null,
+  "last_merge_report": "sprints/sprint-20260807T130848306634Z/merge_report.json"
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T031200808089Z",
+  "task_id": "solver-q3",
+  "question": "Q3",
+  "source_directory": {
+    "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3",
+    "sha256": "0dd4b68fc5f0ad7b6a262add96bdcd416fa2ebb16afcaec63b9ae7d6ec5d166f"
+  },
+  "claim_eligible_filter": "Exclude evaluation=full_cycle_probe and Method=full_cycle_LP_scalability_probe. Use fixed, rolling_block/rolling_aggregate, and scenario evidence only.",
+  "evidence": [
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_summary.json",
+      "sha256": "172a14ab7fdfdbb6acd37b6af3983de01d08163957f1094a20a40d65eadc27dc",
+      "role": "methods, solver records, fallback, scenarios, and declared exclusions",
+      "status": "SUCCESS"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_constraint_audit.json",
+      "sha256": "2f94f0580363d8f3b8a1ea413b554546da08f9637b740795c82d3c3fe26e0ee1",
+      "role": "hard-constraint audits",
+      "audit_count": 270,
+      "claim_eligible_candidate_audits": 132,
+      "claim_eligible_baseline_audits": 132
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_dispatch.csv",
+      "sha256": "d27b9e9f351b2031988080c6f70b3e9881b73a93eb48cfaf59bab058feec374f",
+      "role": "candidate dispatch",
+      "rows": 32052,
+      "rolling_rows": 14442
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_baseline_dispatch.csv",
+      "sha256": "a427a391f104e45df90f9f108b65e93533ff1af4913dbde37e87120977de85dc",
+      "role": "comparable no-storage dispatch",
+      "rows": 17610,
+      "rolling_rows": 14442
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_candidate_metrics.csv",
+      "sha256": "2b5ef071cdac2510bed725d12c1128e0d0ca1d7f81476ba4d46d0e889fa7c887",
+      "role": "candidate metrics including explicitly excluded LP probe rows",
+      "rows": 138,
+      "excluded_full_probe_rows": 6
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_baseline_metrics.csv",
+      "sha256": "c1ee560ea9f914ef2b6d5edc3d5329bd7cd2fa8e1eb8643960f2fcfdd12966dd",
+      "role": "baseline metrics",
+      "rows": 132
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_comparison_summary.csv",
+      "sha256": "f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f",
+      "role": "matched candidate-baseline comparisons with LP probe excluded",
+      "rows": 132,
+      "rolling_aggregate_rows": 6
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_scenario_metrics.csv",
+      "sha256": "4b67097a73bcc30720301f9fb1068ab354f289b21a9219c7e6edd92227aba3d8",
+      "role": "four 72-hour candidate scenario probes across six regions",
+      "rows": 24
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_load_recompute_audit.csv",
+      "sha256": "58e06e32f341de175673fa3a2648638440367a4cc16c95f672eaafebe882e1fb",
+      "role": "independent load recomputation residuals",
+      "rows": 6
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_run_manifest.json",
+      "sha256": "d7e9e285c21cbc0c8f2c4d062dbab5d3ef63c53c717a5e1e62cb21561cdbb9ea",
+      "role": "environment, command, inputs, units, and output inventory",
+      "run_id": "solver-q3-20260808T032702Z"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/run_solver_q3.py",
+      "sha256": "81a665d910b5b21bde693873bd0844799acb5398d4684a37f0e6425461d5c1b5",
+      "role": "executable model and evidence-generation logic"
+    }
+  ],
+  "review_outputs": [
+    "q3_claim_boundary_review.json",
+    "q3_claim_proposals.json",
+    "q3_evidence_index.json"
+  ],
+  "critical_exclusion": {
+    "status": "EXCLUDED",
+    "label": "LP_full_cycle_scalability_probe",
+    "claim_eligible": false,
+    "solver_record_count": 6,
+    "all_solver_modes_relaxed_LP": true,
+    "comparison_rows_containing_probe": 0,
+    "audit_by_region": {
+      "RegionA": {
+        "passed": true,
+        "simultaneous_charge_discharge_MW": 0.0
+      },
+      "RegionB": {
+        "passed": true,
+        "simultaneous_charge_discharge_MW": 0.0
+      },
+      "RegionC": {
+        "passed": true,
+        "simultaneous_charge_discharge_MW": 0.0
+      },
+      "RegionD": {
+        "passed": true,
+        "simultaneous_charge_discharge_MW": 0.0
+      },
+      "RegionE": {
+        "passed": true,
+        "simultaneous_charge_discharge_MW": 0.0
+      },
+      "RegionF": {
+        "passed": false,
+        "simultaneous_charge_discharge_MW": 116.60975349482445
+      }
+    },
+    "RegionF_failure": {
+      "passed": false,
+      "simultaneous_charge_discharge_MW": 116.60975349482445
+    },
+    "exclusion_rule": "No metric, dispatch row, or audit from evaluation=full_cycle_probe or Method=full_cycle_LP_scalability_probe may support a manuscript claim. RegionF has 116.60975349482445 MW simultaneous charge/discharge in the relaxed solution."
+  }
+}

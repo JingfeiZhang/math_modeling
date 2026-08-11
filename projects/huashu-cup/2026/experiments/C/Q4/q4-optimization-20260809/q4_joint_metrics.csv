@@ -1,0 +1,11 @@
+scenario,role,cost_CNY,carbon_tCO2,positive_peak_MW,renewable_utilization_ratio
+observed,sequential_baseline,-13390080.273556346,0.0,0.0,0.6862245395452121
+observed,joint_candidate,-13406141.443081383,0.0,0.0,0.6868109183519249
+peak_price_empirical,sequential_baseline,-13390080.273556346,0.0,0.0,0.6862245395452121
+peak_price_empirical,joint_candidate,-13406141.443081383,0.0,0.0,0.6868109183519249
+high_carbon_empirical,sequential_baseline,-13390080.273556346,0.0,0.0,0.6862245395452121
+high_carbon_empirical,joint_candidate,-13406141.443081383,0.0,0.0,0.6868109183519249
+renewable_low_empirical,sequential_baseline,-12234343.343721306,10.947057460649814,0.0,0.7894345356855308
+renewable_low_empirical,joint_candidate,-12275910.818518342,3.1243816391338783,0.0,0.790361581326453
+joint_stress,sequential_baseline,-12234340.410006272,12.511592624953005,0.0,0.7894345356855308
+joint_stress,joint_candidate,-12275910.818518342,3.1243816391338783,0.0,0.790361581326453

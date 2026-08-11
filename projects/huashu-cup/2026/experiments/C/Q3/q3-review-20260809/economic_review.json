@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "question_id": "Q3",
+  "run_id": "q3-review-20260809",
+  "status": "REVIEW_REQUIRED",
+  "metrics": {
+    "total_net_cost_CNY": -458779181.80273545,
+    "total_grid_purchase_MWh": 0.0,
+    "total_grid_sell_MWh": 1490136.0338994823,
+    "purchase_carbon_tCO2": 0.0
+  },
+  "flags": {
+    "negative_net_cost": true,
+    "zero_purchase_carbon": false,
+    "grid_sell_present": true
+  },
+  "interpretation": "This check does not change the Q3 model; it identifies whether export revenue, degradation cost, and carbon accounting need explicit paper assumptions.",
+  "environment": {
+    "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0"
+  },
+  "generated_at_utc": "2026-08-08T18:16:32.011847+00:00",
+  "input": {
+    "path": "experiments/C/Q3/q3-review-20260809/q3_adaptive_dispatch.csv",
+    "sha256": "116d379526900592451d9830c4f3c7a3b39cc5e7d16274dec94e08e2a3a5a7e1"
+  }
+}

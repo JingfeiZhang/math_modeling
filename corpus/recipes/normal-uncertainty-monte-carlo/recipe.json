@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "recipe_id": "normal-uncertainty-monte-carlo",
+  "kind": "normal_uncertainty_mc",
+  "title": "Uncertainty propagation",
+  "seed": 20260806,
+  "source_pair": {
+    "candidate_id": "cumcm-2014-a012",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/A15010142_王子硕_吴鹏飞_陶立.pdf",
+      "blob_sha": "093081278f94d0e1fa9d0056b4f5c2abf1c9ca87",
+      "sha256": "f4110e706e39def44330b997c0142b773ef9d633d7a615ea33ea110afa451c1e"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/附件3-normal_distribution.m",
+        "blob_sha": "ea3caa6d16ad2f8e6df9d4e48cf90dff0408a309",
+        "sha256": "b477430b016db92526e52e93c0c2cb37c11d456ea0f0995da6c301e2253df3dc",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "scope": "controlled synthetic fixture for reusable method testing",
+  "not_a_reproduction": true,
+  "upstream_code_execution": "forbidden"
+}

@@ -1,0 +1,84 @@
+schema_version: 1
+problem_id: C
+question_id: Q3
+source_problem: problems/C/source/problem-C.pdf
+problem:
+  target: 问题 3：在给定任务调度和逐时负荷的基础上，建立储能协同优化模型，设计储能充放电策略，分析储能系统对运行成本、碳排放、区域峰值净购电功率和负荷波动程度的影响。
+  inputs:
+  - region_time_data.xlsx
+  - storage_information.xlsx
+  - GPU_information.xlsx
+  constraints:
+  - 任务调度与逐时负荷给定
+  - SOC上下限
+  - 充放电功率上限与效率
+  - 区域购售电边界
+  - SOC(2406)不低于InitialSOC_MWh
+  evaluation_metrics:
+  - 运行成本变化
+  - 碳排放变化
+  - 区域峰值净购电功率
+  - 负荷波动程度
+  - 新能源利用率
+method:
+  main:
+    name: 六区域 15 块滚动碳感知二进制储能 MILP
+    rationale: 给定任务排程和逐时负荷后，储能充放电、SOC、购售电和新能源分配具有明确的整数互斥约束；按区域分块滚动求解可覆盖 0--2406 小时并控制模型规模，同时保留跨块
+      SOC 下界传递和同口径基线。
+    implementation: 每个区域采用 14 个 168 小时块加 1 个 55 小时块，共 90 个二进制 MILP 子问题；目标统一包含成本、购电碳排、峰值净购电、负荷波动和新能源弃电项。每块使用充放电互斥、购售电互斥、SOC
+      效率、功率边界和终端 SOC 下界，并对候选与基线做独立重算和四类 72 小时压力探针。
+  baseline:
+    name: 六区域无储能新能源优先平衡基线
+    implementation: 在相同逐时负荷、电价、碳强度、新能源和区域边界下，不启用储能，按新能源优先、剩余购售电规则输出相同区域时序 dispatch、成本、碳排、峰值、波动和新能源利用率指标。
+    comparable_output: true
+  fallback: null
+assumptions:
+- id: Q3-A1
+  statement: 任务调度和逐时负荷在 Q3 中作为给定输入；储能只改变电能平衡，不重排任务，也不引入区域间物理潮流。
+  evidence_ref: experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json
+- id: Q3-A2
+  statement: 设施负荷由附件非 AI 负荷与按区域 PUE 推导的 AI 负荷复算，允许并记录舍入尺度残差，不写成精确等式。
+  evidence_ref: experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json
+- id: Q3-A3
+  statement: 正式性能证据仍采用滚动二进制 MILP；完整审计集合中的六个全时域探针改为区域独立、显式充放电和购售电互斥的二进制 MILP，270/270 项全部通过，但不构成系统级全时域全局最优证明。
+  evidence_ref: experiments/C/Q3/q3-full-audit-fix-20260809/summary.json
+risk_probes:
+- id: Q3-R1
+  risk: 滚动块边界遗漏小时或重复覆盖
+  probe: 复核六区域每区 15 块、14×168+55 小时布局、0--2406 精确覆盖和 90/90 求解成功。
+- id: Q3-R2
+  risk: 将六区域独立全时域可行性探针误写为系统级联合全局最优
+  probe: 核对 270/270 完整审计、六区域 MIP gap、双互斥残差和独立复跑哈希；正文只报告审计完整性，不据此新增成本或性能主张。
+- id: Q3-R3
+  risk: 设施负荷复算舍入残差被写成精确相等
+  probe: 报告最大残差并称“舍入残差范围内复现”。
+- id: Q3-R4
+  risk: 无 fallback 被误写成 fallback 已验证有效
+  probe: 记录 fallback_used_blocks=0，不提出 fallback 性能主张。
+decisions:
+- id: q3-decision-001
+  status: superseded
+  decision: 保留六区域滚动二进制 MILP为主模型、无储能新能源优先为可比基线；全周期 LP 永久排除，未触发 fallback。
+  evidence_ref: experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json
+- id: q3-decision-002
+  status: confirmed
+  decision: 保留滚动二进制 MILP 性能主线；仅将历史松弛 LP 审计边界替换为六区域独立全时域双互斥二进制 MILP 探针，使完整审计达到 270/270。该修复不改变性能指标，也不宣称系统级全时域全局最优。
+  evidence_ref: experiments/C/Q3/q3-full-audit-fix-20260809/summary.json
+evidence:
+  runs:
+  - experiments/C/Q3/q3-rolling-compat-20260808/run_manifest.json
+  - experiments/C/Q3/q3-full-audit-fix-20260809/run_manifest.json
+  robustness: experiments/C/Q3/q3-full-audit-fix-20260809/summary.json
+  figures:
+  - paper/figure_contracts.yaml#fig-q3-energy-balance
+  - paper/figure_contracts.yaml#fig-q3-dispatch-soc
+  - paper/figure_contracts.yaml#fig-q3-storage-effect
+  - paper/figure_contracts.yaml#fig-q3-rolling-coverage
+paper:
+  section: 问题三：多区域滚动储能协同
+  figure_ids:
+  - fig-q3-energy-balance
+  - fig-q3-dispatch-soc
+  - fig-q3-storage-effect
+  - fig-q3-rolling-coverage
+status: FROZEN

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T023236665505Z",
+  "status": "MERGED",
+  "passed": true,
+  "accepted_tasks": [
+    "solver-q3"
+  ],
+  "archived_artifacts": [
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/q3_summary.json",
+      "archive": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_summary.json",
+      "sha256": "172a14ab7fdfdbb6acd37b6af3983de01d08163957f1094a20a40d65eadc27dc"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/q3_constraint_audit.json",
+      "archive": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_constraint_audit.json",
+      "sha256": "2f94f0580363d8f3b8a1ea413b554546da08f9637b740795c82d3c3fe26e0ee1"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/q3_load_recompute_audit.csv",
+      "archive": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_load_recompute_audit.csv",
+      "sha256": "58e06e32f341de175673fa3a2648638440367a4cc16c95f672eaafebe882e1fb"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/q3_candidate_metrics.csv",
+      "archive": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_candidate_metrics.csv",
+      "sha256": "2b5ef071cdac2510bed725d12c1128e0d0ca1d7f81476ba4d46d0e889fa7c887"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/q3_baseline_metrics.csv",
+      "archive": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_baseline_metrics.csv",
+      "sha256": "c1ee560ea9f914ef2b6d5edc3d5329bd7cd2fa8e1eb8643960f2fcfdd12966dd"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/q3_scenario_metrics.csv",
+      "archive": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_scenario_metrics.csv",
+      "sha256": "4b67097a73bcc30720301f9fb1068ab354f289b21a9219c7e6edd92227aba3d8"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/q3_comparison_summary.csv",
+      "archive": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_comparison_summary.csv",
+      "sha256": "f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/q3_dispatch.csv",
+      "archive": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_dispatch.csv",
+      "sha256": "d27b9e9f351b2031988080c6f70b3e9881b73a93eb48cfaf59bab058feec374f"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/q3_baseline_dispatch.csv",
+      "archive": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_baseline_dispatch.csv",
+      "sha256": "a427a391f104e45df90f9f108b65e93533ff1af4913dbde37e87120977de85dc"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/q3_run_manifest.json",
+      "archive": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_run_manifest.json",
+      "sha256": "d7e9e285c21cbc0c8f2c4d062dbab5d3ef63c53c717a5e1e62cb21561cdbb9ea"
+    },
+    {
+      "task_id": "solver-q3",
+      "source": "sprints/sprint-20260808T023236665505Z/staging/solver-q3/run_solver_q3.py",
+      "archive": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/run_solver_q3.py",
+      "sha256": "81a665d910b5b21bde693873bd0844799acb5398d4684a37f0e6425461d5c1b5"
+    }
+  ],
+  "retry_packages": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "formal_state_modified": false,
+  "generated_at_utc": "2026-08-08T03:42:52.568076+00:00"
+}

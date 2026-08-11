@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T023235447353Z",
+  "task_id": "solver-q4",
+  "role": "solver",
+  "problem": "C",
+  "question": "Q4",
+  "status": "PENDING",
+  "attempt": 2,
+  "max_attempts": 2,
+  "dependencies": [
+    "solver-q4"
+  ],
+  "input_hashes": [
+    {
+      "path": "problems/C/questions/Q4/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "1be5ba0fc7988ecc9946f797140f1651baf66a22995ac5661d8e2d7ceb629a52"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "problems/C/data/workload_trace.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+    },
+    {
+      "path": "problems/C/data/GPU_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+    },
+    {
+      "path": "problems/C/data/network_latency.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157"
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/power_mapping.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+    },
+    {
+      "path": "problems/C/data/storage_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+    },
+    {
+      "path": "sprints/sprint-20260807T210015466011Z/merged/solver-q4",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "2b72059f04e8ef5955e753c91aba96e985310f5af556d988d66c3c0b0260d3f4"
+    }
+  ],
+  "allowed_read_paths": [
+    "problems/C/questions/Q4/question.yaml",
+    "contest.yaml",
+    "config/workflow.yaml",
+    "problems/C/source/problem-C.pdf",
+    "problems/C/data/workload_trace.xlsx",
+    "problems/C/data/GPU_information.xlsx",
+    "problems/C/data/network_latency.xlsx",
+    "problems/C/data/region_time_data.xlsx",
+    "problems/C/data/storage_information.xlsx",
+    "problems/C/data/power_mapping.xlsx",
+    "sprints/sprint-20260807T210015466011Z/merged/solver-q4",
+    "src",
+    "experiments",
+    "corpus",
+    "workspace://src",
+    "workspace://corpus"
+  ],
+  "write_directory": "sprints/sprint-20260808T023235447353Z/retry-staging/solver-q4-attempt-2",
+  "expected_outputs": [
+    "sprints/sprint-20260808T023235447353Z/retry-staging/solver-q4-attempt-2/handoff.json"
+  ],
+  "target_gate": "G5",
+  "deadline_utc": "2026-08-10 20:00:00+08:00",
+  "root_only_paths": [
+    "state/decision_log.json",
+    "results/C/claims.json",
+    "paper/main.tex",
+    "paper/figure_contracts.yaml",
+    "output/"
+  ],
+  "sprint_profile": "default",
+  "input_sprint_id": "sprint-20260807T210015466011Z"
+}

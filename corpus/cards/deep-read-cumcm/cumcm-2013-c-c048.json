@@ -1,0 +1,354 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2013-c-c048",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2013,
+    "problem": "C",
+    "team_id": "",
+    "title": "古塔的变形"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/C048/1C2302/%E6%88%90%E9%83%BD%E5%B7%A5%E4%B8%9A%E5%AD%A6%E9%99%A2%20%E4%B8%935%20C%20%E8%82%96%E7%91%9C%E7%90%B3%20%E5%88%98%E6%96%B0%E7%87%95%20%E9%BB%84%E9%BE%99.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2013/C048/1C2302/成都工业学院 专5 C 肖瑜琳 刘新燕 黄龙.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2013,
+    "problem": "C",
+    "team_id": "",
+    "title": "古塔的变形",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "526a5ab01f6ab20f295cbe908ab214db2611bfd62ef97cc50f9f26c025f33523",
+    "pages": 39,
+    "local_path": "corpus/raw/objects/sha256/52/526a5ab01f6ab20f295cbe908ab214db2611bfd62ef97cc50f9f26c025f33523.pdf",
+    "first_page_phash": "68f0e4c0d0d8c8c0",
+    "text_sha256": "0426e9ec96f71791a619c2af85bd8e4811c8288a0ecc7974aa6962250c01e15e"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 3,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括；按子问题顺序陈述方法与结果；摘要包含量化结果或结果判断；末尾列出关键词”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：对于问题一，我们通过最小二乘法拟合出观测点所在平面，再建立优化模型，在拟",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：对于弯曲变形，我们定义了弯曲率 K ，即用中心点所拟合出的空间曲线的曲率来描述古",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：述古塔的扭曲变形情况。利用空间曲线拟合、坐标变换等方法以及 MATLAB 程序，分",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：由于数据量较少，我们建立灰色预测模型分析这三种变形因素的变化趋势，利用相应的",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：MATLAB 程序，得到了倾斜角、弯曲率以及相对扭曲度的预测函数和误差检验，验证",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-03.jpg"
+    },
+    {
+      "page": 6,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：的观测数据，使得在寻找第十三层中心点时产生较大误差。因此，我们结合十二层与十",
+      "derivation": "mixed",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-06.jpg"
+    },
+    {
+      "page": 18,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：但考虑到实际中其他因素也可能导致水平坐标的改变以及计算误差所带来的影响，上述",
+      "derivation": "mixed",
+      "locator": "PDF p.18",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-18.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：测，具有较好的实用性和可推广性。",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-03.jpg"
+    },
+    {
+      "page": 26,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：6、模型的分析、推广与改进",
+      "derivation": "mixed",
+      "locator": "PDF p.26",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-26.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 3,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.3"
+    },
+    {
+      "page": 3,
+      "order": 2,
+      "role": "按子问题顺序陈述方法与结果",
+      "locator": "PDF p.3"
+    },
+    {
+      "page": 3,
+      "order": 3,
+      "role": "摘要包含量化结果或结果判断",
+      "locator": "PDF p.3"
+    },
+    {
+      "page": 3,
+      "order": 4,
+      "role": "末尾列出关键词",
+      "locator": "PDF p.3"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 3,
+      "description": "对于问题一，我们通过最小二乘法拟合出观测点所在平面，再建立优化模型，在拟",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 2,
+      "page": 3,
+      "description": "对于弯曲变形，我们定义了弯曲率 K ，即用中心点所拟合出的空间曲线的曲率来描述古",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 3,
+      "page": 3,
+      "description": "述古塔的扭曲变形情况。利用空间曲线拟合、坐标变换等方法以及 MATLAB 程序，分",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 4,
+      "page": 3,
+      "description": "由于数据量较少，我们建立灰色预测模型分析这三种变形因素的变化趋势，利用相应的",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 5,
+      "page": 3,
+      "description": "MATLAB 程序，得到了倾斜角、弯曲率以及相对扭曲度的预测函数和误差检验，验证",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 6,
+      "page": 3,
+      "description": "了模型的可靠性，并继而分析古塔的变形趋势。",
+      "locator": "PDF p.3"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 3,
+      "description": "MATLAB 程序，得到了倾斜角、弯曲率以及相对扭曲度的预测函数和误差检验，验证",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 2,
+      "page": 6,
+      "description": "的观测数据，使得在寻找第十三层中心点时产生较大误差。因此，我们结合十二层与十",
+      "locator": "PDF p.6"
+    },
+    {
+      "step": 3,
+      "page": 18,
+      "description": "但考虑到实际中其他因素也可能导致水平坐标的改变以及计算误差所带来的影响，上述",
+      "locator": "PDF p.18"
+    },
+    {
+      "step": 4,
+      "page": 21,
+      "description": "以及倾斜角  的误差检验如表 7 所示。",
+      "locator": "PDF p.21"
+    },
+    {
+      "step": 5,
+      "page": 21,
+      "description": "表 7：倾斜角  的误差检验表",
+      "locator": "PDF p.21"
+    }
+  ],
+  "figures": [
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "scatter",
+      "caption": "层观测点三维散点图（如图 1 所示）的绘制发现，各层的八个点近似对称地分布在一个",
+      "lesson": "图题“层观测点三维散点图（如图 1 所示）的绘制发现，各层的八个点近似对称地分布在一个”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 1：各层观测点三维图",
+      "lesson": "图题“图 1：各层观测点三维图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 11,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "标如表 2 所示，将其绘成三维图如图 2 所示。",
+      "lesson": "图题“标如表 2 所示，将其绘成三维图如图 2 所示。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.11",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-11.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 12,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 2：中心点的三维图",
+      "lesson": "图题“图 2：中心点的三维图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.12",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-12.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 19,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 6：各层的平均相对扭曲度",
+      "lesson": "图题“图 6：各层的平均相对扭曲度”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.19",
+      "render": "corpus/rendered/cumcm-2013-c-c048/pages/page-19.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 3
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 3
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 7
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 3
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "42e7c6d454de85b66d90321efde3839e6f8add88",
+    "bytes": 913379,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2013-c-c048/extracted-layout.txt",
+      "sha256": "0426e9ec96f71791a619c2af85bd8e4811c8288a0ecc7974aa6962250c01e15e",
+      "extracted_pages": 39,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 39,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2013-c-c048/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2013-c-c048/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2013-c-c048/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2013-c-c048/contact-25-32.jpg",
+        "corpus/rendered/cumcm-2013-c-c048/contact-33-39.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

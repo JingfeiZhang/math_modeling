@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "status": "PASS",
+  "method": "adaptive_ALNS_latency_guarded_probe",
+  "incumbent": "fixed_weight_bounded_rolling_local_exchange_heuristic",
+  "search_design": {
+    "iterations": 64,
+    "destroy_size": 32,
+    "ranking_pool_size": 256,
+    "selection": "adaptive roulette wheel",
+    "acceptance": "simulated annealing with geometric cooling",
+    "weight_update": "reaction-factor reward update",
+    "archive": "three-objective non-dominated proxy archive; final schedule is best balanced scalar incumbent"
+  },
+  "operators": [
+    "carbon_pressure_removal",
+    "peak_time_removal",
+    "cross_region_migration",
+    "latency_protection_repair"
+  ],
+  "adaptive_weights": {
+    "carbon_pressure_removal": 4.059751769315739,
+    "peak_time_removal": 1.5282273637407138,
+    "cross_region_migration": 2.3733798806814725,
+    "latency_protection_repair": 2.9645717385104593
+  },
+  "accepted_iteration_count": 49,
+  "improving_iteration_count": 44,
+  "pareto_proxy_archive_size": 27,
+  "metrics": [
+    {
+      "method": "FIFO",
+      "cost_CNY": 3359955010.883479,
+      "carbon_tCO2": 2893907.676691789,
+      "mean_latency_ms": 5.06846,
+      "renewable_utilization_ratio": 0.5639843246979218,
+      "hard_audit_passed": true
+    },
+    {
+      "method": "current",
+      "cost_CNY": 3325853571.1277695,
+      "carbon_tCO2": 2838075.5957927215,
+      "mean_latency_ms": 9.25822,
+      "renewable_utilization_ratio": 0.5632028060338363,
+      "hard_audit_passed": true
+    },
+    {
+      "method": "adaptive_ALNS",
+      "cost_CNY": 3326019777.4446836,
+      "carbon_tCO2": 2838243.3035750445,
+      "mean_latency_ms": 9.2546,
+      "renewable_utilization_ratio": 0.5632091505101835,
+      "hard_audit_passed": true
+    }
+  ],
+  "moved_task_count": 171,
+  "deterministic_replay_passed": true,
+  "decision": "PROBE_ONLY",
+  "formal_main_replaced": false,
+  "runtime_seconds": 86.15037929999926,
+  "code_sha256": "76549da0091863d97832064a3a8c9e43ba981dac446bead969d51e9935d8bd5f"
+}

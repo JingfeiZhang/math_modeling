@@ -1,0 +1,298 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2024-e010",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "E",
+    "team_id": "E010",
+    "title": "交通流量管控"
+  },
+  "source": {
+    "url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024etlw/241104/1977967.shtml",
+    "publisher": "official",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public_page_images"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024etlw/241104/1977967.shtml",
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "E",
+    "team_id": "E010",
+    "title": "交通流量管控",
+    "award": "全国大学生数学建模竞赛组委会官方论文展示"
+  },
+  "authenticity": {
+    "level": "A",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": true,
+      "mirror_publisher": false,
+      "fulltext_available": true,
+      "official_award_verified": true,
+      "identity_aligned": true
+    },
+    "reasons": [
+      "official source or official result is directly verifiable"
+    ]
+  },
+  "pdf": {
+    "sha256": "ca7801df7ab54d8663910b46ad2f9c62bb2ed869a19105d001b9fb987bf1c0e1",
+    "pages": 30,
+    "local_path": "corpus/raw/cumcm-2024-e010/source_manifest.json",
+    "kind": "official_page_image_set",
+    "source_pdf_available": false,
+    "derived_review_pdf": "",
+    "reported_total_pages": 39,
+    "cached_pages": 30
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要按“交通拥堵背景；四问的数据、预测和优化模型；车速、停车需求与管控效果；关键词”组织。",
+      "derivation": "visual",
+      "locator": "official page image 1",
+      "render": "corpus/raw/cumcm-2024-e010/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用 K-means、DBSCAN 和 GMM 识别交通时段并用 XGBoost 估计流量",
+      "derivation": "visual",
+      "locator": "official page image 1",
+      "render": "corpus/raw/cumcm-2024-e010/page-01.jpg"
+    },
+    {
+      "page": 12,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "通过车牌轨迹匹配与去重获得转向流量",
+      "derivation": "visual",
+      "locator": "official page image 12",
+      "render": "corpus/raw/cumcm-2024-e010/page-12.jpg"
+    },
+    {
+      "page": 16,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用 Webster 配时和遗传算法求干线协调信号方案",
+      "derivation": "visual",
+      "locator": "official page image 16",
+      "render": "corpus/raw/cumcm-2024-e010/page-16.jpg"
+    },
+    {
+      "page": 19,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "结合车辆轨迹、巡游判定和泊松需求估计停车位",
+      "derivation": "visual",
+      "locator": "official page image 19",
+      "render": "corpus/raw/cumcm-2024-e010/page-19.jpg"
+    },
+    {
+      "page": 26,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "比较管控前后流量、等待时间和车速",
+      "derivation": "visual",
+      "locator": "official page image 26",
+      "render": "corpus/raw/cumcm-2024-e010/page-26.jpg"
+    },
+    {
+      "page": 7,
+      "tags": [
+        "validation"
+      ],
+      "observation": "用共享坐标的小多图比较多个周区间的日内流量形态",
+      "derivation": "visual",
+      "locator": "official page image 7",
+      "render": "corpus/raw/cumcm-2024-e010/page-07.jpg"
+    },
+    {
+      "page": 19,
+      "tags": [
+        "validation"
+      ],
+      "observation": "在同一页比较优化前后车速并把结果落回真实路网",
+      "derivation": "visual",
+      "locator": "official page image 19",
+      "render": "corpus/raw/cumcm-2024-e010/page-19.jpg"
+    },
+    {
+      "page": 26,
+      "tags": [
+        "validation"
+      ],
+      "observation": "汇总管控前后指标并在模型评价中指出数据和稳健性限制",
+      "derivation": "visual",
+      "locator": "official page image 26",
+      "render": "corpus/raw/cumcm-2024-e010/page-26.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "交通拥堵背景",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "四问的数据、预测和优化模型",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "车速、停车需求与管控效果",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "关键词",
+      "locator": "official page image 1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "用 K-means、DBSCAN 和 GMM 识别交通时段并用 XGBoost 估计流量",
+      "locator": "official page image 1"
+    },
+    {
+      "step": 2,
+      "page": 12,
+      "description": "通过车牌轨迹匹配与去重获得转向流量",
+      "locator": "official page image 12"
+    },
+    {
+      "step": 3,
+      "page": 16,
+      "description": "用 Webster 配时和遗传算法求干线协调信号方案",
+      "locator": "official page image 16"
+    },
+    {
+      "step": 4,
+      "page": 19,
+      "description": "结合车辆轨迹、巡游判定和泊松需求估计停车位",
+      "locator": "official page image 19"
+    },
+    {
+      "step": 5,
+      "page": 26,
+      "description": "比较管控前后流量、等待时间和车速",
+      "locator": "official page image 26"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 7,
+      "description": "用共享坐标的小多图比较多个周区间的日内流量形态",
+      "locator": "official page image 7"
+    },
+    {
+      "step": 2,
+      "page": 19,
+      "description": "在同一页比较优化前后车速并把结果落回真实路网",
+      "locator": "official page image 19"
+    },
+    {
+      "step": 3,
+      "page": 26,
+      "description": "汇总管控前后指标并在模型评价中指出数据和稳健性限制",
+      "locator": "official page image 26"
+    }
+  ],
+  "figures": [
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "small-multiples",
+      "caption": "四周日内流量小多图",
+      "lesson": "固定坐标比较周期复现性",
+      "locator": "official page image 7",
+      "render": "corpus/raw/cumcm-2024-e010/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 12,
+      "role": "model explanation",
+      "chart_type": "flowchart",
+      "caption": "车牌轨迹匹配与去重流程",
+      "lesson": "将分支判断从长段伪代码中分离",
+      "locator": "official page image 12",
+      "render": "corpus/raw/cumcm-2024-e010/page-12.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 16,
+      "role": "result evidence",
+      "chart_type": "time-space",
+      "caption": "多路口干线协调时距图",
+      "lesson": "在同一坐标展示相位和车辆轨迹",
+      "locator": "official page image 16",
+      "render": "corpus/raw/cumcm-2024-e010/page-16.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 19,
+      "role": "result evidence",
+      "chart_type": "map",
+      "caption": "优化前后车速与真实路网",
+      "lesson": "把节点编号重新连接到空间对象",
+      "locator": "official page image 19",
+      "render": "corpus/raw/cumcm-2024-e010/page-19.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "时序题用共享坐标轴的小多图检查周期性",
+      "evidence_page": 7
+    },
+    {
+      "rule": "匹配和去重算法优先用判断流程图",
+      "evidence_page": 12
+    },
+    {
+      "rule": "空间结论必须回到地图或拓扑图验证",
+      "evidence_page": 16
+    }
+  ],
+  "risks": [
+    "本地只缓存官方展示的前 30/39 页，尾页与附录未进入本次视觉复核",
+    "部分图保留绘图窗口或终端截图，跨图字号和配色不统一",
+    "官方展示标签不等同于独立奖级声明；卡片不推断具体奖项。"
+  ],
+  "provenance": {
+    "source_manifest": "corpus/raw/cumcm-2024-e010/source_manifest.json",
+    "source_artifact_kind": "official_page_images",
+    "derived_review_pdf": false,
+    "reported_total_pages": 39,
+    "cached_pages": 30,
+    "coverage": 0.7692307692307693,
+    "visual_review": "selected evidence pages complete",
+    "review_scope": "cached prefix and selected evidence pages",
+    "page_image_manifest_sha256": "ca7801df7ab54d8663910b46ad2f9c62bb2ed869a19105d001b9fb987bf1c0e1"
+  }
+}

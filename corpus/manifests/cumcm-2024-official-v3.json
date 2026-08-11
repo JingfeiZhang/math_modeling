@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "program": "2024 official CUMCM page-image cards migrated to paper_card v3",
+  "selected": 6,
+  "authenticity_counts": {
+    "A": 6
+  },
+  "review_status_counts": {
+    "evidence_deep_read": 2,
+    "evidence_reviewed": 4
+  },
+  "records": [
+    {
+      "paper_id": "cumcm-2024-a163",
+      "authenticity": "A",
+      "review_status": "evidence_reviewed",
+      "cached_pages": 30,
+      "reported_total_pages": 45,
+      "card": "corpus/cards/cumcm-2024-a163.json"
+    },
+    {
+      "paper_id": "cumcm-2024-b159",
+      "authenticity": "A",
+      "review_status": "evidence_reviewed",
+      "cached_pages": 30,
+      "reported_total_pages": 37,
+      "card": "corpus/cards/cumcm-2024-b159.json"
+    },
+    {
+      "paper_id": "cumcm-2024-c038",
+      "authenticity": "A",
+      "review_status": "evidence_reviewed",
+      "cached_pages": 33,
+      "reported_total_pages": 61,
+      "card": "corpus/cards/cumcm-2024-c038.json"
+    },
+    {
+      "paper_id": "cumcm-2024-d033",
+      "authenticity": "A",
+      "review_status": "evidence_deep_read",
+      "cached_pages": 55,
+      "reported_total_pages": 55,
+      "card": "corpus/cards/cumcm-2024-d033.json"
+    },
+    {
+      "paper_id": "cumcm-2024-e010",
+      "authenticity": "A",
+      "review_status": "evidence_reviewed",
+      "cached_pages": 30,
+      "reported_total_pages": 39,
+      "card": "corpus/cards/cumcm-2024-e010.json"
+    },
+    {
+      "paper_id": "cumcm-2024-e061",
+      "authenticity": "A",
+      "review_status": "evidence_deep_read",
+      "cached_pages": 32,
+      "reported_total_pages": 32,
+      "card": "corpus/cards/cumcm-2024-e061.json"
+    }
+  ],
+  "source_pdf_policy": "No official source PDF is claimed. pdf.sha256 hashes the ordered official page-image manifest; derived_review_pdf remains empty."
+}

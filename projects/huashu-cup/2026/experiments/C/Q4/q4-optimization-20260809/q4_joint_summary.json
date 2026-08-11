@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+  "decision": "ROOT_REVIEW_REQUIRED",
+  "formal_main_replaced": false,
+  "scope": {
+    "window_start_hour": 2328,
+    "horizon_h": 72,
+    "queue_size": 12,
+    "scenarios": [
+      "observed",
+      "peak_price_empirical",
+      "high_carbon_empirical",
+      "renewable_low_empirical",
+      "joint_stress"
+    ]
+  },
+  "algorithm": {
+    "name": "surrogate-assisted high-impact fix-and-optimize with storage-MILP recourse",
+    "storage_evaluations_first_run": 53,
+    "accepted_move_count": 3,
+    "latency_guard_ms": 20.0
+  },
+  "promotion_test": {
+    "all_metrics_nonworse_in_all_scenarios": true,
+    "at_least_one_metric_strictly_better": true,
+    "task_hard_audit_passed": true,
+    "deterministic_replay_passed": true
+  },
+  "runtime_seconds": 368.5161773
+}

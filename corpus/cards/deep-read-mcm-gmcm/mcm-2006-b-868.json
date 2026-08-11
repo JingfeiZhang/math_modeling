@@ -1,0 +1,253 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "mcm-2006-b-868",
+  "identity": {
+    "contest": "MCM",
+    "year": 2006,
+    "problem": "B",
+    "team_id": "868",
+    "title": "A Simulation-Driven Approach For A Cost Efficient Airport Wheelchair Assistance Service"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/zhanwen/MathModel/git/blobs/5b78c0c3dfdd4e63eaee9fa6b7eb43ed34c8f0bb",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "美赛论文/2006美赛特等奖原版论文集/B-868-Outstanding.pdf"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://www.contest.comap.com/undergraduate/contests/mcm/contests/2006/results/MCM%202006%20Final%20Results.pdf",
+    "contest": "MCM",
+    "year": 2006,
+    "problem": "B",
+    "team_id": "868",
+    "title": "A Simulation-Driven Approach For A Cost Efficient Airport Wheelchair Assistance Service",
+    "award": "Outstanding Winner",
+    "locator": "official PDF page 2; extracted text line 73",
+    "matched_text": "868 Rice University                                        Mark Embree       Outstanding Winner     MAA Award       B"
+  },
+  "authenticity": {
+    "level": "B",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": true
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "The control number, contest year, problem, and Outstanding Winner label match a COMAP official result PDF.",
+      "The paper itself is not served from an official paper-display page, so the level is B rather than A."
+    ]
+  },
+  "pdf": {
+    "sha256": "4a742ada6f0946f9d139d2f64e8ffe206320e13b9f5b002c2084496e15642170",
+    "pages": 19,
+    "local_path": "corpus/raw/mcm-gmcm/mcm-2006-b-868/paper.pdf",
+    "first_page_phash": "dhash64:88f09088a2809000",
+    "text_sha256": "a5f09ba45cf4afac8064fda7e797e01eb2120a4788ed728ca7be5f2b1f9c0194"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "problem",
+        "model"
+      ],
+      "observation": "The introduction frames wheelchair inventory and escort deployment as a service-cost tradeoff.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-b-868/page-01.png"
+    },
+    {
+      "page": 8,
+      "tags": [
+        "sensitivity",
+        "table"
+      ],
+      "observation": "Escort count and daily cost are compared across traffic and concourse settings.",
+      "derivation": "mixed",
+      "locator": "PDF page 8",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-b-868/page-08.png"
+    },
+    {
+      "page": 9,
+      "tags": [
+        "robustness",
+        "table"
+      ],
+      "observation": "The same outputs are reported for LaGuardia, Dallas/Fort Worth, and Chicago O'Hare.",
+      "derivation": "mixed",
+      "locator": "PDF page 9",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-b-868/page-09.png"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "conclusion",
+        "boundary"
+      ],
+      "observation": "The conclusion states scheduling limitations and operational assumptions.",
+      "derivation": "mixed",
+      "locator": "PDF page 10",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-b-868/page-10.png"
+    },
+    {
+      "page": 12,
+      "tags": [
+        "model",
+        "figure"
+      ],
+      "observation": "An airport image is abstracted into a bidirectional graph used by the simulation.",
+      "derivation": "mixed",
+      "locator": "PDF page 12",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-b-868/page-12.png"
+    },
+    {
+      "page": 19,
+      "tags": [
+        "sensitivity",
+        "figure"
+      ],
+      "observation": "A line comparison separates population growth from per-capita request growth.",
+      "derivation": "mixed",
+      "locator": "PDF page 19",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-b-868/page-19.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "role": "problem-first-introduction",
+      "observation": "No formal abstract; the opening quickly states the controllable decisions, cost objective, and simulation approach."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 12,
+      "step": "network-abstraction",
+      "observation": "Represent airport geometry as a bidirectional graph.",
+      "order": 1
+    },
+    {
+      "page": 1,
+      "step": "discrete-event-service",
+      "observation": "Simulate wheelchair requests, travel, escort queues, and task scheduling.",
+      "order": 2
+    },
+    {
+      "page": 8,
+      "step": "cost-optimization",
+      "observation": "Select escort inventory and scheduling policy that minimize daily operating cost.",
+      "order": 3
+    },
+    {
+      "page": 9,
+      "step": "scenario-transfer",
+      "observation": "Re-run the same model on multiple airport layouts and traffic levels.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 8,
+      "method": "factor-sweep",
+      "observation": "Vary concourses and passenger volume while retaining comparable escort and cost outputs.",
+      "order": 1
+    },
+    {
+      "page": 9,
+      "method": "cross-site-test",
+      "observation": "Test the algorithm on three airport geometries.",
+      "order": 2
+    },
+    {
+      "page": 19,
+      "method": "demand-scenario",
+      "observation": "Separate more passengers from a higher wheelchair-request rate.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 12,
+      "role": "model-abstraction",
+      "chart_type": "image plus network graph",
+      "lesson": "Show how a real facility becomes the computational graph."
+    },
+    {
+      "page": 19,
+      "role": "scenario-comparison",
+      "chart_type": "two-series line chart",
+      "lesson": "Use directly comparable curves to distinguish competing demand mechanisms."
+    },
+    {
+      "page": 8,
+      "role": "decision-table",
+      "chart_type": "scenario result tables",
+      "lesson": "Keep the decision variables and cost objective consistent across scenarios."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 12,
+      "rule": "Display the real object and its graph abstraction together when geometry drives a simulation.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 9,
+      "rule": "Validate portability by keeping output columns fixed across different sites.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 10,
+      "rule": "State the exact operational cases the scheduler does not model.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 1,
+      "risk": "There is no standalone executive summary with final recommended inventory.",
+      "severity": "medium"
+    },
+    {
+      "page": 10,
+      "risk": "Behavioral and service-time assumptions are not accompanied by uncertainty intervals.",
+      "severity": "high"
+    },
+    {
+      "page": 19,
+      "risk": "The final trend plot is small and visually detached from the main result tables.",
+      "severity": "medium"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/mcm-2006-b-868/source_manifest.json",
+    "selected_pages": [
+      1,
+      8,
+      9,
+      10,
+      12,
+      19
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

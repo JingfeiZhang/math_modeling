@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T031200808089Z",
+  "task_id": "solver-q3",
+  "question": "Q3",
+  "authority": "proposal_only",
+  "review_status": "PASS_WITH_BOUNDARIES",
+  "proposals": [
+    {
+      "id": "Q3-ENH-P1",
+      "status": "proposal_only",
+      "claim": "For each of six regions, 15 contiguous rolling subproblems (fourteen 168-hour blocks and one 55-hour block) cover every supplied hour 0-2406 exactly once. All 90 block solves used the binary MILP, succeeded without fallback, and the six rolling-aggregate audits passed with maximum recorded residual 8.24229573482e-12.",
+      "evidence": [
+        {
+          "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_summary.json",
+          "locator": "solver_records where evaluation=rolling_block"
+        },
+        {
+          "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_dispatch.csv",
+          "locator": "Evaluation=rolling_block; per-region Hour=0..2406"
+        },
+        {
+          "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_constraint_audit.json",
+          "locator": "evaluation=rolling_aggregate, method=rolling_carbon_aware_MILP"
+        }
+      ],
+      "boundaries": [
+        "Rolling-block evidence, not one global 2407-hour MILP.",
+        "Terminal SOC is carried forward under a lower-bound rule."
+      ]
+    },
+    {
+      "id": "Q3-ENH-P2",
+      "status": "proposal_only",
+      "claim": "Summed over the six 2407-hour rolling aggregates, the declared net operating-cost metric is -458720297.61 CNY for the storage policy and -419820327.74 CNY for the no-storage baseline (delta -38899969.87 CNY). Grid-purchase carbon is 0.000000 versus 8.850563 tCO2.",
+      "evidence": [
+        {
+          "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_comparison_summary.csv",
+          "locator": "evaluation=rolling_aggregate; sum over six regions"
+        }
+      ],
+      "boundaries": [
+        "Negative cost values represent net export revenue under the declared cost formula.",
+        "The result is a sum of regional rolling policies, not inter-region power-flow optimization."
+      ]
+    },
+    {
+      "id": "Q3-ENH-P3",
+      "status": "proposal_only",
+      "claim": "At the reported numerical tolerance, every region has nonnegative reported improvement columns for cost saving, carbon reduction, signed peak reduction, net-import standard-deviation reduction, and renewable-utilization gain. Material gains are concentrated in Regions D-F; Regions A-C are already zero-purchase cases for several metrics.",
+      "evidence": [
+        {
+          "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_comparison_summary.csv",
+          "locator": "evaluation=rolling_aggregate; all six region rows"
+        }
+      ],
+      "boundaries": [
+        "Zero improvement is included as non-worse, not as a strict gain.",
+        "peak_net_import_MW is a signed regional metric and can be negative under net export."
+      ]
+    },
+    {
+      "id": "Q3-ENH-P4",
+      "status": "proposal_only",
+      "claim": "The peak-price, high-carbon, low-renewable, and joint-stress probes are derived deterministically from observed quantiles. All 24 regional 72-hour binary-MILP scenario solves and all 48 candidate/baseline scenario audits pass.",
+      "evidence": [
+        {
+          "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_summary.json",
+          "locator": "scenarios and scenario_observed_quantiles"
+        },
+        {
+          "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_scenario_metrics.csv",
+          "locator": "24 candidate rows"
+        },
+        {
+          "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_constraint_audit.json",
+          "locator": "evaluation=scenario; 48 candidate/baseline audits"
+        }
+      ],
+      "boundaries": [
+        "Scenario scope is 72 hours only.",
+        "These are deterministic stress probes, not probabilistic forecasts."
+      ]
+    },
+    {
+      "id": "Q3-ENH-P5",
+      "status": "proposal_only",
+      "claim": "The supplied IT load is reproduced from Baseline_AI_IT_Load_MW plus NonAI_IT_Load_MW with maximum residual 3.333000791e-07 MW. After applying the independently inferred regional PUE, the maximum facility-load residual is 5.04499551e-05 MW.",
+      "evidence": [
+        {
+          "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_load_recompute_audit.csv",
+          "locator": "all six region rows"
+        },
+        {
+          "path": "problems/C/data/region_time_data.xlsx",
+          "locator": "region_time_data sheet; 14442 rows"
+        }
+      ],
+      "boundaries": [
+        "Facility-load reproduction is within recorded rounding residual, not exact equality.",
+        "PUE is inferred from supplied load columns rather than externally validated in this task package."
+      ]
+    }
+  ],
+  "strict_exclusions": [
+    "No metric, dispatch row, or audit from evaluation=full_cycle_probe or Method=full_cycle_LP_scalability_probe may support a manuscript claim. RegionF has 116.60975349482445 MW simultaneous charge/discharge in the relaxed solution."
+  ]
+}

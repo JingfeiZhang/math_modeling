@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": {
+    "no_future_rows_in_training": true,
+    "all_predictions_finite": true,
+    "nonnegative_point_and_ordered_interval": true,
+    "same_output_class_as_main": true,
+    "catboost_not_falsely_claimed": true
+  },
+  "negative_finding": "Quantile HGBR is retained as a diagnostic; no claim freeze or main-model replacement."
+}

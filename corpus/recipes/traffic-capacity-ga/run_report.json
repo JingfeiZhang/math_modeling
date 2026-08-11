@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "recipe_id": "traffic-capacity-ga",
+  "status": "success",
+  "relationship": "modernization_fixture_not_numerical_reproduction",
+  "source_pair": {
+    "candidate_id": "cumcm-2013-a056",
+    "relationship": "strong_partial",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2013/A056/5486/5486.pdf",
+      "blob_sha": "29ce09bd0b75f5ff763168407005295d2af714bc",
+      "sha256": "bae180e8fe47c11e9096a3bd2484fc08e66fcfe6969e65c6c644679ed7cab02d"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem3_2.m",
+        "blob_sha": "56f0ca01dee1c6113006154c411d286de971c83c",
+        "sha256": "351dcbb9a19bbe890812f3949f778c2c2ac071363a731f6d75115ee7d0bb5160",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem4.m",
+        "blob_sha": "ea61dbf80797be6eedd9bf1430bbbf8c6f947f70",
+        "sha256": "f57a1d47d29b551c29a7dd4c2e8dc189d005b480180b4ab3caf33b671109e8cb",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "command": "D:\\anaconda3\\python.exe run.py",
+  "seed": 20260802,
+  "working_directory": "D:\\数学建模\\corpus\\recipes\\traffic-capacity-ga",
+  "isolation": {
+    "writes_within_recipe_directory": true,
+    "upstream_code_executed": false
+  },
+  "environment": {
+    "python": "3.13.9",
+    "executable": "D:\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.6"
+  },
+  "inputs": [
+    {
+      "path": "run.py",
+      "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+      "bytes": 18492
+    },
+    {
+      "path": "recipe.json",
+      "sha256": "7f2a0543781287f8179a3b1b888795066d656cbe2762ae454ebf1799e4d8aadd",
+      "bytes": 1444
+    },
+    {
+      "path": "input.json",
+      "sha256": "1f4a8a6e783f72935ba09100b60f51bb5d1a648372ae853b6825ec954ece20f5",
+      "bytes": 48
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results.json",
+      "sha256": "5baee56fa3ac4118321a46b3295353e38527ca8ec985d36336f5b5ad85c4ae31",
+      "bytes": 209
+    },
+    {
+      "path": "series.csv",
+      "sha256": "1652e6e203999f707e9205458e88174a9c74742cd95a23be8bc6a7e000c398a8",
+      "bytes": 1373
+    },
+    {
+      "path": "figure.png",
+      "sha256": "bd7374f258b6ef8619409dbadd1e974b38f4f0c3d1bb61e37dde2645e0793bf0",
+      "bytes": 107317
+    },
+    {
+      "path": "figure.svg",
+      "sha256": "06224f5808c8d549199b052767abef68ee691427ea016d1abd298bd2d1a2fbef",
+      "bytes": 28682
+    },
+    {
+      "path": "figure.pdf",
+      "sha256": "c545e8b3cab0fa8402a8572e14f4e04fba5a44435ee1db09a04b468a8b080e7b",
+      "bytes": 11700
+    }
+  ],
+  "metrics": {
+    "best_speed_kmh": 75.0,
+    "best_headway_s": 0.8,
+    "optimized_score": 3421.0384615384614,
+    "baseline_score": 1666.6666666666665
+  },
+  "runtime_ms": 719.712
+}

@@ -1,0 +1,105 @@
+schema_version: 1
+layout_id: modeling-workbench-v1
+compatibility:
+  legacy_root_enabled: true
+  active_project_pointer: false
+  formal_projects_root: projects
+  no_delete_policy: true
+roles:
+  shared:
+    - config
+    - templates
+    - corpus
+    - src
+    - scripts
+    - matlab
+    - environment.yml
+    - environment-extended.yml
+    - skills.lock.yaml
+  projects:
+    root: projects
+    pattern: projects/{competition}/{year}
+    mutable: [problems, src, experiments, results, paper, output, submission, state, sprints, logs]
+  legacy_demo:
+    - contest.yaml
+    - paper
+    - problems
+    - experiments
+    - results
+    - figures
+  reports:
+    - reports
+  tooling:
+    - tools
+    - .tools
+    - .audit
+    - skill_staging
+    - tmp
+output:
+  canonical_root_files:
+    - environment.json
+    - setup-extended.json
+    - workflow_status.json
+    - audit.json
+    - paper_audit.json
+    - figure_audit.json
+    - figure_style_audit.json
+    - pdf_visual_audit.json
+    - code_parity_audit.json
+    - ai_usage_audit.json
+    - package_audit.json
+    - submission.pdf
+    - supporting.zip
+  buckets:
+    verification: output/_verification
+    demos: output/_demos
+    archive: output/_archive
+    release: output/release
+migration:
+  version: 1
+  rules:
+    - id: pytest-directories
+      source: output/pytest-*
+      destination: output/_verification/pytest/{name}
+    - id: template-validation
+      source: output/template-validation
+      destination: output/_verification/templates/template-validation
+    - id: rendered-pages
+      source: output/rendered-pages
+      destination: output/_verification/pdf/rendered-pages
+    - id: pdf-visual-pages
+      source: output/pdf-visual-pages
+      destination: output/_verification/pdf/pdf-visual-pages
+    - id: matlab-demos
+      source: output/matlab-*
+      destination: output/_demos/matlab/{name}
+    - id: matlab-figures
+      source: output/matlab_figures
+      destination: output/_demos/matlab/matlab_figures
+    - id: originlab-smoke
+      source: output/originlab-mcp-smoke
+      destination: output/_demos/originlab/originlab-mcp-smoke
+    - id: temporary-directories
+      source: output/tmp*
+      destination: output/_archive/temporary/{name}
+    - id: conda-temporary
+      source: output/.conda-tmp
+      destination: output/_archive/temporary/.conda-tmp
+    - id: environment-smoke-reports
+      source: output/extended-smoke-*.json
+      destination: output/_verification/environment/{name}
+    - id: legacy-report-log
+      source: report.log
+      destination: output/_archive/legacy-root/report.log
+  protected:
+    - config
+    - templates
+    - corpus
+    - src
+    - scripts
+    - matlab
+    - projects
+    - output/release
+    - output/submission.pdf
+    - output/supporting.zip
+    - submission

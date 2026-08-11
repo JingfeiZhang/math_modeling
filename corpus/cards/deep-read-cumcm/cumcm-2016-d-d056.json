@@ -1,0 +1,354 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2016-d-d056",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2016,
+    "problem": "D",
+    "team_id": "",
+    "title": "风电场运行状况分析及维护计划优化"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2016/D056.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2016/D056.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2016,
+    "problem": "D",
+    "team_id": "",
+    "title": "风电场运行状况分析及维护计划优化",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "270bfe8e5de84355a973e9027d94a1cea3721a4b759928589cfe3ec743a4eac1",
+    "pages": 81,
+    "local_path": "corpus/raw/objects/sha256/27/270bfe8e5de84355a973e9027d94a1cea3721a4b759928589cfe3ec743a4eac1.pdf",
+    "first_page_phash": "f0e0c8e4ccd0d007",
+    "text_sha256": "ca41dfc543238c5eb56edea353e380d3ed66c64035c4a30f81a928336f1944b0"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括；按子问题顺序陈述方法与结果；摘要包含量化结果或结果判断”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：风电场运行状况分析及维护计划优化",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：风能资源评估是进行风能资源开发规划最为关键的第一步,评估结果对评估风电场",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：运行效益至关重要。本文围绕风电场运行状况分析及维护计划优化问题，从风资源评估、",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：风机匹配情况。首先运用三次多项式拟合确定了机型Ⅰ、Ⅱ中风速功率的函数关系，得",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：处的平均风速数据进行完整性和合理性检验，并对错误数据进行修正；其次，对风速采",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：的平均风速和功率进一步处理之前，要先对数据进行完整性和合理性检验，在对其修正",
+      "derivation": "mixed",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：利用率。为了更好地反映风能资源的利用情况，可以做一致性检验，判断整个风能资源",
+      "derivation": "mixed",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-02.jpg"
+    },
+    {
+      "page": 24,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：6.模型的优缺点",
+      "derivation": "mixed",
+      "locator": "PDF p.24",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-24.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "按子问题顺序陈述方法与结果",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "摘要包含量化结果或结果判断",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "风电场运行状况分析及维护计划优化",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 2,
+      "page": 1,
+      "description": "风能资源评估是进行风能资源开发规划最为关键的第一步,评估结果对评估风电场",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 3,
+      "page": 1,
+      "description": "运行效益至关重要。本文围绕风电场运行状况分析及维护计划优化问题，从风资源评估、",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 4,
+      "page": 1,
+      "description": "风机匹配情况。首先运用三次多项式拟合确定了机型Ⅰ、Ⅱ中风速功率的函数关系，得",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 5,
+      "page": 1,
+      "description": "制为约束的双目标模型。在考虑风速信息的情况下，建立以经济效益较好和一年各组维",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 6,
+      "page": 1,
+      "description": "连续工作时间不超过 270 天、最大维护组个数限制为约束的双目标模型。考虑所建模型",
+      "locator": "PDF p.1"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "处的平均风速数据进行完整性和合理性检验，并对错误数据进行修正；其次，对风速采",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "的平均风速和功率进一步处理之前，要先对数据进行完整性和合理性检验，在对其修正",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "利用率。为了更好地反映风能资源的利用情况，可以做一致性检验，判断整个风能资源",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 3,
+      "description": "5.1.1 平均风速数据的检验",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 5,
+      "page": 3,
+      "description": "评估。对已给出的数据进行完整性检验和合理性检验，确定不合理数据和缺失的数据。",
+      "locator": "PDF p.3"
+    }
+  ],
+  "figures": [
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "软件制作出每小时平均风速图，如图 1 所示。",
+      "lesson": "图题“软件制作出每小时平均风速图，如图 1 所示。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-05.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 1 逐小时连续采样数据的平均风速",
+      "lesson": "图题“图 1 逐小时连续采样数据的平均风速”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-06.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "每日平均风速图，如图 2 所示。",
+      "lesson": "图题“每日平均风速图，如图 2 所示。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 2 逐日连续采样数据的平均风速",
+      "lesson": "图题“图 2 逐日连续采样数据的平均风速”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 8,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "平均风速图，如图 3 所示。",
+      "lesson": "图题“平均风速图，如图 3 所示。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-08.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 8,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 3 逐月连续采样数据的平均风速",
+      "lesson": "图题“图 3 逐月连续采样数据的平均风速”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2016-d-d056/pages/page-08.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 1
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 5
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 24
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "fd305c521bafcd3c70c8f8a0c453b0d494d016df",
+    "bytes": 3973988,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2016-d-d056/extracted-layout.txt",
+      "sha256": "ca41dfc543238c5eb56edea353e380d3ed66c64035c4a30f81a928336f1944b0",
+      "extracted_pages": 81,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 81,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2016-d-d056/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2016-d-d056/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2016-d-d056/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2016-d-d056/contact-25-32.jpg",
+        "corpus/rendered/cumcm-2016-d-d056/contact-33-40.jpg",
+        "corpus/rendered/cumcm-2016-d-d056/contact-41-48.jpg",
+        "corpus/rendered/cumcm-2016-d-d056/contact-49-56.jpg",
+        "corpus/rendered/cumcm-2016-d-d056/contact-57-64.jpg",
+        "corpus/rendered/cumcm-2016-d-d056/contact-65-72.jpg",
+        "corpus/rendered/cumcm-2016-d-d056/contact-73-80.jpg",
+        "corpus/rendered/cumcm-2016-d-d056/contact-81-81.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

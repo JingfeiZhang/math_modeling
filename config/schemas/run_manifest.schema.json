@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reproducible experiment run manifest",
+  "oneOf": [
+    {"$ref": "#/$defs/v1"},
+    {"$ref": "#/$defs/v2"}
+  ],
+  "$defs": {
+    "code": {
+      "type": "object",
+      "required": ["runner", "sha256"],
+      "properties": {
+        "runner": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "hashRecord": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": true
+    },
+    "metric": {
+      "type": "object",
+      "required": ["name", "unit"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "unit": {"type": "string"},
+        "locator": {"type": "string"},
+        "primary": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "metricSnapshot": {
+      "type": "object",
+      "required": ["name", "value", "unit", "locator"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "value": {"type": ["string", "number", "boolean", "null"]},
+        "unit": {"type": "string"},
+        "locator": {"type": "string"},
+        "primary": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "baseProperties": {
+      "run_id": {"type": "string", "minLength": 1},
+      "problem_id": {"type": "string", "minLength": 1},
+      "question_id": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
+      "engine": {"enum": ["python", "matlab"]},
+      "command": {"type": "array", "items": {"type": "string"}},
+      "arguments": {"type": "array", "items": {"type": "string"}},
+      "diagnostic_arguments": {"type": "array", "items": {"type": "string"}},
+      "environment": {"type": "object"},
+      "code": {"$ref": "#/$defs/code"},
+      "random_seed": {"type": "integer"},
+      "methods": {"type": "array", "items": {"type": "object"}},
+      "inputs": {"type": "array", "items": {"$ref": "#/$defs/hashRecord"}},
+      "artifacts": {"type": "array", "items": {"$ref": "#/$defs/hashRecord"}},
+      "metrics": {"type": "array", "items": {"$ref": "#/$defs/metric"}},
+      "started_at_utc": {"type": "string"},
+      "duration_seconds": {"type": "number", "minimum": 0},
+      "status": {"enum": ["PASS", "FAIL"]}
+    },
+    "v1": {
+      "type": "object",
+      "required": ["schema_version", "run_id", "problem_id", "question_id", "engine", "command", "environment", "code", "random_seed", "methods", "inputs", "artifacts", "metrics", "started_at_utc", "duration_seconds", "status"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "run_id": {"$ref": "#/$defs/baseProperties/run_id"},
+        "problem_id": {"$ref": "#/$defs/baseProperties/problem_id"},
+        "question_id": {"$ref": "#/$defs/baseProperties/question_id"},
+        "engine": {"$ref": "#/$defs/baseProperties/engine"},
+        "command": {"$ref": "#/$defs/baseProperties/command"},
+        "environment": {"$ref": "#/$defs/baseProperties/environment"},
+        "code": {"$ref": "#/$defs/baseProperties/code"},
+        "random_seed": {"$ref": "#/$defs/baseProperties/random_seed"},
+        "methods": {"$ref": "#/$defs/baseProperties/methods"},
+        "inputs": {"$ref": "#/$defs/baseProperties/inputs"},
+        "artifacts": {"$ref": "#/$defs/baseProperties/artifacts"},
+        "metrics": {"$ref": "#/$defs/baseProperties/metrics"},
+        "started_at_utc": {"$ref": "#/$defs/baseProperties/started_at_utc"},
+        "duration_seconds": {"$ref": "#/$defs/baseProperties/duration_seconds"},
+        "status": {"$ref": "#/$defs/baseProperties/status"}
+      },
+      "additionalProperties": false
+    },
+    "v2": {
+      "type": "object",
+      "required": ["schema_version", "run_id", "problem_id", "question_id", "engine", "command", "arguments", "diagnostic_arguments", "environment", "code", "random_seed", "methods", "inputs", "artifacts", "metrics", "metric_snapshot", "started_at_utc", "duration_seconds", "status", "run_mode", "level", "mode", "purpose", "formal_candidate", "checks", "reuse_contract", "reuse_validation", "replay", "lifecycle"],
+      "properties": {
+        "schema_version": {"const": 2},
+        "run_id": {"$ref": "#/$defs/baseProperties/run_id"},
+        "problem_id": {"$ref": "#/$defs/baseProperties/problem_id"},
+        "question_id": {"$ref": "#/$defs/baseProperties/question_id"},
+        "engine": {"$ref": "#/$defs/baseProperties/engine"},
+        "command": {"$ref": "#/$defs/baseProperties/command"},
+        "arguments": {"$ref": "#/$defs/baseProperties/arguments"},
+        "diagnostic_arguments": {"$ref": "#/$defs/baseProperties/diagnostic_arguments"},
+        "environment": {"$ref": "#/$defs/baseProperties/environment"},
+        "code": {"$ref": "#/$defs/baseProperties/code"},
+        "random_seed": {"$ref": "#/$defs/baseProperties/random_seed"},
+        "methods": {"$ref": "#/$defs/baseProperties/methods"},
+        "inputs": {"$ref": "#/$defs/baseProperties/inputs"},
+        "artifacts": {"$ref": "#/$defs/baseProperties/artifacts"},
+        "metrics": {"$ref": "#/$defs/baseProperties/metrics"},
+        "metric_snapshot": {"type": "array", "items": {"$ref": "#/$defs/metricSnapshot"}},
+        "started_at_utc": {"$ref": "#/$defs/baseProperties/started_at_utc"},
+        "duration_seconds": {"$ref": "#/$defs/baseProperties/duration_seconds"},
+        "status": {"$ref": "#/$defs/baseProperties/status"},
+        "run_mode": {"enum": ["scratch", "candidate", "formal", "paper-evidence"]},
+        "level": {"enum": ["scratch", "candidate", "formal", "paper-evidence"]},
+        "mode": {"enum": ["probe", "formal"]},
+        "purpose": {"enum": ["exploration", "candidate", "paper"]},
+        "formal_candidate": {"type": "boolean"},
+        "parent_run_id": {"type": ["string", "null"]},
+        "source_run_id": {"type": ["string", "null"]},
+        "source_manifest": {"type": ["string", "null"]},
+        "source_manifest_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "evidence_scope": {"type": ["string", "null"], "enum": [null, "diagnostic", "sensitivity", "mechanism", "figure_support"]},
+        "checkpoint_id": {"type": ["string", "null"]},
+        "primary_metric": {"type": ["string", "null"]},
+        "checks": {"$ref": "#/$defs/checks"},
+        "reuse_contract": {
+          "type": "object",
+          "required": ["seed", "environment", "code", "inputs", "methods", "parameters"],
+          "properties": {
+            "seed": {"type": "boolean"},
+            "environment": {"type": "boolean"},
+            "code": {"type": "boolean"},
+            "inputs": {"type": "boolean"},
+            "methods": {"type": "boolean"},
+            "parameters": {"type": "boolean"}
+          },
+          "additionalProperties": false
+        },
+        "replay": {
+          "type": "object",
+          "required": ["required", "count"],
+          "properties": {
+            "required": {"type": "boolean"},
+            "count": {"type": "integer", "minimum": 1}
+          },
+          "additionalProperties": false
+        },
+        "reuse_validation": {"$ref": "#/$defs/checksReuse"},
+        "lifecycle": {
+          "type": "object",
+          "required": ["state", "formal", "updated_at_utc"],
+          "properties": {
+            "state": {"enum": ["QUICKCHECK", "CHECKPOINT", "FORMAL", "ARCHIVED"]},
+            "formal": {"type": "boolean"},
+            "updated_at_utc": {"type": "string"},
+            "receipt": {"type": ["string", "null"]},
+            "promoted_at_utc": {"type": ["string", "null"]},
+            "archived_at_utc": {"type": ["string", "null"]}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "checks": {
+      "type": "object",
+      "required": ["input_output_match", "units_defined", "core_constraints_passed", "deterministic", "baseline_comparable"],
+      "properties": {
+        "input_output_match": {"type": "boolean"},
+        "units_defined": {"type": "boolean"},
+        "core_constraints_passed": {"type": "boolean"},
+        "deterministic": {"type": "boolean"},
+        "baseline_comparable": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "checksReuse": {
+      "type": "object",
+      "required": ["seed", "environment", "code", "inputs", "methods", "parameters", "source_manifest"],
+      "properties": {
+        "seed": {"type": "boolean"},
+        "environment": {"type": "boolean"},
+        "code": {"type": "boolean"},
+        "inputs": {"type": "boolean"},
+        "methods": {"type": "boolean"},
+        "parameters": {"type": "boolean"},
+        "source_manifest": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

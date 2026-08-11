@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "recipe_id": "storage-slot-sizing",
+  "status": "success",
+  "relationship": "modernization_fixture_not_numerical_reproduction",
+  "source_pair": {
+    "candidate_id": "cumcm-2014-d026",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/D22022011_阎发静_周靖_杨峰.pdf",
+      "blob_sha": "7450ecbf9c51c86f29d79809148f391e75ad495d",
+      "sha256": "f40b9b1ff1a473a1afb7ed10f5aaeb2831a4656ecc5d5e27d65f81d4a228795a"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/G.m",
+        "blob_sha": "a92d124914237936a818ecf7280e3f87e8b6af0f",
+        "sha256": "f8bda5b81836b515fecac2d24e012302af56bd5560bc71b835a5045922455578",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "command": "D:\\anaconda3\\python.exe run.py",
+  "seed": 20260812,
+  "working_directory": "D:\\数学建模\\corpus\\recipes\\storage-slot-sizing",
+  "isolation": {
+    "writes_within_recipe_directory": true,
+    "upstream_code_executed": false
+  },
+  "environment": {
+    "python": "3.13.9",
+    "executable": "D:\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.6"
+  },
+  "inputs": [
+    {
+      "path": "run.py",
+      "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+      "bytes": 18492
+    },
+    {
+      "path": "recipe.json",
+      "sha256": "f51b3fdbd330266a905d0112be19a15b80877c0711d5560038c1a016bf267711",
+      "bytes": 1177
+    },
+    {
+      "path": "input.json",
+      "sha256": "6952c12b169444887e15ea4c7f1684d5ebe626686b10216723935896358796d6",
+      "bytes": 519
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results.json",
+      "sha256": "a8de4f53a983bbf2c090e39bc9f1e46327ed4c37549b8303de7b66af88441ad9",
+      "bytes": 243
+    },
+    {
+      "path": "series.csv",
+      "sha256": "3f05023f3e89e0eca893c355192e111d9252294ba410bc7884015d2f8ce166f4",
+      "bytes": 2771
+    },
+    {
+      "path": "figure.png",
+      "sha256": "01e94b910935b4545960023598167dffb9c9d877bcee817804b5334928c97ab6",
+      "bytes": 146823
+    },
+    {
+      "path": "figure.svg",
+      "sha256": "c3d064967a4f2dc25347a716ce336d1d842708eb33687b4b3b34e51988cc1f0f",
+      "bytes": 37342
+    },
+    {
+      "path": "figure.pdf",
+      "sha256": "1c70292f6e45cd8dc938821d8a499465e0b2561237936b2c4b3d50c2e750f46c",
+      "bytes": 14963
+    }
+  ],
+  "metrics": {
+    "required_cabinets": 3,
+    "standardized_area_mm2": 7550989.0,
+    "packing_overhead_ratio": 0.13104146633065206,
+    "single_cabinet_baseline_capacity_mm2": 3000000.0
+  },
+  "runtime_ms": 723.511
+}

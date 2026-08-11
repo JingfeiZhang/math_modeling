@@ -1,0 +1,247 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "mcm-2008-b-2858",
+  "identity": {
+    "contest": "MCM",
+    "year": 2008,
+    "problem": "B",
+    "team_id": "2858",
+    "title": "hsolve: A Difficulty Metric and Puzzle Generator for Sudoku"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/zhanwen/MathModel/git/blobs/e755593b59531a1e6f9d48d1bada6d0e01b2197e",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "美赛论文/2008美赛特等奖原版论文集/B-2858-Outstanding.pdf"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://www.contest.comap.com/undergraduate/contests/mcm/contests/2008/results/MCM-B-Results-2008.pdf",
+    "contest": "MCM",
+    "year": 2008,
+    "problem": "B",
+    "team_id": "2858",
+    "title": "hsolve: A Difficulty Metric and Puzzle Generator for Sudoku",
+    "award": "Outstanding Winner",
+    "locator": "official PDF page 2; extracted text line 71",
+    "matched_text": "2858      Harvard University                                        USA               Clifford Taubes      B         Outstanding Winner   SIAM Award"
+  },
+  "authenticity": {
+    "level": "B",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": true
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "The control number, contest year, problem, and Outstanding Winner label match a COMAP official result PDF.",
+      "The paper itself is not served from an official paper-display page, so the level is B rather than A."
+    ]
+  },
+  "pdf": {
+    "sha256": "7bdc6242e20312d7cb345508f86290522d7c2673befcb239dcdb981ffedcd046",
+    "pages": 26,
+    "local_path": "corpus/raw/mcm-gmcm/mcm-2008-b-2858/paper.pdf",
+    "first_page_phash": "dhash64:000080f070000000",
+    "text_sha256": "dcd4c327ac11f2bbc3cb907f2905fd6caba49a5b97ab288486d5e305a5a5aa8a"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "title",
+        "layout"
+      ],
+      "observation": "A sparse title page separates identity from the abstract.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-b-2858/page-01.png"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "abstract",
+        "result"
+      ],
+      "observation": "The abstract states the search-based metric, 800-puzzle validation, correlation, and generator outcomes.",
+      "derivation": "mixed",
+      "locator": "PDF page 2",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-b-2858/page-02.png"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "validation",
+        "table"
+      ],
+      "observation": "A contingency table and Goodman-Kruskal gamma coefficient compare model and external ratings.",
+      "derivation": "mixed",
+      "locator": "PDF page 10",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-b-2858/page-10.png"
+    },
+    {
+      "page": 11,
+      "tags": [
+        "validation",
+        "figure"
+      ],
+      "observation": "External and model-derived difficulty distributions are juxtaposed.",
+      "derivation": "mixed",
+      "locator": "PDF page 11",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-b-2858/page-11.png"
+    },
+    {
+      "page": 16,
+      "tags": [
+        "generator",
+        "figure"
+      ],
+      "observation": "A generated-puzzle difficulty histogram and runtime analysis quantify output control.",
+      "derivation": "mixed",
+      "locator": "PDF page 16",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-b-2858/page-16.png"
+    },
+    {
+      "page": 17,
+      "tags": [
+        "boundary",
+        "conclusion"
+      ],
+      "observation": "Strengths and weaknesses distinguish metric validity from limited benchmark data.",
+      "derivation": "mixed",
+      "locator": "PDF page 17",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2008-b-2858/page-17.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 2,
+      "role": "problem-method-validation-result",
+      "observation": "State the arbitrary-rating problem, expected-search-time metric, independent validation, correlation coefficient, and generator performance."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 2,
+      "step": "search-metric",
+      "observation": "Frame Sudoku solution as a search process and use expected search time as difficulty.",
+      "order": 1
+    },
+    {
+      "page": 10,
+      "step": "rating-calibration",
+      "observation": "Compare the metric with externally graded puzzles.",
+      "order": 2
+    },
+    {
+      "page": 16,
+      "step": "controlled-generation",
+      "observation": "Use standard and pseudo-generators to target difficulty intervals.",
+      "order": 3
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 10,
+      "method": "external-label-test",
+      "observation": "Use 800 externally rated puzzles and report a Goodman-Kruskal gamma of 0.82.",
+      "order": 1
+    },
+    {
+      "page": 11,
+      "method": "distribution-check",
+      "observation": "Compare the empirical model distribution with an external solver population.",
+      "order": 2
+    },
+    {
+      "page": 16,
+      "method": "runtime-and-target-test",
+      "observation": "Measure generation runtime and achieved difficulty ranges.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 10,
+      "role": "external-validation",
+      "chart_type": "contingency table",
+      "lesson": "Show where ordinal model ratings agree and disagree with external labels."
+    },
+    {
+      "page": 11,
+      "role": "distribution-validation",
+      "chart_type": "histogram plus reference curve",
+      "lesson": "Compare shapes as well as a scalar association metric."
+    },
+    {
+      "page": 16,
+      "role": "generator-output",
+      "chart_type": "difficulty histogram",
+      "lesson": "Verify that generated outputs occupy the requested difficulty range."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 2,
+      "rule": "Put the model, sample size, validation statistic, and practical output in the abstract.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 10,
+      "rule": "For ordinal predictions, show a contingency table alongside the association statistic.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 17,
+      "rule": "Explain whether uncertainty comes from the model or from scarce benchmark labels.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 17,
+      "risk": "The benchmark is limited and the authors cannot conclusively establish all difficulty levels.",
+      "severity": "high"
+    },
+    {
+      "page": 11,
+      "risk": "Distribution plots use inconsistent visual styles and limited axis annotation.",
+      "severity": "medium"
+    },
+    {
+      "page": 16,
+      "risk": "Generator evaluation emphasizes difficulty and runtime more than puzzle diversity.",
+      "severity": "medium"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/mcm-2008-b-2858/source_manifest.json",
+    "selected_pages": [
+      1,
+      2,
+      10,
+      11,
+      16,
+      17
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

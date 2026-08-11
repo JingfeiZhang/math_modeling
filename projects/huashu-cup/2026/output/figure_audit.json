@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "info": [
+    {
+      "code": "SUMMARY",
+      "message": "checked 36 image file(s), 12 contract(s), and 33 caption(s)"
+    }
+  ],
+  "metrics": {
+    "tex_graphics": 12,
+    "contracts": 12,
+    "images": 36,
+    "captions": 33
+  }
+}

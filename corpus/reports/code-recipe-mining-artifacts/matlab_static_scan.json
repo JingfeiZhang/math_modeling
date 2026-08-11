@@ -1,0 +1,253 @@
+{
+  "scanner": "static-only",
+  "root": "D:\\数学建模\\corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab",
+  "file_count": 32,
+  "finding_count": 9,
+  "files": [
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2012-a285\\6fe7ef3ab57b5f080dd72af9564384bc30db0dcb-suiji.m",
+      "sha256": "0c0f6b83b6bb562bdf3d3e4d157eb9d94db1bbc6c5806fae215d9959d736909d",
+      "bytes": 72,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2012-b077\\60c8791b17d9204991b65809d85f74ddafef734b-account2.m",
+      "sha256": "11e2d880f211a73cd269e6c133a22b40f5114de727e4d2a5accb95f08bbbe494",
+      "bytes": 2138,
+      "findings": [
+        {
+          "rule": "session_mutation",
+          "line": 1,
+          "match": "close all"
+        }
+      ]
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2012-b077\\f2d6f6c8947fd015597f1377799cf5c4ef4f213a-account1.m",
+      "sha256": "5cc99a998decd9b9e0cc753afb37e57c3880ee9cd0ce9c83a39e6de82c82a823",
+      "bytes": 3142,
+      "findings": [
+        {
+          "rule": "session_mutation",
+          "line": 1,
+          "match": "close all"
+        }
+      ]
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2012-b113\\6cb8d135e0771c514e292c108bc38eebb637bc93-附录二.m",
+      "sha256": "5956a620c7d0e328fcc34a8752ac293200eab44142a0b617587c7a15e0633d58",
+      "bytes": 943,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2012-b113\\c28b9c8d573e768e4631b86b86430debb1033422-附录6.m",
+      "sha256": "c8d34112b14f7974398fe93e62417093adcb7b0bc68001403604a99e28d8ef58",
+      "bytes": 1203,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2012-b149\\122186fa258abdab80c236f05a6601e84eb42498-sun_jisuan_day_2.m",
+      "sha256": "893f883e52c1fa44ac7784ea16e308be5b18688d77d7cdf18759fbb400c7922e",
+      "bytes": 2437,
+      "findings": [
+        {
+          "rule": "session_mutation",
+          "line": 4,
+          "match": "clear all"
+        }
+      ]
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2012-b149\\b7c23a3f06204132733bc20a7bd9a1516c91577e-gfdc_zuhe2.m",
+      "sha256": "d0643819f9ddac7459cfc3769ad037199a0aad252772b59c91bc1948946e7c7e",
+      "bytes": 2598,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2013-a056\\56f0ca01dee1c6113006154c411d286de971c83c-problem3_2.m",
+      "sha256": "351dcbb9a19bbe890812f3949f778c2c2ac071363a731f6d75115ee7d0bb5160",
+      "bytes": 5560,
+      "findings": [
+        {
+          "rule": "session_mutation",
+          "line": 3,
+          "match": "close all"
+        }
+      ]
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2013-a056\\ea61dbf80797be6eedd9bf1430bbbf8c6f947f70-problem4.m",
+      "sha256": "f57a1d47d29b551c29a7dd4c2e8dc189d005b480180b4ab3caf33b671109e8cb",
+      "bytes": 3202,
+      "findings": [
+        {
+          "rule": "session_mutation",
+          "line": 3,
+          "match": "close all"
+        }
+      ]
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2013-a117\\164569e3a5f3f322bc2c93d8a659fcf3d1cd27ee-automata.m",
+      "sha256": "055d21ce9b4e33e42daaee3b3fcbfb9646b8571f4ef9342525923e2655482df3",
+      "bytes": 10494,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2013-a117\\d8e4406b060679c8cadc32fced84a42a5909f910-automata.m",
+      "sha256": "8365f92481b80c83a8f9a8ca02e2756b51f3db9c8bc4d3e8508e92f766abd8ce",
+      "bytes": 10429,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2013-b201\\00599d4c2e37cbe0e47f18886766963d6d220e78-hangpaixu.m",
+      "sha256": "f4a95d163ad5911a9f13d90b5a8b91ed585d36ce619f04ff58283a41d6548c9e",
+      "bytes": 2183,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2013-b201\\11ed36370ef3f114c1c1b6d2fbc277a9b30cdaaf-hangpaixu_4.m",
+      "sha256": "a5ea8884692252790e5603d475af824e763c96b4a2805f5cdde23b525052c80b",
+      "bytes": 2065,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2013-b254\\4ef4eac0461d38aa821a179c51eb6e32d05c6bd3-Untitled3.m",
+      "sha256": "7f9588570d22ca6c7543b88989a481aea65825f73a6d725704e210e092b3101c",
+      "bytes": 4244,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2013-b254\\a746efb2f9a36472a335b3f7a296c1af3c7fb420-class.m",
+      "sha256": "0c985db7b46edc535296971266771dd43125338d7951c01a015ea339f0d18019",
+      "bytes": 4353,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-a012\\ea3caa6d16ad2f8e6df9d4e48cf90dff0408a309-附件3-normal_distribution.m",
+      "sha256": "b477430b016db92526e52e93c0c2cb37c11d456ea0f0995da6c301e2253df3dc",
+      "bytes": 271,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-a305\\019ac4dae00f81683bd185c992e878c310a62ae2-genpics.m",
+      "sha256": "3eda8c13a9edc051b12ef8d76916146ff1514debb462fbaf895cb16eb7320650",
+      "bytes": 2547,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-a305\\2358950d0a5b176e6850be25ccdc880f3f829214-calc2.m",
+      "sha256": "10ef9a0190abdbaf4428181e9ce33050fd79d968b08f0e815a7e479851671635",
+      "bytes": 2423,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-a377\\468e56b00b8830eb7a566a9bd9521a54ebacac45-guiji.m",
+      "sha256": "855428091c609826af7ca967db2412e5c1ffc04bab555ea6ee2db3a197954d1b",
+      "bytes": 3849,
+      "findings": [
+        {
+          "rule": "session_mutation",
+          "line": 2,
+          "match": "close all"
+        },
+        {
+          "rule": "session_mutation",
+          "line": 43,
+          "match": "close all"
+        }
+      ]
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-a377\\c91610a36743e5f799732ca3ddcd7aa2a303b4c6-pro2qiujie.m",
+      "sha256": "87c9211e3b44a06b096e3a96faa530fc57a1bc9e28d2229c31791d1d2391b6eb",
+      "bytes": 4025,
+      "findings": [
+        {
+          "rule": "session_mutation",
+          "line": 2,
+          "match": "close all"
+        }
+      ]
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-a499\\da0ec52ad01ceec3f085ec1466e2ff16efe9a82d-soujie.m",
+      "sha256": "084c8e8b8a04c7429556a2b1d9119acb0c1ab7aabd83aaef46bc7e1427d24780",
+      "bytes": 921,
+      "findings": [
+        {
+          "rule": "session_mutation",
+          "line": 1,
+          "match": "clear all"
+        }
+      ]
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-a499\\f1fe267a11ce5c1582b735ddd235ede9874f47f4-defen.m",
+      "sha256": "92e779bb4a5fda6b267f59a2e56c2f438cc7e65ea3a07d056912eedf414b7b9b",
+      "bytes": 1502,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-b009\\0a7422b4f744774a7441b93a328492af676b0a79-w2_2.m",
+      "sha256": "9dc493fb75c3898eab0ca9ded0bfd527fb78ce544d56283bf948fd5707252b4c",
+      "bytes": 1606,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-b009\\5c284e8fbd8203837282f8ef86a9e8f0e6b37ed2-w3_1.m",
+      "sha256": "6cb4afc5e406cc6a7246cc0be6c4e0be79a39cf97bfc3364ccaa60f8858d44ac",
+      "bytes": 1576,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-b013\\0b6d2f8e9c2007ed2b19387f560b8d96b7568d63-cx11.m",
+      "sha256": "c04dc560a96850f5f44c575a5f18d5356bcc3024729e19963b21abdb5a49bb52",
+      "bytes": 2261,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-b013\\6515d653cd9bba7539167de35f290b180d54e61b-cx10.m",
+      "sha256": "2c20e0b21e8b4bd426078703f185d18140f95a3df590763abfba6e4adae3cece",
+      "bytes": 2248,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-b261\\b0f34d6940b84af1ccac1a6aa7e132decb6132d7-zhuojiaosaomiao.m",
+      "sha256": "05c2aef8639ee9713fc5795d86333053e082788ee672ba2708af7737bf5d784c",
+      "bytes": 3172,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-b261\\dee82ed3ccff297bd70421c41b0115b5db29926d-hexagon.m",
+      "sha256": "18967d3286e0dcb7f507e86fc227f7255ddd9394879c3519933dceb73c28df1d",
+      "bytes": 3305,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-d026\\a92d124914237936a818ecf7280e3f87e8b6af0f-G.m",
+      "sha256": "f8bda5b81836b515fecac2d24e012302af56bd5560bc71b835a5045922455578",
+      "bytes": 812,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2014-d062\\a92d124914237936a818ecf7280e3f87e8b6af0f-G.m",
+      "sha256": "f8bda5b81836b515fecac2d24e012302af56bd5560bc71b835a5045922455578",
+      "bytes": 812,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2016-xipoxitong-master\\c0ea5dac39cd9ecb1e63b0d6ac61239ded8a4669-For3D.m",
+      "sha256": "94107fcb9d067fb97c70d200b84ba174906beb79b95ae82ab7ddbce45916f14a",
+      "bytes": 7392,
+      "findings": []
+    },
+    {
+      "path": "corpus\\reports\\code-recipe-mining-artifacts\\selected_matlab\\cumcm-2016-xipoxitong-master\\c728a60a5909c68bbe9d7f6f21aeac0a46f4e50f-For2D_expand.m",
+      "sha256": "fcfc11d093883266d21988506f2e96705517e2312622bf4e2c017e338c2bd642",
+      "bytes": 6380,
+      "findings": []
+    }
+  ]
+}

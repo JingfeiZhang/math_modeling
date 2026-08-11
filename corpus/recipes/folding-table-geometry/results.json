@@ -1,0 +1,9 @@
+{
+  "recipe_id": "folding-table-geometry",
+  "metrics": {
+    "best_angle_deg": 74.36708860759494,
+    "best_footprint_m": 0.19477101174528347,
+    "material_proxy": 13.010126582278481,
+    "feasible_count": 430
+  }
+}

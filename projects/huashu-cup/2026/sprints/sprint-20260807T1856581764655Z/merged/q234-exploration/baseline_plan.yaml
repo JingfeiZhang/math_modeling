@@ -1,0 +1,40 @@
+schema_version: 1
+sprint_id: sprint-20260807T1856581764655Z
+task_id: q234-exploration
+baseline_principles:
+  - same input rows, horizon, task eligibility, units and hard constraints as the main model
+  - baseline emits the same assignment/schedule or dispatch class and all requested metrics
+  - no random or diagnostic-only line is accepted as a baseline
+  - all baselines are deterministic with seed 20260801 or a recorded explicit seed
+plans:
+  Q2:
+    main_output: task_id, execution_region, start_time, end_time, latency, SLA, hourly_regional_load, cost, carbon, renewable_utilization
+    baseline:
+      name: FIFO_latency_feasible_local_first
+      algorithm: sort by arrival, then urgency (RealTimeInference first), assign lowest-latency feasible region with earliest feasible event-boundary start; repair overload by deterministic next-best region
+      hard_constraints: exact same latency, nonpreemption, capacity, SLA and closeout checks
+      comparison_metrics: [task_completion_rate, SLA_violation_rate, cost_CNY, carbon_tCO2, mean_latency_ms, renewable_utilization_ratio, peak_facility_load_MW]
+    ablation: remove carbon/renewable terms from main while retaining all hard constraints and objective reporting
+    risk_probe: vary latency threshold and flexible-task eligibility; report infeasible count and objective drift
+  Q3:
+    main_output: charge, discharge, SOC, renewable allocation, grid purchase/export, cost, carbon, peak net import, load variability
+    baseline:
+      name: no_storage_observed_grid_dispatch
+      algorithm: set charge=discharge=0; use observed or recomputed hourly renewable-first grid balance with identical load and purchase/export caps
+      hard_constraints: same region power and terminal accounting checks, with SOC omitted only because storage is disabled
+      comparison_metrics: [cost_CNY, carbon_tCO2, peak_net_import_MW, load_std_MW, renewable_utilization_ratio, terminal_balance_error]
+    ablation: storage dispatch with carbon objective removed; compare cost-only and carbon-aware policies
+    risk_probe: initial SOC and efficiency perturbations within declared data ranges; check terminal SOC feasibility
+  Q4:
+    main_output: integrated task assignment, regional load, storage/grid dispatch, six-metric objective vector and scenario stability
+    baseline:
+      name: sequential_Q2_then_Q3
+      algorithm: use selected Q2 assignment, recompute load, then selected Q3 storage dispatch without feedback exchanges
+      hard_constraints: same integrated audit as main
+      comparison_metrics: [cost_CNY, carbon_tCO2, mean_latency_ms, SLA_violation_rate, renewable_utilization_ratio, peak_net_import_MW, scenario_rank_stability]
+    ablation: remove cross-region coordination cuts or consensus penalties while retaining local feasibility repair
+    risk_probe: carbon-budget, price multiplier and renewable block perturbation scenarios; report policy rank and feasibility stability
+acceptance:
+  minimum_same_class_output: true
+  mandatory_audit_fields: [assignment_once, nonpreemption, latency, GPU_capacity, IT_power, facility_power, SLA, SOC_bounds, grid_bounds, terminal_SOC]
+  evidence_rule: baseline metrics may enter formal claims only after a frozen run manifest and independent audit

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T194315250Z",
+  "status": "MERGED",
+  "passed": true,
+  "accepted_tasks": [
+    "q3-pilot"
+  ],
+  "archived_artifacts": [
+    {
+      "task_id": "q3-pilot",
+      "source": "sprints/sprint-20260807T194315250Z/staging/q3-pilot/q3_pilot_summary.json",
+      "archive": "sprints/sprint-20260807T194315250Z/merged/q3-pilot/q3_pilot_summary.json",
+      "sha256": "b75ecb7bba84c2bbfa7e12e6ab0d0f9633b13d497b8652a66b92d15126e9c6ec"
+    },
+    {
+      "task_id": "q3-pilot",
+      "source": "sprints/sprint-20260807T194315250Z/staging/q3-pilot/q3_run_manifest.json",
+      "archive": "sprints/sprint-20260807T194315250Z/merged/q3-pilot/q3_run_manifest.json",
+      "sha256": "cb67d069332dd5756fb81a6a9ebf9cf184a3238a560369c9600161bc2592b993"
+    },
+    {
+      "task_id": "q3-pilot",
+      "source": "sprints/sprint-20260807T194315250Z/staging/q3-pilot/q3_constraint_audit.json",
+      "archive": "sprints/sprint-20260807T194315250Z/merged/q3-pilot/q3_constraint_audit.json",
+      "sha256": "bf14c25ac13ff69506fd9bf50e5537800867c5ebfa42fc56d95dad6f5a6f486d"
+    },
+    {
+      "task_id": "q3-pilot",
+      "source": "sprints/sprint-20260807T194315250Z/staging/q3-pilot/q3_candidate_metrics.csv",
+      "archive": "sprints/sprint-20260807T194315250Z/merged/q3-pilot/q3_candidate_metrics.csv",
+      "sha256": "597c2a02f775065afd3963866a549dac2f9b9600e651c4ace60b3269cf53062e"
+    },
+    {
+      "task_id": "q3-pilot",
+      "source": "sprints/sprint-20260807T194315250Z/staging/q3-pilot/q3_baseline_metrics.csv",
+      "archive": "sprints/sprint-20260807T194315250Z/merged/q3-pilot/q3_baseline_metrics.csv",
+      "sha256": "36ff3c65c971b1124dfc1d9bb4e4a97bbb41bb15e777ac0d7e1c415e9350e0bb"
+    },
+    {
+      "task_id": "q3-pilot",
+      "source": "sprints/sprint-20260807T194315250Z/staging/q3-pilot/q3_dispatch.csv",
+      "archive": "sprints/sprint-20260807T194315250Z/merged/q3-pilot/q3_dispatch.csv",
+      "sha256": "bf48e42e79ebfb7b44f86050cada2e57c927ed27da742dfb1592e362201df8a4"
+    },
+    {
+      "task_id": "q3-pilot",
+      "source": "sprints/sprint-20260807T194315250Z/staging/q3-pilot/q3_baseline_dispatch.csv",
+      "archive": "sprints/sprint-20260807T194315250Z/merged/q3-pilot/q3_baseline_dispatch.csv",
+      "sha256": "bf5edc1262e171dc1708ae3c73d076f389f66d3f231466392d65d9bc60aa53a3"
+    },
+    {
+      "task_id": "q3-pilot",
+      "source": "sprints/sprint-20260807T194315250Z/staging/q3-pilot/run_q3_pilot.py",
+      "archive": "sprints/sprint-20260807T194315250Z/merged/q3-pilot/run_q3_pilot.py",
+      "sha256": "ac4189b48567b25c171e6997b5e9fe399a965362efd392b632e6b4c4245b2c25"
+    }
+  ],
+  "retry_packages": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "formal_state_modified": false,
+  "generated_at_utc": "2026-08-07T20:47:40.126586+00:00"
+}

@@ -1,0 +1,69 @@
+{
+  "all_core_hashes_match": true,
+  "core_output_count": 9,
+  "core_outputs": [
+    {
+      "match": true,
+      "path": "full_cycle_binary_dispatch.csv",
+      "primary_sha256": "5ecd75a006df7dab2ebbe94044ba86603df64fceddd7f68ead52c3ff0386b271",
+      "replay_sha256": "5ecd75a006df7dab2ebbe94044ba86603df64fceddd7f68ead52c3ff0386b271"
+    },
+    {
+      "match": true,
+      "path": "full_cycle_baseline_dispatch.csv",
+      "primary_sha256": "388d99f3fb75862787b0aced97d443da6c771e88db97281d7f340a4ac771692e",
+      "replay_sha256": "388d99f3fb75862787b0aced97d443da6c771e88db97281d7f340a4ac771692e"
+    },
+    {
+      "match": true,
+      "path": "full_cycle_binary_metrics.csv",
+      "primary_sha256": "1cfc89a42b6b4a958bf19a4226814a9360f068d0284676de98bad4faa66014e1",
+      "replay_sha256": "1cfc89a42b6b4a958bf19a4226814a9360f068d0284676de98bad4faa66014e1"
+    },
+    {
+      "match": true,
+      "path": "full_cycle_baseline_metrics.csv",
+      "primary_sha256": "5de269ba8a2a406caad923fbdbec888cc2ef374121e07ef66f87f8fafeaefcf9",
+      "replay_sha256": "5de269ba8a2a406caad923fbdbec888cc2ef374121e07ef66f87f8fafeaefcf9"
+    },
+    {
+      "match": true,
+      "path": "full_cycle_binary_audit.json",
+      "primary_sha256": "8cb3da10dd6889e914d5a5e92a4944e1a06fc111a095bb78db385f579b414199",
+      "replay_sha256": "8cb3da10dd6889e914d5a5e92a4944e1a06fc111a095bb78db385f579b414199"
+    },
+    {
+      "match": true,
+      "path": "full_cycle_baseline_audit.json",
+      "primary_sha256": "f1c272b355dcbb6dc93099bdbafb1c915980155036a5d6c5c05d8325462e82ea",
+      "replay_sha256": "f1c272b355dcbb6dc93099bdbafb1c915980155036a5d6c5c05d8325462e82ea"
+    },
+    {
+      "match": true,
+      "path": "constraint_audit.json",
+      "primary_sha256": "6ed5050b88ca81a23ef90bf243ecf2f969ecb176c296cca006208cb574990cf0",
+      "replay_sha256": "6ed5050b88ca81a23ef90bf243ecf2f969ecb176c296cca006208cb574990cf0"
+    },
+    {
+      "match": true,
+      "path": "summary.json",
+      "primary_sha256": "f5b8a2f95c74e6d1bf181fa902a13dab0f60800b11693373cefb80bf7cc65613",
+      "replay_sha256": "f5b8a2f95c74e6d1bf181fa902a13dab0f60800b11693373cefb80bf7cc65613"
+    },
+    {
+      "match": true,
+      "path": "claim_proposals.json",
+      "primary_sha256": "507d0c5cef3985f3817020fdbe0c67f8887eaebfe24502fa6a431de40cf8f5e2",
+      "replay_sha256": "507d0c5cef3985f3817020fdbe0c67f8887eaebfe24502fa6a431de40cf8f5e2"
+    }
+  ],
+  "note": "Run-manifest timestamps, duration and output-directory command arguments are intentionally excluded from byte-for-byte comparison.",
+  "passed": true,
+  "primary_and_replay_are_270_of_270": true,
+  "primary_directory": "experiments/C/Q3/q3-full-audit-fix-20260809",
+  "question_id": "Q3",
+  "replay_directory": "experiments/C/Q3/q3-full-audit-fix-20260809/replay",
+  "run_id": "q3-full-audit-fix-20260809",
+  "schema_version": 1,
+  "stable_manifest_fields_match": true
+}

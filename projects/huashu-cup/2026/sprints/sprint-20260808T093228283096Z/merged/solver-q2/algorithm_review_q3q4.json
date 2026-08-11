@@ -1,0 +1,623 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T093228283096Z",
+  "task_id": "solver-q2",
+  "role": "solver",
+  "problem_id": "C",
+  "questions": ["Q3", "Q4"],
+  "review_scope": "Evidence-grounded algorithm review only. No new numerical result, frozen claim, formal figure contract, paper file, state file, or release artifact was created.",
+  "input_hashes": [
+    {
+      "path": "problems/C/questions/Q2/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "494f3a29fe3e99c5515977f13432dccbfeb12c787f78b16cd6eb400b79b6cb11"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "results/C/claims.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "cef4f43848ba16de8cf215c8dcc2b8067a4d759d069e51aaaecf6e43cccb8f79"
+    },
+    {
+      "path": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35"
+    },
+    {
+      "path": "experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "26f46159818b9cc3f52ac6fae14a00e1cdcbee60f1b986e9cfa05158d447db66"
+    }
+  ],
+  "evidence_status": {
+    "frozen_evidence_only": true,
+    "q3_claims_eligible": true,
+    "q4_claims_eligible": true,
+    "new_experiments_run": false,
+    "full_horizon_global_optimality_supported": false,
+    "probabilistic_guarantee_supported": false,
+    "formal_state_modified": false
+  },
+  "per_question": {
+    "Q3": {
+      "current_method": {
+        "class": "regional rolling binary MILP",
+        "decomposition": "six regions are solved separately; each region is partitioned into contiguous blocks",
+        "block_policy": "14 blocks of 168 h plus one final 55 h block per region",
+        "horizon_coverage": "hours 0-2406, exactly once per region",
+        "state_coupling": "terminal SOC of a block is carried to the next block as a lower-bound target",
+        "objective_components": [
+          "normalized operating cost including grid purchase and export revenue",
+          "carbon metric",
+          "peak epigraph",
+          "renewable curtailment",
+          "small throughput regularization"
+        ],
+        "baseline": "same-output-schema no-storage renewable-first policy",
+        "fallback": "valley-charge/peak-discharge rule only after two consecutive MILP failures or time limits"
+      },
+      "evidence_observed": {
+        "regions": 6,
+        "hours_per_region": 2407,
+        "candidate_rows": 14442,
+        "baseline_rows": 14442,
+        "successful_block_solves": 90,
+        "total_block_solves": 90,
+        "binary_modes_in_claim_eligible_solves": true,
+        "maximum_mip_gap": 0.00000008585727603618049,
+        "rolling_aggregate_audits_passed": 12,
+        "rolling_aggregate_audit_count": 12,
+        "stress_candidate_solves_successful": 24,
+        "stress_candidate_solve_count": 24,
+        "stress_candidate_and_baseline_audits_passed": 48,
+        "stress_candidate_and_baseline_audit_count": 48,
+        "aggregate_cost_delta_CNY": -38899969.87293261,
+        "aggregate_carbon_delta_tCO2": -8.8505625719,
+        "negative_cost_means_net_export_revenue": true,
+        "facility_load_max_residual_MW": 0.00005044995509706496,
+        "facility_load_exact_equality_allowed": false,
+        "complete_audit_passed": 269,
+        "complete_audit_count": 270,
+        "full_horizon_lp_probe_claim_eligible": false,
+        "excluded_region_f_simultaneous_charge_discharge_MW": 116.60975349482445,
+        "fallback_used_blocks": 0
+      },
+      "algorithm_assessment": {
+        "verdict": "retain_as_primary_compatibility_route_pending_boundary_sensitivity",
+        "strengths": [
+          "Binary charge/discharge modes are enforced in the claim-eligible rolling and stress solves.",
+          "Contiguous block bookkeeping gives exact 0-2406 h coverage and a reproducible operating policy.",
+          "Candidate and baseline share metric definitions, row keys, loads, and hard-constraint audits.",
+          "Empirical 72 h stress probes are useful deterministic risk probes without requiring a probability model."
+        ],
+        "limitations": [
+          "Separate regional solves do not optimize inter-region power flow or task migration jointly.",
+          "A 168 h partition can miss arbitrage across boundaries; SOC lower-bound carry can leave inventory at the end of a block and does not establish a terminal equality.",
+          "The current compatibility summary does not establish a global 2407 h binary-MILP optimum.",
+          "The relaxed full-horizon LP is permanently unusable as evidence because RegionF has simultaneous charge/discharge.",
+          "The complete audit ledger is 269/270, so an all-audits-passed sentence is prohibited.",
+          "The maximum facility-load residual is rounding-scale but exceeds the generic 5e-5 MW tolerance by about 4.50e-7 MW; exact equality must not be claimed."
+        ],
+        "innovation_candidates_ranked": [
+          {
+            "method": "adaptive rolling horizon with overlap and terminal inventory target",
+            "priority": "P0",
+            "reason": "Directly addresses the only structural approximation in the full-horizon policy while preserving binary MILP auditability and the existing baseline.",
+            "scope": "same supplied 0-2406 h rows; no forecast or synthetic data",
+            "not_claimed_until": "all coverage, mutex, SOC, load-balance, grid-cap, and comparable-baseline audits pass"
+          },
+          {
+            "method": "empirical budgeted robust MILP over the four declared 72 h stress factors",
+            "priority": "P1_conditional",
+            "reason": "Converts the current post-hoc scenario probes into a bounded worst-case objective or common peak budget without inventing scenario probabilities.",
+            "scope": "only the observed-data-derived factors already frozen in Q3",
+            "not_claimed_until": "scenario-wise feasibility and same-output baseline comparisons are rerun"
+          },
+          {
+            "method": "Benders or column generation for a future joint region/task model",
+            "priority": "P2_only_if_coupling_is_added",
+            "reason": "A decomposition method is justified only after inter-region flow or task-storage coupling is explicitly introduced; it is unnecessary for the present separable regional model.",
+            "scope": "design note only; do not run or claim now"
+          }
+        ]
+      },
+      "claim_boundaries": [
+        "Report a deterministic rolling policy and its same-input comparison, never a globally optimal 2407 h schedule.",
+        "Report 90 successful binary-MILP blocks and exact coverage 0-2406 h; do not collapse them into one global solve.",
+        "Report 269/270 complete audits and identify the excluded LP probe; do not write 270/270.",
+        "Describe the four stress probes as deterministic observed-data-derived tests, not stochastic guarantees or forecast probabilities.",
+        "Describe the facility-load residual numerically as rounding-scale; do not call it exact equality.",
+        "Do not report fallback effectiveness because zero blocks activated it.",
+        "Negative cost values are net export revenue under the declared metric and are not negative energy demand."
+      ],
+      "risk_register": [
+        {
+          "id": "Q3-R-BOUNDARY-SOC",
+          "risk": "Boundary SOC artifacts and horizon myopia",
+          "evidence": "Each rolling block receives a lower-bound terminal target; equality to the incoming SOC is not imposed.",
+          "severity": "high",
+          "probe": "Compare current lower-bound carry with terminal equality and a terminal-inventory penalty on the same 72 h and 168 h windows.",
+          "failure_signal": "terminal SOC exceeds 0.8 of capacity in more than half of audited windows, or any aggregate cost/carbon/peak metric changes by more than 5 percent.",
+          "mitigation": "Use adaptive horizon and an explicit terminal target; retain the current route only if sensitivity is small and all audits pass."
+        },
+        {
+          "id": "Q3-R-WINDOW-ALIGNMENT",
+          "risk": "Fixed 168 h alignment hides diurnal or price-boundary effects",
+          "evidence": "The full result is assembled from fixed contiguous blocks with a 55 h tail.",
+          "severity": "medium",
+          "probe": "Re-run the same data with a 24 h offset and a data-driven 72/168 h choice; audit duplicate and missing hours.",
+          "failure_signal": "relative metric spread over 5 percent, or any hour is missing/duplicated.",
+          "mitigation": "Use overlap and choose the shortest window that keeps all audits valid and runtime bounded."
+        },
+        {
+          "id": "Q3-R-GRID-MUTEX",
+          "risk": "The regional Q3 formulation does not expose a binary grid-import/export mutex in its current summary",
+          "evidence": "The frozen audit reports the result, but the claim-eligible formulation boundary is weaker than Q4's explicit grid mutex.",
+          "severity": "high",
+          "probe": "Add one binary grid-mode variable per hour with import/export big-M bounds and re-run the four declared stress windows plus aggregate representatives.",
+          "failure_signal": "simultaneous grid purchase and sell exceeds 5e-5 MW, or the new audit fails.",
+          "mitigation": "Make the mutex structural; if outputs are unchanged, keep the deterministic policy and record the no-change result."
+        },
+        {
+          "id": "Q3-R-LOAD-ROUNDING",
+          "risk": "A manuscript or figure turns rounded facility load into an exact identity",
+          "evidence": "Maximum residual is 5.044995509706496e-5 MW and the generic tolerance is exceeded by about 4.50e-7 MW.",
+          "severity": "medium",
+          "probe": "Show the residual distribution and recompute from stored load components before every freeze.",
+          "failure_signal": "A claim, axis annotation, or caption says exact equality.",
+          "mitigation": "Use measured residual wording and units in all prose and figures."
+        },
+        {
+          "id": "Q3-R-LP-RELAXATION",
+          "risk": "A relaxed LP is mistakenly used as a scalability or quality baseline",
+          "evidence": "RegionF simultaneous charge/discharge is 116.60975349482445 MW in the full-cycle LP probe.",
+          "severity": "critical",
+          "probe": "No further use of that probe; only binary-MILP or audited policy outputs may enter claims.",
+          "failure_signal": "Any metric, row, or chart source points to the excluded LP.",
+          "mitigation": "Quarantine the probe permanently and repeat the exclusion check at G5."
+        }
+      ],
+      "minimal_increment_experiments": [
+        {
+          "id": "Q3-E1-terminal-window-sensitivity",
+          "priority": "P0",
+          "status": "recommended_not_run",
+          "purpose": "Measure whether boundary SOC and fixed-window choices materially alter the reported policy.",
+          "inputs": "Reuse the exact supplied rows and the existing four deterministic stress factors; no new data.",
+          "variants": [
+            "current: 168 h blocks, SOC_T >= SOC_0 at each block",
+            "terminal-equality: SOC_T = SOC_0 on 72 h and 168 h probes",
+            "offset/adaptive: 24 h block-start offset and H=72 when local 24 h load/renewable variability is above the empirical P75, otherwise H=168"
+          ],
+          "measurements": [
+            "cost, carbon, positive net-import peak, renewable utilization, curtailment, runtime",
+            "terminal SOC/capacity at every boundary",
+            "coverage, duplicate/missing hours, all SOC and power residuals"
+          ],
+          "acceptance": [
+            "candidate and no-storage baseline have identical row keys and metric definitions",
+            "all binary modes and all hard audits pass",
+            "no new claim is frozen from a variant until its hash and run manifest are reviewed"
+          ],
+          "activation_trigger": "Activate terminal-equality or adaptive-window route if the boundary diagnostic or any aggregate metric changes by more than 5 percent; otherwise retain 168 h with an explicit sensitivity note.",
+          "failure_modes": [
+            "window selection creates gaps or duplicate hours",
+            "terminal equality makes a block infeasible",
+            "adaptive route increases runtime by more than 2x without multi-metric gain"
+          ],
+          "claim_rule": "A successful sensitivity run supports only a deterministic robustness statement; it does not upgrade the result to full-horizon global optimality."
+        },
+        {
+          "id": "Q3-E2-grid-mutex-reaudit",
+          "priority": "P0",
+          "status": "recommended_not_run",
+          "purpose": "Close the structural gap between the Q3 formulation and the explicit Q4 grid import/export mutex.",
+          "inputs": "Same Q3 candidate and no-storage baseline on the four declared 72 h probes and one representative 168 h rolling block per region.",
+          "model_change": "Add binary g_t and bounds GridLoad_t + GridCharge_t <= ImportCap*g_t; Sell_t <= ExportCap*(1-g_t). Keep charge/discharge mutex unchanged.",
+          "measurements": [
+            "maximum simultaneous grid buy/sell",
+            "cost, carbon, peak, curtailment, renewable utilization",
+            "solver status and MIP gap"
+          ],
+          "activation_trigger": "Mandatory if simultaneous buy/sell is above 5e-5 MW or any audit fails; otherwise compare metrics and retain the simpler route only when the audited outputs agree within declared tolerance.",
+          "failure_modes": [
+            "big-M too loose and numerical instability",
+            "new binary mode causes time-limit or infeasible blocks",
+            "baseline is changed asymmetrically"
+          ],
+          "claim_rule": "Do not claim an improvement from the mutex patch unless the same-input baseline is rerun and all output classes remain comparable."
+        },
+        {
+          "id": "Q3-E3-budgeted-empirical-robustness",
+          "priority": "P1_conditional",
+          "status": "recommended_not_run",
+          "purpose": "Test a bounded robust counterpart instead of only scenario-wise reoptimization.",
+          "inputs": "Only the four already declared empirical factors: peak price 1.20, high carbon 1.20, renewable low 0.85, and their joint stress.",
+          "design": "Use a worst-case epigraph z >= normalized objective for each scenario, with a budget Gamma in {0,1,2}; preserve binary modes and SOC feasibility for every scenario.",
+          "activation_trigger": "Run only if the existing stress metrics show more than 10 percent spread in at least one primary metric or if the window-sensitivity route is materially unstable.",
+          "acceptance": "All scenario candidate/baseline audits pass; Gamma=0 reproduces the current deterministic reference within tolerance; no probability-weighted statement is made.",
+          "failure_modes": [
+            "robust objective becomes dominated by one extreme factor",
+            "infeasibility caused by over-conservative renewable lower bound",
+            "scenario variables are incorrectly allowed to anticipate future information"
+          ],
+          "claim_rule": "At most a bounded observed-data-derived worst-case comparison, never a stochastic guarantee."
+        }
+      ],
+      "fallback_policy": {
+        "current_trigger": "two consecutive MILP failures or time limits in the same rolling subproblem",
+        "current_use": 0,
+        "recommendation": "Keep one fallback only; do not introduce a second heuristic while the primary binary route remains feasible.",
+        "claim_boundary": "No fallback performance or superiority claim is eligible because it was never activated."
+      },
+      "figure_implications": [
+        {
+          "figure_id": "fig-q3-rolling-policy",
+          "claim_ids": ["Q3-ROLLING-BINARY-COVERAGE", "Q3-ROLLING-COST-DELTA", "Q3-ROLLING-CARBON-DELTA"],
+          "recommended_visual": "single-axis region-level dumbbell or signed-delta dot plot for candidate versus no-storage baseline",
+          "axes": [{"variable": "metric delta", "unit": "CNY, tCO2, or MW in separate declared scales"}, {"variable": "region", "unit": "categorical"}],
+          "scope_annotations": ["90 binary rolling blocks", "0-2406 h exact coverage", "269/270 complete audits", "negative cost denotes net export revenue"],
+          "data_integrity": "Read only frozen q3_derived_summary and its frozen evidence locators; do not plot the excluded LP probe.",
+          "style": "one primary plotting area, journal-spectrum-v2 palette, color plus marker/line encoding, PDF/SVG/400 dpi PNG"
+        },
+        {
+          "figure_id": "fig-q3-boundary-sensitivity",
+          "claim_ids": [],
+          "recommended_visual": "staging-only diagnostic line plot of terminal SOC/capacity by rolling boundary under current and proposed variants",
+          "axes": [{"variable": "rolling boundary hour", "unit": "h"}, {"variable": "terminal SOC / storage capacity", "unit": "ratio"}],
+          "scope_annotations": ["exploratory until a new run is frozen", "not a global-optimality plot"],
+          "style": "same registered palette; no formal paper inclusion until root reviews hashes and gate status"
+        }
+      ]
+    },
+    "Q4": {
+      "current_method": {
+        "class": "integrated six-region binary storage MILP with a system peak epigraph",
+        "coupling": "six storage systems are solved jointly over a fixed 72 h load envelope generated from a fixed Q2 schedule",
+        "binary_constraints": ["charge/discharge mutex", "grid import/export mutex"],
+        "state_constraints": ["SOC transition", "SOC bounds", "terminal SOC equality", "grid caps", "hourly system peak linkage"],
+        "scenario_policy": "five deterministic observed-data-derived scenarios, solved as bounded scenario-wise reoptimizations",
+        "peak_selection": "17-point discrete peak-weight scan on a separate 24 h low-renewable probe; selected weight is the first audited point meeting the data-derived midpoint peak target",
+        "baseline": "fixed FIFO Q2 schedule plus renewable-first no-storage balance"
+      },
+      "evidence_observed": {
+        "window_start_h": 2328,
+        "window_end_h": 2399,
+        "horizon_h": 72,
+        "peak_probe_h": 24,
+        "regions": 6,
+        "scenarios": 5,
+        "tasks_per_schedule": 1577,
+        "sequential_coupling": true,
+        "task_storage_joint_optimization": false,
+        "final_hard_constraints_passed": true,
+        "peak_scan_all_points_passed": true,
+        "peak_scan_point_count": 17,
+        "low_renewable_cost_delta_CNY": -1683494.3771166522,
+        "low_renewable_carbon_delta_tCO2": -189.1085063591487,
+        "low_renewable_renewable_utilization_delta": 0.011580494720339285,
+        "low_renewable_candidate_SLA_violation_rate": 0.0,
+        "low_renewable_candidate_task_completion_rate": 1.0,
+        "low_renewable_candidate_mean_latency_ms": 9.032974001268231,
+        "low_renewable_signed_max_net_import_delta_MW": -206.6542995933333,
+        "zero_weight_peak_MW": 291.6033004399999,
+        "selected_peak_weight": 0.0003,
+        "selected_peak_MW": 197.08826651333345,
+        "peak_reduction_MW": 94.51503392666643,
+        "discrete_marginal_composite_price_per_MW": 2.35298451326919e-08
+      },
+      "algorithm_assessment": {
+        "verdict": "retain_as_audited_sequential_storage_model; improve attribution_and_peak_selection_before_any_joint_claim",
+        "strengths": [
+          "The integrated six-region MILP directly enforces both binary mutex pairs and SOC/energy/peak linkage.",
+          "All five bounded scenarios and all 17 discrete peak-scan points passed the declared hard audits.",
+          "The same Q2-derived window and output metrics make the candidate/baseline comparison reproducible."
+        ],
+        "limitations": [
+          "Q4 fixes Q2 task schedules, so the comparison is a sequential bundle and cannot isolate scheduling from storage effects.",
+          "The 72 h result and 24 h peak probe are not full-horizon results and do not support global task-storage optimality.",
+          "Scenario-wise reoptimization is not a nonanticipative policy and has no probability-weighted interpretation.",
+          "The selected peak weight and discrete marginal are scan descriptors, not an LP dual or continuous shadow price.",
+          "A negative signed net-import peak indicates net export; it must not be conflated with a positive demand peak."
+        ],
+        "innovation_candidates_ranked": [
+          {
+            "method": "four-cell scheduling-storage attribution with a difference-in-differences interaction term",
+            "priority": "P0",
+            "reason": "Separates the Q2 scheduling contribution from the Q4 storage contribution using the same 72 h envelope and same metric definitions.",
+            "not_claimed_until": "all four cells have identical task identities, envelope rules, and hard audits"
+          },
+          {
+            "method": "epsilon-constraint Pareto scan for peak versus cost/carbon",
+            "priority": "P0",
+            "reason": "Replaces interpretation of an arbitrary weighted-sum coefficient with explicit audited peak budgets while preserving the MILP core.",
+            "not_claimed_until": "each budget point is independently solved and audited"
+          },
+          {
+            "method": "two-stage empirical scenario-robust MILP with shared binary mode and continuous recourse",
+            "priority": "P1_conditional",
+            "reason": "Tests whether one nonanticipative storage mode remains feasible across the five observed-data-derived scenarios.",
+            "not_claimed_until": "scenario nonanticipativity, SOC transition, grid mutex, and baseline comparability are all audited"
+          },
+          {
+            "method": "Benders decomposition for a future task-storage joint model",
+            "priority": "P2_only_if_joint_coupling_is_added",
+            "reason": "Useful only when task assignment and storage dispatch are placed in one model; it is not needed for the current fixed-envelope MILP.",
+            "scope": "design option, no run or claim now"
+          }
+        ]
+      },
+      "claim_boundaries": [
+        "State the Q4 result as an audited sequential comparison on the fixed 72 h Q2-derived window.",
+        "Keep the five scenarios deterministic observed-data-derived probes; no probability or chance constraint is implied.",
+        "Treat the selected 0.0003 weight and 2.35298451326919e-8/MW value as discrete scan descriptors only.",
+        "Treat 94.51503392666643 MW as the independent 24 h low-renewable peak-probe reduction, not a full-horizon reduction.",
+        "Do not attribute the low-renewable cost/carbon differences to storage alone until the four-cell attribution experiment is run.",
+        "Do not claim joint task-storage or full-horizon global optimality."
+      ],
+      "risk_register": [
+        {
+          "id": "Q4-R-BUNDLE-CONFOUNDING",
+          "risk": "Q2 scheduling and Q4 storage effects are bundled",
+          "evidence": "Candidate is Q2 schedule plus storage while baseline is FIFO schedule plus no storage.",
+          "severity": "critical",
+          "probe": "Run four cells: FIFO/no-storage, candidate/no-storage, FIFO/storage, candidate/storage on the same 72 h window and five scenarios.",
+          "failure_signal": "The interaction term changes sign across scenarios or one cell fails a hard audit.",
+          "mitigation": "Report descriptive decomposition only; avoid causal wording."
+        },
+        {
+          "id": "Q4-R-DISCRETE-WEIGHT",
+          "risk": "A weighted-sum scan is read as a continuous marginal price",
+          "evidence": "Peak response is evaluated at 17 discrete weights and the frozen value is explicitly discrete.",
+          "severity": "high",
+          "probe": "Use audited epsilon-constraint peak budgets around the first active scan point.",
+          "failure_signal": "Peak changes in a large step or the selected point is unstable under a neighboring budget.",
+          "mitigation": "Plot ordered discrete points and label the quantity as a scan descriptor."
+        },
+        {
+          "id": "Q4-R-NONANTICIPATIVE",
+          "risk": "Scenario-wise reoptimization uses future scenario information",
+          "evidence": "Each scenario is solved separately on the same bounded window.",
+          "severity": "medium",
+          "probe": "Share binary mode variables across scenarios and allow only continuous recourse, or impose a common peak budget with scenario-specific dispatch.",
+          "failure_signal": "Shared-mode model becomes infeasible or loses all improvements under the declared scenarios.",
+          "mitigation": "Retain scenario-wise runs as stress diagnostics, not an implementable robust policy."
+        },
+        {
+          "id": "Q4-R-HORIZON",
+          "risk": "72 h and 24 h windows do not reveal full-horizon SOC drift",
+          "evidence": "Summary explicitly states that no full-horizon result is claimed.",
+          "severity": "high",
+          "probe": "Chain contiguous 72 h windows with SOC carry and compare to the single-window reference on overlapping boundaries.",
+          "failure_signal": "SOC boundary mismatch, infeasible continuation, or >5 percent metric drift.",
+          "mitigation": "Use a rolling Q4 policy or keep the bounded-window scope explicit."
+        },
+        {
+          "id": "Q4-R-SIGNED-PEAK",
+          "risk": "Net export is displayed as a negative demand peak",
+          "evidence": "The low-renewable candidate signed maximum is -167.07850046 MW, while the positive-part peak is the demand measure.",
+          "severity": "medium",
+          "probe": "Audit signed peak and positive-part peak as separate fields for every scenario.",
+          "failure_signal": "A chart or caption uses negative signed peak as a positive load reduction without definition.",
+          "mitigation": "Use positive-part peak for demand figures and a separate signed export annotation."
+        }
+      ],
+      "minimal_increment_experiments": [
+        {
+          "id": "Q4-E1-four-cell-attribution",
+          "priority": "P0",
+          "status": "recommended_not_run",
+          "purpose": "Separate scheduling, storage, and their interaction before interpreting Q4 gains.",
+          "cells": [
+            "A = FIFO schedule + no storage (existing baseline)",
+            "B = Q2 candidate schedule + no storage",
+            "C = FIFO schedule + integrated storage MILP",
+            "D = Q2 candidate schedule + integrated storage MILP (existing candidate)"
+          ],
+          "scope": "same 72 h window, same five scenarios, same task identities, PUE/load reconstruction, and metric definitions",
+          "derived_effects": [
+            "storage effect under candidate scheduling = D - B",
+            "storage effect under FIFO scheduling = C - A",
+            "scheduling effect with storage = D - C",
+            "interaction = (D - B) - (C - A), reported separately for cost, carbon, and positive peak"
+          ],
+          "acceptance": [
+            "all four cells pass task identity, energy balance, SOC, mutex, grid-cap, and peak-linkage audits",
+            "B and D use the same candidate task envelope; A and C use the same FIFO envelope",
+            "no effect is described as causal; it is a conditional decomposition under fixed data"
+          ],
+          "activation_trigger": "Run immediately before any Q4 paragraph that attributes a gain specifically to storage or specifically to Q2 scheduling.",
+          "failure_modes": [
+            "task spill or closeout handling differs between cells",
+            "baseline is given a different renewable or terminal-SOC convention",
+            "one cell uses a different peak definition"
+          ],
+          "claim_rule": "Only the frozen aggregate bundle claim remains eligible until this experiment is hashed and reviewed."
+        },
+        {
+          "id": "Q4-E2-epsilon-peak-frontier",
+          "priority": "P0",
+          "status": "recommended_not_run",
+          "purpose": "Make peak selection auditable as an explicit budget rather than a continuous price interpretation.",
+          "design": "On the existing 24 h low-renewable probe, solve min(normalized cost + carbon + curtailment) subject to positive system peak <= {291.6033, 0.75*291.6033, 0.5*291.6033, 197.0883} MW; retain binary mutex and terminal SOC equality.",
+          "comparison": "Compare the epsilon frontier with the 17-point weighted scan, including the selected 0.0003 point.",
+          "activation_trigger": "Activated by the observed 94.51503392666643 MW step from zero-weight to selected scan point; use the scan only as a reference, not a shadow-price estimate.",
+          "acceptance": "Every budget point solves and passes hard audits; infeasible budgets are recorded rather than silently discarded.",
+          "failure_modes": [
+            "peak bound is below physical feasibility",
+            "objective scaling changes the ranking of cost and carbon",
+            "positive-part and signed peak are mixed"
+          ],
+          "claim_rule": "Report an audited discrete Pareto/budget frontier; do not call any finite-difference value a dual price."
+        },
+        {
+          "id": "Q4-E3-contiguous-window-chain",
+          "priority": "P1",
+          "status": "recommended_not_run",
+          "purpose": "Check whether the 72 h endpoint and terminal SOC equality remain stable when the policy is chained.",
+          "design": "Use contiguous existing rows in four 72 h windows around the Q2 horizon; carry SOC forward, enforce equality only at the declared end-of-cycle target, and compare the central window with the frozen 72 h result.",
+          "measurements": ["boundary SOC residual", "cost/carbon/positive peak drift", "scenario and mutex audit counts"],
+          "activation_trigger": "Run if Q4-E1 shows a material storage contribution or if adjacent-window peak/renewable regimes differ materially by a predeclared 10 percent diagnostic.",
+          "failure_modes": [
+            "window endpoints omit closeout tasks",
+            "terminal equality creates artificial charging",
+            "scenario factors are applied outside their declared scope"
+          ],
+          "claim_rule": "A pass supports chained bounded-window robustness only; it does not establish a global optimum."
+        },
+        {
+          "id": "Q4-E4-shared-mode-empirical-robust",
+          "priority": "P1_conditional",
+          "status": "recommended_not_run",
+          "purpose": "Test a nonanticipative robust storage policy over the five declared scenarios.",
+          "design": "Share charge/discharge and grid import/export binary modes across scenarios; retain scenario-specific continuous power/SOC recourse and a common positive-peak epigraph.",
+          "activation_trigger": "Activate when scenario-wise positive peak or cost spread exceeds 10 percent, or when Q4-E3 reports material boundary drift.",
+          "acceptance": "All five scenario dispatches and the same-input baseline pass hard audits; observed-scenario output remains within the current reference tolerance.",
+          "failure_modes": [
+            "shared binaries make the model infeasible",
+            "recourse violates SOC carry or grid caps",
+            "scenario transformations are incorrectly interpreted probabilistically"
+          ],
+          "claim_rule": "If successful, claim only a deterministic observed-factor robust policy; otherwise retain current scenario-wise diagnostics."
+        }
+      ],
+      "fallback_policy": {
+        "current_fallback": "No Q4 heuristic fallback is claim-eligible; the integrated MILP scan points all solved and passed.",
+        "recommendation": "Do not add a heuristic fallback until a time-limit or infeasibility trigger is observed; if needed, allow one explicitly named feasibility-only rule and audit it against the same baseline.",
+        "claim_boundary": "No fallback effectiveness statement is permitted without an activated run and frozen evidence."
+      },
+      "figure_implications": [
+        {
+          "figure_id": "fig-q4-peak-frontier",
+          "claim_ids": ["Q4-PEAK-REDUCTION", "Q4-PEAK-SELECTED-WEIGHT", "Q4-PEAK-DISCRETE-MARGINAL"],
+          "recommended_visual": "single-axis ordered dot/step plot of discrete peak weight versus positive system peak, with selected weight highlighted",
+          "axes": [{"variable": "peak weight", "unit": "dimensionless discrete scan value"}, {"variable": "positive system peak", "unit": "MW"}],
+          "scope_annotations": ["24 h low-renewable probe", "17 audited points", "connecting lines are visual guides only", "finite difference is not a shadow price"],
+          "data_integrity": "Use frozen q4_derived_summary. Keep signed net import as a separate annotation if shown.",
+          "style": "one primary plotting area, registered journal-spectrum-v2 palette, PDF/SVG/400 dpi PNG"
+        },
+        {
+          "figure_id": "fig-q4-soc-coordination",
+          "claim_ids": ["Q4-AUDIT-PASS"],
+          "recommended_visual": "single-axis six-region SOC trajectory over the audited 72 h window with terminal equality markers",
+          "axes": [{"variable": "hour from window start", "unit": "h"}, {"variable": "state of charge", "unit": "MWh"}],
+          "scope_annotations": ["fixed Q2 envelope", "six-region integrated binary MILP", "terminal equality is checked, not an optimality certificate"],
+          "style": "six distinguishable palette colors plus line styles; avoid a second plotting area unless a formal contract justifies it"
+        },
+        {
+          "figure_id": "fig-q4-scenario-deltas",
+          "claim_ids": ["Q4-LOWREN-COST-DELTA", "Q4-LOWREN-CARBON-DELTA"],
+          "recommended_visual": "scenario-by-metric delta dot plot or normalized bar chart with observed and stress labels",
+          "axes": [{"variable": "scenario", "unit": "categorical"}, {"variable": "candidate minus baseline", "unit": "declared metric units"}],
+          "scope_annotations": ["deterministic scenario probes, not probabilities", "cost/carbon delta includes upstream task schedule and storage"],
+          "style": "single primary axes; use shape or line style to distinguish cost and carbon if combined"
+        }
+      ]
+    }
+  },
+  "cross_question_integration": {
+    "current_data_flow": "Q1 forecast and reconciliation -> Q2 fixed deterministic task schedule -> Q3 regional rolling storage policy and empirical stress factors -> Q4 fixed-envelope integrated storage and peak probe",
+    "main_interface_risks": [
+      "Q2 task assignment is treated as fixed input in Q4, so Q4 cannot be read as a joint scheduler-storage optimizer.",
+      "Q3 terminal SOC convention differs from Q4 terminal equality; any combined narrative must state the distinction.",
+      "Q3 uses regional decomposition while Q4 uses six-region integration; the scope change is methodological, not evidence of a network-flow model."
+    ],
+    "recommended_sequence": [
+      "First run Q3-E1 and Q3-E2 plus Q4-E1 and Q4-E2 as P0 structural checks.",
+      "If boundary or scenario spread is material, run the corresponding adaptive or robust conditional experiment; otherwise keep the audited compatibility routes.",
+      "Only after the selected routes pass should new figures be promoted from staging and claims be reconsidered by the root agent.",
+      "Use Benders/column generation only if an explicit task-storage or inter-region coupling model is actually introduced."
+    ],
+    "model_selection_rule": "Prefer the simplest audited binary MILP or deterministic rolling policy that preserves common-input baseline comparability; upgrade only when a predeclared trigger and real-data gain justify the added complexity."
+  },
+  "recommended_next_experiments": [
+    {
+      "id": "Q3-E1-terminal-window-sensitivity",
+      "question": "Q3",
+      "priority": "P0",
+      "activation": "immediate",
+      "expected_decision": "retain fixed 168 h, switch to adaptive 72/168 h, or impose a terminal inventory target"
+    },
+    {
+      "id": "Q3-E2-grid-mutex-reaudit",
+      "question": "Q3",
+      "priority": "P0",
+      "activation": "immediate structural audit",
+      "expected_decision": "confirm no simultaneous grid buy/sell or make the binary mutex structural"
+    },
+    {
+      "id": "Q4-E1-four-cell-attribution",
+      "question": "Q4",
+      "priority": "P0",
+      "activation": "immediate before storage-specific interpretation",
+      "expected_decision": "report bundle effect only, or add a conditional interaction interpretation"
+    },
+    {
+      "id": "Q4-E2-epsilon-peak-frontier",
+      "question": "Q4",
+      "priority": "P0",
+      "activation": "immediate because the scan has a large discrete peak step",
+      "expected_decision": "retain the scan descriptor or replace selection with explicit audited peak budgets"
+    },
+    {
+      "id": "Q3-E3-budgeted-empirical-robustness",
+      "question": "Q3",
+      "priority": "P1_conditional",
+      "activation": "only if stress spread or window sensitivity is material",
+      "expected_decision": "scenario-wise diagnostic versus bounded worst-case objective"
+    },
+    {
+      "id": "Q4-E4-shared-mode-empirical-robust",
+      "question": "Q4",
+      "priority": "P1_conditional",
+      "activation": "only if scenario spread or chained-window drift is material",
+      "expected_decision": "scenario-wise stress reporting versus a nonanticipative shared-mode policy"
+    }
+  ],
+  "figure_implications": {
+    "formal_policy": "All formal figures must be generated from frozen evidence, use journal-spectrum-v2, have one primary plotting area by default, and export PDF, editable-text SVG, and 400 dpi PNG.",
+    "staging_policy": "Boundary-sensitivity, attribution, and proposed robust-frontier figures remain diagnostic staging outputs until their runs are hashed and accepted.",
+    "required_scope_labels": [
+      "Q3 90 rolling binary blocks, 0-2406 h, 269/270 complete audits, LP probe excluded",
+      "Q4 fixed Q2 envelope, 72 h scenarios, separate 24 h peak scan, no full-horizon or joint task-storage claim",
+      "deterministic empirical stress probes are not probabilities"
+    ],
+    "color_rule": "Do not introduce colors outside the registered palette; use line style, marker, or hatching for secondary encodings."
+  },
+  "verdict": "PASS_WITH_CONDITIONAL_NEXT_STEPS",
+  "handoff_checks": {
+    "input_hashes_match_task": true,
+    "input_hash_fields_complete": true,
+    "allowed_read_scope_respected": true,
+    "unique_write_directory": "sprints/sprint-20260808T093228283096Z/staging/solver-q2",
+    "formal_state_modified": false,
+    "protected_paths_touched": [],
+    "new_claims_frozen": false,
+    "new_figures_promoted": false,
+    "new_experiments_run": false,
+    "artifact_hash_to_be_recomputed": true,
+    "target_gate": "G5",
+    "review_is_advisory": true
+  }
+}

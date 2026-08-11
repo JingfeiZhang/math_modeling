@@ -1,0 +1,364 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2014-a-a305",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2014,
+    "problem": "A",
+    "team_id": "",
+    "title": "嫦娥三号软着陆轨道设计与控制策略"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A305/A10009072_%E5%90%89%E5%BC%A0%E9%B9%A4%E8%BD%A9_%E6%9D%A8%E5%8D%87_%E9%99%88%E5%90%8C%E5%B9%BF/A10009072_%E5%90%89%E5%BC%A0%E9%B9%A4%E8%BD%A9_%E6%9D%A8%E5%8D%87_%E9%99%88%E5%90%8C%E5%B9%BF.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/A10009072_吉张鹤轩_杨升_陈同广.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2014,
+    "problem": "A",
+    "team_id": "",
+    "title": "嫦娥三号软着陆轨道设计与控制策略",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "f451834248c687e1118160cbdffd18490e80f313f3aeacf3e314f2fbef476ecb",
+    "pages": 36,
+    "local_path": "corpus/raw/objects/sha256/f4/f451834248c687e1118160cbdffd18490e80f313f3aeacf3e314f2fbef476ecb.pdf",
+    "first_page_phash": "68f0d4c0d0d4d000",
+    "text_sha256": "2ef1ccb8ec35d4ce2257a2af823bef0cdc6ca5ebaed549a72fdf8b8ddb569b9f"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 3,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括；按子问题顺序陈述方法与结果；摘要包含量化结果或结果判断；末尾列出关键词”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：度的着陆轨道设计优化，并对所使用的优化方案进一步作出了误差分析与灵敏度分析。",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：小始终为最大值，推力与速度反方向夹角也为恒量，由此建立微分方程模型。但在求解的过",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：程中我们发现，正面求解难度十分大，于是对微分方程离散化，转化为差分方程组，继而通",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：过计算机模拟行为，拟合出最接近解的轨迹，求得水平位移量为 385.21m，由此得到近月点",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：度的着陆轨道设计优化，并对所使用的优化方案进一步作出了误差分析与灵敏度分析。",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：立合理的落点评价体系，最终找出最优点坐标（1275,1000） ，燃耗为 86.97kg。第四阶段同样",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：间进行线性统计回归，求出平均坡面与平均坡度，结合最大安全半径建立最优落点评价体系，",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：对于第三问，首先总结了优化模型中引入的一些误差因素，并针对主要因素做了数值上",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-03.jpg"
+    },
+    {
+      "page": 8,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：由问题得到结论，但可以“猜测”结论从而验证问题的正确性，继而得到想要的数据。",
+      "derivation": "mixed",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-08.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 3,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.3"
+    },
+    {
+      "page": 3,
+      "order": 2,
+      "role": "按子问题顺序陈述方法与结果",
+      "locator": "PDF p.3"
+    },
+    {
+      "page": 3,
+      "order": 3,
+      "role": "摘要包含量化结果或结果判断",
+      "locator": "PDF p.3"
+    },
+    {
+      "page": 3,
+      "order": 4,
+      "role": "末尾列出关键词",
+      "locator": "PDF p.3"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 3,
+      "description": "度的着陆轨道设计优化，并对所使用的优化方案进一步作出了误差分析与灵敏度分析。",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 2,
+      "page": 3,
+      "description": "小始终为最大值，推力与速度反方向夹角也为恒量，由此建立微分方程模型。但在求解的过",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 3,
+      "page": 3,
+      "description": "程中我们发现，正面求解难度十分大，于是对微分方程离散化，转化为差分方程组，继而通",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 4,
+      "page": 3,
+      "description": "过计算机模拟行为，拟合出最接近解的轨迹，求得水平位移量为 385.21m，由此得到近月点",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 5,
+      "page": 3,
+      "description": "的二体模型及力学方程组，并对约束条件进行归一化处理。为了后续优化，列出全部归一化",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 6,
+      "page": 3,
+      "description": "约束条件并建立目标函数，从而获得非线性规划模型。之后采用了序列化遗传算法对其进行",
+      "locator": "PDF p.3"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 3,
+      "description": "度的着陆轨道设计优化，并对所使用的优化方案进一步作出了误差分析与灵敏度分析。",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 2,
+      "page": 3,
+      "description": "立合理的落点评价体系，最终找出最优点坐标（1275,1000） ，燃耗为 86.97kg。第四阶段同样",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 3,
+      "page": 3,
+      "description": "间进行线性统计回归，求出平均坡面与平均坡度，结合最大安全半径建立最优落点评价体系，",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 4,
+      "page": 3,
+      "description": "对于第三问，首先总结了优化模型中引入的一些误差因素，并针对主要因素做了数值上",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 5,
+      "page": 3,
+      "description": "的相对误差分析，证明了误差对于优化方案并未产生很大影响。其次从初始变量和约束条件",
+      "locator": "PDF p.3"
+    }
+  ],
+  "figures": [
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "半径为 R=1737.013km，轨道为椭圆。如图 5.1.1.1",
+      "lesson": "图题“半径为 R=1737.013km，轨道为椭圆。如图 5.1.1.1”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-06.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 5.1.1.1 近月轨道示意图（为了方便示意，本图不符合比例）",
+      "lesson": "图题“图 5.1.1.1 近月轨道示意图（为了方便示意，本图不符合比例）”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-06.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 5.1.1.2 非惯性系下力学分析图示",
+      "lesson": "图题“图 5.1.1.2 非惯性系下力学分析图示”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 9,
+      "role": "result evidence",
+      "chart_type": "trajectory",
+      "caption": "接受，由此得出符合题意的主减速阶段飞行轨迹图，如图 5.1.1.4",
+      "lesson": "图题“接受，由此得出符合题意的主减速阶段飞行轨迹图，如图 5.1.1.4”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.9",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-09.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 9,
+      "role": "result evidence",
+      "chart_type": "trajectory",
+      "caption": "图 5.1.1.4 主减速阶段飞行轨迹图（非惯性参考系）",
+      "lesson": "图题“图 5.1.1.4 主减速阶段飞行轨迹图（非惯性参考系）”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.9",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-09.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 9,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 5.1.1.5 水平与竖直速度变化示意图 图 5.1.1.6 夹角变化示意图",
+      "lesson": "图题“图 5.1.1.5 水平与竖直速度变化示意图 图 5.1.1.6 夹角变化示意图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.9",
+      "render": "corpus/rendered/cumcm-2014-a-a305/pages/page-09.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 3
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 3
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 6
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 3
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "56100fa1d940da3d7f3ef97385a878d54e000346",
+    "bytes": 1426258,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2014-a-a305/extracted-layout.txt",
+      "sha256": "2ef1ccb8ec35d4ce2257a2af823bef0cdc6ca5ebaed549a72fdf8b8ddb569b9f",
+      "extracted_pages": 36,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 36,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2014-a-a305/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2014-a-a305/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2014-a-a305/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2014-a-a305/contact-25-32.jpg",
+        "corpus/rendered/cumcm-2014-a-a305/contact-33-36.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

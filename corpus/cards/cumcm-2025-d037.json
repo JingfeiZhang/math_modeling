@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "analysis_status": "evidence_reviewed",
+  "review_method": "full page cache plus visual review of abstract, framework, model, main-result and validation anchors",
+  "ocr_status": "not_available; observations are page-image visual evidence, not OCR transcription",
+  "competition": "CUMCM",
+  "year": 2025,
+  "problem": "D",
+  "paper_id": "cumcm-2025-d037",
+  "title": "2025高教社杯全国大学生数学建模竞赛D题论文展示（D037）",
+  "source_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2025qgdxssxjmjslwzs_2025dtlw/251101/2022742.shtml",
+  "access": "public_page_images",
+  "award_or_label": "全国大学生数学建模竞赛组委会官方论文展示",
+  "page_coverage": {
+    "reported_total_pages": 37,
+    "cached_pages": 37,
+    "coverage": 1.0,
+    "sha256_verified": true
+  },
+  "abstract_layout": {
+    "pages": [
+      1
+    ],
+    "pattern": "独立首屏摘要 + 关键词；方法按问题顺序展开",
+    "density": "medium-to-high",
+    "evidence": [
+      {
+        "page": 1,
+        "file": "raw/cumcm-2025-d037/page-01.jpg",
+        "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+        "locator": "official page image 1"
+      }
+    ]
+  },
+  "problem_framing": "水资源/网络系统的空间关系与预测",
+  "models_to_subquestions": {
+    "Q1": "用网络节点、边或空间位置描述系统结构",
+    "Q2": "建立流量/水位/需求等变量的预测或响应模型",
+    "Q3-Q4": "比较不同路径或调度方案，并用误差图和三维图检查结果"
+  },
+  "models": [
+    "网络/树状结构抽象",
+    "空间或时间预测",
+    "多变量回归/数值拟合",
+    "方案路径比较"
+  ],
+  "validation_structure": [
+    "第4-5页以树状/网络流程图固定系统层级",
+    "第5页同时给二维拟合和三维关系图，展示预测结构",
+    "第7-10页用节点图、对比图和误差/结果曲线验证方案"
+  ],
+  "figure_strategy": [
+    "系统网络图",
+    "二维拟合与三维关系图",
+    "方案路径对比图"
+  ],
+  "transferable_patterns": [
+    "空间网络图中的节点编号应与表格和公式一致",
+    "三维图只展示关系，关键结论要用二维截面或表格复核",
+    "预测结果同时报告误差指标和实际决策含义"
+  ],
+  "risks": [
+    "三维图在缩印和灰度下辨识度有限",
+    "网络图若节点过多应分层或分面显示",
+    "页面图片来自官方展示页，水印/压缩伪影不作为原论文排版评价"
+  ],
+  "evidence": [
+    {
+      "page": 1,
+      "file": "raw/cumcm-2025-d037/page-01.jpg",
+      "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 2,
+      "file": "raw/cumcm-2025-d037/page-02.jpg",
+      "observation": "问题重述/背景或数据对象；记录正文如何从摘要进入模型",
+      "locator": "official page image 2"
+    },
+    {
+      "page": 4,
+      "file": "raw/cumcm-2025-d037/page-04.jpg",
+      "observation": "符号表、假设、变量或模型路线图；记录定义顺序",
+      "locator": "official page image 4"
+    },
+    {
+      "page": 7,
+      "file": "raw/cumcm-2025-d037/page-07.jpg",
+      "observation": "代表性主结果图/表；记录图型、图例、单位和比较对象",
+      "locator": "official page image 7"
+    },
+    {
+      "page": 10,
+      "file": "raw/cumcm-2025-d037/page-10.jpg",
+      "observation": "验证、敏感性、方案比较或阶段性结论；记录结果闭环",
+      "locator": "official page image 10"
+    }
+  ],
+  "evidence_boundary": "模型类别和排版判断只写页面中可见的公式、图形、表格和章节位置；未从视觉材料推断奖级、原创性或数学正确性。"
+}

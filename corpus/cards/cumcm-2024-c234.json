@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "analysis_status": "evidence_reviewed",
+  "review_method": "full page cache plus visual review of abstract, framework, model, main-result and validation anchors",
+  "ocr_status": "not_available; observations are page-image visual evidence, not OCR transcription",
+  "competition": "CUMCM",
+  "year": 2024,
+  "problem": "C",
+  "paper_id": "cumcm-2024-c234",
+  "title": "2024高教社杯全国大学生数学建模竞赛C题论文展示（C234）",
+  "source_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024ctlw/241104/1977963.shtml",
+  "access": "public_page_images",
+  "award_or_label": "全国大学生数学建模竞赛组委会官方论文展示",
+  "page_coverage": {
+    "reported_total_pages": 45,
+    "cached_pages": 45,
+    "coverage": 1.0,
+    "sha256_verified": true
+  },
+  "abstract_layout": {
+    "pages": [
+      1
+    ],
+    "pattern": "独立首屏摘要 + 关键词；方法按问题顺序展开",
+    "density": "medium-to-high",
+    "evidence": [
+      {
+        "page": 1,
+        "file": "raw/cumcm-2024-c234/page-01.jpg",
+        "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+        "locator": "official page image 1"
+      }
+    ]
+  },
+  "problem_framing": "农业经营数据的时间结构与配置优化",
+  "models_to_subquestions": {
+    "Q1": "整理经营或销售数据并按类别、时期建立统计量",
+    "Q2": "比较不同组别的频数、收益或资源占用",
+    "Q3-Q4": "建立资源约束下的配置模型，给出策略和敏感性结果"
+  },
+  "models": [
+    "数据清洗与分组统计",
+    "趋势/频数对比",
+    "线性或整数规划",
+    "情景配置评价"
+  ],
+  "validation_structure": [
+    "第3页用彩色流程图说明从数据到决策的路线",
+    "第5-6页用大表核对输入口径和基准结果",
+    "第7页条形图与第8-10页公式/结果表共同支撑优化结论"
+  ],
+  "figure_strategy": [
+    "彩色模型流程图",
+    "频数/收益条形图",
+    "基准与方案结果表"
+  ],
+  "transferable_patterns": [
+    "流程图应只保留关键节点，具体算法在正文解释",
+    "对比图配基准线或基准表，避免只展示优化方案",
+    "数据口径和分组规则要在表注中写清楚"
+  ],
+  "risks": [
+    "彩色流程图需提供灰度或形状第二编码",
+    "长表格适合横向压缩或附录，正文保留关键列",
+    "页面图片来自官方展示页，水印/压缩伪影不作为原论文排版评价"
+  ],
+  "evidence": [
+    {
+      "page": 1,
+      "file": "raw/cumcm-2024-c234/page-01.jpg",
+      "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 2,
+      "file": "raw/cumcm-2024-c234/page-02.jpg",
+      "observation": "问题重述/背景或数据对象；记录正文如何从摘要进入模型",
+      "locator": "official page image 2"
+    },
+    {
+      "page": 4,
+      "file": "raw/cumcm-2024-c234/page-04.jpg",
+      "observation": "符号表、假设、变量或模型路线图；记录定义顺序",
+      "locator": "official page image 4"
+    },
+    {
+      "page": 7,
+      "file": "raw/cumcm-2024-c234/page-07.jpg",
+      "observation": "代表性主结果图/表；记录图型、图例、单位和比较对象",
+      "locator": "official page image 7"
+    },
+    {
+      "page": 10,
+      "file": "raw/cumcm-2024-c234/page-10.jpg",
+      "observation": "验证、敏感性、方案比较或阶段性结论；记录结果闭环",
+      "locator": "official page image 10"
+    }
+  ],
+  "evidence_boundary": "模型类别和排版判断只写页面中可见的公式、图形、表格和章节位置；未从视觉材料推断奖级、原创性或数学正确性。"
+}

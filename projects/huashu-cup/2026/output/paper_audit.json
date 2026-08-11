@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "passed": true,
+  "errors": [],
+  "warnings": [
+    {
+      "code": "ORPHAN_TEX",
+      "message": "20 TeX file(s) are not reachable from main.tex",
+      "severity": "warning"
+    },
+    {
+      "code": "UNUSED_LABEL",
+      "message": "22 label(s) are not referenced",
+      "severity": "warning"
+    },
+    {
+      "code": "ABSTRACT_MISSING",
+      "message": "no abstract environment found",
+      "severity": "warning"
+    },
+    {
+      "code": "PAGE_BUDGET",
+      "message": "PDF has 37 total pages; recommended budget is one abstract page plus 20 body pages",
+      "severity": "warning"
+    }
+  ],
+  "info": [
+    {
+      "code": "TEX_FILES",
+      "message": "expanded 11 TeX file(s) from main.tex",
+      "severity": "info"
+    },
+    {
+      "code": "SUMMARY",
+      "message": "scanned 17 sections, 12 figures, and 14 tables",
+      "severity": "info"
+    }
+  ],
+  "metrics": {
+    "entrypoint": "D:\\数学建模\\projects\\huashu-cup\\2026\\paper\\main.tex",
+    "tex_files": 11,
+    "orphan_tex_files": 20,
+    "labels": 68,
+    "refs": 54,
+    "citations": 21,
+    "graphics": 12,
+    "sections": 17,
+    "tables": 14,
+    "figures": 12,
+    "margins_cm": {
+      "left": 2.5,
+      "right": 2.5,
+      "top": 2.5,
+      "bottom": 2.5
+    },
+    "pages": 37,
+    "pdf_mb": 0.819
+  }
+}

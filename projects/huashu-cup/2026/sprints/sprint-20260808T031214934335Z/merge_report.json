@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T031214934335Z",
+  "status": "MERGED",
+  "passed": true,
+  "accepted_tasks": [
+    "solver-q4"
+  ],
+  "archived_artifacts": [
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/q4_final_candidate_envelope.csv",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_candidate_envelope.csv",
+      "sha256": "bc0c03230104dddce3f390d0ef2174e93141c695b5e4988ae4879e338df3308f"
+    },
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/q4_final_baseline_envelope.csv",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_baseline_envelope.csv",
+      "sha256": "69bc2a7f23a8d81e1ec8ee17f2e59f83f3ce27b3d60824802800304853841e46"
+    },
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/q4_final_candidate_dispatch.csv",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_candidate_dispatch.csv",
+      "sha256": "45d0ca82f6efe92172e4ce46d9a518522e71066cf29c2b3eb1cba660b6bad417"
+    },
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/q4_final_baseline_dispatch.csv",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_baseline_dispatch.csv",
+      "sha256": "1d0bcb8ebfb27cebedfe72bfce5c7479ff13ff08318b09f7436992b497b645ce"
+    },
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/q4_final_candidate_metrics.csv",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_candidate_metrics.csv",
+      "sha256": "9b47b92a12ce8b12d796eee6eb23e6d8341fcf52d6112d6f88875d3408f09e20"
+    },
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/q4_final_baseline_metrics.csv",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_baseline_metrics.csv",
+      "sha256": "3076c8968447f297f3f2197b599d103cb3d5501749d23a08fd6fd9e0789a6614"
+    },
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/q4_final_aggregate_comparison.csv",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_aggregate_comparison.csv",
+      "sha256": "056dc66bdc9685d0ecd360082980aeb8bf38524e6fb0ae413a7805fa79cf006e"
+    },
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/q4_final_system_hourly.csv",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_system_hourly.csv",
+      "sha256": "e9b327a767c6a321752e780b1e36d3255e5dc2f91156f7269c4be9be94c1dedc"
+    },
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/q4_final_constraint_audit.json",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_constraint_audit.json",
+      "sha256": "ba148a8192e0dfafef7053c366673cbf7b2e3b26848ea308c0660f80877c790b"
+    },
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/q4_final_summary.json",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_summary.json",
+      "sha256": "4185d668ab39448c269dd33139e6c895be99de16752aa37c815cff57fb6235e7"
+    },
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/q4_final_run_manifest.json",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_run_manifest.json",
+      "sha256": "f0b8648dc89637ee17a661c54e7466ff2c8f22087b633b38b5ef0c7517f482dd"
+    },
+    {
+      "task_id": "solver-q4",
+      "source": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/run_solver_q4_final.py",
+      "archive": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/run_solver_q4_final.py",
+      "sha256": "53bbde759fb7b089656a8f14e986d824e7e86332b864232f0131f6de17a8c7f3"
+    }
+  ],
+  "retry_packages": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "formal_state_modified": false,
+  "generated_at_utc": "2026-08-08T04:53:35.496870+00:00"
+}

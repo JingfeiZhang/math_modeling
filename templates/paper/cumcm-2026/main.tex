@@ -1,0 +1,41 @@
+\documentclass[UTF8,12pt,a4paper,oneside]{ctexart}
+\input{preamble.tex}
+\input{metadata.tex}
+
+\begin{document}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\begin{center}
+  {\zihao{3}\bfseries \ContestName\par}
+  \vspace{1.2em}
+  {\zihao{2}\bfseries \PaperTitle\par}
+  \vspace{0.8em}
+  {\zihao{-4}题号：\ProblemNumber\par}
+\end{center}
+
+\vspace{0.8em}
+\input{sections/abstract.tex}
+
+\clearpage
+\newcounter{MathModelBodyStartPage}
+\setcounter{MathModelBodyStartPage}{\value{page}}
+\input{sections/problem_restatement.tex}
+\input{sections/problem_analysis.tex}
+\input{sections/assumptions_notation.tex}
+\input{sections/data_processing.tex}
+\IfFileExists{generated/question_structure.tex}{%
+  \input{generated/question_structure.tex}%
+}{%
+  \PackageWarning{cumcm-2026}{Missing generated/question_structure.tex; using the three-question preview structure}%
+  \input{sections/question_1.tex}%
+  \input{sections/question_2.tex}%
+  \input{sections/question_3.tex}%
+}
+\input{sections/model_evaluation.tex}
+\typeout{MATHMODEL:CUMCM_BODY_PAGES=\number\numexpr\value{page}-\value{MathModelBodyStartPage}\relax}
+\ifRequireAIStatement
+  \input{sections/ai_statement.tex}
+\fi
+\input{sections/references.tex}
+\input{sections/appendix.tex}
+\end{document}

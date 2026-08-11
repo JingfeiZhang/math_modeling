@@ -1,0 +1,346 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2021-b-b21102690002",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2021,
+    "problem": "B",
+    "team_id": "",
+    "title": "中国研究生创新实践系列大赛"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2021%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/B/B21102690002.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2021年优秀论文/B/B21102690002.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2021,
+    "problem": "B",
+    "team_id": "",
+    "title": "中国研究生创新实践系列大赛",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "3d75ccf495b6b22eaf5d544afc105218313d856b1bd9bb1054f5262160fa16af",
+    "pages": 32,
+    "local_path": "corpus/raw/objects/sha256/3d/3d75ccf495b6b22eaf5d544afc105218313d856b1bd9bb1054f5262160fa16af.pdf",
+    "first_page_phash": "b2ba70b0d0d00000",
+    "text_sha256": "53421ad05f6563f977f996175576b29f5dd3d95994d3b8972b14b9c10d72d230"
+  },
+  "review_status": "content_extracted",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括”的组织结构。",
+      "derivation": "text",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：十分重要的科学意义，预测未来污染物浓度情况有利于提前采取污染防治措施。目前常用",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：的污染物预报模型 WRF-CMAQ 还存在一定缺陷，如受气象场模拟结果的制约等问题。为了",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：提高现有预报模拟的准确性，本文首先根据六种常见大气污染物的实际观测浓度，计算空",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：模型模拟结果作为一次预报数据，结合实际观测数据，建立二次预报模型，预报未来三天",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-02.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：8 模型评价与推广 ......................................................... 24",
+      "derivation": "text",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-03.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：响，气象条件模拟的误差也会导致模型预报污染浓度的误差；而实际的污染物浓度结合实",
+      "derivation": "text",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-04.jpg"
+    },
+    {
+      "page": 5,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：染物，通过与问题 3 中模型对比，研究分析区域协同预报模型在污染物浓度预报上是否更",
+      "derivation": "text",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-05.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：8 模型评价与推广 ......................................................... 24",
+      "derivation": "text",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-03.jpg"
+    },
+    {
+      "page": 17,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：作用，将极大的提升模型的可复用性，以及推广价值。",
+      "derivation": "text",
+      "locator": "PDF p.17",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-17.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "十分重要的科学意义，预测未来污染物浓度情况有利于提前采取污染防治措施。目前常用",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "的污染物预报模型 WRF-CMAQ 还存在一定缺陷，如受气象场模拟结果的制约等问题。为了",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "提高现有预报模拟的准确性，本文首先根据六种常见大气污染物的实际观测浓度，计算空",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "模型模拟结果作为一次预报数据，结合实际观测数据，建立二次预报模型，预报未来三天",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 2,
+      "description": "染物浓度的相关性，建立区域协同预报，结合反距离权重法建立 LSTM 模型，预测未来三",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 6,
+      "page": 2,
+      "description": "空气质量指数计算模型，求得给点监测点 A 未来四天的每日实测 AQI 和首要污染物。结果",
+      "locator": "PDF p.2"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 3,
+      "description": "8 模型评价与推广 ......................................................... 24",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 2,
+      "page": 4,
+      "description": "响，气象条件模拟的误差也会导致模型预报污染浓度的误差；而实际的污染物浓度结合实",
+      "locator": "PDF p.4"
+    },
+    {
+      "step": 3,
+      "page": 5,
+      "description": "染物，通过与问题 3 中模型对比，研究分析区域协同预报模型在污染物浓度预报上是否更",
+      "locator": "PDF p.5"
+    },
+    {
+      "step": 4,
+      "page": 9,
+      "description": "为确定不同气象条件对 AQI 的影响，首先建立相关分析模型检验各气象条件与实测",
+      "locator": "PDF p.9"
+    },
+    {
+      "step": 5,
+      "page": 10,
+      "description": "只有-0.0019，且没有通过显著性检验；第三行第一列图为 AQI 与湿度对应的散点图，可以",
+      "locator": "PDF p.10"
+    }
+  ],
+  "figures": [
+    {
+      "page": 10,
+      "role": "result evidence",
+      "chart_type": "scatter",
+      "caption": "点图。各数据散点图的分布情况如图 1 所示。图 1 中对角线代表对应行或列 AQI 及各个气",
+      "lesson": "图题“点图。各数据散点图的分布情况如图 1 所示。图 1 中对角线代表对应行或列 AQI 及各个气”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-10.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 10,
+      "role": "result evidence",
+      "chart_type": "scatter",
+      "caption": "图 1 AQI 及各个气象要素散点图",
+      "lesson": "图题“图 1 AQI 及各个气象要素散点图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-10.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 11,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "接下来我们进一步分析了温度、湿度、压强和风速与各物种浓度的相关关系（见图 2）。",
+      "lesson": "图题“接下来我们进一步分析了温度、湿度、压强和风速与各物种浓度的相关关系（见图 2）。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.11",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-11.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 11,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 2 的横坐标从左到右分别为日平均温度、日平均相对湿度、日平均气压和日平均风速（由",
+      "lesson": "图题“图 2 的横坐标从左到右分别为日平均温度、日平均相对湿度、日平均气压和日平均风速（由”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.11",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-11.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 11,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "关系的考虑）。图 2 的纵坐标从上到下分别为 SO2 的 24 小时平均浓度、NO2 的 24 小时平",
+      "lesson": "图题“关系的考虑）。图 2 的纵坐标从上到下分别为 SO2 的 24 小时平均浓度、NO2 的 24 小时平”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.11",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-11.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 12,
+      "role": "result evidence",
+      "chart_type": "scatter",
+      "caption": "图 2 气象参数-污染物浓度散点图及趋势线",
+      "lesson": "图题“图 2 气象参数-污染物浓度散点图及趋势线”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.12",
+      "render": "corpus/rendered/cumcm-2021-b-b21102690002/pages/page-12.jpg",
+      "visual_checked": false
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 10
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 3
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "全页已渲染，但接触表尚未完成逐页人工视觉确认。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "git_blob_sha": "fbb0adb09a89f98f396dc7000a78b05c2e067693",
+    "bytes": 2223695,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2021-b-b21102690002/extracted-layout.txt",
+      "sha256": "53421ad05f6563f977f996175576b29f5dd3d95994d3b8972b14b9c10d72d230",
+      "extracted_pages": 32,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 32,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2021-b-b21102690002/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2021-b-b21102690002/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2021-b-b21102690002/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2021-b-b21102690002/contact-25-32.jpg"
+      ],
+      "visual_review": "pending"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

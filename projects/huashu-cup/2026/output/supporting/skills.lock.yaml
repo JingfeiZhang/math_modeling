@@ -1,0 +1,167 @@
+schema_version: 1
+generated_at: "2026-08-07T18:00:00+08:00"
+install_root: "%USERPROFILE%\\.codex\\skills"
+installer: "Codex skill-installer"
+
+installed:
+  - name: mathmodel-skill
+    role: contest_orchestrator
+    source: https://github.com/handsomeZR-netizen/mathmodel-skill
+    ref: d3941e14d8693fb4a79948e59afff3098734127e
+    license: MIT
+    install_path: "%USERPROFILE%\\.codex\\skills\\mathmodel-skill"
+    verification: "CUMCM doctor: 12 passed, 1 expected workspace-state warning"
+
+  - name: math-modeling-solver
+    role: modeling_solver_and_algorithm_library
+    source: https://github.com/Lupynow/math-modeling-skills
+    source_path: skills/math-modeling-solver
+    ref: 3a9428c006cc1b977c6a72a531b739a62868a4bc
+    license: MIT
+    install_path: "%USERPROFILE%\\.codex\\skills\\math-modeling-solver"
+    verification: "53 reference/template files; all bundled Python templates compile"
+
+  - name: math-modeling-paper
+    role: contest_paper_writer_and_reviewer
+    source: https://github.com/Lupynow/math-modeling-skills
+    source_path: skills/math-modeling-paper
+    ref: 3a9428c006cc1b977c6a72a531b739a62868a4bc
+    license: MIT
+    install_path: "%USERPROFILE%\\.codex\\skills\\math-modeling-paper"
+    verification: "11 writing, validation, literature, figure, and review references present"
+
+  - name: modeling-paper-studio
+    role: empirical_contest_paper_layout_writing_figure_and_audit_extension
+    source: local-workspace
+    source_path: skill_staging/modeling-paper-studio
+    ref: local-2026-08-07-academic-figure-v3
+    license: "User-owned local skill"
+    install_path: "%USERPROFILE%\\.codex\\skills\\modeling-paper-studio"
+    verification: "quick_validate passed; academic-figure regression and strict figure-audit tests passed; six single-primary-axis figures export at 158 mm with editable SVG text and 400 dpi PNG; Figure Contract v2 checks physical size, 8 pt type, source hashes, multi-panel justification, and rendered artifacts"
+
+  - name: modeling-paper-miner
+    role: pinned_corpus_discovery_authenticity_pdf_evidence_and_code_pairing
+    source: local-workspace
+    source_path: skill_staging/modeling-paper-miner
+    ref: local-2026-08-04-card-v3-content-award-gates
+    license: "User-owned local skill"
+    install_path: "%USERPROFILE%\\.codex\\skills\\modeling-paper-miner"
+    verification: "quick_validate passed; 38/42 content evidence deep reads plus 4 key-page reviews, 14 A/B award-verified deep reads, 12/20 trusted paper-code pairs, 12 deterministic recipes; C-level cards are neutral lessons only"
+
+  - name: matlab-build-chart
+    role: matlab_publication_charts
+    source: https://github.com/matlab/matlab-agentic-toolkit
+    source_path: skills-catalog/matlab-app-building/matlab-build-chart
+    ref: e57f5fcfe55543de52932165d4b15537a3cd394e
+    license: MathWorks Product-Specific Terms
+    install_path: "%USERPROFILE%\\.codex\\skills\\matlab-build-chart"
+    verification: "quick_validate passed; R2026a Update 4 satisfies >=R2025a; tiledlayout/exportgraphics demo exported PDF/SVG/400 dpi PNG"
+
+  - name: matlab-solve-optimization
+    role: matlab_optimization_formulation_and_validation
+    source: https://github.com/matlab/matlab-agentic-toolkit
+    source_path: skills-catalog/math-and-optimization/matlab-solve-optimization
+    ref: e57f5fcfe55543de52932165d4b15537a3cd394e
+    license: MathWorks Product-Specific Terms
+    install_path: "%USERPROFILE%\\.codex\\skills\\matlab-solve-optimization"
+    verification: "quick_validate passed; R2026a Update 4 and Optimization Toolbox satisfy requirements; quadratic smoke solve passed"
+
+  - name: matlab-performance-optimizer
+    role: matlab_performance_and_memory
+    source: https://github.com/matlab/agent-skills-playground
+    source_path: skills/matlab-performance-optimizer
+    ref: 7184dba9650a037debda68cba7819277970c97b0
+    license: MathWorks BSD-3-Clause
+    install_path: "%USERPROFILE%\\.codex\\skills\\matlab-performance-optimizer"
+    verification: "quick_validate passed; source reviewed; no runtime dependency"
+
+  - name: matlab-symbolic-math
+    role: matlab_symbolic_derivation
+    source: https://github.com/matlab/agent-skills-playground
+    source_path: skills/matlab-symbolic-math
+    ref: 7184dba9650a037debda68cba7819277970c97b0
+    license: MathWorks BSD-3-Clause
+    install_path: "%USERPROFILE%\\.codex\\skills\\matlab-symbolic-math"
+    verification: "quick_validate passed; symbolic differentiation smoke test passed"
+
+existing_support:
+  - name: ccf-visual-composer
+    role: publication_figures_and_tables
+  - name: nature-figure
+    role: scientific_schematics_and_high_impact_figures
+  - name: latex-document-skill
+    role: xelatex_build_and_rendered_pdf_qa
+  - name: pdf
+    role: pdf_reading_rendering_and_layout_review
+
+reference_sources:
+  - source: https://github.com/Imbad0202/academic-research-skills
+    ref: 3021248c4609296404e6a869204041fefc79170e
+    observed_version: v3.19.0
+    license: CC-BY-NC-4.0
+    adopted: [figure_table_trace, rendered_figure_verification, statistical_visualization_quality_gates, accessibility_checks]
+    handling: "Reference-only. Its generic APA templates and external palettes are not installed or copied; local mathmodel-skill ownership and journal-spectrum-v2 remain authoritative."
+
+  - source: https://github.com/zhanwen/MathModel
+    ref: cd5be91735ebf11d5ee52eb170e86a6d07131977
+    observed_stars: "about 11k on 2026-08-03"
+    observed_inventory: {pdf: 1006, gmcm_2004_2023: 685}
+    adopted: [historical_gmcm_corpus, evidence_level_layout_and_validation_patterns]
+    handling: "Read-only Git tree/blob manifest first; its '国赛论文' tree is GMCM, not CUMCM. Large PDFs are downloaded only when selected for evidence-level reading."
+
+  - source: https://github.com/personqianduixue/Math_Model
+    ref: 8783d0d822f89f98aa6182dd933cc2e9f3e2ddce
+    observed_stars: "about 4.8k on 2026-08-03"
+    observed_inventory: {pdf: 1627, matlab: 1457, mcm_pdf: 417}
+    adopted: [cumcm_mcm_corpus, matlab_static_index, paper_code_pair_candidates]
+    handling: "Read-only manifest; MATLAB code is statically screened before any isolated execution."
+
+  - source: https://github.com/Lupynow/math-modeling-skills
+    ref: 3a9428c006cc1b977c6a72a531b739a62868a4bc
+    observed_latest: true
+    adopted: [problem_decomposition, model_selection_matrix, algorithm_templates, contest_writing]
+    handling: "Installed only as math-modeling-solver and math-modeling-paper; no duplicate copy."
+
+  - source: https://github.com/jihe520/MathModelAgent
+    ref: 11f38624cd9128bc2ce22d7b3254106e624490cd
+    observed_latest: true
+    observed_stars: "3.1k on 2026-08-03"
+    adopted: [stage_artifact_handoff, data_vs_nondatavis_boundary, dual_engine_option, composite_figure_catalog, evaluator_rerun_loop]
+    handling: "Reference-only integration into modeling-paper-studio and config/workflow.yaml; no end-to-end skill installation and no simulated values used as evidence."
+
+  - source: https://github.com/zhnnky329/MathModeling-skills
+    ref: 50a2942007a98e74cd0948b44d7cb8e4826d15c9
+    observed_latest: true
+    adopted: [per_question_manifests, runnable_baseline, conditional_fallback, risk_probes, human_decision_ledger, frozen_numbers, scoped_reaudit]
+    handling: "Reference-only integration into the local G0-G6 evidence bridge; 28 fine-grained skills remain uninstalled to avoid trigger and name collisions."
+
+  - source: https://github.com/TingxiYu/academic-figure-skill
+    ref: 1df9940dd01ac939f072b12fe28d6353b79b90f9
+    license: Apache-2.0
+    observed_inventory: {files: 217, static_risks: 35}
+    adopted: [figure_brief, physical_size_first, modeling_archetype_selection, statistics_and_data_integrity, visual_hierarchy, editable_vector_export, four_round_rendered_qa]
+    handling: "Reference-only pinned snapshot. All upstream scripts remain blocked pending manual review; simulated data, R/GUI/network/subprocess behavior, external palettes, 5 pt type, and 300 dpi defaults are excluded. Local journal-spectrum-v2 and the existing modeling-paper-studio remain authoritative."
+
+not_installed:
+  - source: https://github.com/TingxiYu/academic-figure-skill
+    ref: 1df9940dd01ac939f072b12fe28d6353b79b90f9
+    reason: "Its methods were adapted into modeling-paper-studio without installing a second figure orchestrator. Upstream scripts and simulated previews are retained only in the pinned read-only staging snapshot."
+  - source: https://github.com/Imbad0202/academic-research-skills
+    ref: 3021248c4609296404e6a869204041fefc79170e
+    reason: "The repository is a broad Claude academic workflow with overlapping orchestrators and generic APA figure defaults. Only traceability, statistical reporting, and rendered-image QA rules were adapted into the existing local figure pipeline."
+  - source: https://github.com/capwitf/My-MathModeling-skills
+    skills: [math-hub, math-figure]
+    ref: da53b41cab7e25be906f5899488229387e7921c0
+    reason: "Passed static review, but GitHub archive/clone transport failed; existing visual skills cover the same role."
+  - source: https://github.com/zhnnky329/MathModeling-skills
+    reason: "High-quality MIT suite, but its 28 Codex modules overlap existing responsibilities and include conflicting global names such as code-reviewer; selected gate and evidence patterns were absorbed into modeling-paper-studio."
+  - source: https://github.com/jihe520/MathModelAgent
+    skills: [1start-mathmodel, 2analysis-modeling, 3coding-visual, 4drawio, 5writing, 6verity, mathmodel-figure-templates]
+    ref: 11f38624cd9128bc2ce22d7b3254106e624490cd
+    reason: "The staged roles duplicate the existing orchestrator/solver/paper/studio cluster, and figure scripts assume Linux/Claude paths plus simulated data; selected handoff and chart-selection patterns were absorbed without adding global names."
+  - source: https://github.com/XiaoMaColtAI/math-modeling-skill
+    reason: "High relevance and activity, but GitHub exposes no repository license; not installed."
+
+update_policy:
+  mode: pinned
+  rule: "Review upstream diff, license, scripts, and tests before changing any ref."

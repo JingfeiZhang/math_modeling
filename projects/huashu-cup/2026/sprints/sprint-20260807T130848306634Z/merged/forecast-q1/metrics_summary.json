@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "target": "hourly arrival GPU workload by source region and task type",
+  "unit": "GPU.h",
+  "selected_seasonal_lag_hours": 168,
+  "selected_residual_shrinkage": 1.0,
+  "conformal": {
+    "method": "normalized pooled split conformal on hours 2352--2375",
+    "alpha": 0.05,
+    "main_normalized_quantile": 3.7491159549022894,
+    "baseline_normalized_quantile": 43.98277511961722,
+    "calibration_observations": 432
+  },
+  "summaries": {
+    "validation": {
+      "seasonal_baseline": {
+        "macro_mae_gpu_h": 128.1772762345679,
+        "macro_rmse_gpu_h": 180.80911450421328,
+        "macro_wape": 1.7283380472610406,
+        "macro_mase_24h": 0.9814177351175799,
+        "system_weighted_mae_gpu_h": 128.1772762345679,
+        "system_weighted_rmse_gpu_h": 272.3079476970634,
+        "system_weighted_wape": 1.1799451359277986,
+        "empirical_coverage_95": 0.9560185185185185,
+        "mean_interval_width_gpu_h": 3470.309921513041
+      },
+      "shared_hgbr_reconciled": {
+        "macro_mae_gpu_h": 109.67893809249372,
+        "macro_rmse_gpu_h": 137.1285354748901,
+        "macro_wape": 1.466574769892605,
+        "macro_mase_24h": 0.8454121056463773,
+        "system_weighted_mae_gpu_h": 109.67893809249372,
+        "system_weighted_rmse_gpu_h": 211.16461548934612,
+        "system_weighted_wape": 1.0096573536102524,
+        "empirical_coverage_95": 0.9537037037037037,
+        "mean_interval_width_gpu_h": 455.0682380347919
+      }
+    },
+    "blind_test": {
+      "seasonal_baseline": {
+        "macro_mae_gpu_h": 143.4847222222222,
+        "macro_rmse_gpu_h": 192.68534223636613,
+        "macro_wape": 1.368493792184818,
+        "macro_mase_24h": 1.0520933481900494,
+        "system_weighted_mae_gpu_h": 143.48472222222222,
+        "system_weighted_rmse_gpu_h": 314.9456420495252,
+        "system_weighted_wape": 1.0333179040043832,
+        "empirical_coverage_95": 0.9490740740740741,
+        "mean_interval_width_gpu_h": 3452.9314798705873
+      },
+      "shared_hgbr_reconciled": {
+        "macro_mae_gpu_h": 124.0614498169149,
+        "macro_rmse_gpu_h": 162.10168216782824,
+        "macro_wape": 1.1890494206080608,
+        "macro_mase_24h": 0.9150895003420746,
+        "system_weighted_mae_gpu_h": 124.06144981691489,
+        "system_weighted_rmse_gpu_h": 265.1793127907307,
+        "system_weighted_wape": 0.89343949172524,
+        "empirical_coverage_95": 0.9467592592592593,
+        "mean_interval_width_gpu_h": 442.47859929946003
+      }
+    },
+    "rolling_backtest": {
+      "seasonal_baseline": {
+        "macro_mae_gpu_h": 127.73531057098765,
+        "macro_rmse_gpu_h": 179.2544256483392,
+        "macro_wape": 1.34879555755791,
+        "macro_mase_24h": 0.9967693844863388,
+        "system_weighted_mae_gpu_h": 127.73531057098764,
+        "system_weighted_rmse_gpu_h": 276.5625224085109,
+        "system_weighted_wape": 1.0804751689966312
+      },
+      "shared_hgbr_reconciled": {
+        "macro_mae_gpu_h": 111.2639075129598,
+        "macro_rmse_gpu_h": 150.97446868501075,
+        "macro_wape": 1.2022271711477164,
+        "macro_mase_24h": 0.8852738871466639,
+        "system_weighted_mae_gpu_h": 111.26390751295983,
+        "system_weighted_rmse_gpu_h": 236.31516611574824,
+        "system_weighted_wape": 0.9411484478012123
+      }
+    }
+  },
+  "checks": {
+    "blind_test_excluded_from_selection": true,
+    "bottom_series_count": 18,
+    "forecast_horizon_hours": 24,
+    "minimum_prediction_gpu_h": 6.411221413447367e-10,
+    "maximum_system_coherence_error_gpu_h": 4.547473508864641e-13,
+    "test_task_count": 538
+  }
+}

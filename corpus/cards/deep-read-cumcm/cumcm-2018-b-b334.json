@@ -1,0 +1,357 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2018-b-b334",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2018,
+    "problem": "B",
+    "team_id": "",
+    "title": "RGV 的动态调度优化问题"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2018/B334.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2018/B334.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2018,
+    "problem": "B",
+    "team_id": "",
+    "title": "RGV 的动态调度优化问题",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "09688dc1cbdbb35ca803c7543c819c4c3c58b93e5ba34fc2ca6b6b63d8d0e7de",
+    "pages": 29,
+    "local_path": "corpus/raw/objects/sha256/09/09688dc1cbdbb35ca803c7543c819c4c3c58b93e5ba34fc2ca6b6b63d8d0e7de.pdf",
+    "first_page_phash": "30f0e0c0f8e88407",
+    "text_sha256": "1c99ca5263c520a07d403e5b43256b39a177c8fdda90f473a583b8a6e56f782b"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括；按子问题顺序陈述方法与结果；摘要包含量化结果或结果判断”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：RGV 的动态调度优化问题",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：本文对智能加工系统中 RGV 的动态调度优化问题进行研究。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：针对任务一，我们首先对系统进行分析，给出了几个重要定义和优化指导原则，例",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：这些理论为我们建立最优化模型和模型评估指标提供了依据。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：检验，在求解效率和求解质量上都达到了很好的效果。 数",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：并对评价函数进行修正，从而建立了带有故障风险的最优状态转换图模型。在使用多阶",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：了必要的理论支持，具有较高参考意义。经过验证，模型求解算法结果与最优解有很好",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：在求解时，通过改进的状态转移优化准则对模型进行求解，得到在该约束条件下，8 个",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：针对任务二，我们结合证明的结论，构建了结果偏差率计算公式，并为该标准提供",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-01.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "按子问题顺序陈述方法与结果",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "摘要包含量化结果或结果判断",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "RGV 的动态调度优化问题",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 2,
+      "page": 1,
+      "description": "本文对智能加工系统中 RGV 的动态调度优化问题进行研究。",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 3,
+      "page": 1,
+      "description": "针对任务一，我们首先对系统进行分析，给出了几个重要定义和优化指导原则，例",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 4,
+      "page": 1,
+      "description": "这些理论为我们建立最优化模型和模型评估指标提供了依据。",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 5,
+      "page": 1,
+      "description": "对于情景一，我们对原有模型进行转化，将其转化为时间维度上的多队列任务调度",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 6,
+      "page": 1,
+      "description": "优化模型，并基于事件对时间进行离散化，为减少迭代步数，根据划分结果构建最优状",
+      "locator": "PDF p.1"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "检验，在求解效率和求解质量上都达到了很好的效果。 数",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 2,
+      "page": 1,
+      "description": "并对评价函数进行修正，从而建立了带有故障风险的最优状态转换图模型。在使用多阶",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 3,
+      "page": 1,
+      "description": "了必要的理论支持，具有较高参考意义。经过验证，模型求解算法结果与最优解有很好",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 4,
+      "page": 1,
+      "description": "的近似。针对系统效率，我们构建了系统效率评价指标，用于刻画系统整体效率与各部",
+      "locator": "PDF p.1"
+    },
+    {
+      "step": 5,
+      "page": 2,
+      "description": "5 . 5 . 4 模型求解与结果评价 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15",
+      "locator": "PDF p.2"
+    }
+  ],
+  "figures": [
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图1 带约束的队列调度示意图",
+      "lesson": "图题“图1 带约束的队列调度示意图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "从图 1可知，在任意时刻，对应有各个队列（CNC）的状态：空闲、工作；同时还可",
+      "lesson": "图题“从图 1可知，在任意时刻，对应有各个队列（CNC）的状态：空闲、工作；同时还可”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 8,
+      "role": "model explanation",
+      "chart_type": "result-figure",
+      "caption": "图2 最优状态转移图模型示意图",
+      "lesson": "图题“图2 最优状态转移图模型示意图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-08.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 14,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图3 CNC 刀片类型比例与系统产出关系图",
+      "lesson": "图题“图3 CNC 刀片类型比例与系统产出关系图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.14",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-14.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 14,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "地位。图 3 的横轴是第一类、第二类 CNC 的比例，纵轴是采用分阶段优化算法计算三",
+      "lesson": "图题“地位。图 3 的横轴是第一类、第二类 CNC 的比例，纵轴是采用分阶段优化算法计算三”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.14",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-14.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 16,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图4 优化后 RGV 的运动路线和各项操作时间图",
+      "lesson": "图题“图4 优化后 RGV 的运动路线和各项操作时间图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.16",
+      "render": "corpus/rendered/cumcm-2018-b-b334/pages/page-16.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 1
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 7
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 1
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "2185da8cceff0876c10ca260e585ffdfe12f2529",
+    "bytes": 594103,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2018-b-b334/extracted-layout.txt",
+      "sha256": "1c99ca5263c520a07d403e5b43256b39a177c8fdda90f473a583b8a6e56f782b",
+      "extracted_pages": 29,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 29,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2018-b-b334/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2018-b-b334/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2018-b-b334/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2018-b-b334/contact-25-29.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2022-c-c22105930028",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2022,
+    "problem": "C",
+    "team_id": "",
+    "title": "中国研究生创新实践系列大赛"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2022%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/C/C22105930028.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2022年优秀论文/C/C22105930028.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2022,
+    "problem": "C",
+    "team_id": "",
+    "title": "中国研究生创新实践系列大赛",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "8b44b3955a1d70bd8da21b5a5e0eec8cc4cd2e28295133b8d93262c8d0c6acde",
+    "pages": 23,
+    "local_path": "corpus/raw/objects/sha256/8b/8b44b3955a1d70bd8da21b5a5e0eec8cc4cd2e28295133b8d93262c8d0c6acde.pdf",
+    "first_page_phash": "babaf0d0d0c06060",
+    "text_sha256": "c4861381e6cafedf9c692b35fb6b14460324a66d14ca3f97550bfd60fdeb66ea"
+  },
+  "review_status": "content_extracted",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括”的组织结构。",
+      "derivation": "text",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：题 目 汽车制造涂装-总装缓存调序区调度优化问题",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：序问题分别作为两个优化调度问题来解决，忽略了两者问题的关联性。另一方面，由于车",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：的算法均无法快速的给出快速的优化调度方案。",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：本研究从理论到仿真模拟，分析了实际涂装生产过程中排序调度需要考虑的多方面问",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-02.jpg"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：步骤 1：配置车与车道之间规则的优先级，确定车身与车道需要比较的内容。",
+      "derivation": "text",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-04.jpg"
+    },
+    {
+      "page": 8,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：将车道线 m 的阈值  (m, c) 与随机数  进行比较，符合约束条件的组成候选集合  ，基于公",
+      "derivation": "text",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-08.jpg"
+    },
+    {
+      "page": 9,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：式 c 的响应阈值比较低，在作业负荷率满足约束条件的情况下，车道线 m*接收此车次的概",
+      "derivation": "text",
+      "locator": "PDF p.9",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-09.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "题 目 汽车制造涂装-总装缓存调序区调度优化问题",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "序问题分别作为两个优化调度问题来解决，忽略了两者问题的关联性。另一方面，由于车",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "的算法均无法快速的给出快速的优化调度方案。",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "本研究从理论到仿真模拟，分析了实际涂装生产过程中排序调度需要考虑的多方面问",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 2,
+      "description": "车间的排序生产流水线问题的管理与优化方案，采用遗传算法和多目标排序调度算法的混",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 6,
+      "page": 2,
+      "description": "合算法可以大大缩短实际的调度与优化时间，且精度高于传统算法，本研究的主要内容如",
+      "locator": "PDF p.2"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 4,
+      "description": "步骤 1：配置车与车道之间规则的优先级，确定车身与车道需要比较的内容。",
+      "locator": "PDF p.4"
+    },
+    {
+      "step": 2,
+      "page": 8,
+      "description": "将车道线 m 的阈值  (m, c) 与随机数  进行比较，符合约束条件的组成候选集合  ，基于公",
+      "locator": "PDF p.8"
+    },
+    {
+      "step": 3,
+      "page": 9,
+      "description": "式 c 的响应阈值比较低，在作业负荷率满足约束条件的情况下，车道线 m*接收此车次的概",
+      "locator": "PDF p.9"
+    },
+    {
+      "step": 4,
+      "page": 9,
+      "description": "率更高，相应地，其他车道线由于对动力方式 c 的响应阈值比较高而降低接收此车次的概",
+      "locator": "PDF p.9"
+    },
+    {
+      "step": 5,
+      "page": 12,
+      "description": "（6）适应度。适应度用于评价个体对环境的适应程度。",
+      "locator": "PDF p.12"
+    }
+  ],
+  "figures": [
+    {
+      "page": 9,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "件的决策变量向量并优化此向量的函数，如图 3-1 所示。假定优化目标个数为 m，且优化",
+      "lesson": "图题“件的决策变量向量并优化此向量的函数，如图 3-1 所示。假定优化目标个数为 m，且优化”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.9",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-09.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 10,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 3-1 多目标优化算法",
+      "lesson": "图题“图 3-1 多目标优化算法”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-10.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 11,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "PSB 缓存区共计六个车道如图 4-1 所示，从上至下的车道编号分别为进车道 8、进车",
+      "lesson": "图题“PSB 缓存区共计六个车道如图 4-1 所示，从上至下的车道编号分别为进车道 8、进车”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.11",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-11.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 11,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 4-1 涂装-总装缓存调序区（PBS）示意图",
+      "lesson": "图题“图 4-1 涂装-总装缓存调序区（PBS）示意图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.11",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-11.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 12,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "遗传算法如图 4-2 所示：",
+      "lesson": "图题“遗传算法如图 4-2 所示：”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.12",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-12.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 12,
+      "role": "model explanation",
+      "chart_type": "flowchart",
+      "caption": "图 4-2 遗传算法流程",
+      "lesson": "图题“图 4-2 遗传算法流程”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.12",
+      "render": "corpus/rendered/cumcm-2022-c-c22105930028/pages/page-12.jpg",
+      "visual_checked": false
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 9
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 1
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "全页已渲染，但接触表尚未完成逐页人工视觉确认。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "git_blob_sha": "4c453087b0eff9004c3960e42cd410dfb18bd612",
+    "bytes": 978801,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2022-c-c22105930028/extracted-layout.txt",
+      "sha256": "c4861381e6cafedf9c692b35fb6b14460324a66d14ca3f97550bfd60fdeb66ea",
+      "extracted_pages": 23,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 23,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2022-c-c22105930028/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2022-c-c22105930028/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2022-c-c22105930028/contact-17-23.jpg"
+      ],
+      "visual_review": "pending"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

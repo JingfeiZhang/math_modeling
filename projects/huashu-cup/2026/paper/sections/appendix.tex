@@ -1,0 +1,226 @@
+\appendix
+
+\section{环境与复现命令}
+\label{app:environment}
+
+附件源程序以 Python 为模型与审计入口，MATLAB R2026a 负责正式图件及图件数据准备。程序只读取官方附件，不引入第三方数据；默认随机种子为 20260801。
+
+\begin{longtable}{@{}p{0.22\textwidth}p{0.25\textwidth}p{0.43\textwidth}@{}}
+\caption{附件复现环境与固定接口}\label{tab:appendix-environment}\\
+\toprule
+组件 & 固定版本或接口 & 用途 \\
+\midrule
+\endfirsthead
+\toprule
+组件 & 固定版本或接口 & 用途 \\
+\midrule
+\endhead
+Python & 3.13.x；依赖见 \path{requirements.txt} & 四问模型、同输出基线和审计 \\
+数值求解 & OR-Tools CP-SAT；SciPy/HiGHS MILP & Q1 排程、Q3 储能与 Q4 追补 \\
+数据接口 & pandas、NumPy、openpyxl & 表格读取、字段转换和确定性派生 \\
+绘图 & MATLAB R2026a & 图件数据准备与 12 张正式图三格式导出 \\
+输入与输出 & 官方附件目录、\path{results/}、\path{manifest/} & 数据校验、结果摘要和来源定位 \\
+\bottomrule
+\end{longtable}
+
+模型运行使用官方附件目录作为输入；验证模式只检查依赖、输入文件名和 SHA-256，不启动长时间求解。
+
+\Needspace{12\baselineskip}
+\begin{lstlisting}[style=appendix-shell,caption={四问主入口与输入复核命令},label={lst:appendix-reproduction}]
+python -m pip install -r requirements.txt
+python run.py --question Q1 --input-dir <official-input-dir> --output-dir <output-dir> --seed 20260801
+python run.py --question Q2 --input-dir <official-input-dir> --output-dir <output-dir> --seed 20260801
+python run.py --question Q3 --input-dir <official-input-dir> --output-dir <output-dir> --seed 20260801
+python run.py --question Q4 --input-dir <official-input-dir> --output-dir <output-dir> --seed 20260801
+python run.py --question Q1 --input-dir <official-input-dir> --verify-only
+python run.py --question Q2 --input-dir <official-input-dir> --verify-only
+python run.py --question Q3 --input-dir <official-input-dir> --verify-only
+python run.py --question Q4 --input-dir <official-input-dir> --verify-only
+matlab -batch "cd('code/matlab'); build_all_figures"
+Get-Content manifest/package_manifest.sha256
+\end{lstlisting}
+
+\section{六组关键算法代码}
+\label{app:key-code}
+
+以下代码均从附件中的正式源文件按命名标记截取，附录不复制或改写实现。标记行不计入展示内容，行号对应源文件原始行号；代码框可跨页断开，便于审阅完整函数体。
+
+\subsection{Q1 需求预测：层级一致性与区间校准}
+\Needspace{10\baselineskip}
+\AppendixCodeRange{\SubmissionSourceRoot/code/q1/forecast_core.py}{层级预测的一致性校正函数}{lst:q1-reconciliation}{APPENDIX_Q1_FORECAST_RECONCILIATION}
+\AppendixCodeRange{\SubmissionSourceRoot/code/q1/forecast_core.py}{盲测残差的 pooled conformal 校准函数}{lst:q1-conformal}{APPENDIX_Q1_FORECAST_CONFORMAL}
+
+\subsection{Q1 实际任务排程：CP-SAT 可选区间与容量约束}
+\AppendixCodeRange{\SubmissionSourceRoot/code/q1/schedule_core.py}{Q1 CP-SAT 排程、GPU/IT/设施功率和收尾边界}{lst:q1-cpsat}{APPENDIX_Q1_CP_SAT_VARIABLES}
+
+\subsection{Q2 全时域调度：有界滚动交换}
+\AppendixCodeRange{\SubmissionSourceRoot/code/q2/scheduler_core.py}{候选任务的区域--时刻枚举、增量审计与确定性接受规则}{lst:q2-exchange}{APPENDIX_Q2_CANDIDATE_ENUMERATION}
+
+\subsection{Q3 储能优化：带互斥变量的滚动 MILP}
+\AppendixCodeRange{\SubmissionSourceRoot/code/q3/storage_core.py}{储能状态转移、电能平衡、购售电和终端状态约束}{lst:q3-storage}{APPENDIX_Q3_STORAGE_BALANCE}
+
+\subsection{Q3 完整审计：充放电与购售电双互斥复核}
+\AppendixCodeRange{\SubmissionSourceRoot/code/q3/full_audit_core.py}{六区域全时域二进制 MILP 可行性探针}{lst:q3-audit}{APPENDIX_Q3_AUDIT_MUTEX_SOLVE}
+
+\subsection{Q4 受限联合优化：任务邻域与储能追补}
+\AppendixCodeRange{\SubmissionSourceRoot/code/q4/joint_core.py}{固定--优化任务邻域和储能响应评价}{lst:q4-joint}{APPENDIX_Q4_FIX_AND_OPTIMIZE}
+\AppendixCodeRange{\SubmissionSourceRoot/code/q4/storage_recourse.py}{Q4 场景下的储能 recourse 求解}{lst:q4-recourse}{APPENDIX_Q4_STORAGE_RECOURSE}
+
+\section{源程序索引}
+\label{app:source-index}
+
+源程序索引以提交包内的相对路径为准。\path{manifest/source_map.json} 记录入口、问题归属、作用和源文件 SHA-256；\path{manifest/package_manifest.sha256} 对附件文件逐项校验。\path{run.py} 是四问统一入口，核心实现按问题分目录保存。
+
+\begin{longtable}{@{}p{0.37\textwidth}p{0.18\textwidth}p{0.35\textwidth}@{}}
+\caption{Python 模型与审计源程序索引}\label{tab:source-python-index}\\
+\toprule
+相对路径 & 问题/角色 & 说明 \\
+\midrule
+\endfirsthead
+\toprule
+相对路径 & 问题/角色 & 说明 \\
+\midrule
+\endhead
+\path{run.py} & Q1--Q4 统一入口 & 参数解析、种子和子程序分发 \\
+\path{code/common/runtime.py} & 公共运行时 & 输入校验、路径和校验值工具 \\
+\path{code/q1/forecast_core.py} & Q1 预测 & 季节基线、HGBR 残差、层级校正和区间 \\
+\path{code/q1/schedule_core.py} & Q1 排程 & 暖机、CP-SAT、同约束基线和审计 \\
+\path{code/q2/scheduler_core.py} & Q2 调度 & FIFO、滚动交换、逐时指标和复跑比较 \\
+\path{code/q3/storage_core.py} & Q3 储能 & 滚动 MILP、无储能基线和逐时审计 \\
+\path{code/q3/full_audit_core.py} & Q3 完整审计 & 区域全时域二进制互斥探针和复跑 \\
+\path{code/q4/joint_core.py} & Q4 联合主问题 & 任务 fix-and-optimize 与五情景评价 \\
+\path{code/q4/storage_recourse.py} & Q4 追补子问题 & 六区域储能响应、成本和碳排指标 \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}{@{}p{0.43\textwidth}p{0.18\textwidth}p{0.29\textwidth}@{}}
+\caption{MATLAB 图件源程序索引}\label{tab:source-matlab-index}\\
+\toprule
+相对路径或目录 & 类型 & 输出 \\
+\midrule
+\endfirsthead
+\toprule
+相对路径或目录 & 类型 & 输出 \\
+\midrule
+\endhead
+\path{code/matlab/prepare_figure_data.m} & 数据准备 & 12 张图的派生数据和输入哈希 \\
+\path{code/matlab/build_all_figures.m} & 总构建入口 & 批量调用图件脚本和三格式导出 \\
+\path{code/matlab/figures/} & 12 个正式图脚本 & Q1--Q4 PDF、SVG、400 dpi PNG \\
+\path{code/matlab/helpers/} & 公共样式与导出 helper & 尺寸、配色、图例、裁切和校验 \\
+\bottomrule
+\end{longtable}
+
+\section{结果与审计索引}
+\label{app:result-index}
+
+结果目录只保存精简摘要和硬约束审计；长排程、逐时剖面、滚动块明细和场景逐时表均由程序按需生成，不装入提交包。
+
+\begin{longtable}{@{}p{0.26\textwidth}p{0.37\textwidth}p{0.25\textwidth}@{}}
+\caption{四问结果与审计文件索引}\label{tab:result-index}\\
+\toprule
+目录 & 核心文件或字段 & 复核内容 \\
+\midrule
+\endfirsthead
+\toprule
+目录 & 核心文件或字段 & 复核内容 \\
+\midrule
+\endhead
+\path{results/q1/} & \path{summary.json}、\path{constraint_audit.json}、\path{optimized_schedule.csv} & 盲测指标、538 条实际任务、资源和收尾边界 \\
+\path{results/q2/} & \path{summary.json}、\path{constraint_audit.json} & 50000/50000 任务、SLA、成本、碳排、时延和复跑 \\
+\path{results/q3/} & \path{summary.json}、\path{constraint_audit.json}、\path{full_audit_summary.json} & SOC、互斥、电能平衡、90 块覆盖和 270/270 审计 \\
+\path{results/q4/} & \path{summary.json}、\path{constraint_audit.json}、\path{scenario_metrics.csv} & 72 h、12 任务邻域、储能追补和确定性复跑 \\
+\path{manifest/} & \path{source_map.json}、\path{package_manifest.sha256} & 源程序映射、文件哈希和发布白名单 \\
+\bottomrule
+\end{longtable}
+
+\section{附件复现与发布边界}
+\label{app:release-boundary}
+
+附件只包含匿名化复现所需的正式源程序、依赖锁定、输入说明、精简结果摘要、审计摘要、图件脚本和文件哈希；原始数据、长排程和逐时结果不进入提交包。账号、密钥、个人或学校信息、临时日志、编辑器缓存、未采用候选和与主张无关的中间文件不进入提交包。
+
+正式发布前逐项核对：源码路径可从 \path{manifest/source_map.json} 反查；每个输出均可由运行清单定位到输入、种子、环境和命令；\path{package_manifest.sha256} 与最终压缩包一致；论文中的图表和主张均能回溯到冻结结果。若输入、源码、结果或哈希发生漂移，应停止封存并重新执行相应问题的证据复核。
+
+\section{人工智能工具使用详情}
+
+\subsection{所用 AI 工具名称和版本}
+
+\begin{longtable}{p{0.07\textwidth}p{0.17\textwidth}p{0.15\textwidth}p{0.18\textwidth}p{0.25\textwidth}}
+\caption{AI 工具信息}\label{tab:ai-tool-info}\\
+\toprule
+序号 & AI 工具名称 & 版本/型号 & 开发机构/公司 & 使用日期 \\
+\midrule
+\endfirsthead
+\toprule
+序号 & AI 工具名称 & 版本/型号 & 开发机构/公司 & 使用日期 \\
+\midrule
+\endhead
+1 & OpenAI Codex & GPT-5 & OpenAI & 2026-08-07 至 2026-08-10 \\
+\bottomrule
+\end{longtable}
+
+\subsection{具体使用目的和环节}
+
+\begin{longtable}{@{}p{0.07\textwidth}p{0.20\textwidth}p{0.50\textwidth}p{0.12\textwidth}@{}}
+\caption{AI 工具的使用环节与辅助目的}\label{tab:ai-purpose}\\
+\toprule
+序号 & 使用环节 & 使用目的 & 使用工具 \\
+\midrule
+\endfirsthead
+\toprule
+序号 & 使用环节 & 使用目的 & 使用工具 \\
+\midrule
+\endhead
+1 & 候选方案与实验审计 & 梳理备选方案、检查基线可比性、协助定位约束审计和复跑中的实现问题 & OpenAI Codex \\
+2 & 程序调试 & 辅助检查 Python、OR-Tools、HiGHS 与 MATLAB 脚本的语法、接口、输出字段和确定性设置 & OpenAI Codex \\
+3 & 图表制作 & 辅助调整 MATLAB 图件的坐标、图例、字体、裁切、留白与三格式导出；图件数据只读取正式结果文件 & OpenAI Codex \\
+4 & 文字与排版 & 辅助检查术语、单位、图表引用、LaTeX 编译和官方模板一致性，并提供局部润色建议 & OpenAI Codex \\
+5 & 结果复核 & 辅助执行校验值核对、硬约束检查、主要结果定位和发布前静态审计 & OpenAI Codex \\
+\bottomrule
+\end{longtable}
+
+\clearpage
+\subsection{关键交互记录}
+
+以下仅摘录对正式产物有代表性的交互；完整工作记录保存在项目内部台账中，且不包含账号、密钥、个人信息或未公开数据。
+
+\begin{enumerate}[label=\textbf{交互记录 \arabic*.},leftmargin=2.2em]
+  \item \textbf{提示词：}“梳理现有 C 题产物，判断模型是否仍有优化空间，并给出可执行的收敛与验证计划。”\\
+  \textbf{AI 回复摘要：}按 Q1--Q4 列出候选方案、同输出基线、接受条件、风险检验和停止条件。\\
+  \textbf{处理结果：}参赛队逐项复核运行证据；Q1--Q3 未达到预设门槛的候选未替换主线，Q4 仅在通过硬约束和确定性复跑后保留 72 h、12 任务邻域的局部联合结果。
+
+  \item \textbf{提示词：}“基于赛题结果文件用 MATLAB 重绘论文图件，修正坐标、字体、图例、裁切和留白，并导出 PDF、SVG、PNG。”\\
+  \textbf{AI 回复摘要：}定位结果 CSV/JSON 与 MATLAB 生成脚本，提出图型、版式和导出修改建议。\\
+  \textbf{处理结果：}参赛队核对源文件校验值、坐标单位、统计口径和图意后运行 MATLAB；不采用模拟数据或 AI 生成数值。
+
+  \item \textbf{提示词：}“核验 Q3 完整审计 269/270 的原因，并修复为全部通过。”\\
+  \textbf{AI 回复摘要：}协助定位旧全时域探针的边界不一致，并建议使用含双互斥约束的区域二进制 MILP 探针重新审计。\\
+  \textbf{处理结果：}参赛队复核约束含义并运行正式程序，270 项审计全部通过；该结果只支持可行性与审计完整性，不新增性能或全局最优结论。
+
+  \item \textbf{提示词：}“核对华数杯官方 Word 模板和 AI 使用章程，调整 LaTeX 首页、声明位置与附录结构。”\\
+  \textbf{AI 回复摘要：}提取首页表格、字体、字号、页边距和 AI 披露条款，形成 LaTeX 修改建议。\\
+  \textbf{处理结果：}参赛队按本届官方文件逐项核对，并通过 XeLaTeX 编译和 PDF 页面渲染检查后采用。
+\end{enumerate}
+
+\subsection{采纳和人工修改情况}
+
+{\footnotesize
+\begin{longtable}{@{}p{0.06\textwidth}p{0.29\textwidth}>{\centering\arraybackslash}p{0.14\textwidth}p{0.41\textwidth}@{}}
+\caption{AI 输出的采纳范围与人工修改}\label{tab:ai-adoption}\\
+\toprule
+序号 & AI 输出内容概述 & 是否采纳 & 人工修改情况 \\
+\midrule
+\endfirsthead
+\toprule
+序号 & AI 输出内容概述 & 是否采纳 & 人工修改情况 \\
+\midrule
+\endhead
+1 & 优化候选、接受条件和停止条件 & 部分采纳 & 参赛队根据题意、可计算预算和正式实验结果决定是否采用；未达条件的方案保留为未采用方案 \\
+2 & 程序修改与错误定位建议 & 部分采纳 & 逐段检查代码，并使用同输入基线、硬约束审计、固定种子复跑和 SHA-256 核验后才进入正式证据 \\
+3 & MATLAB 图件脚本与版式建议 & 采纳 & 参赛队核对数据来源、统计定义、坐标单位、图例和结论边界，并对文字遮挡与裁切进行人工检查 \\
+4 & 论文局部表述与 LaTeX 排版建议 & 部分采纳 & 参赛队重新组织论证、核对公式和正式数值，并用自身语言完成最终表述 \\
+5 & 未经证据验证的数值、来源或结论 & 不采纳 & 不进入正文、图表、参考文献或附录；正式数字只来自赛题结果及其确定性派生量 \\
+\bottomrule
+\end{longtable}
+
+AI 不作为作者，也不作为数学模型、公式或结论的学术论据来源；但按照竞赛章程，所用 AI 工具作为工具披露条目列入参考文献。模型选择、公式推导、证据核验、文字定稿和提交责任均由参赛队承担。
+}

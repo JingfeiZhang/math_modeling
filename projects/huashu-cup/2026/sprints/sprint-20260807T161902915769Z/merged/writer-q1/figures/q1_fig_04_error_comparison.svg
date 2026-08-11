@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="447.874016pt" height="306.141732pt" viewBox="0 0 447.874016 306.141732" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>math-modeling-workbench</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 306.141732 
+L 447.874016 306.141732 
+L 447.874016 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 105.250394 234.198425 
+L 418.762205 234.198425 
+L 418.762205 62.759055 
+L 105.250394 62.759055 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="LineCollection_1">
+    <path d="M 119.895011 226.405727 
+L 119.500931 226.405727 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 119.902685 217.237846 
+L 120.363157 217.237846 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 119.808019 208.069965 
+L 121.487724 208.069965 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 127.953018 198.902084 
+L 123.350251 198.902084 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 127.338858 189.734204 
+L 127.518611 189.734204 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 128.603747 180.566323 
+L 132.909364 180.566323 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 132.410819 171.398442 
+L 139.736085 171.398442 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 135.332001 162.230561 
+L 141.962598 162.230561 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 138.770329 153.062681 
+L 143.406497 153.062681 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 149.251726 143.8948 
+L 141.818649 143.8948 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 144.448165 134.726919 
+L 151.478232 134.726919 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 161.820754 125.559038 
+L 152.604856 125.559038 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 150.647833 116.391158 
+L 163.887247 116.391158 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 170.948022 107.223277 
+L 176.169351 107.223277 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 179.347612 98.055396 
+L 191.898305 98.055396 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 293.313266 88.887515 
+L 317.910026 88.887515 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 323.446368 79.719635 
+L 341.426342 79.719635 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+    <path d="M 340.800774 70.551754 
+L 404.511668 70.551754 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 117.742106 234.198425 
+L 117.742106 62.759055 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5; stroke-opacity: 0.7; stroke-width: 0.45; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="marker-0001" d="M 0 0 
+L 0 3.5 
+" style="stroke: #1f2933; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#marker-0001" x="117.742106" y="234.198425" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="117.742106" y="247.593425" transform="rotate(-0 117.742106 247.593425)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 160.045564 234.198425 
+L 160.045564 62.759055 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5; stroke-opacity: 0.7; stroke-width: 0.45; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#marker-0001" x="160.045564" y="234.198425" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="160.045564" y="247.593425" transform="rotate(-0 160.045564 247.593425)">100</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 202.349022 234.198425 
+L 202.349022 62.759055 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5; stroke-opacity: 0.7; stroke-width: 0.45; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#marker-0001" x="202.349022" y="234.198425" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="202.349022" y="247.593425" transform="rotate(-0 202.349022 247.593425)">200</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 244.652481 234.198425 
+L 244.652481 62.759055 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5; stroke-opacity: 0.7; stroke-width: 0.45; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#marker-0001" x="244.652481" y="234.198425" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="244.652481" y="247.593425" transform="rotate(-0 244.652481 247.593425)">300</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 286.955939 234.198425 
+L 286.955939 62.759055 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5; stroke-opacity: 0.7; stroke-width: 0.45; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#marker-0001" x="286.955939" y="234.198425" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="286.955939" y="247.593425" transform="rotate(-0 286.955939 247.593425)">400</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 329.259397 234.198425 
+L 329.259397 62.759055 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5; stroke-opacity: 0.7; stroke-width: 0.45; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#marker-0001" x="329.259397" y="234.198425" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="329.259397" y="247.593425" transform="rotate(-0 329.259397 247.593425)">500</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_13">
+      <path d="M 371.562856 234.198425 
+L 371.562856 62.759055 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5; stroke-opacity: 0.7; stroke-width: 0.45; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#marker-0001" x="371.562856" y="234.198425" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="371.562856" y="247.593425" transform="rotate(-0 371.562856 247.593425)">600</text>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_15">
+      <path d="M 413.866314 234.198425 
+L 413.866314 62.759055 
+" clip-path="url(#clip-0005)" style="fill: none; stroke: #d9dee5; stroke-opacity: 0.7; stroke-width: 0.45; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#marker-0001" x="413.866314" y="234.198425" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="413.866314" y="247.593425" transform="rotate(-0 413.866314 247.593425)">700</text>
+     </g>
+    </g>
+    <g id="text_9">
+     <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="262.006299" y="260.376863" transform="rotate(-0 262.006299 260.376863)">盲测 MAE (GPU·h)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_17">
+      <defs>
+       <path id="marker-0002" d="M 0 0 
+L -3.5 0 
+" style="stroke: #1f2933; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="226.405727" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="229.739477" transform="rotate(-0 98.250394 229.739477)">RegionD · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="217.237846" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="220.571596" transform="rotate(-0 98.250394 220.571596)">RegionF · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_19">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="208.069965" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="211.403715" transform="rotate(-0 98.250394 211.403715)">RegionE · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="198.902084" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="202.235834" transform="rotate(-0 98.250394 202.235834)">RegionB · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_21">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="189.734204" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="193.067954" transform="rotate(-0 98.250394 193.067954)">RegionC · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_22">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="180.566323" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_15">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="183.900073" transform="rotate(-0 98.250394 183.900073)">RegionA · 实时推理</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_23">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="171.398442" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_16">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="174.732192" transform="rotate(-0 98.250394 174.732192)">RegionC · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_24">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="162.230561" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_17">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="165.564311" transform="rotate(-0 98.250394 165.564311)">RegionF · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_25">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="153.062681" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_18">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="156.396431" transform="rotate(-0 98.250394 156.396431)">RegionE · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_26">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="143.8948" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_19">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="147.22855" transform="rotate(-0 98.250394 147.22855)">RegionB · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_27">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="134.726919" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_20">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="138.060669" transform="rotate(-0 98.250394 138.060669)">RegionA · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_28">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="125.559038" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_21">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="128.912788" transform="rotate(-0 98.250394 128.912788)">RegionA · AI 训练</text>
+     </g>
+    </g>
+    <g id="ytick_13">
+     <g id="line2d_29">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="116.391158" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_22">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="119.724908" transform="rotate(-0 98.250394 119.724908)">RegionD · 批量推理</text>
+     </g>
+    </g>
+    <g id="ytick_14">
+     <g id="line2d_30">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="107.223277" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_23">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="110.577027" transform="rotate(-0 98.250394 110.577027)">RegionC · AI 训练</text>
+     </g>
+    </g>
+    <g id="ytick_15">
+     <g id="line2d_31">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="98.055396" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_24">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="101.409146" transform="rotate(-0 98.250394 101.409146)">RegionB · AI 训练</text>
+     </g>
+    </g>
+    <g id="ytick_16">
+     <g id="line2d_32">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="88.887515" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_25">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="92.241265" transform="rotate(-0 98.250394 92.241265)">RegionF · AI 训练</text>
+     </g>
+    </g>
+    <g id="ytick_17">
+     <g id="line2d_33">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="79.719635" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_26">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="83.073385" transform="rotate(-0 98.250394 83.073385)">RegionE · AI 训练</text>
+     </g>
+    </g>
+    <g id="ytick_18">
+     <g id="line2d_34">
+      <g>
+       <use xlink:href="#marker-0002" x="105.250394" y="70.551754" style="fill: #1f2933; stroke: #1f2933; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_27">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #1f2933" x="98.250394" y="73.905504" transform="rotate(-0 98.250394 73.905504)">RegionD · AI 训练</text>
+     </g>
+    </g>
+    <g id="text_28">
+     <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #1f2933" x="20.598597" y="148.47874" transform="rotate(-90 20.598597 148.47874)">区域与任务类型</text>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 105.250394 234.198425 
+L 105.250394 62.759055 
+" style="fill: none; stroke: #1f2933; stroke-width: 0.75; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 105.250394 234.198425 
+L 418.762205 234.198425 
+" style="fill: none; stroke: #1f2933; stroke-width: 0.75; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="marker-0003" d="M 0 2.5 
+C 0.663008 2.5 1.29895 2.236584 1.767767 1.767767 
+C 2.236584 1.29895 2.5 0.663008 2.5 0 
+C 2.5 -0.663008 2.236584 -1.29895 1.767767 -1.767767 
+C 1.29895 -2.236584 0.663008 -2.5 0 -2.5 
+C -0.663008 -2.5 -1.29895 -2.236584 -1.767767 -1.767767 
+C -2.236584 -1.29895 -2.5 -0.663008 -2.5 0 
+C -2.5 0.663008 -2.236584 1.29895 -1.767767 1.767767 
+C -1.29895 2.236584 -0.663008 2.5 0 2.5 
+z
+" style="stroke: #5292f7"/>
+    </defs>
+    <g clip-path="url(#clip-0005)">
+     <use xlink:href="#marker-0003" x="119.895011" y="226.405727" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="119.902685" y="217.237846" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="119.808019" y="208.069965" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="127.953018" y="198.902084" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="127.338858" y="189.734204" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="128.603747" y="180.566323" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="132.410819" y="171.398442" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="135.332001" y="162.230561" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="138.770329" y="153.062681" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="149.251726" y="143.8948" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="144.448165" y="134.726919" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="161.820754" y="125.559038" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="150.647833" y="116.391158" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="170.948022" y="107.223277" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="179.347612" y="98.055396" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="293.313266" y="88.887515" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="323.446368" y="79.719635" style="fill: #5292f7; stroke: #5292f7"/>
+     <use xlink:href="#marker-0003" x="340.800774" y="70.551754" style="fill: #5292f7; stroke: #5292f7"/>
+    </g>
+   </g>
+   <g id="PathCollection_2">
+    <defs>
+     <path id="marker-0004" d="M -2.5 2.5 
+L 2.5 2.5 
+L 2.5 -2.5 
+L -2.5 -2.5 
+z
+" style="stroke: #1f2933; stroke-width: 0.35"/>
+    </defs>
+    <g clip-path="url(#clip-0005)">
+     <use xlink:href="#marker-0004" x="119.500931" y="226.405727" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="120.363157" y="217.237846" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="121.487724" y="208.069965" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="123.350251" y="198.902084" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="127.518611" y="189.734204" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="132.909364" y="180.566323" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="139.736085" y="171.398442" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="141.962598" y="162.230561" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="143.406497" y="153.062681" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="141.818649" y="143.8948" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="151.478232" y="134.726919" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="152.604856" y="125.559038" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="163.887247" y="116.391158" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="176.169351" y="107.223277" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="191.898305" y="98.055396" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="317.910026" y="88.887515" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="341.426342" y="79.719635" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     <use xlink:href="#marker-0004" x="404.511668" y="70.551754" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+    </g>
+   </g>
+   <g id="legend_1">
+    <g id="PathCollection_3">
+     <g>
+      <use xlink:href="#marker-0003" x="214.406299" y="51.184321" style="fill: #5292f7; stroke: #5292f7"/>
+     </g>
+    </g>
+    <g id="text_29">
+     <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: start" x="229.606299" y="53.284321" transform="rotate(-0 229.606299 53.284321)">主模型</text>
+    </g>
+    <g id="PathCollection_4">
+     <g>
+      <use xlink:href="#marker-0004" x="271.206299" y="51.184321" style="fill: #79cafb; stroke: #1f2933; stroke-width: 0.35"/>
+     </g>
+    </g>
+    <g id="text_30">
+     <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'SimHei', 'DejaVu Sans', sans-serif; text-anchor: start" x="286.406299" y="53.284321" transform="rotate(-0 286.406299 53.284321)">季节基线</text>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="clip-0005">
+   <rect x="105.250394" y="62.759055" width="313.511811" height="171.43937"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "recipe_id": "normal-uncertainty-monte-carlo",
+  "status": "success",
+  "relationship": "modernization_fixture_not_numerical_reproduction",
+  "source_pair": {
+    "candidate_id": "cumcm-2014-a012",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/A15010142_王子硕_吴鹏飞_陶立.pdf",
+      "blob_sha": "093081278f94d0e1fa9d0056b4f5c2abf1c9ca87",
+      "sha256": "f4110e706e39def44330b997c0142b773ef9d633d7a615ea33ea110afa451c1e"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/附件3-normal_distribution.m",
+        "blob_sha": "ea3caa6d16ad2f8e6df9d4e48cf90dff0408a309",
+        "sha256": "b477430b016db92526e52e93c0c2cb37c11d456ea0f0995da6c301e2253df3dc",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "command": "D:\\anaconda3\\python.exe run.py",
+  "seed": 20260806,
+  "working_directory": "D:\\数学建模\\corpus\\recipes\\normal-uncertainty-monte-carlo",
+  "isolation": {
+    "writes_within_recipe_directory": true,
+    "upstream_code_executed": false
+  },
+  "environment": {
+    "python": "3.13.9",
+    "executable": "D:\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.6"
+  },
+  "inputs": [
+    {
+      "path": "run.py",
+      "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+      "bytes": 18492
+    },
+    {
+      "path": "recipe.json",
+      "sha256": "19ec1b2135ce04f1005212886bbcad2417153f2ebe1f08c4bdaf99fc7c0306c3",
+      "bytes": 1227
+    },
+    {
+      "path": "input.json",
+      "sha256": "c904fd9c85130acad60b12d1fe2056fbc3eb30493eef7db33cadae08b78da0f2",
+      "bytes": 98
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results.json",
+      "sha256": "af15b33f07ce41f14508d1d01d3da7ddd56550b27bff58da928cddbfc5b6e8f1",
+      "bytes": 236
+    },
+    {
+      "path": "series.csv",
+      "sha256": "a476b0a6a64287566f704569f61f76f9b96b071b91352b1851e513560222605d",
+      "bytes": 1577
+    },
+    {
+      "path": "figure.png",
+      "sha256": "68005d14e989a21fe8194678885b71eb66e2192bff7a6e07ba0e219ef675f300",
+      "bytes": 137336
+    },
+    {
+      "path": "figure.svg",
+      "sha256": "c8a27cba9981c353ea4dce40f51ff33b5b2c590cc0b7cbea1a06236240569e95",
+      "bytes": 28907
+    },
+    {
+      "path": "figure.pdf",
+      "sha256": "ce297eb64e373303dd3ba7913d22cb9507a35655a3f43f2f5c8306fe7ead72b0",
+      "bytes": 11886
+    }
+  ],
+  "metrics": {
+    "mean": 9.423350658331675,
+    "std": 1.6487412913602235,
+    "q025": 6.189383809172026,
+    "q975": 12.640939520031438,
+    "baseline_at_means": 9.5
+  },
+  "runtime_ms": 722.594
+}

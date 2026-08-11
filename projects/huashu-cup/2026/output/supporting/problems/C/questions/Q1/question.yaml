@@ -1,0 +1,106 @@
+schema_version: 1
+problem_id: C
+question_id: Q1
+source_problem: problems/C/source/problem-C.pdf
+problem:
+  target: 问题 1：基于附件中的 AI 工作负载数据，对不同区域、不同类型任务的 GPU 需求进行统计分析，并构建短期预测模型。请建立基础算力调度模型，并给出第
+    2376–2399 小时实际到达任务的调度方案；跨越第 2399 小时的任务须在收尾时 域内结清，并展示最后 24 小时的调度甘特图和区域 GPU 利用率。
+  inputs:
+  - workload_trace.xlsx
+  - GPU_information.xlsx
+  - network_latency.xlsx
+  - region_time_data.xlsx
+  - power_mapping.xlsx
+  constraints:
+  - 实时推理任务到达即开工
+  - 任务不可抢占/拆分/中途迁移
+  - GPU容量与IT/设施功率上限
+  - SLA网络时延
+  - 末端任务在2406小时前完成
+  evaluation_metrics:
+  - 短期预测MAE/RMSE/区间覆盖率
+  - 任务完成率
+  - GPU利用率
+  - SLA违约率
+method:
+  main:
+    name: 分层季节基线-共享HistGradientBoosting残差-一致性校正-Conformal区间 + 分钟级CP-SAT调度
+    rationale: 预测与调度共享可审计的区域×任务类型口径；季节基线提供可解释参照，残差模型吸收短期时序与类别特征，层级校正保证18条底层序列与区域/系统总量一致，Conformal区间提供有限样本覆盖校准；最后24小时排程使用实际到达任务而非预测值，CP-SAT显式处理不可抢占、SLA、GPU和功率约束。
+    implementation: 训练0-2351、验证2352-2375、盲测2376-2399；按GPU_Demand×EstimatedDuration_min/60聚合18条GPU·h序列，执行24/168小时季节候选、四个滚动24小时回测、共享HistGradientBoostingRegressor残差、非负截断、加权最小二乘层级一致性和split
+      conformal 95%区间；先暖机0-2375生成carry-in，再用单线程固定种子CP-SAT排2376-2405，记录状态、运行时间和最优间隙。
+  baseline:
+    name: 24/168小时季节朴素预测 + 本地优先FIFO最早可行调度
+    implementation: 预测基线在相同18条序列、相同训练/验证切分和相同区间字段下输出24小时预测；调度基线使用相同实际任务、carry-in、容量、功率、时延和收尾边界，按到达时间、剩余等待和区域可行性确定性选择最早开工位置，输出相同TaskID、区域、开始/结束时间、利用率与SLA字段。
+    comparable_output: true
+  fallback:
+    name: 6小时滚动窗口-12小时前瞻同约束CP-SAT
+    trigger: CP-SAT主模型在固定时间上限内无可行解或超时且未取得可行解
+    implementation: 在同一任务、carry-in、资源、功率、网络和2406结清约束下分段求解；每段只提交已验证可行解，仍记录求解状态和最优间隙，不用随机或不可行结果替代主模型。
+assumptions:
+- id: A1
+  statement: EstimatedDuration_min按分钟解释，GPU工作量单位为GPU·h，小时聚合使用GPU_Demand×duration/60。
+  evidence_ref: problems/C/source/attachment-1.docx
+- id: A2
+  statement: 2376-2399仅用于最终盲测报告，不能参与模型选择、特征拟合或区间校准。
+  evidence_ref: problems/C/source/problem-C.pdf
+- id: A3
+  statement: GPU_Utilization_Percent超过100%的附件字段仅作异常探针，排程利用率由任务占用和GPU容量重新计算。
+  evidence_ref: output/input_audit.json
+- id: A4
+  statement: AI IT功率由GPU_Demand与power_mapping.xlsx重新计算，区域PUE用于设施功率校验。
+  evidence_ref: problems/C/data/power_mapping.xlsx
+risk_probes:
+- id: R1
+  risk: 时间泄漏
+  probe: 检查所有训练特征和Conformal残差只来自0-2375，断言盲测行未进入拟合。
+- id: R2
+  risk: carry-in丢失
+  probe: 暖机排程记录未完成任务集合及哈希，末24小时输入必须包含全部carry-in。
+- id: R3
+  risk: 资源约束口径不一致
+  probe: 独立重算GPU、IT、设施功率、网络时延和2406边界，要求零违约。
+- id: R4
+  risk: 异常利用率字段误用
+  probe: 禁止直接使用附件GPU_Utilization_Percent作为优化约束或结果。
+- id: R5
+  risk: 求解超时伪造可行
+  probe: 记录CP-SAT status、wall_time、num_conflicts和gap；fallback只在触发条件满足时启用。
+decisions:
+- id: q1-decision-001
+  status: confirmed
+  decision: 采用GPU·h作为预测主目标，预测与最后24小时实际任务调度严格分离。
+  evidence_ref: state/decision_log.json
+- id: q1-decision-002
+  status: confirmed
+  decision: 启用层级一致性校正与split conformal区间；季节朴素法作为同口径基线。
+  evidence_ref: state/decision_log.json
+- id: q1-decision-003
+  status: confirmed
+  decision: CP-SAT使用固定随机种子20260801、单搜索线程和固定时间上限；唯一fallback为滚动窗口CP-SAT。
+  evidence_ref: state/decision_log.json
+- id: q1-decision-004
+  status: confirmed
+  decision: 历史暖机生成carry-in，任务不得静默删除，2406小时不安排任务。
+  evidence_ref: state/decision_log.json
+evidence:
+  runs:
+  - sprints/sprint-20260807T130848306634Z/merged/forecast-q1/run_manifest.json
+  - sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/run_manifest.json
+  robustness: paper/generated/q1_robustness_summary.json
+  figures:
+  - paper/figure_contracts.yaml#fig-c-overall-workflow
+  - paper/figure_contracts.yaml#fig-q1-workload-landscape
+  - paper/figure_contracts.yaml#fig-q1-forecast-interval
+  - paper/figure_contracts.yaml#fig-q1-error-comparison
+  - paper/figure_contracts.yaml#fig-q1-feasible-schedule
+  - paper/figure_contracts.yaml#fig-q1-gpu-utilization
+paper:
+  section: Q1
+  figure_ids:
+  - fig-c-overall-workflow
+  - fig-q1-workload-landscape
+  - fig-q1-forecast-interval
+  - fig-q1-error-comparison
+  - fig-q1-feasible-schedule
+  - fig-q1-gpu-utilization
+status: FROZEN

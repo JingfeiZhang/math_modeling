@@ -1,0 +1,4 @@
+window_id,method,arrival_start_hour,arrival_end_hour,closeout_hour,task_count,scheduled_count,task_completion_rate,SLA_violation_rate,mean_latency_ms,cost_CNY,carbon_tCO2,renewable_utilization_ratio,peak_facility_load_MW,audit_passed,violations,optimizer_runtime_seconds,seed,unscheduled_count,independent_audit_passed
+w0000_0024,FIFO_latency_feasible_local_first,0,24,30,506,506,1.0,0.0,5.0,40229835.93322446,37683.42417074011,1.0,643.50222709,True,[],0.0,20260801,0,True
+w1176_1224,FIFO_latency_feasible_local_first,1176,1224,1230,983,983,1.0,0.0,5.0,73819278.9876104,67036.46561106778,1.0,646.41792,True,[],0.0,20260801,0,True
+w2328_2400,FIFO_latency_feasible_local_first,2328,2400,2406,1577,1577,1.0,0.0,5.0,106770066.05539028,95220.72141546114,0.9998504624594113,681.5006270900001,True,[],0.0,20260801,0,True

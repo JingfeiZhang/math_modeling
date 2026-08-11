@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "violations": [],
+  "checks": [
+    "all_final_tasks_once",
+    "realtime_arrival_start",
+    "latency_filter",
+    "gpu_capacity",
+    "it_power",
+    "facility_power",
+    "latest_finish",
+    "no_task_at_2406"
+  ],
+  "final_task_count": 538,
+  "scheduled_final_task_count": 538
+}

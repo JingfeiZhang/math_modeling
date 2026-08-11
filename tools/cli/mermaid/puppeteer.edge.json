@@ -1,0 +1,14 @@
+{
+  "executablePath": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+  "headless": true,
+  "timeout": 120000,
+  "protocolTimeout": 120000,
+  "args": [
+    "--headless=new",
+    "--no-sandbox",
+    "--disable-gpu",
+    "--disable-dev-shm-usage",
+    "--no-first-run",
+    "--no-default-browser-check"
+  ]
+}

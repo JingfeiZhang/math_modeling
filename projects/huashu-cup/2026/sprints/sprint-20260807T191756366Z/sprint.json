@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T191756366Z",
+  "problem": "C",
+  "agent_mode": "parallel",
+  "max_agents": 1,
+  "status": "PREPARED",
+  "profile": "q2-pilot",
+  "input_sprint_id": "sprint-20260807T1856581764655Z",
+  "task_files": [
+    "sprints/sprint-20260807T191756366Z/tasks/q2-pilot.json"
+  ],
+  "root_only_paths": [
+    "state/decision_log.json",
+    "results/C/claims.json",
+    "paper/main.tex",
+    "paper/figure_contracts.yaml",
+    "output/"
+  ],
+  "write_directories": [
+    "sprints/sprint-20260807T191756366Z/staging/q2-pilot"
+  ]
+}

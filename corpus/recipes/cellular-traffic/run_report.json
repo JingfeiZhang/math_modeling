@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "recipe_id": "cellular-traffic",
+  "status": "success",
+  "relationship": "modernization_fixture_not_numerical_reproduction",
+  "source_pair": {
+    "candidate_id": "cumcm-2013-a117",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2013/A117/1A0902/基于差分方程和元胞自动机的交通阻塞模型.pdf",
+      "blob_sha": "597e98e60feb22f66900be5080fbdd23cbab9f28",
+      "sha256": "33e55f4e538f633569b146bfc218f45f0280109d8e32cad8bc3055ec576034e7"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2013/A117/1A0902/代码/第四问/automata.m",
+        "blob_sha": "164569e3a5f3f322bc2c93d8a659fcf3d1cd27ee",
+        "sha256": "055d21ce9b4e33e42daaee3b3fcbfb9646b8571f4ef9342525923e2655482df3",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2013/A117/1A0902/代码/automata.m",
+        "blob_sha": "d8e4406b060679c8cadc32fced84a42a5909f910",
+        "sha256": "8365f92481b80c83a8f9a8ca02e2756b51f3db9c8bc4d3e8508e92f766abd8ce",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "command": "D:\\anaconda3\\python.exe run.py",
+  "seed": 20260803,
+  "working_directory": "D:\\数学建模\\corpus\\recipes\\cellular-traffic",
+  "isolation": {
+    "writes_within_recipe_directory": true,
+    "upstream_code_executed": false
+  },
+  "environment": {
+    "python": "3.13.9",
+    "executable": "D:\\anaconda3\\python.exe",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.6"
+  },
+  "inputs": [
+    {
+      "path": "run.py",
+      "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+      "bytes": 18492
+    },
+    {
+      "path": "recipe.json",
+      "sha256": "b618e448822156d7ed1de9eaf51771b223b8260e9ae5a2e46249c4dcc1a8b1b2",
+      "bytes": 1476
+    },
+    {
+      "path": "input.json",
+      "sha256": "5d488a85682945de71500c8e6eec1627d61be98eda94670f486a055717762f96",
+      "bytes": 107
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results.json",
+      "sha256": "53cafe994a34d2a1bb9f1a496c9f8914f5db63008911468255bb86dababf2e26",
+      "bytes": 185
+    },
+    {
+      "path": "series.csv",
+      "sha256": "8c0e5eeb56f54b4c8b67d63c12cb93575a1cb1ed5c0a5f3a39d1c3a22a016750",
+      "bytes": 1743
+    },
+    {
+      "path": "figure.png",
+      "sha256": "548753986dd96e898ea4e3cf4be9d34599f9f72bae7c2cb5c7921d55f57d57c8",
+      "bytes": 183197
+    },
+    {
+      "path": "figure.svg",
+      "sha256": "f49a5d9aa1dc88c3e3ddd40ce0ef6a27bc76229e1c5a8a7b0ad5a6244c93238d",
+      "bytes": 30884
+    },
+    {
+      "path": "figure.pdf",
+      "sha256": "19d3fa61b7ae795d2134379e0496c73abba4fae85a34b324eea306ab836fbacd",
+      "bytes": 13135
+    }
+  ],
+  "metrics": {
+    "simulated_flow_vehicles": 96,
+    "mean_speed_cells_per_step": 2.447361111111111,
+    "free_flow_baseline": 200.0
+  },
+  "runtime_ms": 1637.855
+}

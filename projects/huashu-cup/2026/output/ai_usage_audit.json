@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "formal": true,
+  "mode": "advisory",
+  "passed": true,
+  "blocking": false,
+  "errors": [],
+  "warnings": [
+    {
+      "code": "AI_POLICY_SOURCE_PENDING",
+      "message": "the separate 2026 AI-use regulation has not been pinned and verified"
+    }
+  ],
+  "metrics": {
+    "entries": 1,
+    "policy_source_verified": false
+  }
+}

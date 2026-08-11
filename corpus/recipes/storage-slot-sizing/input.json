@@ -1,0 +1,41 @@
+{
+  "samples": 240,
+  "width_mean_mm": 38.0,
+  "width_sd_mm": 12.0,
+  "height_mean_mm": 61.0,
+  "height_sd_mm": 21.0,
+  "clearance_mm": 2.0,
+  "standard_widths_mm": [
+    17,
+    19,
+    23,
+    27,
+    30,
+    34,
+    37,
+    40,
+    43,
+    46,
+    49,
+    58,
+    70
+  ],
+  "standard_heights_mm": [
+    35,
+    41,
+    47,
+    53,
+    59,
+    65,
+    71,
+    77,
+    83,
+    89,
+    95,
+    113,
+    127,
+    150
+  ],
+  "cabinet_area_mm2": 3000000,
+  "max_daily_count": 20
+}

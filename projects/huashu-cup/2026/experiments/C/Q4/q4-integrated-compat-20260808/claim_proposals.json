@@ -1,0 +1,50 @@
+{
+  "claims": [
+    {
+      "id": "Q4-AUDIT-PASS",
+      "locator": "experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json:$.audit.final_hard_constraints_passed",
+      "statement": "固定 Q2 排程后的 72 小时六区域联合二进制储能 MILP 与独立 24 小时峰值扫描均通过声明范围内的硬约束审计；该结果不代表任务--储能联合全局最优。",
+      "status": "verified",
+      "unit": "boolean"
+    },
+    {
+      "id": "Q4-LOWREN-COST-DELTA",
+      "locator": "experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json:$.low_renewable_72h.cost_delta_CNY",
+      "statement": "在 72 小时低新能源情景中，候选组合相对 FIFO 加无储能基线的运行成本差；该差值同时包含上游任务时序与储能调度效应。",
+      "status": "verified",
+      "unit": "CNY"
+    },
+    {
+      "id": "Q4-LOWREN-CARBON-DELTA",
+      "locator": "experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json:$.low_renewable_72h.carbon_delta_tCO2",
+      "statement": "在 72 小时低新能源情景中，候选组合相对基线的购电碳排差；不可拆解为纯储能因果效应。",
+      "status": "verified",
+      "unit": "tCO2"
+    },
+    {
+      "id": "Q4-PEAK-REDUCTION",
+      "locator": "experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json:$.peak_probe_24h.peak_reduction_MW",
+      "statement": "在独立 24 小时低新能源峰值探针中，选定离散峰值权重相对零权重解的系统峰值削减量。",
+      "status": "verified",
+      "unit": "MW"
+    },
+    {
+      "id": "Q4-PEAK-SELECTED-WEIGHT",
+      "locator": "experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json:$.peak_probe_24h.selected_peak_weight",
+      "statement": "独立 24 小时峰值扫描按数据派生目标选出的离散复合目标峰值权重；该量不是 LP 对偶变量。",
+      "status": "verified",
+      "unit": "dimensionless"
+    },
+    {
+      "id": "Q4-PEAK-DISCRETE-MARGINAL",
+      "locator": "experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json:$.peak_probe_24h.discrete_marginal_composite_price_per_MW",
+      "statement": "独立 24 小时扫描给出的离散复合目标边际估计，仅用于比较相邻 MILP 扫描点，不解释为连续影子价格。",
+      "status": "verified",
+      "unit": "composite-objective/MW"
+    }
+  ],
+  "problem_id": "C",
+  "question_id": "Q4",
+  "schema_version": 1,
+  "status": "root-review-required"
+}

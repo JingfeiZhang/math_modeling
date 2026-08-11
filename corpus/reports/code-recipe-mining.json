@@ -1,0 +1,2364 @@
+{
+  "schema_version": 1,
+  "source": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "directory": "2-1国赛题目+论文",
+    "mode": "pinned_read_only"
+  },
+  "outcome": {
+    "directory_candidates": 18,
+    "canonical_papers": 17,
+    "exact_duplicate_directories": 1,
+    "trusted_paper_code_pairs": 12,
+    "candidate_only_not_counted": 5,
+    "pair_target": 20,
+    "pair_shortfall": 8,
+    "recipe_target": 12,
+    "runnable_recipes": 12,
+    "deterministic_recipes": 12,
+    "recipe_shortfall": 0
+  },
+  "static_matlab_audit": {
+    "scanner": "static-only",
+    "selected_directory_copies": 32,
+    "unique_matlab_files": 31,
+    "finding_count": 9,
+    "findings_by_rule": {
+      "session_mutation": 9
+    },
+    "high_risk_finding_count": 0,
+    "upstream_execution": "not_executed",
+    "report": "corpus/reports/code-recipe-mining-artifacts/matlab_static_scan.json"
+  },
+  "evidence_policy": {
+    "same_directory_only": "candidate_only; never counted as trusted",
+    "trusted_levels": [
+      "exact",
+      "strong_partial",
+      "supported_partial"
+    ],
+    "required_artifacts": [
+      "40-character commit",
+      "Git blob SHA",
+      "local SHA-256",
+      "PDF page locator",
+      "code locator"
+    ],
+    "award_status": "not inferred from repository names or paths",
+    "recipe_status": "controlled modernization fixture; not a numerical reproduction"
+  },
+  "pairs": [
+    {
+      "candidate_id": "cumcm-2012-a285",
+      "relationship": "candidate_only",
+      "trusted_pair": false,
+      "source_prefix": "2-1国赛题目+论文/2012/A285",
+      "paper": {
+        "path": "2-1国赛题目+论文/2012/A285/A0285/A285.pdf",
+        "blob_sha": "7316a027c9f6f66b164e83c3a70afa92b28154ab",
+        "sha256": "8b3ba564f1726cf9b0471f6e1495840041d6093f72983fc771d36ba6724f67cd",
+        "expected_bytes": 1751739,
+        "page_count": 41
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/suiji.m",
+          "blob_sha": "6fe7ef3ab57b5f080dd72af9564384bc30db0dcb",
+          "sha256": "0c0f6b83b6bb562bdf3d3e4d157eb9d94db1bbc6c5806fae215d9959d736909d",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 1,
+        "source_snippets": 0,
+        "variables": 0,
+        "labels": 0,
+        "methods": 0,
+        "plotting_files": 0
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/b系数.xls",
+          "blob_sha": "e40837580c3be1d197aa14a9dfb7dfb2f8dbf876",
+          "bytes": 5632,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/系数3.xls",
+          "blob_sha": "bcdbcdc90f06e6094ded84ba7a086ca038f28b0b",
+          "bytes": 5632,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/b系数1.xls",
+          "blob_sha": "8e4194f71de241bb54be97ff4fb458a6a3a4b438",
+          "bytes": 6144,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/系数1.xls",
+          "blob_sha": "dd06631002f8240a95bdacf6092502d829308a16",
+          "bytes": 6144,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/系数2.xls",
+          "blob_sha": "dd06631002f8240a95bdacf6092502d829308a16",
+          "bytes": 6144,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/系数.xls",
+          "blob_sha": "9f0aa8f0675dbd161004f33a5674d5c89e75f183",
+          "bytes": 6656,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/白葡萄酒.xlsx",
+          "blob_sha": "785e0e339c96d6c9827d243603c677b6a607f645",
+          "bytes": 10070,
+          "extension": ".xlsx",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/5.xlsx",
+          "blob_sha": "30d32f883905086beb6ea0176c5c94b6169eeafe",
+          "bytes": 16706,
+          "extension": ".xlsx",
+          "downloaded": false
+        }
+      ],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2012-b077",
+      "relationship": "candidate_only",
+      "trusted_pair": false,
+      "source_prefix": "2-1国赛题目+论文/2012/B077",
+      "paper": {
+        "path": "2-1国赛题目+论文/2012/B077/B077.pdf",
+        "blob_sha": "cf7292cde264ee32dbadd79cbb87a3bdb50d834e",
+        "sha256": "8059c92cc76a4fff6d09f47044e7cd5ddcadafe7fdbdf423d279da0649e7f028",
+        "expected_bytes": 410426,
+        "page_count": 34
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2012/B077/附件/附件/account1.m",
+          "blob_sha": "f2d6f6c8947fd015597f1377799cf5c4ef4f213a",
+          "sha256": "5cc99a998decd9b9e0cc753afb37e57c3880ee9cd0ce9c83a39e6de82c82a823",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": [
+            {
+              "rule": "session_mutation",
+              "line": 1,
+              "match": "close all"
+            }
+          ]
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/B077/附件/附件/account2.m",
+          "blob_sha": "60c8791b17d9204991b65809d85f74ddafef734b",
+          "sha256": "11e2d880f211a73cd269e6c133a22b40f5114de727e4d2a5accb95f08bbbe494",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": [
+            {
+              "rule": "session_mutation",
+              "line": 1,
+              "match": "close all"
+            }
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "identity": 0,
+        "source_snippets": 0,
+        "variables": 0,
+        "labels": 0,
+        "methods": 0,
+        "plotting_files": 0
+      },
+      "relationship_reasons": [],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [
+        {
+          "path": "2-1国赛题目+论文/2012/B077/附件/附件/cumcm2012B_附件3_三种类型的光伏电池(A单晶硅B多晶硅C非晶硅薄膜)组件设计参数和市场价格.xls",
+          "blob_sha": "19c8d3485b08e5d61ca95665160559acfe408518",
+          "bytes": 16896,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/B077/附件/附件/cumcm2012B附件4_山西大同典型气象年逐时参数及各方向辐射强度.xls",
+          "blob_sha": "67c97d4349ae6d70bc5d5f5ad7a4e39ffd1f7736",
+          "bytes": 1175040,
+          "extension": ".xls",
+          "downloaded": false
+        }
+      ],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2012-b113",
+      "relationship": "candidate_only",
+      "trusted_pair": false,
+      "source_prefix": "2-1国赛题目+论文/2012/B113",
+      "paper": {
+        "path": "2-1国赛题目+论文/2012/B113/20121784/20121784.pdf",
+        "blob_sha": "55ee42fcaa24bbce8642d52d2f2dc30dbc37bfa4",
+        "sha256": "80ec61d6d035fb45afcc15ea71f8424586afdd408823053472aac620b705ad61",
+        "expected_bytes": 497701,
+        "page_count": 18
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2012/B113/20121784/程序/附录6.m",
+          "blob_sha": "c28b9c8d573e768e4631b86b86430debb1033422",
+          "sha256": "c8d34112b14f7974398fe93e62417093adcb7b0bc68001403604a99e28d8ef58",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/B113/20121784/程序/附录二.m",
+          "blob_sha": "6cb8d135e0771c514e292c108bc38eebb637bc93",
+          "sha256": "5956a620c7d0e328fcc34a8752ac293200eab44142a0b617587c7a15e0633d58",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 0,
+        "source_snippets": 0,
+        "variables": 1,
+        "labels": 0,
+        "methods": 0,
+        "plotting_files": 0
+      },
+      "relationship_reasons": [
+        "1 code variables occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2012-b149",
+      "relationship": "exact",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2012/B149",
+      "paper": {
+        "path": "2-1国赛题目+论文/2012/B149/B149/B149答卷.pdf",
+        "blob_sha": "32e0f4b9c60453fe4eec08b93a1365c052d6607a",
+        "sha256": "f0aba132aece5abf111c3328934afc1c976c60b8ef200b2f853a5c341bc7c7e0",
+        "expected_bytes": 1062310,
+        "page_count": 30
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2012/B149/B149/B149源程序/M/gfdc_zuhe2.m",
+          "blob_sha": "b7c23a3f06204132733bc20a7bd9a1516c91577e",
+          "sha256": "d0643819f9ddac7459cfc3769ad037199a0aad252772b59c91bc1948946e7c7e",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/B149/B149/B149源程序/M/sun_jisuan_day_2.m",
+          "blob_sha": "122186fa258abdab80c236f05a6601e84eb42498",
+          "sha256": "893f883e52c1fa44ac7784ea16e308be5b18688d77d7cdf18759fbb400c7922e",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": [
+            {
+              "rule": "session_mutation",
+              "line": 4,
+              "match": "clear all"
+            }
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "identity": 1,
+        "source_snippets": 6,
+        "variables": 13,
+        "labels": 4,
+        "methods": 0,
+        "plotting_files": 1
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "6 literal source-line matches are visible in the PDF",
+        "13 code variables occur in the PDF",
+        "4 code labels occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2013-a056",
+      "relationship": "strong_partial",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2013/A056",
+      "paper": {
+        "path": "2-1国赛题目+论文/2013/A056/5486/5486.pdf",
+        "blob_sha": "29ce09bd0b75f5ff763168407005295d2af714bc",
+        "sha256": "bae180e8fe47c11e9096a3bd2484fc08e66fcfe6969e65c6c644679ed7cab02d",
+        "expected_bytes": 1824385,
+        "page_count": 35
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem3_2.m",
+          "blob_sha": "56f0ca01dee1c6113006154c411d286de971c83c",
+          "sha256": "351dcbb9a19bbe890812f3949f778c2c2ac071363a731f6d75115ee7d0bb5160",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": [
+            {
+              "rule": "session_mutation",
+              "line": 3,
+              "match": "close all"
+            }
+          ]
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem4.m",
+          "blob_sha": "ea61dbf80797be6eedd9bf1430bbbf8c6f947f70",
+          "sha256": "f57a1d47d29b551c29a7dd4c2e8dc189d005b480180b4ab3caf33b671109e8cb",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": [
+            {
+              "rule": "session_mutation",
+              "line": 3,
+              "match": "close all"
+            }
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "identity": 2,
+        "source_snippets": 0,
+        "variables": 3,
+        "labels": 1,
+        "methods": 2,
+        "plotting_files": 2
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "2 code-method to paper-method matches",
+        "3 code variables occur in the PDF",
+        "2 MATLAB basenames occur in the PDF",
+        "1 code labels occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem1_1.mat",
+          "blob_sha": "ee046a40679ad6b8300924bf9ebd59194738e5d1",
+          "bytes": 314,
+          "extension": ".mat",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem2.mat",
+          "blob_sha": "6266eff328b722355b3a0a4ed89c4196dd5ff29d",
+          "bytes": 351,
+          "extension": ".mat",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem4.mat",
+          "blob_sha": "c79b6875b85c68443ad66214dba92f65bd532f9b",
+          "bytes": 355,
+          "extension": ".mat",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem3.mat",
+          "blob_sha": "52e1ed5d3566e2dc43cf2edc9cd1cc7cc53ca9af",
+          "bytes": 848,
+          "extension": ".mat",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/ti3data.mat",
+          "blob_sha": "508af04877e0d6bcc94b95e3ae6314a44cf41ba2",
+          "bytes": 850,
+          "extension": ".mat",
+          "downloaded": false
+        }
+      ],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2013-a117",
+      "relationship": "exact",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2013/A117",
+      "paper": {
+        "path": "2-1国赛题目+论文/2013/A117/1A0902/基于差分方程和元胞自动机的交通阻塞模型.pdf",
+        "blob_sha": "597e98e60feb22f66900be5080fbdd23cbab9f28",
+        "sha256": "33e55f4e538f633569b146bfc218f45f0280109d8e32cad8bc3055ec576034e7",
+        "expected_bytes": 1862059,
+        "page_count": 46
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2013/A117/1A0902/代码/第四问/automata.m",
+          "blob_sha": "164569e3a5f3f322bc2c93d8a659fcf3d1cd27ee",
+          "sha256": "055d21ce9b4e33e42daaee3b3fcbfb9646b8571f4ef9342525923e2655482df3",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/A117/1A0902/代码/automata.m",
+          "blob_sha": "d8e4406b060679c8cadc32fced84a42a5909f910",
+          "sha256": "8365f92481b80c83a8f9a8ca02e2756b51f3db9c8bc4d3e8508e92f766abd8ce",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 2,
+        "source_snippets": 12,
+        "variables": 22,
+        "labels": 12,
+        "methods": 2,
+        "plotting_files": 2
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "12 literal source-line matches are visible in the PDF",
+        "2 code-method to paper-method matches",
+        "22 code variables occur in the PDF",
+        "2 MATLAB basenames occur in the PDF",
+        "12 code labels occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2013-b201",
+      "relationship": "exact",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2013/B201",
+      "paper": {
+        "path": "2-1国赛题目+论文/2013/B201/唐隽玉，胡文伟，孙雪清/唐隽玉，孙雪清，胡文伟.pdf",
+        "blob_sha": "b3498fe47d084d8a9a383e2b5344224f8df981e1",
+        "sha256": "b0a4938f88e7ddc64b704368db626cc32610f0fbe9a1c6757014dbb6889b85fc",
+        "expected_bytes": 3459514,
+        "page_count": 32
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2013/B201/唐隽玉，胡文伟，孙雪清/国赛B题数据及源程序/问题二的程序/附件三的程序/hangpaixu.m",
+          "blob_sha": "00599d4c2e37cbe0e47f18886766963d6d220e78",
+          "sha256": "f4a95d163ad5911a9f13d90b5a8b91ed585d36ce619f04ff58283a41d6548c9e",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B201/唐隽玉，胡文伟，孙雪清/国赛B题数据及源程序/问题二的程序/附件四的程序/hangpaixu_4.m",
+          "blob_sha": "11ed36370ef3f114c1c1b6d2fbc277a9b30cdaaf",
+          "sha256": "a5ea8884692252790e5603d475af824e763c96b4a2805f5cdde23b525052c80b",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 2,
+        "source_snippets": 12,
+        "variables": 16,
+        "labels": 0,
+        "methods": 0,
+        "plotting_files": 0
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "12 literal source-line matches are visible in the PDF",
+        "16 code variables occur in the PDF",
+        "2 MATLAB basenames occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2013-b254",
+      "relationship": "exact",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2013/B254",
+      "paper": {
+        "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/814 姜荣杰 朱佳亭 金建邦.pdf",
+        "blob_sha": "1d6d2b1719420c22d0bb03e5c9fa3addd5c1279b",
+        "sha256": "a760a38dc77d74c73677676897f2bae351a586f138e3003c1c700b091567abd8",
+        "expected_bytes": 2292097,
+        "page_count": 33
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/p3/class.m",
+          "blob_sha": "a746efb2f9a36472a335b3f7a296c1af3c7fb420",
+          "sha256": "0c985db7b46edc535296971266771dd43125338d7951c01a015ea339f0d18019",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/p22/Untitled3.m",
+          "blob_sha": "4ef4eac0461d38aa821a179c51eb6e32d05c6bd3",
+          "sha256": "7f9588570d22ca6c7543b88989a481aea65825f73a6d725704e210e092b3101c",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 2,
+        "source_snippets": 12,
+        "variables": 8,
+        "labels": 10,
+        "methods": 0,
+        "plotting_files": 0
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "12 literal source-line matches are visible in the PDF",
+        "8 code variables occur in the PDF",
+        "10 code labels occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/列图像差异度选择性计算.txt",
+          "blob_sha": "c1203d1baa583e448bbc4269b213257d66c939e2",
+          "bytes": 780,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/对lingoTSP数据进行排列.txt",
+          "blob_sha": "613f02bc8f418c502057f6d498934e1d36fd3b4a",
+          "bytes": 814,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/行距计算.txt",
+          "blob_sha": "93b2e6cb9d89f8ba899f2dc1c3cc298a7d9fc67d",
+          "bytes": 1003,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/画图程序.txt",
+          "blob_sha": "39f57f1fe6a2881f71be6a09e2d17154f0b71e14",
+          "bytes": 1006,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/差异度计算程序.txt",
+          "blob_sha": "989f79b728322fa19963b09b38561e045d381f18",
+          "bytes": 1155,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/TSPlingo.txt",
+          "blob_sha": "b759fa991c2b59dd61769bfb2f757dbd212711c7",
+          "bytes": 1210,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/分行.txt",
+          "blob_sha": "efcee484bd2337e031355cb8f7f8902b9c89cfb0",
+          "bytes": 1545,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/匹配度.txt",
+          "blob_sha": "b7295ac7dce081d0f26763247ba7b10c35ebd113",
+          "bytes": 4401,
+          "extension": ".txt",
+          "downloaded": false
+        }
+      ],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2014-a012",
+      "relationship": "exact",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2014/A012",
+      "paper": {
+        "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/A15010142_王子硕_吴鹏飞_陶立.pdf",
+        "blob_sha": "093081278f94d0e1fa9d0056b4f5c2abf1c9ca87",
+        "sha256": "f4110e706e39def44330b997c0142b773ef9d633d7a615ea33ea110afa451c1e",
+        "expected_bytes": 1376874,
+        "page_count": 32
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/附件3-normal_distribution.m",
+          "blob_sha": "ea3caa6d16ad2f8e6df9d4e48cf90dff0408a309",
+          "sha256": "b477430b016db92526e52e93c0c2cb37c11d456ea0f0995da6c301e2253df3dc",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 1,
+        "source_snippets": 5,
+        "variables": 4,
+        "labels": 2,
+        "methods": 1,
+        "plotting_files": 1
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "5 literal source-line matches are visible in the PDF",
+        "1 code-method to paper-method matches",
+        "4 code variables occur in the PDF",
+        "2 code labels occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [
+        {
+          "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/readme.txt",
+          "blob_sha": "20faf290f24bd4c985cac7063909ffade9768bce",
+          "bytes": 529,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/附件4-Monte_Calor.txt",
+          "blob_sha": "488e6a0ea031398d49d1cd38a113d9c9421c10f7",
+          "bytes": 810,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/附件1-find_landingpoint.txt",
+          "blob_sha": "c024a399dd6cb65c41fb2257be8cd5a5edf4e272",
+          "bytes": 1346,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/附件5-蒙特卡洛模拟源数据.xls",
+          "blob_sha": "5e4b76a253437d8e1e197564dda4c726e3d1dba1",
+          "bytes": 20480,
+          "extension": ".xls",
+          "downloaded": false
+        }
+      ],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2014-a305",
+      "relationship": "exact",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2014/A305",
+      "paper": {
+        "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/A10009072_吉张鹤轩_杨升_陈同广.pdf",
+        "blob_sha": "56100fa1d940da3d7f3ef97385a878d54e000346",
+        "sha256": "f451834248c687e1118160cbdffd18490e80f313f3aeacf3e314f2fbef476ecb",
+        "expected_bytes": 1426258,
+        "page_count": 36
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/genpics.m",
+          "blob_sha": "019ac4dae00f81683bd185c992e878c310a62ae2",
+          "sha256": "3eda8c13a9edc051b12ef8d76916146ff1514debb462fbaf895cb16eb7320650",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/calc2.m",
+          "blob_sha": "2358950d0a5b176e6850be25ccdc880f3f829214",
+          "sha256": "10ef9a0190abdbaf4428181e9ce33050fd79d968b08f0e815a7e479851671635",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 3,
+        "source_snippets": 12,
+        "variables": 10,
+        "labels": 8,
+        "methods": 0,
+        "plotting_files": 2
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "12 literal source-line matches are visible in the PDF",
+        "10 code variables occur in the PDF",
+        "2 MATLAB basenames occur in the PDF",
+        "8 code labels occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [
+        {
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/数据.txt",
+          "blob_sha": "5bb81f69953e860fab2034ef6c85e38a59ce97e5",
+          "bytes": 287,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/100m处分析数据.mat",
+          "blob_sha": "1b2dc94f721086afa05244875699e600e3961cbd",
+          "bytes": 913736,
+          "extension": ".mat",
+          "downloaded": false
+        }
+      ],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2014-a377",
+      "relationship": "exact",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2014/A377",
+      "paper": {
+        "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/A11168020_郑建国_陶禹诺_严洒洒.pdf",
+        "blob_sha": "b9e1e69644c0df8811c48c7360695eaab8c5cd5a",
+        "sha256": "a7a710a4da6200cc3078dab037d54cb47d973ae96f9987d9e575c8d8d0bc2029",
+        "expected_bytes": 1193423,
+        "page_count": 39
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/pro2qiujie.m",
+          "blob_sha": "c91610a36743e5f799732ca3ddcd7aa2a303b4c6",
+          "sha256": "87c9211e3b44a06b096e3a96faa530fc57a1bc9e28d2229c31791d1d2391b6eb",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": [
+            {
+              "rule": "session_mutation",
+              "line": 2,
+              "match": "close all"
+            }
+          ]
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/guiji.m",
+          "blob_sha": "468e56b00b8830eb7a566a9bd9521a54ebacac45",
+          "sha256": "855428091c609826af7ca967db2412e5c1ffc04bab555ea6ee2db3a197954d1b",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": [
+            {
+              "rule": "session_mutation",
+              "line": 2,
+              "match": "close all"
+            },
+            {
+              "rule": "session_mutation",
+              "line": 43,
+              "match": "close all"
+            }
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "identity": 4,
+        "source_snippets": 12,
+        "variables": 24,
+        "labels": 14,
+        "methods": 0,
+        "plotting_files": 2
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "12 literal source-line matches are visible in the PDF",
+        "24 code variables occur in the PDF",
+        "14 code labels occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/Readme.txt",
+          "blob_sha": "7d3df5de100e5a7a9d50447dce509d0399b8d552",
+          "bytes": 1274,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/各阶段的相对误差1.xls",
+          "blob_sha": "43a32b82d55586a98b72084c929bd60ad972b93e",
+          "bytes": 7680,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/粗避障各区域参数.xls",
+          "blob_sha": "eaa74b59ad9ade59705bf9ef39067c2f357e63ce",
+          "bytes": 9728,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/精避障段各区域参数.xls",
+          "blob_sha": "dbac77fd8735beb848eab538baf2da3a6d2836a3",
+          "bytes": 9728,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/粗避障两个方案结果.xls",
+          "blob_sha": "273ecbbf1edfa679b4f24d2c5b1c7ceb49df0ef9",
+          "bytes": 10752,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/误差分析.xls",
+          "blob_sha": "d7a1a7b36f09c85d7cd12972342285679e6b696f",
+          "bytes": 10752,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/快速调整阶段各参数数据最终版.xls",
+          "blob_sha": "16016cfa4c039733d000fb95726093934a14606b",
+          "bytes": 751616,
+          "extension": ".xls",
+          "downloaded": false
+        }
+      ],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2014-a499",
+      "relationship": "exact",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2014/A499",
+      "paper": {
+        "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/A11141001_陈超_唐梦珏_杨克宇.pdf",
+        "blob_sha": "0cec2ae306ae6a3ca2ee81f36669c96d7b9293e2",
+        "sha256": "59d01bbf09e225d890208bd36166bf2a4d61f0fb56ad4f7edd140cfbacc00d22",
+        "expected_bytes": 1110388,
+        "page_count": 28
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/defen.m",
+          "blob_sha": "f1fe267a11ce5c1582b735ddd235ede9874f47f4",
+          "sha256": "92e779bb4a5fda6b267f59a2e56c2f438cc7e65ea3a07d056912eedf414b7b9b",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/soujie.m",
+          "blob_sha": "da0ec52ad01ceec3f085ec1466e2ff16efe9a82d",
+          "sha256": "084c8e8b8a04c7429556a2b1d9119acb0c1ab7aabd83aaef46bc7e1427d24780",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": [
+            {
+              "rule": "session_mutation",
+              "line": 1,
+              "match": "clear all"
+            }
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "identity": 3,
+        "source_snippets": 12,
+        "variables": 5,
+        "labels": 2,
+        "methods": 1,
+        "plotting_files": 1
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "12 literal source-line matches are visible in the PDF",
+        "1 code-method to paper-method matches",
+        "5 code variables occur in the PDF",
+        "2 MATLAB basenames occur in the PDF",
+        "2 code labels occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [
+        {
+          "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/readme.txt",
+          "blob_sha": "36650ae6e1e8783c5fd4b5edb3ea466a392be030",
+          "bytes": 393,
+          "extension": ".txt",
+          "downloaded": false
+        }
+      ],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2014-b009",
+      "relationship": "exact",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2014/B009",
+      "paper": {
+        "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/B16046004_程双泽_李君昌_陈凌勤.pdf",
+        "blob_sha": "89f592540d083ebccd0bbd6a8da934b8f7b58ccb",
+        "sha256": "209094e0ec9d4b412ffc9ceb60a15f56b29bce6ce0880b31a444c391353e468c",
+        "expected_bytes": 1048457,
+        "page_count": 25
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w2_2.m",
+          "blob_sha": "0a7422b4f744774a7441b93a328492af676b0a79",
+          "sha256": "9dc493fb75c3898eab0ca9ded0bfd527fb78ce544d56283bf948fd5707252b4c",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w3_1.m",
+          "blob_sha": "5c284e8fbd8203837282f8ef86a9e8f0e6b37ed2",
+          "sha256": "6cb4afc5e406cc6a7246cc0be6c4e0be79a39cf97bfc3364ccaa60f8858d44ac",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 1,
+        "source_snippets": 12,
+        "variables": 5,
+        "labels": 4,
+        "methods": 1,
+        "plotting_files": 2
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "12 literal source-line matches are visible in the PDF",
+        "1 code-method to paper-method matches",
+        "5 code variables occur in the PDF",
+        "4 code labels occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2014-b013",
+      "relationship": "candidate_only",
+      "trusted_pair": false,
+      "source_prefix": "2-1国赛题目+论文/2014/B013",
+      "paper": {
+        "path": "2-1国赛题目+论文/2014/B013/B18013004邓敏娜_宁凯_董婷婷/B18013004_邓敏娜_宁凯_董婷婷.pdf",
+        "blob_sha": "942684b3bb0be08be56e3bb8b10e62da265c667e",
+        "sha256": "3f1bdfede39da857a5a64f28f3d272ab0731dae609fde672a3e46c66274ba65d",
+        "expected_bytes": 1125957,
+        "page_count": 26
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2014/B013/B18013004邓敏娜_宁凯_董婷婷/cx11.m",
+          "blob_sha": "0b6d2f8e9c2007ed2b19387f560b8d96b7568d63",
+          "sha256": "c04dc560a96850f5f44c575a5f18d5356bcc3024729e19963b21abdb5a49bb52",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/B013/B18013004邓敏娜_宁凯_董婷婷/cx10.m",
+          "blob_sha": "6515d653cd9bba7539167de35f290b180d54e61b",
+          "sha256": "2c20e0b21e8b4bd426078703f185d18140f95a3df590763abfba6e4adae3cece",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 3,
+        "source_snippets": 0,
+        "variables": 0,
+        "labels": 0,
+        "methods": 0,
+        "plotting_files": 0
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [
+        {
+          "path": "2-1国赛题目+论文/2014/B013/B18013004邓敏娜_宁凯_董婷婷/readme.txt",
+          "blob_sha": "4b222bb08785d641fd43a75329b724856fc06932",
+          "bytes": 43,
+          "extension": ".txt",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/B013/B18013004邓敏娜_宁凯_董婷婷/data.xls",
+          "blob_sha": "3ae826d9ac6b1820102ddd7c243bbf0c2c6073e2",
+          "bytes": 25088,
+          "extension": ".xls",
+          "downloaded": false
+        }
+      ],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2014-b261",
+      "relationship": "supported_partial",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2014/B261",
+      "paper": {
+        "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/B27042017_吴俊锋_谭翔飞_庄重.pdf",
+        "blob_sha": "54a4c815a2fd4fc9ebc3c2da0d886f7c7d4cb691",
+        "sha256": "8ead45a2621844a876124abcc99da07f8f785b2530f7ee6f1ff5a93da5b32aa0",
+        "expected_bytes": 2307192,
+        "page_count": 25
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/程序/hexagon.m",
+          "blob_sha": "dee82ed3ccff297bd70421c41b0115b5db29926d",
+          "sha256": "18967d3286e0dcb7f507e86fc227f7255ddd9394879c3519933dceb73c28df1d",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/程序/zhuojiaosaomiao.m",
+          "blob_sha": "b0f34d6940b84af1ccac1a6aa7e132decb6132d7",
+          "sha256": "05c2aef8639ee9713fc5795d86333053e082788ee672ba2708af7737bf5d784c",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 3,
+        "source_snippets": 0,
+        "variables": 2,
+        "labels": 0,
+        "methods": 0,
+        "plotting_files": 0
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "2 code variables occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2014-d026",
+      "relationship": "exact",
+      "trusted_pair": true,
+      "source_prefix": "2-1国赛题目+论文/2014/D026",
+      "paper": {
+        "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/D22022011_阎发静_周靖_杨峰.pdf",
+        "blob_sha": "7450ecbf9c51c86f29d79809148f391e75ad495d",
+        "sha256": "f40b9b1ff1a473a1afb7ed10f5aaeb2831a4656ecc5d5e27d65f81d4a228795a",
+        "expected_bytes": 960161,
+        "page_count": 23
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/G.m",
+          "blob_sha": "a92d124914237936a818ecf7280e3f87e8b6af0f",
+          "sha256": "f8bda5b81836b515fecac2d24e012302af56bd5560bc71b835a5045922455578",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 2,
+        "source_snippets": 5,
+        "variables": 0,
+        "labels": 0,
+        "methods": 0,
+        "plotting_files": 0
+      },
+      "relationship_reasons": [
+        "paper text contains a team/control/path identity token",
+        "5 literal source-line matches are visible in the PDF"
+      ],
+      "exact_duplicate_aliases": [
+        "cumcm-2014-d062"
+      ],
+      "auxiliary_data_metadata": [
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-4 12种竖向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "7c1d74fec9b7178ea01a99c54f72fbbb18817e1c",
+          "bytes": 123904,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-2 4种竖向隔板间距类型对应的药盒规格.xls",
+          "blob_sha": "3d10018e153d9824d9221cf4a7bace1c383325c0",
+          "bytes": 133120,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-5 17种横向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "6cd8cea57fb8edf8e8fa30ebc4bf4cae81087428",
+          "bytes": 154624,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-6 13种横向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "e36149b984bb08ad3ea6b30b385f7a77b9dbb7d2",
+          "bytes": 160256,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-7 每一种药品需要的储药槽个数.xls",
+          "blob_sha": "66d13d57824e80cc5c6b5a9f9a07ddf1d99529d9",
+          "bytes": 259072,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-3 16种竖向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "84d19f60452d6143879ca6fe1a16d12295d43a33",
+          "bytes": 360960,
+          "extension": ".xls",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-1 每一种药盒所对应的最小储药槽宽度和最大储药槽宽度.xls",
+          "blob_sha": "8f1a5304b87153b544cc1d764db99125c83c419a",
+          "bytes": 425984,
+          "extension": ".xls",
+          "downloaded": false
+        }
+      ],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2016-xipoxitong-master",
+      "relationship": "candidate_only",
+      "trusted_pair": false,
+      "source_prefix": "2-1国赛题目+论文/2016/xipoxitong-master",
+      "paper": {
+        "path": "2-1国赛题目+论文/2016/xipoxitong-master/文章/xipoxitong.pdf",
+        "blob_sha": "a6f5da967bcdd48f07fb40d0744f687cb38ab542",
+        "sha256": "d8abadd59ede4d066ac86cb89f76b6af08ed97c99cd8b23dda34d33d6f546e0b",
+        "expected_bytes": 1101790,
+        "page_count": 39
+      },
+      "code": [
+        {
+          "path": "2-1国赛题目+论文/2016/xipoxitong-master/3D系泊系统/For3D.m",
+          "blob_sha": "c0ea5dac39cd9ecb1e63b0d6ac61239ded8a4669",
+          "sha256": "94107fcb9d067fb97c70d200b84ba174906beb79b95ae82ab7ddbce45916f14a",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        },
+        {
+          "path": "2-1国赛题目+论文/2016/xipoxitong-master/2D模型改进/For2D_expand.m",
+          "blob_sha": "c728a60a5909c68bbe9d7f6f21aeac0a46f4e50f",
+          "sha256": "fcfc11d093883266d21988506f2e96705517e2312622bf4e2c017e338c2bd642",
+          "execution_status": "not_executed_static_review_only",
+          "risk_findings": []
+        }
+      ],
+      "evidence_counts": {
+        "identity": 0,
+        "source_snippets": 12,
+        "variables": 24,
+        "labels": 7,
+        "methods": 0,
+        "plotting_files": 2
+      },
+      "relationship_reasons": [
+        "12 literal source-line matches are visible in the PDF",
+        "24 code variables occur in the PDF",
+        "2 MATLAB basenames occur in the PDF",
+        "7 code labels occur in the PDF"
+      ],
+      "exact_duplicate_aliases": [],
+      "auxiliary_data_metadata": [
+        {
+          "path": "2-1国赛题目+论文/2016/xipoxitong-master/2D模型改进/系统信息.mat",
+          "blob_sha": "c543eb13586339bd39af76711464af2bd10edc5b",
+          "bytes": 6190,
+          "extension": ".mat",
+          "downloaded": false
+        },
+        {
+          "path": "2-1国赛题目+论文/2016/xipoxitong-master/3D系泊系统/D3.mat",
+          "blob_sha": "f122195993dd7893df455f10abc77508d122ee80",
+          "bytes": 18749,
+          "extension": ".mat",
+          "downloaded": false
+        }
+      ],
+      "limitations": [
+        "community mirror is not independent award evidence",
+        "upstream MATLAB was statically reviewed but not executed",
+        "only the two largest representative MATLAB files were downloaded per directory"
+      ]
+    }
+  ],
+  "recipes": [
+    {
+      "recipe_id": "cellular-traffic",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2013-a117",
+        "relationship": "exact",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2013/A117/1A0902/基于差分方程和元胞自动机的交通阻塞模型.pdf",
+          "blob_sha": "597e98e60feb22f66900be5080fbdd23cbab9f28",
+          "sha256": "33e55f4e538f633569b146bfc218f45f0280109d8e32cad8bc3055ec576034e7"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2013/A117/1A0902/代码/第四问/automata.m",
+            "blob_sha": "164569e3a5f3f322bc2c93d8a659fcf3d1cd27ee",
+            "sha256": "055d21ce9b4e33e42daaee3b3fcbfb9646b8571f4ef9342525923e2655482df3",
+            "execution_status": "not_executed_static_review_only"
+          },
+          {
+            "path": "2-1国赛题目+论文/2013/A117/1A0902/代码/automata.m",
+            "blob_sha": "d8e4406b060679c8cadc32fced84a42a5909f910",
+            "sha256": "8365f92481b80c83a8f9a8ca02e2756b51f3db9c8bc4d3e8508e92f766abd8ce",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260803,
+      "metrics": {
+        "simulated_flow_vehicles": 96,
+        "mean_speed_cells_per_step": 2.447361111111111,
+        "free_flow_baseline": 200.0
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "b618e448822156d7ed1de9eaf51771b223b8260e9ae5a2e46249c4dcc1a8b1b2",
+          "bytes": 1476
+        },
+        {
+          "path": "input.json",
+          "sha256": "5d488a85682945de71500c8e6eec1627d61be98eda94670f486a055717762f96",
+          "bytes": 107
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "53cafe994a34d2a1bb9f1a496c9f8914f5db63008911468255bb86dababf2e26",
+          "bytes": 185
+        },
+        {
+          "path": "series.csv",
+          "sha256": "8c0e5eeb56f54b4c8b67d63c12cb93575a1cb1ed5c0a5f3a39d1c3a22a016750",
+          "bytes": 1743
+        },
+        {
+          "path": "figure.png",
+          "sha256": "548753986dd96e898ea4e3cf4be9d34599f9f72bae7c2cb5c7921d55f57d57c8",
+          "bytes": 183197
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "f49a5d9aa1dc88c3e3ddd40ce0ef6a27bc76229e1c5a8a7b0ad5a6244c93238d",
+          "bytes": 30884
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "19d3fa61b7ae795d2134379e0496c73abba4fae85a34b324eea306ab836fbacd",
+          "bytes": 13135
+        }
+      ],
+      "run_report": "corpus/recipes/cellular-traffic/run_report.json"
+    },
+    {
+      "recipe_id": "folding-table-geometry",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2014-b009",
+        "relationship": "exact",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/B16046004_程双泽_李君昌_陈凌勤.pdf",
+          "blob_sha": "89f592540d083ebccd0bbd6a8da934b8f7b58ccb",
+          "sha256": "209094e0ec9d4b412ffc9ceb60a15f56b29bce6ce0880b31a444c391353e468c"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w2_2.m",
+            "blob_sha": "0a7422b4f744774a7441b93a328492af676b0a79",
+            "sha256": "9dc493fb75c3898eab0ca9ded0bfd527fb78ce544d56283bf948fd5707252b4c",
+            "execution_status": "not_executed_static_review_only"
+          },
+          {
+            "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w3_1.m",
+            "blob_sha": "5c284e8fbd8203837282f8ef86a9e8f0e6b37ed2",
+            "sha256": "6cb4afc5e406cc6a7246cc0be6c4e0be79a39cf97bfc3364ccaa60f8858d44ac",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260810,
+      "metrics": {
+        "best_angle_deg": 74.36708860759494,
+        "best_footprint_m": 0.19477101174528347,
+        "material_proxy": 13.010126582278481,
+        "feasible_count": 430
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "75ac9a367c6dfcb60be86b01ba4d0fe8d4c08e0b086f8d0ada67c4e0d22b6cd1",
+          "bytes": 1533
+        },
+        {
+          "path": "input.json",
+          "sha256": "d1f88fd7b71c25e1bce9f855fbaaff7ab7d5bf2c468870aae2df18f346a1a990",
+          "bytes": 103
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "5593aff2beffeff7c64ed3873d9ebe09db8f92406e8d600d9a5ed5cb50b52071",
+          "bytes": 227
+        },
+        {
+          "path": "series.csv",
+          "sha256": "5869c78f23d82d58777c1c945897b75065552986e94110a51b637a531ce5faa9",
+          "bytes": 16161
+        },
+        {
+          "path": "figure.png",
+          "sha256": "97325d428fcc7a8158fe0b4949a8369181db01c49fad97f3b235306b0cc2c883",
+          "bytes": 261917
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "a89323a571efe2a9bfff4ac65d8211455f51b21009a286aacf2365a1a2d5e85a",
+          "bytes": 102360
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "f36a701367d3858667d211e1fa70e1470785bfa70f6840f1f5cb8d0e0fd1f5ef",
+          "bytes": 13934
+        }
+      ],
+      "run_report": "corpus/recipes/folding-table-geometry/run_report.json"
+    },
+    {
+      "recipe_id": "folding-table-shape-scan",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2014-b261",
+        "relationship": "supported_partial",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/B27042017_吴俊锋_谭翔飞_庄重.pdf",
+          "blob_sha": "54a4c815a2fd4fc9ebc3c2da0d886f7c7d4cb691",
+          "sha256": "8ead45a2621844a876124abcc99da07f8f785b2530f7ee6f1ff5a93da5b32aa0"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/程序/hexagon.m",
+            "blob_sha": "dee82ed3ccff297bd70421c41b0115b5db29926d",
+            "sha256": "18967d3286e0dcb7f507e86fc227f7255ddd9394879c3519933dceb73c28df1d",
+            "execution_status": "not_executed_static_review_only"
+          },
+          {
+            "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/程序/zhuojiaosaomiao.m",
+            "blob_sha": "b0f34d6940b84af1ccac1a6aa7e132decb6132d7",
+            "sha256": "05c2aef8639ee9713fc5795d86333053e082788ee672ba2708af7737bf5d784c",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260811,
+      "metrics": {
+        "best_side_count": 14,
+        "score": 3.667082612530359,
+        "square_baseline_score": 5.6568542494923815
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "a099f5128e8278a74cffdd6b653438ac316d18f92b3c4137ef263c22ceced0f3",
+          "bytes": 1552
+        },
+        {
+          "path": "input.json",
+          "sha256": "d6b3c5a98fc9fe689c0fefc2b1eeea39998984d35ba53d0cff7d38651e6053a8",
+          "bytes": 67
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "9d381add6f9d84886604b6ee9a8d1da96ea3ed58f5e428ca4357517a8aa4ed63",
+          "bytes": 181
+        },
+        {
+          "path": "series.csv",
+          "sha256": "d7f4223b0c3e1d9ab3c3219b63d7f89f6cced54abe0d5c7cb93a7514365433e9",
+          "bytes": 246
+        },
+        {
+          "path": "figure.png",
+          "sha256": "3a00f7aa8a97b76a64afa6dfaa1d6c39519587c4f406fd37637541fce6b52c6b",
+          "bytes": 145408
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "d4bb021c0aad93b6db041e35c22df3bfb0a7d99db6e52f55e1085fe5cd20ac1b",
+          "bytes": 34333
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "38e107d46f8483aec8159bcb16c2e8aff8d6c7955d18a3acf7f989204d359654",
+          "bytes": 13909
+        }
+      ],
+      "run_report": "corpus/recipes/folding-table-shape-scan/run_report.json"
+    },
+    {
+      "recipe_id": "fragment-global-matching",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2013-b254",
+        "relationship": "exact",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/814 姜荣杰 朱佳亭 金建邦.pdf",
+          "blob_sha": "1d6d2b1719420c22d0bb03e5c9fa3addd5c1279b",
+          "sha256": "a760a38dc77d74c73677676897f2bae351a586f138e3003c1c700b091567abd8"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/p3/class.m",
+            "blob_sha": "a746efb2f9a36472a335b3f7a296c1af3c7fb420",
+            "sha256": "0c985db7b46edc535296971266771dd43125338d7951c01a015ea339f0d18019",
+            "execution_status": "not_executed_static_review_only"
+          },
+          {
+            "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/p22/Untitled3.m",
+            "blob_sha": "4ef4eac0461d38aa821a179c51eb6e32d05c6bd3",
+            "sha256": "7f9588570d22ca6c7543b88989a481aea65825f73a6d725704e210e092b3101c",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260805,
+      "metrics": {
+        "optimal_path_cost": 0.0,
+        "adjacency_accuracy": 1.0,
+        "recovered_order": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "ac7588d7c58dc4a5b572945aa9268831f3464130c3091666ea499a6fa3a2ea5b",
+          "bytes": 1546
+        },
+        {
+          "path": "input.json",
+          "sha256": "5033816b1bbcc276e44ea5df152e27652c86ce75ff860606f6eedaf8d825e241",
+          "bytes": 21
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "dbabe32ebb6f5a3244188c51208de72423cf2336f64f616d27b678a2ee236e77",
+          "bytes": 246
+        },
+        {
+          "path": "series.csv",
+          "sha256": "03cf8863d54ac8e0116470fbc21f5e08cfb1dd02308f55d96467237e92b5dfec",
+          "bytes": 45
+        },
+        {
+          "path": "figure.png",
+          "sha256": "7d102f9fb0bf76da660062a690d2b9b8a2a56e329562f5f6fb0ffab2602c0b16",
+          "bytes": 129792
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "47ac40f3a0d8b0e2daa2bed6def51e1ebc750dc844c8c526133bb99b5cd1aaf7",
+          "bytes": 33352
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "4be7d2848214db70812433816912abfd292d8045bbf06496646a1874f437ef0f",
+          "bytes": 13791
+        }
+      ],
+      "run_report": "corpus/recipes/fragment-global-matching/run_report.json"
+    },
+    {
+      "recipe_id": "fragment-row-matching",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2013-b201",
+        "relationship": "exact",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2013/B201/唐隽玉，胡文伟，孙雪清/唐隽玉，孙雪清，胡文伟.pdf",
+          "blob_sha": "b3498fe47d084d8a9a383e2b5344224f8df981e1",
+          "sha256": "b0a4938f88e7ddc64b704368db626cc32610f0fbe9a1c6757014dbb6889b85fc"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2013/B201/唐隽玉，胡文伟，孙雪清/国赛B题数据及源程序/问题二的程序/附件三的程序/hangpaixu.m",
+            "blob_sha": "00599d4c2e37cbe0e47f18886766963d6d220e78",
+            "sha256": "f4a95d163ad5911a9f13d90b5a8b91ed585d36ce619f04ff58283a41d6548c9e",
+            "execution_status": "not_executed_static_review_only"
+          },
+          {
+            "path": "2-1国赛题目+论文/2013/B201/唐隽玉，胡文伟，孙雪清/国赛B题数据及源程序/问题二的程序/附件四的程序/hangpaixu_4.m",
+            "blob_sha": "11ed36370ef3f114c1c1b6d2fbc277a9b30cdaaf",
+            "sha256": "a5ea8884692252790e5603d475af824e763c96b4a2805f5cdde23b525052c80b",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260804,
+      "metrics": {
+        "adjacency_accuracy": 1.0,
+        "shuffled_baseline": 0.2222222222222222,
+        "recovered_order": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "e96d6b526868f50154b7c8783d15174fe0bc6c9c3abbadcb5f66f8d3cb7feeab",
+          "bytes": 1646
+        },
+        {
+          "path": "input.json",
+          "sha256": "eacceab37faaf99e96622b8fc6da2671da0e6e2fd3735556a3b782416247cadc",
+          "bytes": 39
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "b280ac0c5bc41746c2d7517947db3ca16fd96d433ff5b3e0a232ea73b9e29e2f",
+          "bytes": 278
+        },
+        {
+          "path": "series.csv",
+          "sha256": "afef8a82276e1d83eb46900005eb224700b81f091a12adb4038d038ed26f0a5e",
+          "bytes": 55
+        },
+        {
+          "path": "figure.png",
+          "sha256": "6a5791a4a66d5b6761320d9c3a093ef9e8987186023df0db5f76bbb9226e2b3c",
+          "bytes": 120638
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "40db4b2d20921aaeb4ae7e772071e30da7e88376bedd512d05e136fe392d0c9f",
+          "bytes": 26881
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "ff32462f62da165817b2885f375bcd597a72bdecc402e26430490038a3644ff8",
+          "bytes": 12050
+        }
+      ],
+      "run_report": "corpus/recipes/fragment-row-matching/run_report.json"
+    },
+    {
+      "recipe_id": "lunar-descent-control",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2014-a305",
+        "relationship": "exact",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/A10009072_吉张鹤轩_杨升_陈同广.pdf",
+          "blob_sha": "56100fa1d940da3d7f3ef97385a878d54e000346",
+          "sha256": "f451834248c687e1118160cbdffd18490e80f313f3aeacf3e314f2fbef476ecb"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/genpics.m",
+            "blob_sha": "019ac4dae00f81683bd185c992e878c310a62ae2",
+            "sha256": "3eda8c13a9edc051b12ef8d76916146ff1514debb462fbaf895cb16eb7320650",
+            "execution_status": "not_executed_static_review_only"
+          },
+          {
+            "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/calc2.m",
+            "blob_sha": "2358950d0a5b176e6850be25ccdc880f3f829214",
+            "sha256": "10ef9a0190abdbaf4428181e9ce33050fd79d968b08f0e815a7e479851671635",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260807,
+      "metrics": {
+        "touchdown_speed_mps": 2.000001554310319,
+        "fuel_proxy": 222.99199844568963,
+        "duration_s": 121.5,
+        "constant_thrust_baseline_speed_mps": 47.68300000000001
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "1827cbb343c192609e6c736248d02b0ba868b8db3bd56e913c7e5519b0494137",
+          "bytes": 1544
+        },
+        {
+          "path": "input.json",
+          "sha256": "6e13bedf72ca65c5b179829136b29311a39ca5f99f83076b044ba8b914885feb",
+          "bytes": 106
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "34825d600c1a62a10aa86d4bd7d33d7145d8e069382069fe359e319a64af3fde",
+          "bytes": 241
+        },
+        {
+          "path": "series.csv",
+          "sha256": "6d419f392074e013857bdc966c54ff13dab4d1d6407402c81409149e935ce7c3",
+          "bytes": 35569
+        },
+        {
+          "path": "figure.png",
+          "sha256": "5fb72ca42e66688d30f366021f657c30bdeebc52dcaa06a2ae0b2dd764ccb0cd",
+          "bytes": 134813
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "203b540e0a8b23bc6806c086709afb26a157df9ce072b466cf736015fbaa554c",
+          "bytes": 29847
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "0b8662762522d79a28a0c1a67f766782384643f9800a96f0dd37655a3ebc2391",
+          "bytes": 12634
+        }
+      ],
+      "run_report": "corpus/recipes/lunar-descent-control/run_report.json"
+    },
+    {
+      "recipe_id": "normal-uncertainty-monte-carlo",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2014-a012",
+        "relationship": "exact",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/A15010142_王子硕_吴鹏飞_陶立.pdf",
+          "blob_sha": "093081278f94d0e1fa9d0056b4f5c2abf1c9ca87",
+          "sha256": "f4110e706e39def44330b997c0142b773ef9d633d7a615ea33ea110afa451c1e"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/附件3-normal_distribution.m",
+            "blob_sha": "ea3caa6d16ad2f8e6df9d4e48cf90dff0408a309",
+            "sha256": "b477430b016db92526e52e93c0c2cb37c11d456ea0f0995da6c301e2253df3dc",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260806,
+      "metrics": {
+        "mean": 9.423350658331675,
+        "std": 1.6487412913602235,
+        "q025": 6.189383809172026,
+        "q975": 12.640939520031438,
+        "baseline_at_means": 9.5
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "19ec1b2135ce04f1005212886bbcad2417153f2ebe1f08c4bdaf99fc7c0306c3",
+          "bytes": 1227
+        },
+        {
+          "path": "input.json",
+          "sha256": "c904fd9c85130acad60b12d1fe2056fbc3eb30493eef7db33cadae08b78da0f2",
+          "bytes": 98
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "af15b33f07ce41f14508d1d01d3da7ddd56550b27bff58da928cddbfc5b6e8f1",
+          "bytes": 236
+        },
+        {
+          "path": "series.csv",
+          "sha256": "a476b0a6a64287566f704569f61f76f9b96b071b91352b1851e513560222605d",
+          "bytes": 1577
+        },
+        {
+          "path": "figure.png",
+          "sha256": "68005d14e989a21fe8194678885b71eb66e2192bff7a6e07ba0e219ef675f300",
+          "bytes": 137336
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "c8a27cba9981c353ea4dce40f51ff33b5b2c590cc0b7cbea1a06236240569e95",
+          "bytes": 28907
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "ce297eb64e373303dd3ba7913d22cb9507a35655a3f43f2f5c8306fe7ead72b0",
+          "bytes": 11886
+        }
+      ],
+      "run_report": "corpus/recipes/normal-uncertainty-monte-carlo/run_report.json"
+    },
+    {
+      "recipe_id": "ode-parameter-sensitivity",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2014-a499",
+        "relationship": "exact",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/A11141001_陈超_唐梦珏_杨克宇.pdf",
+          "blob_sha": "0cec2ae306ae6a3ca2ee81f36669c96d7b9293e2",
+          "sha256": "59d01bbf09e225d890208bd36166bf2a4d61f0fb56ad4f7edd140cfbacc00d22"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/defen.m",
+            "blob_sha": "f1fe267a11ce5c1582b735ddd235ede9874f47f4",
+            "sha256": "92e779bb4a5fda6b267f59a2e56c2f438cc7e65ea3a07d056912eedf414b7b9b",
+            "execution_status": "not_executed_static_review_only"
+          },
+          {
+            "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/soujie.m",
+            "blob_sha": "da0ec52ad01ceec3f085ec1466e2ff16efe9a82d",
+            "sha256": "084c8e8b8a04c7429556a2b1d9119acb0c1ab7aabd83aaef46bc7e1427d24780",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260809,
+      "metrics": {
+        "max_final_state": 97.18579887494279,
+        "max_sensitivity": 399.7518860328364,
+        "baseline_final_state": 70.1903056168661
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "1a1a46cdb286f7625bf0fbd7c6faec1b7ae80b6d51491ea5bb281c659c708474",
+          "bytes": 1532
+        },
+        {
+          "path": "input.json",
+          "sha256": "85d5fb104f5c9dfe528d0289f3795d67d7b4ee14039b0386a2700a5dd7b1ea3d",
+          "bytes": 129
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "38b2548c760fbcfb0c8029032ff67480d569a3767effbcdc51fe696bef77d405",
+          "bytes": 204
+        },
+        {
+          "path": "series.csv",
+          "sha256": "4effbe029fc5fdd474a33f5e30aad1747f32dba3d4611c51731b4b2fdbafdf14",
+          "bytes": 3065
+        },
+        {
+          "path": "figure.png",
+          "sha256": "392e2bdaab69a6c54170f5667d2f7a6ab9a0e9ea92d7a9d4224e621d472d3d7f",
+          "bytes": 116660
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "29359e939ad82bb2ccbb1551e00953a3dc506b1919f4992b16cae531f288df28",
+          "bytes": 30211
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "0ebb684bedc1140b27c389b228463295f633c048ca9d9a5c4199795b0e809685",
+          "bytes": 13407
+        }
+      ],
+      "run_report": "corpus/recipes/ode-parameter-sensitivity/run_report.json"
+    },
+    {
+      "recipe_id": "solar-tilt-sensitivity",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2012-b149",
+        "relationship": "exact",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2012/B149/B149/B149答卷.pdf",
+          "blob_sha": "32e0f4b9c60453fe4eec08b93a1365c052d6607a",
+          "sha256": "f0aba132aece5abf111c3328934afc1c976c60b8ef200b2f853a5c341bc7c7e0"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2012/B149/B149/B149源程序/M/gfdc_zuhe2.m",
+            "blob_sha": "b7c23a3f06204132733bc20a7bd9a1516c91577e",
+            "sha256": "d0643819f9ddac7459cfc3769ad037199a0aad252772b59c91bc1948946e7c7e",
+            "execution_status": "not_executed_static_review_only"
+          },
+          {
+            "path": "2-1国赛题目+论文/2012/B149/B149/B149源程序/M/sun_jisuan_day_2.m",
+            "blob_sha": "122186fa258abdab80c236f05a6601e84eb42498",
+            "sha256": "893f883e52c1fa44ac7784ea16e308be5b18688d77d7cdf18759fbb400c7922e",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260801,
+      "metrics": {
+        "best_tilt_deg": 40.0,
+        "normalized_energy": 0.9587562443668256,
+        "baseline_energy": 0.943792013670388,
+        "relative_gain": 0.015855432637368994
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "de2ab526aff6274a558e1c146e1353d7df939bd37dfe919b90f2a8d033f941f8",
+          "bytes": 1448
+        },
+        {
+          "path": "input.json",
+          "sha256": "6dda37cbe793be7150dcee34bf9208591cf52613fb4f6695c2ef229cd9e98ae9",
+          "bytes": 217
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "ec135549ff13700d2baa513cba678ae5699c74389b327757b5a8befe5b594eed",
+          "bytes": 229
+        },
+        {
+          "path": "series.csv",
+          "sha256": "e9a32cd594e5cb04830ca5805a80898f91defbdb00fc6c0bd73c3ffaaa325c2c",
+          "bytes": 2259
+        },
+        {
+          "path": "figure.png",
+          "sha256": "be8fd5490691dfa9726db245a39feeeab559381e8bff2202754b6cd9a18efe8e",
+          "bytes": 152960
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "9c5f1611952c981a25ba6f41cc67196f55a9577f3aa8e37f751810e0630d7194",
+          "bytes": 32332
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "3dfca6708a26dcdc92202b35525d0ad15ce3b405147409b06ea9e40b483b5e3e",
+          "bytes": 14322
+        }
+      ],
+      "run_report": "corpus/recipes/solar-tilt-sensitivity/run_report.json"
+    },
+    {
+      "recipe_id": "storage-slot-sizing",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2014-d026",
+        "relationship": "exact",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/D22022011_阎发静_周靖_杨峰.pdf",
+          "blob_sha": "7450ecbf9c51c86f29d79809148f391e75ad495d",
+          "sha256": "f40b9b1ff1a473a1afb7ed10f5aaeb2831a4656ecc5d5e27d65f81d4a228795a"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/G.m",
+            "blob_sha": "a92d124914237936a818ecf7280e3f87e8b6af0f",
+            "sha256": "f8bda5b81836b515fecac2d24e012302af56bd5560bc71b835a5045922455578",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260812,
+      "metrics": {
+        "required_cabinets": 3,
+        "standardized_area_mm2": 7550989.0,
+        "packing_overhead_ratio": 0.13104146633065206,
+        "single_cabinet_baseline_capacity_mm2": 3000000.0
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "f51b3fdbd330266a905d0112be19a15b80877c0711d5560038c1a016bf267711",
+          "bytes": 1177
+        },
+        {
+          "path": "input.json",
+          "sha256": "6952c12b169444887e15ea4c7f1684d5ebe626686b10216723935896358796d6",
+          "bytes": 519
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "a8de4f53a983bbf2c090e39bc9f1e46327ed4c37549b8303de7b66af88441ad9",
+          "bytes": 243
+        },
+        {
+          "path": "series.csv",
+          "sha256": "3f05023f3e89e0eca893c355192e111d9252294ba410bc7884015d2f8ce166f4",
+          "bytes": 2771
+        },
+        {
+          "path": "figure.png",
+          "sha256": "01e94b910935b4545960023598167dffb9c9d877bcee817804b5334928c97ab6",
+          "bytes": 146823
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "c3d064967a4f2dc25347a716ce336d1d842708eb33687b4b3b34e51988cc1f0f",
+          "bytes": 37342
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "1c70292f6e45cd8dc938821d8a499465e0b2561237936b2c4b3d50c2e750f46c",
+          "bytes": 14963
+        }
+      ],
+      "run_report": "corpus/recipes/storage-slot-sizing/run_report.json"
+    },
+    {
+      "recipe_id": "traffic-capacity-ga",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2013-a056",
+        "relationship": "strong_partial",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2013/A056/5486/5486.pdf",
+          "blob_sha": "29ce09bd0b75f5ff763168407005295d2af714bc",
+          "sha256": "bae180e8fe47c11e9096a3bd2484fc08e66fcfe6969e65c6c644679ed7cab02d"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem3_2.m",
+            "blob_sha": "56f0ca01dee1c6113006154c411d286de971c83c",
+            "sha256": "351dcbb9a19bbe890812f3949f778c2c2ac071363a731f6d75115ee7d0bb5160",
+            "execution_status": "not_executed_static_review_only"
+          },
+          {
+            "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem4.m",
+            "blob_sha": "ea61dbf80797be6eedd9bf1430bbbf8c6f947f70",
+            "sha256": "f57a1d47d29b551c29a7dd4c2e8dc189d005b480180b4ab3caf33b671109e8cb",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260802,
+      "metrics": {
+        "best_speed_kmh": 75.0,
+        "best_headway_s": 0.8,
+        "optimized_score": 3421.0384615384614,
+        "baseline_score": 1666.6666666666665
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "7f2a0543781287f8179a3b1b888795066d656cbe2762ae454ebf1799e4d8aadd",
+          "bytes": 1444
+        },
+        {
+          "path": "input.json",
+          "sha256": "1f4a8a6e783f72935ba09100b60f51bb5d1a648372ae853b6825ec954ece20f5",
+          "bytes": 48
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "5baee56fa3ac4118321a46b3295353e38527ca8ec985d36336f5b5ad85c4ae31",
+          "bytes": 209
+        },
+        {
+          "path": "series.csv",
+          "sha256": "1652e6e203999f707e9205458e88174a9c74742cd95a23be8bc6a7e000c398a8",
+          "bytes": 1373
+        },
+        {
+          "path": "figure.png",
+          "sha256": "bd7374f258b6ef8619409dbadd1e974b38f4f0c3d1bb61e37dde2645e0793bf0",
+          "bytes": 107317
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "06224f5808c8d549199b052767abef68ee691427ea016d1abd298bd2d1a2fbef",
+          "bytes": 28682
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "c545e8b3cab0fa8402a8572e14f4e04fba5a44435ee1db09a04b468a8b080e7b",
+          "bytes": 11700
+        }
+      ],
+      "run_report": "corpus/recipes/traffic-capacity-ga/run_report.json"
+    },
+    {
+      "recipe_id": "trajectory-angle-scan",
+      "status": "passed",
+      "deterministic": true,
+      "source_pair": {
+        "candidate_id": "cumcm-2014-a377",
+        "relationship": "exact",
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "paper": {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/A11168020_郑建国_陶禹诺_严洒洒.pdf",
+          "blob_sha": "b9e1e69644c0df8811c48c7360695eaab8c5cd5a",
+          "sha256": "a7a710a4da6200cc3078dab037d54cb47d973ae96f9987d9e575c8d8d0bc2029"
+        },
+        "code": [
+          {
+            "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/pro2qiujie.m",
+            "blob_sha": "c91610a36743e5f799732ca3ddcd7aa2a303b4c6",
+            "sha256": "87c9211e3b44a06b096e3a96faa530fc57a1bc9e28d2229c31791d1d2391b6eb",
+            "execution_status": "not_executed_static_review_only"
+          },
+          {
+            "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/guiji.m",
+            "blob_sha": "468e56b00b8830eb7a566a9bd9521a54ebacac45",
+            "sha256": "855428091c609826af7ca967db2412e5c1ffc04bab555ea6ee2db3a197954d1b",
+            "execution_status": "not_executed_static_review_only"
+          }
+        ]
+      },
+      "environment": {
+        "python": "3.13.9",
+        "executable": "D:\\anaconda3\\python.exe",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "numpy": "2.3.5",
+        "matplotlib": "3.10.6"
+      },
+      "seed": 20260808,
+      "metrics": {
+        "best_angle_deg": 32.5,
+        "range_m": 621.2042364968842,
+        "absolute_error_m": 1.204236496884164,
+        "baseline_error_m": 65.42303771661568
+      },
+      "input_hashes": [
+        {
+          "path": "run.py",
+          "sha256": "341a0593eafdee08230167431cb8b1bfdef287de7c8239359eefbc289645d228",
+          "bytes": 18492
+        },
+        {
+          "path": "recipe.json",
+          "sha256": "3871e428f705454ed495cdd566f6bbe884cbe8aecee689e1ec896df46b80f36b",
+          "bytes": 1543
+        },
+        {
+          "path": "input.json",
+          "sha256": "ed1add162389f46bd3e11ddcf9a6d15c76dd86ef465de3e10b74e7c4db62194a",
+          "bytes": 138
+        }
+      ],
+      "output_hashes": [
+        {
+          "path": "results.json",
+          "sha256": "92c1a6ce6ff7ddd8c08951dc3aaf1a8e21fd922482b83a4e56dc2aee25f010ee",
+          "bytes": 219
+        },
+        {
+          "path": "series.csv",
+          "sha256": "f3e82c80b88b13df35e9bc1a3ae8fc4f6cdad6717220d451f569f303175fb794",
+          "bytes": 3671
+        },
+        {
+          "path": "figure.png",
+          "sha256": "c96b63359d6449397c00e627765f66d3ed36c131d1dcb9bcbb0ecb9c89c18007",
+          "bytes": 155859
+        },
+        {
+          "path": "figure.svg",
+          "sha256": "e053728e7c63792e0d71969de9300a7e4692cf136c601e133b0ebe72d760043e",
+          "bytes": 32437
+        },
+        {
+          "path": "figure.pdf",
+          "sha256": "bf5e6dfd09451b05aa6a7b3d1e3a28655671be4cc4eef530601ac1916ce400ac",
+          "bytes": 13876
+        }
+      ],
+      "run_report": "corpus/recipes/trajectory-angle-scan/run_report.json"
+    }
+  ],
+  "known_gaps": [
+    "This pinned CUMCM subtree contains only 17 unique PDF candidates with MATLAB in the same team-level directory, so 20 trusted pairs cannot be produced honestly from this scope.",
+    "Five canonical candidates lacked sufficient page-to-code overlap and remain candidate_only.",
+    "Auxiliary data files are metadata-only in this pass; no unreviewed upstream data or MATLAB was executed.",
+    "Several historical PDFs contain malformed cross-reference pointers; pypdf recovered text with warnings, so visible page locators remain the primary evidence.",
+    "The content-addressed download area may contain unreferenced objects from an interrupted raw download; download_manifest.json is the authoritative allowlist."
+  ],
+  "staging_patch_proposals": [
+    "corpus/reports/staging_patch_proposals/download_pair_evidence.py",
+    "corpus/reports/staging_patch_proposals/analyze_pair_evidence.py",
+    "corpus/reports/staging_patch_proposals/recipe_runner.py",
+    "corpus/reports/staging_patch_proposals/build_recipe_fixtures.py",
+    "corpus/reports/staging_patch_proposals/run_recipe_fixtures.py",
+    "corpus/reports/staging_patch_proposals/verify_recipe_determinism.py",
+    "corpus/reports/staging_patch_proposals/build_code_recipe_report.py"
+  ]
+}

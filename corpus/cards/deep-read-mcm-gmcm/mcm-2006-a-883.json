@@ -1,0 +1,260 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "mcm-2006-a-883",
+  "identity": {
+    "contest": "MCM",
+    "year": 2006,
+    "problem": "A",
+    "team_id": "883",
+    "title": "Optimization of irrigation time, pipe set placements, and irrigation uniformity for a hand move system"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/zhanwen/MathModel/git/blobs/7e44d90f05c84cf519588a79ff919734fb655c72",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "美赛论文/2006美赛特等奖原版论文集/A-883-Outstanding.pdf"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://www.contest.comap.com/undergraduate/contests/mcm/contests/2006/results/MCM%202006%20Final%20Results.pdf",
+    "contest": "MCM",
+    "year": 2006,
+    "problem": "A",
+    "team_id": "883",
+    "title": "Optimization of irrigation time, pipe set placements, and irrigation uniformity for a hand move system",
+    "award": "Outstanding Winner",
+    "locator": "official PDF page 2; extracted text line 74",
+    "matched_text": "883 UC Davis                                              Sarah Williams     Outstanding Winner                     A"
+  },
+  "authenticity": {
+    "level": "B",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": true
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "The control number, contest year, problem, and Outstanding Winner label match a COMAP official result PDF.",
+      "The paper itself is not served from an official paper-display page, so the level is B rather than A."
+    ]
+  },
+  "pdf": {
+    "sha256": "12787fd8f903c7947f208b5ef4b9a66de3d00982aa594ed77ada15fd1e296153",
+    "pages": 23,
+    "local_path": "corpus/raw/mcm-gmcm/mcm-2006-a-883/paper.pdf",
+    "first_page_phash": "dhash64:84e09082c2829200",
+    "text_sha256": "8ad55a80267a2c1905bcd760284be5985a3556316623a966f1cd39cdba30a1dc"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "title",
+        "layout"
+      ],
+      "observation": "Title and a dense table of contents open the paper; there is no standalone abstract.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-a-883/page-01.png"
+    },
+    {
+      "page": 6,
+      "tags": [
+        "model",
+        "figure"
+      ],
+      "observation": "A one-dimensional sprinkler profile is paired with a two-dimensional field heatmap.",
+      "derivation": "mixed",
+      "locator": "PDF page 6",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-a-883/page-06.png"
+    },
+    {
+      "page": 11,
+      "tags": [
+        "optimization",
+        "figure"
+      ],
+      "observation": "Placement heatmaps after 100 and 5000 iterations expose convergence behavior.",
+      "derivation": "mixed",
+      "locator": "PDF page 11",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-a-883/page-11.png"
+    },
+    {
+      "page": 13,
+      "tags": [
+        "result",
+        "figure"
+      ],
+      "observation": "The final placement and pipe setup are shown directly on the precipitation field.",
+      "derivation": "mixed",
+      "locator": "PDF page 13",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-a-883/page-13.png"
+    },
+    {
+      "page": 14,
+      "tags": [
+        "result",
+        "table"
+      ],
+      "observation": "A daily move schedule and compact final placement plot translate the optimization into operations.",
+      "derivation": "mixed",
+      "locator": "PDF page 14",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-a-883/page-14.png"
+    },
+    {
+      "page": 15,
+      "tags": [
+        "risk",
+        "boundary"
+      ],
+      "observation": "Weaknesses explicitly identify wind, terrain, profile calibration, and uniformity-metric limitations.",
+      "derivation": "mixed",
+      "locator": "PDF page 15",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2006-a-883/page-15.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "role": "missing-abstract",
+      "observation": "No standalone summary is supplied; the title and contents expose scope but not quantitative findings."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 6,
+      "step": "sprinkler-response",
+      "observation": "Convert a radial sprinkler profile into a gridded precipitation field.",
+      "order": 1
+    },
+    {
+      "page": 11,
+      "step": "coverage-and-uniformity",
+      "observation": "Search feasible placements and use SPSA iterations to improve coverage uniformity.",
+      "order": 2
+    },
+    {
+      "page": 13,
+      "step": "setup-minimization",
+      "observation": "Choose pipe setups and placements that retain coverage while reducing moves.",
+      "order": 3
+    },
+    {
+      "page": 14,
+      "step": "operational-schedule",
+      "observation": "Convert the optimized geometry into a day-by-day irrigation schedule.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 11,
+      "method": "iteration-check",
+      "observation": "Compare 100 and 5000 SPSA iterations to show that the spatial solution stabilizes.",
+      "order": 1
+    },
+    {
+      "page": 14,
+      "method": "constraint-check",
+      "observation": "Report final placement and irrigation schedule under the field and timing constraints.",
+      "order": 2
+    },
+    {
+      "page": 15,
+      "method": "limitation-audit",
+      "observation": "Bound conclusions by wind, soil, terrain, sprinkler-profile, and metric assumptions.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 6,
+      "role": "mechanism-to-field",
+      "chart_type": "profile plus heatmap",
+      "lesson": "Pair the assumed local response with its spatial consequence before optimization."
+    },
+    {
+      "page": 11,
+      "role": "convergence",
+      "chart_type": "before-after heatmaps",
+      "lesson": "Show intermediate and long-run spatial states using the same color scale."
+    },
+    {
+      "page": 13,
+      "role": "main-result",
+      "chart_type": "annotated heatmap",
+      "lesson": "Overlay the decision geometry on the response field so the solution is inspectable."
+    },
+    {
+      "page": 14,
+      "role": "implementation",
+      "chart_type": "table plus placement map",
+      "lesson": "Place the operational schedule beside the final geometry."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 6,
+      "rule": "Explain a spatial objective with a response profile and field map before presenting the optimizer.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 11,
+      "rule": "Use matched heatmaps at early and late iterations to make convergence spatially visible.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 15,
+      "rule": "Give model limitations their own subsection and tie each one to a violated physical assumption.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 1,
+      "risk": "The absence of a result-bearing abstract weakens first-page decision density.",
+      "severity": "medium"
+    },
+    {
+      "page": 15,
+      "risk": "No observed field-data baseline is shown; weather and soil effects are largely assumed.",
+      "severity": "high"
+    },
+    {
+      "page": 15,
+      "risk": "MATLAB code is embedded in the appendix but no external data or executable package is linked.",
+      "severity": "medium"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/mcm-2006-a-883/source_manifest.json",
+    "selected_pages": [
+      1,
+      2,
+      6,
+      11,
+      13,
+      14,
+      15
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "PARTIAL",
+  "selected_cards": 42,
+  "group_counts": {
+    "cumcm": 24,
+    "gmcm": 6,
+    "mcm_icm": 12
+  },
+  "authenticity_counts": {
+    "A": 6,
+    "B": 12,
+    "C": 24
+  },
+  "review_status_counts": {
+    "evidence_deep_read": 42
+  },
+  "content_evidence_deep_reads": 42,
+  "award_verified_deep_reads": 18,
+  "strict_evidence_deep_reads": 18,
+  "validated_paper_code_pairs": 12,
+  "validated_paper_code_pair_ids": [
+    "cumcm-2012-b149",
+    "cumcm-2013-a056",
+    "cumcm-2013-a117",
+    "cumcm-2013-b201",
+    "cumcm-2013-b254",
+    "cumcm-2014-a012",
+    "cumcm-2014-a305",
+    "cumcm-2014-a377",
+    "cumcm-2014-a499",
+    "cumcm-2014-b009",
+    "cumcm-2014-b261",
+    "cumcm-2014-d026"
+  ],
+  "runnable_recipe_count": 12,
+  "targets": {
+    "cumcm": {
+      "target": 24,
+      "observed": 24,
+      "passed": true
+    },
+    "mcm_icm": {
+      "target": 12,
+      "observed": 12,
+      "passed": true
+    },
+    "gmcm": {
+      "target": 6,
+      "observed": 6,
+      "passed": true
+    },
+    "paper_code_pairs": {
+      "target": 20,
+      "observed": 12,
+      "passed": false
+    },
+    "runnable_recipes": {
+      "target": 12,
+      "observed": 12,
+      "passed": true
+    },
+    "content_evidence_deep_reads": {
+      "target": 42,
+      "observed": 42,
+      "passed": true
+    }
+  },
+  "invalid_cards": [],
+  "interpretation": "Quantity, content evidence, award authenticity, code pairing, and runnable reproduction are separate gates. Level C content deep reads may support neutral layout/model lessons but must not be described as award-winning papers."
+}

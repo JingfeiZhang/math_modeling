@@ -1,0 +1,53 @@
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{siunitx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{caption,subcaption}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{iftex}
+\usepackage[hidelinks]{hyperref}
+
+\ifXeTeX\else
+  \PackageError{mcm-current}{This template requires XeLaTeX}{}
+\fi
+\IfFontExistsTF{TeX Gyre Termes}{\setmainfont{TeX Gyre Termes}}{}
+
+\definecolor{PromptGray}{HTML}{666666}
+\newcommand{\TemplatePrompt}[1]{%
+  \par\noindent\textcolor{PromptGray}{\itshape [Template prompt: #1]}\par
+}
+\newcommand{\FrozenClaim}[1]{%
+  \PackageError{mcm-current}{Frozen claim #1 has not been generated}{}
+}
+
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0pt}
+\setstretch{1.08}
+\setlist[itemize]{nosep,leftmargin=*,topsep=2pt,partopsep=0pt}
+\setlist[enumerate]{nosep,leftmargin=*,topsep=2pt,partopsep=0pt}
+\widowpenalty=10000
+\clubpenalty=10000
+\brokenpenalty=10000
+\predisplaypenalty=10000
+
+\titleformat{\section}{\large\bfseries}{\thesection}{0.65em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.55em}{}
+\captionsetup{font=small,labelsep=period,skip=5pt}
+
+\fancypagestyle{body}{%
+  \fancyhf{}
+  \fancyhead[L]{Team \#\TeamControlNumber}
+  \fancyhead[R]{Page \thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\sisetup{detect-all,group-separator={,},group-minimum-digits=4}
+\graphicspath{{figures/}{../../figures/}}

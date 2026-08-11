@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "question_id": "Q1",
+  "warmup": {
+    "metadata": {
+      "method": "full_history_event_boundary_earliest_feasible",
+      "pre_q1_task_count": 49462,
+      "scheduled_pre_q1_count": 49462,
+      "completed_before_q1_count": 49404,
+      "carry_in_count": 58,
+      "conservation_count": 49462,
+      "conservation_passed": true,
+      "scheduled_id_count": 49462,
+      "unresolved_id_count": 0,
+      "carry_id_count": 58,
+      "event_sources": [
+        "arrival_or_earliest_start",
+        "task_completion",
+        "hour_boundary",
+        "latest_start"
+      ],
+      "minute_scan_used": false,
+      "unresolved_count": 0,
+      "probe_passed": true
+    },
+    "unresolved": []
+  },
+  "baseline": {
+    "passed": true,
+    "unscheduled_count": 0
+  },
+  "candidates": {
+    "12": {
+      "passed": true,
+      "violations": [],
+      "checks": [
+        "all_final_tasks_once",
+        "realtime_arrival_start",
+        "latency_filter",
+        "gpu_capacity",
+        "it_power",
+        "facility_power",
+        "latest_finish",
+        "no_task_at_2406"
+      ],
+      "final_task_count": 538,
+      "scheduled_final_task_count": 538
+    },
+    "32": {
+      "passed": true,
+      "violations": [],
+      "checks": [
+        "all_final_tasks_once",
+        "realtime_arrival_start",
+        "latency_filter",
+        "gpu_capacity",
+        "it_power",
+        "facility_power",
+        "latest_finish",
+        "no_task_at_2406"
+      ],
+      "final_task_count": 538,
+      "scheduled_final_task_count": 538
+    },
+    "64": {
+      "passed": true,
+      "violations": [],
+      "checks": [
+        "all_final_tasks_once",
+        "realtime_arrival_start",
+        "latency_filter",
+        "gpu_capacity",
+        "it_power",
+        "facility_power",
+        "latest_finish",
+        "no_task_at_2406"
+      ],
+      "final_task_count": 538,
+      "scheduled_final_task_count": 538
+    }
+  }
+}

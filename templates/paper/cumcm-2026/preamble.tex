@@ -1,0 +1,75 @@
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{siunitx}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{caption,subcaption}
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{iftex}
+\usepackage[hidelinks]{hyperref}
+
+\ifXeTeX\else
+  \PackageError{cumcm-2026}{This template requires XeLaTeX}{}
+\fi
+
+\definecolor{PromptGray}{HTML}{666666}
+\newcommand{\TemplatePrompt}[1]{%
+  \par\noindent{\color{PromptGray}\itshape [模板提示：#1]}\par
+}
+\newcommand{\WritingContract}[4]{%
+  \par\smallskip
+  \begingroup
+  \noindent\color{PromptGray}\itshape
+  \textbf{表达目标：}#1\par
+  \noindent\textbf{必写内容：}#2\par
+  \noindent\textbf{证据要求：}#3\par
+  \noindent\textbf{禁止内容：}#4\par
+  \endgroup
+  \smallskip
+}
+\newcommand{\FrozenClaim}[1]{%
+  \PackageError{cumcm-2026}{Frozen claim #1 has not been generated}{}
+}
+\newcommand{\UpCite}[1]{\textsuperscript{\cite{#1}}}
+
+% references.tex owns the visible heading so BibTeX must not emit a second one.
+\AtBeginDocument{%
+  \patchcmd{\thebibliography}{\section*{\refname}}{}{}%
+    {\PackageError{cumcm-2026}{Could not suppress the automatic bibliography heading}{}}%
+}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\setstretch{1.0}
+\setlist[itemize]{nosep,leftmargin=*,topsep=2pt,partopsep=0pt}
+\setlist[enumerate]{nosep,leftmargin=*,topsep=2pt,partopsep=0pt}
+\widowpenalty=10000
+\clubpenalty=10000
+\brokenpenalty=10000
+\predisplaypenalty=10000
+
+% Keep headings with enough following material without forcing every section
+% onto a new page. This is the page-flow rule used by the contest skeleton.
+\usepackage{needspace}
+\newcommand{\SectionStart}{\Needspace{5\baselineskip}}
+\newcommand{\SubsectionStart}{\Needspace{3\baselineskip}}
+
+\titleformat{\section}{\centering\bfseries\zihao{-3}}{\thesection}{0.75em}{}
+\titleformat{\subsection}{\bfseries\zihao{4}}{\thesubsection}{0.65em}{}
+\titleformat{\subsubsection}{\bfseries\zihao{-4}}{\thesubsubsection}{0.55em}{}
+\captionsetup{font=small,labelsep=quad,skip=5pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\sisetup{detect-all,group-separator={,},group-minimum-digits=4}
+\graphicspath{{figures/}{../../figures/}}

@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q2",
+  "status": "PASS",
+  "overall_passed": true,
+  "scope": "all arrivals 0-2399; no new arrivals in closeout hours 2400-2405; end boundary 2406",
+  "hard_constraints": [
+    "task_assignment_once",
+    "nonpreemption_and_duration_identity",
+    "release_time",
+    "realtime_at_arrival",
+    "network_latency",
+    "latest_finish_and_closeout",
+    "GPU_capacity",
+    "IT_power_capacity",
+    "facility_power_capacity",
+    "single_execution_region"
+  ],
+  "metric_definitions": {
+    "cost_CNY": "minute-integrated facility load including fixed non-AI load times supplied regional hourly electricity price",
+    "carbon_tCO2": "minute-integrated facility load including fixed non-AI load times supplied regional hourly carbon intensity",
+    "renewable_utilization_ratio": "minute-integrated min(facility load, supplied available renewable) divided by facility energy",
+    "mean_latency_ms": "task-weighted source-to-execution latency from the supplied matrix",
+    "task_completion_rate": "unique scheduled input TaskIDs divided by the 50000 input TaskIDs",
+    "SLA_violation_rate": "late finish or real-time start mismatch divided by input task count"
+  },
+  "same_input_same_constraint_baseline": true,
+  "same_output_class": true,
+  "baseline": {
+    "method": "full_horizon_FIFO_latency_feasible_local_first",
+    "scope": "all 50000 real arrivals in hours 0-2399; hours 2400-2405 closeout only",
+    "passed": true,
+    "checks": {
+      "task_set_exact": true,
+      "task_id_unique": true,
+      "duration_identity": true,
+      "earliest_start": true,
+      "realtime_arrival_start": true,
+      "latency_limit": true,
+      "latency_value_identity": true,
+      "SLA_latest_finish": true,
+      "closeout_end_at_or_before_2406": true,
+      "nonpreemptive_single_row": true,
+      "GPU_capacity": true,
+      "IT_power_capacity": true,
+      "facility_power_capacity": true
+    },
+    "expected_task_count": 50000,
+    "observed_task_count": 50000,
+    "task_completion_rate": 1.0,
+    "SLA_violation_count": 0,
+    "SLA_violation_rate": 0.0,
+    "mean_latency_ms": 5.06846,
+    "p95_latency_ms": 5.0,
+    "mean_wait_hours": 0.0,
+    "p95_wait_hours": 0.0,
+    "migration_rate": 0.0047,
+    "cost_CNY": 3359955010.883479,
+    "carbon_tCO2": 2893907.676691789,
+    "facility_energy_MWh": 6511273.902202224,
+    "renewable_used_MWh": 6511237.582605942,
+    "renewable_utilization_ratio": 0.9999944220444682,
+    "peak_facility_load_MW": 708.3490137599999,
+    "capacity": {
+      "RegionA": {
+        "max_GPU": 617.0,
+        "GPU_capacity": 630.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 419.970667,
+        "IT_capacity_MW": 420.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 566.9604004500001,
+        "facility_capacity_MW": 567.0,
+        "facility_over_minutes": 0
+      },
+      "RegionB": {
+        "max_GPU": 579.0,
+        "GPU_capacity": 585.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 409.846667,
+        "IT_capacity_MW": 410.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 553.29300045,
+        "facility_capacity_MW": 553.5,
+        "facility_over_minutes": 0
+      },
+      "RegionC": {
+        "max_GPU": 538.0,
+        "GPU_capacity": 540.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 404.98733300000004,
+        "IT_capacity_MW": 405.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 558.88251954,
+        "facility_capacity_MW": 558.9,
+        "facility_over_minutes": 0
+      },
+      "RegionD": {
+        "max_GPU": 1465.0,
+        "GPU_capacity": 1472.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 553.397667,
+        "IT_capacity_MW": 720.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 708.3490137599999,
+        "facility_capacity_MW": 921.6,
+        "facility_over_minutes": 0
+      },
+      "RegionE": {
+        "max_GPU": 1012.0,
+        "GPU_capacity": 1012.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 555.5143330000001,
+        "IT_capacity_MW": 560.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 694.3929162500001,
+        "facility_capacity_MW": 700.0,
+        "facility_over_minutes": 0
+      },
+      "RegionF": {
+        "max_GPU": 966.0,
+        "GPU_capacity": 966.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 531.156667,
+        "IT_capacity_MW": 540.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 674.56896709,
+        "facility_capacity_MW": 685.8,
+        "facility_over_minutes": 0
+      }
+    }
+  },
+  "candidate": {
+    "method": "full_horizon_rolling_shadow_exchange::lagrangian_balanced",
+    "scope": "all 50000 real arrivals in hours 0-2399; hours 2400-2405 closeout only",
+    "passed": true,
+    "checks": {
+      "task_set_exact": true,
+      "task_id_unique": true,
+      "duration_identity": true,
+      "earliest_start": true,
+      "realtime_arrival_start": true,
+      "latency_limit": true,
+      "latency_value_identity": true,
+      "SLA_latest_finish": true,
+      "closeout_end_at_or_before_2406": true,
+      "nonpreemptive_single_row": true,
+      "GPU_capacity": true,
+      "IT_power_capacity": true,
+      "facility_power_capacity": true
+    },
+    "expected_task_count": 50000,
+    "observed_task_count": 50000,
+    "task_completion_rate": 1.0,
+    "SLA_violation_count": 0,
+    "SLA_violation_rate": 0.0,
+    "mean_latency_ms": 9.25822,
+    "p95_latency_ms": 25.0,
+    "mean_wait_hours": 0.71444,
+    "p95_wait_hours": 5.0,
+    "migration_rate": 0.28926,
+    "cost_CNY": 3325853571.1277695,
+    "carbon_tCO2": 2838075.5957927215,
+    "facility_energy_MWh": 6507392.397522223,
+    "renewable_used_MWh": 6502214.8962044595,
+    "renewable_utilization_ratio": 0.9992043662036217,
+    "peak_facility_load_MW": 700.0,
+    "capacity": {
+      "RegionA": {
+        "max_GPU": 489.0,
+        "GPU_capacity": 630.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 417.876,
+        "IT_capacity_MW": 420.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 564.1326,
+        "facility_capacity_MW": 567.0,
+        "facility_over_minutes": 0
+      },
+      "RegionB": {
+        "max_GPU": 585.0,
+        "GPU_capacity": 585.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 409.99566699999997,
+        "IT_capacity_MW": 410.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 553.49415045,
+        "facility_capacity_MW": 553.5,
+        "facility_over_minutes": 0
+      },
+      "RegionC": {
+        "max_GPU": 540.0,
+        "GPU_capacity": 540.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 405.0,
+        "IT_capacity_MW": 405.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 558.9,
+        "facility_capacity_MW": 558.9,
+        "facility_over_minutes": 0
+      },
+      "RegionD": {
+        "max_GPU": 1110.0,
+        "GPU_capacity": 1472.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 532.731333,
+        "IT_capacity_MW": 720.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 681.89610624,
+        "facility_capacity_MW": 921.6,
+        "facility_over_minutes": 0
+      },
+      "RegionE": {
+        "max_GPU": 1012.0,
+        "GPU_capacity": 1012.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 560.0,
+        "IT_capacity_MW": 560.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 700.0,
+        "facility_capacity_MW": 700.0,
+        "facility_over_minutes": 0
+      },
+      "RegionF": {
+        "max_GPU": 966.0,
+        "GPU_capacity": 966.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 539.997333,
+        "IT_capacity_MW": 540.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 685.79661291,
+        "facility_capacity_MW": 685.8,
+        "facility_over_minutes": 0
+      }
+    }
+  },
+  "deterministic_replay": {
+    "passed": true,
+    "first_runtime_seconds": 57.05665510000108,
+    "replay_runtime_seconds": 56.48164579999866
+  },
+  "input_hashes": [
+    {
+      "path": "problems/C/questions/Q2/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "06a3073bdb99b1d77a77552fce48e97bad8b94eff8f16e382fa6ff398bbd24c2"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "problems/C/data/workload_trace.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+    },
+    {
+      "path": "problems/C/data/GPU_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+    },
+    {
+      "path": "problems/C/data/network_latency.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157"
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/power_mapping.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/merged/solver-q2",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "a0368efa26729cc590af05527be89328e1c69f394a93fb63255e00917bba419e"
+    }
+  ]
+}

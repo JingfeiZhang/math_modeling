@@ -1,0 +1,346 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2015-b-b10006005",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2015,
+    "problem": "B",
+    "team_id": "",
+    "title": "参赛密码"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2015%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/B/B10006005.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2015年优秀论文/B/B10006005.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2015,
+    "problem": "B",
+    "team_id": "",
+    "title": "参赛密码",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "db42d90bacce436d9b4bf65a90939d07c610536afa2a032610eba6b654654e2f",
+    "pages": 25,
+    "local_path": "corpus/raw/objects/sha256/db/db42d90bacce436d9b4bf65a90939d07c610536afa2a032610eba6b654654e2f.pdf",
+    "first_page_phash": "0c0cf070e0e0e000",
+    "text_sha256": "7611111bf046340350325e9a5c58cee690aab1f4a1628f732fea6d94ca969a07"
+  },
+  "review_status": "content_extracted",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括”的组织结构。",
+      "derivation": "text",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-01.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：题目 数据的多流形和子空间聚类模型研究",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：本文通过对子空间聚类问题和多流形聚类问题的分析，针对相应的数据结",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：构建立了多种聚类数学模型：K 均 值聚类、谱聚类(Spectral Clustering, SC)、基",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：于 CVX 的稀疏子空间聚类(Sparse Subspace Clustering, SSC-CVX) 、基于交替方",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-02.jpg"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：经典的 K 均值聚类与 SC 进行聚类，得出分类结果。为一步验证分类结果，我",
+      "derivation": "text",
+      "locator": "PDF p.2",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-02.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：SMCE 和 SMMC 模型对运动特征轨迹分类。为了验证和分析分类结果，我们还",
+      "derivation": "text",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：分类。为验证分类结果，我们采用适宜处理高维数据分类的 SCC、SMCE、",
+      "derivation": "text",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-03.jpg"
+    },
+    {
+      "page": 12,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：模型进行如下推广，令",
+      "derivation": "text",
+      "locator": "PDF p.12",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-12.jpg"
+    },
+    {
+      "page": 24,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：7、模型评价与总结",
+      "derivation": "text",
+      "locator": "PDF p.24",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-24.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "题目 数据的多流形和子空间聚类模型研究",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 2,
+      "description": "本文通过对子空间聚类问题和多流形聚类问题的分析，针对相应的数据结",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 3,
+      "page": 2,
+      "description": "构建立了多种聚类数学模型：K 均 值聚类、谱聚类(Spectral Clustering, SC)、基",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 4,
+      "page": 2,
+      "description": "于 CVX 的稀疏子空间聚类(Sparse Subspace Clustering, SSC-CVX) 、基于交替方",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 5,
+      "page": 2,
+      "description": "向乘子法的稀疏子空间聚类(SSC-ADMM)、谱曲率聚类(Spectral Curvature",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 6,
+      "page": 2,
+      "description": "Clustering, SCC)、稀疏流形聚类(Sparse Manifold Clustering and Embedding,",
+      "locator": "PDF p.2"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 2,
+      "description": "经典的 K 均值聚类与 SC 进行聚类，得出分类结果。为一步验证分类结果，我",
+      "locator": "PDF p.2"
+    },
+    {
+      "step": 2,
+      "page": 3,
+      "description": "SMCE 和 SMMC 模型对运动特征轨迹分类。为了验证和分析分类结果，我们还",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 3,
+      "page": 3,
+      "description": "分类。为验证分类结果，我们采用适宜处理高维数据分类的 SCC、SMCE、",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 4,
+      "page": 5,
+      "description": "2(a)所示，其中十字便是特征提取环节中处理得到的，十字上的点的位置信息",
+      "locator": "PDF p.5"
+    },
+    {
+      "step": 5,
+      "page": 14,
+      "description": "容易检验 (33) 中定义的亲和力值能达到预期效果，即属于不同聚类的点亲",
+      "locator": "PDF p.14"
+    }
+  ],
+  "figures": [
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "如图 1 所示。图 1(a)为两条交点不在原点且互相垂直的两条直线，请将其分为",
+      "lesson": "图题“如图 1 所示。图 1(a)为两条交点不在原点且互相垂直的两条直线，请将其分为”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-04.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "两类；图 1(b)为一个平面和两条直线，这是一个不满足独立子空间的关系的例",
+      "lesson": "图题“两类；图 1(b)为一个平面和两条直线，这是一个不满足独立子空间的关系的例”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-04.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 4,
+      "role": "result evidence",
+      "chart_type": "line",
+      "caption": "子，请将其分为三类。图 1(c)为两条不相交的二次曲线，请将其分为两类。图",
+      "lesson": "图题“子，请将其分为三类。图 1(c)为两条不相交的二次曲线，请将其分为两类。图”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.4",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-04.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "按照“横”和“竖”分两类。请使用适当的方法将图 2(a)中十字上的点分成两类。",
+      "lesson": "图题“按照“横”和“竖”分两类。请使用适当的方法将图 2(a)中十字上的点分成两类。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-05.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "trajectory",
+      "caption": "特征点轨迹在同一个线性流形上。 图 2(b)显示了视频中的一帧， 有三个不同运",
+      "lesson": "图题“特征点轨迹在同一个线性流形上。 图 2(b)显示了视频中的一帧， 有三个不同运”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-05.jpg",
+      "visual_checked": false
+    },
+    {
+      "page": 5,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 3(a)分别显示了圆台的点云 ，请将点按照其所在的面分开(即圆台按照圆",
+      "lesson": "图题“图 3(a)分别显示了圆台的点云 ，请将点按照其所在的面分开(即圆台按照圆”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2015-b-b10006005/pages/page-05.jpg",
+      "visual_checked": false
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 2
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 4
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 12
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "全页已渲染，但接触表尚未完成逐页人工视觉确认。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "git_blob_sha": "c4be3efa16897f5ef6d106d41a62ad7e37d401fe",
+    "bytes": 1066507,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2015-b-b10006005/extracted-layout.txt",
+      "sha256": "7611111bf046340350325e9a5c58cee690aab1f4a1628f732fea6d94ca969a07",
+      "extracted_pages": 25,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 25,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2015-b-b10006005/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2015-b-b10006005/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2015-b-b10006005/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2015-b-b10006005/contact-25-25.jpg"
+      ],
+      "visual_review": "pending"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

@@ -1,0 +1,75 @@
+contract_version: "2.0"
+id: fig-replace-me
+question_id: QX
+claim_id: replace-with-frozen-claim-id
+core_conclusion: Replace with the single conclusion this figure must support.
+core_message: Replace with the one sentence a reader should retain after five seconds.
+evidence_chain:
+  - locator: experiments/problem/QX/run-id/result.csv
+    sha256: 0000000000000000000000000000000000000000000000000000000000000000
+    fields: [replace_with_real_field]
+kind: data
+archetype: prediction-interval
+backend: python
+target_size_profile: contest-body
+palette_id: journal-spectrum-v2
+color_encoding:
+  - role: primary
+    meaning: main model
+    secondary_encoding: solid line and circle marker
+visual_hierarchy:
+  primary_evidence: State the mark or series that must be seen first.
+  secondary_context: State the baseline, interval, or reference that supports interpretation.
+  deemphasized: State which grid, background, or auxiliary series must remain quiet.
+source_data:
+  - experiments/problem/QX/run-id/result.csv
+source_script: src/figures/plot_result.py
+outputs:
+  pdf: paper/figures/fig-replace-me.pdf
+  svg: paper/figures/fig-replace-me.svg
+  png: paper/figures/fig-replace-me.png
+  png_dpi: 400
+baseline: State the comparable baseline and its evidence locator.
+axes:
+  - variable: x variable
+    unit: replace with unit or dimensionless
+  - variable: y variable
+    unit: replace with unit or dimensionless
+caption: State the object, conditions, comparison, quantitative result, uncertainty, and boundary.
+panel_map:
+  - panel: main
+    role: Main evidence panel
+    subclaim: Replace with the panel-level conclusion.
+statistics:
+  - Name every interval, test, aggregation, and sample size shown.
+statistics_report:
+  sample_size: Define n and the observational or simulation unit.
+  center: Name the center statistic or state not applicable with a reason.
+  interval: Name the uncertainty interval or state not applicable with a reason.
+  test: Name the statistical test or state not applicable with a reason.
+  multiplicity: Name the correction or state not applicable with a reason.
+data_integrity:
+  source_hashes:
+    - path: experiments/problem/QX/run-id/result.csv
+      sha256: 0000000000000000000000000000000000000000000000000000000000000000
+  transformation: Describe deterministic filtering, aggregation, and plotting transformations.
+  manual_values_forbidden: true
+label_strategy:
+  mode: direct
+  collision_checked: true
+  justification: Prefer direct labels; explain any external legend or absence of labels.
+rasterized_layers: []
+design_handoff:
+  data_manifest: experiments/problem/QX/formal/run-id/figure_data_manifest.yaml
+  data_manifest_sha256: 0000000000000000000000000000000000000000000000000000000000000000
+  visual_intent: experiments/problem/QX/formal/run-id/visual_intent.yaml
+  visual_intent_sha256: 0000000000000000000000000000000000000000000000000000000000000000
+  figure_brief: experiments/problem/QX/formal/run-id/figure_briefs/fig-replace-me.yaml
+  figure_brief_sha256: 0000000000000000000000000000000000000000000000000000000000000000
+  design_status: APPROVED
+  render_qa: experiments/problem/QX/formal/run-id/figure-staging/fig-replace-me/figure_qa.json
+  render_qa_sha256: 0000000000000000000000000000000000000000000000000000000000000000
+review_risks:
+  - Check that evidence is frozen and that color is not the only encoding.
+final_width_mm: 158
+min_font_pt: 8

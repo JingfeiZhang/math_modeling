@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "run_id": "q1-optimization-20260809",
+  "problem_id": "C",
+  "question_id": "Q1",
+  "status": "PASS",
+  "decision": "PROBE_ONLY",
+  "command": [
+    "D:/anaconda3/envs/math-modeling/python.exe run_q1_forecast_candidate.py",
+    "D:/anaconda3/envs/math-modeling/python.exe run_q1_schedule_candidate.py",
+    "D:/anaconda3/envs/math-modeling/python.exe finalize_q1_candidate.py"
+  ],
+  "environment": {
+    "python": "3.13.14",
+    "sklearn": "1.9.0",
+    "ortools": "9.15.6755",
+    "platform": "Windows-11-10.0.22631-SP0"
+  },
+  "random_seed": 20260801,
+  "inputs": [
+    {
+      "path": "results/C/claims.json",
+      "sha256": "00dc4ed7af69a13646174a2c2c3bc7d64b58af3011c5cb36b28c4f1288a08c44",
+      "bytes": 15964
+    },
+    {
+      "path": "problems/C/questions/Q1/question.yaml",
+      "sha256": "a6d457c3df7d5591f393ffbca5aad8e4cf3514243a6855ebfe56fae4d3ab0333",
+      "bytes": 5684
+    },
+    {
+      "path": "problems/C/data/workload_trace.xlsx",
+      "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba",
+      "bytes": 3496931
+    },
+    {
+      "path": "problems/C/data/GPU_information.xlsx",
+      "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f",
+      "bytes": 12226
+    },
+    {
+      "path": "problems/C/data/network_latency.xlsx",
+      "sha256": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157",
+      "bytes": 13544
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba",
+      "bytes": 2845390
+    },
+    {
+      "path": "problems/C/data/power_mapping.xlsx",
+      "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e",
+      "bytes": 10547
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808",
+      "kind": "directory",
+      "file_count": 59,
+      "tree_sha256": "17ed5717700309f255c14f03b6f017b382bf87d53a4c746d18fa4cbb6f8fb7d4"
+    }
+  ],
+  "methods": [
+    "direct multi-horizon hurdle HGBR with four pre-blind rolling origins",
+    "incumbent-hinted tight-domain deterministic CP-SAT fix-and-opt neighborhoods 12/32/64"
+  ],
+  "metrics": [
+    {
+      "name": "WAPE",
+      "unit": "ratio"
+    },
+    {
+      "name": "RMSE",
+      "unit": "GPU.h"
+    },
+    {
+      "name": "coverage",
+      "unit": "ratio"
+    },
+    {
+      "name": "interval_width",
+      "unit": "GPU.h"
+    },
+    {
+      "name": "schedule_objective",
+      "unit": "weighted objective"
+    },
+    {
+      "name": "completion",
+      "unit": "ratio"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/baseline_lock.json",
+      "sha256": "b3b50b123dd3f55f168bf44e75c3d85ffe45b82b09ada7b7aa4ec8438be4ed3d",
+      "bytes": 1715
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/baseline_results.json",
+      "sha256": "e4ad123b4420c134f0b87b9f0341644dd5511fd96b01e4fe93b773f41605ec07",
+      "bytes": 430
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/baseline_schedule.csv",
+      "sha256": "89e4ab9c6ac1cf6ee0c5c9e5b39596f8276ac5330e3d5ed8e7924350a2fa7a78",
+      "bytes": 53202
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/blind_test_predictions.csv",
+      "sha256": "57853cd9781bc099827b2c3b4f55089248069b5b5f5ee52e19f361c7e0f86772",
+      "bytes": 36116
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/candidate_schedule_12.csv",
+      "sha256": "04871953a14c28ecbf11663c39f9f9f3e04aeeafe5248e3711cb11ec4e13007c",
+      "bytes": 53257
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/candidate_schedule_32.csv",
+      "sha256": "075d1490bfb48ccdfd7afce189ab469b836a9fa76c9c7b66a8affc1c62cef741",
+      "bytes": 53337
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/candidate_schedule_64.csv",
+      "sha256": "0926b725aa306c9332fdab416d737f8ee3cf0bd3c9ab2c8e3375581c816e4296",
+      "bytes": 53465
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/constraint_audit.json",
+      "sha256": "fb802f626430870b4e458261342ab12c42f69bbaa8632efb9c694648849833c3",
+      "bytes": 2022
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/deterministic_replay_audit.json",
+      "sha256": "c779d402352b9ec21bf1135f29e9f898d437a861ff263fad8baef316af469d91",
+      "bytes": 1502
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/finalize_q1_candidate.py",
+      "sha256": "cca114fa2fa879c484fe71d51568fda67d54513c4030950bbb908eec7cea2896",
+      "bytes": 8034
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/forecast_baseline_predictions.csv",
+      "sha256": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d",
+      "bytes": 59249
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/forecast_metrics_by_series.csv",
+      "sha256": "a57e73681c2e5723011663c6aafaa7e6b2ecbb0d3280edf90379c7c2c116e9c5",
+      "bytes": 1088
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/forecast_model_config.json",
+      "sha256": "38d571b9af7e6b18aad1e6a665e3ee204f6af6a8cd98090f66cf32e5056e2935",
+      "bytes": 209
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/forecast_summary.json",
+      "sha256": "ace651f365ba4c26afa5b5ad7288241a8edc286f9ab459578b30de3e5f8f49a7",
+      "bytes": 1884
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/main_model_results.json",
+      "sha256": "b925e953c1e6028828f223b7446b655170c75e9f14a108aec8d67453780c9036",
+      "bytes": 3394
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/rolling_origin_predictions.csv",
+      "sha256": "31600538087ac6762125366ac3fdfd91a44a91b4bd819b48356101318505c87b",
+      "bytes": 104125
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/run_q1_forecast_candidate.py",
+      "sha256": "7e07a109e8ef4de90aae0d1ca9d310b437efb1ed8e0417cd550d2805cad67960",
+      "bytes": 8566
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/run_q1_schedule_candidate.py",
+      "sha256": "ebc62c74bdf4c24f68d20bb98e24dfbd222687ec1f3b93d8c485ec7518c094a2",
+      "bytes": 9871
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/schedule_solver_runs.json",
+      "sha256": "48298ca86dc98ea57cf6d6beea248161097a2f0cd27989e36bac2d74c1b32b8d",
+      "bytes": 2470
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/schedule_summary.json",
+      "sha256": "26b3d9fdb811af49b25ab8df046fa561fe652c85525c2d44ec11ff63b45df3b9",
+      "bytes": 1247
+    },
+    {
+      "path": "experiments/C/Q1/q1-optimization-20260809/summary.json",
+      "sha256": "909a6cad99b560b6036361d795e3d58f25bbe9cb2bab733d678685930a97de13",
+      "bytes": 1942
+    }
+  ],
+  "generated_at_utc": "2026-08-08T18:35:36.223421+00:00"
+}

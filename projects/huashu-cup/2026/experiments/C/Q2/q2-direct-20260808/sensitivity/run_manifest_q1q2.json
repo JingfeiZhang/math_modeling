@@ -1,0 +1,200 @@
+﻿{
+    "schema_version":  1,
+    "run_id":  "q1q2-incremental-evidence-20260808",
+    "sprint_id":  "sprint-20260808T101814701038Z",
+    "task_id":  "solver-q1q2",
+    "problem_id":  "C",
+    "question_ids":  [
+                         "Q1",
+                         "Q2"
+                     ],
+    "target_gate":  "G4",
+    "status":  "PASS",
+    "random_seed":  20260801,
+    "environment":  {
+                        "python":  "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]",
+                        "platform":  "Windows-11-10.0.22631-SP0",
+                        "numpy":  "2.5.1",
+                        "pandas":  "3.0.5",
+                        "executable":  "D:/anaconda3/envs/math-modeling/python.exe"
+                    },
+    "inputs":  [
+                   {
+                       "path":  "problems/C/questions/Q1/question.yaml",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "a6d457c3df7d5591f393ffbca5aad8e4cf3514243a6855ebfe56fae4d3ab0333"
+                   },
+                   {
+                       "path":  "problems/C/questions/Q2/question.yaml",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "494f3a29fe3e99c5515977f13432dccbfeb12c787f78b16cd6eb400b79b6cb11"
+                   },
+                   {
+                       "path":  "contest.yaml",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+                   },
+                   {
+                       "path":  "config/workflow.yaml",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+                   },
+                   {
+                       "path":  "problems/C/source/problem-C.pdf",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+                   },
+                   {
+                       "path":  "results/C/claims.json",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "cef4f43848ba16de8cf215c8dcc2b8067a4d759d069e51aaaecf6e43cccb8f79"
+                   },
+                   {
+                       "path":  "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/validation_predictions.csv",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "52f785106caeceff0e7075d16a021b99716e303e1cb0d2de20c73a9963b08cd5"
+                   },
+                   {
+                       "path":  "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d"
+                   },
+                   {
+                       "path":  "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/run_forecast.py",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "73666e4d1b2ae6554f100c131d80470e1258ae23e40cba360359894415c0a043"
+                   },
+                   {
+                       "path":  "sprints/sprint-20260808T031146908286Z/merged/solver-q2/run_q2_full_horizon.py",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "6a39aa6eb6802a73057ae78528b18775ba2181924b7bb4fa8ad263f0214ce45f"
+                   },
+                   {
+                       "path":  "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_run_manifest.json",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "b6b6f96959c8c6af6561c9866c1ec3f5f29d3b0061ab375bdd4a11e3a62e570d"
+                   },
+                   {
+                       "path":  "sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_summary.json",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "68f503df0646e34d9e76680b5c104c3720a5af443c662ba32427299ee02f8cb1"
+                   },
+                   {
+                       "path":  "problems/C/data/workload_trace.xlsx",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+                   },
+                   {
+                       "path":  "problems/C/data/GPU_information.xlsx",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+                   },
+                   {
+                       "path":  "problems/C/data/network_latency.xlsx",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157"
+                   },
+                   {
+                       "path":  "problems/C/data/region_time_data.xlsx",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+                   },
+                   {
+                       "path":  "problems/C/data/power_mapping.xlsx",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+                   },
+                   {
+                       "path":  "sprints/sprint-20260808T093228283096Z/merged/solver-q1/algorithm_review_q1q2.json",
+                       "kind":  "file",
+                       "exists":  true,
+                       "sha256":  "f26c7938461253c64bd0aab02a4a2ebad448d2966d6a2533413f1df39d246297"
+                   }
+               ],
+    "runs":  [
+                 {
+                     "question_id":  "Q1",
+                     "command":  [
+                                     "D:/anaconda3/envs/math-modeling/python.exe",
+                                     "projects/huashu-cup/2026/sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/run_q1_groupwise_conformal.py"
+                                 ],
+                     "method":  "pooled normalized split-conformal versus 18 groupwise region-task quantiles",
+                     "duration_seconds":  0.08828889999131206,
+                     "code":  {
+                                  "path":  "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/run_q1_groupwise_conformal.py",
+                                  "sha256":  "0ebd8449ca808ea8456fb90c99d83d0769ab0699b694835fae8a37760f37381a"
+                              },
+                     "outputs":  [
+                                     {
+                                         "path":  "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/q1_groupwise_conformal.csv",
+                                         "sha256":  "8381bc6f4404398658548873dd79708642d621f1a29dd2befe179c9e011bbc19"
+                                     },
+                                     {
+                                         "path":  "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/q1_groupwise_conformal_summary.json",
+                                         "sha256":  "141aaa1aaa7d3620c82739bb7eed328daf5d55a4bc71ec4ccd05d6f91cbf4548"
+                                     }
+                                 ],
+                     "decision":  "RETAIN_POOLED"
+                 },
+                 {
+                     "question_id":  "Q2",
+                     "command":  [
+                                     "D:/anaconda3/envs/math-modeling/python.exe",
+                                     "experiments/C/Q2/q2-direct-20260808/sensitivity/run_q2_policy_sensitivity.py"
+                                 ],
+                     "method":  "four pre-registered policy weights on the fixed full-horizon rolling exchange",
+                     "duration_seconds":  213.817312,
+                     "code":  {
+                                  "path":  "experiments/C/Q2/q2-direct-20260808/sensitivity/run_q2_policy_sensitivity.py",
+                                  "sha256":  "5d0dc37cfe88293cae60d1bae393c6a6bd43801ebe76f89c3ef363bd451fcc2f"
+                              },
+                     "pinned_solver":  {
+                                           "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/run_q2_full_horizon.py",
+                                           "sha256":  "16342d79929ecb31acd7e821f66c2c6fbc95df377f7f81999b4a83ad423bce5b"
+                                       },
+                     "outputs":  [
+                                     {
+                                         "path":  "experiments/C/Q2/q2-direct-20260808/sensitivity/q2_policy_sensitivity.csv",
+                                         "sha256":  "9dbab71c7fcd44e4182930b690801fa6b01f0d5af23bf563781574463890f2b5"
+                                     },
+                                     {
+                                         "path":  "experiments/C/Q2/q2-direct-20260808/sensitivity/q2_policy_sensitivity_summary.json",
+                                         "sha256":  "7aaa4498017e0d57f167673e4f7ffa21c2b5928a0c41afd2edb915197fa6faea"
+                                     }
+                                 ],
+                     "decision":  "PROPOSE_LATENCY_GUARDED_FOR_ROOT_REVIEW",
+                     "workflow":  "direct"
+                 }
+             ],
+    "metric_definitions":  {
+                               "cost_CNY":  "minute-integrated facility load, including fixed non-AI load, multiplied by supplied regional price",
+                               "carbon_tCO2":  "minute-integrated facility load, including fixed non-AI load, multiplied by supplied regional carbon intensity",
+                               "mean_latency_ms":  "task-weighted mean source-to-execution latency from the supplied static matrix",
+                               "renewable_utilization_ratio":  "minute-integrated min(facility load, available renewable) divided by facility energy",
+                               "task_completion_rate":  "unique scheduled input TaskIDs divided by the 50000 input TaskIDs",
+                               "SLA_violation_rate":  "late finish or real-time start mismatch divided by input task count"
+                           },
+    "limitations":  [
+                        "Q1 groupwise results are a finite-sample diagnostic and do not prove conditional coverage.",
+                        "Q2 sensitivity results are bounded heuristic comparisons, not global optimality or causal effects.",
+                        "The blind Q1 window and supplied Q2 trace remain fixed evidence; no tuning was performed after observing these results."
+                    ],
+    "formal_state_modified":  false
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "question_id": "Q2",
+  "status": "PASS",
+  "task_count": 50000,
+  "completion_rate": 1,
+  "sla_violation_count": 0,
+  "sla_violation_rate": 0,
+  "hard_constraints_passed": true,
+  "deterministic_replay_passed": true
+}

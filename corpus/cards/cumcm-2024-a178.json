@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "analysis_status": "evidence_reviewed",
+  "review_method": "full page cache plus visual review of abstract, framework, model, main-result and validation anchors",
+  "ocr_status": "not_available; observations are page-image visual evidence, not OCR transcription",
+  "competition": "CUMCM",
+  "year": 2024,
+  "problem": "A",
+  "paper_id": "cumcm-2024-a178",
+  "title": "2024高教社杯全国大学生数学建模竞赛A题论文展示（A178）",
+  "source_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024atlw/241104/1977937.shtml",
+  "access": "public_page_images",
+  "award_or_label": "全国大学生数学建模竞赛组委会官方论文展示",
+  "page_coverage": {
+    "reported_total_pages": 48,
+    "cached_pages": 48,
+    "coverage": 1.0,
+    "sha256_verified": true
+  },
+  "abstract_layout": {
+    "pages": [
+      1
+    ],
+    "pattern": "独立首屏摘要 + 关键词；方法按问题顺序展开",
+    "density": "medium-to-high",
+    "evidence": [
+      {
+        "page": 1,
+        "file": "raw/cumcm-2024-a178/page-01.jpg",
+        "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+        "locator": "official page image 1"
+      }
+    ]
+  },
+  "problem_framing": "几何路径与调头/可行性构造",
+  "models_to_subquestions": {
+    "Q1": "用螺线和参数方程描述基础运动",
+    "Q2": "用距离/角度约束求关键时刻状态",
+    "Q3-Q4": "构造调头或替代路径，并对可行域和结果表做筛选"
+  },
+  "models": [
+    "螺线位置模型",
+    "几何距离与边界约束",
+    "调头路径构造",
+    "分段数值验证"
+  ],
+  "validation_structure": [
+    "第6页轨迹图显示模型输出的全局形态",
+    "第7页用两组表格给出不同情形的数值对照",
+    "第8-10页用矩形/转向几何示意图和流程图检查约束"
+  ],
+  "figure_strategy": [
+    "螺线轨迹图",
+    "矩形/转向路径示意图",
+    "条件分组结果表"
+  ],
+  "transferable_patterns": [
+    "多情形问题用同一颜色和线型体系跨图比较",
+    "替代路径要配约束示意图，而不是只报告最优值",
+    "把结果表放在模型图之后，形成直觉到精确值的节奏"
+  ],
+  "risks": [
+    "表格列较多，三线表和分组表头比全网格更易读",
+    "流程图文字应避免压缩到无法辨识",
+    "页面图片来自官方展示页，水印/压缩伪影不作为原论文排版评价"
+  ],
+  "evidence": [
+    {
+      "page": 1,
+      "file": "raw/cumcm-2024-a178/page-01.jpg",
+      "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 2,
+      "file": "raw/cumcm-2024-a178/page-02.jpg",
+      "observation": "问题重述/背景或数据对象；记录正文如何从摘要进入模型",
+      "locator": "official page image 2"
+    },
+    {
+      "page": 4,
+      "file": "raw/cumcm-2024-a178/page-04.jpg",
+      "observation": "符号表、假设、变量或模型路线图；记录定义顺序",
+      "locator": "official page image 4"
+    },
+    {
+      "page": 7,
+      "file": "raw/cumcm-2024-a178/page-07.jpg",
+      "observation": "代表性主结果图/表；记录图型、图例、单位和比较对象",
+      "locator": "official page image 7"
+    },
+    {
+      "page": 10,
+      "file": "raw/cumcm-2024-a178/page-10.jpg",
+      "observation": "验证、敏感性、方案比较或阶段性结论；记录结果闭环",
+      "locator": "official page image 10"
+    }
+  ],
+  "evidence_boundary": "模型类别和排版判断只写页面中可见的公式、图形、表格和章节位置；未从视觉材料推断奖级、原创性或数学正确性。"
+}

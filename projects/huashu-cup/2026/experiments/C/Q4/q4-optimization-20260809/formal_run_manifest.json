@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "run_id": "q4-optimization-20260809-formal",
+  "problem_id": "C",
+  "question_id": "Q4",
+  "engine": "python",
+  "command": [
+    "D:\\数学建模\\projects\\huashu-cup\\2026\\experiments\\C\\Q4\\q4-optimization-20260809\\formalize_q4_candidate.py"
+  ],
+  "environment": {
+    "python": "3.13.14",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "pandas": "3.0.5"
+  },
+  "code": {
+    "runner": "experiments/C/Q4/q4-optimization-20260809/formalize_q4_candidate.py",
+    "sha256": "48b4594bb62e8a4d7d4c615c2f4e03493d1ef31367ff6b3856753f4690a20699"
+  },
+  "random_seed": 20260809,
+  "methods": [
+    {
+      "name": "72-hour surrogate-assisted task fix-and-optimize with six-region binary-storage MILP recourse",
+      "role": "main"
+    },
+    {
+      "name": "retained Q2 schedule plus scenario-matched storage recourse",
+      "role": "baseline"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json",
+      "sha256": "56a0622efffbdffcdf20e0eda963a7f47852f4fdec2bb34cacd198bb7d312f9e"
+    },
+    {
+      "path": "experiments/C/Q4/q4-optimization-20260809/q4_joint_metrics.csv",
+      "sha256": "1952879320fec6e3810058aa498a2a68352bef9c4ea1cb63a55704ae8682d499"
+    },
+    {
+      "path": "experiments/C/Q4/q4-optimization-20260809/q4_joint_constraint_audit.json",
+      "sha256": "c6dd11f8b568c404f2f5c78750c5f62d7b4ef1b651bbdbcbd58f5ee4300b3bf4"
+    },
+    {
+      "path": "experiments/C/Q4/q4-optimization-20260809/q4_joint_risk_probes.json",
+      "sha256": "e81eab1f13eb71ed65e44b634910ece91f7070b01903ac5e2337d20baa073fa9"
+    },
+    {
+      "path": "experiments/C/Q4/q4-optimization-20260809/q4_joint_summary.json",
+      "sha256": "9f66d827d68dffc6e89f05cb4b70734975bc84cd050adc9b2f1178ca1bf43ec5"
+    },
+    {
+      "path": "experiments/C/Q4/q4-optimization-20260809/q4_joint_candidate_schedule.csv",
+      "sha256": "570b3ab7ec55d87663e8481ce254070d3f7c1618c8169d8ffd4c70a5ec64dca4"
+    }
+  ],
+  "metrics": {
+    "cost_delta_CNY": "joint candidate minus sequential baseline",
+    "carbon_delta_tCO2": "joint candidate minus sequential baseline",
+    "renewable_utilization_gain": "joint candidate minus sequential baseline"
+  },
+  "started_at_utc": "2026-08-08T18:44:45.953118+00:00",
+  "duration_seconds": 0.039833300001191674,
+  "status": "PASS"
+}

@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.math-modeling/academic-reference-card.schema.json",
+  "title": "Evidence-grounded academic reference card",
+  "type": "object",
+  "required": [
+    "schema_version", "card_id", "problem_id", "question_id", "source_search_receipts",
+    "review_depth", "bibliographic_status", "metadata", "metadata_sources", "metadata_snapshot",
+    "source_document", "evidence_roles", "problem_context", "model", "algorithm", "parameters",
+    "evaluation", "limitations", "failure_conditions", "non_transferable_elements", "locators",
+    "precision_evidence", "external_results", "code", "suggested_experiments", "paper_handoff",
+    "substantive_citation_eligible", "status", "created_at_utc"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "card_id": {"type": "string", "pattern": "^litcard-[a-z0-9._-]+$"},
+    "problem_id": {"type": "string", "minLength": 1},
+    "question_id": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
+    "source_search_receipts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/hashedPath"}
+    },
+    "review_depth": {"enum": ["METADATA_ONLY", "ABSTRACT_SCREENED", "TARGETED_READ", "DEEP_READ"]},
+    "bibliographic_status": {"enum": ["VERIFIED", "CONFLICT", "REJECTED"]},
+    "metadata": {
+      "type": "object",
+      "required": ["title", "authors", "year", "publication_type", "venue", "doi", "arxiv_id", "url", "bibtex_key"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "authors": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["full_name", "orcid"],
+            "properties": {
+              "full_name": {"type": "string", "minLength": 1},
+              "orcid": {"type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9X]{4}$"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "year": {"type": "integer", "minimum": 1800, "maximum": 2100},
+        "publication_type": {"enum": ["journal-article", "conference-paper", "preprint", "thesis"]},
+        "venue": {"type": "string", "minLength": 1},
+        "doi": {"anyOf": [{"$ref": "#/$defs/doi"}, {"type": "null"}]},
+        "arxiv_id": {"type": ["string", "null"]},
+        "url": {"type": ["string", "null"], "format": "uri"},
+        "bibtex_key": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_:-]*$"}
+      },
+      "additionalProperties": false
+    },
+    "metadata_sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["provider", "locator", "checked_at_utc"],
+        "properties": {
+          "provider": {"$ref": "#/$defs/provider"},
+          "locator": {"type": "string", "minLength": 1},
+          "checked_at_utc": {"$ref": "#/$defs/dateTime"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "metadata_snapshot": {"$ref": "#/$defs/hashedPath"},
+    "source_document": {
+      "type": "object",
+      "required": ["available", "kind", "path", "url", "sha256"],
+      "properties": {
+        "available": {"type": "boolean"},
+        "kind": {"enum": ["pdf", "html", "repository", "none"]},
+        "path": {"anyOf": [{"$ref": "#/$defs/relativePath"}, {"type": "null"}]},
+        "url": {"type": ["string", "null"], "format": "uri"},
+        "sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]}
+      },
+      "additionalProperties": false
+    },
+    "evidence_roles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["model-family", "mechanism", "parameter", "validation", "baseline", "algorithm", "limitation"]}
+    },
+    "problem_context": {
+      "type": "object",
+      "required": ["objective", "inputs", "outputs", "data_scale", "scene", "transferability_note"],
+      "properties": {
+        "objective": {"type": "string", "minLength": 1},
+        "inputs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "outputs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "data_scale": {"type": "string", "minLength": 1},
+        "scene": {"type": "string", "minLength": 1},
+        "transferability_note": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "model": {
+      "type": "object",
+      "required": ["name", "assumptions", "variables", "objective_function", "constraints"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "assumptions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "variables": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "objective_function": {"type": "string", "minLength": 1},
+        "constraints": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      },
+      "additionalProperties": false
+    },
+    "algorithm": {
+      "type": "object",
+      "required": ["steps", "solver", "initialization", "stopping_conditions", "complexity"],
+      "properties": {
+        "steps": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "solver": {"type": "string", "minLength": 1},
+        "initialization": {"type": "string", "minLength": 1},
+        "stopping_conditions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "complexity": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "unit", "value_or_range", "basis", "applicability", "source_locator"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "unit": {"type": "string", "minLength": 1},
+          "value_or_range": {"type": "string", "minLength": 1},
+          "basis": {"type": "string", "minLength": 1},
+          "applicability": {"type": "string", "minLength": 1},
+          "source_locator": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "required": ["baselines", "metrics", "data_split", "validation_methods"],
+      "properties": {
+        "baselines": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "unit", "definition"],
+            "properties": {
+              "name": {"type": "string", "minLength": 1},
+              "unit": {"type": "string", "minLength": 1},
+              "definition": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          }
+        },
+        "data_split": {"type": "string", "minLength": 1},
+        "validation_methods": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      },
+      "additionalProperties": false
+    },
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "failure_conditions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "non_transferable_elements": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "locators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "locator", "supports"],
+        "properties": {
+          "kind": {"enum": ["page", "section", "equation", "table", "figure", "appendix"]},
+          "locator": {"type": "string", "minLength": 1},
+          "supports": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "precision_evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "statement", "source_locator"],
+        "properties": {
+          "role": {"enum": ["formula", "parameter", "performance", "algorithm-step"]},
+          "statement": {"type": "string", "minLength": 1},
+          "source_locator": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "external_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["metric", "value_text", "context", "source_locator", "not_project_evidence"],
+        "properties": {
+          "metric": {"type": "string", "minLength": 1},
+          "value_text": {"type": "string", "minLength": 1},
+          "context": {"type": "string", "minLength": 1},
+          "source_locator": {"type": "string", "minLength": 1},
+          "not_project_evidence": {"const": true}
+        },
+        "additionalProperties": false
+      }
+    },
+    "code": {
+      "type": "object",
+      "required": ["repository", "commit", "license", "reproducibility_status"],
+      "properties": {
+        "repository": {"type": ["string", "null"], "format": "uri"},
+        "commit": {"type": ["string", "null"]},
+        "license": {"type": ["string", "null"]},
+        "reproducibility_status": {"enum": ["not-checked", "metadata-only", "inspected", "reproduced", "failed"]}
+      },
+      "additionalProperties": false
+    },
+    "suggested_experiments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "objective", "stop_condition"],
+        "properties": {
+          "kind": {"enum": ["scratch", "risk-probe"]},
+          "objective": {"type": "string", "minLength": 1},
+          "stop_condition": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "paper_handoff": {
+      "type": "object",
+      "required": ["bibtex_key", "eligible_sections", "citation_note"],
+      "properties": {
+        "bibtex_key": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_:-]*$"},
+        "eligible_sections": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"enum": ["problem-analysis", "model-selection", "parameter-basis", "model-validation"]}
+        },
+        "citation_note": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "substantive_citation_eligible": {"type": "boolean"},
+    "status": {"enum": ["SOURCES_VERIFIED", "CARD_READY", "STALE"]},
+    "created_at_utc": {"$ref": "#/$defs/dateTime"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"review_depth": {"enum": ["METADATA_ONLY", "ABSTRACT_SCREENED"]}}, "required": ["review_depth"]},
+      "then": {
+        "properties": {
+          "precision_evidence": {"maxItems": 0},
+          "substantive_citation_eligible": {"const": false}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"review_depth": {"enum": ["TARGETED_READ", "DEEP_READ"]}}, "required": ["review_depth"]},
+      "then": {
+        "properties": {
+          "source_document": {
+            "properties": {
+              "available": {"const": true},
+              "kind": {"enum": ["pdf", "html", "repository"]},
+              "sha256": {"$ref": "#/$defs/sha256"}
+            }
+          },
+          "locators": {"minItems": 1},
+          "substantive_citation_eligible": {"const": true}
+        }
+      }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "doi": {"type": "string", "pattern": "^10\\.[0-9]{4,9}/\\S+$"},
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:)(?![/\\\\])(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$)).+"
+    },
+    "hashedPath": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"$ref": "#/$defs/relativePath"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "dateTime": {"type": "string", "format": "date-time"},
+    "provider": {
+      "enum": [
+        "crossref", "openalex", "arxiv", "semantic-scholar", "google-scholar",
+        "cnki", "wanfang", "publisher", "institutional-repository", "user-supplied"
+      ]
+    }
+  }
+}

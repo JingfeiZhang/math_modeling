@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T050410459193Z",
+  "status": "RETRY_REQUIRED",
+  "passed": false,
+  "accepted_tasks": [],
+  "retry_tasks": [
+    "writer-q1",
+    "reviewer-q1"
+  ],
+  "blocked_tasks": [],
+  "protected_changes": [
+    "output"
+  ],
+  "tasks": [
+    {
+      "task_id": "writer-q1",
+      "declared_status": "MISSING",
+      "disposition": "RETRY_REQUIRED",
+      "attempt": 1,
+      "issues": [
+        {
+          "kind": "missing_handoff",
+          "path": "sprints/sprint-20260808T050410459193Z/staging/writer-q1/handoff.json"
+        },
+        {
+          "kind": "missing_expected_output",
+          "path": "sprints/sprint-20260808T050410459193Z/staging/writer-q1/handoff.json"
+        },
+        {
+          "kind": "root_owned_path_changed",
+          "path": "output"
+        }
+      ],
+      "artifacts": [],
+      "handoff": "sprints/sprint-20260808T050410459193Z/staging/writer-q1/handoff.json"
+    },
+    {
+      "task_id": "reviewer-q1",
+      "declared_status": "MISSING",
+      "disposition": "RETRY_REQUIRED",
+      "attempt": 1,
+      "issues": [
+        {
+          "kind": "missing_handoff",
+          "path": "sprints/sprint-20260808T050410459193Z/staging/reviewer-q1/handoff.json"
+        },
+        {
+          "kind": "missing_expected_output",
+          "path": "sprints/sprint-20260808T050410459193Z/staging/reviewer-q1/handoff.json"
+        },
+        {
+          "kind": "missing_expected_output",
+          "path": "sprints/sprint-20260808T050410459193Z/staging/reviewer-q1/q1_review.json"
+        },
+        {
+          "kind": "root_owned_path_changed",
+          "path": "output"
+        }
+      ],
+      "artifacts": [],
+      "handoff": "sprints/sprint-20260808T050410459193Z/staging/reviewer-q1/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-08T07:26:18.111959+00:00"
+}

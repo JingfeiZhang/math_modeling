@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T113706086579Z",
+  "task_id": "reviewer-q1q2-formulation",
+  "role": "reviewer",
+  "problem": "C",
+  "question": "Q1-Q2",
+  "status": "PENDING",
+  "attempt": 1,
+  "max_attempts": 2,
+  "dependencies": [],
+  "input_hashes": [
+    {"path": "problems/C/questions/Q1/question.yaml", "kind": "file", "exists": true, "sha256": "a6d457c3df7d5591f393ffbca5aad8e4cf3514243a6855ebfe56fae4d3ab0333"},
+    {"path": "problems/C/questions/Q2/question.yaml", "kind": "file", "exists": true, "sha256": "494f3a29fe3e99c5515977f13432dccbfeb12c787f78b16cd6eb400b79b6cb11"},
+    {"path": "contest.yaml", "kind": "file", "exists": true, "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"},
+    {"path": "config/workflow.yaml", "kind": "file", "exists": true, "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"},
+    {"path": "problems/C/source/problem-C.pdf", "kind": "file", "exists": true, "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"},
+    {"path": "results/C/claims.json", "kind": "file", "exists": true, "sha256": "cef4f43848ba16de8cf215c8dcc2b8067a4d759d069e51aaaecf6e43cccb8f79"},
+    {"path": "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/run_forecast.py", "kind": "file", "exists": true, "sha256": "73666e4d1b2ae6554f100c131d80470e1258ae23e40cba360359894415c0a043"},
+    {"path": "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/run_scheduling_q1.py", "kind": "file", "exists": true, "sha256": "3d50c74b18fd898a85e58090a047f86ce750697724b34620af24d6a204f57bf6"},
+    {"path": "sprints/sprint-20260808T031146908286Z/merged/solver-q2/run_q2_full_horizon.py", "kind": "file", "exists": true, "sha256": "6a39aa6eb6802a73057ae78528b18775ba2181924b7bb4fa8ad263f0214ce45f"},
+    {"path": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json", "kind": "file", "exists": true, "sha256": "537062db28c59783fc8c0fcc9e26f153b613954a7b3631f5f215013eeecb3670"},
+    {"path": "sprints/sprint-20260808T101814701038Z/merged/solver-q1q2/incremental_review_q1q2.json", "kind": "file", "exists": true, "sha256": "51166220596ff0e978713a64a830bdc0604008d01ea4f3baa695baf3b089edb7"}
+  ],
+  "allowed_read_paths": [
+    "problems/C/questions/Q1/question.yaml",
+    "problems/C/questions/Q2/question.yaml",
+    "contest.yaml",
+    "config/workflow.yaml",
+    "problems/C/source/problem-C.pdf",
+    "results/C/claims.json",
+    "sprints/sprint-20260807T130848306634Z/merged/forecast-q1/run_forecast.py",
+    "sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/run_scheduling_q1.py",
+    "sprints/sprint-20260808T031146908286Z/merged/solver-q2/run_q2_full_horizon.py",
+    "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json",
+    "sprints/sprint-20260808T101814701038Z/merged/solver-q1q2/incremental_review_q1q2.json"
+  ],
+  "write_directory": "sprints/sprint-20260808T113706086579Z/staging/reviewer-q1q2-formulation",
+  "expected_outputs": [
+    "sprints/sprint-20260808T113706086579Z/staging/reviewer-q1q2-formulation/formulation_code_review_q1q2.json",
+    "sprints/sprint-20260808T113706086579Z/staging/reviewer-q1q2-formulation/handoff.json"
+  ],
+  "target_gate": "G4",
+  "deadline_utc": "2026-08-10 20:00:00+08:00",
+  "root_only_paths": [
+    "state/decision_log.json",
+    "results/C/claims.json",
+    "paper/main.tex",
+    "paper/figure_contracts.yaml",
+    "output/"
+  ],
+  "sprint_profile": "default",
+  "input_sprint_id": null
+}

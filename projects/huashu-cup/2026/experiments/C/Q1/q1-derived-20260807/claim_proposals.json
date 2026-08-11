@@ -1,0 +1,71 @@
+{
+  "claims": [
+    {
+      "id": "Q1-FCST-WAPE-IMPROVEMENT",
+      "locator": "experiments/C/Q1/q1-derived-20260807/q1_derived_summary.json:$.forecast.blind_system_weighted_wape_relative_improvement",
+      "statement": "在2376--2399小时盲测窗口，主模型的系统汇总WAPE相对同口径季节朴素基线下降；该结论不推广为每条底层序列均改善。",
+      "status": "verified",
+      "unit": "ratio"
+    },
+    {
+      "id": "Q1-SCHED-CARRY-IN-COUNT",
+      "locator": "experiments/C/Q1/q1-derived-20260807/q1_derived_summary.json:$.scheduling.carry_in_count",
+      "statement": "历史暖机完整传递到末24小时调度实例的carry-in任务数由派生证据记录，且暖机未静默删除任务。",
+      "status": "verified",
+      "unit": "task"
+    },
+    {
+      "id": "Q1-SCHED-OPTIMALITY-GAP",
+      "locator": "experiments/C/Q1/q1-derived-20260807/q1_derived_summary.json:$.scheduling.solver_optimality_gap",
+      "statement": "主CP-SAT在固定90秒时限内取得FEASIBLE解时记录的相对最优间隙；该数值不构成全局最优证明。",
+      "status": "verified",
+      "unit": "ratio"
+    },
+    {
+      "id": "Q1-SCHED-MIN-GPU-MARGIN",
+      "locator": "experiments/C/Q1/q1-derived-20260807/q1_derived_summary.json:$.scheduling.resource.minimum_gpu_margin",
+      "statement": "名义主排程独立资源审计中的最小GPU容量裕度；压力扰动下的裕度边界另行报告。",
+      "status": "verified",
+      "unit": "GPU"
+    },
+    {
+      "id": "Q1-SCHED-MIN-IT-MARGIN",
+      "locator": "experiments/C/Q1/q1-derived-20260807/q1_derived_summary.json:$.scheduling.resource.minimum_it_margin_mw",
+      "statement": "名义主排程独立资源审计中的最小IT功率裕度。",
+      "status": "verified",
+      "unit": "MW"
+    },
+    {
+      "id": "Q1-SCHED-MIN-FACILITY-MARGIN",
+      "locator": "experiments/C/Q1/q1-derived-20260807/q1_derived_summary.json:$.scheduling.resource.minimum_facility_margin_mw",
+      "statement": "名义主排程独立资源审计中的最小设施功率裕度。",
+      "status": "verified",
+      "unit": "MW"
+    },
+    {
+      "id": "Q1-SCHED-MAX-GPU-UTILIZATION",
+      "locator": "experiments/C/Q1/q1-derived-20260807/q1_derived_summary.json:$.scheduling.resource.maximum_gpu_utilization_ratio",
+      "statement": "名义主排程在区域--小时层面的最大GPU利用率由独立资源审计计算。",
+      "status": "verified",
+      "unit": "ratio"
+    },
+    {
+      "id": "Q1-SCHED-MAIN-MEAN-WAIT",
+      "locator": "experiments/C/Q1/q1-derived-20260807/q1_derived_summary.json:$.scheduling.main.mean_wait_minutes",
+      "statement": "排除carry-in后，主排程对2376--2399小时实际到达任务的平均等待时间。",
+      "status": "verified",
+      "unit": "min"
+    },
+    {
+      "id": "Q1-SCHED-BASELINE-MEAN-WAIT",
+      "locator": "experiments/C/Q1/q1-derived-20260807/q1_derived_summary.json:$.scheduling.baseline.mean_wait_minutes",
+      "statement": "排除carry-in后，同约束本地优先FIFO基线对2376--2399小时实际到达任务的平均等待时间。",
+      "status": "verified",
+      "unit": "min"
+    }
+  ],
+  "problem_id": "C",
+  "question_id": "Q1",
+  "schema_version": 1,
+  "status": "root-review-required"
+}

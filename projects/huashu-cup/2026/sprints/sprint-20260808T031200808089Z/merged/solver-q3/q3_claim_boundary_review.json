@@ -1,0 +1,700 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T031200808089Z",
+  "task_id": "solver-q3",
+  "question": "Q3",
+  "authority": "proposal_only",
+  "review_status": "PASS_WITH_BOUNDARIES",
+  "reviewed_at_utc": "2026-08-08T05:12:06.894250+00:00",
+  "input_hash_verification": {
+    "all_match": true,
+    "items": [
+      {
+        "path": "problems/C/questions/Q3/question.yaml",
+        "expected_sha256": "a5457a859ff3e4141c0a34e5b3835f64193ea4d8ba08ed91c73af0b8428a363f",
+        "observed_sha256": "a5457a859ff3e4141c0a34e5b3835f64193ea4d8ba08ed91c73af0b8428a363f",
+        "match": true
+      },
+      {
+        "path": "contest.yaml",
+        "expected_sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272",
+        "observed_sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272",
+        "match": true
+      },
+      {
+        "path": "config/workflow.yaml",
+        "expected_sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469",
+        "observed_sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469",
+        "match": true
+      },
+      {
+        "path": "problems/C/source/problem-C.pdf",
+        "expected_sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9",
+        "observed_sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9",
+        "match": true
+      },
+      {
+        "path": "problems/C/data/region_time_data.xlsx",
+        "expected_sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba",
+        "observed_sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba",
+        "match": true
+      },
+      {
+        "path": "problems/C/data/power_mapping.xlsx",
+        "expected_sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e",
+        "observed_sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e",
+        "match": true
+      },
+      {
+        "path": "problems/C/data/storage_information.xlsx",
+        "expected_sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4",
+        "observed_sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4",
+        "match": true
+      },
+      {
+        "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3",
+        "expected_sha256": "0dd4b68fc5f0ad7b6a262add96bdcd416fa2ebb16afcaec63b9ae7d6ec5d166f",
+        "observed_sha256": "0dd4b68fc5f0ad7b6a262add96bdcd416fa2ebb16afcaec63b9ae7d6ec5d166f",
+        "match": true
+      }
+    ]
+  },
+  "binary_MILP": {
+    "status": "PASS",
+    "claim_eligible_solver_record_count": 126,
+    "all_solver_modes_binary": true,
+    "all_solver_success": true,
+    "maximum_mip_gap": 8.585727603618049e-08,
+    "declared_mip_gap_limit": 1e-07,
+    "candidate_audit_count": 132,
+    "candidate_audits_all_pass": true,
+    "candidate_max_audit_residual": 8.242295734817162e-12,
+    "charge_mode_values": [
+      0,
+      1
+    ],
+    "source_checks": {
+      "mode_integrality_declared": true,
+      "LP_relaxation_limited_to_full_probe": true,
+      "full_probe_removed_from_comparison": true
+    },
+    "boundary": "This proves binary charge/discharge mode handling for fixed, rolling-block, and 72-hour scenario runs. It does not make the relaxed 2407-hour LP probe claim-eligible."
+  },
+  "rolling_2407h_coverage": {
+    "status": "PASS",
+    "policy": "contiguous blocks carry terminal SOC to next block",
+    "regions": 6,
+    "blocks_per_region": 15,
+    "total_block_solves": 90,
+    "block_layout": "14 contiguous 168-hour blocks plus one 55-hour block",
+    "all_block_solves_success": true,
+    "all_block_modes_binary": true,
+    "maximum_block_mip_gap": 8.585727603618049e-08,
+    "fallback_used_blocks": 0,
+    "coverage_by_region": {
+      "RegionA": {
+        "candidate_rows": 2407,
+        "baseline_rows": 2407,
+        "candidate_hours_exact_0_2406": true,
+        "baseline_hours_exact_0_2406": true,
+        "candidate_duplicate_hours": 0,
+        "baseline_duplicate_hours": 0,
+        "block_starts": [
+          0,
+          168,
+          336,
+          504,
+          672,
+          840,
+          1008,
+          1176,
+          1344,
+          1512,
+          1680,
+          1848,
+          2016,
+          2184,
+          2352
+        ],
+        "block_horizons": [
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          55
+        ],
+        "block_layout_exact": true
+      },
+      "RegionB": {
+        "candidate_rows": 2407,
+        "baseline_rows": 2407,
+        "candidate_hours_exact_0_2406": true,
+        "baseline_hours_exact_0_2406": true,
+        "candidate_duplicate_hours": 0,
+        "baseline_duplicate_hours": 0,
+        "block_starts": [
+          0,
+          168,
+          336,
+          504,
+          672,
+          840,
+          1008,
+          1176,
+          1344,
+          1512,
+          1680,
+          1848,
+          2016,
+          2184,
+          2352
+        ],
+        "block_horizons": [
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          55
+        ],
+        "block_layout_exact": true
+      },
+      "RegionC": {
+        "candidate_rows": 2407,
+        "baseline_rows": 2407,
+        "candidate_hours_exact_0_2406": true,
+        "baseline_hours_exact_0_2406": true,
+        "candidate_duplicate_hours": 0,
+        "baseline_duplicate_hours": 0,
+        "block_starts": [
+          0,
+          168,
+          336,
+          504,
+          672,
+          840,
+          1008,
+          1176,
+          1344,
+          1512,
+          1680,
+          1848,
+          2016,
+          2184,
+          2352
+        ],
+        "block_horizons": [
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          55
+        ],
+        "block_layout_exact": true
+      },
+      "RegionD": {
+        "candidate_rows": 2407,
+        "baseline_rows": 2407,
+        "candidate_hours_exact_0_2406": true,
+        "baseline_hours_exact_0_2406": true,
+        "candidate_duplicate_hours": 0,
+        "baseline_duplicate_hours": 0,
+        "block_starts": [
+          0,
+          168,
+          336,
+          504,
+          672,
+          840,
+          1008,
+          1176,
+          1344,
+          1512,
+          1680,
+          1848,
+          2016,
+          2184,
+          2352
+        ],
+        "block_horizons": [
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          55
+        ],
+        "block_layout_exact": true
+      },
+      "RegionE": {
+        "candidate_rows": 2407,
+        "baseline_rows": 2407,
+        "candidate_hours_exact_0_2406": true,
+        "baseline_hours_exact_0_2406": true,
+        "candidate_duplicate_hours": 0,
+        "baseline_duplicate_hours": 0,
+        "block_starts": [
+          0,
+          168,
+          336,
+          504,
+          672,
+          840,
+          1008,
+          1176,
+          1344,
+          1512,
+          1680,
+          1848,
+          2016,
+          2184,
+          2352
+        ],
+        "block_horizons": [
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          55
+        ],
+        "block_layout_exact": true
+      },
+      "RegionF": {
+        "candidate_rows": 2407,
+        "baseline_rows": 2407,
+        "candidate_hours_exact_0_2406": true,
+        "baseline_hours_exact_0_2406": true,
+        "candidate_duplicate_hours": 0,
+        "baseline_duplicate_hours": 0,
+        "block_starts": [
+          0,
+          168,
+          336,
+          504,
+          672,
+          840,
+          1008,
+          1176,
+          1344,
+          1512,
+          1680,
+          1848,
+          2016,
+          2184,
+          2352
+        ],
+        "block_horizons": [
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          168,
+          55
+        ],
+        "block_layout_exact": true
+      }
+    },
+    "rolling_aggregate_audits_all_pass": true,
+    "rolling_aggregate_max_residual": 8.242295734817162e-12,
+    "boundary": "Coverage is full for supplied hours 0-2406 through contiguous rolling subproblems. This is not a single globally optimized 2407-hour binary MILP. Terminal SOC is a lower-bound carry rule, not equality to the initial SOC at every boundary."
+  },
+  "baseline_comparability": {
+    "status": "PASS",
+    "candidate_and_baseline_dispatch_schema_identical": true,
+    "candidate_claim_metric_rows": 132,
+    "baseline_metric_rows": 132,
+    "comparison_rows": 132,
+    "comparison_key_duplicates": 0,
+    "matching_metric_key_sets": true,
+    "baseline_no_storage_max_abs_MW": 0.0,
+    "baseline_audit_count": 132,
+    "baseline_audits_all_pass": true,
+    "baseline_max_audit_residual": 0.0,
+    "metric_definitions": {
+      "cost_CNY": "sum(GridPurchase*ElectricityPrice - GridSell*SellPrice)",
+      "carbon_tCO2": "sum(GridPurchase*CarbonIntensity)",
+      "peak_net_import_MW": "max(GridPurchase - GridSell)",
+      "load_std_MW": "population standard deviation of net grid import",
+      "renewable_utilization_ratio": "sum(AvailableRenewable - Curtailment)/sum(AvailableRenewable)",
+      "terminal_SOC_MWh": "end-of-hour SOC"
+    },
+    "boundary": "The baseline is comparable by output schema, keys, load inputs, constraints, and metric definitions. It is a deterministic no-storage policy, not a second optimization model."
+  },
+  "fallback": {
+    "status": "PASS",
+    "name": "valley_charge_peak_discharge",
+    "activation": "only after two consecutive MILP failures/time limits in a rolling subproblem",
+    "summary_used_blocks": 0,
+    "solver_record_used_blocks": 0,
+    "fallback_dispatch_rows": 0,
+    "code_checks": {
+      "retry_before_fallback": true,
+      "single_rule_named": true,
+      "rolling_only_enabled": true
+    },
+    "boundary": "The fallback was never activated, so no effectiveness or superiority claim about the fallback is eligible. Only its trigger and non-use may be stated."
+  },
+  "load_recomputation": {
+    "status": "PASS_WITH_ROUNDING_BOUNDARY",
+    "formula": "(Baseline_AI_IT_Load_MW + NonAI_IT_Load_MW) * inferred regional PUE",
+    "independent_rows": [
+      {
+        "region": "RegionA",
+        "rows": 2407,
+        "inferred_pue": 1.35,
+        "it_residual_max_abs_MW": 3.33300079091714e-07,
+        "facility_residual_max_abs_MW": 5.044995509706496e-05,
+        "facility_residual_mean_abs_MW": 3.135494573641861e-06
+      },
+      {
+        "region": "RegionB",
+        "rows": 2407,
+        "inferred_pue": 1.3499999999999999,
+        "it_residual_max_abs_MW": 3.33300079091714e-07,
+        "facility_residual_max_abs_MW": 5.044995509706496e-05,
+        "facility_residual_mean_abs_MW": 3.1437841263312476e-06
+      },
+      {
+        "region": "RegionC",
+        "rows": 2407,
+        "inferred_pue": 1.38,
+        "it_residual_max_abs_MW": 3.33300079091714e-07,
+        "facility_residual_max_abs_MW": 4.045995410706382e-05,
+        "facility_residual_mean_abs_MW": 2.881446038229041e-06
+      },
+      {
+        "region": "RegionD",
+        "rows": 2407,
+        "inferred_pue": 1.28,
+        "it_residual_max_abs_MW": 3.33300079091714e-07,
+        "facility_residual_max_abs_MW": 4.0426624082101625e-05,
+        "facility_residual_mean_abs_MW": 2.856079217391293e-06
+      },
+      {
+        "region": "RegionE",
+        "rows": 2407,
+        "inferred_pue": 1.25,
+        "it_residual_max_abs_MW": 3.33300079091714e-07,
+        "facility_residual_max_abs_MW": 5.041662507210276e-05,
+        "facility_residual_mean_abs_MW": 2.9853329948147403e-06
+      },
+      {
+        "region": "RegionF",
+        "rows": 2407,
+        "inferred_pue": 1.27,
+        "it_residual_max_abs_MW": 3.33300079091714e-07,
+        "facility_residual_max_abs_MW": 5.042329104298915e-05,
+        "facility_residual_mean_abs_MW": 2.9540462555228266e-06
+      }
+    ],
+    "artifact_matches_independent_recompute": true,
+    "maximum_it_residual_MW": 3.33300079091714e-07,
+    "IT_residual_within_declared_tolerance": true,
+    "maximum_facility_residual_MW": 5.044995509706496e-05,
+    "facility_residual_within_declared_tolerance": false,
+    "facility_residual_excess_over_tolerance_MW": 4.4995509706495556e-07,
+    "inferred_pue_by_region": {
+      "RegionA": 1.35,
+      "RegionB": 1.3499999999999999,
+      "RegionC": 1.38,
+      "RegionD": 1.28,
+      "RegionE": 1.25,
+      "RegionF": 1.27
+    },
+    "power_mapping_task_types": [
+      "AITraining",
+      "BatchInference",
+      "RealTimeInference"
+    ],
+    "power_mapping_rule_rows": 5,
+    "boundary": "IT load is reproduced within tolerance. Facility load differs by at most 5.045e-5 MW, which is 4.5e-7 MW above the generic 5e-5 tolerance and is consistent with source rounding. Claims must state the measured residual and must not say exact equality."
+  },
+  "scenario_definitions": {
+    "status": "PASS",
+    "scope_h": 72,
+    "scenario_count": 4,
+    "candidate_metric_rows": 24,
+    "candidate_rows_per_scenario": {
+      "high_carbon_empirical": 6,
+      "joint_stress": 6,
+      "peak_price_empirical": 6,
+      "renewable_low_empirical": 6
+    },
+    "candidate_solver_success_all": true,
+    "candidate_solver_modes": [
+      "binary_MILP"
+    ],
+    "candidate_and_baseline_audit_count": 48,
+    "candidate_and_baseline_audits_all_pass": true,
+    "quantiles_recomputed": {
+      "price_q50": 460.415,
+      "price_q90": 936.434,
+      "carbon_q50": 0.47795,
+      "carbon_q75": 0.5822,
+      "carbon_q90": 0.6248,
+      "renewable_q10": 510.22,
+      "renewable_q50": 800.0
+    },
+    "quantiles_match_summary": true,
+    "factors_recomputed": {
+      "peak_price_empirical": {
+        "price": 1.2,
+        "carbon": 1.0,
+        "renewable": 1.0
+      },
+      "high_carbon_empirical": {
+        "price": 1.0,
+        "carbon": 1.2,
+        "renewable": 1.0
+      },
+      "renewable_low_empirical": {
+        "price": 1.0,
+        "carbon": 1.0,
+        "renewable": 0.85
+      },
+      "joint_stress": {
+        "price": 1.2,
+        "carbon": 1.2,
+        "renewable": 0.85
+      }
+    },
+    "factors_match_summary": true,
+    "definitions": {
+      "peak_price_empirical": {
+        "price": 1.2,
+        "carbon": 1.0,
+        "renewable": 1.0,
+        "price_scope": "PricePeriod=Peak",
+        "derivation": "min(1.20,max(1.05,price_q90/price_q50))"
+      },
+      "high_carbon_empirical": {
+        "price": 1.0,
+        "carbon": 1.2,
+        "renewable": 1.0,
+        "carbon_scope": "observed carbon >= q75",
+        "derivation": "min(1.20,max(1.05,carbon_q90/carbon_q50))"
+      },
+      "renewable_low_empirical": {
+        "price": 1.0,
+        "carbon": 1.0,
+        "renewable": 0.85,
+        "renewable_scope": "all hours",
+        "derivation": "clip(renewable_q10/renewable_q50,0.85,0.95)"
+      },
+      "joint_stress": {
+        "price": 1.2,
+        "carbon": 1.2,
+        "renewable": 0.85,
+        "price_scope": "PricePeriod=Peak",
+        "carbon_scope": "observed carbon >= q75",
+        "renewable_scope": "all hours",
+        "derivation": "combined empirical-ratio probes"
+      }
+    },
+    "boundary": "The four scenario probes are deterministic, observed-data-derived 72-hour robustness tests. They are not full-horizon stochastic guarantees or probability-weighted forecasts."
+  },
+  "excluded_full_cycle_LP_probe": {
+    "status": "EXCLUDED",
+    "label": "LP_full_cycle_scalability_probe",
+    "claim_eligible": false,
+    "solver_record_count": 6,
+    "all_solver_modes_relaxed_LP": true,
+    "comparison_rows_containing_probe": 0,
+    "audit_by_region": {
+      "RegionA": {
+        "passed": true,
+        "simultaneous_charge_discharge_MW": 0.0
+      },
+      "RegionB": {
+        "passed": true,
+        "simultaneous_charge_discharge_MW": 0.0
+      },
+      "RegionC": {
+        "passed": true,
+        "simultaneous_charge_discharge_MW": 0.0
+      },
+      "RegionD": {
+        "passed": true,
+        "simultaneous_charge_discharge_MW": 0.0
+      },
+      "RegionE": {
+        "passed": true,
+        "simultaneous_charge_discharge_MW": 0.0
+      },
+      "RegionF": {
+        "passed": false,
+        "simultaneous_charge_discharge_MW": 116.60975349482445
+      }
+    },
+    "RegionF_failure": {
+      "passed": false,
+      "simultaneous_charge_discharge_MW": 116.60975349482445
+    },
+    "exclusion_rule": "No metric, dispatch row, or audit from evaluation=full_cycle_probe or Method=full_cycle_LP_scalability_probe may support a manuscript claim. RegionF has 116.60975349482445 MW simultaneous charge/discharge in the relaxed solution."
+  },
+  "rolling_aggregate_verified_metrics": {
+    "region_rows": [
+      {
+        "region": "RegionA",
+        "cost_CNY_candidate": 0.0,
+        "cost_CNY_baseline": 0.0,
+        "cost_saving_CNY": 0.0,
+        "carbon_tCO2_candidate": 0.0,
+        "carbon_tCO2_baseline": 0.0,
+        "carbon_reduction_tCO2": 0.0,
+        "peak_reduction_MW": 0.0,
+        "std_reduction_MW": 0.0,
+        "renewable_utilization_gain_pp": 0.0130022128
+      },
+      {
+        "region": "RegionB",
+        "cost_CNY_candidate": 0.0,
+        "cost_CNY_baseline": 0.0,
+        "cost_saving_CNY": 0.0,
+        "carbon_tCO2_candidate": 0.0,
+        "carbon_tCO2_baseline": 0.0,
+        "carbon_reduction_tCO2": 0.0,
+        "peak_reduction_MW": 0.0,
+        "std_reduction_MW": 0.0,
+        "renewable_utilization_gain_pp": 0.0118555911
+      },
+      {
+        "region": "RegionC",
+        "cost_CNY_candidate": 0.0,
+        "cost_CNY_baseline": 0.0,
+        "cost_saving_CNY": 0.0,
+        "carbon_tCO2_candidate": 0.0,
+        "carbon_tCO2_baseline": 0.0,
+        "carbon_reduction_tCO2": 0.0,
+        "peak_reduction_MW": 0.0,
+        "std_reduction_MW": 0.0,
+        "renewable_utilization_gain_pp": 0.0111286807
+      },
+      {
+        "region": "RegionD",
+        "cost_CNY_candidate": -142647459.2026157,
+        "cost_CNY_baseline": -133039578.07081132,
+        "cost_saving_CNY": 9607881.13180442,
+        "carbon_tCO2_candidate": 0.0,
+        "carbon_tCO2_baseline": 0.0,
+        "carbon_reduction_tCO2": 0.0,
+        "peak_reduction_MW": 75.9955995734,
+        "std_reduction_MW": 27.5535918222,
+        "renewable_utilization_gain_pp": 2.2606615845
+      },
+      {
+        "region": "RegionE",
+        "cost_CNY_candidate": -153906361.74518254,
+        "cost_CNY_baseline": -140473204.72832286,
+        "cost_saving_CNY": 13433157.01685968,
+        "carbon_tCO2_candidate": 0.0,
+        "carbon_tCO2_baseline": 0.0,
+        "carbon_reduction_tCO2": 0.0,
+        "peak_reduction_MW": 0.0,
+        "std_reduction_MW": 35.2748188643,
+        "renewable_utilization_gain_pp": 3.4349758815
+      },
+      {
+        "region": "RegionF",
+        "cost_CNY_candidate": -162166476.66444427,
+        "cost_CNY_baseline": -146307544.94017574,
+        "cost_saving_CNY": 15858931.724268524,
+        "carbon_tCO2_candidate": 0.0,
+        "carbon_tCO2_baseline": 8.8505625719,
+        "carbon_reduction_tCO2": 8.8505625719,
+        "peak_reduction_MW": 166.9269666667,
+        "std_reduction_MW": 42.1646968819,
+        "renewable_utilization_gain_pp": 3.8525169579
+      }
+    ],
+    "six_region_totals": {
+      "candidate_cost_CNY": -458720297.6122425,
+      "baseline_cost_CNY": -419820327.7393099,
+      "cost_delta_CNY": -38899969.87293261,
+      "candidate_carbon_tCO2": 0.0,
+      "baseline_carbon_tCO2": 8.8505625719,
+      "carbon_delta_tCO2": -8.8505625719
+    },
+    "reported_improvement_columns_nonnegative_in_every_region": {
+      "cost_saving_CNY": true,
+      "carbon_reduction_tCO2": true,
+      "peak_reduction_MW": true,
+      "std_reduction_MW": true,
+      "renewable_utilization_gain_pp": true
+    }
+  },
+  "claim_eligible_scope": [
+    "Binary MILP fixed-window evidence for 72 h and 168 h.",
+    "Contiguous rolling binary-MILP evidence covering supplied hours 0-2406 for all six regions.",
+    "Candidate versus deterministic no-storage baseline comparisons with matching keys, schema, and metrics.",
+    "Four observed-data-derived 72-hour scenario probes.",
+    "Load recomputation stated with the independently measured rounding residual."
+  ],
+  "claim_ineligible_or_restricted_scope": [
+    "The full-cycle 2407-hour LP scalability probe and every metric or dispatch derived from it.",
+    "Any RegionF LP result affected by 116.60975349482445 MW simultaneous charge/discharge.",
+    "A claim of one globally optimal 2407-hour binary MILP; evidence is rolling-block optimization.",
+    "A claim that terminal SOC equals InitialSOC at every block boundary; the rule is a lower bound with carry-forward.",
+    "A claim of exact facility-load identity; maximum observed recomputation residual is 5.045e-5 MW.",
+    "A claim about fallback performance; fallback use count is zero.",
+    "A claim of system-wide inter-region power-flow optimization; Q3 is regional storage dispatch."
+  ],
+  "root_action": "Root may freeze only proposal text that preserves these scopes and exclusions. This review does not modify claims, manifests, the paper, or Figure Contracts."
+}

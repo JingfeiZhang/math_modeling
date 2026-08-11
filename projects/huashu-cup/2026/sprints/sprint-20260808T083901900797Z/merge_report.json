@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T083901900797Z",
+  "status": "MERGED",
+  "passed": true,
+  "accepted_tasks": [
+    "figure-q2",
+    "figure-q3q4",
+    "writer-q2q4"
+  ],
+  "archived_artifacts": [
+    {
+      "task_id": "figure-q2",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q2/figure_contract_proposals.yaml",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q2/figure_contract_proposals.yaml",
+      "sha256": "3bd81034782570aa29bd4991e5c525df7c508e51aff3ac9ca34b62c0248448cf"
+    },
+    {
+      "task_id": "figure-q2",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q2/generate_q2_figures.py",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q2/generate_q2_figures.py",
+      "sha256": "e86f5cf432227aea0f085516f740785ce916f80869e9dfce61f1b4a0ec61ec11"
+    },
+    {
+      "task_id": "figure-q2",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q2/fig_q2_dispatch_comparison.pdf",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q2/fig_q2_dispatch_comparison.pdf",
+      "sha256": "0c50d7e0179766c0341336a82040345a6797c0d182c1f692d307536d0b5377e8"
+    },
+    {
+      "task_id": "figure-q2",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q2/fig_q2_dispatch_comparison.svg",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q2/fig_q2_dispatch_comparison.svg",
+      "sha256": "a15d858377cee2d1993083f77a164038c46ebe62eef32759983a5a44396dbe01"
+    },
+    {
+      "task_id": "figure-q2",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q2/fig_q2_dispatch_comparison.png",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q2/fig_q2_dispatch_comparison.png",
+      "sha256": "66e344dbdd5eed75f0c53ad848f48c7cab26f1d580bc2f300b93b3f6835ad270"
+    },
+    {
+      "task_id": "figure-q3q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/figure_contract_proposals.yaml",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q3q4/figure_contract_proposals.yaml",
+      "sha256": "77ae34147550e4a8c4f6bf6371d0526a54693c90600409d1f240cbd808cfc698"
+    },
+    {
+      "task_id": "figure-q3q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/generate_q3_q4_figures.py",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q3q4/generate_q3_q4_figures.py",
+      "sha256": "b87331d5c94f282c9c88a8c1a71d86bf475b1eabbf57e399d6bc9b0b280702f4"
+    },
+    {
+      "task_id": "figure-q3q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q3_rolling_comparison.pdf",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q3q4/fig_q3_rolling_comparison.pdf",
+      "sha256": "09a3fc13e03ba193c121dd02f7906f099ecaca7f69298e320c94fa8df17aa68d"
+    },
+    {
+      "task_id": "figure-q3q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q3_rolling_comparison.svg",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q3q4/fig_q3_rolling_comparison.svg",
+      "sha256": "d76e9c793bfb738791eb349bf1e59ce69f696aa516e49b9ca3c0e6a63c30f300"
+    },
+    {
+      "task_id": "figure-q3q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q3_rolling_comparison.png",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q3q4/fig_q3_rolling_comparison.png",
+      "sha256": "4542072877cda3bb0c4d651dbc9266cedad52c0e393e8565a7282c5c6829e19c"
+    },
+    {
+      "task_id": "figure-q3q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q4_peak_tradeoff.pdf",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q3q4/fig_q4_peak_tradeoff.pdf",
+      "sha256": "0c300bc93b6d12a1bcf5a90f6b3d72d6e60ee0bd2f4930384d943f7dbcbc84c3"
+    },
+    {
+      "task_id": "figure-q3q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q4_peak_tradeoff.svg",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q3q4/fig_q4_peak_tradeoff.svg",
+      "sha256": "04b454e1b292e2b8e74af0cbd2c367ae807bbd6eecacf52e3b2a206fc3911d40"
+    },
+    {
+      "task_id": "figure-q3q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q4_peak_tradeoff.png",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/figure-q3q4/fig_q4_peak_tradeoff.png",
+      "sha256": "8b1d34b2ca9b8d7696a723c3439afcf3e8d7840eeed591ecf8da8a24ba99458f"
+    },
+    {
+      "task_id": "writer-q2q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/writer-q2q4/abstract_q2q4_proposal.tex",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/writer-q2q4/abstract_q2q4_proposal.tex",
+      "sha256": "a564fad4c2074626a40de3b9a19f7b65ff58cb4c7a828e9d617c98bda48b2e99"
+    },
+    {
+      "task_id": "writer-q2q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/writer-q2q4/body_q2q4_proposal.tex",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/writer-q2q4/body_q2q4_proposal.tex",
+      "sha256": "6c70ead24e7054af44f490da1ec8d142305ded5c9a478f7cced0d5d87a9e0f5f"
+    },
+    {
+      "task_id": "writer-q2q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/writer-q2q4/appendix_ai_proposal.tex",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/writer-q2q4/appendix_ai_proposal.tex",
+      "sha256": "0eda0aa97895ad1e7231fc7b67a67e6c84ecabae04af02465d230026527a0401"
+    },
+    {
+      "task_id": "writer-q2q4",
+      "source": "sprints/sprint-20260808T083901900797Z/staging/writer-q2q4/writer_review.json",
+      "archive": "sprints/sprint-20260808T083901900797Z/merged/writer-q2q4/writer_review.json",
+      "sha256": "7ad6780303468d88284a9da2199534f11f0d559a5661243a027f7b593a37276c"
+    }
+  ],
+  "retry_packages": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "formal_state_modified": false,
+  "generated_at_utc": "2026-08-08T09:21:34.773087+00:00"
+}

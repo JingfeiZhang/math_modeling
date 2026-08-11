@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "run_id": "q2-carbon-aware-enhancement-20260808",
+  "problem_id": "C",
+  "question_id": "Q2",
+  "engine": "python",
+  "command": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T023234268084Z\\staging\\solver-q2\\run_q2_enhanced.py"
+  ],
+  "environment": {
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "ortools": "9.15.6755",
+    "PYTHONPATH_requirement": "workspace tmp/q2-pilot-deps"
+  },
+  "random_seed": 20260801,
+  "inputs": [
+    {
+      "path": "problems/C/questions/Q2/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "06a3073bdb99b1d77a77552fce48e97bad8b94eff8f16e382fa6ff398bbd24c2"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "problems/C/data/workload_trace.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+    },
+    {
+      "path": "problems/C/data/GPU_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+    },
+    {
+      "path": "problems/C/data/network_latency.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157"
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/power_mapping.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+    },
+    {
+      "path": "sprints/sprint-20260807T200315378028Z/merged/solver-q2",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "724dc8659acbf1cf8b6ea66067681789979733f88446981ff0e0b9f83b4399d7"
+    }
+  ],
+  "code": {
+    "runner": {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/run_q2_enhanced.py",
+      "sha256": "aa4152b70735fc7165ccf74338a56a19b89de1e93f83dbfba80cc4713124bd71"
+    },
+    "pinned_base_runner": {
+      "path": "sprints/sprint-20260807T200315378028Z/merged/solver-q2/run_solver_q2.py",
+      "sha256": "39a521f31692adb0e4454e83191bfc9e691f87dfea752d080f22fce091d70b71"
+    }
+  },
+  "methods": {
+    "main": "rolling_shadow_price_exchange::lagrangian_balanced",
+    "baseline": "FIFO_latency_feasible_local_first",
+    "fallback": "CP_SAT_unresolved_task_repair",
+    "hard_constraints": [
+      "assignment_once",
+      "nonpreemption_and_duration_identity",
+      "latency_filter",
+      "realtime_arrival_start",
+      "GPU_capacity",
+      "IT_power_capacity",
+      "facility_power_capacity",
+      "SLA_latest_finish",
+      "closeout_end_at_or_before_2406",
+      "single_execution_region_no_migration_energy"
+    ],
+    "policy_parameters": [
+      {
+        "policy_id": "epsilon_cost_no_carbon_regret",
+        "cost_weight": 1.0,
+        "carbon_weight": 0.0,
+        "wait_weight": 0.015,
+        "latency_weight": 0.02,
+        "renewable_weight": 0.05,
+        "carbon_epsilon_ratio": 0.0,
+        "latency_epsilon_ms": 20.0
+      },
+      {
+        "policy_id": "lagrangian_balanced",
+        "cost_weight": 1.0,
+        "carbon_weight": 4.0,
+        "wait_weight": 0.015,
+        "latency_weight": 0.015,
+        "renewable_weight": 0.05,
+        "carbon_epsilon_ratio": null,
+        "latency_epsilon_ms": 35.0
+      },
+      {
+        "policy_id": "lagrangian_carbon_priority",
+        "cost_weight": 1.0,
+        "carbon_weight": 12.0,
+        "wait_weight": 0.01,
+        "latency_weight": 0.01,
+        "renewable_weight": 0.05,
+        "carbon_epsilon_ratio": null,
+        "latency_epsilon_ms": 65.0
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "name": "cost_CNY",
+      "unit": "CNY"
+    },
+    {
+      "name": "carbon_tCO2",
+      "unit": "tCO2"
+    },
+    {
+      "name": "mean_latency_ms",
+      "unit": "ms"
+    },
+    {
+      "name": "renewable_utilization_ratio",
+      "unit": "ratio"
+    },
+    {
+      "name": "task_completion_rate",
+      "unit": "ratio"
+    },
+    {
+      "name": "SLA_violation_rate",
+      "unit": "ratio"
+    },
+    {
+      "name": "peak_facility_load_MW",
+      "unit": "MW"
+    },
+    {
+      "name": "optimizer_runtime_seconds",
+      "unit": "s"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/run_q2_enhanced.py",
+      "sha256": "aa4152b70735fc7165ccf74338a56a19b89de1e93f83dbfba80cc4713124bd71"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_baseline_schedules.csv",
+      "sha256": "45e378f7e7a77a219deeeaff97a53e4f444693aca15e19d761cefe6d79b2be1d"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_candidate_schedules.csv",
+      "sha256": "a3bf710460b36da522d0753f4612a2c764d54ba5311177611dce593a1788e05d"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_baseline_metrics.csv",
+      "sha256": "b1d94415f7be56e7768eec070d2b0aa56e73073890da1d6e1ca6e136bd6b75d7"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_candidate_metrics.csv",
+      "sha256": "09f979f7e9a39f97c9334b0efe71cada0b7a51c2743122d2c73970627b3b4c66"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_variant_metrics.csv",
+      "sha256": "af1f396cea7bf8b440e94be8a063c00d65a8b68e807a464084498f7ea9f879ee"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_robustness.csv",
+      "sha256": "913df99ff941cb2818367858ad1e1414548abfa8e4c626fbfcd667a55df93605"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_pareto.csv",
+      "sha256": "b61af9a3343f27b923d17c25836c8e93f99cd675494179bc8760cc323aac305c"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_constraint_audit.json",
+      "sha256": "f3db13dcc42cdb955b8bc17d68e5ac70a457f905c7ace1fb2428b38d75431248"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_claim_proposals.json",
+      "sha256": "aee22e8c157dab500a5ddd595639cfc11147ce1286aabe9f5a8b8967e332954d"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/staging/solver-q2/q2_enhancement_summary.json",
+      "sha256": "02d2048f466694d15aaa6905080b2c82413a95b71580034a0ff5e888b23b1e62"
+    }
+  ],
+  "started_at_utc": "2026-08-08T03:05:48.174756+00:00",
+  "duration_seconds": 31.903502,
+  "status": "PASS"
+}

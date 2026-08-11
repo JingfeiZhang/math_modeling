@@ -1,0 +1,9 @@
+{
+  "recipe_id": "lunar-descent-control",
+  "metrics": {
+    "touchdown_speed_mps": 2.000001554310319,
+    "fuel_proxy": 222.99199844568963,
+    "duration_s": 121.5,
+    "constant_thrust_baseline_speed_mps": 47.68300000000001
+  }
+}

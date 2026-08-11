@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "question_id": "Q4",
+  "status": "PROBE_ONLY",
+  "command": "D:\\anaconda3\\envs\\math-modeling\\python.exe run_q4_joint_optimization.py",
+  "seed": 20260809,
+  "inputs": [
+    {
+      "path": "experiments/C/Q2/q2-direct-20260808/models/full_horizon/run_q2_full_horizon.py",
+      "sha256": "16342d79929ecb31acd7e821f66c2c6fbc95df377f7f81999b4a83ad423bce5b"
+    },
+    {
+      "path": "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_candidate_schedule.csv",
+      "sha256": "8b0d753e46c4a157fa12f62f5f833468403a980e42460857f238a770d8db0004"
+    },
+    {
+      "path": "experiments/C/Q4/q4-direct-20260808/models/final_milp/run_solver_q4_final.py",
+      "sha256": "53bbde759fb7b089656a8f14e986d824e7e86332b864232f0131f6de17a8c7f3"
+    },
+    {
+      "path": "problems/C/data/workload_trace.xlsx",
+      "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+    },
+    {
+      "path": "problems/C/data/GPU_information.xlsx",
+      "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+    },
+    {
+      "path": "problems/C/data/network_latency.xlsx",
+      "sha256": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157"
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/power_mapping.xlsx",
+      "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+    },
+    {
+      "path": "problems/C/data/storage_information.xlsx",
+      "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+    }
+  ],
+  "environment": {
+    "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5"
+  },
+  "generated_at_utc": "2026-08-08T18:26:11.148982+00:00",
+  "baseline_envelope": {
+    "task_count": 1640,
+    "task_id_sha256": "1d82c2edf0284eac14485c84b63d85d7a8f294e7b1ff95b4cae6a8b6ad712079",
+    "spill_task_count": 69,
+    "excluded_closeout_task_minutes": 19643,
+    "excluded_closeout_ai_energy_MWh": 1705.0533333333333,
+    "ai_energy_within_72h_MWh": 23284.363,
+    "facility_energy_within_72h_MWh": 193888.14024539664,
+    "region_hour_rows": 432
+  },
+  "candidate_envelope": {
+    "task_count": 1640,
+    "task_id_sha256": "1d82c2edf0284eac14485c84b63d85d7a8f294e7b1ff95b4cae6a8b6ad712079",
+    "spill_task_count": 69,
+    "excluded_closeout_task_minutes": 19643,
+    "excluded_closeout_ai_energy_MWh": 1705.0533333333333,
+    "ai_energy_within_72h_MWh": 23284.363,
+    "facility_energy_within_72h_MWh": 193888.14024539664,
+    "region_hour_rows": 432
+  }
+}

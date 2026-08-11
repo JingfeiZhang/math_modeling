@@ -1,0 +1,42 @@
+{
+  "aggregates": {
+    "fifo_latency_feasible_local_first": {
+      "accounting_residual_mwh": -9.872019290924072e-08,
+      "available_renewable_mwh": 11545068.36,
+      "curtailment_mwh": 5033830.777394029,
+      "direct_renewable_use_mwh": 6511237.582606069,
+      "grid_sell_mwh": 0.0,
+      "renewable_charge_mwh": 0.0,
+      "renewable_utilization_ratio": 0.5639843246979327
+    },
+    "fixed_weight_bounded_rolling_local_exchange_heuristic": {
+      "accounting_residual_mwh": -1.862645149230957e-08,
+      "available_renewable_mwh": 11545068.36,
+      "curtailment_mwh": 5042853.46379553,
+      "direct_renewable_use_mwh": 6502214.896204488,
+      "grid_sell_mwh": 0.0,
+      "renewable_charge_mwh": 0.0,
+      "renewable_utilization_ratio": 0.5632028060338388
+    }
+  },
+  "attachment_boundary": {
+    "Curtailment_MW": "available renewable minus direct use under the Q2 boundary",
+    "GridSell_MW": "0 because Q2 does not dispatch renewable export",
+    "RenewableCharge_MW": "0 because Q2 does not dispatch storage"
+  },
+  "checks": {
+    "expected_row_count": 28872,
+    "maximum_renewable_balance_residual_mw": 0.0,
+    "method_count": 2,
+    "method_count_passed": true,
+    "nonnegative_components_passed": true,
+    "renewable_balance_passed": true,
+    "row_count": 28872,
+    "row_count_passed": true
+  },
+  "definition": "(direct renewable use + renewable charging + renewable export) / available renewable energy",
+  "invalidated_legacy_definition": "minute-integrated direct renewable use divided by facility energy",
+  "question_id": "Q2",
+  "schema_version": 1,
+  "status": "PASS"
+}

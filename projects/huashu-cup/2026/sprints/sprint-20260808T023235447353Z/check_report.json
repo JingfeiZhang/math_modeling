@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T023235447353Z",
+  "status": "READY_TO_MERGE",
+  "passed": true,
+  "accepted_tasks": [
+    "solver-q4"
+  ],
+  "retry_tasks": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "tasks": [
+    {
+      "task_id": "solver-q4",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 2,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260808T023235447353Z/retry-staging/solver-q4-attempt-2/q4_enhanced_summary.json",
+          "sha256": "8a5c1f671788d4b452614194cb6430bddee814682572a9bf92489ce05a955d8d"
+        },
+        {
+          "path": "sprints/sprint-20260808T023235447353Z/retry-staging/solver-q4-attempt-2/q4_enhanced_constraint_audit.json",
+          "sha256": "a54cf9aed21ee32c1bff62c24da61ea0d5e628c39f29d1b6aa0c5f1821a15361"
+        },
+        {
+          "path": "sprints/sprint-20260808T023235447353Z/retry-staging/solver-q4-attempt-2/q4_enhanced_candidate_metrics.csv",
+          "sha256": "a49a232312d24fe490dcfe4c2dd6a5977b13a54ece5fbeb2d176810d728ef503"
+        },
+        {
+          "path": "sprints/sprint-20260808T023235447353Z/retry-staging/solver-q4-attempt-2/q4_enhanced_baseline_metrics.csv",
+          "sha256": "a08e1a7bf5bd459e10d30577328271ce404e2800b31c9530ad2f57463018a530"
+        },
+        {
+          "path": "sprints/sprint-20260808T023235447353Z/retry-staging/solver-q4-attempt-2/q4_enhanced_candidate_dispatch.csv",
+          "sha256": "1ba7014a9b03cc7c7565c03ea8925362737da474958367614cea3f35864e1386"
+        },
+        {
+          "path": "sprints/sprint-20260808T023235447353Z/retry-staging/solver-q4-attempt-2/q4_enhanced_baseline_dispatch.csv",
+          "sha256": "575d08cc3d05b1b9c0c75d2b640fb3bbacdc549caeee0e5625823ba1dfd812c7"
+        },
+        {
+          "path": "sprints/sprint-20260808T023235447353Z/retry-staging/solver-q4-attempt-2/q4_enhanced_run_manifest.json",
+          "sha256": "5551214abec3dcde7cc37873a482c101cdfd586693fea72f0a05382aa076dc13"
+        },
+        {
+          "path": "sprints/sprint-20260808T023235447353Z/retry-staging/solver-q4-attempt-2/run_solver_q4_enhanced.py",
+          "sha256": "577ad4d134536543f2f7fd7e5d5000cb928a3e9a1296e0936f549d285f69be6a"
+        }
+      ],
+      "handoff": "sprints/sprint-20260808T023235447353Z/retry-staging/solver-q4-attempt-2/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-08T03:54:02.092464+00:00"
+}

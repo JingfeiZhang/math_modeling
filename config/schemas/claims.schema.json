@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen claim registry",
+  "type": "object",
+  "required": ["schema_version", "problem_id", "claims"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "problem_id": {"type": "string"},
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "question_id", "statement", "locator", "unit", "status"],
+        "properties": {
+          "id": {"type": "string"},
+          "question_id": {"type": "string"},
+          "statement": {"type": "string"},
+          "locator": {"type": "string"},
+          "unit": {"type": "string"},
+          "value": {"type": ["string", "number", "boolean", "null"]},
+          "status": {"enum": ["exploratory", "verified", "frozen", "superseded"]},
+          "evidence_sha256": {"type": ["string", "null"]},
+          "decision_id": {"type": ["string", "null"]},
+          "frozen_at_utc": {"type": ["string", "null"]}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

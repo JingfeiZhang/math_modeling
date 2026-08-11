@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T083901900797Z",
+  "task_id": "figure-q3q4",
+  "role": "figure",
+  "problem": "C",
+  "question": "Q3-Q4",
+  "status": "PENDING",
+  "attempt": 1,
+  "max_attempts": 2,
+  "dependencies": [],
+  "input_hashes": [
+    {"path": "problems/C/questions/Q3/question.yaml", "kind": "file", "exists": true, "sha256": "6bf051de9ca11fb957dba22ceb905c1107455a4d48d8140caf47fd309543b511"},
+    {"path": "problems/C/questions/Q4/question.yaml", "kind": "file", "exists": true, "sha256": "5749fcfc0c2f172008d03608949b89881894bfae91069a921df35a56092b286c"},
+    {"path": "config/workflow.yaml", "kind": "file", "exists": true, "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"},
+    {"path": "results/C/claims.json", "kind": "file", "exists": true, "sha256": "cef4f43848ba16de8cf215c8dcc2b8067a4d759d069e51aaaecf6e43cccb8f79"},
+    {"path": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json", "kind": "file", "exists": true, "sha256": "ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35"},
+    {"path": "experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json", "kind": "file", "exists": true, "sha256": "26f46159818b9cc3f52ac6fae14a00e1cdcbee60f1b986e9cfa05158d447db66"},
+    {"path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_comparison_summary.csv", "kind": "file", "exists": true, "sha256": "f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f"},
+    {"path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_scenario_metrics.csv", "kind": "file", "exists": true, "sha256": "4b67097a73bcc30720301f9fb1068ab354f289b21a9219c7e6edd92227aba3d8"},
+    {"path": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_aggregate_comparison.csv", "kind": "file", "exists": true, "sha256": "056dc66bdc9685d0ecd360082980aeb8bf38524e6fb0ae413a7805fa79cf006e"},
+    {"path": "sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_system_hourly.csv", "kind": "file", "exists": true, "sha256": "e9b327a767c6a321752e780b1e36d3255e5dc2f91156f7269c4be9be94c1dedc"},
+    {"path": "sprints/sprint-20260808T051118704690Z/merged/solver-q4/q4_peak_tradeoff.csv", "kind": "file", "exists": true, "sha256": "8ed32e82b5bd8ba9c64e3b3d6bfd97bd32e306ce8248ceb1afbce3848b204fcc"}
+  ],
+  "allowed_read_paths": ["problems/C/questions/Q3/question.yaml", "problems/C/questions/Q4/question.yaml", "config/workflow.yaml", "config/figure_style.yaml", "results/C/claims.json", "experiments/C/Q3", "experiments/C/Q4", "sprints/sprint-20260808T023236665505Z/merged/solver-q3", "sprints/sprint-20260808T031200808089Z/merged/solver-q3", "sprints/sprint-20260808T031214934335Z/merged/solver-q4", "sprints/sprint-20260808T051118704690Z/merged/solver-q4", "src", "workspace://src", "workspace://config"],
+  "write_directory": "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4",
+  "expected_outputs": ["sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/handoff.json", "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/figure_contract_proposals.yaml", "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/generate_q3_q4_figures.py", "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q3_rolling_comparison.pdf", "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q3_rolling_comparison.svg", "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q3_rolling_comparison.png", "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q4_peak_tradeoff.pdf", "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q4_peak_tradeoff.svg", "sprints/sprint-20260808T083901900797Z/staging/figure-q3q4/fig_q4_peak_tradeoff.png"],
+  "target_gate": "G5",
+  "deadline_utc": "2026-08-10 20:00:00+08:00",
+  "root_only_paths": ["state/decision_log.json", "results/C/claims.json", "paper/main.tex", "paper/figure_contracts.yaml", "output/"],
+  "sprint_profile": "default",
+  "input_sprint_id": null
+}

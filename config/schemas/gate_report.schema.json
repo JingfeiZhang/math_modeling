@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Derived G0-G6 workflow gate report",
+  "type": "object",
+  "required": ["schema_version", "problem", "question", "gate", "passed", "checks", "generated_at_utc"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "problem": {"type": "string"},
+    "question": {"type": ["string", "null"]},
+    "gate": {"enum": ["G0", "G1", "G2", "G3", "G4", "G5", "G6"]},
+    "passed": {"type": "boolean"},
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "passed", "detail"],
+        "properties": {"name": {"type": "string"}, "passed": {"type": "boolean"}, "detail": {"type": "string"}, "evidence": {"type": "string"}},
+        "additionalProperties": false
+      }
+    },
+    "generated_at_utc": {"type": "string"}
+  },
+  "additionalProperties": false
+}
+

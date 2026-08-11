@@ -1,0 +1,338 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2020-a-a212",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2020,
+    "problem": "A",
+    "team_id": "",
+    "title": "回焊炉温曲线优化控制"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2020/A212.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2020/A212.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2020,
+    "problem": "A",
+    "team_id": "",
+    "title": "回焊炉温曲线优化控制",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "0725ee583cbd066d6be6c339470524dda99dfb516d6119431082bb11741a11c6",
+    "pages": 26,
+    "local_path": "corpus/raw/objects/sha256/07/0725ee583cbd066d6be6c339470524dda99dfb516d6119431082bb11741a11c6.pdf",
+    "first_page_phash": "32f0c0c4d8e0c497",
+    "text_sha256": "faf73c031caed7333feee1770661393b6bf17c6194fb8eb3ea1a7251b7c31ae9"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“工业背景与四问任务；热传导与拟合方法；单目标和多目标优化结果；关键词”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.1",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-01.jpg"
+    },
+    {
+      "page": 5,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：由热传导微分方程建立炉温与焊接区域温度关系",
+      "derivation": "mixed",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-05.jpg"
+    },
+    {
+      "page": 7,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：求解分段温区的温度分布并形成递推计算",
+      "derivation": "mixed",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-07.jpg"
+    },
+    {
+      "page": 8,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：用最小二乘拟合未知换热参数",
+      "derivation": "mixed",
+      "locator": "PDF p.8",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-08.jpg"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：把峰值、斜率与高温持续时间写成约束优化模型",
+      "derivation": "mixed",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-10.jpg"
+    },
+    {
+      "page": 9,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：用拟合曲线与附件实测数据对比检查温度模型",
+      "derivation": "mixed",
+      "locator": "PDF p.9",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-09.jpg"
+    },
+    {
+      "page": 11,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：计算峰值、升降温斜率和高温区间检查工艺约束",
+      "derivation": "mixed",
+      "locator": "PDF p.11",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-11.jpg"
+    },
+    {
+      "page": 16,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：把多目标优化曲线与前一问方案放在同图比较",
+      "derivation": "mixed",
+      "locator": "PDF p.16",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-16.jpg"
+    },
+    {
+      "page": 17,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：推广部分指出模型需针对不同炉型和 PCB 参数重新校准",
+      "derivation": "mixed",
+      "locator": "PDF p.17",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-17.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "工业背景与四问任务",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "热传导与拟合方法",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "单目标和多目标优化结果",
+      "locator": "PDF p.1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "关键词",
+      "locator": "PDF p.1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 5,
+      "description": "由热传导微分方程建立炉温与焊接区域温度关系",
+      "locator": "PDF p.5"
+    },
+    {
+      "step": 2,
+      "page": 7,
+      "description": "求解分段温区的温度分布并形成递推计算",
+      "locator": "PDF p.7"
+    },
+    {
+      "step": 3,
+      "page": 8,
+      "description": "用最小二乘拟合未知换热参数",
+      "locator": "PDF p.8"
+    },
+    {
+      "step": 4,
+      "page": 10,
+      "description": "把峰值、斜率与高温持续时间写成约束优化模型",
+      "locator": "PDF p.10"
+    },
+    {
+      "step": 5,
+      "page": 13,
+      "description": "采用模拟退火搜索满足约束的传送速度",
+      "locator": "PDF p.13"
+    },
+    {
+      "step": 6,
+      "page": 14,
+      "description": "建立兼顾峰值温度与高温面积的多目标优化模型",
+      "locator": "PDF p.14"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 9,
+      "description": "用拟合曲线与附件实测数据对比检查温度模型",
+      "locator": "PDF p.9"
+    },
+    {
+      "step": 2,
+      "page": 11,
+      "description": "计算峰值、升降温斜率和高温区间检查工艺约束",
+      "locator": "PDF p.11"
+    },
+    {
+      "step": 3,
+      "page": 16,
+      "description": "把多目标优化曲线与前一问方案放在同图比较",
+      "locator": "PDF p.16"
+    },
+    {
+      "step": 4,
+      "page": 17,
+      "description": "模型评价列出分区近似、PCB 厚度和环境因素等限制",
+      "locator": "PDF p.17"
+    }
+  ],
+  "figures": [
+    {
+      "page": 5,
+      "role": "model explanation",
+      "chart_type": "flowchart",
+      "caption": "传热模型求解流程",
+      "lesson": "用流程图连接参数拟合、温区递推和结果输出",
+      "locator": "PDF p.5",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-05.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 9,
+      "role": "result evidence",
+      "chart_type": "fit-curve",
+      "caption": "拟合与附件数据对比曲线",
+      "lesson": "显示模型对真实温度数据的贴合程度",
+      "locator": "PDF p.9",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-09.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 11,
+      "role": "result evidence",
+      "chart_type": "line",
+      "caption": "炉温曲线与关键时间区间",
+      "lesson": "把峰值和斜率约束放到同一温度轨迹上",
+      "locator": "PDF p.11",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-11.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 13,
+      "role": "model explanation",
+      "chart_type": "flowchart",
+      "caption": "模拟退火求解流程",
+      "lesson": "解释随机搜索和接受准则的执行顺序",
+      "locator": "PDF p.13",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-13.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 16,
+      "role": "result evidence",
+      "chart_type": "comparison",
+      "caption": "多目标优化前后温度曲线",
+      "lesson": "在同一坐标系比较方案差异",
+      "locator": "PDF p.16",
+      "render": "corpus/rendered/cumcm-2020-a-a212/pages/page-16.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 1
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 5
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 5
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 17
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。",
+    "渲染页带有第三方镜像水印；视觉布局可学习，但该副本不是官方展示原件。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "65468e70b144c90207b33bb1027e0374c61b07c4",
+    "bytes": 11590988,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2020-a-a212/extracted-layout.txt",
+      "sha256": "faf73c031caed7333feee1770661393b6bf17c6194fb8eb3ea1a7251b7c31ae9",
+      "extracted_pages": 26,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 26,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2020-a-a212/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2020-a-a212/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2020-a-a212/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2020-a-a212/contact-25-26.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

@@ -1,0 +1,53 @@
+schema_version: 2
+experiment_id: demo
+problem: DEMO
+question: Q1
+engine: python
+runner: src/modeling/run_demo.py
+seed: 20260801
+output_root: experiments/DEMO/Q1/scratch
+arguments: []
+diagnostic_arguments: []
+run_mode: scratch
+level: scratch
+mode: probe
+purpose: exploration
+formal_candidate: false
+parent_run_id: null
+source_run_id: null
+source_manifest: null
+source_manifest_sha256: null
+evidence_scope: null
+checkpoint_id: null
+primary_metric: regression_r2
+checks:
+  input_output_match: false
+  units_defined: false
+  core_constraints_passed: false
+  deterministic: false
+  baseline_comparable: false
+reuse_contract:
+  seed: false
+  environment: false
+  code: false
+  inputs: false
+  methods: false
+  parameters: false
+replay:
+  required: false
+  count: 1
+methods:
+  - name: ordinary_least_squares
+    role: main
+  - name: linear_programming
+    role: baseline
+inputs: []
+metrics:
+  - name: regression_r2
+    unit: dimensionless
+    locator: experiments/DEMO/Q1/scratch/demo/results/experiment_result.json:metrics.regression.r2
+    primary: true
+  - name: linear_program_objective
+    unit: dimensionless
+    locator: experiments/DEMO/Q1/scratch/demo/results/experiment_result.json:metrics.linear_program.objective
+    primary: false

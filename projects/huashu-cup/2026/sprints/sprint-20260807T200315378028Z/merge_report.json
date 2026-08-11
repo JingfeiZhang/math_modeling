@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T200315378028Z",
+  "status": "MERGED",
+  "passed": true,
+  "accepted_tasks": [
+    "solver-q2"
+  ],
+  "archived_artifacts": [
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260807T200315378028Z/staging/solver-q2/q2_fallback_summary.json",
+      "archive": "sprints/sprint-20260807T200315378028Z/merged/solver-q2/q2_fallback_summary.json",
+      "sha256": "4fd54061dff62e4cd061f91bfe0c8d6da11d86e4f76c9641f759e9cf4fc7d81c"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260807T200315378028Z/staging/solver-q2/q2_fallback_metrics.csv",
+      "archive": "sprints/sprint-20260807T200315378028Z/merged/solver-q2/q2_fallback_metrics.csv",
+      "sha256": "f06a7f6cbc26d056bac499b3daf544b324ffb8d8d2479f7215bc0ff05da77aff"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260807T200315378028Z/staging/solver-q2/q2_baseline_metrics.csv",
+      "archive": "sprints/sprint-20260807T200315378028Z/merged/solver-q2/q2_baseline_metrics.csv",
+      "sha256": "9dcbc64eb4dba3d28a94fd2a8da726ba4068ecd36d57be0cf4e1fa5a2a63f76d"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260807T200315378028Z/staging/solver-q2/q2_fallback_schedules.csv",
+      "archive": "sprints/sprint-20260807T200315378028Z/merged/solver-q2/q2_fallback_schedules.csv",
+      "sha256": "8900d8dfc4c9e5000550197a666c9687d6021a20b5febf7bc57e0d64eb9cc2c0"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260807T200315378028Z/staging/solver-q2/q2_constraint_audit.json",
+      "archive": "sprints/sprint-20260807T200315378028Z/merged/solver-q2/q2_constraint_audit.json",
+      "sha256": "58d488c1697fe972affab68850fcc339514a175032200ac7266c1b2b6758508b"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260807T200315378028Z/staging/solver-q2/run_solver_q2.py",
+      "archive": "sprints/sprint-20260807T200315378028Z/merged/solver-q2/run_solver_q2.py",
+      "sha256": "39a521f31692adb0e4454e83191bfc9e691f87dfea752d080f22fce091d70b71"
+    },
+    {
+      "task_id": "solver-q2",
+      "source": "sprints/sprint-20260807T200315378028Z/staging/solver-q2/q2_run_manifest.json",
+      "archive": "sprints/sprint-20260807T200315378028Z/merged/solver-q2/q2_run_manifest.json",
+      "sha256": "1828b4cb3cfc35d367dcad7456782fbb47725eb444ac0949a139fc7ec9361053"
+    }
+  ],
+  "retry_packages": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "formal_state_modified": false,
+  "generated_at_utc": "2026-08-07T20:20:51.236382+00:00"
+}

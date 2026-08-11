@@ -1,0 +1,61 @@
+competition: CUMCM
+display_name: 全国大学生数学建模竞赛
+language: zh-CN
+rules:
+  status: verified
+  require_verification_before_submission: true
+  sources:
+  - https://www.mcm.edu.cn/html_cn/node/9d8e511fe7a1447b35f53a82c908e2e0.html
+  - https://www.mcm.edu.cn/html_cn/node/4cd596519c9eb9fbd866398f6df0caa3.html
+paper:
+  template_family: cumcm-2026
+  template_status: verified
+format:
+  paper_body_max_pages: 30
+  abstract_max_pages: 1
+  paper_max_mb: 20
+  support_max_mb: 20
+  min_margin_cm: 2.5
+  searchable_pdf_min_chars_per_page: 20
+  searchable_pdf_min_page_ratio: 0.8
+  require_anonymous: true
+  electronic_pdf_excludes_commitment_pages: true
+  provisional: false
+submission:
+  searchable_pdf_policy: recommended
+  hash_algorithms:
+  - md5
+  - sha256
+  separate_paper_and_support: true
+  source_code_in_appendix_and_support: true
+  hash_deadline: '2026-09-13T20:00:00+08:00'
+  upload_start: '2026-09-13T20:30:00+08:00'
+  upload_deadline: '2026-09-14T14:00:00+08:00'
+  release_manifest: output/release/release_manifest.json
+  release_checklist: output/release/submission_checklist.yaml
+deadline: '2026-09-13T20:00:00+08:00'
+schema_version: 1
+project_id: cumcm-2026
+profile_id: cumcm
+year: 2026
+problem: TBD
+rules_sources:
+- https://www.mcm.edu.cn/html_cn/node/9d8e511fe7a1447b35f53a82c908e2e0.html
+- https://www.mcm.edu.cn/html_cn/node/4cd596519c9eb9fbd866398f6df0caa3.html
+paths:
+  paper_tex: paper/main.tex
+  paper_pdf: output/submission.pdf
+  support_zip: output/supporting.zip
+  audit_json: output/audit.json
+workflow:
+  workflow_config: config/workflow.yaml
+  workflow_status: output/workflow_status.json
+  claims_pattern: results/{problem}/claims.json
+  shared_workspace_root: ../../..
+  python_environment: auto
+  python_environment_policy: existing_first
+  python_environment_fallback: math-modeling
+  matlab_root: D:/MATLAB/R2026a
+  default_random_seed: 20260801
+  pdf_environment: math-modeling
+  pdf_environment_policy: explicit_prefix_only

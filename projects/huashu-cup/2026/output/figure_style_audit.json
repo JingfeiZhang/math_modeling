@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "palette_id": "journal-spectrum-v2",
+  "config": "config/figure_style.yaml",
+  "grayscale": {
+    "threshold": 0.05,
+    "checks": [
+      {
+        "left": "primary",
+        "right": "baseline",
+        "luminance_delta": 0.1907,
+        "passed": true
+      },
+      {
+        "left": "primary",
+        "right": "risk",
+        "luminance_delta": 0.0978,
+        "passed": true
+      },
+      {
+        "left": "improved",
+        "right": "highlight",
+        "luminance_delta": 0.1249,
+        "passed": true
+      },
+      {
+        "left": "ink",
+        "right": "background",
+        "luminance_delta": 0.8447,
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "unexpected_colors": [],
+  "warnings": [],
+  "errors": [],
+  "passed": true
+}

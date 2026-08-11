@@ -1,0 +1,70 @@
+schema_version: 1
+brief_id: litevidence-q1-replace-me
+problem_id: TBD
+question_id: Q1
+source_question_manifest: problems/TBD/questions/Q1/question.yaml
+# Hash the canonical question mapping after removing its top-level literature block.
+source_question_manifest_sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+source_cards:
+  - card_id: litcard-q1-replace-me
+    path: problems/TBD/questions/Q1/literature/cards/litcard-q1-replace-me.yaml
+    sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+    review_depth: TARGETED_READ
+    bibliographic_status: VERIFIED
+    bibtex_key: Author2025ReplaceMe
+candidates:
+  - candidate_id: model-primary
+    model_name: replace with the candidate model
+    evidence_roles:
+      model_family:
+        - litcard-q1-replace-me
+      mechanism: []
+      parameter:
+        - litcard-q1-replace-me
+      validation:
+        - litcard-q1-replace-me
+    fit_to_current_problem:
+      matched_conditions:
+        - replace with a matched task, constraint, or data condition
+      mismatched_conditions:
+        - replace with an important difference from the paper
+    implementation:
+      expected_runtime: replace with a contest-scale estimate
+      dependencies:
+        - replace with a required solver or library
+    baseline: replace with the comparable same-output baseline
+    risk_probes:
+      - test the most important transferability risk on a small slice
+    rejected_when:
+      - reject if the core hard constraint fails
+    decision: retain
+recommendation:
+  primary_candidate: model-primary
+  rationale: explain why the current problem and experiments justify this choice
+  baseline: replace with the comparable same-output baseline
+  fallback: null
+  rejected_alternatives: []
+experiment_feedback:
+  scratch_experiments:
+    - implement the minimum candidate and compare it with the baseline
+  risk_probes:
+    - test the main mismatch identified in the source cards
+citation_handoff:
+  bibtex_keys:
+    - Author2025ReplaceMe
+  paper_targets:
+    - bibtex_key: Author2025ReplaceMe
+      section: model-selection
+      purpose: support the model family and explain the transfer conditions
+      minimum_review_depth: TARGETED_READ
+  differences_from_literature:
+    - state how the contest data, constraints, or implementation differ from the cited work
+literature_conflicts: []
+model_review_signal: NONE
+evidence_policy:
+  academic_sources_only: true
+  contest_papers_excluded: true
+  external_results_are_not_project_claims: true
+  project_numbers_from_frozen_evidence_only: true
+status: SYNTHESIS_READY
+created_at_utc: "2026-08-11T00:15:00Z"

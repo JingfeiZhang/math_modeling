@@ -1,0 +1,23 @@
+id: huashu-cup-2026-latex
+engine: xelatex
+paper_size: a4
+columns: 1
+margin_mm: 25
+automatic_toc: false
+identity_fields: true
+abstract_separate_page: true
+rule_status: verified_against_local_2026_huashu_rules
+official_template_sha256: 4edf51dbcdb27f842209a54e9becad5e1c7308cbec3a6d7f0edf0dbe860fc07c
+official_template_profile:
+  page_size: A4
+  margins_mm: 25
+  first_page_table: 2x3_with_vertical_middle_merge
+  title_font: 黑体三号
+  abstract_heading_font: 黑体四号
+  body_font: 宋体小四
+  line_spacing: single
+  page_number: centered_footer_from_page_1
+notes:
+  - The official Word template is reference-only; the LaTeX first page reproduces its category/competition/registration table and title hierarchy.
+  - The official current-year rules override shared CUMCM defaults.
+  - Replace prompts only after real problem evidence is frozen.

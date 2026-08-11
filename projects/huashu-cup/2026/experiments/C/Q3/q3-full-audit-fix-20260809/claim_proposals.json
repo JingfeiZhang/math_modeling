@@ -1,0 +1,15 @@
+{
+  "claims": [
+    {
+      "boundary": "The full-horizon probes are regional feasibility checks and do not prove one system-wide global optimum or support a new performance claim.",
+      "id": "Q3-ALL-270-AUDITS-PASS",
+      "locator": "summary.json:$.audit_boundary.total_audits_passed",
+      "statement": "All 270 Q3 audits pass after replacing the relaxed full-cycle LP probe with six regional full-horizon binary-MILP feasibility probes.",
+      "unit": "audit",
+      "value": 270
+    }
+  ],
+  "question_id": "Q3",
+  "schema_version": 1,
+  "status": "PROPOSAL_ONLY"
+}

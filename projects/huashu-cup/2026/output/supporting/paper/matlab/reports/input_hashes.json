@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "project_id": "huashu-cup-2026",
+  "problem_id": "C",
+  "backend": "MATLAB",
+  "matlab_release": "2026a",
+  "generated_at": "2026-08-09T17:58:17+08:00",
+  "input_hashes": [
+    {
+      "path": "results/C/claims.json",
+      "sha256": "99b298cc561645f5077065db153ed7ab5ac346bc0a718f33bd7dd771a9d3a11e",
+      "bytes": 15881
+    },
+    {
+      "path": "problems/C/questions/Q1/question.yaml",
+      "sha256": "717a439334618be4223b7c443f2ffb11b618a26c191654848e51db481db775ad",
+      "bytes": 5936
+    },
+    {
+      "path": "problems/C/questions/Q2/question.yaml",
+      "sha256": "932a26482196caec34eb4e4fa4ed770909f753b50223155471a41f358a04ee3a",
+      "bytes": 5067
+    },
+    {
+      "path": "problems/C/questions/Q3/question.yaml",
+      "sha256": "4ed8205f9cbe02e7d9a107d4fd1b9959db2d397b6605263f23115351699b3f32",
+      "bytes": 4835
+    },
+    {
+      "path": "problems/C/questions/Q4/question.yaml",
+      "sha256": "886841e45fe80df19eb1844cf7a7cf0fff96ded6799503b127f393a7ef3d00e2",
+      "bytes": 5842
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/workload_panel.csv",
+      "sha256": "d0eaf1a81152b3dda4ebcea4f223c31111ed001c1eec16543311fe87aa1ee80b",
+      "bytes": 3.528501E+6
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/blind_test_predictions.csv",
+      "sha256": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d",
+      "bytes": 59249
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_by_series.csv",
+      "sha256": "91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4",
+      "bytes": 11089
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/optimized_schedule.csv",
+      "sha256": "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a",
+      "bytes": 53209
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/resource_audit.csv",
+      "sha256": "466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82",
+      "bytes": 39523
+    },
+    {
+      "path": "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_hourly_profiles.csv",
+      "sha256": "85e923b393e2b29412b5e1b77c5fef04022a251d8ffcf2fc81475a7974c35435",
+      "bytes": 5.199063E+6
+    },
+    {
+      "path": "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_baseline_schedule.csv",
+      "sha256": "172d45d624d85f7cf7558606e551f7dee275ab726236c6b933b39d6282df370a",
+      "bytes": 7.983179E+6
+    },
+    {
+      "path": "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_candidate_schedule.csv",
+      "sha256": "8b0d753e46c4a157fa12f62f5f833468403a980e42460857f238a770d8db0004",
+      "bytes": 8.347476E+6
+    },
+    {
+      "path": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json",
+      "sha256": "0783a484f2bebac9ddb1ab696988fad823de3cc2805aae8ea9d332039cded88b",
+      "bytes": 7730
+    },
+    {
+      "path": "experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_dispatch.csv",
+      "sha256": "d27b9e9f351b2031988080c6f70b3e9881b73a93eb48cfaf59bab058feec374f",
+      "bytes": 8.65907E+6
+    },
+    {
+      "path": "experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_comparison_summary.csv",
+      "sha256": "f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f",
+      "bytes": 84437
+    },
+    {
+      "path": "experiments/C/Q3/q3-full-audit-fix-20260809/summary.json",
+      "sha256": "f5b8a2f95c74e6d1bf181fa902a13dab0f60800b11693373cefb80bf7cc65613",
+      "bytes": 9149
+    },
+    {
+      "path": "experiments/C/Q4/q4-optimization-20260809/q4_joint_metrics.csv",
+      "sha256": "1952879320fec6e3810058aa498a2a68352bef9c4ea1cb63a55704ae8682d499",
+      "bytes": 977
+    },
+    {
+      "path": "experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json",
+      "sha256": "56a0622efffbdffcdf20e0eda963a7f47852f4fdec2bb34cacd198bb7d312f9e",
+      "bytes": 1345
+    },
+    {
+      "path": "experiments/C/Q4/q4-optimization-20260809/q4_joint_observed_joint_candidate_dispatch.csv",
+      "sha256": "1a917199adfa03030876599e228ef5f669f35b8aea8e26cd851a966d9d2e9b69",
+      "bytes": 211578
+    },
+    {
+      "path": "experiments/C/Q4/q4-optimization-20260809/q4_joint_observed_sequential_baseline_dispatch.csv",
+      "sha256": "f59ff17d32be791473ac7631446f2547f62e64b251e53b7a11596a63d6323102",
+      "bytes": 211748
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/forecast_q1/metrics_summary.json",
+      "sha256": "e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a",
+      "bytes": 3686
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/constraint_audit.json",
+      "sha256": "721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858",
+      "bytes": 2166
+    },
+    {
+      "path": "experiments/C/Q1/q1-direct-20260808/models/scheduling_q1/scheduling_metrics.json",
+      "sha256": "cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511",
+      "bytes": 773
+    },
+    {
+      "path": "experiments/C/Q4/q4-optimization-20260809/q4_joint_constraint_audit.json",
+      "sha256": "c6dd11f8b568c404f2f5c78750c5f62d7b4ef1b651bbdbcbd58f5ee4300b3bf4",
+      "bytes": 57391
+    },
+    {
+      "path": "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_constraint_audit.json",
+      "sha256": "7cd13ac3a90608513c0f143d157218598a82a334eb1e91ca7791f25b13f97170",
+      "bytes": 9937
+    }
+  ],
+  "derived_data": {
+    "path": "derived/figure_data.mat",
+    "sha256": "7d2733c493d5ac9fa746d54e58eff0c256da849e7dd3ccbc12b0eec5c697a2da"
+  },
+  "q1_forecast_aggregation": {
+    "level": "System",
+    "series": "All",
+    "rule": "sum of all 18 bottom-level series by blind-test hour"
+  }
+}

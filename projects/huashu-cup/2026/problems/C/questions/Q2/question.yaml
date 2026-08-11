@@ -1,0 +1,82 @@
+schema_version: 1
+problem_id: C
+question_id: Q2
+source_problem: problems/C/source/problem-C.pdf
+problem:
+  target: 问题 2：以第 0–2399 小时实际到达任务及对应逐时电力参数为输入，考虑 区域电价、碳强度和可用新能源出力，以任务迁移与开工时段为决策变量（迁移
+    后的设施负荷按统一功率映射与区域 PUE 计算），以运行成本、碳排放、网络 时延和新能源利用率为目标或评价指标，建立碳感知任务调度模型，并给出调度 策略。
+  inputs:
+  - workload_trace.xlsx
+  - GPU_information.xlsx
+  - network_latency.xlsx
+  - region_time_data.xlsx
+  - power_mapping.xlsx
+  constraints:
+  - 实际任务输入覆盖0–2399小时
+  - 任务不可抢占/拆分/中途迁移
+  - GPU容量与IT/设施功率上限
+  - MaxLatency_ms与区域时延约束
+  - 2400–2405仅结清末端任务
+  - 不引入线路潮流/迁移能耗
+  evaluation_metrics:
+  - 运行成本
+  - 碳排放
+  - 网络时延
+  - 新能源利用率
+  - 任务完成率与SLA违约率
+method:
+  main:
+    name: 固定权重有界滚动局部交换启发式
+    rationale: 任务到达、不可抢占、区域容量与时延约束需要在线可行性和跨区域权衡；在每个滚动窗口中先保持硬约束可行，再以归一化成本、碳排、网络时延和新能源利用率的组合指标筛选有限交换候选，兼顾全时域
+      50000 条任务的规模与可审计性。
+    implementation: 读取 0--2399 小时全部实际任务，保留 2400--2405 小时收尾；用分钟级重叠复核任务唯一执行、释放时间、区域
+      GPU/IT/设施功率、MaxLatency_ms 和结清边界。主模型与 FIFO 基线使用相同输入、约束和输出口径，固定随机种子并执行确定性复跑。
+  baseline:
+    name: 全时域 FIFO 加时延可行本地优先基线
+    implementation: 按到达顺序在满足静态时延、GPU、IT/设施功率和结清边界的候选区域中选择本地优先区域，并输出与主模型相同的任务排程、成本、碳排、时延、新能源利用率和硬约束审计。
+    comparable_output: true
+  fallback:
+    name: 未解析柔性任务的精确分钟扫描
+    trigger: 滚动小时网格未能解析柔性任务的可行开始位置时才启用
+    implementation: 在同一候选区域和硬约束下对该任务进行精确分钟扫描；本次固定输入运行未触发。
+assumptions:
+- id: Q2-A1
+  statement: 任务在 0--2399 小时实际到达，2400--2405 小时仅用于收尾；成本和碳排由统一功率映射、区域 PUE 及逐时电力参数复算，不引入迁移能耗或线路潮流。
+  evidence_ref: experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+- id: Q2-A2
+  statement: 固定权重局部交换的候选比较只在有限滚动窗口内进行，结果解释为确定性有界启发式，不宣称拉格朗日、对偶、全局最优或联合储能最优。
+  evidence_ref: experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+- id: Q2-A3
+  statement: 新能源利用率按附件定义为（直接消纳新能源+新能源充电+新能源外送）/可用新能源累计；Q2 不调度储能或新能源外送，因此后两项在本问核算中为 0，剩余可用新能源记为弃风弃光。
+  evidence_ref: experiments/C/Q2/q2-full-compat-20260808/q2_renewable_metric_audit.json
+risk_probes:
+- id: Q2-R1
+  risk: 任务在滚动窗口边界被重复、遗漏或静默移除
+  probe: 对主模型和 FIFO 基线分别复核 50000 行、50000 个唯一 TaskID、重复数、到达范围和 2406 小时前收尾。
+- id: Q2-R2
+  risk: 启发式在可行解上被误写成最优解
+  probe: 记录有界交换范围、算法状态和边界声明；论文只称确定性滚动交换启发式。
+- id: Q2-R3
+  risk: 压力扰动结果被误读为重新优化后的不可行性
+  probe: 固定排程压力探针仅报告余量暴露，明确不替代重新优化。
+- id: Q2-R4
+  risk: 将直接消纳新能源除以设施用能误写为附件定义的新能源利用率
+  probe: 从逐时可用新能源与直接消纳量重算附件公式，显式记录新能源充电、外送和弃风弃光分量，并执行新能源平衡审计。
+decisions:
+- id: q2-decision-001
+  status: confirmed
+  decision: 保留固定权重有界滚动局部交换启发式作为主模型，FIFO 作为同约束可比基线；精确分钟扫描仅作未解析柔性任务的条件 fallback，本次未触发。
+  evidence_ref: experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+evidence:
+  runs:
+  - experiments/C/Q2/q2-full-compat-20260808/run_manifest.json
+  robustness: experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+  figures:
+  - paper/figure_contracts.yaml#fig-q2-load-migration
+  - paper/figure_contracts.yaml#fig-q2-cumulative-effect
+paper:
+  section: 问题二：碳感知全时域任务调度
+  figure_ids:
+  - fig-q2-load-migration
+  - fig-q2-cumulative-effect
+status: FROZEN

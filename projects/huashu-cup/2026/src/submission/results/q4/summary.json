@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "question_id": "Q4",
+  "status": "PASS",
+  "source": "frozen formal Q4 run",
+  "method": "72-hour bounded local joint optimization with six-region binary-storage recourse",
+  "horizon_h": 72,
+  "scenario_count": 5,
+  "hard_constraints_passed": true,
+  "deterministic_replay_passed": true,
+  "accepted_task_moves": 3,
+  "global_optimality_claim": false
+}

@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "paper_id": "cumcm-2022-a-a22116460175",
+  "contest": "CUMCM",
+  "year": 2022,
+  "problem_id": "A",
+  "source": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2022年优秀论文/A/A22116460175.pdf",
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2022%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/A/A22116460175.pdf",
+    "accessed": "2026-08-03",
+    "authenticity_level": "C",
+    "authenticity_note": "Community mirror full text; no independent official award locator recorded."
+  },
+  "pdf": {
+    "object": "corpus/raw/objects/sha256/47/4704bf03e2b2dd6ff5afc593c9940564d075b64079b92468f779b877f71be783.pdf",
+    "bytes": 1181456,
+    "git_blob_sha": "dcb8d6e7ee168a9e70f99b9f6af693fbaeb742ce",
+    "sha256": "4704bf03e2b2dd6ff5afc593c9940564d075b64079b92468f779b877f71be783",
+    "pages": 23
+  },
+  "render": {
+    "status": "complete",
+    "method": "pdftoppm-jpeg-110dpi",
+    "pages": [
+      {
+        "page": 1,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-01.jpg",
+        "sha256": "0dc31996d01c263b582ec793598abf145de6ce93444a45f8d31930a0f837ea37",
+        "bytes": 85909,
+        "text_characters": 144
+      },
+      {
+        "page": 2,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-02.jpg",
+        "sha256": "c9ea0f20cd16c2607970023f1a6e7059f4cbafca2d632a517c521914deac9619",
+        "bytes": 209661,
+        "text_characters": 1078
+      },
+      {
+        "page": 3,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-03.jpg",
+        "sha256": "2a1b5f6e938d71c6a9bc647855ef051675a9b7ba5ee9f7b055516308451348ba",
+        "bytes": 162084,
+        "text_characters": 5299
+      },
+      {
+        "page": 4,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-04.jpg",
+        "sha256": "68ecc7982ecb84d4165ac8d5eb59c3bc19f7d05b0baf67c07f54a19c29785578",
+        "bytes": 212253,
+        "text_characters": 1158
+      },
+      {
+        "page": 5,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-05.jpg",
+        "sha256": "16e43f5eb193e7a5cce955538a03d303ee436f9d48ec0208b4f3806de5db4c43",
+        "bytes": 65229,
+        "text_characters": 306
+      },
+      {
+        "page": 6,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-06.jpg",
+        "sha256": "89274ec1b4b78fcbc2040463ecf77a80e903b7a9faa131ccdf1e0e2a8ffe8ddd",
+        "bytes": 59183,
+        "text_characters": 636
+      },
+      {
+        "page": 7,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-07.jpg",
+        "sha256": "c4af6898a37bf32a908561cea3d609d87fa2ffb9703dc11908bf1e504a72b1cb",
+        "bytes": 157014,
+        "text_characters": 2603
+      },
+      {
+        "page": 8,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-08.jpg",
+        "sha256": "d894ec6fcc68fb4736b70e60a1d42e7db4db6a77a904a8bb012c59c8b091cf78",
+        "bytes": 106070,
+        "text_characters": 1672
+      },
+      {
+        "page": 9,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-09.jpg",
+        "sha256": "0102b2af3db5a85d44c0c9fbeff786fa4c5119e016a309b370fb4144d7698f5f",
+        "bytes": 74665,
+        "text_characters": 744
+      },
+      {
+        "page": 10,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-10.jpg",
+        "sha256": "3d9c8acdd184b243c0482598d48a0a9e08d7d15fc4374905ad9f973b0f0b66d1",
+        "bytes": 83470,
+        "text_characters": 1144
+      },
+      {
+        "page": 11,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-11.jpg",
+        "sha256": "a4149740ac1de185f2ed9bdae85f401c1c15df678e77226d0aedef9122cc79f3",
+        "bytes": 97002,
+        "text_characters": 1828
+      },
+      {
+        "page": 12,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-12.jpg",
+        "sha256": "efddbc1865c4fcafb299d6025fbc8a1424723d826322003d373aa88fc8cede67",
+        "bytes": 66236,
+        "text_characters": 179
+      },
+      {
+        "page": 13,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-13.jpg",
+        "sha256": "5192c9a9e437493523ec69a4d05ce06e1e99da21d098b06c75f1e05c7bde2b14",
+        "bytes": 43964,
+        "text_characters": 150
+      },
+      {
+        "page": 14,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-14.jpg",
+        "sha256": "405d735d008564d19a7ce084aa97af93a94f9eb2b7d6c90ef63dbc4b0ada81d9",
+        "bytes": 147335,
+        "text_characters": 882
+      },
+      {
+        "page": 15,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-15.jpg",
+        "sha256": "5eb69e398e2a81b7cd4ad93b4d4faae36a8a5afaff93828066c763433c7d6f70",
+        "bytes": 86900,
+        "text_characters": 1310
+      },
+      {
+        "page": 16,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-16.jpg",
+        "sha256": "e415b18546eb51efd743022cb4aef53c057c1ca7d2d5206afc09111e2436ff9d",
+        "bytes": 36405,
+        "text_characters": 22
+      },
+      {
+        "page": 17,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-17.jpg",
+        "sha256": "30977836fcb6e789acf26fc51c9d839384ae82d280c292acf2733a69ccc92d5a",
+        "bytes": 180232,
+        "text_characters": 1105
+      },
+      {
+        "page": 18,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-18.jpg",
+        "sha256": "01c387c477cf2914b0a4db411ec08be15f5c59b7db67c0b39538c4068762e029",
+        "bytes": 85978,
+        "text_characters": 705
+      },
+      {
+        "page": 19,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-19.jpg",
+        "sha256": "5e4953fb5a8a76922794a615b2ec9a771e9d6db6c1be49f005b2473b39b51842",
+        "bytes": 167192,
+        "text_characters": 1897
+      },
+      {
+        "page": 20,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-20.jpg",
+        "sha256": "8e098a8257632309ec518b065fa13f45186cb34bbed128c6935a641bbc3c410d",
+        "bytes": 136331,
+        "text_characters": 3676
+      },
+      {
+        "page": 21,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-21.jpg",
+        "sha256": "7fd63d4d5739fe20c2b61a453141bc341910588a7b4207f41fb9006c1b7ef427",
+        "bytes": 123401,
+        "text_characters": 2766
+      },
+      {
+        "page": 22,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-22.jpg",
+        "sha256": "5a7edfb1d6631db0ec1e94bc09a7943e0ebaa6642780b7ab758b511341168f9a",
+        "bytes": 110161,
+        "text_characters": 595
+      },
+      {
+        "page": 23,
+        "file": "corpus/rendered/cumcm-2022-a-a22116460175/pages/page-23.jpg",
+        "sha256": "93e5a37889e661e868bf7e84e2837df51abcc72de9874c48a3ddc748def57dd8",
+        "bytes": 149078,
+        "text_characters": 1792
+      }
+    ],
+    "contact_sheets": [
+      "corpus/rendered/cumcm-2022-a-a22116460175/contact-01-08.jpg",
+      "corpus/rendered/cumcm-2022-a-a22116460175/contact-09-16.jpg",
+      "corpus/rendered/cumcm-2022-a-a22116460175/contact-17-23.jpg"
+    ],
+    "visual_review": "pending"
+  },
+  "text": {
+    "file": "corpus/raw/cumcm-2022-a-a22116460175/extracted-layout.txt",
+    "sha256": "376e8e4b98814156487acaa2117501f959dd20bf0a4d607af3054e8332452b9c",
+    "extracted_pages": 23,
+    "method": "pdftotext-layout"
+  }
+}

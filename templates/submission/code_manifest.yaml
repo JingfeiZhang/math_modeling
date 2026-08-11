@@ -1,0 +1,4 @@
+schema_version: 1
+# Fill this manifest after initialize. Every listed source must be included
+# in the paper appendix and byte-for-byte in supporting.zip.
+files: []

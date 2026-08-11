@@ -1,0 +1,29 @@
+schema_version: 1
+files:
+  - path: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/run_forecast.py
+    question_id: Q1
+    role: forecast_main_and_baseline
+  - path: sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/run_scheduling_q1.py
+    question_id: Q1
+    role: scheduling_main_baseline_and_fallback
+  - path: experiments/C/Q2/q2-full-compat-20260808/generate_q2_compat.py
+    question_id: Q2
+    role: formal_evidence_generator
+  - path: sprints/sprint-20260808T031146908286Z/merged/solver-q2/run_q2_full_horizon.py
+    question_id: Q2
+    role: scheduling_main_and_baseline
+  - path: experiments/C/Q3/q3-rolling-compat-20260808/generate_q3_compat.py
+    question_id: Q3
+    role: formal_evidence_generator
+  - path: sprints/sprint-20260808T023236665505Z/merged/solver-q3/run_solver_q3.py
+    question_id: Q3
+    role: storage_main_and_baseline
+  - path: experiments/C/Q3/q3-full-audit-fix-20260809/run_q3_full_audit_fix.py
+    question_id: Q3
+    role: full_horizon_binary_audit_fix_and_replay_verification
+  - path: experiments/C/Q4/q4-optimization-20260809/run_q4_joint_optimization.py
+    question_id: Q4
+    role: joint_optimization_main_and_baseline
+  - path: experiments/C/Q4/q4-optimization-20260809/formalize_q4_candidate.py
+    question_id: Q4
+    role: formal_evidence_generator

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T050410459193Z",
+  "task_id": "writer-q1",
+  "role": "writer",
+  "problem": "C",
+  "question": "Q1",
+  "status": "PENDING",
+  "attempt": 1,
+  "max_attempts": 2,
+  "dependencies": [
+    "sprint-20260807T130848306634Z"
+  ],
+  "input_hashes": [
+    {
+      "path": "problems/C/questions/Q1/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "a6d457c3df7d5591f393ffbca5aad8e4cf3514243a6855ebfe56fae4d3ab0333"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "5706e86a75d2c3e51b6b1de1d1e25ae33d0ea51689e021fc8758ced09327f303"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merge_report.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "f2f71a14f692d40badeeecd4ea1a5ec4db5e753de32bde10770f6cf09a555edd"
+    },
+    {
+      "path": "results/C/claims.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "ea9ffef1ec03131a92ee93a1f8dd65eca8b61946487d3ec64efc9d987447300f"
+    },
+    {
+      "path": "paper/main.tex",
+      "kind": "file",
+      "exists": true,
+      "sha256": "c696b1f7e378cea391b7f8bf1704f431bf59b4a336090e563fe47a19bffcf77f"
+    },
+    {
+      "path": "paper/sections/body.tex",
+      "kind": "file",
+      "exists": true,
+      "sha256": "7abba19fa82d4dc47caefa66815a8497578381a41ec5198ca6a92b4bfdd125ab"
+    },
+    {
+      "path": "paper/generated",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "04d78242a5236b869868e1b7a2490446b0ff88791d8513a5d27ddb53b2faa40d"
+    },
+    {
+      "path": "paper/figure_contracts.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "4ea0362eaed0898d6b54403ae79f0217bbc659534884f51c0bfad9e8c620d2db"
+    },
+    {
+      "path": "paper/figures",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "3be44dc1487bb51280b2a2a847d60e94fdf4845f1dfcdcfd202b24b9ea421488"
+    }
+  ],
+  "allowed_read_paths": [
+    "problems/C/questions/Q1/question.yaml",
+    "contest.yaml",
+    "config/workflow.yaml",
+    "problems/C/source/problem-C.pdf",
+    "sprints/sprint-20260807T130848306634Z/merged",
+    "sprints/sprint-20260807T130848306634Z/merge_report.json",
+    "results/C/claims.json",
+    "paper/main.tex",
+    "paper/sections/body.tex",
+    "paper/generated",
+    "paper/figure_contracts.yaml",
+    "paper/figures",
+    "src",
+    "experiments",
+    "corpus",
+    "workspace://src",
+    "workspace://corpus"
+  ],
+  "write_directory": "sprints/sprint-20260808T050410459193Z/staging/writer-q1",
+  "expected_outputs": [
+    "sprints/sprint-20260808T050410459193Z/staging/writer-q1/handoff.json",
+    "sprints/sprint-20260808T050410459193Z/staging/writer-q1/q1_draft.tex",
+    "sprints/sprint-20260808T050410459193Z/staging/writer-q1/figure_contract_proposal.yaml",
+    "sprints/sprint-20260808T050410459193Z/staging/writer-q1/figure_manifest.json"
+  ],
+  "target_gate": "G5",
+  "deadline_utc": "2026-08-10 20:00:00+08:00",
+  "root_only_paths": [
+    "state/decision_log.json",
+    "results/C/claims.json",
+    "paper/main.tex",
+    "paper/figure_contracts.yaml",
+    "output/"
+  ],
+  "sprint_profile": "q1-compose",
+  "input_sprint_id": "sprint-20260807T130848306634Z"
+}

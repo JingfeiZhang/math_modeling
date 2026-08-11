@@ -1,0 +1,45 @@
+schema_version: 2
+runtime:
+  python: "3.13.x"
+  model_dependencies: [numpy, pandas, scipy, scikit-learn, ortools, openpyxl]
+  matlab: "R2026a"
+  paper_engine: "XeLaTeX"
+entry_command: "python run.py --question Q1|Q2|Q3|Q4|all --input-dir <official-input-dir> --output-dir <output-dir> --seed 20260801"
+files:
+  - {path: src/submission/run.py, support_path: run.py, question_id: ALL, role: unified_entry}
+  - {path: src/submission/code/common/runtime.py, support_path: code/common/runtime.py, question_id: ALL, role: input_and_environment_verification}
+  - {path: src/submission/code/q1/run_q1.py, support_path: code/q1/run_q1.py, question_id: Q1, role: question_entry}
+  - {path: src/submission/code/q1/forecast_core.py, support_path: code/q1/forecast_core.py, question_id: Q1, role: forecast_main_baseline_and_calibration}
+  - {path: src/submission/code/q1/schedule_core.py, support_path: code/q1/schedule_core.py, question_id: Q1, role: cp_sat_schedule_baseline_and_audit}
+  - {path: src/submission/code/q2/run_q2.py, support_path: code/q2/run_q2.py, question_id: Q2, role: question_entry}
+  - {path: src/submission/code/q2/scheduler_core.py, support_path: code/q2/scheduler_core.py, question_id: Q2, role: fifo_and_rolling_exchange}
+  - {path: src/submission/code/q3/run_q3.py, support_path: code/q3/run_q3.py, question_id: Q3, role: question_entry}
+  - {path: src/submission/code/q3/storage_core.py, support_path: code/q3/storage_core.py, question_id: Q3, role: rolling_storage_milp_and_baseline}
+  - {path: src/submission/code/q3/full_audit_core.py, support_path: code/q3/full_audit_core.py, question_id: Q3, role: full_horizon_binary_audit_and_replay}
+  - {path: src/submission/code/q4/run_q4.py, support_path: code/q4/run_q4.py, question_id: Q4, role: question_entry}
+  - {path: src/submission/code/q4/joint_core.py, support_path: code/q4/joint_core.py, question_id: Q4, role: bounded_fix_and_optimize}
+  - {path: src/submission/code/q4/storage_recourse.py, support_path: code/q4/storage_recourse.py, question_id: Q4, role: six_region_storage_recourse}
+  - {path: src/submission/matlab/prepare_figure_data.m, support_path: code/matlab/prepare_figure_data.m, question_id: ALL, role: figure_data_preparation}
+  - {path: src/submission/matlab/build_all_figures.m, support_path: code/matlab/build_all_figures.m, question_id: ALL, role: figure_build_entry}
+  - {path: src/submission/matlab/figures/fig_q1_blind_forecast_interval.m, support_path: code/matlab/figures/fig_q1_blind_forecast_interval.m, question_id: Q1, role: figure}
+  - {path: src/submission/matlab/figures/fig_q1_resource_headroom.m, support_path: code/matlab/figures/fig_q1_resource_headroom.m, question_id: Q1, role: figure}
+  - {path: src/submission/matlab/figures/fig_q1_schedule_gantt.m, support_path: code/matlab/figures/fig_q1_schedule_gantt.m, question_id: Q1, role: figure}
+  - {path: src/submission/matlab/figures/fig_q1_series_error_pairing.m, support_path: code/matlab/figures/fig_q1_series_error_pairing.m, question_id: Q1, role: figure}
+  - {path: src/submission/matlab/figures/fig_q1_weekly_demand_structure.m, support_path: code/matlab/figures/fig_q1_weekly_demand_structure.m, question_id: Q1, role: figure}
+  - {path: src/submission/matlab/figures/fig_q2_cumulative_impact.m, support_path: code/matlab/figures/fig_q2_cumulative_impact.m, question_id: Q2, role: figure}
+  - {path: src/submission/matlab/figures/fig_q2_latency_ecdf.m, support_path: code/matlab/figures/fig_q2_latency_ecdf.m, question_id: Q2, role: figure}
+  - {path: src/submission/matlab/figures/fig_q2_load_migration.m, support_path: code/matlab/figures/fig_q2_load_migration.m, question_id: Q2, role: figure}
+  - {path: src/submission/matlab/figures/fig_q3_dispatch_soc.m, support_path: code/matlab/figures/fig_q3_dispatch_soc.m, question_id: Q3, role: figure}
+  - {path: src/submission/matlab/figures/fig_q3_rolling_runtime_coverage.m, support_path: code/matlab/figures/fig_q3_rolling_runtime_coverage.m, question_id: Q3, role: figure}
+  - {path: src/submission/matlab/figures/fig_q4_scenario_tradeoff.m, support_path: code/matlab/figures/fig_q4_scenario_tradeoff.m, question_id: Q4, role: figure}
+  - {path: src/submission/matlab/figures/fig_q4_system_profile.m, support_path: code/matlab/figures/fig_q4_system_profile.m, question_id: Q4, role: figure}
+  - {path: src/submission/matlab/helpers/mf_apply_axes.m, support_path: code/matlab/helpers/mf_apply_axes.m, question_id: ALL, role: figure_helper}
+  - {path: src/submission/matlab/helpers/mf_colorbar.m, support_path: code/matlab/helpers/mf_colorbar.m, question_id: ALL, role: figure_helper}
+  - {path: src/submission/matlab/helpers/mf_colormap.m, support_path: code/matlab/helpers/mf_colormap.m, question_id: ALL, role: figure_helper}
+  - {path: src/submission/matlab/helpers/mf_export_triplet.m, support_path: code/matlab/helpers/mf_export_triplet.m, question_id: ALL, role: figure_helper}
+  - {path: src/submission/matlab/helpers/mf_legend.m, support_path: code/matlab/helpers/mf_legend.m, question_id: ALL, role: figure_helper}
+  - {path: src/submission/matlab/helpers/mf_publication_figure.m, support_path: code/matlab/helpers/mf_publication_figure.m, question_id: ALL, role: figure_helper}
+  - {path: src/submission/matlab/helpers/mf_require_columns.m, support_path: code/matlab/helpers/mf_require_columns.m, question_id: ALL, role: figure_helper}
+  - {path: src/submission/matlab/helpers/mf_sha256.m, support_path: code/matlab/helpers/mf_sha256.m, question_id: ALL, role: figure_helper}
+  - {path: src/submission/matlab/helpers/mf_style.m, support_path: code/matlab/helpers/mf_style.m, question_id: ALL, role: figure_helper}
+  - {path: src/submission/matlab/helpers/mf_write_json.m, support_path: code/matlab/helpers/mf_write_json.m, question_id: ALL, role: figure_helper}

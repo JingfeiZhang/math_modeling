@@ -1,0 +1,280 @@
+schema_version: 2
+sprint_id: sprint-20260807T1856581764655Z
+status: staging/supporting
+contest_evidence_eligible: false
+palette_id: journal-spectrum-v2
+contracts:
+- contract_version: '2.0'
+  id: fig-q1-forecast-interval
+  question_id: Q1
+  claim_id: Q1-FCST-TEST-COVERAGE
+  claim_status: frozen
+  core_conclusion: 独立盲测中，主模型预测轨迹与观测保持可比较的系统级走势，预测区间用于呈现不确定性边界。
+  core_message: 读者首先看到盲测轨迹和区间宽度，再比较主模型与季节基线。
+  evidence_chain:
+  - locator: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_summary.json:$.summaries.blind_test.shared_hgbr_reconciled.empirical_coverage_95
+    sha256: e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a
+    fields:
+    - summaries.blind_test.shared_hgbr_reconciled.empirical_coverage_95
+  - locator: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv:period=blind_test
+    sha256: 118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d
+    fields:
+    - hour
+    - actual_gpu_h
+    - main_gpu_h
+    - baseline_gpu_h
+    - main_lower_95_gpu_h
+    - main_upper_95_gpu_h
+  kind: data
+  archetype: prediction-interval
+  backend: python
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: main_model
+    meaning: 层级一致性校正后的共享残差模型
+    secondary_encoding: 实线 + 圆点
+  - role: baseline
+    meaning: 168 h 季节朴素基线
+    secondary_encoding: 虚线或方点
+  - role: risk_or_reference
+    meaning: 审计界线或区间外观测
+    secondary_encoding: 虚线或叉号
+  visual_hierarchy:
+    primary_evidence: 冻结主模型结果与其对应的观测或可行排程
+    secondary_context: 同口径基线、预测区间或审计边界
+    deemphasized: 低对比度网格与不承载主张的辅助标记
+  source_data:
+  - sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv
+  - sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_summary.json
+  source_script: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/generate_q1_figures.py
+  outputs:
+    pdf: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_forecast_interval.pdf
+    svg: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_forecast_interval.svg
+    png: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_forecast_interval.png
+    png_dpi: 400
+  baseline: 168 h 季节朴素基线；同一盲测窗口和聚合口径。
+  axes:
+  - variable: 盲测到达小时
+    unit: h
+  - variable: 系统 GPU 工作量
+    unit: GPU·h
+  caption: 图 1 在独立盲测窗口展示系统实际工作量、共享 HGBR 残差主模型、168 h 季节基线及名义 95% split-conformal 区间；主模型和基线采用线型与标记双重编码，区间仅表达经验预测边界。
+  panel_map:
+  - panel: main
+    role: 主证据
+    subclaim: 独立盲测中，主模型预测轨迹与观测保持可比较的系统级走势，预测区间用于呈现不确定性边界。
+  statistics:
+  - 24 个系统小时聚合
+  - 名义 95% split-conformal 区间
+  - 盲测覆盖率由冻结 evidence locator 提供
+  statistics_report:
+    sample_size: 24 个系统小时聚合
+    center: 按图注定义的逐小时聚合或逐序列 MAE
+    interval: 名义 95% split-conformal 区间仅用于预测图
+    test: not applicable
+    multiplicity: not applicable
+  data_integrity:
+    source_hashes:
+    - path: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/blind_test_predictions.csv
+      sha256: 118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d
+    - path: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_summary.json
+      sha256: e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a
+    transformation: 确定性筛选、按小时聚合或按序列配对；不写入人工数值
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图内仅保留轴标签；图例放置于绘图区上方且已执行文字碰撞检查。
+  rasterized_layers: []
+  review_risks:
+  - 图形不代表逐序列均有改善
+  - 区间覆盖是经验覆盖率，不是概率保证
+  final_width_mm: 158.0
+  min_font_pt: 8
+  status: staging/supporting
+  contest_evidence_eligible: false
+  synthetic_fixture: false
+- contract_version: '2.0'
+  id: fig-q1-error-comparison
+  question_id: Q1
+  claim_id: Q1-FCST-TEST-WAPE
+  claim_status: frozen
+  core_conclusion: 主模型与同口径季节基线的逐序列盲测 MAE 可配对比较，避免用稀疏序列 WAPE 单独代表整体性能。
+  core_message: 读者首先看到同一序列的主模型—基线误差差异，随后回到冻结系统 WAPE。
+  evidence_chain:
+  - locator: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_summary.json:$.summaries.blind_test.shared_hgbr_reconciled.system_weighted_wape
+    sha256: e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a
+    fields:
+    - summaries.blind_test.shared_hgbr_reconciled.system_weighted_wape
+  - locator: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_by_series.csv:period=blind_test
+    sha256: 91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4
+    fields:
+    - region
+    - task_type
+    - method
+    - mae_gpu_h
+  kind: data
+  archetype: model-comparison
+  backend: python
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: main_model
+    meaning: 层级一致性校正后的共享残差模型
+    secondary_encoding: 实线 + 圆点
+  - role: baseline
+    meaning: 168 h 季节朴素基线
+    secondary_encoding: 虚线或方点
+  - role: risk_or_reference
+    meaning: 审计界线或区间外观测
+    secondary_encoding: 虚线或叉号
+  visual_hierarchy:
+    primary_evidence: 冻结主模型结果与其对应的观测或可行排程
+    secondary_context: 同口径基线、预测区间或审计边界
+    deemphasized: 低对比度网格与不承载主张的辅助标记
+  source_data:
+  - sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_by_series.csv
+  - sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_summary.json
+  source_script: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/generate_q1_figures.py
+  outputs:
+    pdf: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_error_comparison.pdf
+    svg: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_error_comparison.svg
+    png: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_error_comparison.png
+    png_dpi: 400
+  baseline: 168 h 季节朴素基线；每个区域—任务类型序列使用同一盲测样本。
+  axes:
+  - variable: 盲测 MAE
+    unit: GPU·h
+  - variable: 区域与任务类型
+    unit: 类别
+  caption: 图 2 用配对点和水平连线比较 18 条区域—任务类型序列的盲测 MAE；主模型与季节基线来自同一盲测窗口，图中不以逐序列 WAPE 推导系统整体结论。
+  panel_map:
+  - panel: main
+    role: 主证据
+    subclaim: 主模型与同口径季节基线的逐序列盲测 MAE 可配对比较，避免用稀疏序列 WAPE 单独代表整体性能。
+  statistics:
+  - 18 条区域×任务类型序列
+  - 逐序列 MAE
+  - 系统 WAPE 由冻结 metrics_summary locator 提供
+  statistics_report:
+    sample_size: 18 条区域×任务类型序列
+    center: 按图注定义的逐小时聚合或逐序列 MAE
+    interval: 名义 95% split-conformal 区间仅用于预测图
+    test: not applicable
+    multiplicity: not applicable
+  data_integrity:
+    source_hashes:
+    - path: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_by_series.csv
+      sha256: 91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4
+    - path: sprints/sprint-20260807T130848306634Z/merged/forecast-q1/metrics_summary.json
+      sha256: e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a
+    transformation: 确定性筛选、按小时聚合或按序列配对；不写入人工数值
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图内仅保留轴标签；图例放置于绘图区上方且已执行文字碰撞检查。
+  rasterized_layers: []
+  review_risks:
+  - MAE 用于可读的逐序列对比，不能替代系统 WAPE
+  - 连线只表示同一序列的配对关系
+  final_width_mm: 158.0
+  min_font_pt: 8
+  status: staging/supporting
+  contest_evidence_eligible: false
+  synthetic_fixture: false
+- contract_version: '2.0'
+  id: fig-q1-feasible-schedule
+  question_id: Q1
+  claim_id: Q1-SCHED-FEASIBLE
+  claim_status: frozen
+  core_conclusion: 最后 24 小时实际到达任务与 carry-in 在独立约束审计下均被唯一安排并满足边界条件。
+  core_message: 读者首先确认任务区间覆盖与区域分配，再结合正文中的约束审计结果。
+  evidence_chain:
+  - locator: sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/scheduling_metrics.json:$.main.audit_passed
+    sha256: cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511
+    fields:
+    - main.audit_passed
+    - task_completion_rate
+  - locator: sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/optimized_schedule.csv:SchedulePhase
+      in {carry-in,q1-arrival}
+    sha256: 3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a
+    fields:
+    - TaskID
+    - TaskType
+    - ExecutionRegion
+    - StartMinute
+    - EndMinute
+    - SchedulePhase
+  kind: data
+  archetype: gantt
+  backend: python
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: main_model
+    meaning: 层级一致性校正后的共享残差模型
+    secondary_encoding: 实线 + 圆点
+  - role: baseline
+    meaning: 168 h 季节朴素基线
+    secondary_encoding: 虚线或方点
+  - role: risk_or_reference
+    meaning: 审计界线或区间外观测
+    secondary_encoding: 虚线或叉号
+  visual_hierarchy:
+    primary_evidence: 冻结主模型结果与其对应的观测或可行排程
+    secondary_context: 同口径基线、预测区间或审计边界
+    deemphasized: 低对比度网格与不承载主张的辅助标记
+  source_data:
+  - sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/optimized_schedule.csv
+  - sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/scheduling_metrics.json
+  source_script: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/generate_q1_figures.py
+  outputs:
+    pdf: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_feasible_schedule.pdf
+    svg: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_feasible_schedule.svg
+    png: sprints/sprint-20260807T1856581764655Z/staging/figure-q1/figures/fig_q1_feasible_schedule.png
+    png_dpi: 400
+  baseline: FIFO/local-first baseline is not plotted; it remains a same-input audit
+    comparator.
+  axes:
+  - variable: 调度时间
+    unit: h
+  - variable: 执行区域
+    unit: 类别
+  caption: 图 3 展示优化排程中的不可抢占任务区间；颜色和任务类型标签共同编码类别，竖线标出 Q1 到达窗口起点与收尾窗口起点，任务区间来自通过约束审计的实际排程。
+  panel_map:
+  - panel: main
+    role: 主证据
+    subclaim: 最后 24 小时实际到达任务与 carry-in 在独立约束审计下均被唯一安排并满足边界条件。
+  statistics:
+  - 596 条排程记录（含 58 条 carry-in）
+  - 任务区间为开始—结束分钟转换为小时
+  - 约束审计结果由冻结 scheduling_metrics locator 提供
+  statistics_report:
+    sample_size: 596 条排程记录（含 58 条 carry-in）
+    center: 按图注定义的逐小时聚合或逐序列 MAE
+    interval: 名义 95% split-conformal 区间仅用于预测图
+    test: not applicable
+    multiplicity: not applicable
+  data_integrity:
+    source_hashes:
+    - path: sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/optimized_schedule.csv
+      sha256: 3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a
+    - path: sprints/sprint-20260807T130848306634Z/merged/scheduling-q1/scheduling_metrics.json
+      sha256: cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511
+    transformation: 确定性筛选、按小时聚合或按序列配对；不写入人工数值
+    manual_values_forbidden: true
+  label_strategy:
+    mode: external-legend
+    collision_checked: true
+    justification: 图内仅保留轴标签；图例放置于绘图区上方且已执行文字碰撞检查。
+  rasterized_layers: []
+  review_risks:
+  - CP-SAT 状态为 FEASIBLE，不宣称全局最优
+  - 图形展示任务区间，不表达资源功率曲线
+  final_width_mm: 158.0
+  min_font_pt: 8
+  status: staging/supporting
+  contest_evidence_eligible: false
+  synthetic_fixture: false

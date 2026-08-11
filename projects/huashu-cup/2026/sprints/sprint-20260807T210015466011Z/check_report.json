@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T210015466011Z",
+  "status": "READY_TO_MERGE",
+  "passed": true,
+  "accepted_tasks": [
+    "solver-q4"
+  ],
+  "retry_tasks": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "tasks": [
+    {
+      "task_id": "solver-q4",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 1,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260807T210015466011Z/staging/solver-q4/q4_summary.json",
+          "sha256": "aa2d1c0ef349cad0dc0efeeba40daf94bb60438ab74ba3a7c272eaa61d773a72"
+        },
+        {
+          "path": "sprints/sprint-20260807T210015466011Z/staging/solver-q4/q4_constraint_audit.json",
+          "sha256": "e984371a77d20eb6ae76296c02feed2cadabc4fe4cc43ce392cfa69aeb1353e6"
+        },
+        {
+          "path": "sprints/sprint-20260807T210015466011Z/staging/solver-q4/q4_candidate_metrics.csv",
+          "sha256": "d2a3b7cc909583c2f5c25a9bf2f454b20790a80c88b5bf208e947a12d2733f0d"
+        },
+        {
+          "path": "sprints/sprint-20260807T210015466011Z/staging/solver-q4/q4_baseline_metrics.csv",
+          "sha256": "3ea4a42ff7d48c6e36e8e1b94ca2f43dbddb9e445539cb95372b876ef7a0a2a6"
+        },
+        {
+          "path": "sprints/sprint-20260807T210015466011Z/staging/solver-q4/q4_candidate_dispatch.csv",
+          "sha256": "c64993e68b22533b19ad5290401eb6dcdd09c310ccf24884d10017588b3a2770"
+        },
+        {
+          "path": "sprints/sprint-20260807T210015466011Z/staging/solver-q4/q4_baseline_dispatch.csv",
+          "sha256": "f31ef800b5a0d9d15b3fc1bf5c1d498866e8db85c83f6385781ce8c280fbef71"
+        },
+        {
+          "path": "sprints/sprint-20260807T210015466011Z/staging/solver-q4/q4_run_manifest.json",
+          "sha256": "d42aa62e98f20095544d8d7ecc04b5ce9e8026e232700c09dd66b732a26d73d6"
+        },
+        {
+          "path": "sprints/sprint-20260807T210015466011Z/staging/solver-q4/run_solver_q4.py",
+          "sha256": "86b45062c6ecda9379697c0bebf1f4a787da3eeb934bbfead97f14a2485c73b7"
+        }
+      ],
+      "handoff": "sprints/sprint-20260807T210015466011Z/staging/solver-q4/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-08T02:28:54.481145+00:00"
+}

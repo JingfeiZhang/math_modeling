@@ -1,0 +1,113 @@
+schema_version: 1
+brief_id: fig-q1-main
+question_id: Q1
+run_id: replace-me-run
+source_data_manifest: experiments/TBD/Q1/candidate/replace-me-run/figure_data_manifest.yaml
+source_data_manifest_sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+visual_intent: experiments/TBD/Q1/candidate/replace-me-run/visual_intent.yaml
+visual_intent_sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+claim_id: null
+core_conclusion: State the one conclusion the reader should obtain at the final printed size.
+core_message: Explain the comparison without introducing an unverified result number.
+evidence_chain:
+  - locator: experiments/TBD/Q1/candidate/replace-me-run/results/figure_data.csv:main_value
+    sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+    fields:
+      - scenario_id
+      - main_value
+      - baseline_value
+decision:
+  artifact_type: figure
+  archetype: sorted-dot-plot
+  alternatives:
+    - kind: grouped-bar-chart
+      rejected_reason: Aligned points support more accurate comparison with less ink.
+    - kind: table
+      rejected_reason: Use a table instead if exact values are more important than the pattern.
+  rationale: The selected archetype answers one comparison question on a common axis.
+encodings:
+  x: scenario_id
+  y: value
+  color: model_role
+  marker: model_role
+  facet: null
+  units:
+    scenario_id: dimensionless
+    value: replace-me-unit
+visual_hierarchy:
+  primary_evidence: main model values
+  secondary_context: comparable baseline values
+  deemphasized: grid and nonessential annotations
+panel_map:
+  - panel: main
+    role: primary result
+    subclaim: The main model and baseline can be compared on the same scale.
+labels:
+  strategy: direct
+  collision_check_required: true
+  annotations: []
+legend: Prefer direct labels; retain an external legend only when labels would collide.
+palette_id: journal-spectrum-v2
+color_encoding:
+  - role: main_model
+    meaning: main model
+    secondary_encoding: solid line and circle marker
+  - role: baseline
+    meaning: comparable baseline
+    secondary_encoding: dashed line and square marker
+backend: python
+target_size_profile: contest-body
+final_width_mm: 158
+min_font_pt: 8
+source_data:
+  - experiments/TBD/Q1/candidate/replace-me-run/results/figure_data.csv
+source_script: src/plotting/plot_q1_main.py
+source_script_sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+render_command:
+  - "{python}"
+  - src/plotting/plot_q1_main.py
+  - --brief
+  - "{brief}"
+  - --output-dir
+  - "{output_dir}"
+outputs:
+  pdf: experiments/TBD/Q1/candidate/replace-me-run/figure-staging/fig-q1-main/outputs/fig-q1-main.pdf
+  svg: experiments/TBD/Q1/candidate/replace-me-run/figure-staging/fig-q1-main/outputs/fig-q1-main.svg
+  png: experiments/TBD/Q1/candidate/replace-me-run/figure-staging/fig-q1-main/outputs/fig-q1-main.png
+  png_dpi: 400
+baseline: replace with the same-output baseline definition
+axes:
+  - variable: scenario_id
+    unit: dimensionless
+  - variable: value
+    unit: replace-me-unit
+caption: Object, condition, comparison, and evidence-bound conclusion without manually entered values.
+statistics:
+  - Replace with the aggregation, interval, sample size, or test used by the evidence.
+statistics_report:
+  sample_size: replace with the observation count and unit
+  center: replace with mean, median, total, or not applicable
+  interval: replace with interval definition or not applicable
+  test: replace with the test definition or not applicable
+  multiplicity: replace with the correction definition or not applicable
+data_integrity:
+  source_hashes:
+    - path: experiments/TBD/Q1/candidate/replace-me-run/results/figure_data.csv
+      sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+  transformation: read-only selection and ordering declared in the data manifest
+  manual_values_forbidden: true
+label_strategy:
+  mode: direct
+  collision_checked: false
+  justification: Direct labels reduce legend lookup when they remain collision-free.
+rasterized_layers: []
+review_risks:
+  - Verify that ordering, axis range, and annotations do not exaggerate the comparison.
+read_only_transformations:
+  - Sort scenarios by the declared comparison metric without changing values.
+status: DRAFT
+qa_expectations:
+  - PDF, editable-text SVG, and 400 dpi PNG are present at the declared final size.
+  - Units, baseline, labels, clipping, overlap, grayscale, and color redundancy pass review.
+contest_evidence_eligible: false
+created_at_utc: replace-at-generation-time

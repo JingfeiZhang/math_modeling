@@ -1,0 +1,37 @@
+schema_version: 1
+enabled: false
+status: evaluated_not_adopted
+source:
+  repository: https://github.com/garethbeaumo/originlab-mcp
+  commit: 929f538c466b9fe86a83324e002f8f45cf734ee9
+  version: 0.2.1
+runtime:
+  python: D:/数学建模/.tools/originlab-mcp-venv/Scripts/python.exe
+  python_version: "3.13.14"
+  source_root: D:/数学建模/tools/originlab-mcp
+  mcp_sdk_version: "1.29.0"
+  attach_existing: false
+  enable_advanced_labtalk: false
+safety:
+  use_isolated_origin_instance: true
+  preserve_open_user_sessions: true
+  allow_arbitrary_labtalk: false
+  allow_source_project_overwrite: false
+  output_root: D:/数学建模/output/_demos/originlab/originlab-mcp-smoke
+figure_policy:
+  palette_id: journal-spectrum-v2
+  required_exports: [opju, pdf, svg, png]
+  png_target_dpi: 400
+  figure_contract_owner: modeling-paper-studio
+evaluation:
+  adopted_into_workflow: false
+  tested_at: "2026-08-05"
+  outcome: pass_with_warnings
+  reasons:
+    - legend rendering was unreliable in exported figures
+    - PDF export produced Type 3 SimSun fonts
+    - PNG DPI required local metadata normalization
+    - the Origin object model added more failure modes than the Python and MATLAB backends
+  retained_for: reproducible evaluation evidence only
+  primary_backends: [python, matlab]
+report: D:/数学建模/output/_demos/originlab/originlab-mcp-smoke/report.json

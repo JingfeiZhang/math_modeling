@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Non-formal experiment lifecycle receipt",
+  "type": "object",
+  "required": ["schema_version", "receipt_type", "receipt_id", "problem_id", "question_id", "experiment_id", "run_id", "source_manifest", "source_manifest_sha256", "status", "formal", "code", "inputs", "artifacts", "metrics", "created_at_utc"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "receipt_type": {"enum": ["quickcheck", "checkpoint", "archive-work"]},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "problem_id": {"type": "string", "minLength": 1},
+    "question_id": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
+    "experiment_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "source_manifest": {"type": "string", "minLength": 1},
+    "source_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "status": {"enum": ["PASS", "FAIL", "ARCHIVED"]},
+    "formal": {"const": false},
+    "code": {"type": "object"},
+    "inputs": {"type": "array", "items": {"type": "object"}},
+    "artifacts": {"type": "array", "items": {"type": "object"}},
+    "metrics": {"type": "array", "items": {"type": "object"}},
+    "note": {"type": "string"},
+    "created_at_utc": {"type": "string"}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,265 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "mcm-2010-b-7273",
+  "identity": {
+    "contest": "MCM",
+    "year": 2010,
+    "problem": "B",
+    "team_id": "7273",
+    "title": "Tracking Serial Criminals with a Road Metric"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/zhanwen/MathModel/git/blobs/f8f91442e2ae6e5006a9304fab6e629e6fe9787c",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "美赛论文/2010美赛特等奖原版论文集/B-7273-Outstanding.pdf"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://www.contest.comap.com/undergraduate/contests/mcm/contests/2010/results/2010_MCM_Problem_B.pdf",
+    "contest": "MCM",
+    "year": 2010,
+    "problem": "B",
+    "team_id": "7273",
+    "title": "Tracking Serial Criminals with a Road Metric",
+    "award": "Outstanding Winner",
+    "locator": "official PDF page 2; extracted text line 72",
+    "matched_text": "7273      University of Washington                      USA          James Morrow        B         Outstanding Winner"
+  },
+  "authenticity": {
+    "level": "B",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": true
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "The control number, contest year, problem, and Outstanding Winner label match a COMAP official result PDF.",
+      "The paper itself is not served from an official paper-display page, so the level is B rather than A."
+    ]
+  },
+  "pdf": {
+    "sha256": "e234c9a6a3f86012ab9fa52b41287ecb8811705f0514c561a582d6bf281c38f8",
+    "pages": 19,
+    "local_path": "corpus/raw/mcm-gmcm/mcm-2010-b-7273/paper.pdf",
+    "first_page_phash": "dhash64:0070706868000000",
+    "text_sha256": "38a0c87c875c350343cf3255a3c91d18fec5402ddd488416110fbfaa438c344b"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "model"
+      ],
+      "observation": "The abstract connects road travel time, kernel density estimation, Rossmo's model, and two case studies.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-b-7273/page-01.png"
+    },
+    {
+      "page": 4,
+      "tags": [
+        "model",
+        "assumption"
+      ],
+      "observation": "The road metric is defined from shortest travel time with explicit street-class assumptions.",
+      "derivation": "mixed",
+      "locator": "PDF page 4",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-b-7273/page-04.png"
+    },
+    {
+      "page": 9,
+      "tags": [
+        "model",
+        "figure"
+      ],
+      "observation": "A road-metric circle illustrates how travel-time geometry differs from Euclidean distance.",
+      "derivation": "mixed",
+      "locator": "PDF page 9",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-b-7273/page-09.png"
+    },
+    {
+      "page": 10,
+      "tags": [
+        "case-study",
+        "heatmap"
+      ],
+      "observation": "A crime series is overlaid on a road-aware hotspot surface.",
+      "derivation": "mixed",
+      "locator": "PDF page 10",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-b-7273/page-10.png"
+    },
+    {
+      "page": 16,
+      "tags": [
+        "result",
+        "surface"
+      ],
+      "observation": "A three-dimensional residence-probability surface accompanies model extensions.",
+      "derivation": "mixed",
+      "locator": "PDF page 16",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-b-7273/page-16.png"
+    },
+    {
+      "page": 17,
+      "tags": [
+        "conclusion",
+        "boundary"
+      ],
+      "observation": "Computational efficiency, tests, and the conclusion delimit the model's use.",
+      "derivation": "mixed",
+      "locator": "PDF page 17",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-b-7273/page-17.png"
+    },
+    {
+      "page": 18,
+      "tags": [
+        "transfer",
+        "policy"
+      ],
+      "observation": "An executive summary translates both prediction outputs into investigative guidance.",
+      "derivation": "mixed",
+      "locator": "PDF page 18",
+      "render": "corpus/rendered/mcm-gmcm/mcm-2010-b-7273/page-18.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "role": "problem-method-case-result",
+      "observation": "Name the two prediction tasks, road metric, KDE and Rossmo components, and the historical case studies."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 4,
+      "step": "road-metric",
+      "observation": "Compute shortest travel-time distance over a road graph.",
+      "order": 1
+    },
+    {
+      "page": 9,
+      "step": "future-crime-density",
+      "observation": "Apply kernel density estimation under the road metric.",
+      "order": 2
+    },
+    {
+      "page": 16,
+      "step": "residence-prior",
+      "observation": "Adapt Rossmo's geographic-profiling model to road travel time.",
+      "order": 3
+    },
+    {
+      "page": 10,
+      "step": "case-application",
+      "observation": "Apply both methods to the Yorkshire Ripper and Atlanta Child Murderer data.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 10,
+      "method": "historical-case",
+      "observation": "Overlay known crimes and predicted hotspots for a documented series.",
+      "order": 1
+    },
+    {
+      "page": 17,
+      "method": "computational-test",
+      "observation": "Discuss scalability and a limited computational test set.",
+      "order": 2
+    },
+    {
+      "page": 18,
+      "method": "out-of-sample-use",
+      "observation": "Distinguish predicting future crimes from locating a residence and state investigative limits.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 9,
+      "role": "metric-explanation",
+      "chart_type": "road-network schematic",
+      "lesson": "Make the non-Euclidean neighborhood visually intuitive."
+    },
+    {
+      "page": 10,
+      "role": "case-result",
+      "chart_type": "road overlay heatmap",
+      "lesson": "Overlay evidence points, routes, and risk surface in one spatial frame."
+    },
+    {
+      "page": 16,
+      "role": "residence-result",
+      "chart_type": "3D probability surface",
+      "lesson": "Separate the residence prediction from the crime hotspot map."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 9,
+      "rule": "When replacing Euclidean distance, visualize the induced geometry before using it in a model.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 10,
+      "rule": "Overlay historical events on the predicted spatial field for case-level validation.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 18,
+      "rule": "Separate two prediction targets and their permitted decision uses in the conclusion.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 17,
+      "risk": "The evaluation uses a limited number of historical cases and lacks a modern out-of-sample benchmark.",
+      "severity": "high"
+    },
+    {
+      "page": 10,
+      "risk": "Rainbow heatmaps are not perceptually uniform and can distort magnitude.",
+      "severity": "medium"
+    },
+    {
+      "page": 16,
+      "risk": "The 3D surface makes precise spatial comparison harder than a calibrated contour map.",
+      "severity": "medium"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/mcm-2010-b-7273/source_manifest.json",
+    "selected_pages": [
+      1,
+      4,
+      9,
+      10,
+      16,
+      17,
+      18
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

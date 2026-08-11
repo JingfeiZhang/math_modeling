@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.math-modeling/literature-search-receipt.schema.json",
+  "title": "Auditable academic literature search receipt",
+  "type": "object",
+  "required": [
+    "schema_version", "receipt_id", "problem_id", "question_id", "search_plan",
+    "search_plan_sha256", "query_id", "query_text", "provider", "started_at_utc",
+    "finished_at_utc", "duration_seconds", "raw_results", "results", "deduplication",
+    "academic_sources_only", "status"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "receipt_id": {"type": "string", "pattern": "^litsearch-[a-z0-9._-]+$"},
+    "problem_id": {"type": "string", "minLength": 1},
+    "question_id": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
+    "search_plan": {"$ref": "#/$defs/relativePath"},
+    "search_plan_sha256": {"$ref": "#/$defs/sha256"},
+    "query_id": {"type": "string", "pattern": "^query-[a-z0-9._-]+$"},
+    "query_text": {"type": "string", "minLength": 3},
+    "provider": {"$ref": "#/$defs/provider"},
+    "started_at_utc": {"$ref": "#/$defs/dateTime"},
+    "finished_at_utc": {"$ref": "#/$defs/dateTime"},
+    "duration_seconds": {"type": "number", "minimum": 0},
+    "raw_results": {
+      "type": "object",
+      "required": ["path", "sha256", "content_type"],
+      "properties": {
+        "path": {"$ref": "#/$defs/relativePath"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "content_type": {"enum": ["application/json", "text/html", "text/csv", "text/plain"]}
+      },
+      "additionalProperties": false
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "canonical_id", "title", "authors", "year", "publication_type", "doi",
+          "arxiv_id", "url", "abstract_available", "selected_for_screening", "exclusion_reason"
+        ],
+        "properties": {
+          "canonical_id": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "authors": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "year": {"type": ["integer", "null"], "minimum": 1800, "maximum": 2100},
+          "publication_type": {"enum": ["journal-article", "conference-paper", "preprint", "thesis"]},
+          "doi": {"anyOf": [{"$ref": "#/$defs/doi"}, {"type": "null"}]},
+          "arxiv_id": {"type": ["string", "null"]},
+          "url": {"type": ["string", "null"], "format": "uri"},
+          "abstract_available": {"type": "boolean"},
+          "selected_for_screening": {"type": "boolean"},
+          "exclusion_reason": {"type": ["string", "null"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "deduplication": {
+      "type": "object",
+      "required": ["input_count", "unique_count", "key_order", "merged_records"],
+      "properties": {
+        "input_count": {"type": "integer", "minimum": 0},
+        "unique_count": {"type": "integer", "minimum": 0},
+        "key_order": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"enum": ["doi", "normalized-title-first-author-year"]}
+        },
+        "merged_records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["kept", "merged"],
+            "properties": {
+              "kept": {"type": "string", "minLength": 1},
+              "merged": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "academic_sources_only": {"const": true},
+    "status": {"enum": ["DISCOVERED", "SOURCES_VERIFIED", "STALE"]}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "doi": {"type": "string", "pattern": "^10\\.[0-9]{4,9}/\\S+$"},
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:)(?![/\\\\])(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$)).+"
+    },
+    "dateTime": {"type": "string", "format": "date-time"},
+    "provider": {
+      "enum": [
+        "crossref", "openalex", "arxiv", "semantic-scholar", "manual-google-scholar",
+        "manual-cnki", "manual-wanfang", "user-supplied"
+      ]
+    }
+  }
+}

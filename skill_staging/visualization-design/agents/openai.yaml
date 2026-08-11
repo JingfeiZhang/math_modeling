@@ -1,0 +1,4 @@
+interface:
+  display_name: "Visualization Design"
+  short_description: "Design evidence-grounded figures before rendering"
+  default_prompt: "Use $visualization-design to choose a defensible chart design from modeling output data before rendering and QA."

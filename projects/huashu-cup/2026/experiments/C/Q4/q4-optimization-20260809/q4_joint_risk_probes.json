@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "decision": "ROOT_REVIEW_REQUIRED",
+  "probes": {
+    "full_50000_task_audit": true,
+    "deterministic_replay": true,
+    "two_scenario_dominance": true,
+    "frozen_main_untouched": true,
+    "RegionF_relaxed_LP_excluded": true
+  }
+}

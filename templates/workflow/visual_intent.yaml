@@ -1,0 +1,28 @@
+schema_version: 1
+intent_id: intent-replace-me
+question_id: Q1
+run_id: replace-me-run
+source_data_manifest: experiments/TBD/Q1/scratch/replace-me-run/figure_data_manifest.yaml
+source_data_manifest_sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+reader_question: What single comparison should the reader understand from this artifact?
+evidence_role: exploratory
+artifact_decision: figure
+candidate_archetypes:
+  - name: sorted-dot-plot
+    rationale: Shows the main and baseline values on a common scale with low visual overhead.
+    rejection_reason: null
+  - name: grouped-bar-chart
+    rationale: Familiar comparison when the number of scenarios is small.
+    rejection_reason: Reject if bars make small differences harder to compare than aligned points.
+required_encodings:
+  x: scenario_id
+  y: main_value and baseline_value
+  group: model_role
+  secondary: marker and line style
+comparison: replace with the comparable baseline or threshold
+risks:
+  - A truncated axis could exaggerate the difference from the baseline.
+paper_slot: paper/sections/question_1.tex
+status: DRAFT
+contest_evidence_eligible: false
+created_at_utc: replace-at-generation-time

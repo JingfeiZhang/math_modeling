@@ -1,0 +1,38 @@
+{
+  "probe_scope": "Accepted source audits and boundary reviews are preserved; no new claim is frozen by promotion.",
+  "probes": [
+    {
+      "id": "PROMOTION-HASH-CONSISTENCY",
+      "result": "All copied artifacts were hashed at registration.",
+      "status": "PASS"
+    },
+    {
+      "id": "PROMOTION-SCOPE",
+      "result": "Only accepted source groups were copied; blocked Q4 joint probe excluded.",
+      "status": "PASS"
+    },
+    {
+      "id": "SOURCE-AUDIT-REUSE",
+      "result": "Independent source audit and risk files remain addressable by immutable hash.",
+      "status": "PASS"
+    }
+  ],
+  "question_id": "Q3",
+  "run_id": "q3-direct-20260808",
+  "schema_version": 1,
+  "source_audits": [
+    {
+      "path": "experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_constraint_audit.json",
+      "sha256": "2f94f0580363d8f3b8a1ea413b554546da08f9637b740795c82d3c3fe26e0ee1"
+    },
+    {
+      "path": "experiments/C/Q3/q3-direct-20260808/models/rolling_milp/q3_load_recompute_audit.csv",
+      "sha256": "58e06e32f341de175673fa3a2648638440367a4cc16c95f672eaafebe882e1fb"
+    },
+    {
+      "path": "experiments/C/Q3/q3-direct-20260808/sensitivity/incremental_review_q3q4.json",
+      "sha256": "8629ce98f84bebc62d494550bd15cd0d230b6c815ef5607187a4f92e454967b9"
+    }
+  ],
+  "status": "PASS"
+}

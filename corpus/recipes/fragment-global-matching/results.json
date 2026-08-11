@@ -1,0 +1,17 @@
+{
+  "recipe_id": "fragment-global-matching",
+  "metrics": {
+    "optimal_path_cost": 0.0,
+    "adjacency_accuracy": 1.0,
+    "recovered_order": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+% Q1 staging draft for the compose sprint; root Agent must replace pending claims before formal merge.
+
+% Evidence state: exploratory/supporting. This fragment does not modify paper/main.tex.
+
+\providecommand{\PendingClaim}[1]{\texttt{[pending:#1]}}
+
+\providecommand{\ExploratoryEvidence}[1]{\textit{\small [exploratory evidence: #1]}}
+
+\section{问题一：需求预测与基础算力调度}
+
+\subsection{问题重述与建模目标}
+
+问题一要求从 AI 工作负载到达记录出发，建立统一的区域—任务类型 GPU 工作量口径，描述短期需求结构并对未来 24 小时进行预测；随后在实际到达任务上给出满足容量、功率、网络时延、不可抢占和收尾边界的基础排程。预测用于需求压力与模型评价，不能替代最后 24 小时的实际任务输入。
+
+\subsection{数据口径与分层目标}
+
+令 $r$ 表示来源区域，$k$ 表示任务类型，$t$ 表示小时。将任务时长按分钟解释，底层 GPU 工作量定义为
+
+\begin{equation}\label{eq:q1-workload-staging} W_{rkt}=\sum_{i:\,r_i=r,\,k_i=k,\,a_i=t}g_i\frac{d_i}{60},\end{equation}
+
+其中 $g_i$ 为任务 $i$ 的 GPU 需求，$d_i$ 为分钟时长，$W_{rkt}$ 的单位为 GPU$\cdot$h。该定义同时保留到达任务数、GPU 总需求、平均时长和系统聚合量，以便检查底层序列与总量的一致性。
+
+数据按 $0$--$2351$ 小时训练、$2352$--$2375$ 小时验证、$2376$--$2399$ 小时盲测切分；盲测窗口不参与特征拟合、模型选择或区间校准。
+
+\subsection{分层短期预测模型}
+
+季节朴素模型以 24 h 和 168 h 为候选滞后，并在训练/验证回测中确定参照滞后。主模型以季节预测为中心，对残差拟合共享 HistGradientBoostingRegressor，输入包含滞后、滚动统计、小时、星期、区域和任务类型特征；预测值进行非负截断，再以加权最小二乘进行层级一致性校正。校准阶段使用验证残差构造 nominal 95\% split-conformal 区间。
+
+主模型与基线使用同一组 18 条序列和相同的输出字段。盲测结果与逐序列误差暂以 claim locator 绑定：系统加权 WAPE 为 \PendingClaim{Q1-FCST-TEST-WAPE}，区间覆盖为 \PendingClaim{Q1-FCST-TEST-COVERAGE}；根 Agent 完成 G4 人工确认后，才能替换为冻结数字。
+
+\subsection{基础算力调度}
+
+历史暖机采用事件边界的最早可行排程，保留跨越 $2376$ 小时的 carry-in 任务。最后 24 小时只将实际到达任务送入单线程、固定种子的分钟级 CP-SAT；任务只能执行一次，不能抢占、拆分或迁移。对每个候选区域同时检查 GPU 容量、AI IT 功率、PUE 换算后的设施功率和单向网络时延。实时推理任务在到达时刻开工，所有任务在 $2406$ 小时之前结清。
+
+主 CP-SAT 的状态和最优性间隙必须原样报告，\PendingClaim{Q1-SCHED-001} 不得改写成“全局最优”。FIFO/local-first 方案使用同一批实际任务、carry-in、容量和时延约束，作为可比较基线。
+
+\subsection{结果、检验与图件交接}
+
+图~\ref{fig:q1-fig-01-workload-ranking} 至图~\ref{fig:q1-fig-07-residual-coverage} 均为本 Sprint 生成的单图 staging 件，数据来源和 SHA-256 记录见 figure\_manifest.json。图件使用 journal-spectrum-v2，主模型、基线、风险和区间采用线型/标记冗余编码；未冻结图件不得复制到正式 paper/figures。
+
+预测验证包括四个滚动 24 h 回测窗口、MAE/RMSE/WAPE/MASE、95\% 区间覆盖率和逐序列稀疏性诊断。调度验证包括任务唯一性、实时即时开工、网络时延、GPU/IT/设施功率和 $2406$ 边界；GPU 需求与持续时间的 $\pm10\%$、$\pm20\%$ 固定排程回放仅用于报告裕度，不代表重新求解后的可行性。
+
+\ExploratoryEvidence{该草稿只包含证据定位符，不构成冻结主张；根 Agent 应在 G4/G5 通过后装配正式摘要、数字、图注和引用。}

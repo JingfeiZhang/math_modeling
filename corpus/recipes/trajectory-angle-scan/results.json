@@ -1,0 +1,9 @@
+{
+  "recipe_id": "trajectory-angle-scan",
+  "metrics": {
+    "best_angle_deg": 32.5,
+    "range_m": 621.2042364968842,
+    "absolute_error_m": 1.204236496884164,
+    "baseline_error_m": 65.42303771661568
+  }
+}

@@ -1,0 +1,82 @@
+competition: HUASHU_CUP
+display_name: 2026 年第七届“华数杯”大学生数学建模竞赛
+language: zh-CN
+rules:
+  status: verified_event_specific_2026
+  require_verification_before_submission: true
+  sources:
+  - problems/_official/format-rules.pdf
+  - problems/_official/ai-usage-rules.pdf
+  submission_url: https://new.saikr.com/vse/chinamcm26
+  verified_from_local_sha256:
+    format_rules: 7aa7cc14ad61819a2b30444a6283dc6dba170dcd69c1232bc1b3be19f1ab4e22
+    ai_usage_rules: 2623a11bff720a1393ac578f71407d79387f504f7cfea2e473c14ac5a45b90c6
+    paper_template: 4edf51dbcdb27f842209a54e9becad5e1c7308cbec3a6d7f0edf0dbe860fc07c
+  notes:
+  - “正文尽量控制在 20 页以内”作为工作台的保守正文预算。
+  - 论文首页必须包含参赛类别和参赛编号；正文、附录和支撑材料不得出现个人或学校信息。
+  - 使用 AI 时必须在参考文献前放置声明，并在附录记录使用详情；该规则不因工作流选择而省略。
+  - AI 工具还必须列入参考文献；独立说明文件不能替代论文内声明和附录详情。
+  - 承诺书单独上传，包含学校和签名信息，不得并入匿名论文或支撑材料。
+paper:
+  template_family: cumcm-2026
+  template_status: latex_first_event_adapted
+  official_docx_reference_only: true
+format:
+  paper_body_max_pages: 20
+  paper_body_limit_policy: recommended
+  paper_body_hard_max_pages: 30
+  paper_total_target_pages: [34, 38]
+  paper_total_hard_max_pages: 38
+  abstract_max_pages: 1
+  paper_max_mb: 20
+  support_max_mb: 20
+  min_margin_cm: 2.5
+  searchable_pdf_min_chars_per_page: 20
+  searchable_pdf_min_page_ratio: 0.8
+  require_anonymous: true
+  electronic_pdf_excludes_commitment_pages: true
+  first_page_number: 1
+  first_page_required_fields:
+  - 参赛类别
+  - 参赛编号
+  body_starts_on_page: 2
+  no_table_of_contents: true
+  provisional: false
+submission:
+  searchable_pdf_policy: recommended
+  hash_algorithms:
+  - md5
+  - sha256
+  separate_paper_and_support: true
+  source_code_in_appendix_and_support: true
+  release_manifest: output/release/release_manifest.json
+  release_checklist: output/release/submission_checklist.yaml
+  paper_filename: CCM2604653.pdf
+  support_filename: CCM2604653附件.zip
+deadline: 2026-08-10 20:00:00+08:00
+schema_version: 1
+project_id: huashu-cup-2026
+profile_id: huashu-cup
+year: 2026
+problem: C
+rules_sources:
+- problems/_official/format-rules.pdf
+- problems/_official/ai-usage-rules.pdf
+paths:
+  paper_tex: paper/main.tex
+  paper_pdf: output/submission.pdf
+  support_zip: output/supporting.zip
+  audit_json: output/audit.json
+workflow:
+  workflow_config: config/workflow.yaml
+  workflow_status: output/workflow_status.json
+  claims_pattern: results/{problem}/claims.json
+  shared_workspace_root: ../../..
+  python_environment: auto
+  python_environment_policy: existing_first
+  python_environment_fallback: math-modeling
+  matlab_root: D:/MATLAB/R2026a
+  default_random_seed: 20260801
+  pdf_environment: math-modeling
+  pdf_environment_policy: explicit_prefix_only

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "question_id": "Q2",
+  "review_type": "root_evidence_refreeze",
+  "status": "PASS",
+  "reason": "Attachment-defined renewable utilization was recomputed in the formal compatibility derivation. The seven frozen Q2 locator values remain unchanged; only the evidence summary hash changed.",
+  "evidence": {
+    "locator": "experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json",
+    "sha256": "0783a484f2bebac9ddb1ab696988fad823de3cc2805aae8ea9d332039cded88b"
+  },
+  "claims": [
+    "Q2-FULL-COMPLETION-RATE",
+    "Q2-FULL-SLA-VIOLATION-RATE",
+    "Q2-FULL-HARD-AUDIT-PASS",
+    "Q2-FULL-COST-CHANGE-PCT",
+    "Q2-FULL-CARBON-CHANGE-PCT",
+    "Q2-FULL-LATENCY-CHANGE-MS",
+    "Q2-FULL-DETERMINISTIC-REPLAY"
+  ],
+  "checks": {
+    "current_values_match_frozen_values": true,
+    "renewable_definition_audit_passed": true,
+    "task_count_50000": true,
+    "hard_constraints_passed": true,
+    "deterministic_replay_passed": true,
+    "no_new_model_claim": true
+  }
+}

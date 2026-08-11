@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T1856581764655Z",
+  "problem": "C",
+  "agent_mode": "parallel",
+  "max_agents": 2,
+  "status": "MERGED",
+  "profile": "q1-recovery-q234-exploration",
+  "input_sprint_id": "sprint-20260807T130848306634Z",
+  "task_files": [
+    "sprints/sprint-20260807T1856581764655Z/retry/figure-q1-attempt-2.json",
+    "sprints/sprint-20260807T1856581764655Z/tasks/q234-exploration.json"
+  ],
+  "root_only_paths": [
+    "state/decision_log.json",
+    "results/C/claims.json",
+    "paper/main.tex",
+    "paper/figure_contracts.yaml",
+    "output/"
+  ],
+  "write_directories": [
+    "sprints/sprint-20260807T1856581764655Z/staging/figure-q1",
+    "sprints/sprint-20260807T1856581764655Z/staging/q234-exploration"
+  ],
+  "last_merge_report": "sprints/sprint-20260807T1856581764655Z/merge_report.json"
+}

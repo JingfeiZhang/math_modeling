@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "independent_replay_count": 2,
+  "checks": {
+    "blind_test_predictions.csv": {
+      "expected_sha256": "57853cd9781bc099827b2c3b4f55089248069b5b5f5ee52e19f361c7e0f86772",
+      "actual_sha256": "57853cd9781bc099827b2c3b4f55089248069b5b5f5ee52e19f361c7e0f86772",
+      "passed": true
+    },
+    "rolling_origin_predictions.csv": {
+      "expected_sha256": "31600538087ac6762125366ac3fdfd91a44a91b4bd819b48356101318505c87b",
+      "actual_sha256": "31600538087ac6762125366ac3fdfd91a44a91b4bd819b48356101318505c87b",
+      "passed": true
+    },
+    "candidate_schedule_12.csv": {
+      "expected_sha256": "04871953a14c28ecbf11663c39f9f9f3e04aeeafe5248e3711cb11ec4e13007c",
+      "actual_sha256": "04871953a14c28ecbf11663c39f9f9f3e04aeeafe5248e3711cb11ec4e13007c",
+      "passed": true
+    },
+    "candidate_schedule_32.csv": {
+      "expected_sha256": "075d1490bfb48ccdfd7afce189ab469b836a9fa76c9c7b66a8affc1c62cef741",
+      "actual_sha256": "075d1490bfb48ccdfd7afce189ab469b836a9fa76c9c7b66a8affc1c62cef741",
+      "passed": true
+    },
+    "candidate_schedule_64.csv": {
+      "expected_sha256": "0926b725aa306c9332fdab416d737f8ee3cf0bd3c9ab2c8e3375581c816e4296",
+      "actual_sha256": "0926b725aa306c9332fdab416d737f8ee3cf0bd3c9ab2c8e3375581c816e4296",
+      "passed": true
+    }
+  },
+  "passed": true,
+  "note": "Wall-clock fields are excluded; prediction and schedule payloads are byte-identical across consecutive fixed-seed runs."
+}

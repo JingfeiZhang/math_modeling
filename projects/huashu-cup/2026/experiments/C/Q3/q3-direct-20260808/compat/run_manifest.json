@@ -1,0 +1,233 @@
+{
+  "artifacts": [
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_summary.json",
+      "sha256": "172a14ab7fdfdbb6acd37b6af3983de01d08163957f1094a20a40d65eadc27dc"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_constraint_audit.json",
+      "sha256": "2f94f0580363d8f3b8a1ea413b554546da08f9637b740795c82d3c3fe26e0ee1"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_load_recompute_audit.csv",
+      "sha256": "58e06e32f341de175673fa3a2648638440367a4cc16c95f672eaafebe882e1fb"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_candidate_metrics.csv",
+      "sha256": "2b5ef071cdac2510bed725d12c1128e0d0ca1d7f81476ba4d46d0e889fa7c887"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_baseline_metrics.csv",
+      "sha256": "c1ee560ea9f914ef2b6d5edc3d5329bd7cd2fa8e1eb8643960f2fcfdd12966dd"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_scenario_metrics.csv",
+      "sha256": "4b67097a73bcc30720301f9fb1068ab354f289b21a9219c7e6edd92227aba3d8"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_comparison_summary.csv",
+      "sha256": "f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_dispatch.csv",
+      "sha256": "d27b9e9f351b2031988080c6f70b3e9881b73a93eb48cfaf59bab058feec374f"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_baseline_dispatch.csv",
+      "sha256": "a427a391f104e45df90f9f108b65e93533ff1af4913dbde37e87120977de85dc"
+    },
+    {
+      "path": "sprints/sprint-20260808T031200808089Z/merged/solver-q3/q3_claim_boundary_review.json",
+      "sha256": "5bc6f590e3d0d869032acd26d9e65869adf39580ed3bd49015dcdd7a9778787d"
+    },
+    {
+      "path": "sprints/sprint-20260808T031200808089Z/merged/solver-q3/q3_evidence_index.json",
+      "sha256": "3bb3f13559a1d069edfb367a8f23247f0e298d577356754973c1c12ee04fd04c"
+    },
+    {
+      "path": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json",
+      "sha256": "ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35"
+    },
+    {
+      "path": "experiments/C/Q3/q3-rolling-compat-20260808/claim_proposals.json",
+      "sha256": "7ed169bd99a5fa46d2a2125a76f598072b5ad99656e9234a46a9274c206b4140"
+    }
+  ],
+  "code": {
+    "compatibility_generator": "experiments/C/Q3/q3-rolling-compat-20260808/generate_q3_compat.py",
+    "compatibility_generator_sha256": "20d99982189fa2816a622cf5adf0e20e3e12ea882f77ef5855ee3f7885584026",
+    "runner": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/run_solver_q3.py",
+    "sha256": "81a665d910b5b21bde693873bd0844799acb5398d4684a37f0e6425461d5c1b5"
+  },
+  "command": [
+    "D:/anaconda3/envs/math-modeling/python.exe",
+    "sprints/sprint-20260808T023236665505Z/merged/solver-q3/run_solver_q3.py"
+  ],
+  "duration_seconds": 16.121092,
+  "engine": "python/scipy.optimize.milp with deterministic evidence derivation",
+  "environment": {
+    "packages": {
+      "numpy": "2.5.1",
+      "pandas": "3.0.5",
+      "scipy": "1.18.0"
+    },
+    "platform": "Windows-11-10.0.22631-SP0",
+    "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]"
+  },
+  "fallback": null,
+  "inputs": [
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_baseline_dispatch.csv",
+      "pinned_sha256": "a427a391f104e45df90f9f108b65e93533ff1af4913dbde37e87120977de85dc",
+      "sha256": "a427a391f104e45df90f9f108b65e93533ff1af4913dbde37e87120977de85dc"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_baseline_metrics.csv",
+      "pinned_sha256": "c1ee560ea9f914ef2b6d5edc3d5329bd7cd2fa8e1eb8643960f2fcfdd12966dd",
+      "sha256": "c1ee560ea9f914ef2b6d5edc3d5329bd7cd2fa8e1eb8643960f2fcfdd12966dd"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_candidate_metrics.csv",
+      "pinned_sha256": "2b5ef071cdac2510bed725d12c1128e0d0ca1d7f81476ba4d46d0e889fa7c887",
+      "sha256": "2b5ef071cdac2510bed725d12c1128e0d0ca1d7f81476ba4d46d0e889fa7c887"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_comparison_summary.csv",
+      "pinned_sha256": "f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f",
+      "sha256": "f8af976c7205a93c2b0abbe9caffb2d54ffe2330d2b3bb8506a00b7c77b3e29f"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_constraint_audit.json",
+      "pinned_sha256": "2f94f0580363d8f3b8a1ea413b554546da08f9637b740795c82d3c3fe26e0ee1",
+      "sha256": "2f94f0580363d8f3b8a1ea413b554546da08f9637b740795c82d3c3fe26e0ee1"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_dispatch.csv",
+      "pinned_sha256": "d27b9e9f351b2031988080c6f70b3e9881b73a93eb48cfaf59bab058feec374f",
+      "sha256": "d27b9e9f351b2031988080c6f70b3e9881b73a93eb48cfaf59bab058feec374f"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_load_recompute_audit.csv",
+      "pinned_sha256": "58e06e32f341de175673fa3a2648638440367a4cc16c95f672eaafebe882e1fb",
+      "sha256": "58e06e32f341de175673fa3a2648638440367a4cc16c95f672eaafebe882e1fb"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_run_manifest.json",
+      "pinned_sha256": "d7e9e285c21cbc0c8f2c4d062dbab5d3ef63c53c717a5e1e62cb21561cdbb9ea",
+      "sha256": "d7e9e285c21cbc0c8f2c4d062dbab5d3ef63c53c717a5e1e62cb21561cdbb9ea"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_scenario_metrics.csv",
+      "pinned_sha256": "4b67097a73bcc30720301f9fb1068ab354f289b21a9219c7e6edd92227aba3d8",
+      "sha256": "4b67097a73bcc30720301f9fb1068ab354f289b21a9219c7e6edd92227aba3d8"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_summary.json",
+      "pinned_sha256": "172a14ab7fdfdbb6acd37b6af3983de01d08163957f1094a20a40d65eadc27dc",
+      "sha256": "172a14ab7fdfdbb6acd37b6af3983de01d08163957f1094a20a40d65eadc27dc"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/run_solver_q3.py",
+      "pinned_sha256": "81a665d910b5b21bde693873bd0844799acb5398d4684a37f0e6425461d5c1b5",
+      "sha256": "81a665d910b5b21bde693873bd0844799acb5398d4684a37f0e6425461d5c1b5"
+    },
+    {
+      "path": "sprints/sprint-20260808T031200808089Z/merged/solver-q3/q3_claim_boundary_review.json",
+      "pinned_sha256": "5bc6f590e3d0d869032acd26d9e65869adf39580ed3bd49015dcdd7a9778787d",
+      "sha256": "5bc6f590e3d0d869032acd26d9e65869adf39580ed3bd49015dcdd7a9778787d"
+    },
+    {
+      "path": "sprints/sprint-20260808T031200808089Z/merged/solver-q3/q3_claim_proposals.json",
+      "pinned_sha256": "e319d39733239a6ab13e696a18de32a8db2bb4ef029b980211f040a2601fb850",
+      "sha256": "e319d39733239a6ab13e696a18de32a8db2bb4ef029b980211f040a2601fb850"
+    },
+    {
+      "path": "sprints/sprint-20260808T031200808089Z/merged/solver-q3/q3_evidence_index.json",
+      "pinned_sha256": "3bb3f13559a1d069edfb367a8f23247f0e298d577356754973c1c12ee04fd04c",
+      "sha256": "3bb3f13559a1d069edfb367a8f23247f0e298d577356754973c1c12ee04fd04c"
+    },
+    {
+      "path": "sprints/sprint-20260808T031200808089Z/merged/solver-q3/review_q3_evidence.py",
+      "pinned_sha256": "d1d775d96ffcdc58cc0b1da7722645e42ff8549808289b3f9482cf3ceff41b10",
+      "sha256": "d1d775d96ffcdc58cc0b1da7722645e42ff8549808289b3f9482cf3ceff41b10"
+    }
+  ],
+  "methods": [
+    {
+      "claim_eligible_scope": "90 contiguous rolling binary-MILP solves",
+      "implementation": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/run_solver_q3.py",
+      "name": "rolling carbon-aware binary MILP",
+      "output_class": "regional hourly storage dispatch and aggregate metrics",
+      "role": "main"
+    },
+    {
+      "comparable_output": true,
+      "implementation": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/run_solver_q3.py",
+      "name": "deterministic no-storage renewable-first policy",
+      "output_class": "regional hourly dispatch and the same aggregate metrics",
+      "role": "baseline"
+    }
+  ],
+  "metric_definitions": {
+    "carbon_tCO2": "sum(GridPurchase*CarbonIntensity)",
+    "cost_CNY": "sum(GridPurchase*ElectricityPrice - GridSell*SellPrice)",
+    "load_std_MW": "population standard deviation of net grid import",
+    "peak_net_import_MW": "max(GridPurchase - GridSell)",
+    "renewable_utilization_ratio": "sum(AvailableRenewable - Curtailment)/sum(AvailableRenewable)",
+    "terminal_SOC_MWh": "end-of-hour SOC"
+  },
+  "metrics": {
+    "carbon_delta": {
+      "definition": "candidate grid-purchase carbon minus comparable baseline carbon",
+      "unit": "tCO2",
+      "value": -8.8505625719
+    },
+    "cost_delta": {
+      "definition": "candidate net operating cost minus comparable baseline cost",
+      "unit": "CNY",
+      "value": -38899969.87293261
+    },
+    "facility_load_residual": {
+      "definition": "maximum absolute facility-load recomputation residual",
+      "unit": "MW",
+      "value": 5.044995509706496e-05
+    },
+    "rolling_block_solves": {
+      "definition": "six regions times 15 contiguous rolling blocks",
+      "unit": "solve",
+      "value": 90
+    }
+  },
+  "problem_id": "C",
+  "provenance": {
+    "boundary_review": "sprints/sprint-20260808T031200808089Z/merged/solver-q3/q3_claim_boundary_review.json",
+    "boundary_review_sha256": "5bc6f590e3d0d869032acd26d9e65869adf39580ed3bd49015dcdd7a9778787d",
+    "compatibility_outputs": [
+      {
+        "path": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json",
+        "sha256": "ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35"
+      },
+      {
+        "path": "experiments/C/Q3/q3-rolling-compat-20260808/claim_proposals.json",
+        "sha256": "7ed169bd99a5fa46d2a2125a76f598072b5ad99656e9234a46a9274c206b4140"
+      }
+    ],
+    "source_manifest": "sprints/sprint-20260808T023236665505Z/merged/solver-q3/q3_run_manifest.json",
+    "source_manifest_sha256": "d7e9e285c21cbc0c8f2c4d062dbab5d3ef63c53c717a5e1e62cb21561cdbb9ea",
+    "source_run_id": "solver-q3-20260808T032702Z"
+  },
+  "question_id": "Q3",
+  "random_seed": 20260808,
+  "run_id": "q3-rolling-compat-20260808",
+  "schema_version": 1,
+  "started_at_utc": "2026-08-08T03:27:02.676929+00:00",
+  "status": "PASS",
+  "units": {
+    "carbon_tCO2": "tCO2",
+    "cost_CNY": "CNY",
+    "load_std_MW": "MW",
+    "peak_net_import_MW": "MW",
+    "renewable_utilization_ratio": "dimensionless",
+    "terminal_SOC_MWh": "MWh"
+  }
+}

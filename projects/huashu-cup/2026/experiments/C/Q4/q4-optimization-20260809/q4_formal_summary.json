@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q4",
+  "status": "PASS",
+  "decision": "PROMOTE",
+  "method": "72-hour surrogate-assisted task fix-and-optimize with six-region binary-storage MILP recourse",
+  "scope": {
+    "window_start_hour": 2328,
+    "horizon_h": 72,
+    "scenario_count": 5
+  },
+  "audit": {
+    "all_hard_constraints_passed": true,
+    "task_completion_rate": 1.0,
+    "sla_violation_rate": 0.0,
+    "deterministic_replay_passed": true
+  },
+  "observed_72h": {
+    "cost_delta_CNY": -16061.169525038451,
+    "renewable_utilization_gain": 0.0005863788067127507
+  },
+  "low_renewable_72h": {
+    "cost_delta_CNY": -41567.4747970365,
+    "carbon_delta_tCO2": -7.822675821515936,
+    "renewable_utilization_gain": 0.0009270456409221639
+  },
+  "joint_stress_72h": {
+    "cost_delta_CNY": -41570.408512070775,
+    "carbon_delta_tCO2": -9.387210985819125
+  },
+  "search": {
+    "accepted_task_moves": 3,
+    "storage_evaluations": 53
+  },
+  "interpretation_limits": [
+    "The result is a 72-hour local joint optimization, not a full-horizon global optimum.",
+    "Negative cost denotes net export revenue under the declared purchase-minus-sale formula.",
+    "The task schedule starts from the retained formal Q2 schedule; only a 12-task neighborhood is searched."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "road_cells": 180,
+  "steps": 180,
+  "density": 0.22,
+  "vmax": 5,
+  "slow_probability": 0.18
+}

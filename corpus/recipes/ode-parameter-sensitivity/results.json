@@ -1,0 +1,8 @@
+{
+  "recipe_id": "ode-parameter-sensitivity",
+  "metrics": {
+    "max_final_state": 97.18579887494279,
+    "max_sensitivity": 399.7518860328364,
+    "baseline_final_state": 70.1903056168661
+  }
+}

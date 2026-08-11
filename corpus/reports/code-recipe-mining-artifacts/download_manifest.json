@@ -1,0 +1,1372 @@
+{
+  "schema_version": 1,
+  "source": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "tree": "corpus\\upstream\\sources\\personqianduixue-math-model\\8783d0d822f89f98aa6182dd933cc2e9f3e2ddce\\git_tree.json",
+    "tree_entry_count": 7938,
+    "tree_truncated": false
+  },
+  "selection": {
+    "root": "2-1国赛题目+论文",
+    "rule": "exactly one PDF and at least one MATLAB file under year/team prefix",
+    "candidate_count": 18,
+    "unique_pdf_count": 17,
+    "downloaded_unique_blob_count": 48,
+    "download_error_count": 0,
+    "data_cap_per_candidate": 8,
+    "figure_cap_per_candidate": 3,
+    "auxiliary_artifacts": "metadata_only"
+  },
+  "exact_duplicate_pdfs": [
+    {
+      "blob_sha": "7450ecbf9c51c86f29d79809148f391e75ad495d",
+      "candidate_ids": [
+        "cumcm-2014-d026",
+        "cumcm-2014-d062"
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "cumcm-2012-a285",
+      "prefix": "2-1国赛题目+论文/2012/A285",
+      "total_group_entries": 20,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2012/A285/A0285/A285.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/A285/A0285/A285.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/7316a027c9f6f66b164e83c3a70afa92b28154ab",
+        "blob_sha": "7316a027c9f6f66b164e83c3a70afa92b28154ab",
+        "expected_bytes": 1751739,
+        "sha256": "8b3ba564f1726cf9b0471f6e1495840041d6093f72983fc771d36ba6724f67cd",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/8b/8b3ba564f1726cf9b0471f6e1495840041d6093f72983fc771d36ba6724f67cd.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/suiji.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/A285/A0285/%E9%99%84%E4%BB%B6/suiji.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/6fe7ef3ab57b5f080dd72af9564384bc30db0dcb",
+          "blob_sha": "6fe7ef3ab57b5f080dd72af9564384bc30db0dcb",
+          "expected_bytes": 72,
+          "sha256": "0c0f6b83b6bb562bdf3d3e4d157eb9d94db1bbc6c5806fae215d9959d736909d",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/0c/0c0f6b83b6bb562bdf3d3e4d157eb9d94db1bbc6c5806fae215d9959d736909d.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/b系数.xls",
+          "blob_sha": "e40837580c3be1d197aa14a9dfb7dfb2f8dbf876",
+          "bytes": 5632,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/系数3.xls",
+          "blob_sha": "bcdbcdc90f06e6094ded84ba7a086ca038f28b0b",
+          "bytes": 5632,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/b系数1.xls",
+          "blob_sha": "8e4194f71de241bb54be97ff4fb458a6a3a4b438",
+          "bytes": 6144,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/系数1.xls",
+          "blob_sha": "dd06631002f8240a95bdacf6092502d829308a16",
+          "bytes": 6144,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/系数2.xls",
+          "blob_sha": "dd06631002f8240a95bdacf6092502d829308a16",
+          "bytes": 6144,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/系数.xls",
+          "blob_sha": "9f0aa8f0675dbd161004f33a5674d5c89e75f183",
+          "bytes": 6656,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/白葡萄酒.xlsx",
+          "blob_sha": "785e0e339c96d6c9827d243603c677b6a607f645",
+          "bytes": 10070,
+          "extension": ".xlsx",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/A285/A0285/附件/5.xlsx",
+          "blob_sha": "30d32f883905086beb6ea0176c5c94b6169eeafe",
+          "bytes": 16706,
+          "extension": ".xlsx",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2012-b077",
+      "prefix": "2-1国赛题目+论文/2012/B077",
+      "total_group_entries": 18,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2012/B077/B077.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/B077/B077.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/cf7292cde264ee32dbadd79cbb87a3bdb50d834e",
+        "blob_sha": "cf7292cde264ee32dbadd79cbb87a3bdb50d834e",
+        "expected_bytes": 410426,
+        "sha256": "8059c92cc76a4fff6d09f47044e7cd5ddcadafe7fdbdf423d279da0649e7f028",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/80/8059c92cc76a4fff6d09f47044e7cd5ddcadafe7fdbdf423d279da0649e7f028.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2012/B077/附件/附件/account1.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/B077/%E9%99%84%E4%BB%B6/%E9%99%84%E4%BB%B6/account1.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/f2d6f6c8947fd015597f1377799cf5c4ef4f213a",
+          "blob_sha": "f2d6f6c8947fd015597f1377799cf5c4ef4f213a",
+          "expected_bytes": 3142,
+          "sha256": "5cc99a998decd9b9e0cc753afb37e57c3880ee9cd0ce9c83a39e6de82c82a823",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/5c/5cc99a998decd9b9e0cc753afb37e57c3880ee9cd0ce9c83a39e6de82c82a823.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2012/B077/附件/附件/account2.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/B077/%E9%99%84%E4%BB%B6/%E9%99%84%E4%BB%B6/account2.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/60c8791b17d9204991b65809d85f74ddafef734b",
+          "blob_sha": "60c8791b17d9204991b65809d85f74ddafef734b",
+          "expected_bytes": 2138,
+          "sha256": "11e2d880f211a73cd269e6c133a22b40f5114de727e4d2a5accb95f08bbbe494",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/11/11e2d880f211a73cd269e6c133a22b40f5114de727e4d2a5accb95f08bbbe494.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2012/B077/附件/附件/cumcm2012B_附件3_三种类型的光伏电池(A单晶硅B多晶硅C非晶硅薄膜)组件设计参数和市场价格.xls",
+          "blob_sha": "19c8d3485b08e5d61ca95665160559acfe408518",
+          "bytes": 16896,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2012/B077/附件/附件/cumcm2012B附件4_山西大同典型气象年逐时参数及各方向辐射强度.xls",
+          "blob_sha": "67c97d4349ae6d70bc5d5f5ad7a4e39ffd1f7736",
+          "bytes": 1175040,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2012-b113",
+      "prefix": "2-1国赛题目+论文/2012/B113",
+      "total_group_entries": 8,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2012/B113/20121784/20121784.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/B113/20121784/20121784.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/55ee42fcaa24bbce8642d52d2f2dc30dbc37bfa4",
+        "blob_sha": "55ee42fcaa24bbce8642d52d2f2dc30dbc37bfa4",
+        "expected_bytes": 497701,
+        "sha256": "80ec61d6d035fb45afcc15ea71f8424586afdd408823053472aac620b705ad61",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/80/80ec61d6d035fb45afcc15ea71f8424586afdd408823053472aac620b705ad61.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2012/B113/20121784/程序/附录6.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/B113/20121784/%E7%A8%8B%E5%BA%8F/%E9%99%84%E5%BD%956.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/c28b9c8d573e768e4631b86b86430debb1033422",
+          "blob_sha": "c28b9c8d573e768e4631b86b86430debb1033422",
+          "expected_bytes": 1203,
+          "sha256": "c8d34112b14f7974398fe93e62417093adcb7b0bc68001403604a99e28d8ef58",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/c8/c8d34112b14f7974398fe93e62417093adcb7b0bc68001403604a99e28d8ef58.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2012/B113/20121784/程序/附录二.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/B113/20121784/%E7%A8%8B%E5%BA%8F/%E9%99%84%E5%BD%95%E4%BA%8C.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/6cb8d135e0771c514e292c108bc38eebb637bc93",
+          "blob_sha": "6cb8d135e0771c514e292c108bc38eebb637bc93",
+          "expected_bytes": 943,
+          "sha256": "5956a620c7d0e328fcc34a8752ac293200eab44142a0b617587c7a15e0633d58",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/59/5956a620c7d0e328fcc34a8752ac293200eab44142a0b617587c7a15e0633d58.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2012-b149",
+      "prefix": "2-1国赛题目+论文/2012/B149",
+      "total_group_entries": 21,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2012/B149/B149/B149答卷.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/B149/B149/B149%E7%AD%94%E5%8D%B7.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/32e0f4b9c60453fe4eec08b93a1365c052d6607a",
+        "blob_sha": "32e0f4b9c60453fe4eec08b93a1365c052d6607a",
+        "expected_bytes": 1062310,
+        "sha256": "f0aba132aece5abf111c3328934afc1c976c60b8ef200b2f853a5c341bc7c7e0",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/f0/f0aba132aece5abf111c3328934afc1c976c60b8ef200b2f853a5c341bc7c7e0.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2012/B149/B149/B149源程序/M/gfdc_zuhe2.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/B149/B149/B149%E6%BA%90%E7%A8%8B%E5%BA%8F/M/gfdc_zuhe2.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/b7c23a3f06204132733bc20a7bd9a1516c91577e",
+          "blob_sha": "b7c23a3f06204132733bc20a7bd9a1516c91577e",
+          "expected_bytes": 2598,
+          "sha256": "d0643819f9ddac7459cfc3769ad037199a0aad252772b59c91bc1948946e7c7e",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/d0/d0643819f9ddac7459cfc3769ad037199a0aad252772b59c91bc1948946e7c7e.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2012/B149/B149/B149源程序/M/sun_jisuan_day_2.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2012/B149/B149/B149%E6%BA%90%E7%A8%8B%E5%BA%8F/M/sun_jisuan_day_2.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/122186fa258abdab80c236f05a6601e84eb42498",
+          "blob_sha": "122186fa258abdab80c236f05a6601e84eb42498",
+          "expected_bytes": 2437,
+          "sha256": "893f883e52c1fa44ac7784ea16e308be5b18688d77d7cdf18759fbb400c7922e",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/89/893f883e52c1fa44ac7784ea16e308be5b18688d77d7cdf18759fbb400c7922e.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2013-a056",
+      "prefix": "2-1国赛题目+论文/2013/A056",
+      "total_group_entries": 30,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2013/A056/5486/5486.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/A056/5486/5486.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/29ce09bd0b75f5ff763168407005295d2af714bc",
+        "blob_sha": "29ce09bd0b75f5ff763168407005295d2af714bc",
+        "expected_bytes": 1824385,
+        "sha256": "bae180e8fe47c11e9096a3bd2484fc08e66fcfe6969e65c6c644679ed7cab02d",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/ba/bae180e8fe47c11e9096a3bd2484fc08e66fcfe6969e65c6c644679ed7cab02d.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem3_2.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/A056/5486/Matlab%E6%BA%90%E7%A8%8B%E5%BA%8F/problem3_2.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/56f0ca01dee1c6113006154c411d286de971c83c",
+          "blob_sha": "56f0ca01dee1c6113006154c411d286de971c83c",
+          "expected_bytes": 5560,
+          "sha256": "351dcbb9a19bbe890812f3949f778c2c2ac071363a731f6d75115ee7d0bb5160",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/35/351dcbb9a19bbe890812f3949f778c2c2ac071363a731f6d75115ee7d0bb5160.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem4.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/A056/5486/Matlab%E6%BA%90%E7%A8%8B%E5%BA%8F/problem4.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/ea61dbf80797be6eedd9bf1430bbbf8c6f947f70",
+          "blob_sha": "ea61dbf80797be6eedd9bf1430bbbf8c6f947f70",
+          "expected_bytes": 3202,
+          "sha256": "f57a1d47d29b551c29a7dd4c2e8dc189d005b480180b4ab3caf33b671109e8cb",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/f5/f57a1d47d29b551c29a7dd4c2e8dc189d005b480180b4ab3caf33b671109e8cb.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem1_1.mat",
+          "blob_sha": "ee046a40679ad6b8300924bf9ebd59194738e5d1",
+          "bytes": 314,
+          "extension": ".mat",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem2.mat",
+          "blob_sha": "6266eff328b722355b3a0a4ed89c4196dd5ff29d",
+          "bytes": 351,
+          "extension": ".mat",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem4.mat",
+          "blob_sha": "c79b6875b85c68443ad66214dba92f65bd532f9b",
+          "bytes": 355,
+          "extension": ".mat",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/problem3.mat",
+          "blob_sha": "52e1ed5d3566e2dc43cf2edc9cd1cc7cc53ca9af",
+          "bytes": 848,
+          "extension": ".mat",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/A056/5486/Matlab源程序/ti3data.mat",
+          "blob_sha": "508af04877e0d6bcc94b95e3ae6314a44cf41ba2",
+          "bytes": 850,
+          "extension": ".mat",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2013-a117",
+      "prefix": "2-1国赛题目+论文/2013/A117",
+      "total_group_entries": 13,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2013/A117/1A0902/基于差分方程和元胞自动机的交通阻塞模型.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/A117/1A0902/%E5%9F%BA%E4%BA%8E%E5%B7%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%92%8C%E5%85%83%E8%83%9E%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%9A%84%E4%BA%A4%E9%80%9A%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%9E%8B.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/597e98e60feb22f66900be5080fbdd23cbab9f28",
+        "blob_sha": "597e98e60feb22f66900be5080fbdd23cbab9f28",
+        "expected_bytes": 1862059,
+        "sha256": "33e55f4e538f633569b146bfc218f45f0280109d8e32cad8bc3055ec576034e7",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/33/33e55f4e538f633569b146bfc218f45f0280109d8e32cad8bc3055ec576034e7.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2013/A117/1A0902/代码/第四问/automata.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/A117/1A0902/%E4%BB%A3%E7%A0%81/%E7%AC%AC%E5%9B%9B%E9%97%AE/automata.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/164569e3a5f3f322bc2c93d8a659fcf3d1cd27ee",
+          "blob_sha": "164569e3a5f3f322bc2c93d8a659fcf3d1cd27ee",
+          "expected_bytes": 10494,
+          "sha256": "055d21ce9b4e33e42daaee3b3fcbfb9646b8571f4ef9342525923e2655482df3",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/05/055d21ce9b4e33e42daaee3b3fcbfb9646b8571f4ef9342525923e2655482df3.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2013/A117/1A0902/代码/automata.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/A117/1A0902/%E4%BB%A3%E7%A0%81/automata.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/d8e4406b060679c8cadc32fced84a42a5909f910",
+          "blob_sha": "d8e4406b060679c8cadc32fced84a42a5909f910",
+          "expected_bytes": 10429,
+          "sha256": "8365f92481b80c83a8f9a8ca02e2756b51f3db9c8bc4d3e8508e92f766abd8ce",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/83/8365f92481b80c83a8f9a8ca02e2756b51f3db9c8bc4d3e8508e92f766abd8ce.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2013-b201",
+      "prefix": "2-1国赛题目+论文/2013/B201",
+      "total_group_entries": 15,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2013/B201/唐隽玉，胡文伟，孙雪清/唐隽玉，孙雪清，胡文伟.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/B201/%E5%94%90%E9%9A%BD%E7%8E%89%EF%BC%8C%E8%83%A1%E6%96%87%E4%BC%9F%EF%BC%8C%E5%AD%99%E9%9B%AA%E6%B8%85/%E5%94%90%E9%9A%BD%E7%8E%89%EF%BC%8C%E5%AD%99%E9%9B%AA%E6%B8%85%EF%BC%8C%E8%83%A1%E6%96%87%E4%BC%9F.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/b3498fe47d084d8a9a383e2b5344224f8df981e1",
+        "blob_sha": "b3498fe47d084d8a9a383e2b5344224f8df981e1",
+        "expected_bytes": 3459514,
+        "sha256": "b0a4938f88e7ddc64b704368db626cc32610f0fbe9a1c6757014dbb6889b85fc",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/b0/b0a4938f88e7ddc64b704368db626cc32610f0fbe9a1c6757014dbb6889b85fc.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2013/B201/唐隽玉，胡文伟，孙雪清/国赛B题数据及源程序/问题二的程序/附件三的程序/hangpaixu.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/B201/%E5%94%90%E9%9A%BD%E7%8E%89%EF%BC%8C%E8%83%A1%E6%96%87%E4%BC%9F%EF%BC%8C%E5%AD%99%E9%9B%AA%E6%B8%85/%E5%9B%BD%E8%B5%9BB%E9%A2%98%E6%95%B0%E6%8D%AE%E5%8F%8A%E6%BA%90%E7%A8%8B%E5%BA%8F/%E9%97%AE%E9%A2%98%E4%BA%8C%E7%9A%84%E7%A8%8B%E5%BA%8F/%E9%99%84%E4%BB%B6%E4%B8%89%E7%9A%84%E7%A8%8B%E5%BA%8F/hangpaixu.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/00599d4c2e37cbe0e47f18886766963d6d220e78",
+          "blob_sha": "00599d4c2e37cbe0e47f18886766963d6d220e78",
+          "expected_bytes": 2183,
+          "sha256": "f4a95d163ad5911a9f13d90b5a8b91ed585d36ce619f04ff58283a41d6548c9e",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/f4/f4a95d163ad5911a9f13d90b5a8b91ed585d36ce619f04ff58283a41d6548c9e.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2013/B201/唐隽玉，胡文伟，孙雪清/国赛B题数据及源程序/问题二的程序/附件四的程序/hangpaixu_4.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/B201/%E5%94%90%E9%9A%BD%E7%8E%89%EF%BC%8C%E8%83%A1%E6%96%87%E4%BC%9F%EF%BC%8C%E5%AD%99%E9%9B%AA%E6%B8%85/%E5%9B%BD%E8%B5%9BB%E9%A2%98%E6%95%B0%E6%8D%AE%E5%8F%8A%E6%BA%90%E7%A8%8B%E5%BA%8F/%E9%97%AE%E9%A2%98%E4%BA%8C%E7%9A%84%E7%A8%8B%E5%BA%8F/%E9%99%84%E4%BB%B6%E5%9B%9B%E7%9A%84%E7%A8%8B%E5%BA%8F/hangpaixu_4.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/11ed36370ef3f114c1c1b6d2fbc277a9b30cdaaf",
+          "blob_sha": "11ed36370ef3f114c1c1b6d2fbc277a9b30cdaaf",
+          "expected_bytes": 2065,
+          "sha256": "a5ea8884692252790e5603d475af824e763c96b4a2805f5cdde23b525052c80b",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/a5/a5ea8884692252790e5603d475af824e763c96b4a2805f5cdde23b525052c80b.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2013-b254",
+      "prefix": "2-1国赛题目+论文/2013/B254",
+      "total_group_entries": 886,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/814 姜荣杰 朱佳亭 金建邦.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/B254/814%E5%A7%9C%E8%8D%A3%E6%9D%B0%EF%BC%8C%E6%9C%B1%E4%BD%B3%E4%BA%AD%EF%BC%8C%E9%87%91%E5%BB%BA%E9%82%A6/814%20%E5%A7%9C%E8%8D%A3%E6%9D%B0%20%E6%9C%B1%E4%BD%B3%E4%BA%AD%20%E9%87%91%E5%BB%BA%E9%82%A6.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/1d6d2b1719420c22d0bb03e5c9fa3addd5c1279b",
+        "blob_sha": "1d6d2b1719420c22d0bb03e5c9fa3addd5c1279b",
+        "expected_bytes": 2292097,
+        "sha256": "a760a38dc77d74c73677676897f2bae351a586f138e3003c1c700b091567abd8",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/a7/a760a38dc77d74c73677676897f2bae351a586f138e3003c1c700b091567abd8.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/p3/class.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/B254/814%E5%A7%9C%E8%8D%A3%E6%9D%B0%EF%BC%8C%E6%9C%B1%E4%BD%B3%E4%BA%AD%EF%BC%8C%E9%87%91%E5%BB%BA%E9%82%A6/%E7%A8%8B%E5%BA%8F/p3/class.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/a746efb2f9a36472a335b3f7a296c1af3c7fb420",
+          "blob_sha": "a746efb2f9a36472a335b3f7a296c1af3c7fb420",
+          "expected_bytes": 4353,
+          "sha256": "0c985db7b46edc535296971266771dd43125338d7951c01a015ea339f0d18019",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/0c/0c985db7b46edc535296971266771dd43125338d7951c01a015ea339f0d18019.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/p22/Untitled3.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/B254/814%E5%A7%9C%E8%8D%A3%E6%9D%B0%EF%BC%8C%E6%9C%B1%E4%BD%B3%E4%BA%AD%EF%BC%8C%E9%87%91%E5%BB%BA%E9%82%A6/%E7%A8%8B%E5%BA%8F/p22/Untitled3.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/4ef4eac0461d38aa821a179c51eb6e32d05c6bd3",
+          "blob_sha": "4ef4eac0461d38aa821a179c51eb6e32d05c6bd3",
+          "expected_bytes": 4244,
+          "sha256": "7f9588570d22ca6c7543b88989a481aea65825f73a6d725704e210e092b3101c",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/7f/7f9588570d22ca6c7543b88989a481aea65825f73a6d725704e210e092b3101c.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/列图像差异度选择性计算.txt",
+          "blob_sha": "c1203d1baa583e448bbc4269b213257d66c939e2",
+          "bytes": 780,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/对lingoTSP数据进行排列.txt",
+          "blob_sha": "613f02bc8f418c502057f6d498934e1d36fd3b4a",
+          "bytes": 814,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/行距计算.txt",
+          "blob_sha": "93b2e6cb9d89f8ba899f2dc1c3cc298a7d9fc67d",
+          "bytes": 1003,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/画图程序.txt",
+          "blob_sha": "39f57f1fe6a2881f71be6a09e2d17154f0b71e14",
+          "bytes": 1006,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/差异度计算程序.txt",
+          "blob_sha": "989f79b728322fa19963b09b38561e045d381f18",
+          "bytes": 1155,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/TSPlingo.txt",
+          "blob_sha": "b759fa991c2b59dd61769bfb2f757dbd212711c7",
+          "bytes": 1210,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/分行.txt",
+          "blob_sha": "efcee484bd2337e031355cb8f7f8902b9c89cfb0",
+          "bytes": 1545,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/匹配度.txt",
+          "blob_sha": "b7295ac7dce081d0f26763247ba7b10c35ebd113",
+          "bytes": 4401,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2014-a012",
+      "prefix": "2-1国赛题目+论文/2014/A012",
+      "total_group_entries": 8,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/A15010142_王子硕_吴鹏飞_陶立.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A012/A15010142_%E7%8E%8B%E5%AD%90%E7%A1%95_%E5%90%B4%E9%B9%8F%E9%A3%9E_%E9%99%B6%E7%AB%8B/A15010142_%E7%8E%8B%E5%AD%90%E7%A1%95_%E5%90%B4%E9%B9%8F%E9%A3%9E_%E9%99%B6%E7%AB%8B.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/093081278f94d0e1fa9d0056b4f5c2abf1c9ca87",
+        "blob_sha": "093081278f94d0e1fa9d0056b4f5c2abf1c9ca87",
+        "expected_bytes": 1376874,
+        "sha256": "f4110e706e39def44330b997c0142b773ef9d633d7a615ea33ea110afa451c1e",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/f4/f4110e706e39def44330b997c0142b773ef9d633d7a615ea33ea110afa451c1e.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/附件3-normal_distribution.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A012/A15010142_%E7%8E%8B%E5%AD%90%E7%A1%95_%E5%90%B4%E9%B9%8F%E9%A3%9E_%E9%99%B6%E7%AB%8B/%E9%99%84%E4%BB%B6/%E9%99%84%E4%BB%B63-normal_distribution.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/ea3caa6d16ad2f8e6df9d4e48cf90dff0408a309",
+          "blob_sha": "ea3caa6d16ad2f8e6df9d4e48cf90dff0408a309",
+          "expected_bytes": 271,
+          "sha256": "b477430b016db92526e52e93c0c2cb37c11d456ea0f0995da6c301e2253df3dc",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/b4/b477430b016db92526e52e93c0c2cb37c11d456ea0f0995da6c301e2253df3dc.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/readme.txt",
+          "blob_sha": "20faf290f24bd4c985cac7063909ffade9768bce",
+          "bytes": 529,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/附件4-Monte_Calor.txt",
+          "blob_sha": "488e6a0ea031398d49d1cd38a113d9c9421c10f7",
+          "bytes": 810,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/附件1-find_landingpoint.txt",
+          "blob_sha": "c024a399dd6cb65c41fb2257be8cd5a5edf4e272",
+          "bytes": 1346,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A012/A15010142_王子硕_吴鹏飞_陶立/附件/附件5-蒙特卡洛模拟源数据.xls",
+          "blob_sha": "5e4b76a253437d8e1e197564dda4c726e3d1dba1",
+          "bytes": 20480,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2014-a305",
+      "prefix": "2-1国赛题目+论文/2014/A305",
+      "total_group_entries": 26,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/A10009072_吉张鹤轩_杨升_陈同广.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A305/A10009072_%E5%90%89%E5%BC%A0%E9%B9%A4%E8%BD%A9_%E6%9D%A8%E5%8D%87_%E9%99%88%E5%90%8C%E5%B9%BF/A10009072_%E5%90%89%E5%BC%A0%E9%B9%A4%E8%BD%A9_%E6%9D%A8%E5%8D%87_%E9%99%88%E5%90%8C%E5%B9%BF.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/56100fa1d940da3d7f3ef97385a878d54e000346",
+        "blob_sha": "56100fa1d940da3d7f3ef97385a878d54e000346",
+        "expected_bytes": 1426258,
+        "sha256": "f451834248c687e1118160cbdffd18490e80f313f3aeacf3e314f2fbef476ecb",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/f4/f451834248c687e1118160cbdffd18490e80f313f3aeacf3e314f2fbef476ecb.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/genpics.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A305/A10009072_%E5%90%89%E5%BC%A0%E9%B9%A4%E8%BD%A9_%E6%9D%A8%E5%8D%87_%E9%99%88%E5%90%8C%E5%B9%BF/genpics.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/019ac4dae00f81683bd185c992e878c310a62ae2",
+          "blob_sha": "019ac4dae00f81683bd185c992e878c310a62ae2",
+          "expected_bytes": 2547,
+          "sha256": "3eda8c13a9edc051b12ef8d76916146ff1514debb462fbaf895cb16eb7320650",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/3e/3eda8c13a9edc051b12ef8d76916146ff1514debb462fbaf895cb16eb7320650.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/calc2.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A305/A10009072_%E5%90%89%E5%BC%A0%E9%B9%A4%E8%BD%A9_%E6%9D%A8%E5%8D%87_%E9%99%88%E5%90%8C%E5%B9%BF/calc2.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/2358950d0a5b176e6850be25ccdc880f3f829214",
+          "blob_sha": "2358950d0a5b176e6850be25ccdc880f3f829214",
+          "expected_bytes": 2423,
+          "sha256": "10ef9a0190abdbaf4428181e9ce33050fd79d968b08f0e815a7e479851671635",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/10/10ef9a0190abdbaf4428181e9ce33050fd79d968b08f0e815a7e479851671635.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/数据.txt",
+          "blob_sha": "5bb81f69953e860fab2034ef6c85e38a59ce97e5",
+          "bytes": 287,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/100m处分析数据.mat",
+          "blob_sha": "1b2dc94f721086afa05244875699e600e3961cbd",
+          "bytes": 913736,
+          "extension": ".mat",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": [
+        {
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/问题一降落sita-t轨迹.png",
+          "blob_sha": "be4284f75ccc6f9eaaa5dd0341f1b103c99ab5e8",
+          "bytes": 9049,
+          "extension": ".png",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/权重.png",
+          "blob_sha": "061adbb8bfd0c8d33b624a476e5bd701f395aeb8",
+          "bytes": 9749,
+          "extension": ".png",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A305/A10009072_吉张鹤轩_杨升_陈同广/第一阶段降落sita-t轨迹.png",
+          "blob_sha": "23051202b6cf8779a2df5c0b31e57de0e3b9222c",
+          "bytes": 9768,
+          "extension": ".png",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2014-a377",
+      "prefix": "2-1国赛题目+论文/2014/A377",
+      "total_group_entries": 32,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/A11168020_郑建国_陶禹诺_严洒洒.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A377/A11168020_%E9%83%91%E5%BB%BA%E5%9B%BD_%E9%99%B6%E7%A6%B9%E8%AF%BA_%E4%B8%A5%E6%B4%92%E6%B4%92/A11168020_%E9%83%91%E5%BB%BA%E5%9B%BD_%E9%99%B6%E7%A6%B9%E8%AF%BA_%E4%B8%A5%E6%B4%92%E6%B4%92.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/b9e1e69644c0df8811c48c7360695eaab8c5cd5a",
+        "blob_sha": "b9e1e69644c0df8811c48c7360695eaab8c5cd5a",
+        "expected_bytes": 1193423,
+        "sha256": "a7a710a4da6200cc3078dab037d54cb47d973ae96f9987d9e575c8d8d0bc2029",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/a7/a7a710a4da6200cc3078dab037d54cb47d973ae96f9987d9e575c8d8d0bc2029.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/pro2qiujie.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A377/A11168020_%E9%83%91%E5%BB%BA%E5%9B%BD_%E9%99%B6%E7%A6%B9%E8%AF%BA_%E4%B8%A5%E6%B4%92%E6%B4%92/pro2qiujie.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/c91610a36743e5f799732ca3ddcd7aa2a303b4c6",
+          "blob_sha": "c91610a36743e5f799732ca3ddcd7aa2a303b4c6",
+          "expected_bytes": 4025,
+          "sha256": "87c9211e3b44a06b096e3a96faa530fc57a1bc9e28d2229c31791d1d2391b6eb",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/87/87c9211e3b44a06b096e3a96faa530fc57a1bc9e28d2229c31791d1d2391b6eb.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/guiji.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A377/A11168020_%E9%83%91%E5%BB%BA%E5%9B%BD_%E9%99%B6%E7%A6%B9%E8%AF%BA_%E4%B8%A5%E6%B4%92%E6%B4%92/guiji.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/468e56b00b8830eb7a566a9bd9521a54ebacac45",
+          "blob_sha": "468e56b00b8830eb7a566a9bd9521a54ebacac45",
+          "expected_bytes": 3849,
+          "sha256": "855428091c609826af7ca967db2412e5c1ffc04bab555ea6ee2db3a197954d1b",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/85/855428091c609826af7ca967db2412e5c1ffc04bab555ea6ee2db3a197954d1b.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/Readme.txt",
+          "blob_sha": "7d3df5de100e5a7a9d50447dce509d0399b8d552",
+          "bytes": 1274,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/各阶段的相对误差1.xls",
+          "blob_sha": "43a32b82d55586a98b72084c929bd60ad972b93e",
+          "bytes": 7680,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/粗避障各区域参数.xls",
+          "blob_sha": "eaa74b59ad9ade59705bf9ef39067c2f357e63ce",
+          "bytes": 9728,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/精避障段各区域参数.xls",
+          "blob_sha": "dbac77fd8735beb848eab538baf2da3a6d2836a3",
+          "bytes": 9728,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/粗避障两个方案结果.xls",
+          "blob_sha": "273ecbbf1edfa679b4f24d2c5b1c7ceb49df0ef9",
+          "bytes": 10752,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/误差分析.xls",
+          "blob_sha": "d7a1a7b36f09c85d7cd12972342285679e6b696f",
+          "bytes": 10752,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/快速调整阶段各参数数据最终版.xls",
+          "blob_sha": "16016cfa4c039733d000fb95726093934a14606b",
+          "bytes": 751616,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2014-a499",
+      "prefix": "2-1国赛题目+论文/2014/A499",
+      "total_group_entries": 9,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/A11141001_陈超_唐梦珏_杨克宇.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A499/A11141001_%E9%99%88%E8%B6%85_%E5%94%90%E6%A2%A6%E7%8F%8F_%E6%9D%A8%E5%85%8B%E5%AE%87/A11141001_%E9%99%88%E8%B6%85_%E5%94%90%E6%A2%A6%E7%8F%8F_%E6%9D%A8%E5%85%8B%E5%AE%87.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/0cec2ae306ae6a3ca2ee81f36669c96d7b9293e2",
+        "blob_sha": "0cec2ae306ae6a3ca2ee81f36669c96d7b9293e2",
+        "expected_bytes": 1110388,
+        "sha256": "59d01bbf09e225d890208bd36166bf2a4d61f0fb56ad4f7edd140cfbacc00d22",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/59/59d01bbf09e225d890208bd36166bf2a4d61f0fb56ad4f7edd140cfbacc00d22.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/defen.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A499/A11141001_%E9%99%88%E8%B6%85_%E5%94%90%E6%A2%A6%E7%8F%8F_%E6%9D%A8%E5%85%8B%E5%AE%87/defen.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/f1fe267a11ce5c1582b735ddd235ede9874f47f4",
+          "blob_sha": "f1fe267a11ce5c1582b735ddd235ede9874f47f4",
+          "expected_bytes": 1502,
+          "sha256": "92e779bb4a5fda6b267f59a2e56c2f438cc7e65ea3a07d056912eedf414b7b9b",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/92/92e779bb4a5fda6b267f59a2e56c2f438cc7e65ea3a07d056912eedf414b7b9b.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/soujie.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/A499/A11141001_%E9%99%88%E8%B6%85_%E5%94%90%E6%A2%A6%E7%8F%8F_%E6%9D%A8%E5%85%8B%E5%AE%87/soujie.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/da0ec52ad01ceec3f085ec1466e2ff16efe9a82d",
+          "blob_sha": "da0ec52ad01ceec3f085ec1466e2ff16efe9a82d",
+          "expected_bytes": 921,
+          "sha256": "084c8e8b8a04c7429556a2b1d9119acb0c1ab7aabd83aaef46bc7e1427d24780",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/08/084c8e8b8a04c7429556a2b1d9119acb0c1ab7aabd83aaef46bc7e1427d24780.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/readme.txt",
+          "blob_sha": "36650ae6e1e8783c5fd4b5edb3ea466a392be030",
+          "bytes": 393,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2014-b009",
+      "prefix": "2-1国赛题目+论文/2014/B009",
+      "total_group_entries": 19,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/B16046004_程双泽_李君昌_陈凌勤.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/B009/B16046004_%E7%A8%8B%E5%8F%8C%E6%B3%BD_%E6%9D%8E%E5%90%9B%E6%98%8C_%E9%99%88%E5%87%8C%E5%8B%A4/B16046004_%E7%A8%8B%E5%8F%8C%E6%B3%BD_%E6%9D%8E%E5%90%9B%E6%98%8C_%E9%99%88%E5%87%8C%E5%8B%A4.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/89f592540d083ebccd0bbd6a8da934b8f7b58ccb",
+        "blob_sha": "89f592540d083ebccd0bbd6a8da934b8f7b58ccb",
+        "expected_bytes": 1048457,
+        "sha256": "209094e0ec9d4b412ffc9ceb60a15f56b29bce6ce0880b31a444c391353e468c",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/20/209094e0ec9d4b412ffc9ceb60a15f56b29bce6ce0880b31a444c391353e468c.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w2_2.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/B009/B16046004_%E7%A8%8B%E5%8F%8C%E6%B3%BD_%E6%9D%8E%E5%90%9B%E6%98%8C_%E9%99%88%E5%87%8C%E5%8B%A4/w2_2.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/0a7422b4f744774a7441b93a328492af676b0a79",
+          "blob_sha": "0a7422b4f744774a7441b93a328492af676b0a79",
+          "expected_bytes": 1606,
+          "sha256": "9dc493fb75c3898eab0ca9ded0bfd527fb78ce544d56283bf948fd5707252b4c",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/9d/9dc493fb75c3898eab0ca9ded0bfd527fb78ce544d56283bf948fd5707252b4c.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w3_1.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/B009/B16046004_%E7%A8%8B%E5%8F%8C%E6%B3%BD_%E6%9D%8E%E5%90%9B%E6%98%8C_%E9%99%88%E5%87%8C%E5%8B%A4/w3_1.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/5c284e8fbd8203837282f8ef86a9e8f0e6b37ed2",
+          "blob_sha": "5c284e8fbd8203837282f8ef86a9e8f0e6b37ed2",
+          "expected_bytes": 1576,
+          "sha256": "6cb4afc5e406cc6a7246cc0be6c4e0be79a39cf97bfc3364ccaa60f8858d44ac",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/6c/6cb4afc5e406cc6a7246cc0be6c4e0be79a39cf97bfc3364ccaa60f8858d44ac.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [],
+      "figures": [
+        {
+          "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w1-1-1.jpg",
+          "blob_sha": "ecb20019dd72d17858478ae3c510450c9285ead9",
+          "bytes": 39648,
+          "extension": ".jpg",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w2.jpg",
+          "blob_sha": "9e6407fd44af5b406c3b2c3d95d0089912b429a1",
+          "bytes": 41896,
+          "extension": ".jpg",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/B009/B16046004_程双泽_李君昌_陈凌勤/w1-1.jpg",
+          "blob_sha": "01ffb5448457987388b61dc9940a5520d9daefa1",
+          "bytes": 47270,
+          "extension": ".jpg",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ]
+    },
+    {
+      "candidate_id": "cumcm-2014-b013",
+      "prefix": "2-1国赛题目+论文/2014/B013",
+      "total_group_entries": 17,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2014/B013/B18013004邓敏娜_宁凯_董婷婷/B18013004_邓敏娜_宁凯_董婷婷.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/B013/B18013004%E9%82%93%E6%95%8F%E5%A8%9C_%E5%AE%81%E5%87%AF_%E8%91%A3%E5%A9%B7%E5%A9%B7/B18013004_%E9%82%93%E6%95%8F%E5%A8%9C_%E5%AE%81%E5%87%AF_%E8%91%A3%E5%A9%B7%E5%A9%B7.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/942684b3bb0be08be56e3bb8b10e62da265c667e",
+        "blob_sha": "942684b3bb0be08be56e3bb8b10e62da265c667e",
+        "expected_bytes": 1125957,
+        "sha256": "3f1bdfede39da857a5a64f28f3d272ab0731dae609fde672a3e46c66274ba65d",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/3f/3f1bdfede39da857a5a64f28f3d272ab0731dae609fde672a3e46c66274ba65d.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/B013/B18013004邓敏娜_宁凯_董婷婷/cx11.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/B013/B18013004%E9%82%93%E6%95%8F%E5%A8%9C_%E5%AE%81%E5%87%AF_%E8%91%A3%E5%A9%B7%E5%A9%B7/cx11.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/0b6d2f8e9c2007ed2b19387f560b8d96b7568d63",
+          "blob_sha": "0b6d2f8e9c2007ed2b19387f560b8d96b7568d63",
+          "expected_bytes": 2261,
+          "sha256": "c04dc560a96850f5f44c575a5f18d5356bcc3024729e19963b21abdb5a49bb52",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/c0/c04dc560a96850f5f44c575a5f18d5356bcc3024729e19963b21abdb5a49bb52.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/B013/B18013004邓敏娜_宁凯_董婷婷/cx10.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/B013/B18013004%E9%82%93%E6%95%8F%E5%A8%9C_%E5%AE%81%E5%87%AF_%E8%91%A3%E5%A9%B7%E5%A9%B7/cx10.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/6515d653cd9bba7539167de35f290b180d54e61b",
+          "blob_sha": "6515d653cd9bba7539167de35f290b180d54e61b",
+          "expected_bytes": 2248,
+          "sha256": "2c20e0b21e8b4bd426078703f185d18140f95a3df590763abfba6e4adae3cece",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/2c/2c20e0b21e8b4bd426078703f185d18140f95a3df590763abfba6e4adae3cece.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2014/B013/B18013004邓敏娜_宁凯_董婷婷/readme.txt",
+          "blob_sha": "4b222bb08785d641fd43a75329b724856fc06932",
+          "bytes": 43,
+          "extension": ".txt",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/B013/B18013004邓敏娜_宁凯_董婷婷/data.xls",
+          "blob_sha": "3ae826d9ac6b1820102ddd7c243bbf0c2c6073e2",
+          "bytes": 25088,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2014-b261",
+      "prefix": "2-1国赛题目+论文/2014/B261",
+      "total_group_entries": 17,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/B27042017_吴俊锋_谭翔飞_庄重.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/B261/B27042017_%E5%90%B4%E4%BF%8A%E9%94%8B_%E8%B0%AD%E7%BF%94%E9%A3%9E_%E5%BA%84%E9%87%8D/B27042017_%E5%90%B4%E4%BF%8A%E9%94%8B_%E8%B0%AD%E7%BF%94%E9%A3%9E_%E5%BA%84%E9%87%8D.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/54a4c815a2fd4fc9ebc3c2da0d886f7c7d4cb691",
+        "blob_sha": "54a4c815a2fd4fc9ebc3c2da0d886f7c7d4cb691",
+        "expected_bytes": 2307192,
+        "sha256": "8ead45a2621844a876124abcc99da07f8f785b2530f7ee6f1ff5a93da5b32aa0",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/8e/8ead45a2621844a876124abcc99da07f8f785b2530f7ee6f1ff5a93da5b32aa0.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/程序/hexagon.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/B261/B27042017_%E5%90%B4%E4%BF%8A%E9%94%8B_%E8%B0%AD%E7%BF%94%E9%A3%9E_%E5%BA%84%E9%87%8D/%E7%A8%8B%E5%BA%8F/hexagon.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/dee82ed3ccff297bd70421c41b0115b5db29926d",
+          "blob_sha": "dee82ed3ccff297bd70421c41b0115b5db29926d",
+          "expected_bytes": 3305,
+          "sha256": "18967d3286e0dcb7f507e86fc227f7255ddd9394879c3519933dceb73c28df1d",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/18/18967d3286e0dcb7f507e86fc227f7255ddd9394879c3519933dceb73c28df1d.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/B261/B27042017_吴俊锋_谭翔飞_庄重/程序/zhuojiaosaomiao.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/B261/B27042017_%E5%90%B4%E4%BF%8A%E9%94%8B_%E8%B0%AD%E7%BF%94%E9%A3%9E_%E5%BA%84%E9%87%8D/%E7%A8%8B%E5%BA%8F/zhuojiaosaomiao.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/b0f34d6940b84af1ccac1a6aa7e132decb6132d7",
+          "blob_sha": "b0f34d6940b84af1ccac1a6aa7e132decb6132d7",
+          "expected_bytes": 3172,
+          "sha256": "05c2aef8639ee9713fc5795d86333053e082788ee672ba2708af7737bf5d784c",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/05/05c2aef8639ee9713fc5795d86333053e082788ee672ba2708af7737bf5d784c.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2014-d026",
+      "prefix": "2-1国赛题目+论文/2014/D026",
+      "total_group_entries": 9,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/D22022011_阎发静_周靖_杨峰.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/D026/D22022011_%E9%98%8E%E5%8F%91%E9%9D%99_%E5%91%A8%E9%9D%96_%E6%9D%A8%E5%B3%B0/D22022011_%E9%98%8E%E5%8F%91%E9%9D%99_%E5%91%A8%E9%9D%96_%E6%9D%A8%E5%B3%B0.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/7450ecbf9c51c86f29d79809148f391e75ad495d",
+        "blob_sha": "7450ecbf9c51c86f29d79809148f391e75ad495d",
+        "expected_bytes": 960161,
+        "sha256": "f40b9b1ff1a473a1afb7ed10f5aaeb2831a4656ecc5d5e27d65f81d4a228795a",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/f4/f40b9b1ff1a473a1afb7ed10f5aaeb2831a4656ecc5d5e27d65f81d4a228795a.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/G.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/D026/D22022011_%E9%98%8E%E5%8F%91%E9%9D%99_%E5%91%A8%E9%9D%96_%E6%9D%A8%E5%B3%B0/G.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/a92d124914237936a818ecf7280e3f87e8b6af0f",
+          "blob_sha": "a92d124914237936a818ecf7280e3f87e8b6af0f",
+          "expected_bytes": 812,
+          "sha256": "f8bda5b81836b515fecac2d24e012302af56bd5560bc71b835a5045922455578",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/f8/f8bda5b81836b515fecac2d24e012302af56bd5560bc71b835a5045922455578.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-4 12种竖向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "7c1d74fec9b7178ea01a99c54f72fbbb18817e1c",
+          "bytes": 123904,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-2 4种竖向隔板间距类型对应的药盒规格.xls",
+          "blob_sha": "3d10018e153d9824d9221cf4a7bace1c383325c0",
+          "bytes": 133120,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-5 17种横向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "6cd8cea57fb8edf8e8fa30ebc4bf4cae81087428",
+          "bytes": 154624,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-6 13种横向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "e36149b984bb08ad3ea6b30b385f7a77b9dbb7d2",
+          "bytes": 160256,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-7 每一种药品需要的储药槽个数.xls",
+          "blob_sha": "66d13d57824e80cc5c6b5a9f9a07ddf1d99529d9",
+          "bytes": 259072,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-3 16种竖向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "84d19f60452d6143879ca6fe1a16d12295d43a33",
+          "bytes": 360960,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/附录A-1 每一种药盒所对应的最小储药槽宽度和最大储药槽宽度.xls",
+          "blob_sha": "8f1a5304b87153b544cc1d764db99125c83c419a",
+          "bytes": 425984,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2014-d062",
+      "prefix": "2-1国赛题目+论文/2014/D062",
+      "total_group_entries": 10,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/D22022011_阎发静_周靖_杨峰.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/D026/D22022011_%E9%98%8E%E5%8F%91%E9%9D%99_%E5%91%A8%E9%9D%96_%E6%9D%A8%E5%B3%B0/D22022011_%E9%98%8E%E5%8F%91%E9%9D%99_%E5%91%A8%E9%9D%96_%E6%9D%A8%E5%B3%B0.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/7450ecbf9c51c86f29d79809148f391e75ad495d",
+        "blob_sha": "7450ecbf9c51c86f29d79809148f391e75ad495d",
+        "expected_bytes": 960161,
+        "sha256": "f40b9b1ff1a473a1afb7ed10f5aaeb2831a4656ecc5d5e27d65f81d4a228795a",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/f4/f40b9b1ff1a473a1afb7ed10f5aaeb2831a4656ecc5d5e27d65f81d4a228795a.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2014/D026/D22022011_阎发静_周靖_杨峰/G.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2014/D026/D22022011_%E9%98%8E%E5%8F%91%E9%9D%99_%E5%91%A8%E9%9D%96_%E6%9D%A8%E5%B3%B0/G.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/a92d124914237936a818ecf7280e3f87e8b6af0f",
+          "blob_sha": "a92d124914237936a818ecf7280e3f87e8b6af0f",
+          "expected_bytes": 812,
+          "sha256": "f8bda5b81836b515fecac2d24e012302af56bd5560bc71b835a5045922455578",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/f8/f8bda5b81836b515fecac2d24e012302af56bd5560bc71b835a5045922455578.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2014/D062/D22022011_阎发静_周靖_杨峰/附录A-4 12种竖向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "7c1d74fec9b7178ea01a99c54f72fbbb18817e1c",
+          "bytes": 123904,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D062/D22022011_阎发静_周靖_杨峰/附录A-2 4种竖向隔板间距类型对应的药盒规格.xls",
+          "blob_sha": "3d10018e153d9824d9221cf4a7bace1c383325c0",
+          "bytes": 133120,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D062/D22022011_阎发静_周靖_杨峰/附录A-5 17种横向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "6cd8cea57fb8edf8e8fa30ebc4bf4cae81087428",
+          "bytes": 154624,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D062/D22022011_阎发静_周靖_杨峰/附录A-6 13种横向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "e36149b984bb08ad3ea6b30b385f7a77b9dbb7d2",
+          "bytes": 160256,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D062/D22022011_阎发静_周靖_杨峰/附录A-7 每一种药品需要的储药槽个数.xls",
+          "blob_sha": "66d13d57824e80cc5c6b5a9f9a07ddf1d99529d9",
+          "bytes": 259072,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D062/D22022011_阎发静_周靖_杨峰/附录A-3 16种竖向隔板间距类型所对应的药盒规格.xls",
+          "blob_sha": "84d19f60452d6143879ca6fe1a16d12295d43a33",
+          "bytes": 360960,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2014/D062/D22022011_阎发静_周靖_杨峰/附录A-1 每一种药盒所对应的最小储药槽宽度和最大储药槽宽度.xls",
+          "blob_sha": "8f1a5304b87153b544cc1d764db99125c83c419a",
+          "bytes": 425984,
+          "extension": ".xls",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": []
+    },
+    {
+      "candidate_id": "cumcm-2016-xipoxitong-master",
+      "prefix": "2-1国赛题目+论文/2016/xipoxitong-master",
+      "total_group_entries": 122,
+      "pdf": {
+        "repository": "https://github.com/personqianduixue/Math_Model",
+        "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+        "path": "2-1国赛题目+论文/2016/xipoxitong-master/文章/xipoxitong.pdf",
+        "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2016/xipoxitong-master/%E6%96%87%E7%AB%A0/xipoxitong.pdf",
+        "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/a6f5da967bcdd48f07fb40d0744f687cb38ab542",
+        "blob_sha": "a6f5da967bcdd48f07fb40d0744f687cb38ab542",
+        "expected_bytes": 1101790,
+        "sha256": "d8abadd59ede4d066ac86cb89f76b6af08ed97c99cd8b23dda34d33d6f546e0b",
+        "object": "reports/code-recipe-mining-artifacts/objects/sha256/d8/d8abadd59ede4d066ac86cb89f76b6af08ed97c99cd8b23dda34d33d6f546e0b.pdf",
+        "downloaded": "2026-08-03",
+        "verified": true
+      },
+      "matlab": [
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2016/xipoxitong-master/3D系泊系统/For3D.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2016/xipoxitong-master/3D%E7%B3%BB%E6%B3%8A%E7%B3%BB%E7%BB%9F/For3D.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/c0ea5dac39cd9ecb1e63b0d6ac61239ded8a4669",
+          "blob_sha": "c0ea5dac39cd9ecb1e63b0d6ac61239ded8a4669",
+          "expected_bytes": 7392,
+          "sha256": "94107fcb9d067fb97c70d200b84ba174906beb79b95ae82ab7ddbce45916f14a",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/94/94107fcb9d067fb97c70d200b84ba174906beb79b95ae82ab7ddbce45916f14a.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        },
+        {
+          "repository": "https://github.com/personqianduixue/Math_Model",
+          "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+          "path": "2-1国赛题目+论文/2016/xipoxitong-master/2D模型改进/For2D_expand.m",
+          "raw_url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2016/xipoxitong-master/2D%E6%A8%A1%E5%9E%8B%E6%94%B9%E8%BF%9B/For2D_expand.m",
+          "blob_url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/c728a60a5909c68bbe9d7f6f21aeac0a46f4e50f",
+          "blob_sha": "c728a60a5909c68bbe9d7f6f21aeac0a46f4e50f",
+          "expected_bytes": 6380,
+          "sha256": "fcfc11d093883266d21988506f2e96705517e2312622bf4e2c017e338c2bd642",
+          "object": "reports/code-recipe-mining-artifacts/objects/sha256/fc/fcfc11d093883266d21988506f2e96705517e2312622bf4e2c017e338c2bd642.m",
+          "downloaded": "2026-08-03",
+          "verified": true
+        }
+      ],
+      "data": [
+        {
+          "path": "2-1国赛题目+论文/2016/xipoxitong-master/2D模型改进/系统信息.mat",
+          "blob_sha": "c543eb13586339bd39af76711464af2bd10edc5b",
+          "bytes": 6190,
+          "extension": ".mat",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2016/xipoxitong-master/3D系泊系统/D3.mat",
+          "blob_sha": "f122195993dd7893df455f10abc77508d122ee80",
+          "bytes": 18749,
+          "extension": ".mat",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ],
+      "figures": [
+        {
+          "path": "2-1国赛题目+论文/2016/xipoxitong-master/文章/images/micro_segmehts2.jpg",
+          "blob_sha": "ac760142bde420809e28017e87084225e30c84ec",
+          "bytes": 3924,
+          "extension": ".jpg",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2016/xipoxitong-master/文章/images/buoy_three_dimensions_force_analysis.jpg",
+          "blob_sha": "c749f552a1d0eff90a0649264b84f7120fff074b",
+          "bytes": 4577,
+          "extension": ".jpg",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        },
+        {
+          "path": "2-1国赛题目+论文/2016/xipoxitong-master/文章/images/no_bottom_chain.jpg",
+          "blob_sha": "79eea4661fddb8c1fc26f0fb7b32e11f2561b5db",
+          "bytes": 6011,
+          "extension": ".jpg",
+          "downloaded": false,
+          "download_reason": "metadata-only selection; no API quota spent on auxiliary artifacts"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

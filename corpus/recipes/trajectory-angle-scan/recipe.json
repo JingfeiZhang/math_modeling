@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "recipe_id": "trajectory-angle-scan",
+  "kind": "trajectory_angle_scan",
+  "title": "Trajectory angle sensitivity",
+  "seed": 20260808,
+  "source_pair": {
+    "candidate_id": "cumcm-2014-a377",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/A11168020_郑建国_陶禹诺_严洒洒.pdf",
+      "blob_sha": "b9e1e69644c0df8811c48c7360695eaab8c5cd5a",
+      "sha256": "a7a710a4da6200cc3078dab037d54cb47d973ae96f9987d9e575c8d8d0bc2029"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/pro2qiujie.m",
+        "blob_sha": "c91610a36743e5f799732ca3ddcd7aa2a303b4c6",
+        "sha256": "87c9211e3b44a06b096e3a96faa530fc57a1bc9e28d2229c31791d1d2391b6eb",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2014/A377/A11168020_郑建国_陶禹诺_严洒洒/guiji.m",
+        "blob_sha": "468e56b00b8830eb7a566a9bd9521a54ebacac45",
+        "sha256": "855428091c609826af7ca967db2412e5c1ffc04bab555ea6ee2db3a197954d1b",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "scope": "controlled synthetic fixture for reusable method testing",
+  "not_a_reproduction": true,
+  "upstream_code_execution": "forbidden"
+}

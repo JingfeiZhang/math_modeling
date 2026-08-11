@@ -1,0 +1,666 @@
+\section{问题重述}
+
+本题面向六区域算力基础设施，要求在任务需求、计算资源、电力系统与储能设备相互耦合的条件下，依次解决短期需求预测、碳感知任务调度、储能优化以及算--储--电协同优化四个问题。四问并非相互独立：任务到达与持续时间决定 GPU 占用，GPU 占用经功率映射和 PUE 转换为设施负荷，设施负荷又与逐时电价、碳强度、新能源和储能状态共同决定运行成本、购电碳排与供能风险。数据中心能效研究通常需要同时核对供配电、制冷和 IT 设备侧因素，绿色数据中心的负荷管理还需考虑可再生能源与任务执行的匹配关系\UpCite{qian2021energy}\UpCite{li2026green}。因此，若各问使用不同的任务口径、时间边界或能源定义，即使单问结果数值更优，也不能组成一致的系统方案。
+
+问题一包含两个性质不同的任务。第一部分根据历史任务轨迹预测未来 24 h 的区域--任务类型 GPU 工作量，并给出反映预测不确定性的区间；第二部分必须针对最后窗口的实际到达任务形成可执行排程。预测结果适合用于容量压力刻画，但不能替代实际任务清单。问题二进一步允许柔性任务在可行区域和时刻之间迁移，以降低成本和碳排，同时严格满足每条任务的网络时延上限。问题三固定任务排程，只优化储能充放电和电网购售电。问题四在代表性场景中重新联动任务与储能，评价顺序优化与局部联合优化的差别。
+
+本文将硬约束、任务完成和 SLA 置于所有软指标之前，并坚持主模型与基线读取相同输入、施加相同约束、输出相同类别结果。对无法证明全局最优的启发式或限时整数规划，只报告经审计的可行性、相对基线变化和适用边界，不以“最优”替代“当前搜索范围内更优”。
+
+\section{问题分析}
+
+\subsection{四问耦合关系}
+
+从决策层次看，Q1 的预测变量是区域--类型工作量，排程变量是任务执行区域和开始时刻；Q2 继续使用任务变量，但目标加入电力与网络代价；Q3 在给定任务排程下新增储能和购售电变量；Q4 仅在代表性窗口重新开放少量任务变量，并把储能模型作为追补子问题。由此形成从统计模型到离散排程、再到能源 MILP 的递进结构。各层只向下游传递经过独立复核的输出，不把上游模型内部状态当作下游观测事实。表~\ref{tab:problem-decomposition} 汇总四问的决策层次、基线和结论边界。
+
+\begin{table}[H]
+  \centering
+  \caption{四问的决策层次、主模型、基线与停止条件}
+  \label{tab:problem-decomposition}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.08\textwidth}p{0.22\textwidth}p{0.23\textwidth}p{0.20\textwidth}X}
+    \toprule
+    子问题 & 决策对象 & 主模型 & 同输出基线 & 结论停止条件 \\
+    \midrule
+    Q1 预测 & 18 条序列的 24 h 点预测与区间 & 共享 HGBR 残差、层级校正、共形区间 & 168 h 季节朴素 & 盲测隔离、误差与覆盖共同报告 \\
+    Q1 排程 & 任务区域和开始时刻 & 限时 CP-SAT & FIFO/本地优先 & 硬约束通过；可行解不写成最优 \\
+    Q2 & 全时域柔性任务时空位置 & 固定权重有界滚动交换 & 同约束 FIFO & 完成率与 SLA 优先，报告多指标代价 \\
+    Q3 & 充放电、购售电与 SOC & 六区域滚动二进制 MILP & 同负荷无储能 & 互斥、平衡和终端 SOC 全部审计 \\
+    Q4 & 72 h 内任务邻域与储能追补子问题 & 固定--优化邻域搜索与储能追补 & 固定任务加储能追补 & 只报告局部非劣改善和适用窗口 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+模型选择遵循三条原则。其一，先保证可执行，再追求软指标；任何任务遗漏、SLA、容量、SOC 或电能平衡失败都会直接否决候选。其二，基线必须能产生与主模型同类别的完整输出，使差值来自算法而不是约束口径。其三，结论与验证强度相匹配：盲测支持预测性能，确定性复跑支持可复现性，整数规划最优性间隙支持求解质量，而压力场景只支持在声明扰动下的稳定性。
+
+\section{模型假设与合理性说明}
+
+在题面给定的时间范围和设备参数内作如下假设：
+
+\begin{enumerate}
+  \item \textbf{任务执行假设。}任务 GPU 数和持续时间一经给定不再变化；任务不可拆分、不可抢占，开始后不跨区域迁移。该假设与附件的任务级字段一致，使排程结果可以逐任务核对。
+  \item \textbf{时间与时延假设。}实时推理任务必须在到达时刻开始，柔性任务可在释放时刻与截止时刻之间选择开始时刻。区域内传播时延相对任务持续时间忽略，跨区执行则必须满足任务时延上限。
+  \item \textbf{功率映射假设。}设备功率由 GPU 占用和附件功率映射确定，PUE 在研究期内按区域取附件给定值。由此可从分钟级任务占用一致地复算 IT 功率和设施功率。
+  \item \textbf{能源边界假设。}新能源优先服务设施负荷和储能，剩余部分按各问边界计为弃电或允许外送；储能满足容量、功率、效率和终端状态约束。区域之间不直接交换电能，跨区协同只通过任务迁移改变区域负荷。
+  \item \textbf{经济与碳排假设。}运行成本按购电支出减售电收入计算，Q3 和 Q4 的碳排只计购电侧，不把售电量记作负排放。附件未提供网络拥塞、迁移能耗和电池退化参数，因此不人为补造相关价格。
+\end{enumerate}
+
+这些假设将离散任务决策与逐时能源决策连接起来，并保持所有参数可由附件定位。未建模因素的影响在各问局限性中说明；取得相应工程数据后，可在既有变量和约束接口上增加拥塞、迁移能耗或电池退化项。
+
+\section{符号约定}
+
+表~\ref{tab:notation} 给出全文统一使用的主要符号和单位。小时索引 $t$ 与分钟索引 $\tau$ 均从零开始；功率量按 MW 计，能量量按 MWh 计。
+
+{\small
+\begin{longtable}{@{}p{0.20\textwidth}p{0.48\textwidth}p{0.17\textwidth}@{}}
+\caption{主要符号、含义与单位}\label{tab:notation}\\
+\toprule
+符号 & 含义 & 单位 \\
+\midrule
+\endfirsthead
+\toprule
+符号 & 含义 & 单位 \\
+\midrule
+\endhead
+$i,r,k,t,\tau,m,b$ & 任务、区域、任务类型、小时、分钟、设备类型和滚动块索引 & -- \\
+$o_i,\mathcal R_i$ & 任务来源区域与满足时延要求的可选区域集合 & -- \\
+$g_i,d_i$ & 任务 GPU 数与持续时间 & GPU，min \\
+$a_i,h_i$ & 分钟级到达时刻与到达小时 $h_i=\lfloor a_i/60\rfloor$ & min，h \\
+$W_{rkt}$ & 区域--类型--小时 GPU 工作量 & GPU$\cdot$h \\
+$x_{ir}$ & 任务 $i$ 是否分配至区域 $r$ & 0--1 \\
+$s_i,f_i$ & 任务开始和结束时刻 & min \\
+$\mathcal I^{\mathrm{rt}}$ & 必须到达即开始的实时任务集合 & -- \\
+$\ell_{or},L_i^{\max}$ & 区域 $o$ 到 $r$ 的单向时延与任务时延上限；任务 $i$ 取 $\ell_{o_i r}$ & ms \\
+$u_{r\tau}$ & 区域分钟级 GPU 占用 & GPU \\
+$G_r^{\max},M$ & 区域 GPU 容量与时延约束中的充分大常数 & GPU，ms \\
+$\pi_m(g_i)$ & 设备类型 $m$ 在 GPU 规模 $g_i$ 下的功率映射 & MW \\
+$P^{\mathrm{IT}}_{rt},P^{\mathrm{base}}_{rt}$ & 算力侧 IT 功率与区域基础功率 & MW \\
+$P^{\mathrm{fac}}_{rt}$ & PUE 换算后的设施功率 & MW \\
+$R_{rt},R^{\mathrm{use}}_{rt}$ & 可用和直接使用的新能源功率 & MW \\
+$p^{\mathrm{buy}}_{rt},p^{\mathrm{sell}}_{rt}$ & 购电价和售电价 & CNY/MWh \\
+$e_{rt}$ & 购电碳强度 & tCO$_2$/MWh \\
+$q^+_{rt},q^-_{rt}$ & 储能充电和放电功率 & MW \\
+$S_{rt},S_r^{\max}$ & 储能能量状态（本文简称 SOC）与额定能量 & MWh \\
+$Q_r^{+,\max},Q_r^{-,\max}$ & 储能充、放电功率上限 & MW \\
+$\eta_r^+,\eta_r^-$ & 储能充、放电效率 & -- \\
+$z^+_{rt},z^-_{rt}$ & 储能充、放电模式变量 & 0--1 \\
+$g^+_{rt},g^-_{rt}$ & 电网购电和售电功率 & MW \\
+$C,E,\bar\ell,P^{\mathrm{peak}},\rho_R$ & 成本、购电碳排、平均时延、购电峰值和新能源利用率 & 按正文定义 \\
+$J_1,J_2,J_3,\boldsymbol F$ & Q1--Q3 标量目标与 Q4 多指标向量 & -- \\
+\bottomrule
+\end{longtable}
+}
+
+\section{数据处理与统一建模基础}
+
+\subsection{数据接口与时间口径}
+
+附件提供任务轨迹、GPU 中心、网络时延、区域逐时电力参数、GPU 功率映射和储能参数。所有表先统一区域键、任务类型键和小时索引，再检查缺失值、重复任务、单位与边界。任务到达小时为 0--2399 h，允许跨越到达期末的任务在 2400--2405 h 收尾，2406 h 不再安排任务；电力与储能序列覆盖 0--2406 h。网络时延按来源区域到执行区域的有向路径读取，不能以对称矩阵近似。
+
+各问的数据接口与传递边界见表~\ref{tab:data-interface}。
+
+\TableDataInterfaces
+
+\subsection{数据质量检查与派生字段治理}
+
+数据处理不以删除异常行为为默认策略，而是先判断字段是否属于原始输入、业务约束还是历史派生量。任务表的 GPU 数量、持续时间、到达时刻和任务时延上限直接决定模型可行域，必须逐行保留并检查类型；GPU 利用率等可能超过常规范围的附件字段只作为数据质量诊断，不直接进入容量约束。电力表的设施负荷若可由 IT 负荷和 PUE 复算，则两者差值用于识别舍入误差；正式优化仍使用统一复算链。
+
+主要数据检查与失败处理见表~\ref{tab:data-quality}。
+
+\begin{table}[H]
+  \centering
+  \caption{主要数据检查、处理动作与失败后果}
+  \label{tab:data-quality}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.22\textwidth}p{0.26\textwidth}p{0.27\textwidth}X}
+    \toprule
+    对象 & 机械检查 & 处理规则 & 失败后果 \\
+    \midrule
+    任务主键 & 重复、缺失、输入输出数量守恒 & 不合并不同任务；排程后按 ID 反查 & 停止排程与所有下游模型 \\
+    时间字段 & 到达、持续、截止与收尾边界 & 统一到分钟索引，小时参数按覆盖区间映射 & 停止对应任务或时段构建 \\
+    区域与任务类型 & 键集合、大小写和编码一致性 & 使用登记映射，不凭位置拼接 & 停止预测面板和区域聚合 \\
+    网络时延 & 有向矩阵完整性、单位和可达性 & 按来源到执行区域读取，不强制对称 & 删除不可行区域；全删则任务不可行 \\
+    功率映射与 PUE & GPU 档位、单位、区域 PUE 范围 & 从任务占用复算 IT/设施功率 & 停止容量审计和能源模型 \\
+    电价、碳强度、新能源 & 2407 h 覆盖、缺失与符号 & 不插值越界；压力场景另存派生规则 & 停止 Q2--Q4 对应时段 \\
+    储能参数 & 能量、功率、效率、初始 SOC & 检查量纲和上下界，不补造退化参数 & 停止该区域储能模型 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+所有描述性统计和绘图数据都从正式 CSV/JSON 派生。若论文需要的字段在正式输出中不存在，先判断能否由已有列确定性计算；只有不能确定性派生时，才允许用相同程序、输入、种子和求解参数执行诊断性重跑。诊断重跑不得改变主模型指标或模型选择，否则必须重新完成对应实验与结果复核，不能直接把新数值写进表格或图注。
+
+对任务 $i$，记来源区域为 $o_i$、任务类型为 $k_i$、GPU 数量为 $g_i$、持续时间为 $d_i$ min、分钟级到达时刻为 $a_i$，并令 $h_i=\lfloor a_i/60\rfloor$ 为到达小时。区域 $r$、小时 $t$ 的可用新能源、电价、售电价与碳强度分别记为 $R_{rt}$、$p^{\mathrm{buy}}_{rt}$、$p^{\mathrm{sell}}_{rt}$ 与 $e_{rt}$。储能额定能量、充放电功率上限和效率分别记为 $S_r^{\max}$、$Q_r^{+,\max}$、$Q_r^{-,\max}$、$\eta_r^+$ 与 $\eta_r^-$。
+
+\subsection{任务工作量与设施负荷复算}
+
+预测目标不是任务条数，而是区域--任务类型--小时的 GPU 工作量：
+
+\begin{equation}
+  W_{rkt}=\sum_{i:o_i=r,\,k_i=k,\,h_i=t}g_i\frac{d_i}{60},
+  \label{eq:workload}
+\end{equation}
+单位为 GPU$\cdot$h。该口径同时反映任务规模和持续时间，避免把一条长任务与一条短任务等价计数。对排程结果，任务在执行区间内形成分钟级 GPU 占用 $u_{r\tau}$。若任务 $i$ 选择设备类型 $m$，设备功率映射为 $\pi_m(g_i)$，则小时 IT 功率通过分钟区间积分聚合，设施功率由
+\begin{equation}
+  P^{\mathrm{fac}}_{rt}=\mathrm{PUE}_r\left(P^{\mathrm{IT}}_{rt}+P^{\mathrm{base}}_{rt}\right)
+  \label{eq:facility-power}
+\end{equation}
+得到。附件中已有的利用率列只用于异常核验；正式约束和能源指标均从任务排程、功率映射和 PUE 重新计算，防止循环引用历史派生列。
+
+\subsection{统一硬约束}
+
+记二元变量 $x_{ir}=1$ 表示任务 $i$ 在区域 $r$ 执行，$s_i$、$f_i$ 为开始与结束时刻。共同任务约束为
+\begin{align}
+  &\sum_{r\in\mathcal R_i}x_{ir}=1, &&\forall i, \label{eq:assign-once}\\
+  &s_i\ge a_i,\qquad f_i=s_i+d_i, &&\forall i, \label{eq:release}\\
+  &s_i=a_i, &&\forall i\in\mathcal I^{\mathrm{rt}}, \label{eq:realtime}\\
+  &\ell_{o_i r}\le L_i^{\max}+M(1-x_{ir}), &&\forall i,r, \label{eq:latency}\\
+  &\sum_{i:\tau\in[s_i,f_i)}g_i x_{ir}\le G_r^{\max}, &&\forall r,\tau. \label{eq:gpu-capacity}
+\end{align}
+同理，对 IT 功率和设施功率分别施加逐分钟或逐小时上限。所有任务必须在收尾边界前结束。式~\eqref{eq:assign-once}--\eqref{eq:gpu-capacity} 在 Q1、Q2 和 Q4 中保持相同含义，使三问排程可直接比较。
+
+\subsection{评价指标与经济语义}
+
+预测部分同时报告 MAE、RMSE、WAPE 和区间覆盖率。对实际值 $y_j$ 与预测值 $\hat y_j$，系统 WAPE 为
+\begin{equation}
+  \mathrm{WAPE}=\frac{\sum_j|y_j-\hat y_j|}{\sum_j|y_j|}.
+  \label{eq:wape}
+\end{equation}
+式~\eqref{eq:wape} 适合系统聚合比较，但当底层序列稀疏时，必须结合序列级 MAE 和图形分布解释。
+
+任务调度部分报告任务完成率、SLA 违约率、设施用能成本、购电碳排、任务加权平均网络时延和新能源利用率。储能部分的净运行成本统一定义为
+\begin{equation}
+  C=\sum_{r,t}\left(p^{\mathrm{buy}}_{rt}g^+_{rt}-p^{\mathrm{sell}}_{rt}g^-_{rt}\right),
+  \label{eq:net-cost}
+\end{equation}
+其中 $g^+_{rt}$ 和 $g^-_{rt}$ 分别为购电与售电功率。负成本表示售电收入超过购电支出，不表示负的物理耗能。购电侧碳排为
+\begin{equation}
+  E=\sum_{r,t}e_{rt}g^+_{rt}.
+  \label{eq:grid-carbon}
+\end{equation}
+售电不产生负碳排。当前正式模型没有显式电池循环退化成本，仅使用极小吞吐正则稳定等价解，因此经济结论只能在题面购售电边界下解释。
+
+% Disclosure is intentionally confined to the compliance declaration and appendix.
+
+\section{问题一：需求预测与基础算力调度}
+\label{sec:q1}
+
+\subsection{预测目标与数据切分}
+
+由式~\eqref{eq:workload}得到六区域、三类任务共 18 条小时序列。训练集覆盖 0--2351 h，2352--2375 h 用于模型选择和区间校准，2376--2399 h 为完全隔离的盲测窗口。盲测数据不参与超参数选择、残差缩放或共形预测分位数估计。滚动回测用于判断模型是否只在单一切分上偶然有效\UpCite{bergmeir2018}，正式性能结论以盲测结果为准。
+
+图~\ref{fig:q1-weekly-demand} 将每条序列按星期位置聚合并作序列内归一化，用于识别峰谷时段和区域差异。归一化只服务于结构比较，不能从色块大小反推出绝对 GPU$\cdot$h。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\linewidth]{fig-q1-weekly-demand-structure.pdf}
+  \caption{18 条区域--任务类型工作量序列的归一化周内小时结构。横轴为周内小时，纵轴为底层序列；颜色表示各序列相对强度，不比较序列间绝对规模。}
+  \label{fig:q1-weekly-demand}
+\end{figure}
+
+\subsection{季节基线与共享残差模型}
+
+考虑到工作量具有明显日周期与周周期，先构造 24 h、168 h 季节朴素预测，并在验证集选择稳定的 168 h 滞后作为同输出基线；季节朴素预测是时间序列分解与基线比较中的常用参照\UpCite{hyndman2021}。主模型不直接拟合原始工作量，而是拟合季节基线残差：
+\begin{equation}
+  \hat W_{rkt}=\hat W^{\mathrm{sea}}_{rkt}+f_{\theta}(\boldsymbol z_{rkt}),
+  \label{eq:hgbr-residual}
+\end{equation}
+式~\eqref{eq:hgbr-residual} 中 $f_{\theta}$ 为共享 HistGradientBoosting 回归器，$\boldsymbol z_{rkt}$ 包含短期与周滞后、滚动均值和离散程度、小时与星期位置、区域及任务类型编码。固定区域与任务类型后，记 $W_{rkt}$ 为 $W_t$。共享模型使稀疏序列能够借用其他区域和类型的统计信息，同时用类别特征保留异质性。梯度提升通过逐轮拟合损失的负梯度构造加法模型，适合处理非线性、交互项和不同尺度特征\UpCite{friedman2001}\UpCite{hastie2009}。与直接预测绝对负荷相比，已有数据中心负载预测研究也表明，应把周期结构与短期动态共同纳入建模，并按任务负荷的实际尺度评估误差\UpCite{liang2020periodic}。
+
+预测特征及其作用见表~\ref{tab:q1-features}。
+
+\begin{table}[H]
+  \centering
+  \caption{Q1 预测特征及其作用}
+  \label{tab:q1-features}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.22\textwidth}p{0.31\textwidth}X}
+    \toprule
+    特征组 & 代表变量 & 建模作用 \\
+    \midrule
+    短期滞后 & $W_{t-1},W_{t-2},W_{t-24}$ & 捕捉相邻时段延续性和日周期 \\
+    周期滞后 & $W_{t-168}$ 及邻域统计 & 提供可解释的周季节基线和周内重复模式 \\
+    滚动统计 & 均值、标准差、非零比例、近期峰值 & 区分平稳、波动和间歇需求 \\
+    日历特征 & 小时、星期位置及其周期编码 & 表达峰谷时段和工作日结构 \\
+    层级类别 & 区域、任务类型及交互编码 & 在共享模型中保留底层序列异质性 \\
+    规模稳定项 & 基线预测、近期绝对水平 & 支持残差缩放与非负区间构造 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+特征均由预测时刻以前的数据构造，任何需要未来窗口观测的统计量都不参与建模。模型选择只查看验证与滚动回测，不查看盲测。残差缩放系数也在验证集确定，使最终盲测同时检验基线、非线性修正、层级校正和区间校准的组合效果，而不是仅检验最后一步。
+
+主模型输出先截断到非负域，再作层级一致性校正。记底层预测向量为 $\hat{\boldsymbol y}$，加总矩阵为 $\boldsymbol S$，则一致化结果写为
+\begin{equation}
+  \tilde{\boldsymbol y}=\boldsymbol S
+  \left(\boldsymbol S^{\mathsf T}\boldsymbol W^{-1}\boldsymbol S\right)^{-1}
+  \boldsymbol S^{\mathsf T}\boldsymbol W^{-1}\hat{\boldsymbol y},
+  \label{eq:reconciliation}
+\end{equation}
+其中 $\boldsymbol W$ 为依据验证残差构造的对角权重。该投影保证区域和系统总量等于对应底层序列之和，避免论文同时出现互相矛盾的分层预测\UpCite{wickramasuriya2019}。
+
+\subsection{预测区间}
+
+对验证窗口的绝对残差按预测尺度标准化，汇总 18 条序列形成合并的分割共形校准集。设标准化非一致性分数为
+\begin{equation}
+  q_j=\frac{|y_j-\tilde y_j|}{\max(\delta,\,s_j)},
+  \label{eq:conformal-score}
+\end{equation}
+其中 $s_j$ 为基于预测规模的稳定化尺度，$\delta$ 防止稀疏序列分母过小。取经验 $1-\alpha$ 分位数 $q_{1-\alpha}$ 后，区间为
+\begin{equation}
+  \left[\max\{0,\tilde y_j-q_{1-\alpha}s_j\},\ \tilde y_j+q_{1-\alpha}s_j\right].
+  \label{eq:conformal-interval}
+\end{equation}
+分割共形方法在样本交换性条件下提供有限样本覆盖性质\UpCite{vovk2005}\UpCite{romano2019}。由于实际时间序列并非严格交换，本文只报告独立盲测上的经验覆盖率，不把名义 95\% 解释为任何未来时段都具有 95\% 的概率保证。式~\eqref{eq:conformal-score} 和式~\eqref{eq:conformal-interval} 分别给出校准分数与预测区间。
+
+除 WAPE 外，盲测还按式~\eqref{eq:q1-evaluation} 计算
+\begin{align}
+  \mathrm{MAE}&=\frac{1}{n}\sum_{j=1}^{n}|y_j-\hat y_j|,\\
+  \mathrm{RMSE}&=\sqrt{\frac{1}{n}\sum_{j=1}^{n}(y_j-\hat y_j)^2},\\
+  \mathrm{Coverage}&=\frac{1}{n}\sum_{j=1}^{n}\mathbf{1}\{y_j\in[L_j,U_j]\}.
+  \label{eq:q1-evaluation}
+\end{align}
+MAE 反映典型绝对偏差，RMSE 对少数大误差更敏感，覆盖率必须与平均区间宽度联合使用。若只扩大区间即可提高覆盖，则不能据此判断预测更有信息量。序列级比较固定同一盲测样本，避免由缺失行或不同权重造成虚假改善。
+
+Q1 的同口径结果见表~\ref{tab:q1-evidence}。
+
+\TableQOneEvidence
+
+图~\ref{fig:q1-forecast-interval} 展示盲测窗口的实际值、季节基线、层级一致预测及预测区间。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\linewidth]{fig-q1-blind-forecast-interval.pdf}
+  \caption{盲测窗口系统工作量的实际值、季节基线、层级一致主预测和合并校准的分割共形预测区间。阴影表示按验证集校准规则得到的区间。}
+  \label{fig:q1-forecast-interval}
+\end{figure}
+
+主模型的独立盲测系统 WAPE 为 \ClaimRatio{Q1-FCST-TEST-WAPE}；18 条底层序列共 432 个逐时点的经验覆盖率为 \ClaimRatio{Q1-FCST-TEST-COVERAGE}。与季节基线相比，系统 WAPE 和 RMSE 均下降，且区间显著收窄；但系统指标不能替代底层序列诊断，底层逐点覆盖率也不能解释为系统总量区间的覆盖率。为避免“平均改善”掩盖个别序列退化，图~\ref{fig:q1-series-error} 将 18 条序列的基线与主模型 MAE 配对展示，点对之间的方向直接表示同一序列误差变化。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\linewidth]{fig-q1-series-error-pairing.pdf}
+  \caption{18 条底层序列在同一盲测样本上的 MAE 配对比较。每条连线只比较同一序列；系统结论仍以 WAPE、RMSE 和覆盖率联合判断。}
+  \label{fig:q1-series-error}
+\end{figure}
+
+\subsection{CP-SAT 基础排程}
+
+预测模型完成需求刻画后，排程重新读取 2376--2399 h 的实际到达任务。历史任务先由事件边界算法排至窗口起点，未完成任务作为跨窗任务固定其已开始状态，从而保持历史任务守恒。对最后窗口任务，CP-SAT 以可选区间变量表示“任务在区域 $r$ 执行”，用 NoOverlap/Cumulative 类约束表达不可抢占与 GPU 容量，并通过预处理删除时延不可行区域\UpCite{ortools}。
+
+在满足式~\eqref{eq:assign-once}--\eqref{eq:gpu-capacity} 及 IT/设施功率约束后，目标按层级最小化等待、网络时延、峰值利用和区域不均衡。可写为
+\begin{equation}
+  \min J_1=\lambda_w\sum_i(s_i-a_i)+\lambda_\ell\sum_{i,r}\ell_{o_i r}x_{ir}
+  +\lambda_p P^{\max}+\lambda_b B,
+  \label{eq:q1-schedule-objective}
+\end{equation}
+其中各尺度和权重在正式运行前固定。FIFO/本地优先基线使用相同任务和约束，只按到达顺序选择最早可行位置。两者均由独立脚本重新检查任务唯一性、实时即时开工、时延、GPU、IT 功率、设施功率和收尾边界。
+
+具体求解步骤如下：首先用历史事件边界算法处理窗口前任务，固定已结束任务并提取跨窗任务；其次按单向时延预先生成每条任务的可选区域域，若实时任务本地可行则锁定开始时刻；再次为每个“任务--区域”组合建立可选区间变量，并加入 GPU 累积、IT 功率和设施功率约束；随后加载 FIFO 可行解作为提示，固定随机种子和单线程，在给定时限内最小化式~\eqref{eq:q1-schedule-objective}；最后把输出送入独立审计器重新计算全部资源曲线。
+
+独立排程审计项目见表~\ref{tab:q1-schedule-audit}。
+
+\begin{table}[H]
+  \centering
+  \caption{Q1 排程审计项目与判定方式}
+  \label{tab:q1-schedule-audit}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.23\textwidth}p{0.40\textwidth}X}
+    \toprule
+    审计类别 & 复算内容 & 通过条件 \\
+    \midrule
+    任务守恒 & 最后窗口任务、历史已完成任务与跨窗任务的 ID 集合 & 无重复、无遗漏、无未解析任务 \\
+    时间逻辑 & 到达、开始、持续、结束和收尾时刻 & 不早启、不抢占、结束时刻一致、不越界 \\
+    实时任务 & 实时推理任务开始时刻 & 与到达时刻相等 \\
+    网络 SLA & 来源区域到执行区域的有向时延 & 不超过逐任务时延上限 \\
+    GPU 容量 & 每分钟活动任务 GPU 数之和 & 不超过区域 GPU 上限 \\
+    IT/设施功率 & 功率映射、基础负荷、PUE 与逐时上限 & 两级功率均不超限 \\
+    基线可比性 & 输入任务、可选区域、容量和收尾边界 & 与主模型完全相同 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+实际任务完成率为 \ClaimRatio{Q1-SCHED-COMPLETION}，独立硬约束审计为\ClaimBoolean{Q1-SCHED-FEASIBLE}。主求解器在固定 90 s 时限内返回 \FrozenClaim{Q1-SCHED-SOLVER-STATUS}，记录最优性间隙为 \PaperMetric{q1-solver-gap-pct}，因此不能声称全局最优。图~\ref{fig:q1-gantt} 用区域压缩甘特图同时呈现 \PaperMetric{q1-task-count} 条实际任务和 \PaperMetric{q1-carry-count} 条跨窗任务；密集任务层可以栅格化，但坐标、图例与文字保持矢量。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.98\linewidth]{fig-q1-schedule-gantt.pdf}
+  \caption{最后 24 h 实际任务及跨窗任务的区域压缩甘特图。颜色区分任务类别或状态，任务条长度对应不可抢占执行区间，右侧保留收尾时段。}
+  \label{fig:q1-gantt}
+\end{figure}
+
+资源审计进一步把每个时刻的 GPU、IT 功率和设施功率占用换算为相对容量余量。图~\ref{fig:q1-headroom} 的低余量区域代表约束更紧，但不等同于违规；只有余量为负才构成容量失败。该图用于解释排程为何在局部时段缺少承受正向需求扰动的空间。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\linewidth]{fig-q1-resource-headroom.pdf}
+  \caption{Q1 主排程的区域聚合资源余量。分别按 GPU、IT 功率和设施功率相对上限计算；颜色同时辅以数值或分级边界，便于灰度识别。}
+  \label{fig:q1-headroom}
+\end{figure}
+
+\subsection{Q1 检验与边界}
+
+Q1 的验证体系包括固定时间切分、同输出季节基线、滚动回测、层级一致性误差、盲测区间覆盖、历史任务守恒、主排程与基线双重硬约束审计。其主要风险有三点：一是稀疏实时序列可能在局部时段出现较大相对误差；二是 CP-SAT 仅在给定时限内获得可行解；三是固定排程对任务规模和持续时间正向扰动的备用裕度有限。因此，预测适合用于滚动容量预警，实际执行仍应在新任务到达后重新调度。
+
+\section{问题二：碳感知全时域任务调度}
+\label{sec:q2}
+
+\subsection{模型选择与同输出基线}
+
+问题二含 50000 条不可抢占任务，若直接建立 2400 h、分钟级资源重叠的全时域整数模型，离散变量与冲突区间数量过大。正式方案选择固定权重的有界滚动局部交换启发式：先构造满足全部硬约束的可行排程，再只在有限候选集合内移动柔性任务。该方法保留逐任务和逐分钟审计能力，代价是不能提供全局最优性证明。
+
+FIFO 基线按任务到达顺序调用同一可行性检查器，优先在本地区域的最早可行位置执行，若本地不可行再检查满足时延的其他区域。基线与主模型读取相同任务，施加相同的释放、截止、不可抢占、时延、GPU、IT/设施功率和收尾约束，并输出成本、碳排、时延、新能源利用率与完整排程。这一设计避免把“弱约束基线”当作性能参照。
+
+\subsection{多目标代价与滚动交换}
+
+对排程 $\mathcal S$，定义设施用能成本 $C(\mathcal S)$、购电碳排 $E(\mathcal S)$、任务加权平均网络时延 $\bar\ell(\mathcal S)$ 与新能源未利用量 $U(\mathcal S)$。以初始可行排程或预先确定的尺度归一化后，局部搜索目标为
+\begin{equation}
+  J_2(\mathcal S)=\omega_C\widetilde C+\omega_E\widetilde E
+  +\omega_L\widetilde{\bar\ell}+\omega_U\widetilde U.
+  \label{eq:q2-objective}
+\end{equation}
+权重在正式运行前固定，不依据最终结果回调。面向云数据中心的既有研究常以强化学习或群智能方法寻找任务--能耗折中\UpCite{qian2022resource}\UpCite{wang2023ddpg}\UpCite{liu2023pso}\UpCite{sun2022aco}；本题选择可逐项复算的确定性有界局部交换，是为了保留全量任务审计、固定种子复跑和同输出基线比较。新能源利用率采用
+\begin{equation}
+  \rho_R=\frac{R^{\mathrm{direct}}+R^{\mathrm{charge}}+R^{\mathrm{export}}}{R^{\mathrm{available}}}.
+  \label{eq:renewable-utilization}
+\end{equation}
+Q2 不调度储能和新能源外送，故分子后两项为零；不能把设施负荷误作新能源分母。
+
+算法按滚动窗口选择具有释放余量的柔性任务，为每个任务枚举满足时延上限的区域和候选开始时刻。每次移动都更新受影响区间的 GPU、IT 功率和设施功率，并只在全部硬约束满足且式~\eqref{eq:q2-objective} 改善时接受。小时网格无法解析可行开始位置时，唯一回退规则是对该任务执行精确分钟扫描；正式运行未触发该规则。
+
+为控制 50000 条任务的搜索成本，算法只重算候选移动影响到的区域和时间片。设窗口任务集合为 $\mathcal I_w$，任务 $i$ 的可行候选集合为 $\mathcal N_i$，则一轮工作量近似与 $\sum_{i\in\mathcal I_w}|\mathcal N_i|$ 成正比，而不是与全体任务两两交换数成正比。候选按固定排序处理，接受后立即更新资源影子量和逐时指标，形成确定性的一次局部扫描。
+
+算法执行步骤见表~\ref{tab:q2-algorithm}。
+
+\begin{table}[H]
+  \centering
+  \caption{Q2 有界滚动交换算法的执行步骤}
+  \label{tab:q2-algorithm}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.10\textwidth}p{0.26\textwidth}X}
+    \toprule
+    步骤 & 操作 & 可审计输出 \\
+    \midrule
+    1 & 用 FIFO/本地优先构造全时域可行起点 & 完整基线排程和资源曲线 \\
+    2 & 按到达时段和柔性筛选滚动窗口任务 & 窗口任务 ID 与候选域 \\
+    3 & 枚举满足时延、释放与截止的区域--时刻组合 & 候选移动清单 \\
+    4 & 增量复算 GPU、IT/设施功率及电力指标 & 受影响时片的约束和目标变化 \\
+    5 & 仅接受硬约束通过且固定目标下降的移动 & 交换日志与拒绝原因 \\
+    6 & 全时域重算任务、SLA、成本、碳排和新能源 & 主排程、同口径摘要与审计报告 \\
+    7 & 固定输入与种子独立复跑 & 排程字段或输出校验值一致性报告 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+这一搜索不会在接受移动后回溯所有历史组合，因此不能称为拉格朗日优化、ALNS 或精确 Pareto 搜索。它的优势是每个接受动作都可定位到具体任务、区域、时刻和指标变化，适合在比赛时限内形成完整可复现排程。
+
+\subsection{结果与迁移机制}
+
+全时域比较见表~\ref{tab:q2-comparison}。
+
+\TableQTwoComparison
+
+候选完成全部任务，完成率为 \ClaimRatio{Q2-FULL-COMPLETION-RATE}，SLA 违约率为 \ClaimRatio{Q2-FULL-SLA-VIOLATION-RATE}，候选和 FIFO 的硬约束审计均通过。相对 FIFO，成本变化 \ClaimPercent{Q2-FULL-COST-CHANGE-PCT}\%，碳排变化 \ClaimPercent{Q2-FULL-CARBON-CHANGE-PCT}\%，平均网络时延增加 \ClaimLatency{Q2-FULL-LATENCY-CHANGE-MS}~ms。新能源利用率略低于 FIFO，因此正式结论是“在零 SLA 违约下换取成本与碳排下降”，而不是“所有指标同时改善”。
+
+图~\ref{fig:q2-migration} 以候选减 FIFO 的区域逐时设施负荷构造零点居中的有符号热图。正值代表负荷迁入，负值代表迁出；同一小时各区域变化的合计还受到任务开始时刻移动影响，不必严格为零。图的作用是定位低价、低碳时段吸收负荷的机制，而不是替代表~\ref{tab:q2-comparison} 的全时域总量。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\linewidth]{fig-q2-load-migration.pdf}
+  \caption{Q2 候选相对 FIFO 的区域逐时设施负荷变化。发散颜色以零为中心，正值为迁入、负值为迁出；色彩同时使用正负号和色条刻度编码。}
+  \label{fig:q2-migration}
+\end{figure}
+
+成本和碳排的累计差异并非在所有小时单调改善。图~\ref{fig:q2-cumulative} 按小时累加候选相对 FIFO 的差值，并转换为相对基线累计量。局部上升反映某些任务为满足释放、截止、容量或时延约束而承受短期代价；最终端点才对应全时域比较。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.94\linewidth]{fig-q2-cumulative-impact.pdf}
+  \caption{Q2 候选相对 FIFO 的全时域累计成本与购电碳排变化。曲线用于识别改善发生的时段，终点与表~\ref{tab:q2-comparison} 的全时域总量一致。}
+  \label{fig:q2-cumulative}
+\end{figure}
+
+平均时延增加可能掩盖尾部风险，因此图~\ref{fig:q2-latency} 将两套完整排程的均值、P50、P90、P95、P99 和最大值组成配对哑铃图。每个任务都按实际来源和执行区域计算单向时延，并由自身时延上限审计。候选点相对 FIFO 的右移集中出现在 P90--P99 上尾，但两套排程的逐任务 SLA 审计均为零违约；图中分位数不替代逐任务上限检查。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.98\linewidth]{fig-q2-latency-ecdf.pdf}
+  \caption{FIFO 与 Q2 候选的任务网络时延配对摘要。点表示均值、P50、P90、P95、P99 和最大值，连线及差值标签表示候选减 FIFO；两套方案各含 50,000 条任务且 SLA 违约均为 0，逐任务时延上限审计仍是网络约束的判定依据。}
+  \label{fig:q2-latency}
+\end{figure}
+
+\subsection{稳健性与解释限制}
+
+固定输入、种子和搜索顺序的第二次全时域运行复现相同任务、执行区域和开始时刻，确定性复跑为\ClaimBoolean{Q2-FULL-DETERMINISTIC-REPLAY}。分块比较显示成本和碳排改善并非只来自单一短窗口。容量扰动检验仅衡量已确定排程的余量暴露，不能把扰动后的失败解释为在新参数下重新优化仍不可行。
+
+Q2 未显式建模网络拥塞、迁移数据量和跨区传输能耗；静态时延矩阵只描述路由时延。若工程部署中跨区迁移成本不可忽略，应在式~\eqref{eq:q2-objective} 中增加迁移费用和带宽约束。固定权重只对应一种偏好，若决策者更重视时延或新能源利用率，应采用 $\varepsilon$-constraint 生成非支配候选，而不能直接把当前解改称唯一均衡解。
+
+\section{问题三：多区域滚动储能优化}
+\label{sec:q3}
+
+\subsection{储能边界与决策变量}
+
+Q3 固定 Q2 任务排程和由式~\eqref{eq:facility-power} 得到的逐时设施负荷，只优化六区域的新能源使用、储能和电网交换。各区域独立建模，不允许区域间直接传输电能；跨区协同已经通过任务排程改变负荷实现。设 $q^+_{rt}$、$q^-_{rt}$ 为充、放电功率，$S_{rt}$ 为时段起点的储能能量状态，$g^+_{rt}$、$g^-_{rt}$ 为购、售电功率，$R^{\mathrm{use}}_{rt}$ 为直接使用的新能源。
+
+SOC 动力学和电能平衡为
+\begin{align}
+  S_{r,t+1}&=S_{rt}+\eta_r^+q^+_{rt}-\frac{q^-_{rt}}{\eta_r^-},
+  \label{eq:q3-soc}\\
+  g^+_{rt}+R^{\mathrm{use}}_{rt}+q^-_{rt}
+  &=P^{\mathrm{fac}}_{rt}+q^+_{rt}+g^-_{rt}.
+  \label{eq:q3-balance}
+\end{align}
+容量与功率边界为
+\begin{align}
+  0\le S_{rt}\le S_r^{\max},\quad
+  0\le q^+_{rt}\le z^+_{rt}Q_r^{+,\max},\quad
+  0\le q^-_{rt}\le z^-_{rt}Q_r^{-,\max},
+  \label{eq:q3-storage-bounds}
+\end{align}
+在式~\eqref{eq:q3-storage-bounds} 基础上施加 $z^+_{rt}+z^-_{rt}\le1$。购售电使用另一组二元模式变量，保证同一时段不能同时购电和售电。新能源满足 $0\le R^{\mathrm{use}}_{rt}\le R_{rt}$，终端状态要求不低于初始 SOC。
+
+为区分模型约束和复核约束，求解阶段使用线性等式、不等式和二元变量构造可行域，求解后再从逐时结果逐行重算。后者不复用优化表达式对象，能够发现导出错位、单位换算或二元边界不一致等问题。
+
+储能与电网审计分类见表~\ref{tab:q3-audit-classes}。
+
+\begin{table}[H]
+  \centering
+  \caption{Q3 储能与电网审计分类}
+  \label{tab:q3-audit-classes}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.20\textwidth}p{0.36\textwidth}X}
+    \toprule
+    类别 & 审计表达 & 主要风险 \\
+    \midrule
+    SOC 动力学 & 比较导出 $S_{t+1}$ 与式~\eqref{eq:q3-soc} 右端 & 效率方向、时段错位、首尾状态错误 \\
+    SOC/功率边界 & 检查状态和充放电功率上下限 & 单位错误或区域参数串位 \\
+    充放电互斥 & 检查同小时 $q^+q^-$ 与二元模式 & LP 松弛导致同时充放电 \\
+    购售电互斥 & 检查同小时 $g^+g^-$ 与电网模式 & 同时购售电形成非物理套利 \\
+    电能平衡 & 复算式~\eqref{eq:q3-balance} 残差 & 符号、PUE 或新能源重复计入 \\
+    电网边界 & 区域购电、售电及联合上限 & 局部可行但系统接口超限 \\
+    终端规则 & 比较末端与初始 SOC & 透支末端储能获取虚假收益 \\
+    同输出基线 & 对无储能逐时调度结果使用同一审计器 & 主模型与基线口径不一致 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{多指标 MILP 目标}
+
+在净运行成本式~\eqref{eq:net-cost} 和购电碳排式~\eqref{eq:grid-carbon} 基础上，引入区域正向购电峰值 $P_r^{\mathrm{peak}}$、净购电波动和新能源弃电。上述线性约束与二元互斥变量共同构成混合整数线性规划\UpCite{wolsey1998}，归一化目标为
+\begin{equation}
+  J_3=\beta_C\widetilde C+\beta_E\widetilde E+\beta_P\widetilde P
+  +\beta_V\widetilde V+\beta_R\widetilde U_R+\epsilon\sum_{r,t}(q^+_{rt}+q^-_{rt}),
+  \label{eq:q3-objective}
+\end{equation}
+式~\eqref{eq:q3-objective} 的最后一项仅为极小吞吐正则，用于减少数值等价的无意义充放电，不代表真实退化成本。无储能基线关闭 $q^+_{rt}$ 和 $q^-_{rt}$，保留相同负荷、新能源、购售电能力和指标定义。
+
+直接求解单体 2407 h、六区域二进制 MILP 会显著增加整数变量和求解时间。正式模型对每个区域按 14 个 168 h 块和末段 55 h 滚动求解，共 15 块；块间只传递上一块实际终端 SOC，不使用未来块的最优状态。该策略采用滚动时域控制思想，并与分布式储能的风储滚动调度方法具有相同的逐时状态传递结构\UpCite{pinedo2016}\UpCite{wang2017storage}，能保证每块可审计，但不等价于单体全时域全局最优。
+
+对区域 $r$ 的第 $b$ 个块，记起始状态为 $S^{\mathrm{in}}_{rb}$，求解得到末端状态 $S^{\mathrm{out}}_{rb}$，则下一块固定
+\begin{equation}
+  S^{\mathrm{in}}_{r,b+1}=S^{\mathrm{out}}_{rb}.
+  \label{eq:q3-state-transfer}
+\end{equation}
+式~\eqref{eq:q3-state-transfer} 保证相邻块物理连续，但当前块无法预见更远未来的极端电价或新能源短缺，因此可能产生跨块次优。终端 SOC 下界防止最后一块耗尽储能，却不能完全替代终端价值函数。本文通过压力场景和全周期可行性检验评估这一边界，而不把检验目标值混入滚动性能比较。
+
+\subsection{经济结果与功率机制}
+
+Q3 正式结果与审计摘要见表~\ref{tab:q3-audit}。
+
+\TableQThreeAudit
+
+六区域共完成 \ClaimInteger{Q3-ROLLING-BINARY-COVERAGE} 次滚动二进制 MILP 求解。相对无储能基线，净运行成本变化为 \ClaimMoney{Q3-ROLLING-COST-DELTA}~CNY，购电侧碳排变化为 \ClaimCarbon{Q3-ROLLING-CARBON-DELTA}~tCO$_2$。候选碳排为零源于题面时段与购售电边界下可通过新能源、储能和售电安排避免购电，并不表示系统产生负碳排。
+
+图~\ref{fig:q3-dispatch} 是本图集中唯一双面板图。上面板展示设施负荷、新能源、充放电和净电网交换，下面板展示 SOC；二者共同验证功率动作和状态转移，拆开后难以判断充放电是否导致 SOC 的对应变化，因此保留互补面板。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.98\linewidth]{fig-q3-dispatch-soc.pdf}
+  \caption{代表性时段的功率流与储能 SOC。上面板为功率平衡量，下面板为状态量，方向定义见图例。}
+  \label{fig:q3-dispatch}
+\end{figure}
+
+负运行成本必须结合式~\eqref{eq:net-cost} 解释：其含义是净售电收入，而不是物理能耗为负。若实际市场禁止购电转售、限制新能源外送或采用不同结算规则，应增加能源来源追踪、售电上限或禁止购电转售的约束。储能套利价值也会受到循环寿命和退化成本影响；本文未得到附件支持的退化参数，因此不人为引入未经验证的价格，而把该因素列为经济局限\UpCite{sioshansi2009}。
+
+\subsection{滚动覆盖与 270 项审计}
+
+每个滚动块均记录区域、起止小时、求解状态、运行时间、MIP 最优性间隙、SOC 首尾值和约束残差。图~\ref{fig:q3-runtime} 按区域与滚动块显示运行时间和覆盖位置，用于识别末段短块或特定区域是否异常耗时。热图只表达求解稳定性，不把运行时间短解释为模型性能更优。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.94\linewidth]{fig-q3-rolling-runtime-coverage.pdf}
+  \caption{六区域 90 个滚动二进制 MILP 块的运行时间与时域覆盖。每区 15 块连续覆盖 0--2406 h，末块为 55 h。}
+  \label{fig:q3-runtime}
+\end{figure}
+
+完整审计共 \ClaimInteger{Q3-ALL-270-AUDITS-PASS}/270 通过，覆盖六区域滚动块连续性、逐时 SOC 与功率边界、充放电互斥、购售电互斥、电能平衡、联合购电上限、终端 SOC 及全时域二进制 MILP 可行性。该结果仅说明所声明的约束均通过，不构成新的成本、碳排或全局最优结论。
+
+四类 72 h 确定性压力场景中，候选与同输出基线共有 \ClaimInteger{Q3-STRESS-AUDITS-PASSED} 项审计通过。设施负荷复算最大残差为 \ClaimScientific{Q3-FACILITY-LOAD-ROUNDING-RESIDUAL}~MW，处于附件舍入尺度，因此只能称“在输入精度内复现”，不能称严格代数相等。
+
+\section{问题四：72 小时算--储--电受限联合优化}
+\label{sec:q4}
+
+\subsection{顺序基线与联合主问题}
+
+顺序基线固定 Q2 任务排程，再对每个场景调用 Q3 储能追补子问题。该方案计算稳定且接口清晰，但任务排程看不到储能的边际响应，可能错过“轻微移动任务即可显著改变购电或充放电”的局部机会。绿色数据中心的能耗优化也需要同时考虑计算负荷与能源侧约束\UpCite{li2026green}。Q4 以顺序基线为可行起点，在 2328--2399 h 的 72 h 代表性窗口中联动任务与储能。
+
+主问题不释放全部任务，而是根据高电价、高碳、区域峰值和高网络时延评分选择 12 条任务组成邻域。固定其他任务后，对邻域任务执行固定--优化邻域搜索；每产生一个任务候选，就重新计算六区域设施负荷，并求解相同场景下的储能追补子问题。此过程相当于离散任务决策与连续/整数能源响应的交替局部搜索。
+
+记任务候选为 $x$，储能响应为 $y^*(x,\xi)$，场景为 $\xi$，则联合评价写为
+\begin{equation}
+  \boldsymbol F(x,\xi)=
+  \left(C(x,y^*,\xi),E(x,y^*,\xi),\bar\ell(x),P(x,y^*,\xi),-\rho_R(x,y^*,\xi)\right).
+  \label{eq:q4-vector-objective}
+\end{equation}
+候选必须先通过任务、SLA、GPU/功率、SOC、互斥、电能平衡和终端 SOC 审计，再比较式~\eqref{eq:q4-vector-objective}。各指标按顺序基线尺度归一化，用等权距离选择局部膝点。该规则只表达预设尺度下的均衡，不代表唯一社会偏好。
+
+\subsection{场景构造与接受准则}
+
+正式评价包含观测、峰段电价、高碳、低新能源和联合压力五类场景。压力场景由观测序列的经验高低区间确定，不使用外部数据，也不赋予概率意义。观测、峰段电价和高碳场景在当前 72 h 窗口出现相同的储能追补优化结果，说明其扰动未改变主导约束；低新能源和联合压力场景引入正向购电，使任务移动对成本和碳排的作用更明显。
+
+五类场景定义见表~\ref{tab:q4-scenario-definition}。
+
+\begin{table}[H]
+  \centering
+  \caption{Q4 五类确定性场景的构造目的与解释范围}
+  \label{tab:q4-scenario-definition}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.18\textwidth}p{0.29\textwidth}p{0.26\textwidth}X}
+    \toprule
+    场景 & 改变的外生条件 & 检验目的 & 不允许的解释 \\
+    \midrule
+    观测 & 使用观测窗口原始序列 & 衡量代表性运行条件下的局部联动价值 & 不代表年度平均 \\
+    峰段电价 & 经验高价压力作用于窗口 & 检查任务移动与储能套利响应 & 不赋予价格概率 \\
+    高碳 & 经验高碳强度压力 & 检查购电碳排目标是否改变动作 & 不代表政策情景预测 \\
+    低新能源 & 压低可用新能源 & 检查正向购电和储能支撑需求 & 不外推到所有季节 \\
+    联合压力 & 同时叠加低新能源与高碳等压力 & 检查多重约束下的非劣性 & 不称最坏情形上界 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+联合搜索的每次迭代包括五步：根据当前基线评分更新候选任务；固定非邻域任务并生成一个可行任务移动；从任务排程重算六区域设施负荷；分别求解场景储能追补子问题；依据硬约束、$\varepsilon$ 非劣性和归一化距离决定接受或拒绝。若候选在任一场景出现任务遗漏、SLA、SOC、互斥或电能平衡失败，则无需比较软指标，立即拒绝。
+
+归一化指标差值按式~\eqref{eq:q4-normalization} 计算。
+
+\begin{equation}
+  \Delta_m=\frac{F_m^{\mathrm{cand}}-F_m^{\mathrm{base}}}
+  {\max\{|F_m^{\mathrm{base}}|,s_m\}},\qquad m\in\{C,E,\bar\ell,P,-\rho_R\},
+  \label{eq:q4-normalization}
+\end{equation}
+其中 $s_m$ 是预先确定的稳定尺度。候选需满足 $\Delta_m\le\varepsilon_m$，并至少存在一个指标严格改善；在可接受集合内，再最小化 $\|\boldsymbol\Delta\|_2$ 选择等权局部膝点。该规则避免不同量纲直接相加，也避免把某一极小尺度指标放大成支配因素。
+
+为避免局部搜索以牺牲某一指标换取另一指标后被误称为全面改善，接受准则要求所有预注册硬约束通过，各主要指标相对顺序基线不超过允许的 $\varepsilon$ 退化，并至少一项严格改善。正式运行共执行 \PaperMetric{q4-storage-evals} 次储能评价，接受 \PaperMetric{q4-accepted-moves} 个任务移动。搜索次数描述算法工作量，不应作为优化质量指标。
+
+\subsection{五场景结果}
+
+五场景结果见表~\ref{tab:q4-scenarios}。
+
+\TableQFourScenarios
+
+任务、储能与电网硬约束审计为\ClaimBoolean{Q4-AUDIT-PASS}。观测场景下，局部联合候选相对顺序基线的净运行成本差为 \ClaimMoney{Q4-OBS-COST-DELTA}~CNY。低新能源场景的成本差和购电碳排差分别为 \ClaimMoney{Q4-LOWREN-COST-DELTA}~CNY 与 \ClaimCarbon{Q4-LOWREN-CARBON-DELTA}~tCO$_2$；联合压力场景的购电碳排差为 \ClaimCarbon{Q4-JOINT-CARBON-DELTA}~tCO$_2$。负差值表示候选指标更低，成本仍按购电减售电收入计算。
+
+图~\ref{fig:q4-tradeoff} 在成本--碳排平面比较五个场景，点大小编码新能源利用率增益，并用形状区分顺序基线与局部联合候选。碳排为零的场景会重合，因此必须依靠形状、边框和标注而非颜色单独区分。该图承担场景权衡表达，精确数值仍以表~\ref{tab:q4-scenarios} 为准。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.94\linewidth]{fig-q4-scenario-tradeoff.pdf}
+  \caption{五场景下顺序基线与局部联合候选的成本--购电碳排权衡。点大小编码新能源利用率增益，点形和边框提供颜色之外的第二编码。}
+  \label{fig:q4-tradeoff}
+\end{figure}
+
+图~\ref{fig:q4-profile} 进一步展示观测场景 72 h 窗口内候选相对顺序基线的六区域聚合计算负荷与净购电差异。图中只绘制两项差值至少一项非零的事件小时，并保留事件之间的真实时间间距；上下两面板采用独立纵轴，避免少数较大的净购电响应压缩任务侧调整。任务移动与储能追补共同作用于结果，因此不能把净购电变化归因于单一任务移动。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.96\linewidth]{fig-q4-system-profile.pdf}
+  \caption{观测场景 72 h 窗口内局部联合候选相对顺序基线的事件响应。上图为六区域聚合计算负荷差，下图为六区域聚合净购电差；未绘制小时的两项差值均为零。净购电差为负表示候选减少净购电或增加净外送。}
+  \label{fig:q4-profile}
+\end{figure}
+
+\subsection{可复现性与最优性边界}
+
+在固定输入、种子和候选顺序下，Q4 排程完成逐字节确定性复跑，结果为\ClaimBoolean{Q4-DETERMINISTIC-REPLAY}。五场景的任务、储能和电网约束均由独立程序复算。由于只优化 72 h 窗口、只释放 12 条任务并采用交替局部搜索，本文严格使用“72 小时、12 任务邻域的受限局部联合优化”这一表述，不宣称 2407 h 全时域最优、全局 Pareto 最优或联合模型的唯一解。
+
+\section{综合评价、局限与推广}
+
+\subsection{跨问题接口的一致性}
+
+四问共享任务唯一性、不可抢占、网络时延、GPU/功率和收尾边界。Q1 将原始任务转化为需求统计，同时保留实际任务用于排程；Q2 在相同任务约束下加入电价、碳强度和新能源；Q3 固定 Q2 负荷并增加储能状态和购售电；Q4 只在声明的 72 h 窗口重新开放少量任务。该接口设计使每一阶段新增的变量和结论边界可追踪，避免把预测值、历史调度列或不同能源口径重复计入。
+
+在验证层面，四问均采用“主模型--同输出基线--专项检验--独立复核--确定性复跑--输入输出校验”的验证体系。Q1 的重点是盲测隔离与区间覆盖，Q2 的重点是完整任务守恒和 SLA，Q3 的重点是 SOC、互斥和电能平衡，Q4 的重点是任务与能源约束同时成立。对优化问题，先报告硬约束和完成率，再讨论成本、碳排、时延、峰值和新能源指标。
+
+\begin{table}[H]
+  \centering
+  \caption{四问证据强度与可支持结论}
+  \label{tab:evidence-strength}
+  \small
+  \begin{tabularx}{\textwidth}{p{0.14\textwidth}p{0.26\textwidth}p{0.27\textwidth}X}
+    \toprule
+    证据类型 & 已完成检查 & 可以支持 & 不能支持 \\
+    \midrule
+    预测盲测 & 固定切分、同输出基线、误差和覆盖 & 声明窗口内的经验预测性能 & 任意未来分布的概率保证 \\
+    限时 CP-SAT & 求解状态、目标下界、最优性间隙、独立约束审计 & 给定时限内的可行排程与求解质量 & 全局最优或解唯一 \\
+    确定性启发式 & 完整排程、同约束 FIFO、复跑 & 相对基线的可复现多指标变化 & 非支配前沿或所有权重下占优 \\
+    滚动二进制 MILP & 90 块覆盖、状态传递、270 项审计 & 滚动策略的性能和完整可行性 & 单体 2407 h 全局最优 \\
+    72 h 联合搜索 & 五场景、硬约束、非劣性、逐字节复跑 & 声明窗口和邻域内的局部联动改善 & 年度、全时域或全局 Pareto 结论 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{模型优点}
+
+第一，预测和调度严格分离。预测值用于容量压力分析，最后窗口排程始终以实际任务为准，避免预测误差直接转化为任务遗漏。第二，分层预测通过一致性校正把 18 条底层序列、区域总量和系统总量统一起来，并用共形预测区间显式呈现不确定性。第三，Q1--Q4 的任务约束和功率复算使用同一接口，主模型与基线具有可比输出。第四，Q3 对负成本、购电碳排和完整约束审计给出明确经济语义与结论边界。第五，Q4 不以大而难以复核的单体模型替代可复现性，而是在固定窗口和邻域中验证任务--储能耦合是否具有实质作用。
+
+\subsection{具体局限}
+
+Q1 的系统 WAPE 仍然较高，且合并校准区间可能掩盖个别稀疏序列的覆盖不足；需要更多独立滚动起点后，才能判断两阶段模型或分任务类型直接多步模型是否稳定优于当前方法。CP-SAT 在固定时限内返回可行状态，最优性间隙未达到最优性证明要求，且固定排程对需求和持续时间正向扰动的余量有限。
+
+Q2 使用固定权重和一次有界局部交换，不保证遍历非支配前沿。静态网络时延不包含拥塞、迁移流量、数据传输能耗和跨区费用；新能源利用率略有下降，说明当前权重偏向成本与碳排。若应用侧对时延更敏感，应显式设置平均时延或分位数时延上限，并用 $\varepsilon$-constraint 产生可选择方案。
+
+Q3 的净售电收益依赖题面允许的购售电边界。模型未追踪每一单位售电来自新能源、储能还是同期购电，也未计入电池退化、辅助服务、需量电费和终端 SOC 机会价值。实际市场若禁止购电转售，应增加能源来源追踪变量或约束 $g^-_{rt}$ 不超过同期新能源余量与可追踪储能放电；若取得循环寿命参数，应加入按吞吐量或等效循环计价的退化成本。
+
+Q4 只覆盖一个 72 h 窗口和 12 任务邻域，不能代表所有季节和拥塞状态。五场景是确定性压力测试，不是概率情景，也没有给出风险分布。顺序基线与联合候选都继承 Q2、Q3 的市场和网络简化。当前结果证明局部联动有价值，但尚不足以支持全时域联合调度的工程承诺。
+
+\subsection{推广与执行建议}
+
+实际部署可采用分层滚动架构：日级更新需求预测和区间，小时级生成柔性任务候选，分钟级执行约束审计和局部修复；储能在每个滚动块内接收已确定任务负荷，只有高价、高碳、峰值或新能源短缺触发时才启动联合邻域搜索。这样可以把复杂联合求解限制在边际价值最高的时段，同时保留全时域基础排程作为可回退方案。
+
+在取得新增独立数据和明确市场规则后，Q1 可在多个滚动起点上复评预测模型，Q2 可生成时延约束下的非支配候选，Q3 可加入电池退化和能源来源追踪，Q4 可扩大任务邻域和窗口数量。上述扩展仍应保留同输出基线、硬约束复核和确定性复跑，以保证结论边界清晰。

@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "seed": 20260801,
+  "series_order": [
+    "RegionA|RealTimeInference",
+    "RegionA|BatchInference",
+    "RegionA|AITraining",
+    "RegionB|RealTimeInference",
+    "RegionB|BatchInference",
+    "RegionB|AITraining",
+    "RegionC|RealTimeInference",
+    "RegionC|BatchInference",
+    "RegionC|AITraining",
+    "RegionD|RealTimeInference",
+    "RegionD|BatchInference",
+    "RegionD|AITraining",
+    "RegionE|RealTimeInference",
+    "RegionE|BatchInference",
+    "RegionE|AITraining",
+    "RegionF|RealTimeInference",
+    "RegionF|BatchInference",
+    "RegionF|AITraining"
+  ],
+  "node_order": [
+    "RegionA|RealTimeInference",
+    "RegionA|BatchInference",
+    "RegionA|AITraining",
+    "RegionB|RealTimeInference",
+    "RegionB|BatchInference",
+    "RegionB|AITraining",
+    "RegionC|RealTimeInference",
+    "RegionC|BatchInference",
+    "RegionC|AITraining",
+    "RegionD|RealTimeInference",
+    "RegionD|BatchInference",
+    "RegionD|AITraining",
+    "RegionE|RealTimeInference",
+    "RegionE|BatchInference",
+    "RegionE|AITraining",
+    "RegionF|RealTimeInference",
+    "RegionF|BatchInference",
+    "RegionF|AITraining",
+    "RegionTotal|RegionA",
+    "RegionTotal|RegionB",
+    "RegionTotal|RegionC",
+    "RegionTotal|RegionD",
+    "RegionTotal|RegionE",
+    "RegionTotal|RegionF",
+    "TypeTotal|RealTimeInference",
+    "TypeTotal|BatchInference",
+    "TypeTotal|AITraining",
+    "SystemTotal"
+  ],
+  "time_split": {
+    "rolling_origins": [
+      2256,
+      2280,
+      2304,
+      2328
+    ],
+    "train_for_validation": [
+      0,
+      2351
+    ],
+    "validation": [
+      2352,
+      2375
+    ],
+    "final_train": [
+      0,
+      2375
+    ],
+    "blind_test": [
+      2376,
+      2399
+    ]
+  },
+  "selected_seasonal_lag_hours": 168,
+  "selected_residual_shrinkage": 1.0,
+  "features": [
+    "lags 1,2,3,24,48,168",
+    "rolling mean/std 24 and 168 hours",
+    "hour and weekday cyclic encoding",
+    "region and task-type one-hot encoding"
+  ],
+  "hierarchy": "nonnegative diagonal-WLS reconciliation by bounded least squares",
+  "interval": "95% normalized pooled split-conformal interval calibrated only on hours 2352--2375"
+}

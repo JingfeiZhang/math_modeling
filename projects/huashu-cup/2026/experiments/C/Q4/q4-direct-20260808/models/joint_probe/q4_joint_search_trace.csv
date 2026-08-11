@@ -1,0 +1,7 @@
+TaskID,options_evaluated,accepted,old_region,new_region,old_start_minute,new_start_minute,joint_objective
+7983,5,True,RegionC,RegionB,142260,142260,-0.8105136453703077
+16733,4,False,RegionB,RegionB,139920,139920,-0.8105136453703077
+35697,1,False,RegionC,RegionC,139800,139800,-0.8105136453703077
+36549,3,True,RegionA,RegionA,141000,141120,-0.8146575257322801
+38786,1,False,RegionC,RegionC,143940,143940,-0.8146575257322801
+43496,6,False,RegionA,RegionA,143160,143160,-0.8146575257322801

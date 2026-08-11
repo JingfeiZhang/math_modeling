@@ -1,0 +1,14 @@
+id: mcm-current
+engine: xelatex
+paper_size: letter
+columns: 1
+margin_in: 1
+automatic_toc: false
+identity_fields:
+  team_control_number_only: true
+  personal_identity: false
+summary_sheet: true
+rule_status: refresh_from_current_comap_instructions_before_submission
+notes:
+  - This is a compilable workflow template, not a substitute for the official COMAP form.
+  - Preserve the current official Summary Sheet wording and page rules when refreshed.

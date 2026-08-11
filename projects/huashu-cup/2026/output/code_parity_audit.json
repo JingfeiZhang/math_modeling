@@ -1,0 +1,358 @@
+{
+  "schema_version": 2,
+  "formal": true,
+  "support_requested": false,
+  "support_checked": false,
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "metrics": {
+    "manifest_code_entries": 37,
+    "latex_code_listings": 8,
+    "paper_code_entries": 37,
+    "support_entries": 0
+  },
+  "entries": [
+    {
+      "path": "src/submission/run.py",
+      "support_path": "run.py",
+      "exists": true,
+      "sha256": "18cde3370812b9d34b1151937fa225386d8b76c09979b3cc7452892aeeaf3fc2",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/code/common/runtime.py",
+      "support_path": "code/common/runtime.py",
+      "exists": true,
+      "sha256": "4ca77183177c67cd827a48d9a8fc0918626204d61176cbc78ce443d6dbcbbf80",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/code/q1/run_q1.py",
+      "support_path": "code/q1/run_q1.py",
+      "exists": true,
+      "sha256": "9aad5db4d0660837fa1683ae1636bc709753ec6e3361d931406a3c7b19276c62",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/code/q1/forecast_core.py",
+      "support_path": "code/q1/forecast_core.py",
+      "exists": true,
+      "sha256": "a6976f6a0fd8b5d693ce01a6766e6a3451fdd474a643ed574b2b4a2543f3f252",
+      "origins": [
+        "manifest",
+        "latex",
+        "latex"
+      ]
+    },
+    {
+      "path": "src/submission/code/q1/schedule_core.py",
+      "support_path": "code/q1/schedule_core.py",
+      "exists": true,
+      "sha256": "ca3062c96a9908a60aae9ef740068ea5c3a9ebf692b658b46368ea1b350c5d13",
+      "origins": [
+        "manifest",
+        "latex"
+      ]
+    },
+    {
+      "path": "src/submission/code/q2/run_q2.py",
+      "support_path": "code/q2/run_q2.py",
+      "exists": true,
+      "sha256": "d6def68912d265fd2ee5476245db3828f0f25299542828218af0896bb6943519",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/code/q2/scheduler_core.py",
+      "support_path": "code/q2/scheduler_core.py",
+      "exists": true,
+      "sha256": "5c8ab1f906d2897f24eca72a0d2df0831825ef76480087413dd5f10932d1b104",
+      "origins": [
+        "manifest",
+        "latex"
+      ]
+    },
+    {
+      "path": "src/submission/code/q3/run_q3.py",
+      "support_path": "code/q3/run_q3.py",
+      "exists": true,
+      "sha256": "b1883043c02f1d255a215be66f1e730c8eeae1db29182fa834f007a8d7d44c00",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/code/q3/storage_core.py",
+      "support_path": "code/q3/storage_core.py",
+      "exists": true,
+      "sha256": "ee38d80f9ce0fb51803920bee6be3f481edafab12b2d8874747ff384fb8251a0",
+      "origins": [
+        "manifest",
+        "latex"
+      ]
+    },
+    {
+      "path": "src/submission/code/q3/full_audit_core.py",
+      "support_path": "code/q3/full_audit_core.py",
+      "exists": true,
+      "sha256": "acfce5ae792c639482180216b38de799c8b4ef338dff29e00eaa60f652ed089f",
+      "origins": [
+        "manifest",
+        "latex"
+      ]
+    },
+    {
+      "path": "src/submission/code/q4/run_q4.py",
+      "support_path": "code/q4/run_q4.py",
+      "exists": true,
+      "sha256": "4a09a3308a6ab31f4b1aa3c130bbc6e2cfd0cf034bbc627d69bdea06179bed08",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/code/q4/joint_core.py",
+      "support_path": "code/q4/joint_core.py",
+      "exists": true,
+      "sha256": "6e1587da251fbb8d9190a0b149295f7b6041bd31186ccf876b38771c9c27bd9d",
+      "origins": [
+        "manifest",
+        "latex"
+      ]
+    },
+    {
+      "path": "src/submission/code/q4/storage_recourse.py",
+      "support_path": "code/q4/storage_recourse.py",
+      "exists": true,
+      "sha256": "e1693a9b3359bca4246e4f0cb9a1dc18c697c0edf3d3fad866a97f626a46f803",
+      "origins": [
+        "manifest",
+        "latex"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/prepare_figure_data.m",
+      "support_path": "code/matlab/prepare_figure_data.m",
+      "exists": true,
+      "sha256": "3efe4c465f972599ed294b48a3d974941acbe34bd7ac2b332ad8240aca9226a7",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/build_all_figures.m",
+      "support_path": "code/matlab/build_all_figures.m",
+      "exists": true,
+      "sha256": "90daf8697b1ce653b0db94d725797559e184bd783efaa780fc93b0d9c677d37e",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q1_blind_forecast_interval.m",
+      "support_path": "code/matlab/figures/fig_q1_blind_forecast_interval.m",
+      "exists": true,
+      "sha256": "b4dedf2dea558fc3f2ca2b11e95429b2ef2cd4efdd57ef191f523c9e4435d048",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q1_resource_headroom.m",
+      "support_path": "code/matlab/figures/fig_q1_resource_headroom.m",
+      "exists": true,
+      "sha256": "1e474bd892b689abc9d043cfebc5afe12b3c6da041b7ba450187202dfc16e5c6",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q1_schedule_gantt.m",
+      "support_path": "code/matlab/figures/fig_q1_schedule_gantt.m",
+      "exists": true,
+      "sha256": "8c34c27a450b9d04547aa917ce9d5c7b15a89f4b9a3027f79e1bf16070937a96",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q1_series_error_pairing.m",
+      "support_path": "code/matlab/figures/fig_q1_series_error_pairing.m",
+      "exists": true,
+      "sha256": "51c970509f8739139c4bfeee9f537c7a4d8bfd4b2e7ff300bf35f1e60af25f4c",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q1_weekly_demand_structure.m",
+      "support_path": "code/matlab/figures/fig_q1_weekly_demand_structure.m",
+      "exists": true,
+      "sha256": "19598c1fa1d58a73aba5b2460141d9beae46f8a2473590dd91890dcb64f89ed7",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q2_cumulative_impact.m",
+      "support_path": "code/matlab/figures/fig_q2_cumulative_impact.m",
+      "exists": true,
+      "sha256": "6fda02aa520d2bd92730837e64bbb44ea8e21c562db36c0a15533f3f53415c49",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q2_latency_ecdf.m",
+      "support_path": "code/matlab/figures/fig_q2_latency_ecdf.m",
+      "exists": true,
+      "sha256": "b2e159320fde528fe32df2eaf8962ac92772fab79cf8b69005c8fe2cc7578a41",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q2_load_migration.m",
+      "support_path": "code/matlab/figures/fig_q2_load_migration.m",
+      "exists": true,
+      "sha256": "9bcc1a7ea52e275b0a0de42281010cf37f132bad4b38f25fe99b0dc0ee2c3b5b",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q3_dispatch_soc.m",
+      "support_path": "code/matlab/figures/fig_q3_dispatch_soc.m",
+      "exists": true,
+      "sha256": "6945ddff4984bbfe67099698adb38a2072a68a64a95264a05269934ab4ee97b5",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q3_rolling_runtime_coverage.m",
+      "support_path": "code/matlab/figures/fig_q3_rolling_runtime_coverage.m",
+      "exists": true,
+      "sha256": "dc71ed0e904e021cdc4a205cce1bd651d1c91a49edcfe82af520277b03c5010d",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q4_scenario_tradeoff.m",
+      "support_path": "code/matlab/figures/fig_q4_scenario_tradeoff.m",
+      "exists": true,
+      "sha256": "97964d5dae01f4707dc100b22052ebde11d13e0fb62407e706c8b1f4f1985aec",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/figures/fig_q4_system_profile.m",
+      "support_path": "code/matlab/figures/fig_q4_system_profile.m",
+      "exists": true,
+      "sha256": "d57ce3036e3fa3c903a59009bef9fb3a0cad8dcebe885a3da24b315cfdc55452",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/helpers/mf_apply_axes.m",
+      "support_path": "code/matlab/helpers/mf_apply_axes.m",
+      "exists": true,
+      "sha256": "57363aef725af8ba33c3be97d3cca91798462175c4dd6b9b28df1f255cb948fd",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/helpers/mf_colorbar.m",
+      "support_path": "code/matlab/helpers/mf_colorbar.m",
+      "exists": true,
+      "sha256": "3964af67c21617e4ea3bbd766d8a5995393e2272c76a77cfcb22ed234ce4b7d4",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/helpers/mf_colormap.m",
+      "support_path": "code/matlab/helpers/mf_colormap.m",
+      "exists": true,
+      "sha256": "7a7b84d471cf03bec586926fa7d30677330657d076e52e6fc5e2cd299b6b7926",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/helpers/mf_export_triplet.m",
+      "support_path": "code/matlab/helpers/mf_export_triplet.m",
+      "exists": true,
+      "sha256": "c92b7461f11a2a69c290b3a8614ffb1992c8eaea69b867f8b4f99ee8251a105d",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/helpers/mf_legend.m",
+      "support_path": "code/matlab/helpers/mf_legend.m",
+      "exists": true,
+      "sha256": "09195c668840b3d56b7fd70daa345a43ea034c582a9c66389774feeee43d0220",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/helpers/mf_publication_figure.m",
+      "support_path": "code/matlab/helpers/mf_publication_figure.m",
+      "exists": true,
+      "sha256": "c868be775ced014862a7c42c1f3757351de1c6664230138f64ddf93c725c2012",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/helpers/mf_require_columns.m",
+      "support_path": "code/matlab/helpers/mf_require_columns.m",
+      "exists": true,
+      "sha256": "3e01aa2d1495aa63504b572a5a35a1dce5ffad241d9064efa6a8ec995e69450f",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/helpers/mf_sha256.m",
+      "support_path": "code/matlab/helpers/mf_sha256.m",
+      "exists": true,
+      "sha256": "26a79c72fd5058de1da971b8f80f831d010dc7db1ecc62aa5cc5b33d02c51127",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/helpers/mf_style.m",
+      "support_path": "code/matlab/helpers/mf_style.m",
+      "exists": true,
+      "sha256": "0dbe65aaca84aacd229d44d8628f6b7917423c5098072e351324e8ea85faaf0e",
+      "origins": [
+        "manifest"
+      ]
+    },
+    {
+      "path": "src/submission/matlab/helpers/mf_write_json.m",
+      "support_path": "code/matlab/helpers/mf_write_json.m",
+      "exists": true,
+      "sha256": "5a2099cbceabae44c64c21eaebaf07cec6364ad431fc7a57e8fda7f2f9fb89eb",
+      "origins": [
+        "manifest"
+      ]
+    }
+  ]
+}

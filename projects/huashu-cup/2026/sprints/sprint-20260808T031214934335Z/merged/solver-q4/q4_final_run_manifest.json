@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T031214934335Z",
+  "task_id": "solver-q4",
+  "run_id": "q4-final-72h-20260808",
+  "problem_id": "C",
+  "question_id": "Q4",
+  "engine": "python",
+  "command": [
+    "D:\\anaconda3\\envs\\math-modeling\\python.exe",
+    "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T031214934335Z\\staging\\solver-q4\\run_solver_q4_final.py"
+  ],
+  "working_directory": "D:\\数学建模\\projects\\huashu-cup\\2026\\sprints\\sprint-20260808T031214934335Z\\staging\\solver-q4",
+  "started_at_utc": "2026-08-08T04:51:22.771860+00:00",
+  "ended_at_utc": "2026-08-08T04:51:27.988476+00:00",
+  "environment": {
+    "python": "3.13.14 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:26:41) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "scipy": "1.18.0"
+  },
+  "seed": 20260808,
+  "code": {
+    "runner": "sprints/sprint-20260808T031214934335Z/staging/solver-q4/run_solver_q4_final.py",
+    "sha256": "53bbde759fb7b089656a8f14e986d824e7e86332b864232f0131f6de17a8c7f3"
+  },
+  "input_hashes": [
+    {
+      "path": "problems/C/questions/Q4/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "1be5ba0fc7988ecc9946f797140f1651baf66a22995ac5661d8e2d7ceb629a52"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "problems/C/data/workload_trace.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "006c0802f4a5a94a94eb7c54f8333091ac860c7d35c9c2c9ad04c68d4f0165ba"
+    },
+    {
+      "path": "problems/C/data/GPU_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "68f978ff242da0bab54259283f647c7552693acf6db5e2212ff4e10f6a5d5d2f"
+    },
+    {
+      "path": "problems/C/data/network_latency.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "f7e16fc33d8c188b0889e358497e0d96451e04c77ce765a667a50488f02ac157"
+    },
+    {
+      "path": "problems/C/data/region_time_data.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0386a1f6ae825fc4e9797528545090863817b73154050f3ba7a1068e456d55ba"
+    },
+    {
+      "path": "problems/C/data/power_mapping.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "a5bea2b708cc4e5586e59bfd832b8dde7b629d212fcd8c3a0f132c03163ae39e"
+    },
+    {
+      "path": "problems/C/data/storage_information.xlsx",
+      "kind": "file",
+      "exists": true,
+      "sha256": "ff5384eb6e955079766b22432e630dfdec9f347f11cd334d950716b21692b3e4"
+    },
+    {
+      "path": "sprints/sprint-20260807T210015466011Z/merged/solver-q4",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "2b72059f04e8ef5955e753c91aba96e985310f5af556d988d66c3c0b0260d3f4"
+    },
+    {
+      "path": "sprints/sprint-20260808T023234268084Z/merged/solver-q2",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "a0368efa26729cc590af05527be89328e1c69f394a93fb63255e00917bba419e"
+    },
+    {
+      "path": "sprints/sprint-20260808T023236665505Z/merged/solver-q3",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "0dd4b68fc5f0ad7b6a262add96bdcd416fa2ebb16afcaec63b9ae7d6ec5d166f"
+    },
+    {
+      "path": "sprints/sprint-20260808T023235447353Z/merged/solver-q4",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "7e1da447b5fc898737084acbbd2487eef535a24832af62a5f7b8f0d39bc9a14c"
+    }
+  ],
+  "data_scope": {
+    "window_id": "w2328_2400",
+    "absolute_hours": [
+      2328,
+      2399
+    ],
+    "horizon_h": 72,
+    "regions": [
+      "RegionA",
+      "RegionB",
+      "RegionC",
+      "RegionD",
+      "RegionE",
+      "RegionF"
+    ],
+    "candidate_q2_tasks": 1577,
+    "baseline_q2_tasks": 1577
+  },
+  "solver": {
+    "library": "scipy.optimize.milp",
+    "mode": "integrated_binary_MILP",
+    "time_limit_s_per_scenario": 60.0,
+    "mip_rel_gap": 1e-07,
+    "carbon_weight": 0.35,
+    "system_peak_weight": 0.08
+  },
+  "metric_definitions_and_units": {
+    "cost_CNY": "CNY",
+    "carbon_tCO2": "tCO2",
+    "peak_net_import_MW": "MW",
+    "renewable_utilization_ratio": "dimensionless",
+    "mean_latency_ms": "ms inherited from the audited Q2 schedule",
+    "task_completion_rate": "dimensionless inherited from the audited Q2 schedule",
+    "SLA_violation_rate": "dimensionless inherited from the audited Q2 schedule"
+  },
+  "outputs": [
+    "q4_final_candidate_envelope.csv",
+    "q4_final_baseline_envelope.csv",
+    "q4_final_candidate_dispatch.csv",
+    "q4_final_baseline_dispatch.csv",
+    "q4_final_candidate_metrics.csv",
+    "q4_final_baseline_metrics.csv",
+    "q4_final_aggregate_comparison.csv",
+    "q4_final_system_hourly.csv",
+    "q4_final_constraint_audit.json",
+    "q4_final_summary.json"
+  ],
+  "solver_records": {
+    "observed": {
+      "success": true,
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "runtime_s": 0.3201191000043764,
+      "mip_gap": 0.0,
+      "mip_node_count": 1,
+      "objective": -0.12705817998616833,
+      "solver_mode": "integrated_binary_MILP",
+      "system_peak_variable_MW": 0.0,
+      "system_peak_net_import_MW": -231.37011085333347
+    },
+    "peak_price_empirical": {
+      "success": true,
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "runtime_s": 0.25333210000098916,
+      "mip_gap": 2.2863433750001054e-16,
+      "mip_node_count": 1,
+      "objective": -0.12139723157562732,
+      "solver_mode": "integrated_binary_MILP",
+      "system_peak_variable_MW": 0.0,
+      "system_peak_net_import_MW": -231.37011085333347
+    },
+    "high_carbon_empirical": {
+      "success": true,
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "runtime_s": 0.3037996999992174,
+      "mip_gap": 0.0,
+      "mip_node_count": 1,
+      "objective": -0.12705817998616833,
+      "solver_mode": "integrated_binary_MILP",
+      "system_peak_variable_MW": 0.0,
+      "system_peak_net_import_MW": -231.37011085333347
+    },
+    "renewable_low_empirical": {
+      "success": true,
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "runtime_s": 0.4197335999997449,
+      "mip_gap": 0.0,
+      "mip_node_count": 33,
+      "objective": -0.11842099588086046,
+      "solver_mode": "integrated_binary_MILP",
+      "system_peak_variable_MW": 0.0,
+      "system_peak_net_import_MW": -167.0785004600001
+    },
+    "joint_stress": {
+      "success": true,
+      "status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "runtime_s": 0.4104107999955886,
+      "mip_gap": 0.0,
+      "mip_node_count": 32,
+      "objective": -0.11321808618173254,
+      "solver_mode": "integrated_binary_MILP",
+      "system_peak_variable_MW": 0.0,
+      "system_peak_net_import_MW": -167.0785004600001
+    }
+  },
+  "status": "PASS",
+  "runtime_s": 5.230299
+}

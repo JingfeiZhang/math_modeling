@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "question_id": "Q3",
+  "status": "PASS",
+  "regions": 6,
+  "rolling_blocks": 90,
+  "full_audit_count": 270,
+  "full_audit_passed": 270,
+  "soc_constraints_passed": true,
+  "charge_discharge_mutex_passed": true,
+  "grid_import_export_mutex_passed": true,
+  "energy_balance_passed": true
+}

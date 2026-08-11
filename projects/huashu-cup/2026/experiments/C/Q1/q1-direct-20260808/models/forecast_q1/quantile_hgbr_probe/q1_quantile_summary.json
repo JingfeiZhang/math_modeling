@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "method": "quantile_HGBR_0.025_0.975_recursive_residual_probe",
+  "main_method_unchanged": "HGBR + hierarchical consistency correction + pooled conformal",
+  "seed": 20260801,
+  "origins": {
+    "validation": 2352,
+    "blind_test": 2376
+  },
+  "training_rule": "fit only on rows t < origin with seasonal lag 168; no blind rows enter fitting",
+  "metrics": {
+    "validation": {
+      "mae_gpu_h": 157.3808531379806,
+      "rmse_gpu_h": 256.12019159377854,
+      "wape": 1.4487807636705434,
+      "coverage_95": 0.9398148148148148,
+      "mean_interval_width_gpu_h": 462.72835107254906,
+      "nonnegative_point": true,
+      "ordered_intervals": true
+    },
+    "blind_test": {
+      "mae_gpu_h": 147.66563287272916,
+      "rmse_gpu_h": 250.1037974672209,
+      "wape": 1.0634271014388006,
+      "coverage_95": 0.9328703703703703,
+      "mean_interval_width_gpu_h": 452.78136758074726,
+      "nonnegative_point": true,
+      "ordered_intervals": true
+    }
+  },
+  "frozen_shared_hgbr_blind_metrics": {
+    "wape": 0.8934394917252527,
+    "rmse_gpu_h": 265.179312790732,
+    "coverage_95": 0.9467592592592593,
+    "mean_interval_width_gpu_h": 442.4785992994602
+  },
+  "dependency_probe": {
+    "catboost_available": false,
+    "catboost_status": "not_run_when_dependency_missing"
+  },
+  "decision": "PROBE_ONLY",
+  "decision_reason": "Candidate interval uses an independent quantile loss but is not allowed to replace the frozen point/conformal main line without a pre-registered holdout review.",
+  "runtime_seconds": 8.09828809999999,
+  "code_sha256": "00b3e92077890191eecf9b9c6b286012784be5fb5fb66b64d0bbd96e57d01f95"
+}

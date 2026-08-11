@@ -1,0 +1,364 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2013-a-a056",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2013,
+    "problem": "A",
+    "team_id": "",
+    "title": "车道被占用对城市道路通行能力的影响"
+  },
+  "source": {
+    "url": "https://raw.githubusercontent.com/personqianduixue/Math_Model/8783d0d822f89f98aa6182dd933cc2e9f3e2ddce/2-1%E5%9B%BD%E8%B5%9B%E9%A2%98%E7%9B%AE%2B%E8%AE%BA%E6%96%87/2013/A056/5486/5486.pdf",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-1国赛题目+论文/2013/A056/5486/5486.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "CUMCM",
+    "year": 2013,
+    "problem": "A",
+    "team_id": "",
+    "title": "车道被占用对城市道路通行能力的影响",
+    "award": "上游社区目录标注为优秀论文（未独立核验）"
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": false,
+      "mirror_publisher": true,
+      "fulltext_available": true,
+      "official_award_verified": false,
+      "identity_aligned": false
+    },
+    "reasons": [
+      "metadata is indexable but award/full-text evidence is insufficient"
+    ]
+  },
+  "pdf": {
+    "sha256": "bae180e8fe47c11e9096a3bd2484fc08e66fcfe6969e65c6c644679ed7cab02d",
+    "pages": 35,
+    "local_path": "corpus/raw/objects/sha256/ba/bae180e8fe47c11e9096a3bd2484fc08e66fcfe6969e65c6c644679ed7cab02d.pdf",
+    "first_page_phash": "68f0e4c0c0c8dce0",
+    "text_sha256": "ef789e89a002dc1b5c9f81c596d05fc6961c7048e707055093721d570a42d99f"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 3,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要页呈现“问题背景和任务概括；按子问题顺序陈述方法与结果；摘要包含量化结果或结果判断；末尾列出关键词”的组织结构。",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：滤波法、、形态学滤波法和边缘检测算法为辅的图像处理方法得到检测运动车辆的",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：增加而改变的排队长度，然后使用非线性比例尺改进算法统计视频的排队长度。",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：一个自变量，和事故持续时间一同作为 BP 神经网络的输入样本，排队长度作为输",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "页面明确呈现模型步骤：出样本进行训练，得到一个拥挤交通流排队长度模型。最后用遗传算法对神经网",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：针对问题二，在视频一和视频二的数据通过正态检验和方差齐次检验后，利",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-03.jpg"
+    },
+    {
+      "page": 6,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：背景差分法，后处理经过对比后使用了形态学滤波法，最后使用了边缘检测提取",
+      "derivation": "mixed",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-06.jpg"
+    },
+    {
+      "page": 6,
+      "tags": [
+        "validation"
+      ],
+      "observation": "页面明确呈现验证或评价步骤：有高对比度和多变的灰度色调。直方图均衡化就是一种能仅靠输入图像直方图信",
+      "derivation": "mixed",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-06.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：通行能力的影响无显著性差异的结论。为了得到这种影响的实际情况，本文又进",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-03.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "conclusion_boundary"
+      ],
+      "observation": "结尾部分呈现结论边界：增加而改变的排队长度，然后使用非线性比例尺改进算法统计视频的排队长度。",
+      "derivation": "mixed",
+      "locator": "PDF p.3",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-03.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 3,
+      "order": 1,
+      "role": "问题背景和任务概括",
+      "locator": "PDF p.3"
+    },
+    {
+      "page": 3,
+      "order": 2,
+      "role": "按子问题顺序陈述方法与结果",
+      "locator": "PDF p.3"
+    },
+    {
+      "page": 3,
+      "order": 3,
+      "role": "摘要包含量化结果或结果判断",
+      "locator": "PDF p.3"
+    },
+    {
+      "page": 3,
+      "order": 4,
+      "role": "末尾列出关键词",
+      "locator": "PDF p.3"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 3,
+      "description": "滤波法、、形态学滤波法和边缘检测算法为辅的图像处理方法得到检测运动车辆的",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 2,
+      "page": 3,
+      "description": "增加而改变的排队长度，然后使用非线性比例尺改进算法统计视频的排队长度。",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 3,
+      "page": 3,
+      "description": "一个自变量，和事故持续时间一同作为 BP 神经网络的输入样本，排队长度作为输",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 4,
+      "page": 3,
+      "description": "出样本进行训练，得到一个拥挤交通流排队长度模型。最后用遗传算法对神经网",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 5,
+      "page": 3,
+      "description": "络进行优化。模型的结果和样本数据拟合效果较好，显示排队长度会随着排队时",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 6,
+      "page": 3,
+      "description": "于元胞自动机的交通流预测模型。经过模拟仿真，得到的结果为：事故发生后，",
+      "locator": "PDF p.3"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 3,
+      "description": "针对问题二，在视频一和视频二的数据通过正态检验和方差齐次检验后，利",
+      "locator": "PDF p.3"
+    },
+    {
+      "step": 2,
+      "page": 6,
+      "description": "背景差分法，后处理经过对比后使用了形态学滤波法，最后使用了边缘检测提取",
+      "locator": "PDF p.6"
+    },
+    {
+      "step": 3,
+      "page": 6,
+      "description": "有高对比度和多变的灰度色调。直方图均衡化就是一种能仅靠输入图像直方图信",
+      "locator": "PDF p.6"
+    },
+    {
+      "step": 4,
+      "page": 6,
+      "description": "围，提高了对比度和灰度色调的变化，使图像更加清晰。",
+      "locator": "PDF p.6"
+    },
+    {
+      "step": 5,
+      "page": 7,
+      "description": "分析图 2 可知直方图均衡化后的图像效果更佳，对比度更明显。",
+      "locator": "PDF p.7"
+    }
+  ],
+  "figures": [
+    {
+      "page": 6,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "边缘。图 1 的具体过程如下。",
+      "lesson": "图题“边缘。图 1 的具体过程如下。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.6",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-06.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "分析图 2 可知直方图均衡化后的图像效果更佳，对比度更明显。",
+      "lesson": "图题“分析图 2 可知直方图均衡化后的图像效果更佳，对比度更明显。”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 7,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "观察图 2 右图和图 3 可知此时色调变化更圆融了，有效地消除了噪声的干扰，",
+      "lesson": "图题“观察图 2 右图和图 3 可知此时色调变化更圆融了，有效地消除了噪声的干扰，”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.7",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-07.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 10,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "观察图 6 可知汽车轮廓比较明显，轮廓比较小的是小轿车，轮廓最大的是公",
+      "lesson": "图题“观察图 6 可知汽车轮廓比较明显，轮廓比较小的是小轿车，轮廓最大的是公”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.10",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-10.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 14,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 10",
+      "lesson": "图题“图 10”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.14",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-14.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 14,
+      "role": "result evidence",
+      "chart_type": "result-figure",
+      "caption": "图 11",
+      "lesson": "图题“图 11”把图件与对应论证定位在同一证据页；迁移时应保留变量、单位和图注。",
+      "locator": "PDF p.14",
+      "render": "corpus/rendered/cumcm-2013-a-a056/pages/page-14.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "摘要按真实子问题顺序把方法与结果配对",
+      "evidence_page": 3
+    },
+    {
+      "rule": "模型链按问题、假设、模型、求解、结果组织，而不是堆叠算法名称",
+      "evidence_page": 3
+    },
+    {
+      "rule": "结果图应在同页正文说明论证作用，并补齐变量、单位、基线与不确定性",
+      "evidence_page": 6
+    },
+    {
+      "rule": "结论只复述已验证主张，并单列适用边界、缺点和改进方向",
+      "evidence_page": 3
+    }
+  ],
+  "risks": [
+    "上游目录声称为优秀论文，但尚无独立官方结果页或队号匹配证据；真实性保持 C。",
+    "未执行论文关联代码，不能据正文反推具体实现或复现性。"
+  ],
+  "provenance": {
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "git_blob_sha": "29ce09bd0b75f5ff763168407005295d2af714bc",
+    "bytes": 1824385,
+    "accessed": "2026-08-03",
+    "extraction": {
+      "file": "corpus/raw/cumcm-2013-a-a056/extracted-layout.txt",
+      "sha256": "ef789e89a002dc1b5c9f81c596d05fc6961c7048e707055093721d570a42d99f",
+      "extracted_pages": 35,
+      "method": "pdftotext-layout"
+    },
+    "render": {
+      "method": "pdftoppm-jpeg-110dpi",
+      "pages": 35,
+      "contact_sheets": [
+        "corpus/rendered/cumcm-2013-a-a056/contact-01-08.jpg",
+        "corpus/rendered/cumcm-2013-a-a056/contact-09-16.jpg",
+        "corpus/rendered/cumcm-2013-a-a056/contact-17-24.jpg",
+        "corpus/rendered/cumcm-2013-a-a056/contact-25-32.jpg",
+        "corpus/rendered/cumcm-2013-a-a056/contact-33-35.jpg"
+      ],
+      "visual_review": "complete"
+    },
+    "authenticity_policy": "filename and directory claims are excluded from A/B evidence"
+  }
+}

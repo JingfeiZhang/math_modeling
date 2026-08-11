@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T101814701038Z",
+  "task_id": "solver-q1q2",
+  "problem_id": "C",
+  "question_ids": ["Q1", "Q2"],
+  "target_gate": "G4",
+  "status": "PASS",
+  "formal_state_modified": false,
+  "review_scope": "incremental evidence only; no formal claim freeze, paper edit, or model replacement",
+  "q1": {
+    "method": "fixed HGBR point predictions with pooled normalized split-conformal versus 18 region-by-task-type groupwise calibrations",
+    "inputs": {
+      "validation_rows": 432,
+      "blind_rows": 432,
+      "groups": 18,
+      "calibration_rows_per_group": 24,
+      "alpha": 0.05
+    },
+    "pooled": {
+      "blind_coverage": 0.9467592592592593,
+      "worst_group_abs_deviation": 0.11666666666666659,
+      "mean_interval_width_gpu_h": 442.478599299456,
+      "blind_wape": 0.8934394917252527,
+      "blind_rmse_gpu_h": 265.179312790732
+    },
+    "groupwise": {
+      "blind_coverage": 0.9629629629629629,
+      "worst_group_abs_deviation": 0.11666666666666659,
+      "mean_interval_width_gpu_h": 447.3852227849384,
+      "blind_wape": 0.8934394917252527,
+      "blind_rmse_gpu_h": 265.179312790732
+    },
+    "decision": "RETAIN_POOLED",
+    "acceptance": {
+      "worst_group_deviation_improvement": 0.0,
+      "mean_width_inflation_ratio": 0.01108895095322282,
+      "pooled_coverage_reproduction_max_abs_difference_gpu_h": 2.248476960176049e-10,
+      "groupwise_adoption_criteria_passed": false
+    },
+    "negative_findings": [
+      "Groupwise calibration did not improve worst-group absolute coverage deviation by the required 0.02.",
+      "Coverage deviation worsened for RegionD|AITraining, RegionD|BatchInference, RegionD|RealTimeInference, and RegionE|RealTimeInference.",
+      "Twenty-four calibration observations per group make the finite-sample groupwise quantile coarse; empirical coverage is descriptive, not conditional-coverage proof."
+    ],
+    "evidence": [
+      "q1_groupwise_conformal.csv",
+      "q1_groupwise_conformal_summary.json"
+    ]
+  },
+  "q2": {
+    "method": "same-input full-horizon FIFO baseline plus deterministic six-hour rolling shadow exchange with a 72-hour option horizon",
+    "policy_grid": [
+      {"policy_id": "current", "weights": [1.0, 4.0, 0.015, 0.015, 0.05]},
+      {"policy_id": "cost-lean", "weights": [2.0, 2.0, 0.015, 0.015, 0.05]},
+      {"policy_id": "carbon-lean", "weights": [0.5, 8.0, 0.015, 0.015, 0.05]},
+      {"policy_id": "latency-guarded", "weights": [1.0, 4.0, 0.03, 0.03, 0.05]}
+    ],
+    "all_variants": {
+      "task_completion_rate": 1.0,
+      "SLA_violation_rate": 0.0,
+      "hard_audits_passed": true,
+      "same_constraints_and_output_class": true
+    },
+    "current_reference": {
+      "cost_change_pct_vs_FIFO": -1.0149373918772464,
+      "carbon_change_pct_vs_FIFO": -1.929297238773453,
+      "mean_latency_ms": 9.25822,
+      "renewable_utilization_ratio": 0.9992043662036217
+    },
+    "candidate_for_root_review": {
+      "policy_id": "latency-guarded",
+      "cost_change_pct_vs_current": 0.10029005953191561,
+      "carbon_change_pct_vs_current": -0.021443146944111202,
+      "latency_change_pct_vs_current": -3.1762044971927694,
+      "best_primary_improvement_pct": 3.1762044971927694,
+      "max_primary_worsening_pct": 0.10029005953191561
+    },
+    "rejected_variants": [
+      {
+        "policy_id": "cost-lean",
+        "reason": "carbon worsened 0.47370411006184554% versus current, exceeding the 0.25% guardrail"
+      },
+      {
+        "policy_id": "carbon-lean",
+        "reason": "best improvement was only 0.12912912293265855% and latency worsened 3.173612206234022% versus current"
+      }
+    ],
+    "decision": "PROPOSE_LATENCY_GUARDED_FOR_ROOT_REVIEW",
+    "limitations": [
+      "The grid is a bounded sensitivity analysis and does not establish global optimality or causal effects.",
+      "Metrics use supplied hourly price, carbon, renewable, fixed-load, and static latency inputs.",
+      "The candidate is a review proposal only; root review and evidence freeze are required before any formal model change."
+    ],
+    "evidence": [
+      "q2_policy_sensitivity.csv",
+      "q2_policy_sensitivity_summary.json"
+    ]
+  },
+  "root_review_requests": [
+    "Review whether latency-guarded should replace current only for the scheduling narrative, while retaining current as the reference until claims are frozen.",
+    "Keep pooled Q1 conformal intervals as the formal interval method; groupwise results may be reported only as a diagnostic if useful.",
+    "Do not transfer these exploratory decisions to frozen claims or paper figures without a fresh root-level evidence check."
+  ]
+}

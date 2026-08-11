@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "analysis_status": "evidence_reviewed",
+  "review_method": "full page cache plus visual review of abstract, framework, model, main-result and validation anchors",
+  "ocr_status": "not_available; observations are page-image visual evidence, not OCR transcription",
+  "competition": "CUMCM",
+  "year": 2024,
+  "problem": "E",
+  "paper_id": "cumcm-2024-e218",
+  "title": "2024高教社杯全国大学生数学建模竞赛E题论文展示（E218）",
+  "source_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024etlw/241104/1977971.shtml",
+  "access": "public_page_images",
+  "award_or_label": "全国大学生数学建模竞赛组委会官方论文展示",
+  "page_coverage": {
+    "reported_total_pages": 62,
+    "cached_pages": 62,
+    "coverage": 1.0,
+    "sha256_verified": true
+  },
+  "abstract_layout": {
+    "pages": [
+      1
+    ],
+    "pattern": "独立首屏摘要 + 关键词；方法按问题顺序展开",
+    "density": "medium-to-high",
+    "evidence": [
+      {
+        "page": 1,
+        "file": "raw/cumcm-2024-e218/page-01.jpg",
+        "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+        "locator": "official page image 1"
+      }
+    ]
+  },
+  "problem_framing": "交通信号协调与路口网络",
+  "models_to_subquestions": {
+    "Q1": "将路口、车流和信号相位抽象为网络与参数",
+    "Q2": "用相位、周期和流量关系计算延误/通行能力",
+    "Q3-Q4": "优化协调配时并用多路口曲线、表格验证效果"
+  },
+  "models": [
+    "路口/路网图抽象",
+    "信号相位和配时模型",
+    "流量拟合/仿真",
+    "协调方案优化"
+  ],
+  "validation_structure": [
+    "第2页用路网/关系图把节点和边固定下来",
+    "第4-5页用相位示意和流量曲线解释控制变量",
+    "第6-10页用多组曲线、表格和目标函数比较方案"
+  ],
+  "figure_strategy": [
+    "路网/节点关系图",
+    "信号相位示意图",
+    "配时前后流量曲线"
+  ],
+  "transferable_patterns": [
+    "先给路网抽象，再定义信号变量，读者能追踪节点编号",
+    "相位图用时间轴/颜色表达阶段，公式用同一符号",
+    "协调优化结果必须报告延误、排队或通行量等可解释指标"
+  ],
+  "risks": [
+    "路口示意图若过小会失去相位信息",
+    "曲线图应给基准线和统一时间窗，否则难以比较",
+    "页面图片来自官方展示页，水印/压缩伪影不作为原论文排版评价"
+  ],
+  "evidence": [
+    {
+      "page": 1,
+      "file": "raw/cumcm-2024-e218/page-01.jpg",
+      "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 2,
+      "file": "raw/cumcm-2024-e218/page-02.jpg",
+      "observation": "问题重述/背景或数据对象；记录正文如何从摘要进入模型",
+      "locator": "official page image 2"
+    },
+    {
+      "page": 4,
+      "file": "raw/cumcm-2024-e218/page-04.jpg",
+      "observation": "符号表、假设、变量或模型路线图；记录定义顺序",
+      "locator": "official page image 4"
+    },
+    {
+      "page": 7,
+      "file": "raw/cumcm-2024-e218/page-07.jpg",
+      "observation": "代表性主结果图/表；记录图型、图例、单位和比较对象",
+      "locator": "official page image 7"
+    },
+    {
+      "page": 10,
+      "file": "raw/cumcm-2024-e218/page-10.jpg",
+      "observation": "验证、敏感性、方案比较或阶段性结论；记录结果闭环",
+      "locator": "official page image 10"
+    }
+  ],
+  "evidence_boundary": "模型类别和排版判断只写页面中可见的公式、图形、表格和章节位置；未从视觉材料推断奖级、原创性或数学正确性。"
+}

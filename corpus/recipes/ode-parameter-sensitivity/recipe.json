@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "recipe_id": "ode-parameter-sensitivity",
+  "kind": "ode_parameter_sensitivity",
+  "title": "ODE parameter sensitivity",
+  "seed": 20260809,
+  "source_pair": {
+    "candidate_id": "cumcm-2014-a499",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/A11141001_陈超_唐梦珏_杨克宇.pdf",
+      "blob_sha": "0cec2ae306ae6a3ca2ee81f36669c96d7b9293e2",
+      "sha256": "59d01bbf09e225d890208bd36166bf2a4d61f0fb56ad4f7edd140cfbacc00d22"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/defen.m",
+        "blob_sha": "f1fe267a11ce5c1582b735ddd235ede9874f47f4",
+        "sha256": "92e779bb4a5fda6b267f59a2e56c2f438cc7e65ea3a07d056912eedf414b7b9b",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2014/A499/A11141001_陈超_唐梦珏_杨克宇/soujie.m",
+        "blob_sha": "da0ec52ad01ceec3f085ec1466e2ff16efe9a82d",
+        "sha256": "084c8e8b8a04c7429556a2b1d9119acb0c1ab7aabd83aaef46bc7e1427d24780",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "scope": "controlled synthetic fixture for reusable method testing",
+  "not_a_reproduction": true,
+  "upstream_code_execution": "forbidden"
+}

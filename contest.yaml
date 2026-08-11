@@ -1,0 +1,101 @@
+competition: CUMCM
+year: 2026
+problem: TBD
+language: zh-CN
+deadline: "2026-09-13T20:00:00+08:00"
+rules_sources:
+  - https://www.mcm.edu.cn/html_cn/node/9d8e511fe7a1447b35f53a82c908e2e0.html
+  - https://www.mcm.edu.cn/html_cn/node/4cd596519c9eb9fbd866398f6df0caa3.html
+format:
+  paper_body_max_pages: 30
+  abstract_max_pages: 1
+  paper_max_mb: 20
+  support_max_mb: 20
+  min_margin_cm: 2.5
+  searchable_pdf_min_chars_per_page: 20
+  searchable_pdf_min_page_ratio: 0.8
+  require_anonymous: true
+  electronic_pdf_excludes_commitment_pages: true
+submission:
+  hash_deadline: "2026-09-13T20:00:00+08:00"
+  upload_start: "2026-09-13T20:30:00+08:00"
+  upload_deadline: "2026-09-14T14:00:00+08:00"
+  hash_algorithms: [md5, sha256]
+  separate_paper_and_support: true
+  source_code_in_appendix_and_support: true
+  operator_role: first_registered_student
+  searchable_pdf_policy: recommended
+  release_manifest: output/release/release_manifest.json
+  release_checklist: output/release/submission_checklist.yaml
+  ai_rules_required: true
+paths:
+  paper_tex: paper/main.tex
+  paper_pdf: output/submission.pdf
+  support_zip: output/supporting.zip
+  audit_json: output/audit.json
+  corpus_index: corpus/index.csv
+  experience_report: corpus/experience_report.md
+  template_root: templates/paper
+source_policy:
+  public_full_text: cache
+  restricted_text: index_only
+  require_source_url: true
+  require_evidence_locator: true
+workflow:
+  workflow_config: config/workflow.yaml
+  workflow_status: output/workflow_status.json
+  claims_pattern: results/{problem}/claims.json
+  python_environment: auto
+  python_environment_policy: existing_first
+  python_environment_fallback: math-modeling
+  matlab_optional: true
+  matlab_enabled: true
+  matlab_root: D:/MATLAB/R2026a
+  matlab_launcher: scripts/run_matlab.ps1
+  matlab_default_figure_dpi: 400
+  default_random_seed: 20260801
+  ai_log_path: output/ai_usage_log.jsonl
+  environment_report: output/environment.json
+  pdf_environment: math-modeling
+  pdf_environment_policy: explicit_prefix_only
+skills:
+  lockfile: skills.lock.yaml
+  primary:
+    orchestrator: mathmodel-skill
+    solver: math-modeling-solver
+    paper_writer: math-modeling-paper
+  support:
+    paper_studio: modeling-paper-studio
+    paper_miner: modeling-paper-miner
+    publication_figures: ccf-visual-composer
+    scientific_schematics: nature-figure
+    matlab_charts: matlab-build-chart
+    matlab_optimization: matlab-solve-optimization
+    matlab_performance: matlab-performance-optimizer
+    matlab_symbolic: matlab-symbolic-math
+    latex_build: latex-document-skill
+    pdf_preflight: pdf
+  routing:
+    - when: "开始比赛、恢复进度、全流程推进、终稿审查"
+      use: mathmodel-skill
+    - when: "拆题、选模、算法推导、优化、预测、评价、仿真、代码模板"
+      use: math-modeling-solver
+    - when: "摘要、正文、结论、模型评价、引用、论文自审"
+      use: math-modeling-paper
+    - when: "统计图、结果图、流程图、配色、图注、图件排版"
+      use: ccf-visual-composer
+    - when: "MATLAB 绘图、多面板、置信区间、灵敏度图、PDF/SVG/PNG 导出"
+      use: matlab-build-chart
+    - when: "MATLAB 优化建模、求解器选择、约束验证、收敛诊断"
+      use: matlab-solve-optimization
+    - when: "MATLAB 代码过慢、向量化、预分配、性能分析"
+      use: matlab-performance-optimizer
+    - when: "MATLAB 符号推导、微积分、方程求解、数值函数生成"
+      use: matlab-symbolic-math
+    - when: "LaTeX 编译、PDF 渲染、版面与提交前检查"
+      use: latex-document-skill
+    - when: "证据交接、G0-G6 门禁、冻结数字、Figure Contract、论文构建与提交包"
+      use: modeling-paper-studio
+    - when: "论文检索、奖项核验、PDF/OCR 深读、论文卡片、论文代码配对与去重"
+      use: modeling-paper-miner
+  activation_note: "新安装的全局 skills 从下一轮对话开始自动出现在可用列表中。"

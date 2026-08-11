@@ -1,0 +1,34 @@
+{
+  "command": [
+    "D:\\anaconda3\\envs\\math-modeling\\python.exe",
+    "-s",
+    "experiments/C/Q3/q3-rolling-compat-20260808/generate_q3_compat.py"
+  ],
+  "generated_at_utc": "2026-08-08T13:39:32.746230+00:00",
+  "generator": {
+    "path": "experiments/C/Q3/q3-rolling-compat-20260808/generate_q3_compat.py",
+    "sha256": "20d99982189fa2816a622cf5adf0e20e3e12ea882f77ef5855ee3f7885584026"
+  },
+  "problem_id": "C",
+  "question_id": "Q3",
+  "replay_count": 2,
+  "runtime_metadata_excluded": [
+    "started_at_utc",
+    "duration_seconds"
+  ],
+  "schema_version": 1,
+  "stable_artifacts": [
+    {
+      "first_sha256": "ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35",
+      "path": "experiments/C/Q3/q3-rolling-compat-20260808/q3_derived_summary.json",
+      "second_sha256": "ee69131cc0475987c18ab3a287927cf0abb487900bd9a3ccd3b1539a3bbbfe35"
+    },
+    {
+      "first_sha256": "7ed169bd99a5fa46d2a2125a76f598072b5ad99656e9234a46a9274c206b4140",
+      "path": "experiments/C/Q3/q3-rolling-compat-20260808/claim_proposals.json",
+      "second_sha256": "7ed169bd99a5fa46d2a2125a76f598072b5ad99656e9234a46a9274c206b4140"
+    }
+  ],
+  "stable_output_hashes_identical": true,
+  "status": "PASS"
+}

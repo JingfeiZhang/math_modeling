@@ -1,0 +1,13 @@
+\begin{center}
+  {\heiti\zihao{4} 摘\quad 要}
+\end{center}
+
+本文面向六区域算力基础设施中任务需求、电力参数、新能源与储能状态的耦合关系，建立“需求预测--任务排程--储能控制--局部联合优化”模型。任务轨迹按区域、类型和小时汇总为 GPU$\cdot$h 工作量。以季节朴素预测为基线，使用共享 HistGradientBoosting 模型拟合残差；通过加权层级校正保持 18 条底层序列与系统总量一致，并利用分割共形方法构造预测区间。独立盲测中，系统加权 WAPE 为 \ClaimRatio{Q1-FCST-TEST-WAPE}，18 条底层序列共 432 个逐时点的名义 95\% 区间经验覆盖率为 \ClaimRatio{Q1-FCST-TEST-COVERAGE}。实际任务排程采用 CP-SAT，同时考虑不可抢占、实时任务即时开工、单向时延、GPU/IT/设施功率和收尾边界；538 条任务完成率为 \ClaimRatio{Q1-SCHED-COMPLETION}。求解状态为 \FrozenClaim{Q1-SCHED-SOLVER-STATUS}，表明所得方案满足全部排程约束，但不据此作全局最优判断。
+
+全时域调度以同输入、同约束的 FIFO 为基线，并用固定权重的有界滚动局部交换启发式完成 50000 条任务的碳感知时空迁移。候选排程完成率为 \ClaimRatio{Q2-FULL-COMPLETION-RATE}，SLA 违约率为 \ClaimRatio{Q2-FULL-SLA-VIOLATION-RATE}；相对 FIFO，设施用能成本和购电碳排分别变化 \ClaimPercent{Q2-FULL-COST-CHANGE-PCT}\% 与 \ClaimPercent{Q2-FULL-CARBON-CHANGE-PCT}\%，任务加权平均网络时延变化 \ClaimLatency{Q2-FULL-LATENCY-CHANGE-MS}~ms。候选方案满足完成率和 SLA 要求，但未在全部指标上支配 FIFO，结果体现的是成本、碳排与时延之间的约束权衡。
+
+任务排程确定后，六区域分别求解含充放电互斥、购售电互斥、电能平衡、SOC 动力学和终端 SOC 下界的滚动二进制 MILP。该方案连续覆盖完整研究时域，各区域的 SOC、充放电状态、购售电状态和电能平衡均满足约束。相对无储能基线，净运行成本和购电侧碳排分别变化 \ClaimMoney{Q3-ROLLING-COST-DELTA}~CNY 与 \ClaimCarbon{Q3-ROLLING-CARBON-DELTA}~tCO$_2$。净运行成本按“购电成本减售电收入”定义，负值表示净售电收入；碳排仅计购电侧，模型未显式计入电池退化成本。
+
+Q4 选取 2328--2399 h 的 72 h 窗口，以 Q2 排程为起点，交替执行 12 任务邻域固定--优化搜索和六区域储能追补优化。观测场景净运行成本差为 \ClaimMoney{Q4-OBS-COST-DELTA}~CNY；低新能源场景的成本差和购电碳排差分别为 \ClaimMoney{Q4-LOWREN-COST-DELTA}~CNY 与 \ClaimCarbon{Q4-LOWREN-CARBON-DELTA}~tCO$_2$，联合压力场景碳排差为 \ClaimCarbon{Q4-JOINT-CARBON-DELTA}~tCO$_2$。候选方案满足全部任务、储能和电网约束；上述结果仅适用于 72 h、12 任务邻域的受限局部联合优化，不代表全时域或全局最优。
+
+\noindent\textbf{关键词：}\PaperKeywords

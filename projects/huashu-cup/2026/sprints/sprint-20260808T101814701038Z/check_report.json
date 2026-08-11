@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T101814701038Z",
+  "status": "READY_TO_MERGE",
+  "passed": true,
+  "accepted_tasks": [
+    "solver-q1q2",
+    "solver-q3q4",
+    "figure-q3q4"
+  ],
+  "retry_tasks": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "tasks": [
+    {
+      "task_id": "solver-q1q2",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 1,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/run_q1_groupwise_conformal.py",
+          "sha256": "0ebd8449ca808ea8456fb90c99d83d0769ab0699b694835fae8a37760f37381a"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/q1_groupwise_conformal.csv",
+          "sha256": "8381bc6f4404398658548873dd79708642d621f1a29dd2befe179c9e011bbc19"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/q1_groupwise_conformal_summary.json",
+          "sha256": "141aaa1aaa7d3620c82739bb7eed328daf5d55a4bc71ec4ccd05d6f91cbf4548"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/run_q2_policy_sensitivity.py",
+          "sha256": "73d77e46db62477eb8bd22dc5332bb5fcfbbb27fe814be8554f8166b6bb1275d"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/q2_policy_sensitivity.csv",
+          "sha256": "e2931e6c6f6cdb20603894bedb752da48a575e53ac8bf88a239c5080221876b7"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/q2_policy_sensitivity_summary.json",
+          "sha256": "84f70cba9643f423bf70b780979c65221991ab1eeafb874fd522f2f1721ce56b"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/incremental_review_q1q2.json",
+          "sha256": "51166220596ff0e978713a64a830bdc0604008d01ea4f3baa695baf3b089edb7"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/run_manifest_q1q2.json",
+          "sha256": "d7020da723aade73fb881a429926c9b8b55892df4e0eeff92738a184343f093d"
+        }
+      ],
+      "handoff": "sprints/sprint-20260808T101814701038Z/staging/solver-q1q2/handoff.json"
+    },
+    {
+      "task_id": "solver-q3q4",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 1,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q3q4/run_q3_sensitivity.py",
+          "sha256": "276d59cec1d3bd57b9c7465a7406994836daee5f1c606acef8de12f85e7b0a2d"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q3q4/q3_sensitivity.csv",
+          "sha256": "178184fb49c0350408ec271c0a51bb892109dfdd8b12b6523df2a48c258d1c1b"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q3q4/q3_sensitivity_summary.json",
+          "sha256": "1a66586c8e49446c045a570fe56629089b4008a06a3cec537e3ef8c1a0bef4fb"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q3q4/run_q4_attribution.py",
+          "sha256": "9020d3b4c0803190abb646ade123194297ce66c5b7eeebb5e701aa04b8d2f07a"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q3q4/q4_attribution.csv",
+          "sha256": "edfbd184640fdc89fa5c34573b47cd4f4091f8b183222fa94e754eedcbacfa06"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q3q4/q4_attribution_summary.json",
+          "sha256": "7d1ac95f17eee2a2c314bca8f8725a9bcdfac46081dc79e6b45da6fb27e696de"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q3q4/incremental_review_q3q4.json",
+          "sha256": "8629ce98f84bebc62d494550bd15cd0d230b6c815ef5607187a4f92e454967b9"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/solver-q3q4/run_manifest_q3q4.json",
+          "sha256": "57e5b79381a806e194c0def14a5e0816c54efef7a91d5e006e6f3f8b816ff96a"
+        }
+      ],
+      "handoff": "sprints/sprint-20260808T101814701038Z/staging/solver-q3q4/handoff.json"
+    },
+    {
+      "task_id": "figure-q3q4",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 1,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/figure_contract_proposals.yaml",
+          "sha256": "ac52f93a75351e34a36a79233622757c7d1b5ce40df4b4d3ce7b7338528a0cd9"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/generate_q3_q4_figures.py",
+          "sha256": "3a04f194d00c08c5bc0bd07a2efc5d75689fee42e867b2d665f9b3722e760b01"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/figure_qa_report.json",
+          "sha256": "fdc3dabacf850b2fbe94bff7931bcd421100cc33ecfd3504106a8190114aa66d"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q3_rolling_comparison.pdf",
+          "sha256": "99aea6ae068364b7ee4a740c588e36666d662aad64db52fc1a275ab084e0e1e5"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q3_rolling_comparison.svg",
+          "sha256": "8d95de1afb0b5ff0f0fdb0b9fa624e7f7543276d77e418b8b4f3acbb97eb05ff"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q3_rolling_comparison.png",
+          "sha256": "cdcb0c766865f584fc96dfe1f57b75a4d23af7cc1df5ada2b4f237dfd6848d1b"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q4_peak_tradeoff.pdf",
+          "sha256": "d96386c8458e203b4f12adacf2bc2625c6bd1cf9a06d4807a29a85b5d76c9aa8"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q4_peak_tradeoff.svg",
+          "sha256": "eeab5d143b54ce467343590ab0deb92a4851216ae0c66026fa9a31e2896779e1"
+        },
+        {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q4_peak_tradeoff.png",
+          "sha256": "458ae75f833e503fd753a5cf78358b2c4b1d9ac881ad25f6b2669ed14e8dddae"
+        }
+      ],
+      "handoff": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-08T11:09:24.931174+00:00"
+}

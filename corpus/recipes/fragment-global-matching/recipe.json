@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "recipe_id": "fragment-global-matching",
+  "kind": "fragment_dp",
+  "title": "Global fragment path optimization",
+  "seed": 20260805,
+  "source_pair": {
+    "candidate_id": "cumcm-2013-b254",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/814 姜荣杰 朱佳亭 金建邦.pdf",
+      "blob_sha": "1d6d2b1719420c22d0bb03e5c9fa3addd5c1279b",
+      "sha256": "a760a38dc77d74c73677676897f2bae351a586f138e3003c1c700b091567abd8"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/p3/class.m",
+        "blob_sha": "a746efb2f9a36472a335b3f7a296c1af3c7fb420",
+        "sha256": "0c985db7b46edc535296971266771dd43125338d7951c01a015ea339f0d18019",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2013/B254/814姜荣杰，朱佳亭，金建邦/程序/p22/Untitled3.m",
+        "blob_sha": "4ef4eac0461d38aa821a179c51eb6e32d05c6bd3",
+        "sha256": "7f9588570d22ca6c7543b88989a481aea65825f73a6d725704e210e092b3101c",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "scope": "controlled synthetic fixture for reusable method testing",
+  "not_a_reproduction": true,
+  "upstream_code_execution": "forbidden"
+}

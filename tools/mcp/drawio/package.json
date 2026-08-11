@@ -1,0 +1,9 @@
+{
+  "name": "math-modeling-drawio-mcp-runtime",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pinned local runtime for the official draw.io MCP server.",
+  "dependencies": {
+    "@drawio/mcp": "1.5.0"
+  }
+}

@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "paper_id": "cumcm-2012-b-b11646001",
+  "contest": "CUMCM",
+  "year": 2012,
+  "problem_id": "B",
+  "source": {
+    "repository": "https://github.com/zhanwen/MathModel",
+    "commit": "cd5be91735ebf11d5ee52eb170e86a6d07131977",
+    "path": "国赛论文/2012年优秀论文/B/B11646001张郭贺.pdf",
+    "url": "https://raw.githubusercontent.com/zhanwen/MathModel/cd5be91735ebf11d5ee52eb170e86a6d07131977/%E5%9B%BD%E8%B5%9B%E8%AE%BA%E6%96%87/2012%E5%B9%B4%E4%BC%98%E7%A7%80%E8%AE%BA%E6%96%87/B/B11646001%E5%BC%A0%E9%83%AD%E8%B4%BA.pdf",
+    "accessed": "2026-08-03",
+    "authenticity_level": "C",
+    "authenticity_note": "Community mirror full text; no independent official award locator recorded."
+  },
+  "pdf": {
+    "object": "corpus/raw/objects/sha256/57/57dabe99ff4b0f311a38052451eba486715a607c69451f2c26cf51299f9f4068.pdf",
+    "bytes": 673519,
+    "git_blob_sha": "63feaf092e11d3aa08b49717108352deca6d8663",
+    "sha256": "57dabe99ff4b0f311a38052451eba486715a607c69451f2c26cf51299f9f4068",
+    "pages": 30
+  },
+  "render": {
+    "status": "complete",
+    "method": "pdftoppm-jpeg-110dpi",
+    "pages": [
+      {
+        "page": 1,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-01.jpg",
+        "sha256": "61fbd1d13e8d3909c7851424c6299c392cd6b64dfac98153d42255fa38716a6f",
+        "bytes": 52625,
+        "text_characters": 133
+      },
+      {
+        "page": 2,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-02.jpg",
+        "sha256": "2d48172dd5e7806946c6048a7bbfd0aeda56acb35f2e90b3f8b45b82af0a33e9",
+        "bytes": 193940,
+        "text_characters": 1074
+      },
+      {
+        "page": 3,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-03.jpg",
+        "sha256": "0a0874ceb34fbccc0d0940a40df9727a848fb975a9e5c756293a4b8aed2236cb",
+        "bytes": 133759,
+        "text_characters": 1889
+      },
+      {
+        "page": 4,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-04.jpg",
+        "sha256": "ff0cda5731ec6e90e2bfef34fce31b2b6b6d284370ea90b709394fd2c7553544",
+        "bytes": 136005,
+        "text_characters": 944
+      },
+      {
+        "page": 5,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-05.jpg",
+        "sha256": "018326c529d3c91a6758d68640b968e56800797d2918ef0f3a9b1589973d56a0",
+        "bytes": 172188,
+        "text_characters": 1461
+      },
+      {
+        "page": 6,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-06.jpg",
+        "sha256": "caf82ae94e40a40aff470ec1410ebabb627d07870bdbddefdb9f08360a853c1f",
+        "bytes": 142302,
+        "text_characters": 891
+      },
+      {
+        "page": 7,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-07.jpg",
+        "sha256": "c3a7499b1cfdc15d49d679dc3c5ed4dbc1f11a96a6ba74bded35355cefba5bfa",
+        "bytes": 138801,
+        "text_characters": 2375
+      },
+      {
+        "page": 8,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-08.jpg",
+        "sha256": "f3b22da9757039c481d114382f6684bcb56dee916ebbd3375fad4229d5d55b8f",
+        "bytes": 150251,
+        "text_characters": 1421
+      },
+      {
+        "page": 9,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-09.jpg",
+        "sha256": "3b73c3aeb08e59603059bfb1110aa36ca0c0e9900106f04b4753da59d5a0cf08",
+        "bytes": 182463,
+        "text_characters": 1312
+      },
+      {
+        "page": 10,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-10.jpg",
+        "sha256": "b4eef6242febf8eef2dc7fbef16a1d8f3209b81ac05b36004f8709873cbfe771",
+        "bytes": 127040,
+        "text_characters": 2278
+      },
+      {
+        "page": 11,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-11.jpg",
+        "sha256": "6621a5ce66b0e825391f2cf401ab45deaf6408e173ace106bfb16c5acfc7dfbc",
+        "bytes": 175203,
+        "text_characters": 2488
+      },
+      {
+        "page": 12,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-12.jpg",
+        "sha256": "71b7a22893333a527bfb059a0bf5d529abe79960051cbd8a7e54385d5ea5259e",
+        "bytes": 203989,
+        "text_characters": 1665
+      },
+      {
+        "page": 13,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-13.jpg",
+        "sha256": "1c360056bfdbb0ea99d19f7b1b6500ce508a909e4672103d47a909518366b87c",
+        "bytes": 93592,
+        "text_characters": 3919
+      },
+      {
+        "page": 14,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-14.jpg",
+        "sha256": "cb7403880d8b12a3efb684a426ecdb55575bac9f35ee713d4dbf19c26346ce0c",
+        "bytes": 97103,
+        "text_characters": 2607
+      },
+      {
+        "page": 15,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-15.jpg",
+        "sha256": "9789f37875730841e52f8537a9aab4dd8f800b0aede3b150fa8d65b2c871d29e",
+        "bytes": 150693,
+        "text_characters": 2451
+      },
+      {
+        "page": 16,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-16.jpg",
+        "sha256": "cc4aec3043724c22ee3505633077d7fd595c73a2ee064104c81077d6e41ea1a4",
+        "bytes": 120737,
+        "text_characters": 1756
+      },
+      {
+        "page": 17,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-17.jpg",
+        "sha256": "0112cfbbaf1bbd639fd6ef51a465841019336718dfb67a5ee51708e84bb228c7",
+        "bytes": 109100,
+        "text_characters": 1879
+      },
+      {
+        "page": 18,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-18.jpg",
+        "sha256": "b5785faefe5df8d30399a77fb1bd65348ebe949774d224a7140ae316ed45c784",
+        "bytes": 113027,
+        "text_characters": 4108
+      },
+      {
+        "page": 19,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-19.jpg",
+        "sha256": "5c166cfd275e944a9667f83b7826ca6c957820d34e7eda53c9c1e26550ae55f1",
+        "bytes": 176067,
+        "text_characters": 1968
+      },
+      {
+        "page": 20,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-20.jpg",
+        "sha256": "0b0f903ed8951aca3849deb9ff7d51479369f90d368ff6bd9f69b97b825b27ed",
+        "bytes": 111346,
+        "text_characters": 5621
+      },
+      {
+        "page": 21,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-21.jpg",
+        "sha256": "53a7898dd4aadbc924834b1daae3aa0b59b0e02a3b8b31cd4c41323f344c041b",
+        "bytes": 108211,
+        "text_characters": 3109
+      },
+      {
+        "page": 22,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-22.jpg",
+        "sha256": "2bf4f1a038dead44cf9679dd9459f6e1ac67b4741f01d5193a795e7fffda2130",
+        "bytes": 45674,
+        "text_characters": 2237
+      },
+      {
+        "page": 23,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-23.jpg",
+        "sha256": "0bd549accd7c417132f0fb87dddcb94572312e5998d27b5cc62057bbd6d88fd2",
+        "bytes": 205520,
+        "text_characters": 1565
+      },
+      {
+        "page": 24,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-24.jpg",
+        "sha256": "0a24f1743324bb0367d6c0f7faf22be514de62cf732b34a890041b18b00a9bcb",
+        "bytes": 142695,
+        "text_characters": 1636
+      },
+      {
+        "page": 25,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-25.jpg",
+        "sha256": "0312fbe8dac0ee39022e9ad1357813aee3b738f2739f6451f675ec56d1483614",
+        "bytes": 193315,
+        "text_characters": 2198
+      },
+      {
+        "page": 26,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-26.jpg",
+        "sha256": "54dfef4a0bcea4bc7213b12d952c060834708e928a1ab0b0cdad54e462a692ab",
+        "bytes": 135060,
+        "text_characters": 1620
+      },
+      {
+        "page": 27,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-27.jpg",
+        "sha256": "c623d1274099cc6fc22e2d04038f3f772157e9a3ec64e06f72e0dd4c05a4cb65",
+        "bytes": 150612,
+        "text_characters": 3852
+      },
+      {
+        "page": 28,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-28.jpg",
+        "sha256": "5eed4c3d913ba36f8ec7644e1d4bb57dc8047eb7e403249f95c5902e7c449007",
+        "bytes": 149574,
+        "text_characters": 4474
+      },
+      {
+        "page": 29,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-29.jpg",
+        "sha256": "803143f22cb5bfae5b3008085ec069cc3644dbd9a0ce26867eeeb26f9053316c",
+        "bytes": 142323,
+        "text_characters": 1372
+      },
+      {
+        "page": 30,
+        "file": "corpus/rendered/cumcm-2012-b-b11646001/pages/page-30.jpg",
+        "sha256": "03d0064b92ceb4ded4ba8efde84907754220a801d127b339f3d78c6c3d7d183f",
+        "bytes": 74413,
+        "text_characters": 742
+      }
+    ],
+    "contact_sheets": [
+      "corpus/rendered/cumcm-2012-b-b11646001/contact-01-08.jpg",
+      "corpus/rendered/cumcm-2012-b-b11646001/contact-09-16.jpg",
+      "corpus/rendered/cumcm-2012-b-b11646001/contact-17-24.jpg",
+      "corpus/rendered/cumcm-2012-b-b11646001/contact-25-30.jpg"
+    ],
+    "visual_review": "pending"
+  },
+  "text": {
+    "file": "corpus/raw/cumcm-2012-b-b11646001/extracted-layout.txt",
+    "sha256": "6a6487f6f0f83b4c8189e66a568e09003f227d02c08c37bbf2179f0899649982",
+    "extracted_pages": 30,
+    "method": "pdftotext-layout"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "python_range": ">=3.10,<3.14",
+  "preferred_extended_python": "3.13.*",
+  "extended_environment_mode": "clean-local-python-3.13",
+  "core": {
+    "python": [
+      {"import": "numpy", "conda": "numpy"},
+      {"import": "scipy", "conda": "scipy"},
+      {"import": "pandas", "conda": "pandas"},
+      {"import": "sympy", "conda": "sympy"},
+      {"import": "statsmodels", "conda": "statsmodels"},
+      {"import": "sklearn", "conda": "scikit-learn"},
+      {"import": "matplotlib", "conda": "matplotlib"},
+      {"import": "seaborn", "conda": "seaborn"},
+      {"import": "plotly", "conda": "plotly"},
+      {"import": "networkx", "conda": "networkx"},
+      {"import": "openpyxl", "conda": "openpyxl"},
+      {"import": "yaml", "conda": "pyyaml"},
+      {"import": "PIL", "conda": "pillow"},
+      {"import": "pypdf", "conda": "pypdf"},
+      {"import": "pytest", "conda": "pytest"}
+    ],
+    "commands": [
+      "xelatex",
+      "latexmk",
+      "pandoc",
+      "node",
+      "npm",
+      "pdftoppm",
+      "pdftotext",
+      "pdfinfo",
+      "pdffonts"
+    ]
+  },
+  "extended": {
+    "python": [
+      {"import": "ortools", "conda": "ortools", "installer": "conda"},
+      {"import": "pulp", "conda": "pulp", "installer": "conda"},
+      {"import": "cvxpy", "conda": "cvxpy", "installer": "conda"},
+      {"import": "pyomo", "conda": "pyomo", "installer": "conda"},
+      {"import": "highspy", "conda": "highspy", "installer": "conda"},
+      {"import": "cv2", "conda": "opencv", "installer": "conda"},
+      {"import": "fitz", "conda": "pymupdf", "installer": "conda"},
+      {"import": "pdfplumber", "conda": "pdfplumber", "installer": "conda"},
+      {"import": "SALib", "conda": "salib", "installer": "conda"},
+      {"import": "deap", "conda": "deap", "installer": "conda"},
+      {"import": "simpy", "conda": "simpy", "installer": "conda"},
+      {"import": "rapidocr_onnxruntime", "pip": "rapidocr-onnxruntime", "installer": "pip"},
+      {"import": "schemdraw", "pip": "schemdraw", "installer": "pip"},
+      {"import": "pyswarms", "pip": "pyswarms", "installer": "pip"}
+    ]
+  }
+}

@@ -1,0 +1,96 @@
+schema_version: 1
+problem_id: C
+question_id: Q4
+source_problem: problems/C/source/problem-C.pdf
+problem:
+  target: 问题 4：在前三问基础上，建立多区域算—储—电协同优化模型，统一考虑 任务迁移、电价、碳排放、可用新能源、储能、区域购售电边界、网络时延及任 务异构性。请在系统运行成本、碳排放、网络时延、服务质量、新能源利用率和
+    区域峰值净购电之间进行权衡，并比较不同碳约束、电价机制和新能源波动场景 下的策略变化。 说明： 1、附件 1.docx 展示了详细的数据说明和名词解释。没有物理单位的标签类
+    或状态类字段，已在相应工作簿的“字段说明”工作表中注明为“无”或“无量 纲”。 2、工作负载到达数据覆盖第 0–2399 小时；region_time_data.xlsx
+    覆盖 第 0–2406 小时。第 2376–2399 小时的预测精度仅用于预测评价。
+  inputs:
+  - workload_trace.xlsx
+  - GPU_information.xlsx
+  - network_latency.xlsx
+  - region_time_data.xlsx
+  - power_mapping.xlsx
+  - storage_information.xlsx
+  constraints:
+  - Q1–Q3统一口径
+  - 任务不可抢占/拆分/中途迁移
+  - GPU容量/IT功率/设施功率
+  - 区域购售电边界
+  - SOC上下限/功率/效率与终端SOC
+  - SLA时延和完成时限
+  - 不建立线路潮流与迁移能耗模型
+  evaluation_metrics:
+  - 运行成本
+  - 碳排放
+  - 网络时延
+  - 服务质量
+  - 新能源利用率
+  - 区域峰值净购电功率
+  - 场景策略稳定性
+method:
+  main:
+    name: 72 小时任务 fix-and-optimize 与六区域储能 MILP 受限联合优化
+    rationale: 以冻结 Q2 排程为可行起点，在高成本、高碳和高时延任务构成的 12 任务邻域中交替调整任务区域/时刻并重求六区域二进制储能 MILP；该结构在保持
+      50000 条任务硬约束的同时，直接比较任务移动后的储能 recourse。
+    implementation: 固定 2328--2399 小时代表性窗口、种子 20260809 和单一确定性搜索顺序；对 observed、峰段电价、高碳、低新能源和联合压力五个场景执行
+      53 次储能 recourse 评估，接受严格改善且全指标不劣的任务移动，并独立复算任务、SOC、充放电互斥、购售电互斥、电能平衡和终端 SOC。结果仅解释为
+      72 小时局部联合优化，不宣称全时域或全局最优。
+  baseline:
+    name: 冻结 Q2 排程加同场景六区域储能 recourse
+    implementation: 在相同 72 小时窗口、五个场景和储能边界下保持 Q2 任务排程不变，重新求解同一六区域二进制储能模型，输出同口径成本、购电碳排、正向峰值和新能源利用率。
+    comparable_output: true
+  fallback: null
+assumptions:
+- id: Q4-A1
+  statement: Q2 候选与 FIFO 排程分别生成设施负荷包络，不共用或覆盖对方的任务时序；预测值不替代实际任务。
+  evidence_ref: sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_summary.json
+- id: Q4-A2
+  statement: 任务在 2399 小时之后的收尾负荷属于 Q2 closeout，不计入当前 72 小时 Q4 窗口，并单独记录溢出任务数、分钟数和 AI
+    能量。
+  evidence_ref: sprints/sprint-20260808T031214934335Z/merged/solver-q4/q4_final_candidate_envelope.csv
+- id: Q4-A3
+  statement: 不建立区域间物理潮流、迁移能耗或网络流量模型；区域耦合仅通过任务包络、统一目标和系统峰值约束体现。
+  evidence_ref: problems/C/source/problem-C.pdf
+- id: Q4-A4
+  statement: 24 小时峰值权重扫描是独立的低新能源机制探针，不与 72 小时五情景主证据拼接为同一时域结果。
+  evidence_ref: experiments/C/Q4/q4-integrated-compat-20260808/q4_derived_summary.json
+risk_probes:
+- id: Q4-R1
+  risk: Q2 候选与基线负荷被错误复用或重复计入
+  probe: 分别核验任务集合哈希，以分钟重叠重算 AI IT 功率，再叠加附件非 AI 负荷和区域 PUE。
+- id: Q4-R2
+  risk: 储能同时充放电或电网同时购售电
+  probe: 使用二进制模式变量并在独立审计中检查同时流量最大值不超过容差。
+- id: Q4-R3
+  risk: 区域峰值变量未正确代表系统小时峰值
+  probe: 对每个小时聚合六区域净购电，并检查系统峰值 epigraph 与正向聚合峰值的链接残差。
+- id: Q4-R4
+  risk: 把 72 小时顺序耦合结果解释为全时域或任务-储能联合全局最优
+  probe: 所有摘要、主张和图注必须声明固定 Q2 排程、代表性窗口、顺序归因和最优性边界。
+- id: Q4-R5
+  risk: 使用 Q3 的松弛全周期 LP 探针支撑正式结论
+  probe: 明确排除 RegionF 出现同时充放电的 LP_scalability_probe，只允许二进制 MILP 审计结果进入主张候选。
+- id: Q4-R6
+  risk: 把离散复合目标边际估计写成 LP 对偶或连续影子价格
+  probe: 同时冻结扫描范围、相邻权重和解释边界；论文仅称离散 MILP 权衡估计。
+decisions:
+- id: q4-decision-optimization-20260809
+  status: confirmed
+  decision: 晋升 72 小时受限联合优化候选；Q1--Q3 优化探针未达预注册门槛，继续保留原冻结主线。
+  evidence_ref: experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json
+evidence:
+  runs:
+  - experiments/C/Q4/q4-optimization-20260809/formal_run_manifest.json
+  robustness: experiments/C/Q4/q4-optimization-20260809/q4_formal_summary.json
+  figures:
+  - paper/figure_contracts.yaml#fig-q4-joint-optimization-loop
+  - paper/figure_contracts.yaml#fig-q4-system-profile
+paper:
+  section: 问题四：72 小时算—储—电受限联合优化
+  figure_ids:
+  - fig-q4-joint-optimization-loop
+  - fig-q4-system-profile
+status: FROZEN

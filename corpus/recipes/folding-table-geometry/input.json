@@ -1,0 +1,6 @@
+{
+  "target_height": 0.72,
+  "height_tolerance": 0.025,
+  "max_footprint": 0.82,
+  "slats": 18
+}

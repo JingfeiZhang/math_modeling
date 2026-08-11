@@ -1,0 +1,276 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "gmcm-2019-a-a19100030004",
+  "identity": {
+    "contest": "GMCM",
+    "year": 2019,
+    "problem": "A",
+    "team_id": "A19100030004",
+    "title": "无线智能传播模型"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/0f42de808e029ceb48412ab5392b5d007f7b6b5c",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-0研赛题目+论文/优秀论文按年份/2019年优秀论文/A/A19100030004.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "GMCM",
+    "year": 2019,
+    "problem": "A",
+    "team_id": "A19100030004",
+    "title": "无线智能传播模型",
+    "award": "镜像目录称优秀论文，未独立核验",
+    "locator": "No independent official locator",
+    "matched_text": "No independent official award locator found; the mirror directory label is not award evidence."
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": false
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "No independent official award list or official paper-display locator was found for this record.",
+      "Repository popularity and an 'excellent papers' folder name do not establish an award."
+    ]
+  },
+  "pdf": {
+    "sha256": "22aa665b787436df572f63b4e2d2d222e3345166987413583fcba43d1b1a57b1",
+    "pages": 38,
+    "local_path": "corpus/raw/mcm-gmcm/gmcm-2019-a-a19100030004/paper.pdf",
+    "first_page_phash": "dhash64:b2ba6870c6c00000",
+    "text_sha256": "eea9c4bb93061b61a3e8e11f812d9deab91812a1d4ba2e826eb94bbbfe151fbf"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "identity",
+        "risk"
+      ],
+      "observation": "The cover exposes school, team number, and member names; it is not reusable as an anonymous CUMCM page.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-a-a19100030004/page-01.png"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "abstract",
+        "result"
+      ],
+      "observation": "The abstract reports a COST231-Hata correction path, spatial features, neural network and CatBoost comparisons, and an RMSE result.",
+      "derivation": "mixed",
+      "locator": "PDF page 2",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-a-a19100030004/page-02.png"
+    },
+    {
+      "page": 8,
+      "tags": [
+        "mechanism",
+        "figure"
+      ],
+      "observation": "A geometric propagation schematic defines direct and reflected paths before equations.",
+      "derivation": "mixed",
+      "locator": "PDF page 8",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-a-a19100030004/page-08.png"
+    },
+    {
+      "page": 14,
+      "tags": [
+        "feature",
+        "figure"
+      ],
+      "observation": "Spatial scatter panels relate coordinate structure to RSRP and engineered direction features.",
+      "derivation": "mixed",
+      "locator": "PDF page 14",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-a-a19100030004/page-14.png"
+    },
+    {
+      "page": 24,
+      "tags": [
+        "model",
+        "figure"
+      ],
+      "observation": "A neural-network architecture diagram binds engineered inputs to MSE loss.",
+      "derivation": "mixed",
+      "locator": "PDF page 24",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-a-a19100030004/page-24.png"
+    },
+    {
+      "page": 26,
+      "tags": [
+        "comparison",
+        "figure"
+      ],
+      "observation": "Neural-network and CatBoost train/test curves are shown together and accompanied by RMSE values.",
+      "derivation": "mixed",
+      "locator": "PDF page 26",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-a-a19100030004/page-26.png"
+    },
+    {
+      "page": 38,
+      "tags": [
+        "code",
+        "risk"
+      ],
+      "observation": "Implementation code is embedded as a screenshot-like appendix rather than a reusable source file.",
+      "derivation": "mixed",
+      "locator": "PDF page 38",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2019-a-a19100030004/page-38.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 2,
+      "role": "question-method-result",
+      "observation": "Follow the subproblems in order, naming propagation correction, feature engineering, model comparison, and the final error metric."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 8,
+      "step": "physical-baseline",
+      "observation": "Use COST231-Hata and geometric propagation relationships as a physical starting point.",
+      "order": 1
+    },
+    {
+      "page": 14,
+      "step": "spatial-features",
+      "observation": "Engineer coordinate, direction, and signal-related predictors.",
+      "order": 2
+    },
+    {
+      "page": 24,
+      "step": "neural-regression",
+      "observation": "Train a neural network under MSE loss.",
+      "order": 3
+    },
+    {
+      "page": 26,
+      "step": "tree-ensemble",
+      "observation": "Compare the neural model with CatBoost and select by holdout error.",
+      "order": 4
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 14,
+      "method": "feature-diagnostic",
+      "observation": "Inspect spatial relationships before fitting nonlinear models.",
+      "order": 1
+    },
+    {
+      "page": 26,
+      "method": "train-test-comparison",
+      "observation": "Plot training and test behavior for both candidate models.",
+      "order": 2
+    },
+    {
+      "page": 26,
+      "method": "metric-comparison",
+      "observation": "Report RMSE for the selected model and a physical-model baseline.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 8,
+      "role": "mechanism",
+      "chart_type": "annotated propagation schematic",
+      "lesson": "Explain physical paths before data-driven correction."
+    },
+    {
+      "page": 14,
+      "role": "feature-diagnostic",
+      "chart_type": "small-multiple spatial scatter",
+      "lesson": "Use aligned panels to reveal directional structure."
+    },
+    {
+      "page": 24,
+      "role": "model-architecture",
+      "chart_type": "network diagram",
+      "lesson": "Map feature blocks to the prediction loss without decorative elements."
+    },
+    {
+      "page": 26,
+      "role": "model-selection",
+      "chart_type": "paired train-test curves",
+      "lesson": "Place competing learners under matched scales and report the same metric."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 8,
+      "rule": "Lead a hybrid model with the physical mechanism and treat machine learning as a correction layer.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 14,
+      "rule": "Use spatial diagnostic panels to justify engineered coordinate and direction features.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 26,
+      "rule": "Compare candidate models with the same split, axes, and metric.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 1,
+      "risk": "The cover contains direct personal and institutional identifiers and must never enter an anonymous submission.",
+      "severity": "high"
+    },
+    {
+      "page": 26,
+      "risk": "The train/test curves use small labels and do not show uncertainty across repeated splits.",
+      "severity": "medium"
+    },
+    {
+      "page": 38,
+      "risk": "Embedded code images are not executable, hash-addressable source artifacts.",
+      "severity": "medium"
+    },
+    {
+      "page": 2,
+      "risk": "The paper is only C-level authentic: the mirror's award label has no independent official locator.",
+      "severity": "high"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/gmcm-2019-a-a19100030004/source_manifest.json",
+    "selected_pages": [
+      1,
+      2,
+      8,
+      14,
+      24,
+      26,
+      38
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "problem_id": "C",
+  "question_id": "Q1",
+  "status": "exploratory",
+  "claims": [
+    {
+      "claim_id": "Q1-SCHED-001",
+      "status": "exploratory",
+      "statement": "The deterministic CP-SAT schedule is feasible only when all hard capacity, latency, SLA, and closeout constraints pass independent audit.",
+      "evidence": [
+        "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/optimized_schedule.csv",
+        "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/constraint_audit.json"
+      ],
+      "baseline": "Q1-SCHED-BASELINE",
+      "metrics": [
+        "task_completion_rate",
+        "SLA_violation_rate",
+        "GPU_margin",
+        "IT_margin_MW",
+        "Facility_margin_MW"
+      ]
+    },
+    {
+      "claim_id": "Q1-SCHED-BASELINE",
+      "status": "exploratory",
+      "statement": "FIFO/local-first is a comparable deterministic baseline using the same arrivals, candidate regions, capacities, and power mapping.",
+      "evidence": [
+        "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/baseline_schedule.csv",
+        "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/constraint_audit.json"
+      ]
+    }
+  ]
+}

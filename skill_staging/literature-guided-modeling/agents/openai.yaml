@@ -1,0 +1,4 @@
+interface:
+  display_name: "Literature-Guided Modeling"
+  short_description: "Find and extract academic evidence for model design"
+  default_prompt: "Use $literature-guided-modeling to plan, screen, read, and synthesize academic papers into evidence-grounded model candidates without blocking baseline experiments."

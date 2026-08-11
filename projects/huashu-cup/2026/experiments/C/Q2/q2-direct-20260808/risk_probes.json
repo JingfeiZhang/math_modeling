@@ -1,0 +1,43 @@
+﻿{
+    "probe_scope":  "Accepted source audits and boundary reviews are preserved; no new claim is frozen by promotion.",
+    "probes":  [
+                   {
+                       "id":  "PROMOTION-HASH-CONSISTENCY",
+                       "result":  "All copied artifacts were hashed at registration.",
+                       "status":  "PASS"
+                   },
+                   {
+                       "id":  "PROMOTION-SCOPE",
+                       "result":  "Only accepted source groups were copied; blocked Q4 joint probe excluded.",
+                       "status":  "PASS"
+                   },
+                   {
+                       "id":  "SOURCE-AUDIT-REUSE",
+                       "result":  "Independent source audit and risk files remain addressable by immutable hash.",
+                       "status":  "PASS"
+                   },
+                   {
+                       "id":  "Q2-ADAPTIVE-ALNS-PROBE",
+                       "status":  "PASS",
+                       "result":  "Adaptive ALNS reran from the formal direct directory, passed the full 50000-task audit and deterministic replay, and remains PROBE_ONLY without replacing the formal main model."
+                   }
+               ],
+    "question_id":  "Q2",
+    "run_id":  "q2-direct-20260808",
+    "schema_version":  1,
+    "source_audits":  [
+                          {
+                              "path":  "experiments/C/Q2/q2-direct-20260808/models/full_horizon/q2_full_constraint_audit.json",
+                              "sha256":  "5828246813e019dfa0a49226a37eca61bc7ed6ee3a4c7d2eefe44ce5994b06aa"
+                          },
+                          {
+                              "path":  "experiments/C/Q2/q2-direct-20260808/compat/q2_renewable_metric_audit.json",
+                              "sha256":  "9aef319de98901e5a2c010915bca5ff38dbe3a74ffd18269a981329fd25ec2d3"
+                          },
+                          {
+                              "path":  "experiments/C/Q2/q2-direct-20260808/sensitivity/incremental_review_q1q2.json",
+                              "sha256":  "51166220596ff0e978713a64a830bdc0604008d01ea4f3baa695baf3b089edb7"
+                          }
+                      ],
+    "status":  "PASS"
+}

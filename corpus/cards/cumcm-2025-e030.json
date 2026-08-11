@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "analysis_status": "evidence_reviewed",
+  "review_method": "full page cache plus visual review of abstract, framework, model, main-result and validation anchors",
+  "ocr_status": "not_available; observations are page-image visual evidence, not OCR transcription",
+  "competition": "CUMCM",
+  "year": 2025,
+  "problem": "E",
+  "paper_id": "cumcm-2025-e030",
+  "title": "2025高教社杯全国大学生数学建模竞赛E题论文展示（E030）",
+  "source_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2025qgdxssxjmjslwzs_2025etlw/251101/2022744.shtml",
+  "access": "public_page_images",
+  "award_or_label": "全国大学生数学建模竞赛组委会官方论文展示",
+  "page_coverage": {
+    "reported_total_pages": 36,
+    "cached_pages": 36,
+    "coverage": 1.0,
+    "sha256_verified": true
+  },
+  "abstract_layout": {
+    "pages": [
+      1
+    ],
+    "pattern": "独立首屏摘要 + 关键词；方法按问题顺序展开",
+    "density": "medium-to-high",
+    "evidence": [
+      {
+        "page": 1,
+        "file": "raw/cumcm-2025-e030/page-01.jpg",
+        "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+        "locator": "official page image 1"
+      }
+    ]
+  },
+  "problem_framing": "姿态/动作识别与运动表现评价",
+  "models_to_subquestions": {
+    "Q1": "将视频/姿态关键点转成角度、距离和时间序列特征",
+    "Q2": "建立动作阶段、相似度或评分模型",
+    "Q3-Q4": "比较不同样本/动作的表现，给出评价和改进建议"
+  },
+  "models": [
+    "姿态关键点与时序特征",
+    "动作分类/相似度",
+    "评分或异常识别",
+    "多场景对比验证"
+  ],
+  "validation_structure": [
+    "第2页用人体姿态序列图和动作流程图说明数据对象",
+    "第3-4页以关键点/动作阶段示意和符号表定义变量",
+    "第5-10页用多面板时序图、相位图和评分表检查分类/评价结果"
+  ],
+  "figure_strategy": [
+    "姿态关键点/动作序列图",
+    "多面板时序曲线",
+    "相位轨迹与评分表"
+  ],
+  "transferable_patterns": [
+    "视觉识别结果要把关键点定义和归一化方式写清楚",
+    "多面板时序图共享时间轴，突出动作阶段边界",
+    "评分结论要报告样本范围和误差，避免把相关性写成因果"
+  ],
+  "risks": [
+    "截图式人体图容易带来版权/清晰度问题，正式稿应使用可复现绘图",
+    "类别和阶段颜色要保持一致并提供文字/线型冗余",
+    "页面图片来自官方展示页，水印/压缩伪影不作为原论文排版评价"
+  ],
+  "evidence": [
+    {
+      "page": 1,
+      "file": "raw/cumcm-2025-e030/page-01.jpg",
+      "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 2,
+      "file": "raw/cumcm-2025-e030/page-02.jpg",
+      "observation": "问题重述/背景或数据对象；记录正文如何从摘要进入模型",
+      "locator": "official page image 2"
+    },
+    {
+      "page": 4,
+      "file": "raw/cumcm-2025-e030/page-04.jpg",
+      "observation": "符号表、假设、变量或模型路线图；记录定义顺序",
+      "locator": "official page image 4"
+    },
+    {
+      "page": 7,
+      "file": "raw/cumcm-2025-e030/page-07.jpg",
+      "observation": "代表性主结果图/表；记录图型、图例、单位和比较对象",
+      "locator": "official page image 7"
+    },
+    {
+      "page": 10,
+      "file": "raw/cumcm-2025-e030/page-10.jpg",
+      "observation": "验证、敏感性、方案比较或阶段性结论；记录结果闭环",
+      "locator": "official page image 10"
+    }
+  ],
+  "evidence_boundary": "模型类别和排版判断只写页面中可见的公式、图形、表格和章节位置；未从视觉材料推断奖级、原创性或数学正确性。"
+}

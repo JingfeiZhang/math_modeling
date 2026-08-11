@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "recipe_id": "solar-tilt-sensitivity",
+  "kind": "solar_tilt_sensitivity",
+  "title": "Solar tilt sensitivity",
+  "seed": 20260801,
+  "source_pair": {
+    "candidate_id": "cumcm-2012-b149",
+    "relationship": "exact",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "paper": {
+      "path": "2-1国赛题目+论文/2012/B149/B149/B149答卷.pdf",
+      "blob_sha": "32e0f4b9c60453fe4eec08b93a1365c052d6607a",
+      "sha256": "f0aba132aece5abf111c3328934afc1c976c60b8ef200b2f853a5c341bc7c7e0"
+    },
+    "code": [
+      {
+        "path": "2-1国赛题目+论文/2012/B149/B149/B149源程序/M/gfdc_zuhe2.m",
+        "blob_sha": "b7c23a3f06204132733bc20a7bd9a1516c91577e",
+        "sha256": "d0643819f9ddac7459cfc3769ad037199a0aad252772b59c91bc1948946e7c7e",
+        "execution_status": "not_executed_static_review_only"
+      },
+      {
+        "path": "2-1国赛题目+论文/2012/B149/B149/B149源程序/M/sun_jisuan_day_2.m",
+        "blob_sha": "122186fa258abdab80c236f05a6601e84eb42498",
+        "sha256": "893f883e52c1fa44ac7784ea16e308be5b18688d77d7cdf18759fbb400c7922e",
+        "execution_status": "not_executed_static_review_only"
+      }
+    ]
+  },
+  "scope": "controlled synthetic fixture for reusable method testing",
+  "not_a_reproduction": true,
+  "upstream_code_execution": "forbidden"
+}

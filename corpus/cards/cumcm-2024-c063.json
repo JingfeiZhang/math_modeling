@@ -1,0 +1,100 @@
+{
+  "schema_version": 2,
+  "analysis_status": "evidence_reviewed",
+  "review_method": "full page cache plus visual review of abstract, framework, model, main-result and validation anchors",
+  "ocr_status": "not_available; observations are page-image visual evidence, not OCR transcription",
+  "competition": "CUMCM",
+  "year": 2024,
+  "problem": "C",
+  "paper_id": "cumcm-2024-c063",
+  "title": "2024高教社杯全国大学生数学建模竞赛C题论文展示（C063）",
+  "source_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024ctlw/241104/1977958.shtml",
+  "access": "public_page_images",
+  "award_or_label": "全国大学生数学建模竞赛组委会官方论文展示",
+  "page_coverage": {
+    "reported_total_pages": 49,
+    "cached_pages": 49,
+    "coverage": 1.0,
+    "sha256_verified": true
+  },
+  "abstract_layout": {
+    "pages": [
+      1
+    ],
+    "pattern": "独立首屏摘要 + 关键词；方法按问题顺序展开",
+    "density": "medium-to-high",
+    "evidence": [
+      {
+        "page": 1,
+        "file": "raw/cumcm-2024-c063/page-01.jpg",
+        "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+        "locator": "official page image 1"
+      }
+    ]
+  },
+  "problem_framing": "农作物/农业经营数据的统计分析与方案优化",
+  "models_to_subquestions": {
+    "Q1": "从品类、面积、产量或收益数据提取结构特征",
+    "Q2": "比较不同作物/地块/年份的趋势和贡献",
+    "Q3-Q4": "把统计结果转成资源约束下的方案配置并做情景对照"
+  },
+  "models": [
+    "描述统计与结构占比",
+    "分类/聚合对比",
+    "收益或产量趋势分析",
+    "种植方案优化"
+  ],
+  "validation_structure": [
+    "第4-6页用符号表、原始数据表和分组表说明数据口径",
+    "第7-8页用横向条形图、饼图和折线图交叉检查结构与趋势",
+    "第9-10页用多组对比曲线检验方案在不同年份/对象上的稳定性"
+  ],
+  "figure_strategy": [
+    "排序条形图",
+    "组成饼图/环形图",
+    "多组时间序列折线图"
+  ],
+  "transferable_patterns": [
+    "类别超过约20项时用排序条形图而非拥挤图例",
+    "组成图只承担结构占比，趋势必须另用折线图",
+    "原始数据表保留口径和单位，结果表只保留决策所需列"
+  ],
+  "risks": [
+    "饼图较多时颜色语义容易漂移，应固定类别颜色",
+    "折线图的年份标签和图例需要提高字号并减少重复系列",
+    "页面图片来自官方展示页，水印/压缩伪影不作为原论文排版评价"
+  ],
+  "evidence": [
+    {
+      "page": 1,
+      "file": "raw/cumcm-2024-c063/page-01.jpg",
+      "observation": "首屏摘要、标题和关键词；记录摘要分段结构与结果密度",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 2,
+      "file": "raw/cumcm-2024-c063/page-02.jpg",
+      "observation": "问题重述/背景或数据对象；记录正文如何从摘要进入模型",
+      "locator": "official page image 2"
+    },
+    {
+      "page": 4,
+      "file": "raw/cumcm-2024-c063/page-04.jpg",
+      "observation": "符号表、假设、变量或模型路线图；记录定义顺序",
+      "locator": "official page image 4"
+    },
+    {
+      "page": 7,
+      "file": "raw/cumcm-2024-c063/page-07.jpg",
+      "observation": "代表性主结果图/表；记录图型、图例、单位和比较对象",
+      "locator": "official page image 7"
+    },
+    {
+      "page": 10,
+      "file": "raw/cumcm-2024-c063/page-10.jpg",
+      "observation": "验证、敏感性、方案比较或阶段性结论；记录结果闭环",
+      "locator": "official page image 10"
+    }
+  ],
+  "evidence_boundary": "模型类别和排版判断只写页面中可见的公式、图形、表格和章节位置；未从视觉材料推断奖级、原创性或数学正确性。"
+}

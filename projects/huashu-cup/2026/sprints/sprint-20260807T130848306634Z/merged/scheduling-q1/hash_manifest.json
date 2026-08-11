@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-08-07T15:10:35.745815+00:00",
+  "files": [
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/run_scheduling_q1.py",
+      "sha256": "3d50c74b18fd898a85e58090a047f86ce750697724b34620af24d6a204f57bf6"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/scheduling_metrics.json",
+      "sha256": "cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/baseline_schedule.csv",
+      "sha256": "89e4ab9c6ac1cf6ee0c5c9e5b39596f8276ac5330e3d5ed8e7924350a2fa7a78"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/optimized_schedule.csv",
+      "sha256": "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/warmup_task_audit.csv",
+      "sha256": "e33e84c075a66ca4557f655133a0336303acd8b45a909f896bdd2d1715dc2fed"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/resource_audit.csv",
+      "sha256": "466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/carry_in.json",
+      "sha256": "cdf9946f180310fd65b1c286580a4aca0aa8f5688581dac4b68ddc13e60c7993"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/constraint_audit.json",
+      "sha256": "721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/fallback_test.json",
+      "sha256": "6ae5e9a707204307d863b06580abadcefebfbbeba45662cb1821c7217f36731d"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/claim_proposal.json",
+      "sha256": "36bbfddf0efa214f32e0d52b09cd94a93de16f20d16fba6c82b108e44aff8dfe"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/run_manifest.json",
+      "sha256": "809018a7f7911b826431d8aed577f72df532674ef37f2c9db3325866b802d86d"
+    }
+  ]
+}

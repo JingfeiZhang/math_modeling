@@ -1,0 +1,159 @@
+schema_version: 2
+sprint_id: sprint-20260808T083901900797Z
+status: staging/supporting
+contest_evidence_eligible: false
+palette_id: journal-spectrum-v2
+formal_claim_ids:
+- Q2-FULL-COST-CHANGE-PCT
+contracts:
+- contract_version: '2.0'
+  id: fig-q2-dispatch-comparison
+  question_id: Q2
+  claim_id: Q2-FULL-COST-CHANGE-PCT
+  claim_status: frozen
+  core_conclusion: The deterministic rolling exchange schedule remains below the same-input
+    FIFO cumulative facility-energy cost index across the supplied horizon, with the
+    endpoint tied to the frozen Q2 cost-change claim.
+  core_message: A single cumulative cost index makes the full-horizon comparison readable
+    while preserving the FIFO reference and the bounded-heuristic interpretation.
+  evidence_chain:
+  - locator: experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json:$.comparison_vs_fifo.cost_change_pct
+    sha256: 537062db28c59783fc8c0fcc9e26f153b613954a7b3631f5f215013eeecb3670
+    fields:
+    - comparison_vs_fifo.cost_change_pct
+  - locator: sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_hourly_profiles.csv:Method
+      in {full_horizon_FIFO_latency_feasible_local_first,full_horizon_rolling_shadow_exchange::lagrangian_balanced};
+      Hour 0--2405; Region all
+    sha256: 129c23e73ed9d0ec7398f1a787d9426f0a8d54851a9153f3f96741871404dd47
+    fields:
+    - Method
+    - Hour
+    - Region
+    - ElectricityCost_CNY
+  - locator: sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_block_robustness.csv:block_id;
+      cost_change_pct
+    sha256: 2ac7d8a6da49d09319359317931371b7f16c7f9e872a81f2d64a11e58dfdbaa4
+    fields:
+    - block_id
+    - cost_change_pct
+    - candidate_completion_rate
+    - candidate_SLA_violation_rate
+  kind: data
+  archetype: model-comparison
+  backend: python
+  target_size_profile: contest-body
+  palette_id: journal-spectrum-v2
+  color_encoding:
+  - role: main_model
+    meaning: deterministic rolling exchange heuristic
+    secondary_encoding: solid line + circle marker
+  - role: baseline
+    meaning: same-input FIFO latency-feasible baseline
+    secondary_encoding: dashed line + square marker
+  - role: reference
+    meaning: FIFO normalized index at 100%
+    secondary_encoding: neutral horizontal reference line
+  visual_hierarchy:
+    primary_evidence: Cumulative facility-energy cost index of main schedule versus
+      FIFO.
+    secondary_context: FIFO=100% reference and endpoint annotation derived from frozen
+      evidence.
+    deemphasized: Light horizontal grid and neutral reference rule; no unneeded decorative
+      layers.
+  source_data:
+  - sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_hourly_profiles.csv
+  - experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+  - sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_block_robustness.csv
+  source_script: sprints/sprint-20260808T083901900797Z/staging/figure-q2/generate_q2_figures.py
+  outputs:
+    pdf: paper/figures/fig_q2_dispatch_comparison.pdf
+    svg: paper/figures/fig_q2_dispatch_comparison.svg
+    png: paper/figures/fig_q2_dispatch_comparison.png
+    png_dpi: 400
+  baseline: FIFO cumulative facility-energy cost normalized to 100%; same input, constraints,
+    and output class.
+  axes:
+  - variable: Hour from task horizon
+    unit: h
+  - variable: Cumulative facility-energy cost relative to FIFO
+    unit: '%'
+  caption: Cumulative facility-energy cost index over the 0--2405 h supplied horizon.
+    The rolling exchange heuristic is compared with the same-input FIFO baseline normalized
+    to 100%; endpoint annotation is generated from the frozen Q2 cost-change evidence.
+    This comparison does not claim global optimality or separate the effect of storage
+    decisions.
+  panel_map:
+  - panel: main
+    role: primary comparison evidence
+    subclaim: The bounded deterministic exchange schedule has a lower cumulative facility-energy
+      cost than FIFO for the supplied horizon.
+  statistics:
+  - 2406 hourly observations per method after aggregation over 6 regions
+  - Cumulative index = 100 * cumulative ElectricityCost_CNY(method) / cumulative ElectricityCost_CNY(FIFO)
+  - Endpoint delta and all plotted values are derived from frozen JSON/CSV evidence;
+    no manual values
+  statistics_report:
+    sample_size: 2406 hours x 6 regions per method
+    center: deterministic cumulative sum; endpoint index and trajectory extrema
+    interval: not applicable; no stochastic interval is plotted
+    test: not applicable; paired deterministic same-input trajectory
+    multiplicity: not applicable
+  data_integrity:
+    source_hashes:
+    - path: sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_hourly_profiles.csv
+      sha256: 129c23e73ed9d0ec7398f1a787d9426f0a8d54851a9153f3f96741871404dd47
+    - path: experiments/C/Q2/q2-full-compat-20260808/q2_compat_summary.json
+      sha256: 537062db28c59783fc8c0fcc9e26f153b613954a7b3631f5f215013eeecb3670
+    - path: sprints/sprint-20260808T031146908286Z/merged/solver-q2/q2_full_block_robustness.csv
+      sha256: 2ac7d8a6da49d09319359317931371b7f16c7f9e872a81f2d64a11e58dfdbaa4
+    transformation: Read-only grouping by Method and Hour across Region, cumulative
+      summation of ElectricityCost_CNY, and normalization to the FIFO cumulative cost;
+      the endpoint is cross-checked against the frozen Q2 summary.
+    manual_values_forbidden: true
+  label_strategy:
+    mode: direct-endpoint-labels
+    collision_checked: true
+    justification: Series are labeled at the right edge; line style and marker shape
+      remain available in grayscale.
+  rasterized_layers: []
+  review_risks:
+  - Cumulative normalization emphasizes the horizon-wide comparison and can hide local
+    regional or hourly variation.
+  - The figure reports the cost comparison only; carbon, latency, and fixed-schedule
+    stress probes remain separate evidence.
+  - The main method is a bounded deterministic rolling exchange heuristic, not a global
+    or MILP-optimal solution.
+  - A lower cumulative cost does not establish causal attribution or transfer to altered
+    inputs.
+  qa_report:
+    paths:
+      pdf: sprints/sprint-20260808T083901900797Z/staging/figure-q2/fig_q2_dispatch_comparison.pdf
+      svg: sprints/sprint-20260808T083901900797Z/staging/figure-q2/fig_q2_dispatch_comparison.svg
+      png: sprints/sprint-20260808T083901900797Z/staging/figure-q2/fig_q2_dispatch_comparison.png
+    sha256:
+      pdf: 0c50d7e0179766c0341336a82040345a6797c0d182c1f692d307536d0b5377e8
+      svg: a15d858377cee2d1993083f77a164038c46ebe62eef32759983a5a44396dbe01
+      png: 66e344dbdd5eed75f0c53ad848f48c7cab26f1d580bc2f300b93b3f6835ad270
+    physical_size_mm:
+      width: 158.0
+      height: 104.0
+    png_size_px:
+    - 2488
+    - 1637
+    png_dpi:
+    - 399.9992
+    - 399.9992
+    pdf_page_count: 1
+    svg_editable_text: true
+    layout_qa:
+      passed: true
+      text_count: 4
+      collision_count: 0
+      clipped_count: 0
+  multipanel_justification: Single primary axes are sufficient for the frozen Q2 cost-change
+    claim; adding cost, carbon, and latency would mix units and dilute the claim.
+  final_width_mm: 158.0
+  min_font_pt: 8
+  status: staging/supporting
+  contest_evidence_eligible: false
+  synthetic_fixture: false

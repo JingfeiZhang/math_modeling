@@ -1,0 +1,1 @@
+{"timestamp":"2026-08-09T03:00:00+08:00","tool":"OpenAI Codex desktop agent (GPT-5 coding agent)","purpose":"模型优化、代码实现、冻结证据复核、科研图件与 LaTeX 论文装配","output_used":"采用通过门禁的正式代码、Q4 局部联合优化结果、基于冻结证据的图件与经人工修订的论文文本；Q1--Q3 未晋升候选未进入正式主线","human_verification":"通过同输出基线、独立硬约束审计、固定种子确定性复跑、SHA-256、G3/G4 和发布审计核验；团队逐项复核数字、单位、模型边界和 AI 披露"}

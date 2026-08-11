@@ -1,0 +1,1429 @@
+{
+  "task_schedule": {
+    "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+    "scope": "all 50000 real arrivals in hours 0-2399; hours 2400-2405 closeout only",
+    "passed": true,
+    "checks": {
+      "task_set_exact": true,
+      "task_id_unique": true,
+      "duration_identity": true,
+      "earliest_start": true,
+      "realtime_arrival_start": true,
+      "latency_limit": true,
+      "latency_value_identity": true,
+      "SLA_latest_finish": true,
+      "closeout_end_at_or_before_2406": true,
+      "nonpreemptive_single_row": true,
+      "GPU_capacity": true,
+      "IT_power_capacity": true,
+      "facility_power_capacity": true
+    },
+    "expected_task_count": 50000,
+    "observed_task_count": 50000,
+    "task_completion_rate": 1.0,
+    "SLA_violation_count": 0,
+    "SLA_violation_rate": 0.0,
+    "mean_latency_ms": 9.25874,
+    "p95_latency_ms": 25.0,
+    "mean_wait_hours": 0.71428,
+    "p95_wait_hours": 5.0,
+    "migration_rate": 0.2893,
+    "cost_CNY": 3325895677.8997936,
+    "carbon_tCO2": 2838107.919139122,
+    "facility_energy_MWh": 6507393.433522224,
+    "renewable_used_MWh": 6502233.9634059,
+    "renewable_utilization_ratio": 0.9992071372095398,
+    "peak_facility_load_MW": 700.0,
+    "capacity": {
+      "RegionA": {
+        "max_GPU": 489.0,
+        "GPU_capacity": 630.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 417.876,
+        "IT_capacity_MW": 420.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 564.1326,
+        "facility_capacity_MW": 567.0,
+        "facility_over_minutes": 0
+      },
+      "RegionB": {
+        "max_GPU": 585.0,
+        "GPU_capacity": 585.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 409.99566699999997,
+        "IT_capacity_MW": 410.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 553.49415045,
+        "facility_capacity_MW": 553.5,
+        "facility_over_minutes": 0
+      },
+      "RegionC": {
+        "max_GPU": 540.0,
+        "GPU_capacity": 540.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 405.0,
+        "IT_capacity_MW": 405.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 558.9,
+        "facility_capacity_MW": 558.9,
+        "facility_over_minutes": 0
+      },
+      "RegionD": {
+        "max_GPU": 1110.0,
+        "GPU_capacity": 1472.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 532.731333,
+        "IT_capacity_MW": 720.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 681.89610624,
+        "facility_capacity_MW": 921.6,
+        "facility_over_minutes": 0
+      },
+      "RegionE": {
+        "max_GPU": 1012.0,
+        "GPU_capacity": 1012.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 560.0,
+        "IT_capacity_MW": 560.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 700.0,
+        "facility_capacity_MW": 700.0,
+        "facility_over_minutes": 0
+      },
+      "RegionF": {
+        "max_GPU": 966.0,
+        "GPU_capacity": 966.0,
+        "GPU_over_minutes": 0,
+        "max_IT_MW": 539.997333,
+        "IT_capacity_MW": 540.0,
+        "IT_over_minutes": 0,
+        "max_facility_MW": 685.79661291,
+        "facility_capacity_MW": 685.8,
+        "facility_over_minutes": 0
+      }
+    }
+  },
+  "storage_dispatches": {
+    "observed:sequential_baseline": {
+      "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+      "passed": true,
+      "regional": {
+        "RegionA": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionB": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionC": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.842170943040401e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionD": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionE": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.4068746168049984e-12,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 3.979039320256561e-13,
+            "soc_bounds_violation_MWh": 1.4068746168049984e-12,
+            "charge_power_violation_MW": 4.263256414560601e-13,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionF": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.842170943040401e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        }
+      },
+      "system": {
+        "passed": true,
+        "reported_peak_variable_MW": 0.0,
+        "observed_peak_net_import_MW": -214.79500041666665,
+        "positive_part_peak_MW": 0.0,
+        "checks": {
+          "region_hour_row_count_error": 0.0,
+          "exact_72h_coverage_error": 0.0,
+          "system_peak_linkage_violation_MW": 0.0,
+          "system_peak_identity_error_MW": 0.0
+        }
+      }
+    },
+    "observed:joint_candidate": {
+      "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+      "passed": true,
+      "regional": {
+        "RegionA": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionB": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionC": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.4210854715202004e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionD": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 5.684341886080802e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionE": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.2737367544323206e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 1.7053025658242404e-13,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionF": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.2737367544323206e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        }
+      },
+      "system": {
+        "passed": true,
+        "reported_peak_variable_MW": 0.0,
+        "observed_peak_net_import_MW": -214.79500041666665,
+        "positive_part_peak_MW": 0.0,
+        "checks": {
+          "region_hour_row_count_error": 0.0,
+          "exact_72h_coverage_error": 0.0,
+          "system_peak_linkage_violation_MW": 0.0,
+          "system_peak_identity_error_MW": 0.0
+        }
+      }
+    },
+    "peak_price_empirical:sequential_baseline": {
+      "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+      "passed": true,
+      "regional": {
+        "RegionA": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionB": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionC": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 5.684341886080802e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionD": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 5.684341886080802e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionE": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 6.821210263296962e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 1.4495071809506044e-12,
+            "soc_bounds_violation_MWh": 1.1368683772161603e-13,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionF": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.4551915228366852e-11,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 8.526512829121202e-13,
+            "soc_bounds_violation_MWh": 1.1368683772161603e-13,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        }
+      },
+      "system": {
+        "passed": true,
+        "reported_peak_variable_MW": 0.0,
+        "observed_peak_net_import_MW": -214.79500041666665,
+        "positive_part_peak_MW": 0.0,
+        "checks": {
+          "region_hour_row_count_error": 0.0,
+          "exact_72h_coverage_error": 0.0,
+          "system_peak_linkage_violation_MW": 0.0,
+          "system_peak_identity_error_MW": 0.0
+        }
+      }
+    },
+    "peak_price_empirical:joint_candidate": {
+      "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+      "passed": true,
+      "regional": {
+        "RegionA": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionB": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionC": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.4210854715202004e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionD": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 5.684341886080802e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionE": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.2737367544323206e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 1.7053025658242404e-13,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionF": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.2737367544323206e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        }
+      },
+      "system": {
+        "passed": true,
+        "reported_peak_variable_MW": 0.0,
+        "observed_peak_net_import_MW": -214.79500041666665,
+        "positive_part_peak_MW": 0.0,
+        "checks": {
+          "region_hour_row_count_error": 0.0,
+          "exact_72h_coverage_error": 0.0,
+          "system_peak_linkage_violation_MW": 0.0,
+          "system_peak_identity_error_MW": 0.0
+        }
+      }
+    },
+    "high_carbon_empirical:sequential_baseline": {
+      "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+      "passed": true,
+      "regional": {
+        "RegionA": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionB": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionC": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.842170943040401e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionD": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionE": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.4068746168049984e-12,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 3.979039320256561e-13,
+            "soc_bounds_violation_MWh": 1.4068746168049984e-12,
+            "charge_power_violation_MW": 4.263256414560601e-13,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionF": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.842170943040401e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        }
+      },
+      "system": {
+        "passed": true,
+        "reported_peak_variable_MW": 0.0,
+        "observed_peak_net_import_MW": -214.79500041666665,
+        "positive_part_peak_MW": 0.0,
+        "checks": {
+          "region_hour_row_count_error": 0.0,
+          "exact_72h_coverage_error": 0.0,
+          "system_peak_linkage_violation_MW": 0.0,
+          "system_peak_identity_error_MW": 0.0
+        }
+      }
+    },
+    "high_carbon_empirical:joint_candidate": {
+      "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+      "passed": true,
+      "regional": {
+        "RegionA": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionB": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionC": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.4210854715202004e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionD": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 5.684341886080802e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionE": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.2737367544323206e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 1.7053025658242404e-13,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionF": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.2737367544323206e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        }
+      },
+      "system": {
+        "passed": true,
+        "reported_peak_variable_MW": 0.0,
+        "observed_peak_net_import_MW": -214.79500041666665,
+        "positive_part_peak_MW": 0.0,
+        "checks": {
+          "region_hour_row_count_error": 0.0,
+          "exact_72h_coverage_error": 0.0,
+          "system_peak_linkage_violation_MW": 0.0,
+          "system_peak_identity_error_MW": 0.0
+        }
+      }
+    },
+    "renewable_low_empirical:sequential_baseline": {
+      "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+      "passed": true,
+      "regional": {
+        "RegionA": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.4210854715202004e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionB": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 7.105427357601002e-15,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionC": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.842170943040401e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionD": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 3.410605131648481e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionE": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.8474111129762605e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 1.4210854715202004e-14,
+            "soc_bounds_violation_MWh": 1.8474111129762605e-13,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionF": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.1368683772161603e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        }
+      },
+      "system": {
+        "passed": true,
+        "reported_peak_variable_MW": 0.0,
+        "observed_peak_net_import_MW": -167.0785004600001,
+        "positive_part_peak_MW": 0.0,
+        "checks": {
+          "region_hour_row_count_error": 0.0,
+          "exact_72h_coverage_error": 0.0,
+          "system_peak_linkage_violation_MW": 0.0,
+          "system_peak_identity_error_MW": 0.0
+        }
+      }
+    },
+    "renewable_low_empirical:joint_candidate": {
+      "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+      "passed": true,
+      "regional": {
+        "RegionA": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 3.126388037344441e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionB": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.4210854715202004e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionC": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 5.684341886080802e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 1.9895196601282805e-13,
+            "soc_bounds_violation_MWh": 5.684341886080802e-14,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionD": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 3.183231456205249e-12,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 9.094947017729282e-13,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionE": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.7053025658242404e-12,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 1.4210854715202004e-13,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionF": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 3.979039320256561e-12,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 4.149569576838985e-12,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        }
+      },
+      "system": {
+        "passed": true,
+        "reported_peak_variable_MW": 0.0,
+        "observed_peak_net_import_MW": -176.1059404600002,
+        "positive_part_peak_MW": 0.0,
+        "checks": {
+          "region_hour_row_count_error": 0.0,
+          "exact_72h_coverage_error": 0.0,
+          "system_peak_linkage_violation_MW": 0.0,
+          "system_peak_identity_error_MW": 0.0
+        }
+      }
+    },
+    "joint_stress:sequential_baseline": {
+      "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+      "passed": true,
+      "regional": {
+        "RegionA": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 0.0,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionB": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 3.552713678800501e-15,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionC": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.4210854715202004e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 1.4210854715202004e-14,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionD": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.1368683772161603e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionE": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.2737367544323206e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 1.1368683772161603e-13,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionF": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.2737367544323206e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        }
+      },
+      "system": {
+        "passed": true,
+        "reported_peak_variable_MW": 0.0,
+        "observed_peak_net_import_MW": -167.0785004600001,
+        "positive_part_peak_MW": 0.0,
+        "checks": {
+          "region_hour_row_count_error": 0.0,
+          "exact_72h_coverage_error": 0.0,
+          "system_peak_linkage_violation_MW": 0.0,
+          "system_peak_identity_error_MW": 0.0
+        }
+      }
+    },
+    "joint_stress:joint_candidate": {
+      "method": "surrogate_assisted_fix_and_optimize_candidate_PROBE_ONLY",
+      "passed": true,
+      "regional": {
+        "RegionA": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 5.968558980384842e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionB": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.4210854715202004e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 0.0,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionC": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 4.973799150320701e-14,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 1.7053025658242404e-13,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 1.4210854715202004e-14,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionD": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 2.6147972675971687e-12,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 1.3216094885137863e-12,
+            "soc_bounds_violation_MWh": 0.0,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionE": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.4210854715202004e-13,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.684341886080802e-14,
+            "soc_bounds_violation_MWh": 1.4210854715202004e-13,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        },
+        "RegionF": {
+          "passed": true,
+          "checks": {
+            "soc_transition_max_abs_MWh": 1.7053025658242404e-12,
+            "charge_split_max_abs_MW": 0.0,
+            "load_balance_max_abs_MW": 0.0,
+            "renewable_balance_max_abs_MW": 5.400124791776761e-13,
+            "soc_bounds_violation_MWh": 1.4352963262354024e-12,
+            "charge_power_violation_MW": 0.0,
+            "discharge_power_violation_MW": 0.0,
+            "import_cap_violation_MW": 0.0,
+            "export_cap_violation_MW": 0.0,
+            "terminal_soc_error_MWh": 0.0,
+            "simultaneous_charge_discharge_MW": 0.0,
+            "simultaneous_grid_import_export_MW": 0.0,
+            "charge_mode_integrality_error": 0.0,
+            "grid_mode_integrality_error": 0.0
+          }
+        }
+      },
+      "system": {
+        "passed": true,
+        "reported_peak_variable_MW": 0.0,
+        "observed_peak_net_import_MW": -176.1059404600002,
+        "positive_part_peak_MW": 0.0,
+        "checks": {
+          "region_hour_row_count_error": 0.0,
+          "exact_72h_coverage_error": 0.0,
+          "system_peak_linkage_violation_MW": 0.0,
+          "system_peak_identity_error_MW": 0.0
+        }
+      }
+    }
+  },
+  "all_passed": true
+}

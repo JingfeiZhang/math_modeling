@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T130848306634Z",
+  "status": "READY_TO_MERGE",
+  "passed": true,
+  "accepted_tasks": [
+    "forecast-q1",
+    "scheduling-q1"
+  ],
+  "retry_tasks": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "tasks": [
+    {
+      "task_id": "forecast-q1",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 1,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/run_forecast.py",
+          "sha256": "73666e4d1b2ae6554f100c131d80470e1258ae23e40cba360359894415c0a043"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/workload_panel.csv",
+          "sha256": "d0eaf1a81152b3dda4ebcea4f223c31111ed001c1eec16543311fe87aa1ee80b"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/descriptive_by_series.csv",
+          "sha256": "5f54955015f3175444b5227154f8dd8ad3d95d94e8c556285132dfbb6b61543c"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/baseline_selection.csv",
+          "sha256": "432b6bbdb04a13a0cae119c11ccb8944658aa46b9cb1ff4cacb9cd32cb8a4e31"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/residual_shrinkage_selection.csv",
+          "sha256": "1e359a219e6ccbd84337a7170278e7fcf75d75eaaa87d8a833dfe0b2c515ecd4"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/rolling_backtest_predictions.csv",
+          "sha256": "0a949cd1e7b09b4e7096a5b9bb3e5ebedde1796213f32673ea2091064da2e049"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/validation_predictions.csv",
+          "sha256": "52f785106caeceff0e7075d16a021b99716e303e1cb0d2de20c73a9963b08cd5"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/blind_test_predictions.csv",
+          "sha256": "118afe131a800e7e6271ae0d8d05fbd8d44690479dab0514f522340aa464461d"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/metrics_by_series.csv",
+          "sha256": "91ceda5aefe2d89708ad8d0e3bd16e7564a5eace575135bb5d787059fdbe52b4"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/metrics_summary.json",
+          "sha256": "e27a4e5f96ce60de365d411b67e99b1b143ee846af6e08de4c8b9760bc59455a"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/model_config.json",
+          "sha256": "94980158c3f37a3bdfe23c7dec657b4fa043dc56bb6c2476790054a8ca0d89cf"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/claim_proposal.json",
+          "sha256": "4b35bd891c31541e3b010e6500fe7c10231213bdd48075a5a6938a8e20105ab4"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/hash_manifest.json",
+          "sha256": "12b68903ce9b6c66f1eb0982f139915e52ff80c27ebef6658b695e3f42749599"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/run_manifest.json",
+          "sha256": "29ac770bad220432b07ef3f2969a3cf53064f7b24c59dde4ebd1af58d9fa3807"
+        }
+      ],
+      "handoff": "sprints/sprint-20260807T130848306634Z/staging/forecast-q1/handoff.json"
+    },
+    {
+      "task_id": "scheduling-q1",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 2,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/run_scheduling_q1.py",
+          "sha256": "3d50c74b18fd898a85e58090a047f86ce750697724b34620af24d6a204f57bf6"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/scheduling_metrics.json",
+          "sha256": "cdec3e62e6c95376cc024e9191d21d84becbe34f5b3a2e2a7c3febb585954511"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/baseline_schedule.csv",
+          "sha256": "89e4ab9c6ac1cf6ee0c5c9e5b39596f8276ac5330e3d5ed8e7924350a2fa7a78"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/optimized_schedule.csv",
+          "sha256": "3b06cba3dd86f2d3371709142490006da9110ba874bfda403444ff4079bdfa9a"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/warmup_task_audit.csv",
+          "sha256": "e33e84c075a66ca4557f655133a0336303acd8b45a909f896bdd2d1715dc2fed"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/resource_audit.csv",
+          "sha256": "466b5cb1e92fcc9b4e03cbbbcc94817f450198defba5b7f7ff0a69587e39bc82"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/carry_in.json",
+          "sha256": "cdf9946f180310fd65b1c286580a4aca0aa8f5688581dac4b68ddc13e60c7993"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/constraint_audit.json",
+          "sha256": "721b920aa8530791d5cadc931a706172c9cd365cbd824e970abf38c5cf22b858"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/fallback_test.json",
+          "sha256": "6ae5e9a707204307d863b06580abadcefebfbbeba45662cb1821c7217f36731d"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/claim_proposal.json",
+          "sha256": "36bbfddf0efa214f32e0d52b09cd94a93de16f20d16fba6c82b108e44aff8dfe"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/run_manifest.json",
+          "sha256": "809018a7f7911b826431d8aed577f72df532674ef37f2c9db3325866b802d86d"
+        },
+        {
+          "path": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/hash_manifest.json",
+          "sha256": "9e6aa085934a6dcf18e08cf0c1b30a3d94a903fba622e8271a1783382cddb4b0"
+        }
+      ],
+      "handoff": "sprints/sprint-20260807T130848306634Z/retry-staging/scheduling-q1-attempt-2/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-07T15:15:01.399473+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "checks": {
+    "carry_in_reused": true,
+    "all_final_tasks_once": true,
+    "hard_constraints": true,
+    "selected_neighborhood_bounded": true
+  },
+  "activation": "Only a bounded neighbourhood was released; incumbent remains the formal schedule."
+}

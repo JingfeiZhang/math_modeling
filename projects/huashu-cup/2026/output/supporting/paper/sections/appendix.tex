@@ -1,0 +1,185 @@
+\appendix
+
+\section{程序、环境与输出映射}
+
+模型程序采用 Python、OR-Tools 与 HiGHS 实现；MATLAB 用于论文图件及图件数据准备。表~\ref{tab:code-entry} 汇总各模块的实现环境和输出类别，完整入口路径见支撑材料清单。
+
+\begin{longtable}{@{}p{0.14\textwidth}p{0.23\textwidth}p{0.24\textwidth}p{0.29\textwidth}@{}}
+\caption{模型、审计和图件的执行入口}\label{tab:code-entry}\\
+\toprule
+模块 & 程序类别 & 核心依赖 & 主要输出 \\
+\midrule
+\endfirsthead
+\toprule
+模块 & 程序类别 & 核心依赖 & 主要输出 \\
+\midrule
+\endhead
+Q1 预测 & 预测程序 & Python，scikit-learn & 预测、区间与序列指标 \\
+Q1 排程 & 约束排程程序 & Python，OR-Tools CP-SAT & 主排程、FIFO 基线与资源审计 \\
+Q2 调度 & 全时域调度程序 & Python，确定性局部交换 & 两套完整排程、逐时剖面与审计 \\
+Q3 储能 & 储能 MILP 程序 & Python，SciPy/HiGHS & 逐时调度结果、90 块记录与压力检验 \\
+Q3 约束复核 & 全时域可行性检验 & HiGHS 二进制 MILP & 六区域可行性与 270 项审计 \\
+Q4 联合优化 & 受限联合优化程序 & Python，任务邻域与储能响应 & 五场景指标、搜索记录与完整排程 \\
+图件数据准备 & MATLAB 数据准备脚本 & MATLAB R2026a & 图件派生数据与输入校验值 \\
+图件构建 & MATLAB 图件脚本 & MATLAB R2026a & 12 组 PDF/SVG/400 dpi PNG \\
+论文构建 & LaTeX 构建脚本 & XeLaTeX & 论文 PDF 与构建报告 \\
+\bottomrule
+\end{longtable}
+
+\section{主要结果与来源索引}
+
+正文中的性能数字由结果宏读取；图表辅助字段记录源文件、字段定位、原始值、显示值、单位和文件校验值，保证正文、表格和图件使用同一统计口径。
+
+\begin{longtable}{p{0.27\textwidth}p{0.11\textwidth}p{0.52\textwidth}}
+\caption{24 项主要结果的来源与论文用途}\label{tab:claim-index}\\
+\toprule
+结果组 & 数量 & 正文用途 \\
+\midrule
+\endfirsthead
+\toprule
+结果组 & 数量 & 正文用途 \\
+\midrule
+\endhead
+Q1 预测 & 2 & 盲测系统 WAPE、名义 95\% 区间经验覆盖率 \\
+Q1 排程 & 3 & 硬约束通过、任务完成率、CP-SAT 求解状态 \\
+Q2 全时域调度 & 7 & 完成率、SLA、硬约束、成本/碳排/时延变化、确定性复跑 \\
+Q3 滚动储能 & 6 & 90 次覆盖、成本与碳排差、压力审计、负荷残差、270/270 \\
+Q4 局部联合 & 6 & 硬约束、三类场景关键差值、确定性复跑 \\
+\bottomrule
+\end{longtable}
+
+Q3 的完整审计统一引用 \texttt{Q3-ALL-270-AUDITS-PASS}。六个全时域二进制 MILP 可行性检验按区域独立求解，仅支持约束可行性与审计完整性，不支持系统级全局最优或新的性能比较。
+
+\section{硬约束审计清单}
+
+\subsection{任务与资源}
+
+任务审计依次检查：输入任务数与输出唯一任务数一致；不存在重复、遗漏或拆分；开始时刻不早于释放时刻；实时任务到达即开始；结束时刻与持续时间一致；执行区域满足单向时延上限；GPU 占用、计算 IT 功率和设施功率不超过区域上限；最后任务不越过收尾边界。Q1 还检查历史暖机任务的已完成任务、跨窗任务与未解析任务之和守恒；Q2 和 Q4 检查跨区移动后来源、执行区域与开始时刻可回溯。
+
+\subsection{储能与电网}
+
+储能审计逐区域、逐小时检查 SOC 转移等式、SOC 上下界、充放电功率上限、充放电互斥、购售电互斥、电能平衡、新能源使用上限、联合购电上限和终端 SOC 规则。候选与无储能/顺序基线均输出同结构逐时调度结果，以便使用同一审计函数。数值残差阈值在运行清单中声明，正文只使用审计汇总。
+
+\subsection{确定性复跑与输出一致性}
+
+每次运行记录命令、环境、种子、代码和数据版本、输出定义、运行时间及求解器状态。复跑比较任务 ID、执行区域、开始时刻和关键逐时调度字段；对要求逐字节一致的输出使用文件校验值，对允许浮点序列化差异的结果使用字段级容差比较并明确规则。复跑成功证明实现可重现，不证明解唯一。
+
+\section{正式图件索引与正文角色}
+
+\begin{longtable}{@{}p{0.22\textwidth}p{0.65\textwidth}p{0.07\textwidth}@{}}
+\caption{MATLAB 正式图件及其论文角色}\label{tab:figure-index}\\
+\toprule
+图件 & 正文承担的论证任务 & 面板 \\
+\midrule
+\endfirsthead
+\toprule
+图件 & 正文承担的论证任务 & 面板 \\
+\midrule
+\endhead
+Q1 周内需求结构 & 解释 18 条序列的周内结构，不承担性能结论 & 单 \\
+Q1 盲测预测区间 & 同时展示实际、基线、主预测与区间覆盖 & 单 \\
+Q1 序列误差配对 & 展示底层序列误差异质性 & 单 \\
+Q1 任务排程甘特图 & 展示 538 条实际任务及跨窗任务的可执行排程 & 单 \\
+Q1 资源余量 & 展示 GPU、IT 与设施功率相对容量余量 & 单 \\
+Q2 负荷迁移 & 解释候选相对 FIFO 的区域负荷迁移 & 单 \\
+Q2 累计影响 & 展示成本与碳排差异的全时域累积形成过程 & 单 \\
+Q2 时延分位数哑铃图 & 解释平均时延上升与零 SLA 违约可并存 & 单 \\
+Q3 功率与 SOC & 联合验证功率动作和 SOC 状态转移 & 双 \\
+Q3 滚动覆盖 & 展示 90 块覆盖和求解稳定性 & 单 \\
+Q4 场景权衡 & 展示五场景成本、碳排与新能源权衡 & 单 \\
+Q4 系统响应 & 解释任务移动与储能响应的 72 h 系统变化 & 单 \\
+\bottomrule
+\end{longtable}
+
+所有图由 MATLAB R2026a 基于正式结果生成，正式尺寸宽 158 mm，最小字号 8 pt，导出 PDF、可编辑文字 SVG 与 400 dpi PNG。图内不设置标题；图题只在 LaTeX 中出现。自编数据色仅使用 journal-spectrum-v2，语义颜色按 \texttt{config/figure\_style.yaml} 映射。除 Q3 功率--SOC 图外，不使用多面板。整体工作流图不进入正式图集。
+
+\section{支撑材料清单}
+
+支撑包应包含：四问模型程序与依赖锁定文件；主模型和同输出基线的运行清单、输出校验值、约束审计与摘要；Q1 预测、实际任务排程和资源审计；Q2 两套 50000 任务完整排程及逐时剖面；Q3 两套逐时调度结果、90 块求解记录、压力检验和 270 项审计记录；Q4 五场景逐时调度结果、联合候选排程、搜索记录与复跑报告；MATLAB 数据准备、12 张图的脚本、输入校验值和三格式导出清单；论文代码清单、AI 使用台账和发布验证报告。
+
+正文不附 50000 任务明细、90 块逐项长表和全部逐时调度结果。上述文件通过支撑材料索引提供路径、字段说明、单位和文件校验值，以控制正文页数并保持可复核性。论文 PDF 与支撑包均须满足官方 20 MB 上限，压缩或栅格化不得改变数据、文字可编辑性要求和来源对应关系。
+
+\section{人工智能工具使用详情}
+
+\subsection{所用 AI 工具名称和版本}
+
+\begin{longtable}{p{0.07\textwidth}p{0.17\textwidth}p{0.15\textwidth}p{0.18\textwidth}p{0.25\textwidth}}
+\caption{AI 工具信息}\label{tab:ai-tool-info}\\
+\toprule
+序号 & AI 工具名称 & 版本/型号 & 开发机构/公司 & 使用日期 \\
+\midrule
+\endfirsthead
+\toprule
+序号 & AI 工具名称 & 版本/型号 & 开发机构/公司 & 使用日期 \\
+\midrule
+\endhead
+1 & OpenAI Codex & GPT-5 & OpenAI & 2026-08-07 至 2026-08-09 \\
+\bottomrule
+\end{longtable}
+
+\subsection{具体使用目的和环节}
+
+\begin{longtable}{@{}p{0.07\textwidth}p{0.20\textwidth}p{0.50\textwidth}p{0.12\textwidth}@{}}
+\caption{AI 工具的使用环节与辅助目的}\label{tab:ai-purpose}\\
+\toprule
+序号 & 使用环节 & 使用目的 & 使用工具 \\
+\midrule
+\endfirsthead
+\toprule
+序号 & 使用环节 & 使用目的 & 使用工具 \\
+\midrule
+\endhead
+1 & 候选方案与实验审计 & 梳理备选方案、检查基线可比性、协助定位约束审计和复跑中的实现问题 & OpenAI Codex \\
+2 & 程序调试 & 辅助检查 Python、OR-Tools、HiGHS 与 MATLAB 脚本的语法、接口、输出字段和确定性设置 & OpenAI Codex \\
+3 & 图表制作 & 辅助调整 MATLAB 图件的坐标、图例、字体、裁切、留白与三格式导出；图件数据只读取正式结果文件 & OpenAI Codex \\
+4 & 文字与排版 & 辅助检查术语、单位、图表引用、LaTeX 编译和官方模板一致性，并提供局部润色建议 & OpenAI Codex \\
+5 & 结果复核 & 辅助执行校验值核对、硬约束检查、主要结果定位和发布前静态审计 & OpenAI Codex \\
+\bottomrule
+\end{longtable}
+
+\clearpage
+\subsection{关键交互记录}
+
+以下仅摘录对正式产物有代表性的交互；完整工作记录保存在项目内部台账中，且不包含账号、密钥、个人信息或未公开数据。
+
+\begin{enumerate}[label=\textbf{交互记录 \arabic*.},leftmargin=2.2em]
+  \item \textbf{提示词：}“梳理现有 C 题产物，判断模型是否仍有优化空间，并给出可执行的收敛与验证计划。”\\
+  \textbf{AI 回复摘要：}按 Q1--Q4 列出候选方案、同输出基线、接受条件、风险检验和停止条件。\\
+  \textbf{处理结果：}参赛队逐项复核运行证据；Q1--Q3 未达到预设门槛的候选未替换主线，Q4 仅在通过硬约束和确定性复跑后保留 72 h、12 任务邻域的局部联合结果。
+
+  \item \textbf{提示词：}“基于赛题结果文件用 MATLAB 重绘论文图件，修正坐标、字体、图例、裁切和留白，并导出 PDF、SVG、PNG。”\\
+  \textbf{AI 回复摘要：}定位结果 CSV/JSON 与 MATLAB 生成脚本，提出图型、版式和导出修改建议。\\
+  \textbf{处理结果：}参赛队核对源文件校验值、坐标单位、统计口径和图意后运行 MATLAB；不采用模拟数据或 AI 生成数值。
+
+  \item \textbf{提示词：}“核验 Q3 完整审计 269/270 的原因，并修复为全部通过。”\\
+  \textbf{AI 回复摘要：}协助定位旧全时域探针的边界不一致，并建议使用含双互斥约束的区域二进制 MILP 探针重新审计。\\
+  \textbf{处理结果：}参赛队复核约束含义并运行正式程序，270 项审计全部通过；该结果只支持可行性与审计完整性，不新增性能或全局最优结论。
+
+  \item \textbf{提示词：}“核对华数杯官方 Word 模板和 AI 使用章程，调整 LaTeX 首页、声明位置与附录结构。”\\
+  \textbf{AI 回复摘要：}提取首页表格、字体、字号、页边距和 AI 披露条款，形成 LaTeX 修改建议。\\
+  \textbf{处理结果：}参赛队按本届官方文件逐项核对，并通过 XeLaTeX 编译和 PDF 页面渲染检查后采用。
+\end{enumerate}
+
+\subsection{采纳和人工修改情况}
+
+{\footnotesize
+\begin{longtable}{@{}p{0.06\textwidth}p{0.29\textwidth}>{\centering\arraybackslash}p{0.14\textwidth}p{0.41\textwidth}@{}}
+\caption{AI 输出的采纳范围与人工修改}\label{tab:ai-adoption}\\
+\toprule
+序号 & AI 输出内容概述 & 是否采纳 & 人工修改情况 \\
+\midrule
+\endfirsthead
+\toprule
+序号 & AI 输出内容概述 & 是否采纳 & 人工修改情况 \\
+\midrule
+\endhead
+1 & 优化候选、接受条件和停止条件 & 部分采纳 & 参赛队根据题意、可计算预算和正式实验结果决定是否采用；未达条件的方案保留为未采用方案 \\
+2 & 程序修改与错误定位建议 & 部分采纳 & 逐段检查代码，并使用同输入基线、硬约束审计、固定种子复跑和 SHA-256 核验后才进入正式证据 \\
+3 & MATLAB 图件脚本与版式建议 & 采纳 & 参赛队核对数据来源、统计定义、坐标单位、图例和结论边界，并对文字遮挡与裁切进行人工检查 \\
+4 & 论文局部表述与 LaTeX 排版建议 & 部分采纳 & 参赛队重新组织论证、核对公式和正式数值，并用自身语言完成最终表述 \\
+5 & 未经证据验证的数值、来源或结论 & 不采纳 & 不进入正文、图表、参考文献或附录；正式数字只来自赛题结果及其确定性派生量 \\
+\bottomrule
+\end{longtable}
+
+AI 不作为作者，也不作为数学模型、公式或结论的学术论据来源；但按照竞赛章程，所用 AI 工具作为工具披露条目列入参考文献。模型选择、公式推导、证据核验、文字定稿和提交责任均由参赛队承担。
+}

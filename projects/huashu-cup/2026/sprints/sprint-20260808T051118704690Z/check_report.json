@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260808T051118704690Z",
+  "status": "READY_TO_MERGE",
+  "passed": true,
+  "accepted_tasks": [
+    "solver-q4"
+  ],
+  "retry_tasks": [],
+  "blocked_tasks": [],
+  "protected_changes": [],
+  "tasks": [
+    {
+      "task_id": "solver-q4",
+      "declared_status": "SUCCESS",
+      "disposition": "ACCEPTED",
+      "attempt": 1,
+      "issues": [],
+      "artifacts": [
+        {
+          "path": "sprints/sprint-20260808T051118704690Z/staging/solver-q4/q4_peak_tradeoff.csv",
+          "sha256": "8ed32e82b5bd8ba9c64e3b3d6bfd97bd32e306ce8248ceb1afbce3848b204fcc"
+        },
+        {
+          "path": "sprints/sprint-20260808T051118704690Z/staging/solver-q4/q4_peak_selected_dispatch.csv",
+          "sha256": "3c9a7fc5fcb432c3a0a06dc23b7710b92530eab4c36efa5df57cec2bed91e843"
+        },
+        {
+          "path": "sprints/sprint-20260808T051118704690Z/staging/solver-q4/q4_peak_constraint_audit.json",
+          "sha256": "52b190d62209e9373866e33df992046cc4b38f00250283c0e624f4986376ec13"
+        },
+        {
+          "path": "sprints/sprint-20260808T051118704690Z/staging/solver-q4/q4_peak_summary.json",
+          "sha256": "45f18cee089d3f2ae6978940de4de963b09369451ce5365716945fbea66cb274"
+        },
+        {
+          "path": "sprints/sprint-20260808T051118704690Z/staging/solver-q4/q4_peak_run_manifest.json",
+          "sha256": "b280344d00e31ea527f6e109cb914f445b3d11a242abb10841f31ab9d1934406"
+        },
+        {
+          "path": "sprints/sprint-20260808T051118704690Z/staging/solver-q4/run_q4_peak_budget.py",
+          "sha256": "fd0afaf0f4471b4e218363621c1601c1d14c1789e281f84d1eb3bc336dd1de1f"
+        }
+      ],
+      "handoff": "sprints/sprint-20260808T051118704690Z/staging/solver-q4/handoff.json"
+    }
+  ],
+  "generated_at_utc": "2026-08-08T05:49:41.073827+00:00"
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "sprint_id": "sprint-20260807T161902915769Z",
+  "task_id": "reviewer-q1",
+  "role": "reviewer",
+  "problem": "C",
+  "question": "Q1",
+  "status": "PENDING",
+  "attempt": 2,
+  "max_attempts": 2,
+  "dependencies": [
+    "sprint-20260807T130848306634Z",
+    "reviewer-q1"
+  ],
+  "input_hashes": [
+    {
+      "path": "problems/C/questions/Q1/question.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "5da57a9d755d7615fbc9673e0d2e1641ab53738b38f1e76da23898eb2b91b703"
+    },
+    {
+      "path": "contest.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "16a7271107e2bd211293a8b735e961783dc4ac48651e9d709673e1781cd27272"
+    },
+    {
+      "path": "config/workflow.yaml",
+      "kind": "file",
+      "exists": true,
+      "sha256": "baaa782a9dd8b0d493b59163d22f5a74ec3b371c8aa0f2898a613406b9aff469"
+    },
+    {
+      "path": "problems/C/source/problem-C.pdf",
+      "kind": "file",
+      "exists": true,
+      "sha256": "0adc971ab421a7de5e3dd1c19c8540479b16977893edf4af13486e88410622c9"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merged",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "5706e86a75d2c3e51b6b1de1d1e25ae33d0ea51689e021fc8758ced09327f303"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/merge_report.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "f2f71a14f692d40badeeecd4ea1a5ec4db5e753de32bde10770f6cf09a555edd"
+    },
+    {
+      "path": "results/C/claims.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "ea9ffef1ec03131a92ee93a1f8dd65eca8b61946487d3ec64efc9d987447300f"
+    },
+    {
+      "path": "sprints/sprint-20260807T161902915769Z/merged/writer-q1",
+      "kind": "directory",
+      "exists": true,
+      "sha256": "04d797c969ff1430a6fd5c544f404a101fc71bf49aa4f40e102b1445c9b89030"
+    },
+    {
+      "path": "sprints/sprint-20260807T130848306634Z/retry-staging/q1-g4-fast-audit/robustness_summary.json",
+      "kind": "file",
+      "exists": true,
+      "sha256": "6af4ff7c6a52cfe717bf1d52b1b4a2ff45a1f4162672cc70fa2e34ad03b1a2b1"
+    }
+  ],
+  "allowed_read_paths": [
+    "problems/C/questions/Q1/question.yaml",
+    "contest.yaml",
+    "config/workflow.yaml",
+    "problems/C/source/problem-C.pdf",
+    "sprints/sprint-20260807T130848306634Z/merged",
+    "sprints/sprint-20260807T130848306634Z/merge_report.json",
+    "results/C/claims.json",
+    "sprints/sprint-20260807T161902915769Z/merged/writer-q1",
+    "sprints/sprint-20260807T130848306634Z/retry-staging/q1-g4-fast-audit/robustness_summary.json",
+    "src",
+    "experiments",
+    "corpus",
+    "workspace://src",
+    "workspace://corpus"
+  ],
+  "write_directory": "sprints/sprint-20260807T161902915769Z/retry-staging/reviewer-q1-attempt-2",
+  "expected_outputs": [
+    "sprints/sprint-20260807T161902915769Z/retry-staging/reviewer-q1-attempt-2/handoff.json",
+    "sprints/sprint-20260807T161902915769Z/retry-staging/reviewer-q1-attempt-2/q1_review.json"
+  ],
+  "target_gate": "G5",
+  "deadline_utc": "2026-08-10 20:00:00+08:00",
+  "root_only_paths": [
+    "state/decision_log.json",
+    "results/C/claims.json",
+    "paper/main.tex",
+    "paper/figure_contracts.yaml",
+    "output/"
+  ],
+  "sprint_profile": "q1-compose",
+  "input_sprint_id": "sprint-20260807T130848306634Z"
+}

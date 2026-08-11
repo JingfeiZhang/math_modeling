@@ -1,0 +1,288 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "cumcm-2024-b159",
+  "identity": {
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "B",
+    "team_id": "B159",
+    "title": "生产过程中的决策优化设计"
+  },
+  "source": {
+    "url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024btlw/241104/1977943.shtml",
+    "publisher": "official",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public_page_images"
+  },
+  "award_evidence": {
+    "verified": true,
+    "official_url": "https://dxs.moe.gov.cn/zx/a/hd_sxjm_sxjmlw_2024qgdxssxjmjslwzs_2024btlw/241104/1977943.shtml",
+    "contest": "CUMCM",
+    "year": 2024,
+    "problem": "B",
+    "team_id": "B159",
+    "title": "生产过程中的决策优化设计",
+    "award": "全国大学生数学建模竞赛组委会官方论文展示"
+  },
+  "authenticity": {
+    "level": "A",
+    "checks": {
+      "source_accessible": true,
+      "source_url_https": true,
+      "official_publisher": true,
+      "mirror_publisher": false,
+      "fulltext_available": true,
+      "official_award_verified": true,
+      "identity_aligned": true
+    },
+    "reasons": [
+      "official source or official result is directly verifiable"
+    ]
+  },
+  "pdf": {
+    "sha256": "3965168f5c6b3b77ce28bec6e998e23b6fbe9c55fe81cf4cc8676bc2d1e31a9d",
+    "pages": 30,
+    "local_path": "corpus/raw/cumcm-2024-b159/source_manifest.json",
+    "kind": "official_page_image_set",
+    "source_pdf_available": false,
+    "derived_review_pdf": "",
+    "reported_total_pages": 37,
+    "cached_pages": 30
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "abstract",
+        "layout"
+      ],
+      "observation": "摘要按“生产决策背景；四个子问题的统计与优化模型；最优利润和稳健性结论；关键词”组织。",
+      "derivation": "visual",
+      "locator": "official page image 1",
+      "render": "corpus/raw/cumcm-2024-b159/page-01.jpg"
+    },
+    {
+      "page": 1,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用假设检验设计抽样检测方案",
+      "derivation": "visual",
+      "locator": "official page image 1",
+      "render": "corpus/raw/cumcm-2024-b159/page-01.jpg"
+    },
+    {
+      "page": 3,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "把零配件、半成品和成品组织为状态-决策结构",
+      "derivation": "visual",
+      "locator": "official page image 3",
+      "render": "corpus/raw/cumcm-2024-b159/page-03.jpg"
+    },
+    {
+      "page": 13,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "枚举检测与拆解策略并以期望利润最大化选方案",
+      "derivation": "visual",
+      "locator": "official page image 13",
+      "render": "corpus/raw/cumcm-2024-b159/page-13.jpg"
+    },
+    {
+      "page": 19,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "用 Beta-Binomial 后验更新次品率并重算决策",
+      "derivation": "visual",
+      "locator": "official page image 19",
+      "render": "corpus/raw/cumcm-2024-b159/page-19.jpg"
+    },
+    {
+      "page": 22,
+      "tags": [
+        "model_chain"
+      ],
+      "observation": "改变先验参数检查期望利润对超参数的敏感性",
+      "derivation": "visual",
+      "locator": "official page image 22",
+      "render": "corpus/raw/cumcm-2024-b159/page-22.jpg"
+    },
+    {
+      "page": 13,
+      "tags": [
+        "validation"
+      ],
+      "observation": "用 16 种方案乘 6 种情景的完整矩阵比较并逐列标记最优值",
+      "derivation": "visual",
+      "locator": "official page image 13",
+      "render": "corpus/raw/cumcm-2024-b159/page-13.jpg"
+    },
+    {
+      "page": 19,
+      "tags": [
+        "validation"
+      ],
+      "observation": "在相同决策表结构下比较贝叶斯更新后的方案变化",
+      "derivation": "visual",
+      "locator": "official page image 19",
+      "render": "corpus/raw/cumcm-2024-b159/page-19.jpg"
+    },
+    {
+      "page": 22,
+      "tags": [
+        "validation"
+      ],
+      "observation": "分别扰动 alpha 与 beta 并观察期望利润曲线的稳定性",
+      "derivation": "visual",
+      "locator": "official page image 22",
+      "render": "corpus/raw/cumcm-2024-b159/page-22.jpg"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 1,
+      "order": 1,
+      "role": "生产决策背景",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 2,
+      "role": "四个子问题的统计与优化模型",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 3,
+      "role": "最优利润和稳健性结论",
+      "locator": "official page image 1"
+    },
+    {
+      "page": 1,
+      "order": 4,
+      "role": "关键词",
+      "locator": "official page image 1"
+    }
+  ],
+  "model_chain": [
+    {
+      "step": 1,
+      "page": 1,
+      "description": "用假设检验设计抽样检测方案",
+      "locator": "official page image 1"
+    },
+    {
+      "step": 2,
+      "page": 3,
+      "description": "把零配件、半成品和成品组织为状态-决策结构",
+      "locator": "official page image 3"
+    },
+    {
+      "step": 3,
+      "page": 13,
+      "description": "枚举检测与拆解策略并以期望利润最大化选方案",
+      "locator": "official page image 13"
+    },
+    {
+      "step": 4,
+      "page": 19,
+      "description": "用 Beta-Binomial 后验更新次品率并重算决策",
+      "locator": "official page image 19"
+    },
+    {
+      "step": 5,
+      "page": 22,
+      "description": "改变先验参数检查期望利润对超参数的敏感性",
+      "locator": "official page image 22"
+    }
+  ],
+  "validation_chain": [
+    {
+      "step": 1,
+      "page": 13,
+      "description": "用 16 种方案乘 6 种情景的完整矩阵比较并逐列标记最优值",
+      "locator": "official page image 13"
+    },
+    {
+      "step": 2,
+      "page": 19,
+      "description": "在相同决策表结构下比较贝叶斯更新后的方案变化",
+      "locator": "official page image 19"
+    },
+    {
+      "step": 3,
+      "page": 22,
+      "description": "分别扰动 alpha 与 beta 并观察期望利润曲线的稳定性",
+      "locator": "official page image 22"
+    }
+  ],
+  "figures": [
+    {
+      "page": 3,
+      "role": "model explanation",
+      "chart_type": "schematic",
+      "caption": "多工序生产层级示意",
+      "lesson": "用最少节点解释零配件到成品的依赖",
+      "locator": "official page image 3",
+      "render": "corpus/raw/cumcm-2024-b159/page-03.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 13,
+      "role": "result evidence",
+      "chart_type": "decision-table",
+      "caption": "全方案全情景期望利润矩阵",
+      "lesson": "用单一强调色标出各情景最优方案",
+      "locator": "official page image 13",
+      "render": "corpus/raw/cumcm-2024-b159/page-13.jpg",
+      "visual_checked": true
+    },
+    {
+      "page": 22,
+      "role": "result evidence",
+      "chart_type": "sensitivity",
+      "caption": "先验参数单因素敏感性曲线",
+      "lesson": "把参数变化和结论稳定性放在模型评价之前",
+      "locator": "official page image 22",
+      "render": "corpus/raw/cumcm-2024-b159/page-22.jpg",
+      "visual_checked": true
+    }
+  ],
+  "code_links": [],
+  "transferable_rules": [
+    {
+      "rule": "离散决策题应给出完整候选方案与情景矩阵",
+      "evidence_page": 3
+    },
+    {
+      "rule": "复杂推导必须落到可执行的检测或拆解决策",
+      "evidence_page": 13
+    },
+    {
+      "rule": "灵敏度图与最终模型评价应形成闭环",
+      "evidence_page": 22
+    }
+  ],
+  "risks": [
+    "本地只缓存官方展示的前 30/37 页，结尾与附录未进入本次视觉复核",
+    "灵敏度图接近软件默认样式且没有不确定性带",
+    "官方展示标签不等同于独立奖级声明；卡片不推断具体奖项。"
+  ],
+  "provenance": {
+    "source_manifest": "corpus/raw/cumcm-2024-b159/source_manifest.json",
+    "source_artifact_kind": "official_page_images",
+    "derived_review_pdf": false,
+    "reported_total_pages": 37,
+    "cached_pages": 30,
+    "coverage": 0.8108108108108109,
+    "visual_review": "selected evidence pages complete",
+    "review_scope": "cached prefix and selected evidence pages",
+    "page_image_manifest_sha256": "3965168f5c6b3b77ce28bec6e998e23b6fbe9c55fe81cf4cc8676bc2d1e31a9d"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "run_id": "q3-review-20260809",
+  "question_id": "Q3",
+  "status": "SUCCESS",
+  "method": {
+    "name": "scarcity-aware adaptive-window rolling binary MILP",
+    "candidate_windows_h": [
+      144,
+      168,
+      192
+    ],
+    "boundary_lookahead_h": 24,
+    "scarcity_weights": {
+      "electricity_price": 0.5,
+      "carbon_intensity": 0.25,
+      "net_load_ratio": 0.25
+    },
+    "selection_rule": "choose the candidate boundary with maximum next-24-hour robust scarcity; solve the whole selected block",
+    "terminal_rule": "SOC_T >= SOC_start for every selected block",
+    "binary_charge_discharge_mutex": true
+  },
+  "result": {
+    "total_cost_CNY": -458779181.8027354,
+    "total_carbon_tCO2": 0.0,
+    "mean_region_renewable_utilization_ratio": 0.6951486921761741,
+    "max_region_peak_net_import_MW": 0.0,
+    "total_runtime_s": 9.484320900000967,
+    "horizon_counts": {
+      "31": 6,
+      "168": 78,
+      "192": 6
+    },
+    "cost_saving_vs_fixed168_CNY": 58884.19049286842,
+    "renewable_gain_vs_fixed168": 2.523282917410441e-05
+  },
+  "eligibility": {
+    "eligible_for_model_review": true,
+    "not_automatically_primary": true,
+    "no_global_optimality_claim": true,
+    "excluded_relaxed_lp_probe_preserved": true
+  },
+  "generated_at_utc": "2026-08-08T18:11:58.832580+00:00"
+}

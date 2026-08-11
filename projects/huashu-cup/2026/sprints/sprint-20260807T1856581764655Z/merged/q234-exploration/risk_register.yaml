@@ -1,0 +1,65 @@
+schema_version: 1
+sprint_id: sprint-20260807T1856581764655Z
+task_id: q234-exploration
+risks:
+  - id: R-Q2-SCALE
+    question: Q2
+    risk: 50000 nonpreemptive tasks and minute resolution may exceed exact solver time
+    probe: sampled 24/72/168-hour windows plus event-boundary variable count and incumbent time curve
+    trigger: no feasible incumbent or repeated timeout at agreed wall-time
+    mitigation: hierarchical aggregation with CP-SAT/LNS repair; retain only if full hard audit passes
+  - id: R-Q2-LATENCY
+    question: Q2
+    risk: 488 tasks have only one latency-feasible region and 1146 have two, so carbon-aware migration may be infeasible
+    probe: candidate-region count by task type/source and rejected-assignment audit
+    trigger: any task loses all feasible regions or SLA violation rate > 0
+    mitigation: latency filter before optimization; never relax MaxLatency_ms silently
+  - id: R-Q2-POWER_DOUBLE_COUNT
+    question: Q2
+    risk: mixing observed AI load columns with recomputed task occupancy can double count power
+    probe: independently recompute AI_IT_Load from task overlap and compare totals to source columns on sampled hours
+    trigger: discrepancy beyond declared numerical tolerance
+    mitigation: choose one documented load construction and propagate its hash to Q3/Q4
+  - id: R-Q3-SOC_CONVENTION
+    question: Q3
+    risk: SOC is end-of-hour while InitialSOC is before hour 0; off-by-one can create false feasibility
+    probe: energy-balance residual at every region-hour and explicit hour-0/2406 boundary test
+    trigger: residual above tolerance or terminal SOC below InitialSOC
+    mitigation: enforce SOC[t]=SOC[t-1]+eta_c*c[t]-d[t]/eta_d with pre-hour initial state
+  - id: R-Q3-EXPORT_BOUNDARY
+    question: Q3
+    risk: Regions A-C cannot export and D-F have finite SellLimit/MaxGridExport; renewable-first logic may violate bounds
+    probe: separate import/export and renewable curtailment audit by region
+    trigger: any export/import bound violation or negative grid balance
+    mitigation: explicit nonnegative purchase/export variables and curtailment slack
+  - id: R-Q3-PEAK_METRIC
+    question: Q3
+    risk: peak net purchase can be confused with gross facility load or battery power
+    probe: recompute max_t(GridPurchase[t]-GridSell[t]) from frozen dispatch rows
+    trigger: metric cannot be reproduced from output columns
+    mitigation: define unit and formula in manifest before freezing
+  - id: R-Q4-INTERFACE_DRIFT
+    question: Q4
+    risk: Q2 load, Q3 storage and Q4 integrated model may use inconsistent task or unit definitions
+    probe: schema/hash comparison for task IDs, hourly rows, PUE, power mapping and metric formulas
+    trigger: any interface hash mismatch
+    mitigation: version-lock handoff artifacts; recompute downstream derived load instead of copying stale fields
+  - id: R-Q4-DECOMPOSITION_GAP
+    question: Q4
+    risk: Benders/ADMM or other decomposition may produce infeasible/unconverged iterates or weak bounds
+    probe: primal/dual residuals, lower/upper bound gap, hard audit after every incumbent and two seeds
+    trigger: residual nonconvergence or repaired objective worse than sequential baseline without explanation
+    mitigation: bounded iteration plus sequential Q2->Q3 fallback; state non-global-optimality
+  - id: R-Q4-SCENARIO_BIAS
+    question: Q4
+    risk: scenario perturbations may be mistaken for contest evidence or use unsupported distributions
+    probe: derive scenarios only from observed regional time blocks/ranges and record transformation/hash
+    trigger: synthetic statistic not traceable to source rows
+    mitigation: label as robustness scenario, freeze only observed-data claims
+  - id: R-COMPLIANCE-CLAIM
+    question: Q2-Q4
+    risk: exploratory algorithms or Pareto points could leak into formal claims before G3/G4
+    probe: grep locators and claim statuses before merge
+    trigger: claim points to staging or missing run manifest/hash
+    mitigation: root-only freeze; worker outputs remain proposals
+priority_order: [R-Q2-LATENCY, R-Q3-SOC_CONVENTION, R-Q2-POWER_DOUBLE_COUNT, R-Q4-INTERFACE_DRIFT, R-Q2-SCALE, R-Q3-EXPORT_BOUNDARY, R-Q4-DECOMPOSITION_GAP, R-Q4-SCENARIO_BIAS, R-Q3-PEAK_METRIC, R-COMPLIANCE-CLAIM]

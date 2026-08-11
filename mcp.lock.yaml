@@ -1,0 +1,70 @@
+schema_version: 1
+generated_at: "2026-08-01"
+purpose: "Pinned research plotting MCP and CLI runtimes for mathematical modeling papers"
+
+installed:
+  - name: drawio-mcp
+    role: editable_diagrams_and_model_flowcharts
+    source: https://github.com/jgraph/drawio-mcp
+    github_snapshot:
+      stars: 5061
+      license: Apache-2.0
+      pushed_at: "2026-07-24T19:58:17Z"
+    package: "@drawio/mcp@1.5.0"
+    package_integrity: "sha512-eGmAXaI0wqfYlCxYUAocveSEmkEc0ITt5McB9G727XCIMzLWVj1vVEC7tNnUFlJU0nQsHdOaX3bFVWBslMS+1A=="
+    package_shasum: "45cd34856a4c40d2822e3fefea5448ce3e0f0577"
+    package_lock_sha256: "80694FEDCF10EB635191453DB3043D2516DB5DB2A89CB8E2DF837A394BE4585E"
+    install_path: "tools/mcp/drawio"
+    codex_name: drawio
+    privacy: "Icon search disabled; diagram payload is kept in the draw.io URL fragment by the upstream tool server."
+    verification: "MCP initialize and tools/list passed; 7 tools returned."
+
+  - name: mermaid-cli
+    role: local_flowcharts_and_vector_diagrams
+    source: https://github.com/mermaid-js/mermaid-cli
+    github_snapshot:
+      stars: 4893
+      license: MIT
+      pushed_at: "2026-07-24T18:09:49Z"
+    packages:
+      - "@mermaid-js/mermaid-cli@11.16.0"
+      - "puppeteer@25.0.4"
+    package_integrity: "sha512-0InK2nbVIMtzVzCugmdvPkAuvS6wRUqU6Utntff1n8c7lgfRZAdhKY6PSKvcIK9nFmuOUzAgB5+x/XWcroZ7Zg=="
+    package_lock_sha256: "9D08B89DA140AAB4F1ECF09ECB4A2BC0264B904BA5A4BEE08D83F229C6E7EC9E"
+    install_path: "tools/cli/mermaid"
+    wrapper: "scripts/render_mermaid.ps1"
+    browser: "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
+    verification: "SVG, PNG and PDF exports passed on a Chinese flowchart fixture."
+
+not_installed:
+  - name: antv-mcp-server-chart
+    source: https://github.com/antvis/mcp-server-chart
+    github_snapshot:
+      stars: 4271
+      license: MIT
+      pushed_at: "2026-05-06T07:58:59Z"
+    package: "@antv/mcp-server-chart@0.9.10"
+    reason: "Default remote POST uploads chart data and returns a remote image URL."
+
+  - name: matlab-mcp-server
+    source: https://github.com/matlab/matlab-mcp-server
+    github_snapshot:
+      stars: 1297
+      pushed_at: "2026-07-10T14:33:35Z"
+    release: v0.11.2
+    windows_asset_sha256: "f51a440c00f2031b317d90027fa554c5813b20e553f69484278e3abdf4c5a206"
+    reason: "GitHub release-assets and Go module proxy were unavailable during this run; do not configure an unverified executable."
+
+  - name: jupyter-mcp-server
+    source: https://github.com/datalayer/jupyter-mcp-server
+    github_snapshot:
+      stars: 1233
+      license: BSD-3-Clause
+      pushed_at: "2026-07-31T10:20:30Z"
+    reason: "Requires a separate stateful Jupyter Server/Kernel connection and overlaps the current local MATLAB/Python execution paths."
+
+verification:
+  drawio_protocol: ".audit/test_drawio_mcp.mjs"
+  mermaid_fixture: ".audit/demo.mmd"
+  mermaid_outputs: [".audit/demo.svg", ".audit/demo.png", ".audit/demo.pdf"]
+  existing_matlab_cli: "scripts/run_matlab.ps1"

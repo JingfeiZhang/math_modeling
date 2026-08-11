@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "task_id": "figure-q3q4",
+  "sprint_id": "sprint-20260808T101814701038Z",
+  "environment": {
+    "python": "3.13.5",
+    "matplotlib": "3.10.8"
+  },
+  "q1_q2": {
+    "fig-q1-error-comparison": {
+      "figure_id": "fig-q1-error-comparison",
+      "formats": {
+        "pdf": {
+          "path": "paper/figures/fig_q1_error_comparison.pdf",
+          "exists": true,
+          "sha256": "1ab744545ce953e5e9265d6635214f918eb01f84edece88146ee23ed5f0a50c2",
+          "bytes": 25041,
+          "pages": 1,
+          "pdf_text_chars": 338,
+          "vector_text_passed": true
+        },
+        "svg": {
+          "path": "paper/figures/fig_q1_error_comparison.svg",
+          "exists": true,
+          "sha256": "ef207e36fe431afec9ce49619b9bd03eb29797dac387c750c37d2b04693dc7f1",
+          "bytes": 25625,
+          "editable_text_count": 30,
+          "image_elements": 0,
+          "axes_count": 1,
+          "registered_colors": [
+            "#1f2933",
+            "#5292f7",
+            "#79cafb",
+            "#d9dee5",
+            "#ffffff"
+          ],
+          "unregistered_colors": [],
+          "editable_text_passed": true,
+          "single_axes_passed": true,
+          "palette_passed": true
+        },
+        "png": {
+          "path": "paper/figures/fig_q1_error_comparison.png",
+          "exists": true,
+          "sha256": "4317635246f1094d121797d54c2f9fa3f3f0e6526b94fbf0a8420d85fcc1cd34",
+          "bytes": 241056,
+          "size_px": [
+            2488,
+            1700
+          ],
+          "dpi": [
+            399.9992,
+            399.9992
+          ],
+          "nonwhite_edge_fraction": 0.0,
+          "dpi_400_passed": true,
+          "size_passed": true,
+          "edge_clipping_proxy_passed": true
+        }
+      },
+      "layout": {},
+      "failures": [],
+      "passed": true
+    },
+    "fig-q1-feasible-schedule": {
+      "figure_id": "fig-q1-feasible-schedule",
+      "formats": {
+        "pdf": {
+          "path": "paper/figures/fig_q1_feasible_schedule.pdf",
+          "exists": true,
+          "sha256": "38709a4334c5d9a8a4e00dfef11835a6fb8ee4f83638c0e5f502c4d152e04016",
+          "bytes": 35042,
+          "pages": 1,
+          "pdf_text_chars": 137,
+          "vector_text_passed": true
+        },
+        "svg": {
+          "path": "paper/figures/fig_q1_feasible_schedule.svg",
+          "exists": true,
+          "sha256": "3379745cb0f8e5c91af85705e5ddab603393d9d2b658c4ce67de1d445829a7ff",
+          "bytes": 101140,
+          "editable_text_count": 20,
+          "image_elements": 0,
+          "axes_count": 1,
+          "registered_colors": [
+            "#1f2933",
+            "#4ea660",
+            "#aa77e9",
+            "#e95351",
+            "#f7a24f",
+            "#ffffff"
+          ],
+          "unregistered_colors": [],
+          "editable_text_passed": true,
+          "single_axes_passed": true,
+          "palette_passed": true
+        },
+        "png": {
+          "path": "paper/figures/fig_q1_feasible_schedule.png",
+          "exists": true,
+          "sha256": "1293ab212a241dfe3ea47fb61081f88278160167249bd9e6df53a4d2a026a315",
+          "bytes": 138405,
+          "size_px": [
+            2488,
+            1763
+          ],
+          "dpi": [
+            399.9992,
+            399.9992
+          ],
+          "nonwhite_edge_fraction": 0.0,
+          "dpi_400_passed": true,
+          "size_passed": true,
+          "edge_clipping_proxy_passed": true
+        }
+      },
+      "layout": {},
+      "failures": [],
+      "passed": true
+    },
+    "fig-q1-forecast-interval": {
+      "figure_id": "fig-q1-forecast-interval",
+      "formats": {
+        "pdf": {
+          "path": "paper/figures/fig_q1_forecast_interval.pdf",
+          "exists": true,
+          "sha256": "685415fdf403d2552a9f2529b733dd74f25b8a36e64ec51d9c52dc11011b1f52",
+          "bytes": 23222,
+          "pages": 1,
+          "pdf_text_chars": 111,
+          "vector_text_passed": true
+        },
+        "svg": {
+          "path": "paper/figures/fig_q1_forecast_interval.svg",
+          "exists": true,
+          "sha256": "ef4c88d9a28e2863951d4b8bd279d0eaecee59c09184829b6c8529d904a66cfb",
+          "bytes": 25380,
+          "editable_text_count": 18,
+          "image_elements": 0,
+          "axes_count": 1,
+          "registered_colors": [
+            "#1f2933",
+            "#5292f7",
+            "#79cafb",
+            "#aa77e9",
+            "#d9dee5",
+            "#ffffff"
+          ],
+          "unregistered_colors": [],
+          "editable_text_passed": true,
+          "single_axes_passed": true,
+          "palette_passed": true
+        },
+        "png": {
+          "path": "paper/figures/fig_q1_forecast_interval.png",
+          "exists": true,
+          "sha256": "279e6f39e29ca734a773cabb35eeb424bacacba6d179cafe945e59c79492ad95",
+          "bytes": 223566,
+          "size_px": [
+            2488,
+            1637
+          ],
+          "dpi": [
+            399.9992,
+            399.9992
+          ],
+          "nonwhite_edge_fraction": 0.0,
+          "dpi_400_passed": true,
+          "size_passed": true,
+          "edge_clipping_proxy_passed": true
+        }
+      },
+      "layout": {},
+      "failures": [],
+      "passed": true
+    },
+    "fig-q2-dispatch-comparison": {
+      "figure_id": "fig-q2-dispatch-comparison",
+      "formats": {
+        "pdf": {
+          "path": "sprints/sprint-20260808T083901900797Z/merged/figure-q2/fig_q2_dispatch_comparison.pdf",
+          "exists": true,
+          "sha256": "0c50d7e0179766c0341336a82040345a6797c0d182c1f692d307536d0b5377e8",
+          "bytes": 37147,
+          "pages": 1,
+          "pdf_text_chars": 155,
+          "vector_text_passed": true
+        },
+        "svg": {
+          "path": "sprints/sprint-20260808T083901900797Z/merged/figure-q2/fig_q2_dispatch_comparison.svg",
+          "exists": true,
+          "sha256": "a15d858377cee2d1993083f77a164038c46ebe62eef32759983a5a44396dbe01",
+          "bytes": 30385,
+          "editable_text_count": 13,
+          "image_elements": 0,
+          "axes_count": 1,
+          "registered_colors": [
+            "#1f2933",
+            "#5292f7",
+            "#79cafb",
+            "#d9dee5",
+            "#ffffff"
+          ],
+          "unregistered_colors": [],
+          "editable_text_passed": true,
+          "single_axes_passed": true,
+          "palette_passed": true
+        },
+        "png": {
+          "path": "sprints/sprint-20260808T083901900797Z/merged/figure-q2/fig_q2_dispatch_comparison.png",
+          "exists": true,
+          "sha256": "66e344dbdd5eed75f0c53ad848f48c7cab26f1d580bc2f300b93b3f6835ad270",
+          "bytes": 131964,
+          "size_px": [
+            2488,
+            1637
+          ],
+          "dpi": [
+            399.9992,
+            399.9992
+          ],
+          "nonwhite_edge_fraction": 0.0,
+          "dpi_400_passed": true,
+          "size_passed": true,
+          "edge_clipping_proxy_passed": true
+        }
+      },
+      "layout": {},
+      "failures": [],
+      "passed": true
+    }
+  },
+  "q3_q4": {
+    "fig-q3-rolling-comparison": {
+      "figure_id": "fig-q3-rolling-comparison",
+      "formats": {
+        "pdf": {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q3_rolling_comparison.pdf",
+          "exists": true,
+          "sha256": "99aea6ae068364b7ee4a740c588e36666d662aad64db52fc1a275ab084e0e1e5",
+          "bytes": 18028,
+          "pages": 1,
+          "pdf_text_chars": 389,
+          "vector_text_passed": true
+        },
+        "svg": {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q3_rolling_comparison.svg",
+          "exists": true,
+          "sha256": "8d95de1afb0b5ff0f0fdb0b9fa624e7f7543276d77e418b8b4f3acbb97eb05ff",
+          "bytes": 29701,
+          "editable_text_count": 33,
+          "image_elements": 0,
+          "axes_count": 1,
+          "registered_colors": [
+            "#1f2933",
+            "#4ea660",
+            "#5292f7",
+            "#aa77e9",
+            "#cc247c",
+            "#d9dee5",
+            "#eaf0f4",
+            "#f7a24f",
+            "#ffffff"
+          ],
+          "unregistered_colors": [],
+          "editable_text_passed": true,
+          "single_axes_passed": true,
+          "palette_passed": true
+        },
+        "png": {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q3_rolling_comparison.png",
+          "exists": true,
+          "sha256": "cdcb0c766865f584fc96dfe1f57b75a4d23af7cc1df5ada2b4f237dfd6848d1b",
+          "bytes": 213177,
+          "size_px": [
+            2488,
+            1637
+          ],
+          "dpi": [
+            399.9992,
+            399.9992
+          ],
+          "nonwhite_edge_fraction": 0.0,
+          "dpi_400_passed": true,
+          "size_passed": true,
+          "edge_clipping_proxy_passed": true
+        }
+      },
+      "layout": {
+        "clipped_artists": [],
+        "annotation_or_legend_overlaps": [],
+        "legend_data_point_indices": [],
+        "passed": true
+      },
+      "failures": [],
+      "passed": true
+    },
+    "fig-q4-peak-tradeoff": {
+      "figure_id": "fig-q4-peak-tradeoff",
+      "formats": {
+        "pdf": {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q4_peak_tradeoff.pdf",
+          "exists": true,
+          "sha256": "d96386c8458e203b4f12adacf2bc2625c6bd1cf9a06d4807a29a85b5d76c9aa8",
+          "bytes": 15282,
+          "pages": 1,
+          "pdf_text_chars": 378,
+          "vector_text_passed": true
+        },
+        "svg": {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q4_peak_tradeoff.svg",
+          "exists": true,
+          "sha256": "eeab5d143b54ce467343590ab0deb92a4851216ae0c66026fa9a31e2896779e1",
+          "bytes": 20482,
+          "editable_text_count": 23,
+          "image_elements": 0,
+          "axes_count": 1,
+          "registered_colors": [
+            "#1f2933",
+            "#5292f7",
+            "#79cafb",
+            "#d9dee5",
+            "#eaf0f4",
+            "#f7a24f",
+            "#ffffff"
+          ],
+          "unregistered_colors": [],
+          "editable_text_passed": true,
+          "single_axes_passed": true,
+          "palette_passed": true
+        },
+        "png": {
+          "path": "sprints/sprint-20260808T101814701038Z/staging/figure-q3q4/fig_q4_peak_tradeoff.png",
+          "exists": true,
+          "sha256": "458ae75f833e503fd753a5cf78358b2c4b1d9ac881ad25f6b2669ed14e8dddae",
+          "bytes": 220453,
+          "size_px": [
+            2488,
+            1637
+          ],
+          "dpi": [
+            399.9992,
+            399.9992
+          ],
+          "nonwhite_edge_fraction": 0.0,
+          "dpi_400_passed": true,
+          "size_passed": true,
+          "edge_clipping_proxy_passed": true
+        }
+      },
+      "layout": {
+        "clipped_artists": [],
+        "annotation_or_legend_overlaps": [],
+        "legend_data_point_indices": [],
+        "passed": true
+      },
+      "failures": [],
+      "passed": true
+    }
+  },
+  "q1_q2_passed": true,
+  "q3_q4_passed": true,
+  "overall_passed": true,
+  "notes": [
+    "Existing Q1/Q2 exports were checked independently from their frozen SVG/PDF/PNG artifacts.",
+    "Q3/Q4 layout checks use rendered artist boxes; plotted data coordinates are unchanged.",
+    "Grayscale readability is represented by marker/line secondary encodings and recorded in contracts."
+  ]
+}

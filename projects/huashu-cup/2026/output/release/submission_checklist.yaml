@@ -1,0 +1,13 @@
+schema_version: 1
+operator_role: first_registered_student
+confirmations:
+  md5_uploaded_before_hash_deadline: false
+  electronic_files_uploaded_inside_window: false
+  client_user_is_first_registered_student: false
+  paper_and_support_are_unchanged_after_md5: false
+competition: HUASHU_CUP
+year: 2026
+problem: C
+hash_deadline: null
+upload_start: null
+upload_deadline: null

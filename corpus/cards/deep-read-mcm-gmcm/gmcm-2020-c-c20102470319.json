@@ -1,0 +1,282 @@
+{
+  "schema_version": "3.0",
+  "paper_id": "gmcm-2020-c-c20102470319",
+  "identity": {
+    "contest": "GMCM",
+    "year": 2020,
+    "problem": "C",
+    "team_id": "C20102470319",
+    "title": "面向康复工程的脑电信号分析和判别模型"
+  },
+  "source": {
+    "url": "https://api.github.com/repos/personqianduixue/Math_Model/git/blobs/2d7c27f99d9cb8a5602a173e9432303513007092",
+    "publisher": "mirror",
+    "accessible": true,
+    "fulltext": true,
+    "access": "public pinned Git blob cached locally",
+    "repository": "https://github.com/personqianduixue/Math_Model",
+    "commit": "8783d0d822f89f98aa6182dd933cc2e9f3e2ddce",
+    "path": "2-0研赛题目+论文/优秀论文按年份/2020年优秀论文/C/C20102470319.pdf"
+  },
+  "award_evidence": {
+    "verified": false,
+    "official_url": "",
+    "contest": "GMCM",
+    "year": 2020,
+    "problem": "C",
+    "team_id": "C20102470319",
+    "title": "面向康复工程的脑电信号分析和判别模型",
+    "award": "镜像目录称优秀论文，未独立核验",
+    "locator": "No independent official locator",
+    "matched_text": "No independent official award locator found; the mirror directory label is not award evidence."
+  },
+  "authenticity": {
+    "level": "C",
+    "checks": {
+      "pinned_commit": true,
+      "git_blob_sha_matches": true,
+      "local_pdf_sha256": true,
+      "all_pages_rendered": true,
+      "official_award_match": false
+    },
+    "reasons": [
+      "The full text is pinned and hash-verified in a community mirror.",
+      "No independent official award list or official paper-display locator was found for this record.",
+      "Repository popularity and an 'excellent papers' folder name do not establish an award."
+    ]
+  },
+  "pdf": {
+    "sha256": "b9a7b5bc5b120cd049989e7d0d39220440e07d7099c222a6ae64d6063a30d0d6",
+    "pages": 42,
+    "local_path": "corpus/raw/mcm-gmcm/gmcm-2020-c-c20102470319/paper.pdf",
+    "first_page_phash": "dhash64:a0b070f0e4e00000",
+    "text_sha256": "4fbf2f2cc331f5563f7d7b64f1d951c2a60057fb74c51f2daa23ab4af2c96a5f"
+  },
+  "review_status": "evidence_deep_read",
+  "page_evidence": [
+    {
+      "page": 1,
+      "tags": [
+        "identity",
+        "risk"
+      ],
+      "observation": "The cover exposes school, team number, and member names.",
+      "derivation": "mixed",
+      "locator": "PDF page 1",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2020-c-c20102470319/page-01.png"
+    },
+    {
+      "page": 2,
+      "tags": [
+        "abstract",
+        "result"
+      ],
+      "observation": "The long abstract reports preprocessing, SVM, random forest, CNN, channel selection, semi-supervised learning, and sleep-stage classification by subproblem.",
+      "derivation": "mixed",
+      "locator": "PDF page 2",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2020-c-c20102470319/page-02.png"
+    },
+    {
+      "page": 16,
+      "tags": [
+        "feature",
+        "figure"
+      ],
+      "observation": "Channel-weight bar small multiples compare subjects before channel selection.",
+      "derivation": "mixed",
+      "locator": "PDF page 16",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2020-c-c20102470319/page-16.png"
+    },
+    {
+      "page": 20,
+      "tags": [
+        "validation",
+        "figure"
+      ],
+      "observation": "Training and test accuracy histories accompany the selected channel subset.",
+      "derivation": "mixed",
+      "locator": "PDF page 20",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2020-c-c20102470319/page-20.png"
+    },
+    {
+      "page": 24,
+      "tags": [
+        "comparison",
+        "figure"
+      ],
+      "observation": "Semi-supervised alternatives are compared with repeated train/test curves and a selection table.",
+      "derivation": "mixed",
+      "locator": "PDF page 24",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2020-c-c20102470319/page-24.png"
+    },
+    {
+      "page": 28,
+      "tags": [
+        "sensitivity",
+        "figure"
+      ],
+      "observation": "SVM accuracy is plotted against the training-sample ratio and paired with a confusion-matrix definition.",
+      "derivation": "mixed",
+      "locator": "PDF page 28",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2020-c-c20102470319/page-28.png"
+    },
+    {
+      "page": 34,
+      "tags": [
+        "code",
+        "risk"
+      ],
+      "observation": "CNN code is embedded in the PDF but external data, environment, and weights are not packaged.",
+      "derivation": "mixed",
+      "locator": "PDF page 34",
+      "render": "corpus/rendered/mcm-gmcm/gmcm-2020-c-c20102470319/page-34.png"
+    }
+  ],
+  "abstract_structure": [
+    {
+      "page": 2,
+      "role": "subproblem-ledger",
+      "observation": "Use one paragraph per subproblem, naming data treatment, candidate algorithms, selected method, and output."
+    }
+  ],
+  "model_chain": [
+    {
+      "page": 2,
+      "step": "signal-preprocessing",
+      "observation": "Filter, segment, shuffle, and augment EEG samples.",
+      "order": 1
+    },
+    {
+      "page": 20,
+      "step": "supervised-comparison",
+      "observation": "Compare SVM, random forest, and CNN for target recognition.",
+      "order": 2
+    },
+    {
+      "page": 16,
+      "step": "channel-selection",
+      "observation": "Use convolutional weights to rank and select EEG channels.",
+      "order": 3
+    },
+    {
+      "page": 24,
+      "step": "semi-supervised-learning",
+      "observation": "Compare label propagation and adaptive semi-supervised variants.",
+      "order": 4
+    },
+    {
+      "page": 28,
+      "step": "sleep-stage-classification",
+      "observation": "Use SVM and neural methods for sleep-stage prediction.",
+      "order": 5
+    }
+  ],
+  "validation_chain": [
+    {
+      "page": 20,
+      "method": "train-test-history",
+      "observation": "Show separate training and test accuracy curves.",
+      "order": 1
+    },
+    {
+      "page": 24,
+      "method": "algorithm-comparison",
+      "observation": "Compare candidate semi-supervised algorithms under a common selection table.",
+      "order": 2
+    },
+    {
+      "page": 28,
+      "method": "sample-size-sensitivity",
+      "observation": "Vary the labeled-training ratio and report classification accuracy.",
+      "order": 3
+    }
+  ],
+  "figures": [
+    {
+      "page": 16,
+      "role": "feature-selection",
+      "chart_type": "five-panel bar charts",
+      "lesson": "Use one panel per subject to expose heterogeneous channel importance."
+    },
+    {
+      "page": 20,
+      "role": "learning-diagnostic",
+      "chart_type": "train-test history",
+      "lesson": "Plot generalization behavior rather than reporting final accuracy only."
+    },
+    {
+      "page": 24,
+      "role": "algorithm-selection",
+      "chart_type": "small-multiple histories plus table",
+      "lesson": "Combine learning curves with the final selected output."
+    },
+    {
+      "page": 28,
+      "role": "sensitivity",
+      "chart_type": "sample-ratio line chart",
+      "lesson": "Tie accuracy to data availability before recommending the model."
+    }
+  ],
+  "code_links": [
+    {
+      "relationship": "none",
+      "execution_status": "not-run",
+      "note": "No independently packaged source tree was paired with this exact PDF; embedded appendix fragments are not treated as reproducible code."
+    }
+  ],
+  "transferable_rules": [
+    {
+      "page": 2,
+      "rule": "For a long multi-question abstract, keep a strict question-method-result rhythm.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 16,
+      "rule": "Use subject-level small multiples when feature importance is heterogeneous.",
+      "scope": "contest-paper"
+    },
+    {
+      "page": 28,
+      "rule": "Report performance sensitivity to labeled-data volume for learning models.",
+      "scope": "contest-paper"
+    }
+  ],
+  "risks": [
+    {
+      "page": 1,
+      "risk": "The cover leaks direct identifiers and is incompatible with anonymous submission.",
+      "severity": "high"
+    },
+    {
+      "page": 24,
+      "risk": "Repeated learning curves use small labels and do not include uncertainty across seeds.",
+      "severity": "medium"
+    },
+    {
+      "page": 34,
+      "risk": "Embedded source fragments lack data, dependency, seed, and model-weight provenance.",
+      "severity": "high"
+    },
+    {
+      "page": 2,
+      "risk": "The mirror label is not independently verified as an award record.",
+      "severity": "high"
+    }
+  ],
+  "provenance": {
+    "reviewed_at": "2026-08-03",
+    "review_method": "full-page render overview plus 4-7 high-resolution evidence-page visual checks and extracted-text review",
+    "source_manifest": "corpus/raw/mcm-gmcm/gmcm-2020-c-c20102470319/source_manifest.json",
+    "selected_pages": [
+      1,
+      2,
+      16,
+      20,
+      24,
+      28,
+      34
+    ],
+    "all_pages_rendered": true,
+    "reviewer": "Codex modeling-paper-miner workflow"
+  }
+}
