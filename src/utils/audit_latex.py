@@ -32,7 +32,10 @@ SECTION_RE = re.compile(r"\\section\*?\s*\{([^{}]*)\}")
 SUBSECTION_RE = re.compile(r"\\subsection\*?\s*\{([^{}]*)\}")
 QUESTION_TITLE_RE = re.compile(r"^\s*问题\s*([一二三四五六七八九十\d]+)")
 ARTIFACT_RE = re.compile(r"\\begin\{(figure|table)\*?\}(.*?)\\end\{\1\*?\}", re.S)
-AUTHORING_PROMPT_RE = re.compile(r"\\WritingContract\s*\{|表达目标|必写内容|证据要求|禁止内容")
+AUTHORING_PROMPT_RE = re.compile(
+    r"\\(?:WritingContract|TemplatePrompt)\b|AUTHORING_PROMPT|模板提示|表达目标|必写内容|证据要求|禁止内容",
+    re.I,
+)
 INTERNAL_WORKFLOW_RE = re.compile(
     r"(?:Figure\s*Contract|question\s*manifest|frozen\s*claims?|"
     r"冻结主张|证据定位|内部工作流|根\s*Agent|G[0-6]\s*门)",
@@ -384,7 +387,7 @@ def audit_structure(
             add(errors, "APPENDIX_SYMBOL_TABLE", "the appendix repeats a symbol table that must remain in the front body", "error")
     body_end = reference_position if reference_position >= 0 else (appendix_position if appendix_position >= 0 else len(combined))
     body_text = combined[:body_end]
-    if AUTHORING_PROMPT_RE.search(body_text):
+    if AUTHORING_PROMPT_RE.search(combined):
         add(errors, "AUTHORING_PROMPT", "authoring-contract prompt text remains in the formal manuscript", "error")
     if INTERNAL_WORKFLOW_RE.search(body_text):
         add(errors, "INTERNAL_WORKFLOW_TEXT", "internal workflow terminology appears in the contest-paper body", "error")

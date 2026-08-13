@@ -144,12 +144,24 @@ def scaffold(hub: Path, project_id: str, force: bool = False) -> dict[str, Any]:
         (root / relative).mkdir(parents=True, exist_ok=True)
     (root / "config").mkdir(parents=True, exist_ok=True)
 
+    initialized = any((
+        (root / "state" / "decision_log.json").is_file(),
+        (root / "paper" / "main.tex").is_file(),
+        (root / "paper" / "figure_contracts.yaml").is_file(),
+        any((root / "results").glob("*/claims.json")),
+        any((root / "experiments").glob("*/Q*/formal/*/run_manifest.json")),
+    ))
+    overwrite = force and not initialized
+
     contest_path = root / "contest.yaml"
-    if force or not contest_path.exists():
+    if overwrite or not contest_path.exists():
         dump_yaml(contest_path, contest_payload(hub, project))
     project_meta = {
         "schema_version": 1,
-        "workflow_contract_version": 6,
+        "workflow_contract_version": 7,
+        "prompt_policy_version": 1,
+        "prompt_mode": "progress-first",
+        "paper_prompt_mode": "external",
         "project_id": project_id,
         "profile_id": project["profile"],
         "competition": contest_payload(hub, project)["competition"],
@@ -160,7 +172,7 @@ def scaffold(hub: Path, project_id: str, force: bool = False) -> dict[str, Any]:
         "created_for_reuse": True,
     }
     project_path = root / "project.yaml"
-    if force or not project_path.exists():
+    if not project_path.exists() or overwrite:
         dump_yaml(project_path, project_meta)
     local_workflow = {
         "schema_version": 1,
@@ -171,7 +183,7 @@ def scaffold(hub: Path, project_id: str, force: bool = False) -> dict[str, Any]:
         "literature_guided_modeling": {"strict_g5": True},
     }
     workflow_path = root / "config" / "workflow.yaml"
-    if force or not workflow_path.exists():
+    if overwrite or not workflow_path.exists():
         dump_yaml(workflow_path, local_workflow)
     return project_status(hub, project_id)
 
@@ -201,6 +213,7 @@ def project_status(hub: Path, project_id: str) -> dict[str, Any]:
 def preflight(hub: Path, project_id: str) -> dict[str, Any]:
     status = project_status(hub, project_id)
     root = hub / status["root"]
+    project = load_yaml(root / "project.yaml") if (root / "project.yaml").is_file() else {}
     checks = [
         {"name": "project_yaml", "passed": (root / "project.yaml").is_file()},
         {"name": "contest_yaml", "passed": (root / "contest.yaml").is_file()},
@@ -209,6 +222,16 @@ def preflight(hub: Path, project_id: str) -> dict[str, Any]:
         {"name": "shared_figure_style", "passed": (hub / "config" / "figure_style.yaml").is_file()},
         {"name": "shared_environment", "passed": (hub / "environment.yml").is_file()},
     ]
+    if int(project.get("workflow_contract_version", 0) or 0) >= 7:
+        checks.extend([
+            {"name": "shared_prompt_policy", "passed": (hub / "config" / "prompt_policy.yaml").is_file()},
+            {"name": "prompt_policy_schema", "passed": (hub / "config" / "schemas" / "prompt_policy.schema.json").is_file()},
+            {"name": "prompt_packet_schema", "passed": (hub / "config" / "schemas" / "prompt_packet.schema.json").is_file()},
+            {"name": "prompt_receipt_schema", "passed": (hub / "config" / "schemas" / "prompt_receipt.schema.json").is_file()},
+            {"name": "prompt_stage_fragments", "passed": all((hub / "templates" / "prompts" / "stages" / f"{stage}.yaml").is_file() for stage in ("P0", "P1", "P2", "P3a", "P3b", "P4", "P5", "P6"))},
+            {"name": "prompt_role_fragments", "passed": all((hub / "templates" / "prompts" / "roles" / f"{role}.yaml").is_file() for role in ("orchestrator", "solver", "literature", "visualization", "paper", "studio_release", "reviewer"))},
+            {"name": "cumcm_author_prompt_card", "passed": (hub / "templates" / "prompts" / "paper" / "cumcm-2026.yaml").is_file()},
+        ])
     if status["problem"].upper() == "TBD":
         checks.extend([
             {"name": "precontest_state_absent", "passed": not status["state_exists"]},

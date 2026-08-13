@@ -1,0 +1,165 @@
+schema_version: 1
+competition: CUMCM
+source_contract_count: 52
+contract_fields: [objective, required_content, evidence_requirements, forbidden_content]
+sections:
+  abstract:
+    contract:
+      objective: 让评审在第一页识别研究对象、各问方法、关键结果和可信边界。
+      required_content: 用一至两句交代背景与总体思路；逐问写明方法、至少一个量化结果及相应验证；最后概括主要边界；列出三至五个领域关键词。
+      evidence_requirements: 所有结果读取冻结主张；摘要中的方法名、数值、单位、基线和验证结论均能定位到正文及正式证据。
+      forbidden_content: 不得只报方法不报结果，不得手填未核验数字，不得写文献综述、公式推导、图表或内部工作过程。
+  ai_statement:
+    contract:
+      objective: 仅在当届官方规则要求时完成真实、简明的工具披露。
+      required_content: 按官方字段说明工具、版本、使用环节、人工核验和必要的详情索引。
+      evidence_requirements: 披露内容与实际使用记录及提交附件一致。
+      forbidden_content: 不得把该声明用于技术论证，不得夸大或隐瞒使用事实，也不得在正文与图注中重复。
+  problem_restatement:
+    contracts:
+      background_conditions:
+        heading: 研究背景与已知条件
+        objective: 把题目转化为清晰、无方法倾向的研究对象和已知条件。
+        required_content: 概括实际背景、对象范围、题目给定的数据或规则，以及会限制答案形式的条件。
+        evidence_requirements: 以正式题面和附件字段为唯一依据，术语、单位和时间空间范围与题面一致。
+        forbidden_content: 不得复制题面长段原文，不得提前介绍算法、结论、实验数字或主观扩展背景。
+      question_outputs:
+        heading: 子问题任务与输出
+        objective: 让读者明确每一问究竟需要计算、判断、预测或优化什么。
+        required_content: 按真实问数逐问说明输入、目标输出、主要约束和交付形式；题面未要求的输出不自行添加。
+        evidence_requirements: 各问描述与对应 question manifest 的 problem 字段一致。
+        forbidden_content: 不得保留不存在的子问题，不得用“建立合理模型”等空话替代可检查的输出。
+      dependencies:
+        heading: 子问题依赖关系
+        objective: 说明各问是递进、共享数据还是可以并行求解。
+        required_content: 指出前问哪些输出进入后问、共享哪些口径；若无依赖，明确其独立关系。
+        evidence_requirements: 依赖关系与后文上下游接口及程序数据流一致。
+        forbidden_content: 不得在没有题面或模型依据时虚构依赖，不得在本节展开求解流程。
+  problem_analysis:
+    contracts:
+      overall:
+        heading: 总体分析
+        objective: 揭示整道题从数据到决策或解释的数学主线。
+        required_content: 概括共同状态、决策对象、评价目标、硬约束和跨问数据接口，说明最主要的建模难点。
+        evidence_requirements: 判断依据来自题面、数据剖析和可验证的领域关系。
+        forbidden_content: 不得写成算法名称清单，不得用装饰性总流程图代替文字分析，不得展开完整公式。
+      mathematical_structure:
+        heading: 各问题的数学结构
+        objective: 回答每一问的数学本质是什么，以及为什么需要相应类型的模型。
+        required_content: 逐问说明输入输出、变量关系、目标冲突、关键约束、可选模型类别和初步选择依据。
+        evidence_requirements: 模型选择须由数据特征、约束结构或已核验文献支撑，并至少说明一个不优先方案的局限。
+        forbidden_content: 不得只写“采用某算法求解”，不得把后文模型公式、结果或无法核验的性能判断提前放入本章。
+      interfaces:
+        heading: 问题之间的衔接
+        objective: 建立各问之间可执行、可核对的数据和模型接口。
+        required_content: 列明传递量、单位、时间空间粒度和依赖方向，说明共享口径如何保持一致。
+        evidence_requirements: 接口与各问 manifest、程序输入输出及后文符号定义互相一致。
+        forbidden_content: 不得用模糊的“在前问基础上”代替具体接口，不得混用不同单位或统计口径。
+  assumptions_notation:
+    contracts:
+      assumptions:
+        heading: 模型假设
+        objective: 用最少的可检验简化明确模型成立条件。
+        required_content: 逐条写明假设内容、采用理由、影响的公式或约束及适用边界；在相应检验处回查关键假设。
+        evidence_requirements: 每条假设都能定位到后文模型或敏感性、压力场景与误差分析。
+        forbidden_content: 不得写“数据真实可靠”“忽略一切偶然因素”等空泛假设，不得把题面已知条件重复写成假设。
+      notation:
+        heading: 符号约定
+        objective: 建立全文高频变量的统一语义和单位，降低跨问阅读成本。
+        required_content: 采用“符号—含义—单位”三线表；只列跨章节或反复使用的核心符号；局部变量在首次出现的公式后解释。
+        evidence_requirements: 符号、上下标、单位与公式、代码、图轴和表头一致，并通过定义覆盖检查。
+        forbidden_content: 不得收录只出现一次的局部变量，不得一符多义、同义多符，也不得在附录重复符号表。
+  data_processing:
+    contracts:
+      interface_units:
+        heading: 数据接口与单位
+        objective: 建立可复现的数据入口和统一计算尺度。
+        required_content: 说明实际使用的字段、样本范围、时间与空间粒度、单位换算、表间关联键及各问共享接口。
+        evidence_requirements: 字段和范围来自正式附件及运行清单，换算关系能够在数据准备代码中定位。
+        forbidden_content: 不得复制整张原始数据表，不得使用未声明的外部数据，不得隐去会改变结果的筛选。
+      missing_anomaly_features:
+        heading: 缺失值、异常值与特征构造
+        objective: 说明哪些处理改变了模型输入，以及这些处理为何合理。
+        required_content: 报告缺失和异常的识别口径、处理比例与理由；说明标准化、聚合或特征构造的公式和单位影响。
+        evidence_requirements: 所有处理由数据剖析统计和可复现脚本支撑，处理前后样本量或守恒关系可核对。
+        forbidden_content: 不得为了篇幅罗列未实际执行的方法，不得把绘图美化当作数据处理，不得无依据删除异常值。
+      metrics:
+        heading: 评价指标与共同口径
+        objective: 统一各问结果比较、误差评价和可行性判断的尺度。
+        required_content: 定义指标公式、方向、单位、聚合方式、基线和必要的守恒关系；题型专属指标可在对应问补充。
+        evidence_requirements: 指标定义与实验输出字段、表格列和冻结主张一致，参数来源可追溯。
+        forbidden_content: 不得只写指标名称，不得混用平均值与总量、比例与百分点，也不得事后选择有利指标。
+  question:
+    required_content: [objective_interface, data_mechanism, model_choice, formulation, algorithm, result, validation, conclusion]
+    variants:
+      Q1:
+        contracts:
+          objective_interface: {heading: 目标与上下游接口, objective: 明确本问要回答的量化问题及其在全文中的位置。, required_content: 写明输入、输出、决策或状态变量、主要约束，以及向后续问题传递的量和单位。, evidence_requirements: 与题面、question manifest 和程序接口一致。, forbidden_content: 不得提前给结果，不得用算法名称代替问题目标。}
+          data_mechanism: {heading: 数据特征或机理依据, objective: 说明模型结构由哪些数据现象或领域关系推出。, required_content: 给出直接影响建模选择的分布、趋势、相关结构、守恒关系或机理，并解释其作用。, evidence_requirements: 只使用可定位的数据剖析、题面关系或已核验来源。, forbidden_content: 不得堆放无关描述统计，不得把相关性直接写成因果关系。}
+          model_choice: {heading: 模型选择与备选方案比较, objective: 论证为何当前模型适合本问，而不是简单宣布算法。, required_content: 比较主模型、同输出基线及至少一个备选思路，说明选择标准、适用条件和不优先原因。, evidence_requirements: 依据数据结构、约束性质、可解释性、计算规模或真实文献。, forbidden_content: 不得固定套用某类算法，不得用未经实验的“更准确”作为选择理由。}
+          formulation: {heading: 模型建立, objective: 把题目要求转化为可计算的数学对象。, required_content: 依次定义变量和参数，给出目标或预测关系、关键约束、边界条件、单位及必要的线性化或近似。, evidence_requirements: 每个公式都与题目变量对应，参数有来源，假设在模型中有落点。, forbidden_content: 不得照抄教材通式，不得遗漏单位、变量域、边界或公式含义。}
+          algorithm: {heading: 求解算法, objective: 说明模型如何被稳定、可复现地求解。, required_content: 写明输入、初始化、关键步骤、求解器或算法参数、随机种子、停止条件、运行规模和输出复核。, evidence_requirements: 步骤对应正式 runner 和运行清单，硬约束处理可被审计。, forbidden_content: 不得粘贴大段工程代码，不得声称代码中未实现的算法或最优性。}
+          result: {heading: 核心结果与解释, objective: 用最少的表图回答本问并解释形成机制。, required_content: 先给冻结核心数值、单位和基线，再用必要图表展示结构、趋势或权衡；按“结果—原因—意义”解释。, evidence_requirements: 数值来自冻结主张，图表具备正式证据定位并在首次引用附近出现。, forbidden_content: 不得手填数字，不得只复述图表，不得用装饰性图件替代结果。}
+          validation: {heading: 模型检验, objective: 检验本问最可能失败的环节。, required_content: 根据题型报告误差、可行性、守恒、基线、灵敏度、压力场景、交叉验证或稳健性中的适用证据。, evidence_requirements: 检验口径、样本、扰动范围和结论均可追溯；收敛曲线仅作算法诊断。, forbidden_content: 不得以单次运行或收敛图代替模型检验，不得只写“效果良好”。}
+          conclusion: {heading: 本问结论与适用边界, objective: 以可交付答案收束本问并建立后续接口。, required_content: 概括最终答案、验证结论、成立条件、失败边界和向下一问传递的输出。, evidence_requirements: 结论只引用本问已冻结结果与边界主张。, forbidden_content: 不得增加新数值、新模型或超出场景范围的普适结论。}
+      Q2:
+        contracts:
+          objective_interface: {heading: 目标与上下游接口, objective: 明确本问要回答的量化问题及其与前后问的连接。, required_content: 写明本问输入、前问传入量、输出、决策或状态变量、主要约束及下游接口。, evidence_requirements: 与题面、question manifest 和程序接口一致，传递量注明单位和粒度。, forbidden_content: 不得用“基于问题一”替代具体接口，不得提前给结果。}
+          data_mechanism: {heading: 数据特征或机理依据, objective: 说明模型结构由哪些数据现象、前问结果或领域关系推出。, required_content: 给出影响建模的分布、趋势、相关结构、守恒关系或机理，并解释前问输出的作用。, evidence_requirements: 只使用可定位的数据剖析、冻结上游结果、题面关系或已核验来源。, forbidden_content: 不得堆放无关统计，不得把相关性直接解释为因果。}
+          model_choice: {heading: 模型选择与备选方案比较, objective: 论证当前模型如何处理本问的关键冲突。, required_content: 比较主模型、同输出基线及至少一个备选思路，说明选择标准、适用条件和不优先原因。, evidence_requirements: 依据数据结构、约束性质、可解释性、计算规模或真实文献。, forbidden_content: 不得固定套用某类算法，不得用未经实验的性能判断支持选择。}
+          formulation: {heading: 模型建立, objective: 把本问要求及上游接口转化为可计算模型。, required_content: 定义新增变量和参数，给出目标、约束、边界、单位、跨问连接及必要的线性化或近似。, evidence_requirements: 公式与题目变量、前问输出和代码实现一致，参数有来源。, forbidden_content: 不得照抄通式，不得忽略接口单位、变量域或边界条件。}
+          algorithm: {heading: 求解算法, objective: 说明模型如何被稳定、可复现地求解。, required_content: 写明输入、初始化、关键步骤、求解器或算法参数、随机种子、停止条件、运行规模和硬约束复核。, evidence_requirements: 步骤对应正式 runner 和运行清单，单问与全流程调用结果一致。, forbidden_content: 不得粘贴大段工程代码，不得声称未实现的算法、复杂度或最优性。}
+          result: {heading: 核心结果与解释, objective: 通过统一输出比较直接回答本问。, required_content: 报告冻结核心数值、单位和基线，展示必要的结构、分布或权衡，并按“结果—原因—意义”解释。, evidence_requirements: 主模型与基线输出类别一致，表图和文字引用同一冻结证据。, forbidden_content: 不得手填数字，不得只描述图形外观，不得隐去不利但重要的权衡。}
+          validation: {heading: 模型检验, objective: 验证结果不是由偶然参数、不可行解或单一场景造成。, required_content: 依据题型给出误差、可行性、守恒、灵敏度、压力场景、多种子或替代方法比较。, evidence_requirements: 报告检验范围、样本或场景、指标和是否改变结论。, forbidden_content: 不得以单次运行、随机结果或收敛图替代基线与稳健性证据。}
+          conclusion: {heading: 本问结论与适用边界, objective: 收束答案并说明对后续问题的可用输出。, required_content: 概括最终方案或判断、相对基线的结论、验证结果、成立条件、失败边界和下游接口。, evidence_requirements: 只引用本问及冻结上游证据中的正式主张。, forbidden_content: 不得新增结果，不得把局部或近似求解宣称为全局普适最优。}
+      Q3:
+        contracts:
+          objective_interface: {heading: 目标与上下游接口, objective: 明确本问要回答的量化问题及其与已有结果的关系。, required_content: 写明输入、前问传入量、输出、决策或状态变量、主要约束和可能的下游接口。, evidence_requirements: 与题面、question manifest 和程序接口一致，传递量注明单位和粒度。, forbidden_content: 不得用模糊递进语句代替接口，不得提前给结果。}
+          data_mechanism: {heading: 数据特征或机理依据, objective: 说明本问状态转移、评价或约束结构的现实依据。, required_content: 给出影响模型的时间空间特征、分布、守恒关系、机理或前问结果，并解释其建模作用。, evidence_requirements: 使用可定位的数据剖析、冻结上游结果、题面关系或已核验来源。, forbidden_content: 不得堆放无关统计，不得把未经验证的领域常识写成确定规律。}
+          model_choice: {heading: 模型选择与备选方案比较, objective: 论证当前模型如何表达本问的状态、风险或耦合关系。, required_content: 比较主模型、同输出基线及至少一个备选思路，说明选择标准、适用条件和不优先原因。, evidence_requirements: 依据数据特征、问题规模、约束结构、可解释性或真实文献。, forbidden_content: 不得固定套用某类算法，不得用“模型先进”代替问题适配证据。}
+          formulation: {heading: 模型建立, objective: 把本问的状态、目标和边界转化为可计算关系。, required_content: 定义变量和参数，给出目标、状态转移或评价关系、关键约束、初终边界、单位及必要近似。, evidence_requirements: 公式与题目概念、假设、前问接口和代码实现一致。, forbidden_content: 不得照抄通式，不得遗漏初终条件、变量域、单位或逻辑互斥关系。}
+          algorithm: {heading: 求解算法, objective: 说明模型如何在给定规模下被稳定复现。, required_content: 写明输入、初始化或滚动边界、关键步骤、求解参数、随机种子、停止条件、运行规模和复核方式。, evidence_requirements: 步骤对应正式 runner、运行清单和约束审计。, forbidden_content: 不得粘贴全部代码，不得声称实际程序未达到的精确性或全局最优性。}
+          result: {heading: 核心结果与解释, objective: 用正式结果说明状态演化、决策效果或机理结论。, required_content: 报告冻结数值、单位和基线，用必要表图展示动态结构或权衡，并按“结果—原因—意义”解释。, evidence_requirements: 图表、表格和文字使用同一冻结证据及统一统计口径。, forbidden_content: 不得手填数字，不得只描述曲线升降，不得回避边界状态或不利结果。}
+          validation: {heading: 模型检验, objective: 检查动态边界、关键假设和结论稳定性。, required_content: 依据题型给出误差、守恒、可行性、回放、窗口或参数敏感性、压力场景及替代方法比较。, evidence_requirements: 报告完整检查项、通过比例、扰动范围和结论变化。, forbidden_content: 不得用局部样例代表全量审计，不得仅以求解成功作为模型有效证据。}
+          conclusion: {heading: 本问结论与适用边界, objective: 形成可执行答案并明确动态或场景边界。, required_content: 概括最终结果、验证结论、成立条件、失败情形及向后续问题传递的状态或参数。, evidence_requirements: 结论来自本问冻结结果、验证和边界主张。, forbidden_content: 不得增加新模型或数值，不得把有限窗口结论外推为全时域结论。}
+      Q4:
+        contracts:
+          objective_interface: {heading: 目标与上下游接口, objective: 明确综合问、推广问或耦合问要交付的最终答案。, required_content: 写明来自前三问的输入、联合决策或评价对象、输出、主要权衡和最终交付形式。, evidence_requirements: 接口与题面、question manifest、上游冻结结果和程序调用一致。, forbidden_content: 不得笼统写“综合前三问”，不得提前给最终结果。}
+          data_mechanism: {heading: 数据特征或机理依据, objective: 说明跨问耦合或新场景由哪些特征和关系驱动。, required_content: 给出影响联合结构的时空模式、风险、守恒、机理或上游结果，并解释各接口的作用。, evidence_requirements: 使用可定位的数据剖析、冻结上游结果、题面关系或已核验来源。, forbidden_content: 不得重复前三问全部分析，不得无依据引入新的外部机制。}
+          model_choice: {heading: 模型选择与备选方案比较, objective: 论证当前综合模型如何处理主要权衡和计算规模。, required_content: 比较主模型、同输出基线及至少一个备选思路，说明耦合层次、选择标准、适用条件和不优先原因。, evidence_requirements: 依据接口结构、约束耦合、问题规模、可解释性或真实文献。, forbidden_content: 不得固定算法，不得把顺序、局部或近似模型宣称为唯一全局最优。}
+          formulation: {heading: 模型建立, objective: 把跨问接口和联合目标转化为一致的数学系统。, required_content: 定义联合变量和参数，给出目标、耦合或补救约束、边界条件、单位、情景及必要近似。, evidence_requirements: 公式与上游定义、假设、代码和统一评价口径一致。, forbidden_content: 不得重复堆砌前三问公式，不得遗漏耦合变量域、场景边界或近似条件。}
+          algorithm: {heading: 求解算法, objective: 说明联合或分层模型如何在实际规模下求解和复核。, required_content: 写明输入、初始化、主从或交替步骤、参数与种子、停止条件、运行规模、确定性复跑和硬约束检查。, evidence_requirements: 步骤对应正式 runner、运行清单及各子模型接口。, forbidden_content: 不得粘贴工程代码，不得声称未证明的全局最优性或跨场景确定性。}
+          result: {heading: 核心结果与解释, objective: 以统一基线和场景比较回答最终综合问题。, required_content: 报告冻结核心结果、单位、基线和主要权衡，用必要表图展示跨场景机制，并按“结果—原因—意义”解释。, evidence_requirements: 所有场景采用相同输出定义，表图和正文数值可定位到冻结证据。, forbidden_content: 不得只展示有利场景，不得手填数字，不得用加权和结果冒充唯一最优。}
+          validation: {heading: 模型检验, objective: 验证联合结论在硬约束、场景变化和接口扰动下仍成立。, required_content: 报告跨模块守恒与可行性、基线、敏感性、压力场景、多种子或确定性复跑，并说明接受准则。, evidence_requirements: 列明场景、扰动范围、指标、通过情况和结论是否改变。, forbidden_content: 不得只检查单一模块，不得以收敛曲线或个别场景代替系统检验。}
+          conclusion: {heading: 本问结论与适用边界, objective: 给出整题最终答案并诚实限定模型能力。, required_content: 概括综合方案、主要权衡、验证结果、适用条件、失败边界和可执行建议。, evidence_requirements: 只使用各问冻结主张和正式综合证据。, forbidden_content: 不得新增结果，不得把局部时域、有限场景或近似求解外推为全局普适最优。}
+  model_evaluation:
+    contracts:
+      strengths: {heading: 模型优点, objective: 从整篇证据链中概括本文模型为何可靠或实用。, required_content: 围绕具体约束表达、跨问接口、基线比较、检验覆盖和可复现性归纳优点。, evidence_requirements: 每项优点均能回指正文结果或检验，不引入新结果。, forbidden_content: 不得评价算法的教科书优点，不得使用“先进、高效、准确”等无证据形容词。}
+      limitations: {heading: 模型局限, objective: 诚实界定结论在什么条件下可能失效。, required_content: 说明关键假设、数据范围、参数口径、求解近似和未覆盖场景造成的具体限制。, evidence_requirements: 局限与各问边界主张、风险探针或敏感性结果一致。, forbidden_content: 不得写“数据有限”“时间仓促”等通用套话，不得把尚未验证的改进说成既有能力。}
+      extensions: {heading: 可推广方向, objective: 说明模型迁移到新数据、新区域或新约束时需要哪些具体改动。, required_content: 给出可执行的参数重估、约束扩展、数据补充或算法替换，并说明触发条件和预期解决的局限。, evidence_requirements: 推广方向由已识别的局限和接口设计推出，不增加未经实验验证的性能承诺。, forbidden_content: 不得泛称“进一步优化模型”，不得重复各问结论，不得宣称超出证据范围的普适性。}
+  references:
+    contract:
+      objective: 为模型选择、参数、数据和评价口径提供可核验来源。
+      required_content: 只列正文实际引用的真实文献，按首次出现顺序编号并统一著录；网络与官方数据写明访问日期。
+      evidence_requirements: 逐条核对作者、题名、来源、年份、卷期页码或 DOI，正文引用与条目一一对应。
+      forbidden_content: 不得列未引用文献，不得用博客、百科或未经核验的网页支撑学术主张，不得为显得专业而堆砌条目。
+  appendix:
+    contracts:
+      environment:
+        heading: 运行环境与复现命令
+        objective: 让评审能够识别正式程序入口和复现条件。
+        required_content: 列出实际软件与版本、依赖、统一运行命令、输入文件要求和输出位置。
+        evidence_requirements: 环境信息与代码清单、附件 README 及正式运行记录一致。
+        forbidden_content: 不得记录个人绝对路径、缓存目录、临时命令或未使用依赖。
+      code:
+        heading: 关键算法代码
+        objective: 展示连接数学模型与可执行实现的关键部分。
+        required_content: 按问题选取目标函数、核心约束、求解和审计代码，注明功能、输入输出及附件路径；完整可运行源码放白名单附件。
+        evidence_requirements: 代码摘录与附件源码逐字节或标记区间一致，方法、变量和参数与正文相符。
+        forbidden_content: 不得用截图代替代码，不得粘贴全部工程文件，不得省略支撑主要结论的核心实现。
+      index:
+        heading: 附件文件索引
+        objective: 用最短清单说明附件中每个正式文件的用途。
+        required_content: 列出正式源码、必要结果摘要、运行说明和审计入口，并标明对应问题。
+        evidence_requirements: 索引与最终 ZIP 白名单和代码清单一致。
+        forbidden_content: 不得重复正文符号表、长结果表或图件，不得列历史实验、内部状态、缓存和未提交文件。

@@ -501,6 +501,137 @@ def test_nonformal_run_checkpoint_and_promote_are_separated(tmp_path: Path) -> N
     assert formal["artifacts"][0]["path"].startswith("experiments/C/Q1/formal/run-lifecycle/")
 
 
+def test_quickcheck_defers_unverified_contracts_by_default(tmp_path: Path) -> None:
+    _initialize_lifecycle_workspace(tmp_path)
+    config_path, _ = _write_lifecycle_run(tmp_path, "run-light", "scratch")
+    record_run(
+        tmp_path,
+        config_path,
+        ["python", "src/q1_lifecycle.py"],
+        {"python": "3.13"},
+        "2026-08-11T00:00:00+00:00",
+        0.1,
+        True,
+    )
+    manifest_path = tmp_path / "experiments" / "C" / "Q1" / "scratch" / "run-light" / "run_manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["checks"]["core_constraints_passed"] = False
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    report = quickcheck(tmp_path, "C", "Q1")
+
+    assert report["passed"] is True
+    assert report["outcome"] == "PASS_WITH_WARNINGS"
+    assert any(item["name"] == "quickcheck_contract_incomplete" for item in report["warnings"])
+    assert quickcheck(tmp_path, "C", "Q1", strict=True)["passed"] is False
+
+
+def test_candidate_checkpoint_does_not_require_figure_brief(tmp_path: Path) -> None:
+    question_path = _initialize_lifecycle_workspace(tmp_path)
+    question = yaml.safe_load(question_path.read_text(encoding="utf-8"))
+    question["paper"]["figure_ids"] = ["fig-q1-main"]
+    question_path.write_text(yaml.safe_dump(question, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    config_path, _ = _write_lifecycle_run(tmp_path, "run-no-brief", "candidate")
+    record_run(
+        tmp_path,
+        config_path,
+        ["python", "src/q1_lifecycle.py"],
+        {"python": "3.13"},
+        "2026-08-11T00:00:00+00:00",
+        0.1,
+        True,
+    )
+
+    report = checkpoint(tmp_path, "C", "Q1")
+
+    assert report["passed"] is True
+    assert report["outcome"] == "PASS_WITH_WARNINGS"
+    assert any(item["name"] == "candidate_figure_brief_deferred" for item in report["warnings"])
+
+
+def test_candidate_checkpoint_defers_determinism_but_promotion_blocks(tmp_path: Path) -> None:
+    _initialize_lifecycle_workspace(tmp_path)
+    config_path, _ = _write_lifecycle_run(tmp_path, "run-determinism-pending", "candidate")
+    config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
+    config["checks"]["deterministic"] = False
+    config["replay"] = {"required": False, "count": 1}
+    dump_yaml(config_path, config)
+    record_run(
+        tmp_path,
+        config_path,
+        ["python", "src/q1_lifecycle.py"],
+        {"python": "3.13"},
+        "2026-08-11T00:00:00+00:00",
+        0.1,
+        True,
+    )
+
+    report = checkpoint(tmp_path, "C", "Q1")
+
+    assert report["passed"] is True
+    assert report["outcome"] == "PASS_WITH_WARNINGS"
+    assert {item["name"] for item in report["warnings"]} >= {
+        "candidate_determinism_deferred",
+        "candidate_replay_deferred",
+    }
+    with pytest.raises(ValueError, match="deterministic"):
+        promote(tmp_path, "C", "Q1", "run-determinism-pending")
+
+
+def test_candidate_can_promote_before_independent_replay_but_g3_rejects_it(tmp_path: Path) -> None:
+    _initialize_lifecycle_workspace(tmp_path)
+    config_path, _ = _write_lifecycle_run(tmp_path, "run-replay-pending", "candidate")
+    config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
+    config["replay"] = {"required": False, "count": 1}
+    dump_yaml(config_path, config)
+    record_run(
+        tmp_path,
+        config_path,
+        ["python", "src/q1_lifecycle.py"],
+        {"python": "3.13"},
+        "2026-08-11T00:00:00+00:00",
+        0.1,
+        True,
+    )
+
+    report = checkpoint(tmp_path, "C", "Q1")
+    promoted = promote(tmp_path, "C", "Q1", "run-replay-pending")
+    formal_checks: list[dict] = []
+    competition_workflow.validate_run_manifest(tmp_path, tmp_path / promoted["manifest"], formal_checks)
+    lifecycle_check = next(item for item in formal_checks if item["name"] == "formal_lifecycle_contract")
+
+    assert report["passed"] is True
+    assert any(item["name"] == "candidate_replay_deferred" for item in report["warnings"])
+    assert promoted["status"] == "FORMAL"
+    assert lifecycle_check["passed"] is False
+    assert lifecycle_check["detail"] == "replays=1"
+
+
+def test_candidate_core_constraint_failure_blocks_default_checkpoint(tmp_path: Path) -> None:
+    _initialize_lifecycle_workspace(tmp_path)
+    config_path, _ = _write_lifecycle_run(tmp_path, "run-core-constraint-fail", "candidate")
+    config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
+    config["checks"]["core_constraints_passed"] = False
+    dump_yaml(config_path, config)
+    record_run(
+        tmp_path,
+        config_path,
+        ["python", "src/q1_lifecycle.py"],
+        {"python": "3.13"},
+        "2026-08-11T00:00:00+00:00",
+        0.1,
+        True,
+    )
+
+    report = checkpoint(tmp_path, "C", "Q1")
+
+    assert report["passed"] is False
+    assert report["outcome"] == "BLOCK_TRANSITION"
+    assert "core_constraints_passed" in next(
+        item["detail"] for item in report["checks"] if item["name"] == "checkpoint_run"
+    )
+
+
 def _write_paper_evidence_run(root: Path, formal_path: Path, run_id: str, score: float) -> tuple[Path, Path]:
     formal = json.loads(formal_path.read_text(encoding="utf-8"))
     run_root = root / "experiments" / "C" / "Q1" / "paper-evidence" / run_id

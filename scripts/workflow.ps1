@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('preflight','initialize','run','validate','freeze','prepare-sprint','check-sprint','merge-sprint','quickcheck','checkpoint','promote','paper-evidence','literature-plan','literature-search','literature-register','literature-read','literature-synthesize','literature-audit','figure-data','figure-intent','figure-brief','figure-render','figure-qa','figure-promote','layout-check','archive-work','preview','build','audit','package','seal','verify-release','status')]
+    [ValidateSet('preflight','initialize','run','validate','freeze','prepare-sprint','check-sprint','merge-sprint','quickcheck','checkpoint','promote','paper-evidence','literature-plan','literature-search','literature-register','literature-read','literature-synthesize','literature-audit','figure-data','figure-intent','figure-brief','figure-render','figure-qa','figure-promote','prompt','layout-check','archive-work','preview','build','audit','package','seal','verify-release','status')]
     [string]$Action,
     [string]$Problem,
     [string]$ProblemFile,
@@ -27,7 +27,11 @@ param(
     [string]$SprintId,
     [string]$PreviewCheckpoint = 'full',
     [string]$EnvironmentName = 'auto',
-    [string]$Project
+    [string]$Project,
+    [ValidateSet('P0','P1','P2','P3a','P3b','P4','P5','P6')]
+    [string]$Stage,
+    [ValidateSet('orchestrator','solver','literature','visualization','paper','studio_release','reviewer')]
+    [string]$Role
 )
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot '_environment.ps1')
@@ -38,7 +42,7 @@ $root = $projectContext.Root
 $hub = $projectContext.HubRoot
 $projectExplicitActions = @(
     'literature-plan','literature-search','literature-register','literature-read','literature-synthesize','literature-audit',
-    'figure-data','figure-intent','figure-brief','figure-render','figure-qa','figure-promote'
+    'figure-data','figure-intent','figure-brief','figure-render','figure-qa','figure-promote','prompt'
 )
 if ($Action -in $projectExplicitActions -and [string]::IsNullOrWhiteSpace($Project)) {
     throw "$Action requires an explicit -Project selection."
@@ -238,6 +242,13 @@ switch ($Action) {
         $resolvedBrief = Resolve-ProjectLocalPath -Value $Brief -Label 'figure brief'
         $resolvedQa = Resolve-ProjectLocalPath -Value $Qa -Label 'figure QA'
         Invoke-WorkflowPython @('figure-promote','--problem',(Get-ConfiguredProblem),'--question',$Question,'--figure-id',$FigureId,'--brief',$resolvedBrief,'--qa',$resolvedQa,'--root-authorized')
+    }
+    'prompt' {
+        if (-not $Project -or -not $Stage -or -not $Role) { throw 'prompt requires -Project, -Stage, and -Role.' }
+        if ($Stage -notin @('P0','P1') -and -not $Question) { throw 'prompt requires -Question for stages P2-P6.' }
+        $arguments = @('prompt','--project-id',$Project,'--stage',$Stage,'--role',$Role)
+        if ($Question) { $arguments += @('--question',$Question) }
+        Invoke-WorkflowPython $arguments
     }
     'layout-check' {
         Invoke-LayoutPreview

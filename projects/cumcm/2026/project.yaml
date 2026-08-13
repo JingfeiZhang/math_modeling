@@ -1,4 +1,8 @@
 schema_version: 1
+workflow_contract_version: 7
+prompt_policy_version: 1
+prompt_mode: progress-first
+paper_prompt_mode: external
 project_id: cumcm-2026
 profile_id: cumcm
 competition: CUMCM

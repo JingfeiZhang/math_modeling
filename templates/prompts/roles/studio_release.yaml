@@ -1,0 +1,3 @@
+schema_version: 1
+role: studio_release
+policy_ref: roles.studio_release

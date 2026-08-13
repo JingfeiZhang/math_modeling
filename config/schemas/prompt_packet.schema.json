@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Assembled modeling prompt packet",
+  "type": "object",
+  "required": ["packet_version", "project_id", "stage", "gate", "role", "question_id", "objective", "read_scope", "write_scope", "context_refs", "blocking_conditions", "warning_conditions", "deferred_conditions", "allowed_actions", "stop_conditions", "input_contract", "protected_paths", "output_contract", "escalation_rules"],
+  "properties": {
+    "packet_version": {"const": 1},
+    "project_id": {"type": "string", "pattern": "^[A-Za-z0-9._-]+$"},
+    "stage": {"enum": ["P0", "P1", "P2", "P3a", "P3b", "P4", "P5", "P6"]},
+    "gate": {"pattern": "^G[0-6]$"},
+    "role": {"enum": ["orchestrator", "solver", "literature", "visualization", "paper", "studio_release", "reviewer"]},
+    "question_id": {"type": "string", "pattern": "^(|Q[1-9][0-9]*)$"},
+    "objective": {"type": "string", "minLength": 1},
+    "read_scope": {"type": "array", "items": {"type": "string"}},
+    "write_scope": {"type": "array", "items": {"type": "string"}},
+    "context_refs": {"type": "array", "items": {"type": "string"}},
+    "blocking_conditions": {"type": "array", "items": {"type": "string"}},
+    "warning_conditions": {"type": "array", "items": {"type": "string"}},
+    "deferred_conditions": {"type": "array", "items": {"type": "string"}},
+    "allowed_actions": {"type": "array", "items": {"type": "string"}},
+    "stop_conditions": {"type": "array", "items": {"type": "string"}},
+    "input_contract": {"type": "array", "items": {"type": "string"}},
+    "protected_paths": {"type": "array", "items": {"type": "string"}},
+    "output_contract": {"type": "object"},
+    "escalation_rules": {"type": "array", "items": {"type": "string"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"stage": {"enum": ["P2", "P3a", "P3b", "P4", "P5", "P6"]}}},
+      "then": {"properties": {"question_id": {"pattern": "^Q[1-9][0-9]*$"}}}
+    }
+  ],
+  "additionalProperties": false
+}

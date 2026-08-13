@@ -1,0 +1,3 @@
+schema_version: 1
+stage: P2
+policy_ref: stages.P2

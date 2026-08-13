@@ -65,13 +65,14 @@ class CumcmTemplateV3Tests(unittest.TestCase):
             with self.subTest(question=number):
                 text = (TEMPLATE / "sections" / f"question_{number}.tex").read_text(encoding="utf-8")
                 self.assertEqual(text.count("\\subsection{"), 8)
-                self.assertEqual(text.count("\\WritingContract"), 8)
                 for heading in expected_headings:
                     self.assertIn(f"\\subsection{{{heading}}}", text)
+                self.assertNotIn("\\WritingContract", text)
+                self.assertNotIn("\\TemplatePrompt", text)
                 for algorithm in forbidden_fixed_algorithms:
                     self.assertNotIn(algorithm, text)
 
-    def test_front_sections_use_four_part_writing_contracts(self) -> None:
+    def test_authoring_prompts_are_external_to_formal_tex(self) -> None:
         required = (
             "abstract.tex",
             "problem_restatement.tex",
@@ -85,10 +86,30 @@ class CumcmTemplateV3Tests(unittest.TestCase):
         for name in required:
             with self.subTest(section=name):
                 text = (TEMPLATE / "sections" / name).read_text(encoding="utf-8")
-                self.assertIn("\\WritingContract", text)
+                self.assertNotIn("\\WritingContract", text)
+                self.assertNotIn("\\TemplatePrompt", text)
         preamble = (TEMPLATE / "preamble.tex").read_text(encoding="utf-8")
-        for marker in ("表达目标", "必写内容", "证据要求", "禁止内容"):
-            self.assertIn(marker, preamble)
+        self.assertNotIn("\\WritingContract", preamble)
+        self.assertNotIn("\\TemplatePrompt", preamble)
+        prompts = yaml.safe_load((ROOT / "templates" / "prompts" / "paper" / "cumcm-2026.yaml").read_text(encoding="utf-8"))
+        assert set(prompts["sections"]) == {
+            "abstract", "ai_statement", "problem_restatement", "problem_analysis", "assumptions_notation",
+            "data_processing", "question", "model_evaluation", "references", "appendix",
+        }
+        assert prompts["sections"]["question"]["required_content"] == [
+            "objective_interface", "data_mechanism", "model_choice", "formulation",
+            "algorithm", "result", "validation", "conclusion",
+        ]
+        assert prompts["source_contract_count"] == 52
+        assert set(prompts["sections"]["question"]["variants"]) == {"Q1", "Q2", "Q3", "Q4"}
+        for question in prompts["sections"]["question"]["variants"].values():
+            assert set(question["contracts"]) == set(prompts["sections"]["question"]["required_content"])
+        count = 0
+        for section in prompts["sections"].values():
+            count += int("contract" in section)
+            count += len(section.get("contracts", {}))
+            count += sum(len(variant.get("contracts", {})) for variant in section.get("variants", {}).values())
+        assert count == prompts["source_contract_count"]
 
     def test_bibtex_does_not_duplicate_the_explicit_reference_heading(self) -> None:
         references = (TEMPLATE / "sections" / "references.tex").read_text(encoding="utf-8")

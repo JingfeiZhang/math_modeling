@@ -1,0 +1,3 @@
+schema_version: 1
+role: solver
+policy_ref: roles.solver

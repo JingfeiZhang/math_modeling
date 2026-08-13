@@ -8,6 +8,8 @@ identity_fields: false
 abstract_separate_page: true
 rule_status: verify_against_official_2026_rules_before_submission
 contract_version: "3.0"
+prompt_policy_version: 1
+paper_prompt_mode: external
 contract_evidence:
   report: corpus/reports/cumcm-c-writing-template-2021-2025.md
   sha256: EB36D0D70F6DA29F21A13C4551F8C93997292E72C139DD9B2159E7878B8A5603

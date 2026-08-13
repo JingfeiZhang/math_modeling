@@ -1,5 +1,7 @@
 # Mathematics Modeling Workspace
 
+`config/prompt_policy.yaml` is the only workspace prompt-strategy source. Load only the current P-stage and role packet; do not duplicate stage rules in Skills, TeX, or task handoffs. Return the V7 compact receipt unless the user asks for detail.
+
 ## Workflow ownership
 
 - Use `mathmodel-skill` as the only owner of competition stages, recovery state, official-rule checks, and human decisions.
@@ -22,7 +24,7 @@
 4. After a real problem file is supplied, initialize through `scripts/workflow.ps1 -Project <project-id> -Action initialize`.
 5. For each real subproblem, maintain one question manifest, executable main model, comparable baseline, at most one conditional fallback, risk probes, run manifests, robustness evidence, frozen claims, and Figure Contract links.
 6. Permit manuscript claims and figures to use only frozen evidence. Treat changed evidence hashes as an invalidation that requires review and refreezing.
-7. Build, audit, and package only through the workspace scripts. Fix the earliest failed G0-G6 gate before continuing.
+7. Build, audit, and package only through the workspace scripts. Fix the earliest blocking gate for the affected question and current transition; warnings do not stop unrelated exploration.
 
 ## Project isolation
 
@@ -39,8 +41,8 @@
 ## Evidence rules
 
 - Never enter an unverified number manually in the paper, caption, or chart script.
-- Every run must record the command, environment, seed, code/data hashes, outputs, metric definitions, units, and runtime.
-- Every figure must record a claim id, evidence locator, baseline, axes with units, source script, caption, and PDF/SVG/PNG exports.
+- Formal runs must record the command, environment, seed, code/data hashes, outputs, metric definitions, units, and runtime. Scratch and Candidate use the lighter receipt required by the current V7 packet.
+- Formal figures must record a claim id, evidence locator, baseline, axes with units, source script, caption, and PDF/SVG/PNG exports. Early previews remain staging artifacts.
 - Baselines must produce the same class of output as the main model. A random result or diagnostic line is not a baseline.
 - A fallback is optional, limited to one per subproblem, and must have an explicit activation trigger.
 - Mechanical checks belong in scripts. Ask the user only when ambiguity or a tradeoff changes the model, claim scope, or fallback decision.

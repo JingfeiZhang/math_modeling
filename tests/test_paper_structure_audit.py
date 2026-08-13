@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+import pytest
 import yaml
 
 from src.utils import audit_latex
@@ -236,3 +237,15 @@ def test_v3_structure_reports_contract_and_log_failures(tmp_path: Path) -> None:
         "LOG_UNDEFINED_CITATION",
         "LOG_DUPLICATE_LABEL",
     } <= codes
+
+
+@pytest.mark.parametrize("marker", ["\\TemplatePrompt{提示}", "AUTHORING_PROMPT", "必写内容：提示"])
+def test_authoring_prompt_is_blocked_after_references_or_in_appendix(tmp_path: Path, marker: str) -> None:
+    paper, log = _write_valid_project(tmp_path, VALID_ABSTRACT)
+    main = paper / "main.tex"
+    text = main.read_text(encoding="utf-8")
+    main.write_text(text.replace("\\end{document}", f"{marker}\n\\end{{document}}"), encoding="utf-8")
+
+    result = audit_latex.audit(_args(paper, log))
+
+    assert "AUTHORING_PROMPT" in {item["code"] for item in result["errors"]}

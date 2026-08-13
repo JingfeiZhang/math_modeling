@@ -52,7 +52,16 @@ powershell -ExecutionPolicy Bypass -File .\\scripts\\workspace.ps1 -Action verif
 
 ## Competition-day workflow
 
-V6 的比赛日主线保留“非正式试跑、候选晋升、正式证据、论文证据、可视化设计、发布收敛”六类动作，并把学术文献检索作为与 baseline、Scratch 并行的模型探索支线。不要用猜测题面初始化，也不要让一次 `scratch` 试跑或外部论文结果直接进入正文 claims。官方题面到达后，始终修复最早失败的检查，再继续后续动作。
+V7 使用 `config/prompt_policy.yaml` 按当前 P 阶段和角色装配短提示，同时保留 V6 的实验、证据和 G0--G6 运行链。Scratch/Candidate 推进优先，Formal/G5/G6 严格收束；不要让一次 `scratch` 试跑或外部论文结果直接进入正文 claims。
+
+查看某个角色实际收到的提示，不会创建比赛状态或修改正式证据：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
+  -Project cumcm-2026 -Action prompt -Stage P3a -Role solver -Question Q1
+```
+
+命令只写入 `output/_verification/prompts/`。默认回执固定为 `status/objective/conclusion/evidence/warnings/next_action/decision_request`；只有主模型、fallback、claim 范围、官方规则冲突和发布阻断请求人工决策。
 
 ### 最短可执行路径
 
@@ -73,7 +82,7 @@ initialize
   -> archive-work
 ```
 
-`quickcheck` 当前检查已经生成的 `scratch/candidate` run manifest，因此第一次非正式 `run` 之前单独执行不会通过。可比较 baseline 也不是独立命令：它必须写入实验配置的 `methods`，并与主模型产生同类输出；`checkpoint` 再检查 baseline、单位、硬约束、随机种子和晋升价值。新配置默认是 `run_mode: scratch`，需要形成候选时显式使用 `run_mode: candidate`；schema v2 的 `run_mode: formal` 禁止直接运行，正式目录只能由 `promote` 创建。实验 schema v1 仅用于旧项目兼容，新实验必须使用 v2；新建问题清单使用 question schema v3，v1/v2 继续兼容读取。
+`quickcheck` 当前检查已经生成的 `scratch/candidate` run manifest，因此第一次非正式 `run` 之前单独执行不会通过。可比较 baseline 也不是独立命令：它必须写入实验配置的 `methods`，并与主模型产生同类输出；默认 `checkpoint` 只检查输入输出和单位合同、输出守恒、指标定义、核心硬约束、同输出 baseline 与晋升价值。固定种子、确定性复跑、完整哈希、图件 Brief、文献和排版会以 warning/deferred 记录，不拖慢候选探索；输出中的 `PASS_WITH_WARNINGS` 表示当前动作通过但仍有正式化待办，`BLOCK_TRANSITION` 只阻断当前转换。新配置默认是 `run_mode: scratch`，需要形成候选时显式使用 `run_mode: candidate`；schema v2 的 `run_mode: formal` 禁止直接运行，正式目录只能由 `promote` 创建。实验 schema v1 仅用于旧项目兼容，新实验必须使用 v2；新建问题清单使用 question schema v3，v1/v2 继续兼容读取。
 
 ```powershell
 # 1. 用真实题面初始化，只生成实际存在的 Q1--Qn
@@ -86,14 +95,14 @@ powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
   -Project cumcm-2026 -Action run -Question Q1 `
   -Config .\projects\cumcm\2026\experiments\configs\C-Q1-scratch.yaml
 powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
-  -Project cumcm-2026 -Action quickcheck -Question Q1 -StrictManifest
+  -Project cumcm-2026 -Action quickcheck -Question Q1
 
 # 3. 主模型和同输出 baseline 完整后运行 candidate，并做晋升检查
 powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
   -Project cumcm-2026 -Action run -Question Q1 `
   -Config .\projects\cumcm\2026\experiments\configs\C-Q1-candidate.yaml
 powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
-  -Project cumcm-2026 -Action checkpoint -Question Q1 -StrictManifest
+  -Project cumcm-2026 -Action checkpoint -Question Q1
 
 # 4. 只晋升通过 checkpoint 的 run；formal 不能直接 run
 powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
@@ -134,6 +143,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
 
 以上配置路径是命名约定，不是工作台预置文件；每个项目应从 `templates/workflow/experiment.yaml` 建立自己的配置。若只需要一个候选 run，可以省略单独的 scratch，但仍须先执行该 run 的 `quickcheck` 和 `checkpoint`，再 `promote`。
 
+`-StrictManifest` 不是 Scratch/Candidate 的默认参数。它用于主动兼容性审计，以及 Formal 的 G3/G4 和发布阶段的 G5/G6。Candidate 即使返回 `PASS_WITH_WARNINGS` 也可以继续试错；`promote` 会拒绝尚未证明确定性的候选，但不再要求候选阶段预先完成两次复跑。进入 Formal 后，G3 仍会核验至少一次独立复跑，通常对应 manifest 的 `replay.count >= 2`。
+
 ### P0--P6 与 G0--G6
 
 P 层表示时间预算，G 层表示证据成熟度，两者不是一一对应的状态机。P 层回答“比赛已经走到什么时间，应把精力放在哪里”；G 层回答“当前产物是否具备进入下一环节的证据”。`mathmodel-skill` 仍是唯一赛事状态所有者，G 报告只是派生检查。
@@ -147,8 +158,7 @@ P 层表示时间预算，G 层表示证据成熟度，两者不是一一对应�
 | P3b | 45%--60% | 稳健性、候选比较和模型收束；60% 时锁定主模型 |
 | P4 | 60%--75% | formal run、冻结 claims 和正文主干 |
 | P5 | 75%--85% | 图表、表格、增量排版和受控 paper evidence |
-| P6a | 85%--95% | G5/G6 深审、白名单附件和封存 |
-| P6b | 95%--100% | 只修阻断项，不引入新模型或新主结果 |
+| P6 | 85%--100% | 85%--95% 完成 G5/G6、白名单附件和封存；最后 5% 只修阻断项，不引入新模型或新主结果 |
 
 | 门禁 | 证明对象 | 是否执行深度 PDF/附件审计 |
 |---|---|---|
@@ -312,7 +322,7 @@ Scratch 只能推进到 intent，Candidate 最多形成 reviewed Brief 和预览
 
 `package` 从 `src/submission/` 按显式白名单生成附件，不能先复制整个项目再做删除过滤。`output/release/` 只允许赛事 profile 确定的论文 PDF 和支撑 ZIP；原始题面、内部状态、缓存、历史实验、预览页、审计报告和未登记文件均留在项目其他目录。`seal` 固定最终清单和哈希，`verify-release` 从封存结果独立复核；两者通过后再执行 `archive-work`，将仍位于 scratch 层的非正式运行移到 `output/_archive/`。
 
-Initialization derives the real question count from the supplied problem and creates only the corresponding Q1--Qn manifests and TeX sections. It also writes `paper/generated/question_structure.tex`, so a three-question problem never retains an empty fourth chapter. New V6 projects use `question.yaml` schema v3, which preserves the v2 problem/model/evidence/paper handoff and adds a literature block containing only project-local paths, SHA-256 values, BibTeX keys, and derived status. It never copies literature conclusions or project result values into the question manifest. Legacy schema v1/v2 remains readable for archived projects; `-StrictManifest` enforces the current v3 handoff for V6 projects and should be used for every new project.
+Initialization derives the real question count from the supplied problem and creates only the corresponding Q1--Qn manifests and TeX sections. It also writes `paper/generated/question_structure.tex`, so a three-question problem never retains an empty fourth chapter. New V7 prompt projects continue to use `question.yaml` schema v3, which preserves the v2 problem/model/evidence/paper handoff and adds a literature block containing only project-local paths, SHA-256 values, BibTeX keys, and derived status. It never copies literature conclusions or project result values into the question manifest. Legacy schema v1/v2 remains readable for archived projects; use `-StrictManifest` at Formal/G3/G4 or release time when the complete v3 handoff is intended, rather than on every early exploratory run.
 
 `layout-check` 与兼容入口 `preview` 使用同一套隔离预览。可在以下检查点编译：
 

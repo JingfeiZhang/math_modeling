@@ -29,6 +29,7 @@ def test_transient_workflow_artifacts_are_ignored() -> None:
         "projects/demo/2026/paper/.preview-build/main.pdf",
         "projects/demo/2026/output/.support-staging/package.zip",
         "projects/demo/2026/output/_verification/figures/qa.json",
+        "projects/demo/2026/output/_verification/prompts/P3a/solver/Q1/prompt_packet.yaml",
         "projects/demo/2026/output/_archive/scratch/run-1.zip",
         "projects/demo/2026/output/_preview/Q1.pdf",
         "projects/demo/2026/output/_package_staging/supporting.zip",

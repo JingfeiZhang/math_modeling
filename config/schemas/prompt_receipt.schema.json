@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Compact modeling prompt receipt",
+  "type": "object",
+  "required": ["status", "objective", "conclusion", "evidence", "warnings", "next_action", "decision_request"],
+  "properties": {
+    "status": {"enum": ["PROGRESS", "PASS", "PASS_WITH_WARNINGS", "BLOCK_TRANSITION", "REOPEN_REQUIRED", "READY"]},
+    "objective": {"type": "string"},
+    "conclusion": {"type": "string"},
+    "evidence": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[^#]+#sha256=[0-9a-fA-F]{64}$"}
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "next_action": {"type": "string"},
+    "decision_request": {"type": ["null", "string"]}
+  },
+  "additionalProperties": false
+}

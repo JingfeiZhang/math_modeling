@@ -1,5 +1,15 @@
 schema_version: 2
 state_owner: mathmodel-skill
+prompt_system:
+  version: 7
+  policy: config/prompt_policy.yaml
+  mode: progress-first
+  locale: zh-CN
+  packet_schema: config/schemas/prompt_packet.schema.json
+  receipt_schema: config/schemas/prompt_receipt.schema.json
+  verification_root: output/_verification/prompts
+  new_project_default: true
+  legacy_projects_compatible: true
 derived_status: output/workflow_status.json
 workspace_layout: config/workspace_layout.yaml
 workspace_output:
@@ -71,18 +81,22 @@ competition_timing:
       name: paper-figures-and-supplemental-evidence
       window: [0.75, 0.85]
       objective: figures-tables-layout-and-controlled-paper-evidence
-    P6a:
-      name: release-audit-and-package
-      window: [0.85, 0.95]
-      objective: g5-g6-deep-audit-and-whitelist-package
-    P6b:
-      name: release-buffer
-      window: [0.95, 1.00]
-      objective: blocking-fixes-only
+    P6:
+      name: release-audit-package-and-buffer
+      window: [0.85, 1.00]
+      objective: g5-g6-deep-audit-whitelist-package-and-blocking-fixes-only
+      internal_windows:
+        audit_and_package: [0.85, 0.95]
+        blocking_fixes_only: [0.95, 1.00]
   progress_exclusions: [page-count, figure-count, audit-record-count]
 experiment_lifecycle:
   levels: [scratch, candidate, formal, paper-evidence]
   root_pattern: experiments/{problem}/{question}/{level}/{run-id}
+  audit_profile_by_level:
+    scratch: scratch-quickcheck
+    candidate: candidate-checkpoint
+    formal: formal-g3-g4
+    paper-evidence: formal-g3-g4
   scratch:
     receipt: probe_receipt.json
     allowed_outputs: exploratory-only
@@ -258,6 +272,8 @@ visualization_design:
     allowed_brief_status: [DRAFT, REVIEWED]
   formal:
     approved_brief_required_for_declared_figures: true
+    approved_brief_required_at_gate: G5
+    missing_brief_behavior_through_g4: warning
     render_required_at_gate: G5
   paper_evidence:
     parent_status_required: READY
@@ -287,73 +303,76 @@ multi_agent:
     - paper/main.tex
     - paper/figure_contracts.yaml
     - output/submission*
-stages:
-  0:
-    name: kickoff-and-preflight
-    primary_skill: mathmodel-skill
-    support_skills: [modeling-paper-studio]
-    command: scripts/workflow.ps1 -Action preflight
-    gate: G0
-  1:
-    name: problem-selection
-    primary_skill: mathmodel-skill
-    support_skills: [math-modeling-solver]
-    gate: G0
-  2:
-    name: problem-analysis
-    primary_skill: math-modeling-solver
-    support_skills: [mathmodel-skill]
-    gate: G0
-    paper_handoff: [problem_restatement, problem_analysis, question_interfaces]
-  3:
-    name: model-selection
-    primary_skill: math-modeling-solver
-    support_skills: [mathmodel-skill]
-    gate: G1
-  4:
-    name: assumptions-symbols-foundation
-    primary_skill: math-modeling-solver
-    support_skills: [mathmodel-skill]
-    gate: G2
-    paper_handoff: [testable_assumptions, global_notation, shared_metrics]
-  5:
-    name: per-question-experiment-loop
-    primary_skill: math-modeling-solver
-    support_skills: [matlab-build-chart, matlab-solve-optimization, matlab-performance-optimizer, matlab-symbolic-math]
-    command: scripts/workflow.ps1 -Action run
-    gate: G3
-    paper_handoff: [main_result, comparable_baseline, validation, figure_or_table, code_entry, conclusion_boundary]
-  6:
-    name: robustness-and-sensitivity
-    primary_skill: math-modeling-solver
-    support_skills: [modeling-paper-studio, ccf-visual-composer]
-    gate: G4
-  7:
-    name: evaluation-and-claim-freeze
-    primary_skill: mathmodel-skill
-    support_skills: [math-modeling-paper, modeling-paper-studio]
-    command: scripts/workflow.ps1 -Action freeze
-    gate: G4
-  8:
-    name: writing-figures-and-typesetting
-    primary_skill: math-modeling-paper
-    support_skills: [modeling-paper-studio, ccf-visual-composer, nature-figure, latex-document-skill]
-    command: scripts/workflow.ps1 -Action build
-    gate: G5
-    figure_qa: [evidence-integrity, code-style, visual-logic, rendered-artifact]
-    manuscript_source: paper/sections/*.tex
-    supplemental_evidence_allowed: true
-    primary_model_mutation: forbidden
-    reopen_on_primary_drift: true
-    supplemental_evidence_scopes: [diagnostic, sensitivity, mechanism, figure_support]
-    incremental_preview_checkpoints: [frontmatter, each-question, full-manuscript]
-  9:
-    name: submission-review-and-package
-    primary_skill: mathmodel-skill
-    support_skills: [modeling-paper-studio, pdf]
-    command: scripts/workflow.ps1 -Action audit
-    gate: G6
-    figure_qa: [paper-page-placement, font-embedding, svg-editability, raster-resolution, caption-linkage]
+legacy_technical_stages:
+  compatibility_only: true
+  prompt_authority: false
+  stages:
+    0:
+      name: kickoff-and-preflight
+      primary_skill: mathmodel-skill
+      support_skills: [modeling-paper-studio]
+      command: scripts/workflow.ps1 -Action preflight
+      gate: G0
+    1:
+      name: problem-selection
+      primary_skill: mathmodel-skill
+      support_skills: [math-modeling-solver]
+      gate: G0
+    2:
+      name: problem-analysis
+      primary_skill: math-modeling-solver
+      support_skills: [mathmodel-skill]
+      gate: G0
+      paper_handoff: [problem_restatement, problem_analysis, question_interfaces]
+    3:
+      name: model-selection
+      primary_skill: math-modeling-solver
+      support_skills: [mathmodel-skill]
+      gate: G1
+    4:
+      name: assumptions-symbols-foundation
+      primary_skill: math-modeling-solver
+      support_skills: [mathmodel-skill]
+      gate: G2
+      paper_handoff: [testable_assumptions, global_notation, shared_metrics]
+    5:
+      name: per-question-experiment-loop
+      primary_skill: math-modeling-solver
+      support_skills: [matlab-build-chart, matlab-solve-optimization, matlab-performance-optimizer, matlab-symbolic-math]
+      command: scripts/workflow.ps1 -Action run
+      gate: G3
+      paper_handoff: [main_result, comparable_baseline, validation, figure_or_table, code_entry, conclusion_boundary]
+    6:
+      name: robustness-and-sensitivity
+      primary_skill: math-modeling-solver
+      support_skills: [modeling-paper-studio, ccf-visual-composer]
+      gate: G4
+    7:
+      name: evaluation-and-claim-freeze
+      primary_skill: mathmodel-skill
+      support_skills: [math-modeling-paper, modeling-paper-studio]
+      command: scripts/workflow.ps1 -Action freeze
+      gate: G4
+    8:
+      name: writing-figures-and-typesetting
+      primary_skill: math-modeling-paper
+      support_skills: [modeling-paper-studio, ccf-visual-composer, nature-figure, latex-document-skill]
+      command: scripts/workflow.ps1 -Action build
+      gate: G5
+      figure_qa: [evidence-integrity, code-style, visual-logic, rendered-artifact]
+      manuscript_source: paper/sections/*.tex
+      supplemental_evidence_allowed: true
+      primary_model_mutation: forbidden
+      reopen_on_primary_drift: true
+      supplemental_evidence_scopes: [diagnostic, sensitivity, mechanism, figure_support]
+      incremental_preview_checkpoints: [frontmatter, each-question, full-manuscript]
+    9:
+      name: submission-review-and-package
+      primary_skill: mathmodel-skill
+      support_skills: [modeling-paper-studio, pdf]
+      command: scripts/workflow.ps1 -Action audit
+      gate: G6
+      figure_qa: [paper-page-placement, font-embedding, svg-editability, raster-resolution, caption-linkage]
 gates:
   G0: problem-formed
   G1: method-screened
@@ -367,20 +386,175 @@ audit_layers:
   G5: [paper-structure, evidence-coverage, latex-static, figure-contract]
   G6: [pdf-visual, package-whitelist, anonymity, release-integrity]
 audit_policy:
-  severities: [blocking, warning, final]
+  version: progressive-v2
+  default_mode: progress-first
+  severities: [blocking, warning, deferred, final]
+  outcomes: [PASS, PASS_WITH_WARNINGS, BLOCK_TRANSITION]
+  semantics:
+    blocking_scope: current-transition-only
+    warning_behavior: record-and-continue
+    deferred_behavior: do-not-run-before-owning-profile
+    local_invalidation_only: true
+    no_recursive_reaudit_before_freeze: true
+  profile_selection:
+    scratch: scratch-quickcheck
+    candidate: candidate-checkpoint
+    formal: formal-g3-g4
+    paper-evidence: formal-g3-g4
+    release: release-g5-g6
+  profiles:
+    scratch-quickcheck:
+      lifecycle: scratch
+      action: quickcheck
+      phases: [P2, P3a, P3b]
+      purpose: reject-wrong-direction-or-unrunnable-probes-only
+      enforcement: smoke-only
+      target_runtime_seconds: 60
+      blocking:
+        - explicit-project-and-question-match
+        - required-problem-files-present
+        - required-inputs-readable
+        - runner-starts
+        - output-path-contained-in-run-directory
+      warning:
+        - input-output-contract-incomplete
+        - core-hard-constraints-unchecked-or-failing
+        - unit-metadata-incomplete
+        - fixed-seed-not-recorded
+        - baseline-not-yet-available
+      deferred:
+        - literature-completeness
+        - figure-brief-and-contract
+        - manuscript-completeness
+        - full-artifact-hashes
+        - deterministic-replays
+        - full-robustness-suite
+        - latex-and-pdf-audit
+        - package-and-release-audit
+      hash_scope: code-and-declared-input-receipt-only
+      minimum_deterministic_replays: 0
+      blocks_other_questions: false
+    candidate-checkpoint:
+      lifecycle: candidate
+      action: checkpoint
+      phases: [P2, P3a, P3b]
+      purpose: decide-whether-one-candidate-may-be-promoted
+      enforcement: promotion-minimum
+      target_runtime_seconds: 120
+      blocking:
+        - explicit-project-and-question-match
+        - runner-starts
+        - input-output-unit-contract
+        - output-conservation
+        - metric-definition
+        - comparable-output-baseline
+        - core-hard-constraints
+        - promotion-value-approved
+      warning:
+        - fixed-seed-repeat-not-yet-run
+        - noncritical-risk-probes-incomplete
+        - runtime-optimization-incomplete
+      deferred:
+        - literature-completeness
+        - approved-figure-brief
+        - figure-render-and-qa
+        - manuscript-completeness
+        - full-artifact-hashes
+        - multiple-deterministic-replays
+        - full-robustness-suite
+        - latex-and-pdf-audit
+        - package-and-release-audit
+      hash_scope: critical-input-code-and-summary-only
+      minimum_deterministic_replays: 0
+      block_effect: candidate-promotion-only
+      blocks_further_scratch: false
+      blocks_other_questions: false
+    formal-g3-g4:
+      lifecycle: [formal, paper-evidence]
+      actions: [validate-G3, freeze, validate-G4, G4-paper-evidence]
+      phases: [P4, P5]
+      purpose: freeze-reproducible-model-results-and-claims
+      enforcement: strict
+      blocking:
+        G3:
+          - formal-manifest-valid
+          - selected-main-model-and-comparable-baseline
+          - fixed-input-code-environment-and-seed
+          - metric-definition-and-units
+          - core-hard-constraints
+          - one-independent-deterministic-replay
+        G4:
+          - formal-artifact-hashes
+          - claim-value-unit-and-locator-traceability
+          - targeted-robustness-for-claimed-boundary
+          - frozen-claim-consistency
+      warning_through_g4:
+        - literature-completeness
+        - approved-figure-brief
+        - figure-render-and-qa
+        - manuscript-completeness
+        - bibliography-completeness
+        - appendix-completeness
+        - page-layout
+      deferred_to_g5_g6:
+        - repeated-deterministic-replays-beyond-one
+        - full-figure-contract-handoff
+        - latex-static-audit
+        - pdf-visual-and-font-audit
+        - package-whitelist
+        - release-integrity
+      hash_scope:
+        G3: formal-critical-input-code-config-and-summary
+        G4: all-claim-bearing-formal-artifacts
+      minimum_deterministic_replays: 1
+      invalidation_scope: affected-question-only
+    release-g5-g6:
+      lifecycle: release
+      actions: [validate-G5, validate-G6, audit, package, seal, verify-release]
+      phases: [P6]
+      purpose: prove-manuscript-and-upload-package-are-complete
+      enforcement: strict
+      blocking:
+        G5:
+          - manuscript-structure-and-question-coverage
+          - frozen-evidence-and-paper-number-traceability
+          - literature-and-bibliography-handoff
+          - figure-or-table-design-handoff
+          - figure-contract-and-render-qa-when-applicable
+          - citation-reference-and-label-integrity
+        G6:
+          - pdf-visual-layout-and-fonts
+          - anonymity-and-official-rule-compliance
+          - explicit-package-whitelist
+          - release-file-hashes-and-clean-directory
+      full_hash_scope: release-and-all-referenced-evidence
+      rerun_policy: no-new-rerun-unless-hash-drift-or-release-blocker
+      blocks_other_questions: true
   quickcheck:
-    target_runtime_seconds: 180
-    blocking: [problem-files, data-readable, runner-starts, input-output-contract, core-hard-constraints]
-    warning: [references-incomplete, figure-contract-incomplete, prose-unpolished, appendix-incomplete, nonformal-hash-incomplete, layout-not-final]
+    target_runtime_seconds: 60
+    blocking: [problem-files, data-readable, runner-starts, output-path-contained-in-run-directory]
+    warning: [input-output-contract-incomplete, core-hard-constraints-unchecked-or-failing, references-incomplete, figure-contract-incomplete, prose-unpolished, appendix-incomplete, nonformal-hash-incomplete, deterministic-replays-incomplete, layout-not-final]
+    profile: scratch-quickcheck
   checkpoint:
+    target_runtime_seconds: 120
     triggers: [baseline-complete, candidate-ready-for-promotion]
     checks: [output-conservation, metric-definition, hard-constraints, baseline-comparability, fixed-seed, promotion-value]
+    profile: candidate-checkpoint
+    fixed_seed_behavior: record-required-repeat-warning
+    multiple_replays_required: false
   early_gate_forbidden_actions:
     gates: [G0, G1, G2, G3, G4]
-    actions: [pdf-render, font-audit, pdf-visual-audit, package-audit, release-integrity-audit]
+    actions: [pdf-render, font-audit, pdf-visual-audit, package-audit, release-integrity-audit, full-manuscript-audit, full-figure-render-audit]
+  early_nonblocking_completeness:
+    through_gate: G4
+    items: [literature, figure-design, figure-render, manuscript, bibliography, appendix, page-layout]
+  early_nonblocking_evidence_cost:
+    through_lifecycle: candidate
+    items: [full-artifact-hashes, deterministic-replays, full-robustness-suite]
   final_deep_audit:
     gates: [G5, G6]
     starts_after_fraction: 0.85
+    profile: release-g5-g6
 artifact_governance:
   experiments: reproducible-runs
   results: frozen-claims-and-results

@@ -18,21 +18,6 @@
   \PackageError{cumcm-2026}{This template requires XeLaTeX}{}
 \fi
 
-\definecolor{PromptGray}{HTML}{666666}
-\newcommand{\TemplatePrompt}[1]{%
-  \par\noindent{\color{PromptGray}\itshape [模板提示：#1]}\par
-}
-\newcommand{\WritingContract}[4]{%
-  \par\smallskip
-  \begingroup
-  \noindent\color{PromptGray}\itshape
-  \textbf{表达目标：}#1\par
-  \noindent\textbf{必写内容：}#2\par
-  \noindent\textbf{证据要求：}#3\par
-  \noindent\textbf{禁止内容：}#4\par
-  \endgroup
-  \smallskip
-}
 \newcommand{\FrozenClaim}[1]{%
   \PackageError{cumcm-2026}{Frozen claim #1 has not been generated}{}
 }

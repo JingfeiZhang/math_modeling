@@ -28,16 +28,26 @@ def prepare_hub(tmp_path: Path) -> Path:
     shutil.copy2(ROOT / "config" / "projects.json", hub / "config" / "projects.json")
     for relative in (
         "config/workflow.yaml",
+        "config/prompt_policy.yaml",
+        "config/schemas/prompt_policy.schema.json",
+        "config/schemas/prompt_packet.schema.json",
+        "config/schemas/prompt_receipt.schema.json",
         "config/figure_style.yaml",
         "skills.lock.yaml",
         "environment.yml",
         "templates/figures/figure_contract_v2.schema.json",
         "templates/figures/figure_contract_v2.template.yaml",
+        "templates/prompts/paper/cumcm-2026.yaml",
     ):
         source = ROOT / relative
         target = hub / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
+    for source_dir in (ROOT / "templates" / "prompts" / "stages", ROOT / "templates" / "prompts" / "roles"):
+        target_dir = hub / source_dir.relative_to(ROOT)
+        target_dir.mkdir(parents=True, exist_ok=True)
+        for source in source_dir.glob("*.yaml"):
+            shutil.copy2(source, target_dir / source.name)
     return hub
 
 
@@ -55,6 +65,11 @@ def test_scaffolded_projects_are_precontest_and_isolated(tmp_path: Path) -> None
         project_root = hub / check["root"]
         assert not (project_root / "state" / "decision_log.json").exists()
         assert not (project_root / "paper" / "figure_contracts.yaml").exists()
+        contract = yaml.safe_load((project_root / "project.yaml").read_text(encoding="utf-8"))
+        assert contract["workflow_contract_version"] == 7
+        assert contract["prompt_policy_version"] == 1
+        assert contract["prompt_mode"] == "progress-first"
+        assert contract["paper_prompt_mode"] == "external"
 
     listing = list_projects(hub)
     assert {item["project_id"] for item in listing["projects"]} == {"huashu-cup-2026", "cumcm-2026"}
@@ -77,6 +92,43 @@ def test_huashu_inherits_cumcm_defaults_but_remains_overridable(tmp_path: Path) 
     assert overridden["format"]["paper_body_max_pages"] == 24
     assert overridden["format"]["paper_max_mb"] == 20
     assert overridden["deadline"] == "2026-08-08T18:00:00+08:00"
+
+
+def test_force_scaffold_does_not_upgrade_initialized_legacy_project(tmp_path: Path) -> None:
+    hub = prepare_hub(tmp_path)
+    status = scaffold(hub, "cumcm-2026")
+    project_root = hub / status["root"]
+    contract_path = project_root / "project.yaml"
+    contract = yaml.safe_load(contract_path.read_text(encoding="utf-8"))
+    contract["workflow_contract_version"] = 6
+    contract.pop("prompt_policy_version", None)
+    contract_path.write_text(yaml.safe_dump(contract, sort_keys=False), encoding="utf-8")
+    (project_root / "state" / "decision_log.json").write_text("{}", encoding="utf-8")
+
+    scaffold(hub, "cumcm-2026", force=True)
+
+    preserved = yaml.safe_load(contract_path.read_text(encoding="utf-8"))
+    assert preserved["workflow_contract_version"] == 6
+    assert "prompt_policy_version" not in preserved
+
+
+def test_legacy_project_preflight_does_not_require_v7_prompt_assets(tmp_path: Path) -> None:
+    hub = prepare_hub(tmp_path)
+    status = scaffold(hub, "cumcm-2026")
+    project_root = hub / status["root"]
+    contract_path = project_root / "project.yaml"
+    contract = yaml.safe_load(contract_path.read_text(encoding="utf-8"))
+    contract["workflow_contract_version"] = 6
+    for field in ("prompt_policy_version", "prompt_mode", "paper_prompt_mode"):
+        contract.pop(field, None)
+    contract_path.write_text(yaml.safe_dump(contract, sort_keys=False), encoding="utf-8")
+    (hub / "config" / "prompt_policy.yaml").unlink()
+    shutil.rmtree(hub / "config" / "schemas")
+
+    report = project_preflight(hub, "cumcm-2026")
+
+    assert report["passed"] is True
+    assert all(not item["name"].startswith("prompt_") and item["name"] != "shared_prompt_policy" for item in report["checks"])
 
 
 def test_initializing_one_project_does_not_create_state_in_another(tmp_path: Path) -> None:

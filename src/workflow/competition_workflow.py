@@ -18,6 +18,11 @@ from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
 
+try:
+    from src.workflow.prompt_policy import assemble_packet, format_receipt
+except ModuleNotFoundError:  # Direct file execution from scripts/workflow.ps1.
+    from prompt_policy import assemble_packet, format_receipt
+
 
 QUESTION_RE = re.compile(r"(?:问题\s*[一二三四五六七八九十0-9]+|第\s*[一二三四五六七八九十0-9]+\s*问|\bQ\s*[1-9][0-9]*\b)", re.I)
 CHINESE_NUMBERS = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
@@ -963,6 +968,13 @@ def add_check(checks: list[dict[str, Any]], name: str, passed: bool, detail: str
     checks.append(item)
 
 
+def add_warning(warnings: list[dict[str, Any]], name: str, detail: str, evidence: str | None = None) -> None:
+    item = {"name": name, "detail": detail}
+    if evidence:
+        item["evidence"] = evidence
+    warnings.append(item)
+
+
 def validate_run_manifest(root: Path, path: Path, checks: list[dict[str, Any]]) -> None:
     if not path.is_file():
         add_check(checks, "run_manifest_exists", False, str(path))
@@ -1561,6 +1573,42 @@ def status(root: Path) -> dict[str, Any]:
     return report
 
 
+def prompt(
+    root: Path,
+    project_id: str,
+    stage: str,
+    role: str,
+    question: str | None,
+    workspace_root: Path | None = None,
+) -> dict[str, Any]:
+    """Assemble a prompt preview without mutating competition state or evidence."""
+
+    packet = assemble_packet(root, project_id, stage, role, question, workspace_root)
+    folder = root / "output" / "_verification" / "prompts" / stage / role / (question or "project")
+    packet_path = folder / "prompt_packet.yaml"
+    receipt_path = folder / "prompt_receipt.json"
+    dump_yaml(packet_path, packet)
+    receipt = format_receipt({
+        "status": "READY",
+        "objective": packet["objective"],
+        "conclusion": "Prompt packet assembled; no competition state or formal evidence was modified.",
+        "evidence": [f"{relative_path(root, packet_path)}#sha256={sha256(packet_path)}"],
+        "warnings": [],
+        "next_action": "Run the role task using this packet and return the compact receipt.",
+        "decision_request": None,
+    })
+    dump_json(receipt_path, receipt)
+    return {
+        "status": "READY",
+        "packet": relative_path(root, packet_path),
+        "receipt": relative_path(root, receipt_path),
+        "project_id": project_id,
+        "stage": stage,
+        "role": role,
+        "question_id": question or "",
+    }
+
+
 def resolve_run_config(root: Path, path: Path) -> dict[str, Any]:
     config = load_yaml(path)
     required = ("experiment_id", "problem", "question", "engine", "runner", "seed", "output_root", "methods", "metrics")
@@ -1711,7 +1759,14 @@ def _manifest_path_for_run(root: Path, problem: str, question: str, run_id: str)
     return found[0]
 
 
-def _manifest_integrity_issues(root: Path, manifest: dict[str, Any], require_baseline: bool = False) -> list[str]:
+def _manifest_integrity_issues(
+    root: Path,
+    manifest: dict[str, Any],
+    require_baseline: bool = False,
+    *,
+    verify_hashes: bool = True,
+    verify_artifact_hashes: bool = True,
+) -> list[str]:
     issues: list[str] = []
     if manifest.get("status") != "PASS":
         issues.append(f"run status is {manifest.get('status')!r}, expected PASS")
@@ -1722,7 +1777,7 @@ def _manifest_integrity_issues(root: Path, manifest: dict[str, Any], require_bas
     except ValueError as exc:
         issues.append(str(exc))
     else:
-        if not runner.is_file() or code.get("sha256") != sha256(runner):
+        if not runner.is_file() or (verify_hashes and code.get("sha256") != sha256(runner)):
             issues.append(f"runner hash mismatch: {runner_value}")
     for collection in ("inputs", "artifacts"):
         for item in manifest.get(collection, []):
@@ -1735,7 +1790,8 @@ def _manifest_integrity_issues(root: Path, manifest: dict[str, Any], require_bas
                 issues.append(str(exc))
                 continue
             expected = item.get("sha256")
-            if not target.is_file() or not expected or expected != sha256(target):
+            check_hash = verify_hashes and (collection == "inputs" or verify_artifact_hashes)
+            if not target.is_file() or (check_hash and (not expected or expected != sha256(target))):
                 issues.append(f"{collection[:-1]} hash mismatch: {item['path']}")
     roles = {str(item.get("role")) for item in manifest.get("methods", []) if isinstance(item, dict)}
     if "main" not in roles:
@@ -1950,20 +2006,37 @@ def record_run(root: Path, config_path: Path, command: list[str], environment: d
 def quickcheck(root: Path, problem: str, question: str | None = None, strict: bool = False) -> dict[str, Any]:
     manifests = lifecycle_manifests(root, problem, question, levels=NONFORMAL_LEVELS)
     checks: list[dict[str, Any]] = []
+    warnings: list[dict[str, Any]] = []
     for path in manifests:
         manifest = load_json(path)
-        issues = _manifest_integrity_issues(root, manifest, require_baseline=False)
+        issues = _manifest_integrity_issues(
+            root,
+            manifest,
+            require_baseline=False,
+            verify_hashes=strict,
+            verify_artifact_hashes=strict,
+        )
         if strict and manifest.get("schema_version") != 2:
             issues.append("strict quickcheck requires run manifest schema v2")
         if manifest.get("schema_version") == 2:
-            issues.extend(_lifecycle_check_issues(manifest, ("input_output_match", "units_defined", "core_constraints_passed")))
+            lifecycle_warnings = _lifecycle_check_issues(manifest, ("input_output_match", "units_defined", "core_constraints_passed"))
+            if strict:
+                issues.extend(lifecycle_warnings)
+            elif lifecycle_warnings:
+                add_warning(warnings, "quickcheck_contract_incomplete", "; ".join(lifecycle_warnings), relative_path(root, path))
         data_path = path.parent / "figure_data_manifest.yaml"
         intent_path = path.parent / "visual_intent.yaml"
         if data_path.is_file():
-            issues.extend(_figure_data_manifest_issues(root, data_path, path))
+            visual_issues = _figure_data_manifest_issues(root, data_path, path)
+            if visual_issues:
+                add_warning(warnings, "quickcheck_visual_handoff", "; ".join(visual_issues), relative_path(root, data_path))
         if intent_path.is_file():
-            issues.extend(_visual_intent_issues(root, intent_path, data_path))
-        receipt = _probe_receipt(root, path, manifest, "quickcheck", "PASS" if not issues else "FAIL", "; ".join(issues))
+            visual_issues = _visual_intent_issues(root, intent_path, data_path)
+            if visual_issues:
+                add_warning(warnings, "quickcheck_visual_intent", "; ".join(visual_issues), relative_path(root, intent_path))
+        run_warnings = [item["detail"] for item in warnings if item.get("evidence") == relative_path(root, path)]
+        note = "; ".join(issues or run_warnings)
+        receipt = _probe_receipt(root, path, manifest, "quickcheck", "PASS" if not issues else "FAIL", note)
         dump_json(path.parent / LIFECYCLE_RECEIPT_NAMES["quickcheck"], receipt)
         add_check(checks, "quickcheck_run", not issues, "; ".join(issues) if issues else str(manifest.get("run_id")), relative_path(root, path))
     for question_path in question_paths(root, problem):
@@ -1973,15 +2046,21 @@ def quickcheck(root: Path, problem: str, question: str | None = None, strict: bo
         if payload.get("schema_version") != 3:
             continue
         literature_issues = _existing_literature_issues(root, payload)
-        add_check(
-            checks,
-            "quickcheck_literature_existing",
-            not literature_issues,
-            "; ".join(literature_issues) if literature_issues else f"{question_path.parent.name}: existing literature handoff is current",
-            relative_path(root, question_path),
-        )
+        if literature_issues:
+            add_warning(warnings, "LITERATURE_INCOMPLETE", "; ".join(literature_issues), relative_path(root, question_path))
     add_check(checks, "quickcheck_scope", bool(manifests), f"found {len(manifests)} non-formal run(s)")
-    return {"schema_version": 1, "action": "quickcheck", "problem": problem, "question": question, "passed": all(item["passed"] for item in checks), "checks": checks}
+    passed = all(item["passed"] for item in checks)
+    return {
+        "schema_version": 1,
+        "action": "quickcheck",
+        "problem": problem,
+        "question": question,
+        "strict": strict,
+        "passed": passed,
+        "outcome": "BLOCK_TRANSITION" if not passed else "PASS_WITH_WARNINGS" if warnings else "PASS",
+        "checks": checks,
+        "warnings": warnings,
+    }
 
 
 def lifecycle_manifests(root: Path, problem: str, question: str | None = None, levels: set[str] | None = None) -> list[Path]:
@@ -2003,23 +2082,51 @@ def checkpoint(root: Path, problem: str, question: str | None = None, strict: bo
     manifests = lifecycle_manifests(root, problem, question, levels=NONFORMAL_LEVELS)
     receipts: list[str] = []
     checks: list[dict[str, Any]] = []
+    warnings: list[dict[str, Any]] = []
     for manifest_path in manifests:
         original = load_json(manifest_path)
         original_version = original.get("schema_version")
         manifest = _upgrade_manifest_v2(root, manifest_path, original)
-        issues = _manifest_integrity_issues(root, manifest, require_baseline=True)
-        issues.extend(_lifecycle_check_issues(manifest, ("input_output_match", "units_defined", "core_constraints_passed", "deterministic", "baseline_comparable")))
+        issues = _manifest_integrity_issues(
+            root,
+            manifest,
+            require_baseline=True,
+            verify_hashes=True,
+            verify_artifact_hashes=strict,
+        )
+        issues.extend(_lifecycle_check_issues(manifest, ("input_output_match", "units_defined", "core_constraints_passed", "baseline_comparable")))
+        determinism_issues = _lifecycle_check_issues(manifest, ("deterministic",))
+        if strict:
+            issues.extend(determinism_issues)
+        elif determinism_issues:
+            add_warning(
+                warnings,
+                "candidate_determinism_deferred",
+                "; ".join(determinism_issues) + "; resolve before Formal promotion",
+                relative_path(root, manifest_path),
+            )
         if strict and original_version != 2:
             issues.append("strict checkpoint requires run manifest schema v2")
         replay = manifest.get("replay") if isinstance(manifest.get("replay"), dict) else {}
         if strict and (replay.get("required") is not True or int(replay.get("count", 0)) < 2):
             issues.append("strict checkpoint requires at least two deterministic replays")
+        elif not strict and (replay.get("required") is not True or int(replay.get("count", 0)) < 2):
+            add_warning(
+                warnings,
+                "candidate_replay_deferred",
+                "independent deterministic replay is not complete; Formal G3 will require it",
+                relative_path(root, manifest_path),
+            )
         data_path = manifest_path.parent / "figure_data_manifest.yaml"
         intent_path = manifest_path.parent / "visual_intent.yaml"
         if data_path.is_file():
-            issues.extend(_figure_data_manifest_issues(root, data_path, manifest_path))
+            visual_issues = _figure_data_manifest_issues(root, data_path, manifest_path)
+            if visual_issues:
+                add_warning(warnings, "checkpoint_visual_handoff", "; ".join(visual_issues), relative_path(root, data_path))
         if intent_path.is_file():
-            issues.extend(_visual_intent_issues(root, intent_path, data_path))
+            visual_issues = _visual_intent_issues(root, intent_path, data_path)
+            if visual_issues:
+                add_warning(warnings, "checkpoint_visual_intent", "; ".join(visual_issues), relative_path(root, intent_path))
         question_path = root / "problems" / problem / "questions" / str(manifest.get("question_id")) / "question.yaml"
         question_data = load_yaml(question_path) if question_path.is_file() else {}
         paper = question_data.get("paper") if isinstance(question_data.get("paper"), dict) else {}
@@ -2027,24 +2134,25 @@ def checkpoint(root: Path, problem: str, question: str | None = None, strict: bo
         declared_tables = {str(item) for item in paper.get("table_ids", []) if item}
         if manifest.get("run_mode") == "candidate" and declared_figures:
             if not data_path.is_file() or not intent_path.is_file():
-                issues.append("candidate figures require figure data and visual intent")
+                add_warning(warnings, "candidate_figure_design_deferred", "figure data or visual intent is not ready; complete it before G5", relative_path(root, manifest_path))
             for figure_id in sorted(declared_figures):
                 brief_path = manifest_path.parent / "figure_briefs" / f"{figure_id}.yaml"
                 if not brief_path.is_file():
-                    issues.append(f"candidate figure brief is missing: {figure_id}")
+                    add_warning(warnings, "candidate_figure_brief_deferred", f"candidate figure brief is missing: {figure_id}", relative_path(root, manifest_path))
                     continue
                 brief = load_yaml(brief_path)
                 brief_issues = _figure_brief_integrity_issues(root, brief, data_path, intent_path)
-                issues.extend(brief_issues)
+                if brief_issues:
+                    add_warning(warnings, "candidate_figure_brief_incomplete", "; ".join(brief_issues), relative_path(root, brief_path))
                 if brief.get("status") != "REVIEWED":
-                    issues.append(f"candidate figure brief is not reviewed: {figure_id}")
+                    add_warning(warnings, "candidate_figure_brief_unreviewed", f"candidate figure brief is not reviewed: {figure_id}", relative_path(root, brief_path))
         if manifest.get("run_mode") == "candidate" and declared_tables and not declared_figures:
             if not intent_path.is_file():
-                issues.append("table-only candidate requires a visual intent decision")
+                add_warning(warnings, "candidate_table_design_deferred", "table-only candidate has no visual intent decision", relative_path(root, manifest_path))
             else:
                 intent = load_yaml(intent_path)
                 if intent.get("artifact_decision") != "table":
-                    issues.append("table-only candidate visual intent must choose table")
+                    add_warning(warnings, "candidate_table_design_mismatch", "table-only candidate visual intent should choose table", relative_path(root, intent_path))
         status_value = "PASS" if not issues else "FAIL"
         original_prefix = relative_path(root, manifest_path.parent)
         if status_value == "PASS" and manifest_path.parent.parent.name != "candidate":
@@ -2083,12 +2191,26 @@ def checkpoint(root: Path, problem: str, question: str | None = None, strict: bo
         dump_json(manifest_path, manifest)
         transition_prefix = original_prefix if original_prefix != relative_path(root, manifest_path.parent) else None
         _sync_visual_handoff_after_lifecycle_transition(root, manifest_path, manifest, transition_prefix)
-        receipt = _probe_receipt(root, manifest_path, manifest, "checkpoint", status_value, "; ".join(issues))
+        manifest_prefix = relative_path(root, manifest_path)
+        run_warnings = [item["detail"] for item in warnings if item.get("evidence") in {manifest_prefix, relative_path(root, manifest_path.parent)}]
+        receipt = _probe_receipt(root, manifest_path, manifest, "checkpoint", status_value, "; ".join(issues or run_warnings))
         dump_json(receipt_path, receipt)
         receipts.append(relative_path(root, receipt_path))
         add_check(checks, "checkpoint_run", not issues, "; ".join(issues) if issues else str(manifest["run_id"]), relative_path(root, manifest_path))
     add_check(checks, "checkpoint_scope", bool(manifests), f"found {len(manifests)} non-formal run(s)")
-    return {"schema_version": 1, "action": "checkpoint", "problem": problem, "question": question, "passed": all(item["passed"] for item in checks), "checks": checks, "receipts": receipts}
+    passed = all(item["passed"] for item in checks)
+    return {
+        "schema_version": 1,
+        "action": "checkpoint",
+        "problem": problem,
+        "question": question,
+        "strict": strict,
+        "passed": passed,
+        "outcome": "BLOCK_TRANSITION" if not passed else "PASS_WITH_WARNINGS" if warnings else "PASS",
+        "checks": checks,
+        "warnings": warnings,
+        "receipts": receipts,
+    }
 
 
 def promote(root: Path, problem: str, question: str, run_id: str) -> dict[str, Any]:
@@ -2097,11 +2219,14 @@ def promote(root: Path, problem: str, question: str, run_id: str) -> dict[str, A
     lifecycle = manifest.get("lifecycle", {}) if isinstance(manifest.get("lifecycle"), dict) else {}
     if lifecycle.get("state") == "ARCHIVED":
         raise ValueError("archived work cannot be promoted")
-    issues = _manifest_integrity_issues(root, manifest, require_baseline=True)
+    issues = _manifest_integrity_issues(
+        root,
+        manifest,
+        require_baseline=True,
+        verify_hashes=True,
+        verify_artifact_hashes=False,
+    )
     issues.extend(_lifecycle_check_issues(manifest, ("input_output_match", "units_defined", "core_constraints_passed", "deterministic", "baseline_comparable")))
-    replay = manifest.get("replay") if isinstance(manifest.get("replay"), dict) else {}
-    if replay.get("required") is not True or int(replay.get("count", 0)) < 2:
-        issues.append("promotion requires at least two deterministic replays")
     receipt_path = source_path.parent / LIFECYCLE_RECEIPT_NAMES["checkpoint"]
     if manifest.get("run_mode") != "candidate" or lifecycle.get("state") != "CHECKPOINT" or manifest.get("formal_candidate") is not True:
         issues.append("run has not passed the candidate checkpoint")
@@ -4667,6 +4792,17 @@ def preflight(root: Path, workspace_root: Path | None = None) -> dict[str, Any]:
         "templates/figures/figure_contract_v2.schema.json",
         "templates/figures/figure_contract_v2.template.yaml",
     ]
+    project = load_yaml(root / "project.yaml") if (root / "project.yaml").is_file() else {}
+    if int(project.get("workflow_contract_version", 0) or 0) >= 7:
+        required.extend((
+            "config/prompt_policy.yaml",
+            "config/schemas/prompt_policy.schema.json",
+            "config/schemas/prompt_packet.schema.json",
+            "config/schemas/prompt_receipt.schema.json",
+            "templates/prompts/paper/cumcm-2026.yaml",
+        ))
+        required.extend(f"templates/prompts/stages/{stage}.yaml" for stage in ("P0", "P1", "P2", "P3a", "P3b", "P4", "P5", "P6"))
+        required.extend(f"templates/prompts/roles/{role}.yaml" for role in ("orchestrator", "solver", "literature", "visualization", "paper", "studio_release", "reviewer"))
     if _project_requires_literature_handoff(root):
         required.extend((
             "config/schemas/literature_search_plan.schema.json",
@@ -4801,6 +4937,11 @@ def main() -> int:
     figure_promote_parser.add_argument("--brief", required=True, type=Path)
     figure_promote_parser.add_argument("--qa", required=True, type=Path)
     figure_promote_parser.add_argument("--root-authorized", action="store_true", help=argparse.SUPPRESS)
+    prompt_parser = sub.add_parser("prompt")
+    prompt_parser.add_argument("--project-id", required=True)
+    prompt_parser.add_argument("--stage", required=True)
+    prompt_parser.add_argument("--role", required=True)
+    prompt_parser.add_argument("--question")
     archive_parser = sub.add_parser("archive-work")
     archive_parser.add_argument("--problem", required=True)
     archive_parser.add_argument("--question")
@@ -4874,6 +5015,8 @@ def main() -> int:
                     "the approved decision-log reference is the authoritative root-agent control"
                 )
             result = figure_promote(root, args.problem, args.question, args.figure_id, args.brief, args.qa)
+        elif args.action == "prompt":
+            result = prompt(root, args.project_id, args.stage, args.role, args.question, workspace_root)
         else:
             result = archive_work(root, args.problem, args.question)
     except ReopenRequiredError as exc:

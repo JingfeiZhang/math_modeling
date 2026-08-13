@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mathematical modeling prompt policy",
+  "type": "object",
+  "required": ["schema_version", "locale", "mode", "authority_order", "response", "stages", "roles", "rules"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "locale": {"const": "zh-CN"},
+    "mode": {"const": "progress-first"},
+    "authority_order": {
+      "type": "array", "minItems": 8, "maxItems": 8,
+      "prefixItems": [
+        {"const": "official_rules"}, {"const": "project_contest_profile"}, {"const": "prompt_policy"},
+        {"const": "question_manifest"}, {"const": "formal_evidence"}, {"const": "candidate_evidence"},
+        {"const": "scratch_evidence"}, {"const": "external_literature"}
+      ],
+      "items": false
+    },
+    "response": {
+      "type": "object",
+      "required": ["format", "required_fields", "detail_mode"],
+      "properties": {
+        "format": {"const": "compact_receipt"},
+        "required_fields": {
+          "const": ["status", "objective", "conclusion", "evidence", "warnings", "next_action", "decision_request"]
+        },
+        "detail_mode": {"const": "on_request"}
+      },
+      "additionalProperties": false
+    },
+    "stages": {
+      "type": "object",
+      "required": ["P0", "P1", "P2", "P3a", "P3b", "P4", "P5", "P6"],
+      "properties": {
+        "P0": {"$ref": "#/$defs/rules"}, "P1": {"$ref": "#/$defs/rules"},
+        "P2": {"$ref": "#/$defs/rules"}, "P3a": {"$ref": "#/$defs/rules"},
+        "P3b": {"$ref": "#/$defs/rules"}, "P4": {"$ref": "#/$defs/rules"},
+        "P5": {"$ref": "#/$defs/rules"}, "P6": {"$ref": "#/$defs/rules"}
+      },
+      "additionalProperties": false
+    },
+    "roles": {
+      "type": "object",
+      "required": ["orchestrator", "solver", "literature", "visualization", "paper", "studio_release", "reviewer"],
+      "properties": {
+        "orchestrator": {"$ref": "#/$defs/role"}, "solver": {"$ref": "#/$defs/role"},
+        "literature": {"$ref": "#/$defs/role"}, "visualization": {"$ref": "#/$defs/role"},
+        "paper": {"$ref": "#/$defs/role"}, "studio_release": {"$ref": "#/$defs/role"},
+        "reviewer": {"$ref": "#/$defs/role"}
+      },
+      "additionalProperties": false
+    },
+    "rules": {"$ref": "#/$defs/globalRules"}
+  },
+  "$defs": {
+    "rules": {
+      "type": "object",
+      "required": ["gate", "objective", "allowed_actions", "blocking", "warning", "deferred", "stop_conditions", "escalation_conditions", "expected_artifacts"],
+      "properties": {
+        "gate": {"type": "string", "pattern": "^G[0-6]$"},
+        "objective": {"type": "string", "minLength": 1},
+        "allowed_actions": {"type": "array", "items": {"type": "string"}},
+        "blocking": {"type": "array", "items": {"type": "string"}},
+        "warning": {"type": "array", "items": {"type": "string"}},
+        "deferred": {"type": "array", "items": {"type": "string"}},
+        "stop_conditions": {"type": "array", "items": {"type": "string"}},
+        "escalation_conditions": {"type": "array", "items": {"type": "string"}},
+        "expected_artifacts": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "role": {
+      "type": "object",
+      "required": ["objective", "read_scope", "write_scope", "inputs", "outputs", "protected", "stop_conditions", "decisions"],
+      "properties": {
+        "objective": {"type": "string", "minLength": 1},
+        "read_scope": {"type": "array", "items": {"type": "string"}},
+        "write_scope": {"type": "array", "items": {"type": "string"}},
+        "inputs": {"type": "array", "items": {"type": "string"}},
+        "outputs": {"type": "array", "items": {"type": "string"}},
+        "protected": {"type": "array", "items": {"type": "string"}},
+        "stop_conditions": {"type": "array", "items": {"type": "string"}},
+        "decisions": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "globalRules": {
+      "type": "object",
+      "required": ["warning_does_not_block_exploration", "blocking_only_blocks_current_transition", "deferred_not_run_before_owner_stage", "hash_drift_invalidates_affected_question_only", "no_recursive_reaudit"],
+      "properties": {
+        "warning_does_not_block_exploration": {"const": true},
+        "blocking_only_blocks_current_transition": {"const": true},
+        "deferred_not_run_before_owner_stage": {"const": true},
+        "hash_drift_invalidates_affected_question_only": {"const": true},
+        "no_recursive_reaudit": {"const": true}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
