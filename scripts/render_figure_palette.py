@@ -10,7 +10,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-from src.utils.figure_style import ROOT, configure_matplotlib, palette
+from src.utils.figure_style import configure_matplotlib, palette  # noqa: E402
 
 
 def main() -> None:

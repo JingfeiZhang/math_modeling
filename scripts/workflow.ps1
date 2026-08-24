@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('preflight','initialize','run','validate','freeze','prepare-sprint','check-sprint','merge-sprint','quickcheck','checkpoint','promote','paper-evidence','literature-plan','literature-search','literature-register','literature-read','literature-synthesize','literature-audit','figure-data','figure-intent','figure-brief','figure-render','figure-qa','figure-promote','prompt','layout-check','archive-work','preview','build','audit','package','seal','verify-release','status')]
+    [ValidateSet('preflight','initialize','run','validate','freeze','prepare-sprint','check-sprint','merge-sprint','quickcheck','checkpoint','promote','paper-evidence','refresh-quality-contracts','literature-plan','literature-search','literature-register','literature-read','literature-synthesize','literature-audit','figure-data','figure-intent','figure-brief','figure-render','figure-qa','figure-promote','prompt','layout-check','archive-work','preview','build','audit','package','seal','verify-release','status')]
     [string]$Action,
     [string]$Problem,
     [string]$ProblemFile,
@@ -42,7 +42,7 @@ $root = $projectContext.Root
 $hub = $projectContext.HubRoot
 $projectExplicitActions = @(
     'literature-plan','literature-search','literature-register','literature-read','literature-synthesize','literature-audit',
-    'figure-data','figure-intent','figure-brief','figure-render','figure-qa','figure-promote','prompt'
+    'figure-data','figure-intent','figure-brief','figure-render','figure-qa','figure-promote','prompt','refresh-quality-contracts'
 )
 if ($Action -in $projectExplicitActions -and [string]::IsNullOrWhiteSpace($Project)) {
     throw "$Action requires an explicit -Project selection."
@@ -173,6 +173,11 @@ switch ($Action) {
         if ($LASTEXITCODE -ne 0) { throw 'Paper-evidence experiment run failed.' }
         $arguments = @('paper-evidence','--problem',(Get-ConfiguredProblem),'--question',$Question,'--config',$resolvedConfig)
         if ($StrictManifest) { $arguments += '--strict' }
+        Invoke-WorkflowPython $arguments
+    }
+    'refresh-quality-contracts' {
+        $arguments = @('refresh-quality-contracts','--problem',(Get-ConfiguredProblem))
+        if ($Question) { $arguments += @('--question',$Question) }
         Invoke-WorkflowPython $arguments
     }
     'literature-plan' {

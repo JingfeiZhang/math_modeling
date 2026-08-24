@@ -6,9 +6,9 @@ sections:
   abstract:
     contract:
       objective: 让评审在第一页识别研究对象、各问方法、关键结果和可信边界。
-      required_content: 用一至两句交代背景与总体思路；逐问写明方法、至少一个量化结果及相应验证；最后概括主要边界；列出三至五个领域关键词。
+      required_content: 首段用3至4行交代背景、研究对象和总体路线；随后按真实Q1–Qn分段，每问写明方法、研究对象、1至2个冻结主结论及验证或适用边界；最后概括整题贡献与主要限制；列出三至五个领域关键词。
       evidence_requirements: 所有结果读取冻结主张；摘要中的方法名、数值、单位、基线和验证结论均能定位到正文及正式证据。
-      forbidden_content: 不得只报方法不报结果，不得手填未核验数字，不得写文献综述、公式推导、图表或内部工作过程。
+      forbidden_content: 不得只报方法不报结果，不得手填未核验数字，不得写文献综述、公式推导、图表或内部工作过程；不得把局部窗口、固定权重或近似解写成全局、完整或最优结论；不得出现runner、manifest、seed、hash、workflow、pipeline等内部工程词。
   ai_statement:
     contract:
       objective: 仅在当届官方规则要求时完成真实、简明的工具披露。

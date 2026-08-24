@@ -1,0 +1,35 @@
+schema_version: 1
+problem_id: DEMO
+question_id: Q1
+source_problem:
+  path: problems/DEMO/problem.txt
+  locator: "problem statement"
+  sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+task:
+  statement: "DEMO task statement"
+  type: evaluation
+  objective: "Compute the requested output"
+  delivery: "A reproducible result"
+inputs:
+  - id: observed_value
+    role: observed
+    unit: "单位"
+    source: problems/DEMO/problem.txt
+    fixed_by_statement: false
+outputs:
+  - id: answer
+    type: scalar
+    unit: "单位"
+    required: true
+constraints:
+  - id: hard-1
+    statement: "满足题面硬约束"
+    kind: hard
+scenarios:
+  - id: base
+    required: true
+    coverage_mode: full
+dependencies: []
+model_variable_map: []
+state_conditions: []
+status: DRAFT

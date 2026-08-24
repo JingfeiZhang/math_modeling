@@ -57,6 +57,11 @@ projects/**/problems/**/questions/Q*/literature/cache/
 projects/**/problems/**/questions/Q*/literature/searches/**/raw/
 work/cache/literature/
 projects/**/work/cache/literature/
+work/reference-library/sources.local.yaml
+work/reference-library/cache/
+work/reference-library/ocr/
+work/reference-library/rendered/
+work/reference-library/pages/
 experiments/*/results/
 experiments/*/figures/
 experiments/**/scratch/

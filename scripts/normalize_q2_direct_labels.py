@@ -1,8 +1,6 @@
+"""Normalize the promoted Q2 formal copy without touching immutable sprints."""
 from __future__ import annotations
 
-"""Normalize the promoted Q2 formal copy without touching immutable sprints."""
-
-import csv
 import json
 from pathlib import Path
 

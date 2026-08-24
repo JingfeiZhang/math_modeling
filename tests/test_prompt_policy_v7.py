@@ -67,6 +67,22 @@ def test_policy_and_contract_schemas_are_valid() -> None:
         assert list(Draft202012Validator(schema).iter_errors(payload)) == []
 
 
+def test_shared_knowledge_policy_is_non_authoritative_and_safe() -> None:
+    policy = load_policy(ROOT)
+    knowledge = policy["shared_knowledge"]
+    assert policy["authority_order"] == [
+        "official_rules", "project_contest_profile", "prompt_policy", "question_manifest",
+        "formal_evidence", "candidate_evidence", "scratch_evidence", "external_literature",
+    ]
+    assert knowledge["contest_evidence_eligible"] is False
+    assert knowledge["phases"] == ["P1", "P2", "P3a", "P3b"]
+    mutated = dict(policy)
+    mutated["shared_knowledge"] = {**knowledge, "index": "D:/outside/index.md"}
+    assert any("safe relative path" in item for item in validate_policy(mutated))
+    mutated["shared_knowledge"] = {**knowledge, "contest_evidence_eligible": True}
+    assert any("never be contest evidence" in item for item in validate_policy(mutated))
+
+
 def test_yaml_packet_round_trips_through_validator(tmp_path: Path) -> None:
     _fixture(tmp_path)
     packet = assemble_packet(tmp_path, "fixture-v7", "P3a", "solver", "Q1", ROOT)
@@ -175,6 +191,48 @@ def test_p2_and_p3_defer_release_audits(tmp_path: Path) -> None:
         joined = " ".join(packet["deferred_conditions"])
         assert "PDF" in joined or "发布" in joined or "G5/G6" in joined
         assert "package" not in packet["allowed_actions"]
+
+
+@pytest.mark.parametrize("stage", ["P1", "P2", "P3a", "P3b"])
+def test_shared_knowledge_is_injected_only_for_early_solver_stages(tmp_path: Path, stage: str) -> None:
+    _fixture(tmp_path)
+    question = None if stage == "P1" else "Q1"
+    packet = assemble_packet(tmp_path, "fixture-v7", stage, "solver", question, ROOT)
+    assert "shared:references/competition-knowledge/index.md" in packet["context_refs"]
+    assert "references/competition-knowledge/index.md" in packet["read_scope"]
+    assert packet["output_contract"]["shared_knowledge"]["contest_evidence_eligible"] is False
+    assert "references/competition-knowledge/modules" in packet["read_scope"]
+    assert "references/competition-knowledge/playbooks/index.md" in packet["read_scope"]
+    assert "shared:references/competition-knowledge/modules" in packet["context_refs"]
+    assert "shared:references/competition-knowledge/playbooks/index.md" in packet["context_refs"]
+
+
+def test_literature_gets_keyword_only_non_evidence_notice(tmp_path: Path) -> None:
+    _fixture(tmp_path)
+    packet = assemble_packet(tmp_path, "fixture-v7", "P3a", "literature", "Q1", ROOT)
+    assert "shared:references/competition-knowledge/index.md" in packet["context_refs"]
+    assert "references/competition-knowledge/cards" not in packet["read_scope"]
+    assert "references/competition-knowledge/modules" not in packet["read_scope"]
+    assert "references/competition-knowledge/playbooks/index.md" not in packet["read_scope"]
+    assert "shared:references/competition-knowledge/modules" not in packet["context_refs"]
+    assert "不属于学术文献" in " ".join(packet["warning_conditions"])
+    assert "检索关键词" in packet["output_contract"]["shared_knowledge"]["usage"]
+
+
+def test_missing_shared_knowledge_index_is_warning_not_assembly_blocker(tmp_path: Path) -> None:
+    _fixture(tmp_path)
+    packet = assemble_packet(tmp_path, "fixture-v7", "P3a", "solver", "Q1", tmp_path)
+    assert "共享教材速查索引不可用" in " ".join(packet["warning_conditions"])
+
+
+@pytest.mark.parametrize("stage,role", [("P4", "solver"), ("P5", "literature"), ("P6", "studio_release")])
+def test_formal_and_release_stages_do_not_load_shared_knowledge(tmp_path: Path, stage: str, role: str) -> None:
+    _fixture(tmp_path)
+    packet = assemble_packet(tmp_path, "fixture-v7", stage, role, "Q1", ROOT)
+    assert "shared:references/competition-knowledge/index.md" not in packet["context_refs"]
+    assert "references/competition-knowledge/modules" not in packet["read_scope"]
+    assert "references/competition-knowledge/playbooks/index.md" not in packet["read_scope"]
+    assert "shared_knowledge" not in packet["output_contract"]
 
 
 def test_p5_allows_paper_evidence_and_p6_restores_release_checks(tmp_path: Path) -> None:

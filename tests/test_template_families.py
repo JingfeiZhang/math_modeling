@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -192,6 +193,8 @@ class PaperMinerSkillTests(unittest.TestCase):
             [sys.executable, str(MINER_SKILL / "scripts" / "validate_paper_card.py"), str(MINER_SKILL / "assets" / "paper_card.template.json")],
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            env={**os.environ, "PYTHONIOENCODING": "utf-8"},
             timeout=30,
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)

@@ -1,0 +1,28 @@
+schema_version: 1
+problem_id: DEMO
+source_question_set:
+  path: problems/DEMO/questions/question_set.yaml
+  sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+question_count: 1
+background:
+  paragraphs: 1
+  max_lines: 3
+questions:
+  - question_id: Q1
+    method_required: true
+    subject_required: true
+    conclusion_required: true
+    validation_required: true
+    boundary_required: true
+    method: ""
+    subject: ""
+    conclusion: ""
+    validation: ""
+    boundary: ""
+    claim_ids: []
+final_summary:
+  contribution: ""
+  limitation: ""
+forbidden_terms: [runner, manifest, seed, hash, workflow, pipeline, 工作流, 流水线, 运行清单, 哈希, 随机种子]
+result_slots: []
+status: DRAFT

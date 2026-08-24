@@ -12,7 +12,7 @@ WORKSPACE_ROOT = Path(__file__).resolve().parents[1]
 if str(WORKSPACE_ROOT) not in sys.path:
     sys.path.insert(0, str(WORKSPACE_ROOT))
 
-from src.corpus.miner import is_award_verified_deep_read, validate_paper_card
+from src.corpus.miner import is_award_verified_deep_read, validate_paper_card  # noqa: E402
 
 
 SHA40 = re.compile(r"^[0-9a-f]{40}$")

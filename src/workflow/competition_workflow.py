@@ -23,12 +23,28 @@ try:
 except ModuleNotFoundError:  # Direct file execution from scripts/workflow.ps1.
     from prompt_policy import assemble_packet, format_receipt
 
+try:
+    from src.workflow.quality_contracts import (
+        build_quality_contract_snapshot,
+        contracts_enabled,
+        create_quality_contracts,
+        load_quality_bundle,
+        metric_evidence_issues,
+        quality_contract_issues,
+        refresh_quality_contract_references,
+        run_contract_issues,
+        abstract_text_issues,
+        transition_contract_issues,
+    )
+except ModuleNotFoundError:  # Direct file execution from scripts/workflow.ps1.
+    from quality_contracts import abstract_text_issues, build_quality_contract_snapshot, contracts_enabled, create_quality_contracts, load_quality_bundle, metric_evidence_issues, quality_contract_issues, refresh_quality_contract_references, run_contract_issues, transition_contract_issues
+
 
 QUESTION_RE = re.compile(r"(?:问题\s*[一二三四五六七八九十0-9]+|第\s*[一二三四五六七八九十0-9]+\s*问|\bQ\s*[1-9][0-9]*\b)", re.I)
 CHINESE_NUMBERS = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
 QUESTION_V2_ROOT_FIELDS = {
     "schema_version", "problem_id", "question_id", "source_problem", "problem", "model_selection",
-    "method", "assumptions", "risk_probes", "decisions", "evidence", "paper", "status",
+    "method", "assumptions", "risk_probes", "decisions", "evidence", "paper", "status", "quality_contracts",
 }
 QUESTION_V3_ROOT_FIELDS = QUESTION_V2_ROOT_FIELDS | {"literature"}
 QUESTION_ARGUMENT_FIELDS = (
@@ -467,7 +483,7 @@ def question_v2_shape_issues(payload: dict[str, Any]) -> list[str]:
     issues: list[str] = []
     if payload.get("schema_version") != 2:
         return ["schema_version must be 2"]
-    missing = sorted(QUESTION_V2_ROOT_FIELDS - set(payload))
+    missing = sorted((QUESTION_V2_ROOT_FIELDS - {"quality_contracts"}) - set(payload))
     unexpected = sorted(set(payload) - QUESTION_V2_ROOT_FIELDS)
     if missing:
         issues.append(f"root missing {missing}")
@@ -576,7 +592,7 @@ def question_v3_shape_issues(payload: dict[str, Any]) -> list[str]:
 
     if payload.get("schema_version") != 3:
         return ["schema_version must be 3"]
-    missing = sorted(QUESTION_V3_ROOT_FIELDS - set(payload))
+    missing = sorted((QUESTION_V3_ROOT_FIELDS - {"quality_contracts"}) - set(payload))
     unexpected = sorted(set(payload) - QUESTION_V3_ROOT_FIELDS)
     issues: list[str] = []
     if missing:
@@ -889,9 +905,25 @@ def initialize(root: Path, problem: str, problem_file: Path, workspace_root: Pat
     if stale_ids:
         raise ValueError(f"existing question manifests are not present in the current problem markers: {', '.join(stale_ids)}")
     created: list[str] = []
+    quality_contracts_active = contracts_enabled(root)
+    quality_contracts_created: list[str] = []
     for question_id, target in questions:
         path = root / "problems" / problem / "questions" / question_id / "question.yaml"
         if path.exists():
+            if quality_contracts_active:
+                existing_payload = load_yaml(path)
+                if not isinstance(existing_payload.get("quality_contracts"), dict):
+                    contract_result = create_quality_contracts(
+                        root,
+                        problem,
+                        question_id,
+                        len(questions),
+                        source_relative,
+                        workspace_root,
+                    )
+                    existing_payload["quality_contracts"] = contract_result["references"]
+                    dump_yaml(path, existing_payload)
+                    quality_contracts_created.extend(contract_result["created"].values())
             continue
         payload = deepcopy(template)
         payload["problem_id"] = problem
@@ -905,6 +937,21 @@ def initialize(root: Path, problem: str, problem_file: Path, workspace_root: Pat
             raise ValueError(f"question template does not satisfy schema v{template_version}: " + "; ".join(issues))
         dump_yaml(path, payload)
         created.append(path.relative_to(root).as_posix())
+        if quality_contracts_active:
+            contract_result = create_quality_contracts(
+                root,
+                problem,
+                question_id,
+                len(questions),
+                source_relative,
+                workspace_root,
+            )
+            payload["quality_contracts"] = contract_result["references"]
+            dump_yaml(path, payload)
+            quality_contracts_created.extend(contract_result["created"].values())
+
+    if quality_contracts_active:
+        refresh_quality_contract_references(root, problem)
 
     claims_path = root / "results" / problem / "claims.json"
     if not claims_path.exists():
@@ -944,6 +991,8 @@ def initialize(root: Path, problem: str, problem_file: Path, workspace_root: Pat
             plan_result = literature_plan(root, problem, question_id)
             literature_plans.append(str(plan_result["search_plan"]))
     structure_path, blueprint_path = write_paper_blueprint(root, problem, source_relative, questions)
+    if quality_contracts_active:
+        refresh_quality_contract_references(root, problem)
     if not existing:
         dump_json(state_path, state)
 
@@ -954,6 +1003,7 @@ def initialize(root: Path, problem: str, problem_file: Path, workspace_root: Pat
         "problem": problem,
         "questions": [item[0] for item in questions],
         "created": created,
+        "quality_contracts": sorted(set(quality_contracts_created)),
         "literature_plans": literature_plans,
         "state": state_path.relative_to(root).as_posix(),
         "question_structure": structure_path.relative_to(root).as_posix(),
@@ -1168,6 +1218,21 @@ def gate_checks(root: Path, problem: str, gate: str, question: str | None = None
             )
         else:
             add_check(checks, "question_manifest_schema_version", False, f"unsupported schema version: {version!r}", str(path))
+        if contracts_enabled(root) and version in {2, 3}:
+            contract_strict = gate in {"G3", "G4", "G5", "G6"}
+            contract_issues = quality_contract_issues(
+                root,
+                payload,
+                strict=contract_strict,
+                include_abstract=gate in {"G5", "G6"},
+            )
+            add_check(
+                checks,
+                "quality_contracts",
+                not contract_issues if contract_strict else True,
+                "; ".join(contract_issues) if contract_issues else ("ready" if contract_strict else "warning-only before Formal"),
+                str(path),
+            )
         if version == 3 and gate in {"G0", "G1", "G2", "G3", "G4"}:
             literature = payload.get("literature", {}) if isinstance(payload.get("literature"), dict) else {}
             ready = literature.get("status") == "CITATION_READY"
@@ -1228,6 +1293,16 @@ def gate_checks(root: Path, problem: str, gate: str, question: str | None = None
             for run_ref in runs:
                 run_path = root / str(run_ref)
                 validate_run_manifest(root, run_path, checks)
+                if contracts_enabled(root) and run_path.is_file():
+                    bundle, _ = load_quality_bundle(root, payload)
+                    contract_payload = dict(payload)
+                    contract_payload["_quality_bundle"] = bundle
+                    try:
+                        run_manifest = load_json(run_path)
+                        run_contract = run_contract_issues(contract_payload, run_manifest, strict=gate in {"G3", "G4", "G5", "G6"}, root=root)
+                    except (OSError, json.JSONDecodeError) as exc:
+                        run_contract = [str(exc)]
+                    add_check(checks, "quality_metric_handoff", not run_contract, "; ".join(run_contract) if run_contract else "required metrics declared", str(run_path))
                 _add_run_visual_design_checks(root, run_path, declared_figures, gate, checks, required=visual_strict)
             if payload.get("schema_version") in {2, 3}:
                 argument = paper.get("argument_contract", {}) if isinstance(paper.get("argument_contract"), dict) else {}
@@ -1277,6 +1352,15 @@ def gate_checks(root: Path, problem: str, gate: str, question: str | None = None
                 add_check(checks, "G4_boundary_claim_refs", bool(evidence.get("boundary_claim_ids")), payload.get("question_id", ""), str(path))
                 complete = all(argument.get(field) == "complete" for field in ("validation", "conclusion"))
                 add_check(checks, "G4_argument_validation_conclusion", complete, payload.get("question_id", ""), str(path))
+            if contracts_enabled(root):
+                metric_handoff = metric_evidence_issues(root, payload, gate=gate)
+                add_check(
+                    checks,
+                    "quality_metric_evidence_handoff",
+                    not metric_handoff,
+                    "; ".join(metric_handoff) if metric_handoff else "metric evidence and paper mappings agree",
+                    str(path),
+                )
         frozen = [item for item in relevant_claims if item.get("status") == "frozen"]
         add_check(checks, "G4_frozen_claims", bool(frozen), f"found {len(frozen)} frozen claim(s)", str(claims_path))
         for claim in frozen:
@@ -1293,6 +1377,10 @@ def gate_checks(root: Path, problem: str, gate: str, question: str | None = None
                 valid = False
             add_check(checks, "G4_frozen_hash", valid, str(claim.get("id")), str(claims_path))
     if gate in {"G5", "G6"}:
+        if contracts_enabled(root):
+            for path, payload in payloads:
+                abstract_issues = abstract_text_issues(root, payload)
+                add_check(checks, "G5_abstract_language", not abstract_issues, "; ".join(abstract_issues) if abstract_issues else "no internal workflow vocabulary", str(path))
         literature_report = literature_audit(root, problem, question, strict=literature_strict, write=False)
         for item in literature_report.get("checks", []):
             copied = dict(item)
@@ -1676,6 +1764,9 @@ def resolve_run_config(root: Path, path: Path) -> dict[str, Any]:
     config["evidence_scope"] = config.get("evidence_scope")
     config["checkpoint_id"] = config.get("checkpoint_id")
     config["primary_metric"] = config.get("primary_metric")
+    config["input_roles"] = deepcopy(config.get("input_roles", []))
+    config["model_variables"] = deepcopy(config.get("model_variables", []))
+    config["scenario_coverage"] = deepcopy(config.get("scenario_coverage", []))
     default_checks = {
         "input_output_match": False,
         "units_defined": False,
@@ -1951,6 +2042,14 @@ def record_run(root: Path, config_path: Path, command: list[str], environment: d
         source_manifest_hash = actual_source_hash
         success = success and all(reuse_validation.values())
     receipt_path = experiment_root / LIFECYCLE_RECEIPT_NAMES["quickcheck"]
+    quality_snapshot: dict[str, Any] = {}
+    question_path = root / "problems" / config["problem"] / "questions" / config["question"] / "question.yaml"
+    if contracts_enabled(root) and question_path.is_file():
+        question_payload = load_yaml(question_path)
+        bundle, _ = load_quality_bundle(root, question_payload)
+        snapshot_payload = dict(question_payload)
+        snapshot_payload["_quality_bundle"] = bundle
+        quality_snapshot = build_quality_contract_snapshot(snapshot_payload)
     manifest = {
         "schema_version": 2,
         "run_id": config["experiment_id"],
@@ -1983,6 +2082,10 @@ def record_run(root: Path, config_path: Path, command: list[str], environment: d
         "evidence_scope": config.get("evidence_scope"),
         "checkpoint_id": config.get("checkpoint_id"),
         "primary_metric": primary_metric,
+        "input_roles": deepcopy(config["input_roles"]),
+        "model_variables": deepcopy(config["model_variables"]),
+        "scenario_coverage": deepcopy(config["scenario_coverage"]),
+        "quality_contract_snapshot": quality_snapshot,
         "checks": deepcopy(config["checks"]),
         "reuse_contract": deepcopy(config["reuse_contract"]),
         "reuse_validation": reuse_validation,
@@ -2043,6 +2146,15 @@ def quickcheck(root: Path, problem: str, question: str | None = None, strict: bo
         if question and question_path.parent.name != question:
             continue
         payload = load_yaml(question_path)
+        if contracts_enabled(root):
+            contract_warnings = quality_contract_issues(root, payload, strict=False)
+            if contract_warnings:
+                add_warning(
+                    warnings,
+                    "QUALITY_CONTRACT_INCOMPLETE",
+                    "; ".join(contract_warnings),
+                    relative_path(root, question_path),
+                )
         if payload.get("schema_version") != 3:
             continue
         literature_issues = _existing_literature_issues(root, payload)
@@ -2095,6 +2207,16 @@ def checkpoint(root: Path, problem: str, question: str | None = None, strict: bo
             verify_artifact_hashes=strict,
         )
         issues.extend(_lifecycle_check_issues(manifest, ("input_output_match", "units_defined", "core_constraints_passed", "baseline_comparable")))
+        question_path = root / "problems" / problem / "questions" / str(manifest.get("question_id")) / "question.yaml"
+        if contracts_enabled(root) and question_path.is_file():
+            question_payload = load_yaml(question_path)
+            contract_issues = transition_contract_issues(root, question_payload, transition="candidate")
+            issues.extend(contract_issues)
+            bundle, _ = load_quality_bundle(root, question_payload)
+            contract_payload = dict(question_payload)
+            contract_payload["_quality_bundle"] = bundle
+            manifest["quality_contract_snapshot"] = build_quality_contract_snapshot(contract_payload)
+            issues.extend(run_contract_issues(contract_payload, manifest, strict=True, root=root))
         determinism_issues = _lifecycle_check_issues(manifest, ("deterministic",))
         if strict:
             issues.extend(determinism_issues)
@@ -2245,6 +2367,16 @@ def promote(root: Path, problem: str, question: str, run_id: str) -> dict[str, A
     question_path = root / "problems" / problem / "questions" / question / "question.yaml"
     if not question_path.is_file():
         raise FileNotFoundError(f"question manifest is missing: {question_path}")
+    if contracts_enabled(root):
+        question_payload = load_yaml(question_path)
+        contract_issues = transition_contract_issues(root, question_payload, transition="formal")
+        issues.extend(contract_issues)
+        bundle, _ = load_quality_bundle(root, question_payload)
+        contract_payload = dict(question_payload)
+        contract_payload["_quality_bundle"] = bundle
+        issues.extend(run_contract_issues(contract_payload, manifest, strict=True, root=root))
+    if issues:
+        raise ValueError("run is not promotion-ready: " + "; ".join(issues))
     destination = root / "experiments" / problem / question / "formal" / run_id / "run_manifest.json"
     destination.parent.parent.mkdir(parents=True, exist_ok=True)
     if destination.resolve() != source_path.resolve() and destination.parent.exists():
@@ -4803,6 +4935,17 @@ def preflight(root: Path, workspace_root: Path | None = None) -> dict[str, Any]:
         ))
         required.extend(f"templates/prompts/stages/{stage}.yaml" for stage in ("P0", "P1", "P2", "P3a", "P3b", "P4", "P5", "P6"))
         required.extend(f"templates/prompts/roles/{role}.yaml" for role in ("orchestrator", "solver", "literature", "visualization", "paper", "studio_release", "reviewer"))
+        required.extend((
+            "config/schemas/semantic_contract.schema.json",
+            "config/schemas/metric_contract.schema.json",
+            "config/schemas/algorithm_evidence.schema.json",
+            "config/schemas/abstract_contract.schema.json",
+            "templates/workflow/semantic_contract.yaml",
+            "templates/workflow/metric_contract.yaml",
+            "templates/workflow/algorithm_evidence.yaml",
+            "templates/workflow/abstract_contract.yaml",
+            "references/retrospectives/huashu-cup-2026-review.md",
+        ))
     if _project_requires_literature_handoff(root):
         required.extend((
             "config/schemas/literature_search_plan.schema.json",
@@ -4879,6 +5022,9 @@ def main() -> int:
     paper_evidence_parser.add_argument("--question", required=True)
     paper_evidence_parser.add_argument("--config", required=True, type=Path)
     paper_evidence_parser.add_argument("--strict", action="store_true")
+    quality_refresh_parser = sub.add_parser("refresh-quality-contracts")
+    quality_refresh_parser.add_argument("--problem", required=True)
+    quality_refresh_parser.add_argument("--question")
     literature_plan_parser = sub.add_parser("literature-plan")
     literature_plan_parser.add_argument("--problem", required=True)
     literature_plan_parser.add_argument("--question", required=True)
@@ -4986,6 +5132,8 @@ def main() -> int:
             result = promote(root, args.problem, args.question, args.run_id)
         elif args.action == "paper-evidence":
             result = paper_evidence(root, args.problem, args.question, args.config, args.strict)
+        elif args.action == "refresh-quality-contracts":
+            result = refresh_quality_contract_references(root, args.problem, args.question)
         elif args.action == "literature-plan":
             result = literature_plan(root, args.problem, args.question, args.config)
         elif args.action == "literature-search":

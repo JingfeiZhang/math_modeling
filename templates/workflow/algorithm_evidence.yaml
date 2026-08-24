@@ -1,0 +1,26 @@
+schema_version: 1
+problem_id: DEMO
+question_id: Q1
+source_question:
+  path: problems/DEMO/questions/Q1/question.yaml
+  sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+search_mode: exact
+objective_mode: single
+search_space: "Declared candidate space"
+candidate_count: 0
+iteration_budget: 0
+termination: "Stop when the objective gap is below tolerance"
+evidence_type: optimality_gap
+trace_locator: ""
+solver_evidence_locator: ""
+substantive_search: true
+seed_count: 0
+seed_runs: []
+baseline: ""
+scenario_coverage: []
+scope:
+  coverage_mode: full
+  window: ""
+  claim_language: []
+  forbidden_language: []
+status: DRAFT

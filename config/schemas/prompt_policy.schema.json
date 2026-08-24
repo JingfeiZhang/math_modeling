@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Mathematical modeling prompt policy",
   "type": "object",
-  "required": ["schema_version", "locale", "mode", "authority_order", "response", "stages", "roles", "rules"],
+  "required": ["schema_version", "locale", "mode", "authority_order", "shared_knowledge", "response", "stages", "roles", "rules"],
   "properties": {
     "schema_version": {"const": 1},
     "locale": {"const": "zh-CN"},
@@ -15,6 +15,19 @@
         {"const": "scratch_evidence"}, {"const": "external_literature"}
       ],
       "items": false
+    },
+    "shared_knowledge": {
+      "type": "object",
+      "required": ["index", "phases", "solver_roles", "literature_roles", "contest_evidence_eligible", "formal_stages"],
+      "properties": {
+        "index": {"type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$"},
+        "phases": {"type": "array", "items": {"enum": ["P1", "P2", "P3a", "P3b"]}, "uniqueItems": true},
+        "solver_roles": {"type": "array", "items": {"const": "solver"}, "minItems": 1, "uniqueItems": true},
+        "literature_roles": {"type": "array", "items": {"const": "literature"}, "minItems": 1, "uniqueItems": true},
+        "contest_evidence_eligible": {"const": false},
+        "formal_stages": {"type": "array", "items": {"enum": ["P4", "P5", "P6"]}, "uniqueItems": true}
+      },
+      "additionalProperties": false
     },
     "response": {
       "type": "object",

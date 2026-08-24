@@ -12,6 +12,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def test_environment_contract_includes_workflow_runtime_dependencies() -> None:
+    requirements = json.loads((ROOT / "config" / "environment_requirements.json").read_text(encoding="utf-8"))
+    core_imports = {item["import"] for item in requirements["core"]["python"]}
+    assert {"jsonschema", "pytest", "ruff", "yaml"} <= core_imports
+
+
 def test_local_first_environment_report() -> None:
     report = json.loads((ROOT / "output" / "environment.json").read_text(encoding="utf-8"))
     assert report["schema_version"] == 2

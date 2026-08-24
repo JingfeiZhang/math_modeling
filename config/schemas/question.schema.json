@@ -60,6 +60,26 @@
       },
       "additionalProperties": false
     },
+    "qualityContractRef": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^(?![A-Za-z]:|/|\\\\).+"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "qualityContracts": {
+      "type": "object",
+      "required": ["semantics", "metrics", "algorithm_evidence", "abstract"],
+      "properties": {
+        "semantics": {"$ref": "#/$defs/qualityContractRef"},
+        "metrics": {"$ref": "#/$defs/qualityContractRef"},
+        "algorithm_evidence": {"$ref": "#/$defs/qualityContractRef"},
+        "abstract": {"$ref": "#/$defs/qualityContractRef"}
+      },
+      "additionalProperties": false
+    },
     "v1": {
       "type": "object",
       "required": ["schema_version", "problem_id", "question_id", "problem", "method", "assumptions", "risk_probes", "decisions", "evidence", "paper", "status"],
@@ -186,6 +206,7 @@
           "additionalProperties": false
         },
         "literature": {"$ref": "#/$defs/literature"},
+        "quality_contracts": {"$ref": "#/$defs/qualityContracts"},
         "status": {"$ref": "#/$defs/status"}
       },
       "additionalProperties": false,

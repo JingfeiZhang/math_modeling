@@ -46,6 +46,7 @@
 - Baselines must produce the same class of output as the main model. A random result or diagnostic line is not a baseline.
 - A fallback is optional, limited to one per subproblem, and must have an explicit activation trigger.
 - Mechanical checks belong in scripts. Ask the user only when ambiguity or a tradeoff changes the model, claim scope, or fallback decision.
+- `references/competition-knowledge/` is a shared, read-only P1--P3 textbook quick-reference layer. Its cards support only model direction, assumption checks, algorithm keywords, and risk probes; they are neither academic literature nor Formal evidence and never enter claims, Figure Contracts, paper citations, submission, or release.
 
 ## Multi-agent collaboration
 

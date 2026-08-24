@@ -19,6 +19,8 @@
       {"import": "yaml", "conda": "pyyaml"},
       {"import": "PIL", "conda": "pillow"},
       {"import": "pypdf", "conda": "pypdf"},
+      {"import": "jsonschema", "conda": "jsonschema"},
+      {"import": "ruff", "conda": "ruff"},
       {"import": "pytest", "conda": "pytest"}
     ],
     "commands": [

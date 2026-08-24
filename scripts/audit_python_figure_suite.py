@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.utils.audit_pdf_visual import audit as audit_pdf  # noqa: E402
-from src.utils.figure_style import load_style, publication_profile, validate_grayscale  # noqa: E402
+from src.utils.figure_style import publication_profile, validate_grayscale  # noqa: E402
 
 
 MIN_PNG_WIDTH = 2200
@@ -95,7 +95,6 @@ def _compare_runs(primary: Path, reference: Path, figures: list[dict]) -> dict:
     errors = []
     for figure in figures:
         demo_id = figure["id"]
-        stem = figure["stem"]
         left = primary / demo_id
         right = reference / demo_id
         row = {"id": demo_id}

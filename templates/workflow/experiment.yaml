@@ -20,6 +20,9 @@ source_manifest_sha256: null
 evidence_scope: null
 checkpoint_id: null
 primary_metric: regression_r2
+input_roles: []
+model_variables: []
+scenario_coverage: []
 checks:
   input_output_match: false
   units_defined: false

@@ -1,0 +1,27 @@
+schema_version: 1
+problem_id: DEMO
+question_id: Q1
+source_question:
+  path: problems/DEMO/questions/Q1/question.yaml
+  sha256: "0000000000000000000000000000000000000000000000000000000000000000"
+metrics:
+  - id: primary
+    name: 主指标
+    formula: "sum(error) / sum(actual)"
+    direction: minimize
+    unit: "%"
+    numerator: sum(error)
+    denominator: sum(actual)
+    aggregation: weighted
+    time_window: full
+    target_definition: ""
+    horizon: ""
+    forecast_form: point
+    interval_definition: ""
+    required: true
+    baseline: baseline
+    run_metric_locator: ""
+    claim_ids: []
+    table_ids: []
+    figure_ids: []
+status: DRAFT

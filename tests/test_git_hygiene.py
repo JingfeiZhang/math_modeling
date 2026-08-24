@@ -42,6 +42,11 @@ def test_transient_workflow_artifacts_are_ignored() -> None:
         "projects/demo/2026/experiments/C/Q1/scratch/run-1/probe_receipt.json",
         "projects/demo/2026/experiments/C/Q1/formal/run-1/figure-staging/fig-q1/figure_qa.json",
         "projects/demo/2026/experiments/C/Q1/candidate/run-1/outputs/preview.csv",
+        "work/reference-library/sources.local.yaml",
+        "work/reference-library/cache/metadata.json",
+        "work/reference-library/ocr/page-01.txt",
+        "work/reference-library/rendered/page-01.png",
+        "work/reference-library/pages/page-01.pdf",
     ):
         assert git_check_ignore(path), path
 
@@ -53,5 +58,10 @@ def test_formal_evidence_and_sources_remain_trackable() -> None:
         "paper/sections/question_1.tex",
         "experiments/C/Q1/formal/run-1/run_manifest.json",
         "experiments/C/Q1/paper-evidence/run-1/paper_evidence_manifest.json",
+        "references/competition-knowledge/index.md",
+        "references/competition-knowledge/sources.yaml",
+        "references/competition-knowledge/cards/optimization-lp-milp.md",
+        "src/workflow/reference_library.py",
+        "scripts/reference-library.ps1",
     ):
         assert not git_check_ignore(path), path

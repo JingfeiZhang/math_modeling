@@ -89,6 +89,25 @@ competition_timing:
         audit_and_package: [0.85, 0.95]
         blocking_fixes_only: [0.95, 1.00]
   progress_exclusions: [page-count, figure-count, audit-record-count]
+quality_contracts:
+  schema_version: 1
+  strict_new_projects: true
+  paths:
+    semantics: contracts/semantic_contract.yaml
+    metrics: contracts/metric_contract.yaml
+    algorithm_evidence: contracts/algorithm_evidence.yaml
+    abstract: contracts/abstract_contract.yaml
+  transition_owners:
+    candidate: [semantics, metrics]
+    formal: [semantics, metrics, algorithm_evidence]
+    g5: [semantics, metrics, algorithm_evidence, abstract]
+  rules:
+    warning_before_candidate: true
+    block_candidate_on_required_output_or_metric_mismatch: true
+    block_formal_on_fixed_input_role_mismatch: true
+    block_multobjective_overclaim: true
+    block_unbounded_local_scope_claim: true
+    block_abstract_question_coverage: true
 experiment_lifecycle:
   levels: [scratch, candidate, formal, paper-evidence]
   root_pattern: experiments/{problem}/{question}/{level}/{run-id}

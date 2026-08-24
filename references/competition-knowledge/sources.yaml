@@ -1,0 +1,105 @@
+schema_version: 1
+library_id: competition-knowledge-v1
+description: "本机教材的只读来源登记；仓库只保存文件名、指纹和人工定位状态。"
+evidence_policy:
+  contest_evidence_eligible: false
+  allowed_use: [model_direction, assumption_check, algorithm_keyword, risk_probe]
+  forbidden_use: [formal_claim, paper_number, figure_contract, submission, release]
+  original_files_in_repository: false
+sources:
+  - source_id: textbook-modeling
+    filename: "0数学模型.pdf"
+    sha256: 50B7B6FB0B1AFE39B30A36F694EB9E2056C7CE6F2875F8BF2BCDE18E4D875B36
+    pages: 414
+    locator_rule: printed-page-if-visible-otherwise-pdf-page
+    extractability: scanned_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"
+  - source_id: difference-equations
+    filename: "1差分方程及其应用.pdf"
+    sha256: 9F4ECBE01D036EA7A5D25C8B67F4A8BBE85FD19960D0DF0CE544F06C78770672
+    pages: 315
+    locator_rule: printed-page-if-visible-otherwise-pdf-page
+    extractability: scanned_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"
+  - source_id: difference-quick-reference
+    filename: "1差分方程简明手册.pdf"
+    sha256: D3DE82A3C582FA606E49DFF853772EE3ED053061A97CFEDF26EF53C2893882A4
+    pages: 26
+    locator_rule: pdf-page
+    extractability: text_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"
+  - source_id: ode
+    filename: "2常微分方程.pdf"
+    sha256: 0C47A6E1130FFFFB2AAF3063156E1BB9F063A7E0C6C8445C7C53D1E193DEF4F9
+    pages: 264
+    locator_rule: printed-page-if-visible-otherwise-pdf-page
+    extractability: scanned_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"
+  - source_id: pde
+    filename: "3数学物理方程.pdf"
+    sha256: CC870FB4DF2DEB7FF578760FF11A75E6C1224F5F8B640A09038E3C896D14937B
+    pages: 229
+    locator_rule: printed-page-if-visible-otherwise-pdf-page
+    extractability: scanned_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"
+  - source_id: stochastic-fuzzy-planning
+    filename: "4随机规划与模糊规划.pdf"
+    sha256: 1E82E12DE5272607E6F402ABA9AD2348DCFDD28F1B7A125FA59A77ECAA9A81A3
+    pages: 267
+    locator_rule: printed-page-if-visible-otherwise-pdf-page
+    extractability: scanned_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"
+  - source_id: operations-research
+    filename: "4运筹学.pdf"
+    sha256: AE13246DD5988138AF19FC1644346596D4B159D4E600019C0A6425A862CBD132
+    pages: 374
+    locator_rule: printed-page-if-visible-otherwise-pdf-page
+    extractability: scanned_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"
+  - source_id: operations-algorithms
+    filename: "4运筹学求解算法.pdf"
+    sha256: FDB62419200DAA506578167E70E72BDFC38AFC20780EC412EB2D41B97E8FF63C
+    pages: 230
+    locator_rule: printed-page-if-visible-otherwise-pdf-page
+    extractability: scanned_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"
+  - source_id: numerical-methods
+    filename: "5数值计算方法2006.pdf"
+    sha256: FC04602C520994954F3FCCC31B4899C27DA6B43C4D99D4265462EBD2A826A8F8
+    pages: 295
+    locator_rule: printed-page-if-visible-otherwise-pdf-page
+    extractability: scanned_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"
+  - source_id: design-of-experiments
+    filename: "6试验设计与数据处理.pdf"
+    sha256: CB3EE5275E609669E9EF58CB6E8B4986ECEC9F8FE4BC35217EC16406D2DA1A95
+    pages: 345
+    locator_rule: printed-page-if-visible-otherwise-pdf-page
+    extractability: scanned_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"
+  - source_id: applied-statistics
+    filename: "6应用统计学.pdf"
+    sha256: 72FA882AC8334708C7BAA785ECA7924291BB99C2226E46BA2ECF99369CFACB3B
+    pages: 236
+    locator_rule: printed-page-if-visible-otherwise-pdf-page
+    extractability: scanned_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"
+  - source_id: li-hang-machine-learning
+    filename: "7李航机器学习.pdf"
+    sha256: FFA1264B286689587F5A30AE1183BD140D8D0916FC1A7C068F0C9C306E01538F
+    pages: 579
+    locator_rule: printed-page-if-visible-otherwise-pdf-page
+    extractability: text_or_mixed
+    locator_status: manual_review_required
+    license_note: "本地个人资料；不复制原文，不随仓库分发。"

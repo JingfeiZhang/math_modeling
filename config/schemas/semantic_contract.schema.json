@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Problem semantics contract",
+  "type": "object",
+  "required": ["schema_version", "problem_id", "question_id", "source_problem", "task", "inputs", "outputs", "constraints", "scenarios", "status"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "problem_id": {"type": "string", "minLength": 1},
+    "question_id": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
+    "source_problem": {"type": "object", "required": ["path", "locator", "sha256"], "properties": {"path": {"type": "string", "pattern": "^(?![A-Za-z]:|/|\\\\).+"}, "locator": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}, "additionalProperties": false},
+    "task": {"type": "object", "required": ["statement", "type", "objective", "delivery"], "properties": {"statement": {"type": "string", "minLength": 1}, "type": {"type": "string", "minLength": 1}, "objective": {"type": "string", "minLength": 1}, "delivery": {"type": "string", "minLength": 1}}, "additionalProperties": false},
+    "inputs": {"type": "array", "items": {"type": "object", "required": ["id", "role", "unit", "source"], "properties": {"id": {"type": "string", "minLength": 1}, "role": {"enum": ["fixed", "observed", "decision", "derived"]}, "unit": {"type": "string", "minLength": 1}, "time_grain": {"type": "string"}, "space_grain": {"type": "string"}, "source": {"type": "string", "minLength": 1}, "fixed_by_statement": {"type": "boolean"}, "source_locator": {"type": "string"}}, "additionalProperties": false}},
+    "outputs": {"type": "array", "items": {"type": "object", "required": ["id", "type", "unit", "required"], "properties": {"id": {"type": "string", "minLength": 1}, "type": {"type": "string", "minLength": 1}, "unit": {"type": "string", "minLength": 1}, "required": {"type": "boolean"}, "source_locator": {"type": "string"}}, "additionalProperties": false}},
+    "constraints": {"type": "array", "items": {"type": "object", "required": ["id", "statement", "kind"], "properties": {"id": {"type": "string", "minLength": 1}, "statement": {"type": "string", "minLength": 1}, "kind": {"enum": ["hard", "boundary", "mutual_exclusion", "interface"]}, "source_locator": {"type": "string"}}, "additionalProperties": false}},
+    "scenarios": {"type": "array", "items": {"type": "object", "required": ["id", "required", "coverage_mode"], "properties": {"id": {"type": "string", "minLength": 1}, "required": {"type": "boolean"}, "coverage_mode": {"enum": ["full", "sampled", "local-window"]}, "source_locator": {"type": "string"}}, "additionalProperties": false}},
+    "dependencies": {"type": "array", "items": {"type": "object", "required": ["question_id", "outputs"], "properties": {"question_id": {"type": "string", "pattern": "^Q[1-9][0-9]*$"}, "outputs": {"type": "array", "items": {"type": "string"}}, "unit": {"type": "string"}}, "additionalProperties": false}},
+    "model_variable_map": {"type": "array", "items": {"type": "object", "required": ["id", "role"], "properties": {"id": {"type": "string"}, "role": {"enum": ["fixed", "state", "decision", "derived"]}, "source_input_id": {"type": "string"}, "source_locator": {"type": "string"}}, "additionalProperties": false}},
+    "state_conditions": {"type": "array", "items": {"type": "object", "required": ["id", "kind", "statement"], "properties": {"id": {"type": "string"}, "kind": {"enum": ["initial", "terminal", "boundary", "fixed"]}, "statement": {"type": "string"}, "source_locator": {"type": "string"}}, "additionalProperties": false}},
+    "status": {"enum": ["DRAFT", "READY", "LOCKED", "STALE"]}
+  },
+  "additionalProperties": false
+}

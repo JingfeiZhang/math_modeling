@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "library_id", "evidence_policy", "sources"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "library_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "description": {"type": "string"},
+    "evidence_policy": {
+      "type": "object",
+      "required": ["contest_evidence_eligible", "allowed_use", "forbidden_use"],
+      "properties": {
+        "contest_evidence_eligible": {"const": false},
+        "allowed_use": {"type": "array", "items": {"type": "string"}},
+        "forbidden_use": {"type": "array", "items": {"type": "string"}},
+        "original_files_in_repository": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "filename", "sha256", "pages", "locator_rule", "extractability", "locator_status"],
+        "properties": {
+          "source_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "filename": {"type": "string", "not": {"pattern": "[\\\\/]"}},
+          "sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"},
+          "pages": {"type": "integer", "minimum": 1},
+          "locator_rule": {"type": "string"},
+          "extractability": {"enum": ["text_or_mixed", "scanned_or_mixed"]},
+          "locator_status": {"enum": ["manual_review_required", "verified"]},
+          "license_note": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

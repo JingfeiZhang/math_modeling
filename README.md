@@ -54,6 +54,26 @@ powershell -ExecutionPolicy Bypass -File .\\scripts\\workspace.ps1 -Action verif
 
 V7 使用 `config/prompt_policy.yaml` 按当前 P 阶段和角色装配短提示，同时保留 V6 的实验、证据和 G0--G6 运行链。Scratch/Candidate 推进优先，Formal/G5/G6 严格收束；不要让一次 `scratch` 试跑或外部论文结果直接进入正文 claims。
 
+新项目还会在每个问题下生成四类质量合同：`semantic_contract` 锁定题面输出、固定/决策变量和场景；`metric_contract` 锁定公式、单位、分母、时间范围和 baseline；`algorithm_evidence` 锁定搜索、收敛或最优性证据及结论边界；`abstract_contract` 锁定摘要的背景、逐问覆盖和冻结 claim。合同在 Scratch 阶段只提示，在 Candidate 晋升和 Formal/G5 转换前阻断真正的语义或证据不一致。复盘资料见 `references/retrospectives/huashu-cup-2026-review.md`，不属于正式证据。
+
+G5 中承载合同指标的正文和表格必须使用映射的 `\FrozenClaim{claim-id}`；表格单位使用合同单位或 `\FrozenClaimUnit{claim-id}`。正式图件的 Figure Contract 必须绑定同一 claim 和指标单位，避免摘要、正文、表格与图件各自手填结果。
+
+人工核对并修改合同后，通过受控命令刷新项目内哈希；该动作不冻结 claims，也不改变比赛状态。摘要合同由各问共享，局部刷新只接受指定 Qx 的接口变化，发现其他问题同时漂移时会拒绝刷新。
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 -Project <project-id> -Action refresh-quality-contracts -Question Q1
+```
+
+## 教材速查库
+
+`references/competition-knowledge/` 是 P1--P3 的共享只读教材知识卡：先按标签定位适用条件、最小模型、baseline 和风险，再在公式或前提有疑义时回看本机 PDF 的记录页。它不是学术文献或正式证据，不能进入 claims、Figure Contract、论文引文、附件或发布目录。原始 PDF 保持在本机；可设置 `MATHMODEL_REFERENCE_LIBRARY_ROOT`，或在被 Git 忽略的 `work/reference-library/sources.local.yaml` 中配置本地根目录或逐来源路径。
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\reference-library.ps1 -Action verify
+powershell -ExecutionPolicy Bypass -File .\scripts\reference-library.ps1 -Action lookup -Tags optimization,milp
+powershell -ExecutionPolicy Bypass -File .\scripts\reference-library.ps1 -Action lookup -Tags forecasting,optimization -Layer playbook
+```
+
 查看某个角色实际收到的提示，不会创建比赛状态或修改正式证据：
 
 ```powershell

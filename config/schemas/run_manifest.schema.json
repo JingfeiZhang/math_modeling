@@ -125,6 +125,10 @@
         "evidence_scope": {"type": ["string", "null"], "enum": [null, "diagnostic", "sensitivity", "mechanism", "figure_support"]},
         "checkpoint_id": {"type": ["string", "null"]},
         "primary_metric": {"type": ["string", "null"]},
+        "input_roles": {"type": "array", "items": {"type": "object", "required": ["id", "role"], "properties": {"id": {"type": "string"}, "role": {"enum": ["fixed", "observed", "decision", "derived"]}}, "additionalProperties": false}},
+        "model_variables": {"type": "array", "items": {"type": "object", "required": ["id", "role"], "properties": {"id": {"type": "string"}, "role": {"enum": ["fixed", "state", "decision", "derived"]}, "source_input_id": {"type": "string"}}, "additionalProperties": false}},
+        "scenario_coverage": {"type": "array", "items": {"type": "object", "required": ["scenario_id", "covered", "scope"], "properties": {"scenario_id": {"type": "string"}, "covered": {"type": "boolean"}, "scope": {"enum": ["full", "sampled", "local-window"]}, "result_locator": {"type": "string"}}, "additionalProperties": false}},
+        "quality_contract_snapshot": {"type": "object", "additionalProperties": true},
         "checks": {"$ref": "#/$defs/checks"},
         "reuse_contract": {
           "type": "object",

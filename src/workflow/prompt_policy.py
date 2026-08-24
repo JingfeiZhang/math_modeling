@@ -24,6 +24,10 @@ RECEIPT_FIELDS = ("status", "objective", "conclusion", "evidence", "warnings", "
 QUESTION_RE = re.compile(r"^Q[1-9][0-9]*$")
 RECEIPT_STATUSES = ("PROGRESS", "PASS", "PASS_WITH_WARNINGS", "BLOCK_TRANSITION", "REOPEN_REQUIRED", "READY")
 GATES = {"P0": "G0", "P1": "G0", "P2": "G1", "P3a": "G1", "P3b": "G2", "P4": "G4", "P5": "G5", "P6": "G6"}
+SHARED_KNOWLEDGE_PHASES = ("P1", "P2", "P3a", "P3b")
+SHARED_KNOWLEDGE_ROLES = ("solver", "literature")
+SHARED_KNOWLEDGE_MODULES = "references/competition-knowledge/modules"
+SHARED_KNOWLEDGE_PLAYBOOKS_INDEX = "references/competition-knowledge/playbooks/index.md"
 
 
 def _load_yaml(path: Path) -> dict[str, Any]:
@@ -65,6 +69,22 @@ def validate_policy(policy: dict[str, Any]) -> list[str]:
         issues.append("locale/mode must be zh-CN/progress-first")
     if policy.get("authority_order") != list(AUTHORITY_ORDER):
         issues.append("authority_order must use the fixed V7 precedence")
+    knowledge = policy.get("shared_knowledge")
+    knowledge_fields = {"index", "phases", "solver_roles", "literature_roles", "contest_evidence_eligible", "formal_stages"}
+    if not isinstance(knowledge, dict) or set(knowledge) != knowledge_fields:
+        issues.append("shared_knowledge fields are incomplete or contain extras")
+    else:
+        index = knowledge.get("index")
+        if not isinstance(index, str) or not _relative_ref(index):
+            issues.append("shared_knowledge.index must be a safe relative path")
+        if knowledge.get("phases") != list(SHARED_KNOWLEDGE_PHASES):
+            issues.append("shared_knowledge.phases must cover P1-P3 only")
+        if knowledge.get("solver_roles") != ["solver"] or knowledge.get("literature_roles") != ["literature"]:
+            issues.append("shared_knowledge role bindings are invalid")
+        if knowledge.get("contest_evidence_eligible") is not False:
+            issues.append("shared_knowledge must never be contest evidence")
+        if knowledge.get("formal_stages") != ["P4", "P5", "P6"]:
+            issues.append("shared_knowledge.formal_stages must be P4-P6")
     response = policy.get("response") if isinstance(policy.get("response"), dict) else {}
     if response.get("format") != "compact_receipt" or response.get("detail_mode") != "on_request":
         issues.append("response format/detail_mode are invalid")
@@ -205,6 +225,16 @@ def assemble_packet(
         f"shared:templates/prompts/stages/{stage}.yaml", f"shared:templates/prompts/roles/{role}.yaml",
         *(f"project:{item}" for item in question_refs),
     ]
+    knowledge = policy["shared_knowledge"]
+    knowledge_enabled = stage in knowledge["phases"] and role in SHARED_KNOWLEDGE_ROLES
+    knowledge_notice = "共享教材速查卡仅用于 P1-P3 的模型方向、检索关键词和风险探针；不属于学术文献、Formal 证据或竞赛 claims。"
+    if knowledge_enabled:
+        read_scope.append(knowledge["index"])
+        if role == "solver":
+            read_scope.extend(["references/competition-knowledge/cards", SHARED_KNOWLEDGE_MODULES, SHARED_KNOWLEDGE_PLAYBOOKS_INDEX])
+        context_refs.append(f"shared:{knowledge['index']}")
+        if role == "solver":
+            context_refs.extend([f"shared:{SHARED_KNOWLEDGE_MODULES}", f"shared:{SHARED_KNOWLEDGE_PLAYBOOKS_INDEX}"])
     packet = {
         "packet_version": 1,
         "project_id": project_id,
@@ -232,6 +262,21 @@ def assemble_packet(
         },
         "escalation_rules": [*stage_rules["escalation_conditions"], *role_rules["decisions"]],
     }
+    if knowledge_enabled:
+        packet["output_contract"]["shared_knowledge"] = {
+            "index": knowledge["index"],
+            "contest_evidence_eligible": False,
+            "usage": knowledge_notice,
+        }
+        if role == "solver":
+            packet["output_contract"]["shared_knowledge"]["solver_support"] = [
+                SHARED_KNOWLEDGE_MODULES,
+                SHARED_KNOWLEDGE_PLAYBOOKS_INDEX,
+            ]
+        if not (workspace_root / knowledge["index"]).is_file():
+            packet["warning_conditions"].append("共享教材速查索引不可用；继续当前任务，不以此阻断探索。")
+        if role == "literature":
+            packet["warning_conditions"].append(knowledge_notice)
     issues = validate_packet(packet)
     if issues:
         raise ValueError("invalid assembled prompt packet: " + "; ".join(issues))

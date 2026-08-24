@@ -10,6 +10,13 @@ authority_order:
   - candidate_evidence
   - scratch_evidence
   - external_literature
+shared_knowledge:
+  index: references/competition-knowledge/index.md
+  phases: [P1, P2, P3a, P3b]
+  solver_roles: [solver]
+  literature_roles: [literature]
+  contest_evidence_eligible: false
+  formal_stages: [P4, P5, P6]
 response:
   format: compact_receipt
   required_fields: [status, objective, conclusion, evidence, warnings, next_action, decision_request]
@@ -28,17 +35,17 @@ stages:
   P1:
     gate: G0
     objective: 解析真实题面并生成问题接口、论文骨架、数据口径和文献计划。
-    allowed_actions: [initialize, problem-decomposition, literature-plan, paper-skeleton]
+    allowed_actions: [initialize, problem-decomposition, semantic-contract-draft, metric-contract-draft, literature-plan, paper-skeleton]
     blocking: [题面不可读取, 无法识别实际子问题]
     warning: [字段语义待核验, 文献尚未检索, 论文尚未润色]
     deferred: [claims冻结, formal复跑, PDF深审, 附件打包]
     stop_conditions: [真实Q1到Qn已生成]
     escalation_conditions: [题面问数存在歧义, 规则覆盖不明确]
-    expected_artifacts: ["state/decision_log.json", "problems/{problem}/questions/Qx/question.yaml", "paper/generated/question_structure.tex"]
+    expected_artifacts: ["state/decision_log.json", "problems/{problem}/questions/Qx/question.yaml", "problems/{problem}/questions/Qx/contracts/*", "paper/generated/question_structure.tex"]
   P2:
     gate: G1
     objective: 为每个问题取得同输出、可计算指标和可检查约束的baseline。
-    allowed_actions: [run-scratch, run-candidate, quickcheck, checkpoint]
+    allowed_actions: [run-scratch, run-candidate, quickcheck, checkpoint, metric-contract-review, fixed-input-review]
     blocking: [runner无法启动, 输入输出完全不匹配]
     warning: [单位或约束尚未完全补齐, 文献和图件未完成]
     deferred: [完整哈希, 多次确定性复跑, PDF、字体和发布审计]
@@ -48,7 +55,7 @@ stages:
   P3a:
     gate: G1
     objective: 建立可运行主模型并获得第一版完整结果。
-    allowed_actions: [model-exploration, run-scratch, run-candidate, quickcheck]
+    allowed_actions: [model-exploration, run-scratch, run-candidate, quickcheck, algorithm-evidence-draft, scenario-coverage-review]
     blocking: [主模型无法运行, 输出类型无法与baseline对齐]
     warning: [稳健性未完成, 文献未完成, 图件未设计]
     deferred: [PDF、字体、附件和完整发布审计]
@@ -58,7 +65,7 @@ stages:
   P3b:
     gate: G2
     objective: 优化瓶颈、完成关键风险探针并在60%时间附近收束模型。
-    allowed_actions: [model-optimization, robustness-probe, checkpoint, promote]
+    allowed_actions: [model-optimization, robustness-probe, algorithm-evidence-lock, scenario-coverage-review, checkpoint, promote]
     blocking: [核心硬约束失败, 候选不具备晋升价值]
     warning: [非关键稳健性缺口, 语言和版面未完成]
     deferred: [G5/G6发布深审]
@@ -69,7 +76,7 @@ stages:
     gate: G4
     objective: 将选定候选晋升为Formal并冻结可追溯claims。
     allowed_actions: [promote, validate-G3, freeze, validate-G4]
-    blocking: [Formal清单无效, 硬约束失败, 确定性复跑失败, claims不可追溯]
+    blocking: [Formal清单无效, 质量合同与输入角色、模型变量、指标快照或场景结果不一致, 硬约束失败, 确定性复跑失败, claims不可追溯]
     warning: [图件Brief或文献交接未完成]
     deferred: [全文PDF视觉审计, 附件白名单深审]
     stop_conditions: [G3/G4通过且claims冻结]
@@ -79,7 +86,7 @@ stages:
     gate: G5
     objective: 用冻结证据完成论文、图表和必要的Paper Evidence补证。
     allowed_actions: [paper-evidence, figure-data, figure-intent, figure-brief, figure-render, figure-qa, layout-check, build]
-    blocking: [论文引用冻结证据之外的数字, Paper Evidence导致主指标漂移]
+    blocking: [论文引用冻结证据之外的数字, 指标到claims、表格或图件的映射不一致, 摘要遗漏任一问的方法、对象、主结论、验证或边界, Paper Evidence导致主指标漂移]
     warning: [语言、图件或版面仍在调整]
     deferred: [封存和最终上传校验]
     stop_conditions: [正文主体、图表和引用闭环]
@@ -113,10 +120,10 @@ roles:
     decisions: [主模型, fallback, claim范围, 规则冲突, 发布阻断]
   solver:
     objective: 推进拆题、模型、baseline、算法和实验。
-    read_scope: [question.yaml, experiments, results, literature/model_evidence_brief.yaml]
+    read_scope: [question.yaml, contracts, experiments, results, literature/model_evidence_brief.yaml]
     write_scope: ["experiments/{problem}/{question}", work]
     inputs: [question interface, candidate evidence, literature evidence]
-    outputs: [model card, run receipt, risk probes, candidate proposal]
+    outputs: [problem semantics contract, metric contract, algorithm evidence contract, model card, run receipt, risk probes, candidate proposal]
     protected: [state/decision_log.json, "results/{problem}/claims.json", paper/figure_contracts.yaml, paper/main.tex, submission]
     stop_conditions: [baseline可比或候选停止条件满足]
     decisions: [主模型实质取舍, fallback启用, claim范围]
@@ -139,7 +146,7 @@ roles:
     stop_conditions: [设计决策完成或明确table/text/none]
     decisions: []
   paper:
-    objective: 只消费冻结claims和合格Paper Evidence完成正文。
+    objective: 只消费冻结claims和合格Paper Evidence完成正文，按“结果—原因—意义—边界”表达，避免工程流程流水账。
     read_scope: [question.yaml, results, paper-evidence, paper/figures, literature cards and bib]
     write_scope: [paper/sections, paper/generated, paper/tables, output/_verification]
     inputs: [frozen evidence, approved briefs, citation handoff]
