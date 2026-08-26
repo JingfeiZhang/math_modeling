@@ -68,47 +68,47 @@ stages:
     expected_artifacts: [output/_verification/preflight.json]
   P1:
     gate: G0
-    objective: 解析真实题面，建立逐项需求覆盖映射和论文论证闭环草案，并生成问题接口、数据口径、统计分析画像和文献计划。
+    objective: 解析真实题面，建立逐项需求覆盖映射和论文论证闭环草案；同时识别每问的数学结构、关键冲突、失败代价和候选模型梯子，并生成问题接口、数据口径、统计分析画像和文献计划。
     allowed_actions: [initialize, problem-decomposition, requirement-coverage-draft, semantic-contract-draft, metric-contract-draft, data-profile-draft, statistical-design-draft, content-audit-draft, known-answer-fixture-plan, literature-plan, paper-skeleton]
     blocking: [题面不可读取, 无法识别实际子问题]
-    warning: [题面要求尚未全部映射到模型元素、输出字段、评价指标、验证方式和论文位置, 字段角色、观测单位、测量尺度或时间粒度待核验, 统计分析对象和分组结构待核验, 已知答案小实例尚未设计, 文献尚未检索, 论文尚未润色]
+    warning: [题面要求尚未全部映射到模型元素、输出字段、评价指标、验证方式和论文位置, 字段角色、观测单位、测量尺度或时间粒度待核验, 统计分析对象和分组结构待核验, 数学结构或主要失败风险尚未识别, 已知答案小实例尚未设计, 文献尚未检索, 论文尚未润色]
     deferred: [claims冻结, formal复跑, PDF深审, 附件打包]
     stop_conditions: [真实Q1到Qn已生成且每问已有需求覆盖草案]
     escalation_conditions: [题面问数存在歧义, 规则覆盖不明确]
     expected_artifacts: ["state/decision_log.json", "problems/{problem}/questions/Qx/question.yaml", "problems/{problem}/questions/Qx/contracts/*（含需求覆盖映射）", "paper/generated/question_structure.tex"]
   P2:
     gate: G1
-    objective: 为每个问题取得同输出baseline，核对变量与假设闭环，完成最小统计分析路线和假设探针，并用人工可算、穷举或精确求解的已知答案小实例验证实现与约束。
+    objective: 为每个问题取得同输出baseline，把baseline作为论文和实验的统一比较坐标；核对变量与假设闭环，完成最小统计分析路线和假设探针，并用人工可算、穷举或精确求解的已知答案小实例验证实现与约束。
     allowed_actions: [run-scratch, run-candidate, quickcheck, checkpoint, known-answer-check, invariant-check, baseline-comparison, metric-contract-review, fixed-input-review, analysis-route-check, assumption-probe, effect-size-baseline]
     blocking: ["checkpoint: 题面主指标、单位、分母、预测窗口或交付输出错误或缺失", "checkpoint: 固定输入被声明为决策变量", "checkpoint: baseline与主模型输出不可比", "checkpoint: 已知答案小实例失败", "checkpoint: 核心硬约束失败"]
-    warning: [Scratch中的运行、指标、固定输入、baseline、小实例或硬约束缺口仅记录并继续探索, 单位、测量尺度、分析单位或非核心约束尚未完全补齐, 参数检验假设、效应量或稳健替代尚未检查, 文献和图件未完成]
+    warning: [Scratch中的运行、指标、固定输入、baseline、小实例或硬约束缺口仅记录并继续探索, baseline不能解释主模型究竟改善了什么, 单位、测量尺度、分析单位或非核心约束尚未完全补齐, 参数检验假设、效应量或稳健替代尚未检查, 文献和图件未完成]
     deferred: [完整哈希, 多次确定性复跑, PDF、字体和发布审计]
     stop_conditions: [每问至少一个可运行同输出baseline且已知答案小实例可复核]
     escalation_conditions: [多个baseline不可比或题意无法解释]
     expected_artifacts: ["experiments/{problem}/{question}/scratch/{run-id}/probe_receipt.json", "experiments/{problem}/{question}/candidate/{run-id}/candidate_receipt.json", "已知答案小实例及其预期输出和约束检查"]
   P3a:
     gate: G1
-    objective: 建立可运行主模型，和同输出baseline及轻量挑战模型比较，完成数据关系、假设诊断和一次有依据的统计升级，形成第一版结果—原因—意义—边界解释。
+    objective: 建立与题目结构匹配的可运行主模型，和同输出baseline及一个有区分度的轻量挑战模型比较；只针对已经观察到的失败点增加复杂度，完成数据关系、假设诊断和一次有依据的升级，并形成第一版结果—比较—原因—意义—边界解释。
     allowed_actions: [model-exploration, run-scratch, run-candidate, quickcheck, model-competition, type-specific-validation-plan, out-of-sample-or-scenario-check, algorithm-evidence-draft, scenario-coverage-review, statistical-diagnostics, robust-alternative-check, result-interpretation-draft]
     blocking: ["checkpoint: 题面主指标、单位、分母、预测窗口或交付输出错误或缺失", "checkpoint: 固定输入被声明为决策变量", "checkpoint: baseline与主模型输出不可比", "checkpoint: 已知答案小实例失败", "checkpoint: 核心硬约束失败"]
-    warning: [Scratch中的失败和验证缺口仅记录并继续探索, 主模型尚未优于baseline或轻量挑战模型, 结果原因和实际意义尚未解释, 参数假设、效应量、残差或类别不平衡诊断未完成, 样本外或场景验证未完成, 稳健性未完成, 文献未完成, 图件未设计]
+    warning: [Scratch中的失败和验证缺口仅记录并继续探索, 模型复杂度没有对应已识别失败点或实际收益, 主模型尚未优于baseline或轻量挑战模型, 结果原因和实际意义尚未解释, 参数假设、效应量、残差或类别不平衡诊断未完成, 样本外或场景验证未完成, 稳健性未完成, 文献未完成, 图件未设计]
     deferred: [PDF、字体、附件和完整发布审计]
     stop_conditions: [首版结果可解释且已完成baseline和轻量挑战模型比较或记录不设挑战模型的理由]
     escalation_conditions: [主模型与fallback存在实质权衡]
     expected_artifacts: [实验运行回执, baseline、主模型与轻量挑战模型比较, "题型专项验证计划：预测使用时间滚动、分组或空间阻断验证并检查泄漏、残差、偏差和区间覆盖；优化检查小规模精确解或上下界、可行率、gap、求解状态或收敛轨迹及随机多种子；机理检查量纲、初始和边界条件、守恒、极限情形及参数敏感性；评价排序检查方向、标准化、权重扰动、删项稳定性和简单排序baseline；统计分析检查独立性、分布、方差结构、效应量、区间、多重比较和稳健替代；分类检查基率、阈值、混淆矩阵、PR-AUC和校准", 候选模型摘要]
   P3b:
     gate: G2
-    objective: 优化瓶颈，完成题型专项验证、统计诊断、关键风险探针和模型竞争，并在60%时间附近收束模型。
+    objective: 围绕题面主指标、最可能失败点和决策价值优化瓶颈，完成题型专项验证、统计诊断、关键风险探针和模型竞争；按边际收益收敛复杂度，在60%时间附近锁定“最简单但足以支撑主要结论”的主模型。
     allowed_actions: [model-optimization, model-competition, type-specific-validation, out-of-sample-or-scenario-check, robustness-probe, algorithm-evidence-lock, scenario-coverage-review, statistical-diagnostics, robust-alternative-check, result-interpretation-draft, checkpoint, promotion-recommendation]
     blocking: ["checkpoint: 题面主指标、单位、分母、预测窗口或交付输出错误或缺失", "checkpoint: 固定输入被声明为决策变量", "checkpoint: baseline与主模型输出不可比", "checkpoint: 已知答案小实例失败", "checkpoint: 核心硬约束失败"]
-    warning: [候选尚不具备晋升价值, 轻量挑战模型比较或省略理由不充分, 样本外、场景、稳健性或最差情形证据不完整, 统计假设、效应量、区间、残差或分类校准证据不完整, 语言和版面未完成]
+    warning: [候选尚不具备晋升价值, 新增复杂度只能带来微小或不稳定改善, 轻量挑战模型比较或省略理由不充分, 样本外、场景、稳健性或最差情形证据不完整, 统计假设、效应量、区间、残差或分类校准证据不完整, 语言和版面未完成]
     deferred: [G5/G6发布深审]
     stop_conditions: [主模型、baseline、轻量挑战模型结论和fallback边界明确且形成Formal晋升建议]
     escalation_conditions: [是否锁定主模型的实质取舍]
     expected_artifacts: [candidate_receipt.json, 模型竞争结论, "题型专项验证结果：预测报告无泄漏的样本外表现；优化报告可行性和gap、状态或轨迹；机理报告量纲、边界、守恒和极限检查；评价排序报告权重、标准化和删项稳定性", decision proposal]
   P4:
     gate: G4
-    objective: 将选定候选晋升为Formal，形成统一模型验证报告和适用边界，并在G3/G4通过后冻结可追溯claims。
+    objective: 将选定候选晋升为Formal，形成统一模型验证报告和适用边界；优先冻结能够直接回答题目、具有比较基准和实际解释价值的claims，并在G3/G4通过后锁定正式证据。
     allowed_actions: [promote, model-verify, validate-G3, freeze, validate-G4]
     blocking: [Formal清单无效, 需求覆盖、已知答案小实例、baseline比较或题型专项验证证据缺失, 质量合同与输入角色、模型变量、指标快照或场景结果不一致, 轻量挑战模型比较缺失且没有可核验的省略理由, 样本外或场景验证与题型不匹配, 关键结果没有适用边界, 硬约束失败, 随机模型多种子复跑、确定性轨迹或精确求解器状态与gap证据不足, 统一模型验证报告不完整, claims不可追溯]
     warning: [图件Brief或文献交接未完成]
@@ -118,10 +118,10 @@ stages:
     expected_artifacts: ["Formal run manifest", "统一模型验证报告（需求覆盖、小实例、baseline与挑战模型、主指标与不确定性、硬约束、与题型匹配的样本外或场景验证、随机多种子或确定性轨迹或精确求解gap、敏感性、最差情形、失败条件和允许措辞）", "results/{problem}/claims.json"]
   P5:
     gate: G4
-    objective: 用冻结证据完成论文、图表和必要的Paper Evidence补证。
+    objective: 用冻结证据完成高信息密度论文、图表和必要的Paper Evidence补证；优先把每问写成“题意—选择理由—模型—主结果—baseline比较—可信证据—实际意义—边界”的评审可读链路。
     allowed_actions: [paper-evidence, figure-data, figure-intent, figure-brief, figure-render, figure-qa, layout-check, build]
     blocking: [论文引用冻结证据之外的数字, 指标到claims、表格或图件的映射不一致, 摘要遗漏任一问的方法、对象、主结论、验证或边界, Paper Evidence导致主指标漂移]
-    warning: [语言、图件或版面仍在调整]
+    warning: [章节包含大量算法常识或工程流水账而缺少结论密度, 语言、图件或版面仍在调整]
     deferred: [封存和最终上传校验]
     stop_conditions: [正文主体、图表和引用闭环]
     escalation_conditions: [补证改变主结论或需改变claim边界]
@@ -179,13 +179,13 @@ roles:
     stop_conditions: [普通任务已安排或需要根Agent决策]
     decisions: [主模型, fallback, claim范围, 规则冲突, 发布阻断]
   solver:
-    objective: 推进拆题、模型、baseline、算法和实验；对数据题先建立数据画像和变量关系路线，再用统计假设、效应量、样本外指标和稳健替代排除错误实现与无效复杂度。
-    read_scope: [question.yaml, contracts, experiments, results, literature/model_evidence_brief.yaml]
+    objective: 推进拆题、数据诊断、模型、baseline、算法和实验；默认采用“问题驱动的数据处理 → baseline → 结构匹配主模型 → 针对已识别失败点的一次升级 → challenger验证 → 保留或回退”的质量路线，优先提高题面适配、样本外/压力场景表现、可解释性和决策价值，而不是追求模型复杂度。
+    read_scope: [question.yaml, contracts, experiments, results, literature/model_evidence_brief.yaml, references/competition-knowledge/playbooks/award-oriented-modeling.md, references/competition-knowledge/playbooks/data-and-feature-quality.md, references/competition-knowledge/playbooks/algorithm-routing-quality.md, references/competition-knowledge/playbooks/experiment-design-quality.md]
     write_scope: ["experiments/{problem}/{question}", output/_verification/model-verification, work]
     inputs: [question interface, quality contracts, known-answer fixture, candidate evidence, literature evidence]
     outputs: [requirement coverage map, problem semantics contract, metric contract, data profile, analysis route, assumption probes, effect-size and interval summary, algorithm evidence contract, known-answer verification, baseline-main-challenger comparison, type-specific validation, model card, run receipt, risk probes, candidate proposal, Formal model verification report]
     protected: [state/decision_log.json, "results/{problem}/claims.json", paper/figure_contracts.yaml, paper/main.tex, submission]
-    stop_conditions: [当前阶段验证责任完成、baseline可比或候选停止条件满足]
+    stop_conditions: [当前阶段验证责任完成、baseline可比或候选停止条件满足；新增复杂度的边际收益已低于继续完善验证和论文的收益]
     decisions: [主模型实质取舍, fallback启用, claim范围]
   literature:
     objective: 与baseline和Scratch并行完成学术文献检索、精读和模型证据综合。
@@ -197,22 +197,22 @@ roles:
     stop_conditions: [时间预算到达或模型证据足够]
     decisions: [未解决文献冲突, 需改变模型选择]
   visualization:
-    objective: 先决定figure/table/text/none，再形成Visual Intent和Figure Brief。
-    read_scope: [figure_data_manifest.yaml, visual_intent.yaml, figure_briefs, frozen claims, quality contract hashes, output/_verification/model-verification]
+    objective: 从 reader question 出发先决定 figure/table/text/none，再识别 comparison、trend、distribution、uncertainty、tradeoff、spatial、network、schedule 或 mechanism 等关系类型；优先生成能直接支撑主结论、baseline差异、失败模式、机制或权衡的高信息密度视觉表达。
+    read_scope: [figure_data_manifest.yaml, visual_intent.yaml, figure_briefs, frozen claims, quality contract hashes, output/_verification/model-verification, references/competition-knowledge/playbooks/visual-evidence-quality.md, templates/figures/recipe_catalog.yaml]
     write_scope: ["experiments/{problem}/{question}/{level}/{run-id}/figure-staging", output/_verification]
     inputs: [formal data manifest, model verification status, current quality contract hashes, reader question, claim and baseline]
     outputs: [visual intent, figure brief, figure QA proposal]
     protected: [state/decision_log.json, "problems/{problem}/questions/{question}/contracts", "results/{problem}/claims.json", paper/main.tex, paper/figure_contracts.yaml, paper/figures]
-    stop_conditions: [设计决策完成或明确table/text/none]
+    stop_conditions: [设计决策完成或明确table/text/none；候选图不能提供表格或正文无法高效提供的信息时删除]
     decisions: []
   paper:
-    objective: 只消费冻结claims和合格Paper Evidence完成正文，按“题意—模型—证据—结果—原因—意义—边界”表达，避免工程流程流水账。
-    read_scope: [question.yaml, templates/prompts/paper/cumcm-2026.yaml, results, paper-evidence, paper/figures, literature cards and bib]
+    objective: 只消费冻结claims和合格Paper Evidence完成正文；默认采用“先结论、后证据与解释”的高信息密度写法，突出模型适配理由、baseline定量比较、关键机制、实际决策价值和适用边界，压缩算法常识与工程流水账。
+    read_scope: [question.yaml, templates/prompts/paper/cumcm-2026.yaml, references/cumcm-paper-quality-playbook.md, references/competition-knowledge/playbooks/visual-evidence-quality.md, results, paper-evidence, paper/figures, literature cards and bib]
     write_scope: [paper/sections, paper/generated, paper/tables, output/_verification]
     inputs: [frozen evidence, approved briefs, citation handoff]
     outputs: [section draft, evidence locator map, internal compact receipt, Markdown summary]
     protected: [state/decision_log.json, "results/{problem}/claims.json", paper/figure_contracts.yaml, submission]
-    stop_conditions: [当前章节论证链闭合]
+    stop_conditions: [当前章节论证链闭合，核心结论、比较、解释和边界可被评委快速定位]
     decisions: [claim范围, 结论边界, 规则冲突]
   studio_release:
     objective: 负责正式Figure Contract、XeLaTeX、PDF、匿名性和发布审计。
@@ -224,8 +224,8 @@ roles:
     stop_conditions: [G5/G6通过或阻断项明确]
     decisions: [发布阻断修复路径]
   reviewer:
-    objective: 只做独立内容审阅并输出review JSON，重点检查题目回答、论证闭环、结果解释、证据充分性和结论边界。
-    read_scope: [project outputs, paper, formal evidence]
+    objective: 只做独立内容审阅并输出review JSON；优先以评委视角检查每问是否快速回答题目、数据处理是否服务于模型、模型选择是否由证据驱动、主结果是否有baseline和解释、实验是否针对最可能失败点、图表是否回答明确 reader question，以及摘要和正文是否具有足够的信息密度与结论边界。
+    read_scope: [project outputs, paper, formal evidence, references/cumcm-paper-quality-playbook.md, references/competition-knowledge/playbooks/award-oriented-modeling.md, references/competition-knowledge/playbooks/data-and-feature-quality.md, references/competition-knowledge/playbooks/algorithm-routing-quality.md, references/competition-knowledge/playbooks/experiment-design-quality.md, references/competition-knowledge/playbooks/visual-evidence-quality.md]
     write_scope: [output/_verification/reviews]
     inputs: [指定审阅对象, gate]
     outputs: [review JSON]

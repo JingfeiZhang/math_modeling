@@ -5,18 +5,26 @@
 ```text
 L1 路由卡：30 秒筛出 3-5 个方向
   -> L2 决策模块：完成变量映射、baseline、一次升级、三项诊断和回退
-  -> L3 战术手册：仅在组合题中串联多个模块
+  -> L3 战术手册：串联数据质量、算法路由、实验设计、可视化证据和组合题路径
 ```
 
 ## 使用规则
 
 1. 先按任务、数据特征和约束检索 L1，最多保留 3-5 张卡；不要按书名通读。
 2. 选一个最匹配的 L2 模块执行 P2/P3：写变量账本，跑最窄 baseline，只做一次有诊断依据的升级，再决定保留、降阶或回退。
-3. 只有题目存在“预测→优化”“分配→不确定性”或“机理→标定→情景”等跨模块结构时才进入 L3。
+3. 遇到数据处理、模型选择、实验优先级和图表表达问题时，优先读取通用质量手册；只有题目存在“预测→优化”“分配→不确定性”或“机理→标定→情景”等跨模块结构时再进入专项组合题手册。
 4. 卡片、模块和手册只支撑候选模型、假设检查、baseline 设计和风险探针；数值结果必须来自本项目 Scratch/Candidate/Formal 运行。
 5. `locator_confidence: low` 或 `formula_manual_check_required: true` 时，回看本机 PDF 对应页后再写公式或页码。
-6. P4 以后不自动加载本库，不把任何资料项升级为 Formal 证据，也不加入论文 BibTeX、claims、Figure Contract 或附件。
+6. P4 以后不自动加载本库作为模型知识来源，不把任何资料项升级为 Formal 证据，也不加入论文 BibTeX、claims、Figure Contract 或附件；可视化质量手册仅作为 P4/P5 表达指导使用。
 7. 原始 PDF 不在仓库中。配置 `MATHMODEL_REFERENCE_LIBRARY_ROOT` 或维护 `work/reference-library/sources.local.yaml` 后可运行本地校验；未配置时仍可检索本索引。
+
+## 通用质量手册
+
+- [高质量建模总则](playbooks/award-oriented-modeling.md)：题意结构、baseline、主模型、challenger、复杂度停止。
+- [数据与特征质量](playbooks/data-and-feature-quality.md)：缺失、异常、泄漏、尺度、时间/空间结构、三级特征工程。
+- [算法路由与模型升级](playbooks/algorithm-routing-quality.md)：预测、分类、评价、聚类、优化、多目标、机理和网络模型梯子。
+- [高信息量实验设计](playbooks/experiment-design-quality.md)：baseline comparison、专项验证、robustness、failure case、消融与停止规则。
+- [可视化证据设计](playbooks/visual-evidence-quality.md)：reader question、figure/table/text 路由、图型选择、视觉层级和论文图表表达。
 
 ## 按任务检索
 
@@ -55,6 +63,14 @@ L1 路由卡：30 秒筛出 3-5 个方向
 模块的目标不是替队伍选模型，而是强制完成：`题面映射 -> 同输出 baseline -> 一次可解释升级 -> 三项诊断 -> 停止/回退决定`。
 
 ## L3 赛题战术手册
+
+### 通用质量链
+
+`award-oriented-modeling → data-and-feature-quality → algorithm-routing-quality → experiment-design-quality → Formal/claims → visual-evidence-quality`
+
+这条链只改变每一步的决策质量，不建立新的 Formal 状态或 Gate。
+
+### 专项组合题路径
 
 - [先预测、再优化](playbooks/predict-then-optimize.md)：预测接口、误差传播、名义/稳健决策和端到端评价。
 - [不确定条件下资源配置](playbooks/resource-allocation-under-uncertainty.md)：变量账本、LP/MILP、情景/鲁棒升级和成本-风险比较。

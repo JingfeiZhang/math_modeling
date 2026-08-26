@@ -1,4 +1,4 @@
-version: "1.0"
+version: "1.1"
 policy:
   input: real_experiment_artifacts_only
   synthetic_fallback: forbidden
@@ -15,6 +15,21 @@ recipes:
     backend: python
     script: python/plot_prediction_interval.py
     required_columns: [x, observed, predicted, lower, upper, baseline]
+  - id: observed-vs-predicted
+    role: calibration-like agreement between observed values and primary/baseline predictions
+    backend: python
+    script: python/plot_observed_vs_predicted.py
+    required_columns: [observed, predicted, baseline_prediction]
+  - id: error-by-group
+    role: identify time, region, class, or subgroup failure modes relative to baseline
+    backend: python
+    script: python/plot_error_by_group.py
+    required_columns: [group, model_error, baseline_error, n]
+  - id: distribution-ecdf
+    role: compare complete empirical distributions without histogram binning artifacts
+    backend: python
+    script: python/plot_distribution_ecdf.py
+    required_columns: [group, value, is_baseline, is_primary]
   - id: calibration
     role: observed-versus-predicted calibration
     backend: python
@@ -55,6 +70,21 @@ recipes:
     backend: python
     script: python/plot_robustness_matrix.py
     required_columns: [scenario, metric, value, baseline]
+  - id: rank-stability
+    role: rank robustness across ordered weight, preprocessing, or scenario perturbations
+    backend: python
+    script: python/plot_rank_stability.py
+    required_columns: [scenario, item, rank, is_primary]
+  - id: schedule-gantt
+    role: final task schedule, resource assignment, and critical-task structure
+    backend: python
+    script: python/plot_schedule_gantt.py
+    required_columns: [task, resource, start, end, is_critical]
+  - id: resource-profile
+    role: resource utilization, baseline demand, capacity bottlenecks, and violations over time
+    backend: python
+    script: python/plot_resource_profile.py
+    required_columns: [time, usage, capacity, baseline_usage]
   - id: network-flow
     role: topology, flow magnitude, and baseline change
     backend: python
