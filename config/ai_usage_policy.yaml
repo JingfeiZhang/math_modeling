@@ -1,15 +1,52 @@
-schema_version: 1
+schema_version: 2
 competition: CUMCM
 year: 2026
 source:
-  title: 全国大学生数学建模竞赛人工智能工具使用规定
-  status: pending_official_source
-  url: null
-  rule_anchor: D:/迅雷下载/10259078.pdf#page=8
-  parent_document_sha256: cf9c59dc9fd329377c0696a83b804d373ab927b4036d28b608c1e9c7909e8ec0
+  title: 全国大学生数学建模竞赛人工智能工具使用规定（2026年试行）
+  status: verified
+  published_date: '2026-08-03'
+  effective_date: '2026-09-01'
+  url: https://www.mcm.edu.cn/html_cn/node/fef94648f2836ab6cc81586f4c38512b.html
+  attachment_url: https://www.mcm.edu.cn/upload_cn/node/785/Glps6mBh6563c55c45300fede72ddbf6eb33d3a8.pdf
+  pinned_snapshot: config/rules/cumcm_ai_2026.yaml
+  pinned_snapshot_sha256: dd0ac755f026a87711d1b18b7f6ee419635aa6e5ed79dac99ef521e2af33a9d8
+state:
+  path: output/ai_usage_state.yaml
+  required_in_formal_project: true
+  allowed_modes: [used, not_used]
 log:
   path: output/ai_usage_log.jsonl
-  required_fields: [timestamp, tool, purpose, output_used, human_verification]
+  required_when_used: true
+  required_fields:
+    - timestamp
+    - tool
+    - model_version
+    - purpose
+    - stage
+    - prompt_summary
+    - output_used
+    - human_verification
+  recommended_fields:
+    - human_modification
+    - reviewer
+    - evidence_locator
 disclosure:
-  required: null
-  paper_locator: null
+  required: true
+  location: before_references
+  paper_locator: paper/sections/ai_statement.tex
+  generated_statement_locator: paper/generated/ai_usage_statement.tex
+  no_ai_text: 本参赛队在竞赛过程中未使用任何AI工具。
+  used_ai_required_markers: [本参赛队在竞赛过程中使用了AI工具, 支撑材料]
+details:
+  required_when_used: true
+  filename: AI工具使用详情.pdf
+  support_archive: output/supporting.zip
+  required_content:
+    - tool_name_and_version_or_model
+    - purpose_and_stage
+    - prompting_approach_and_usage_process
+    - adoption_manual_modification_and_verification
+human_control:
+  core_modeling_and_analysis_team_led: true
+  all_ai_assisted_content_manual_review: true
+  explicit_human_verification_required_for_non_polishing_use: true
