@@ -70,11 +70,12 @@ def audit(root: Path, strict: bool = False, skip_package: bool = False) -> dict:
     page_limit_policy = str(format_cfg.get("paper_body_limit_policy", "required")).strip().lower()
     recommended_body_pages = int(format_cfg.get("paper_body_max_pages", 30))
     hard_body_pages = int(format_cfg.get("paper_body_hard_max_pages", recommended_body_pages))
-    hard_total_pages = int(format_cfg.get("paper_total_hard_max_pages", hard_body_pages + 1))
+    hard_total_raw = format_cfg.get("paper_total_hard_max_pages")
+    hard_total_pages = int(hard_total_raw) if hard_total_raw not in (None, "", False) else None
     paper_path = root / config.get("paths", {}).get("paper_pdf", "output/submission.pdf")
     support_path = root / config.get("paths", {}).get("support_zip", "output/supporting.zip")
     result: dict = {
-        "schema_version": 3,
+        "schema_version": 4,
         "paper": str(paper_path),
         "strict": strict,
         "checks": [],
@@ -109,12 +110,13 @@ def audit(root: Path, strict: bool = False, skip_package: bool = False) -> dict:
         text = "\n".join(page_texts)
         pages = len(page_texts) if page_texts else None
         if pages is not None:
-            if pages > hard_total_pages:
-                add("paper_total_pages", False, f"{pages} > hard limit {hard_total_pages}")
-            elif pages > recommended_body_pages + 1 and page_limit_policy == "recommended":
-                warn("paper_total_pages", f"{pages} pages exceed the recommended {recommended_body_pages + 1}-page budget but remain within the {hard_total_pages}-page hard cap")
+            if hard_total_pages is not None and pages > hard_total_pages:
+                add("paper_total_pages", False, f"{pages} > configured total hard limit {hard_total_pages}")
             else:
-                add("paper_total_pages", pages <= recommended_body_pages + 1, str(pages))
+                detail = f"{pages} physical pages"
+                if hard_total_pages is None:
+                    detail += "; official appendix page count is unlimited and body pages are checked separately"
+                add("paper_total_pages", True, detail)
         else:
             add("paper_page_count", False, "No PDF page-count parser is available")
 
@@ -131,11 +133,14 @@ def audit(root: Path, strict: bool = False, skip_package: bool = False) -> dict:
             "policy": searchable_policy,
         }
         if pages is None or searchable_pages == 0:
-            add("searchable_pdf", False, "PDF has no searchable text layer")
+            if searchable_policy == "recommended":
+                warn("searchable_pdf", "PDF has no searchable text layer; this is an internal recommendation, not a 2026 format requirement")
+            else:
+                add("searchable_pdf", False, "PDF has no searchable text layer")
         elif ratio < min_ratio:
             detail = f"searchable page ratio {ratio:.3f} is below {min_ratio:.3f}"
             if searchable_policy == "recommended":
-                warn("searchable_pdf", detail + "; policy is recommended, visual review remains required")
+                warn("searchable_pdf", detail + "; policy is an internal recommendation")
             else:
                 add("searchable_pdf", not strict, detail)
         else:
@@ -143,12 +148,15 @@ def audit(root: Path, strict: bool = False, skip_package: bool = False) -> dict:
 
         first_page = page_texts[0] if page_texts else ""
         abstract_found = bool(re.search(r"摘要|Abstract", first_page, re.IGNORECASE))
-        if abstract_found:
-            add("abstract_on_first_page", True, "first-page text probe")
-        elif searchable_policy == "recommended":
-            warn("abstract_on_first_page", "abstract text was not detected on the first page; confirm it visually")
-        else:
-            add("abstract_on_first_page", False, "first-page text probe")
+        add("abstract_on_first_page", abstract_found, "electronic paper first page must be the abstract page")
+
+        commitment_hits = [token for token in ("承诺书", "编号专用页") if token in first_page]
+        add(
+            "electronic_excludes_commitment_and_number_pages",
+            not commitment_hits,
+            "forbidden first-page markers: " + ", ".join(commitment_hits),
+        )
+
         forbidden = ["学校名称", "学院名称", "参赛者姓名", "队号", "学号", "赛区名称"]
         hits = [token for token in forbidden if token in text]
         identity_patterns = (
