@@ -1,14 +1,14 @@
-# 外部算法速查库
+# 算法速查源
 
-这是一个只读的 P1-P3 算法方法源索引。仓库只保存 GitHub 仓库的 commit、许可状态、代码路径和人工整理的风险卡，不保存外部源码、数据、论文、运行结果或缓存。
+这是一个只读的 P1-P3 算法方法源索引。当前仓库包含 `JingfeiZhang/1` 固定提交的本地镜像 `代码库/`，用于离线学习、候选模型发现和 baseline 原型设计；该镜像仍然不是比赛 Formal Evidence，也不是论文数字、Figure Contract、submission 或 release 的结果来源。
 
-## 使用边界
+## 权威边界
 
-- 只用于题型识别、候选模型、baseline 设计、假设检查和风险探针。
-- `NO_LICENSE` 源只能作为学习和阅读入口，不直接复制或再发布代码。
-- 外部仓库的示例数据和示例数字不是比赛证据。
-- Formal、claims、Figure Contract、论文、submission 和 release 不得引用本层作为结果来源。
-- 使用外部实现线索后，必须在当前项目中重写数据接口、单位、约束、随机种子和验证流程。
+- 竞赛规则以当年官方文件和当前项目 `contest.yaml` 为最高权威；`代码库/` 中的 README、自检清单和历史经验不具有规则优先级。
+- `NO_LICENSE` 源按 `study_only` 处理：可阅读、运行示例、理解算法接口，但不得把其原始实现未经项目内重写与验证直接作为 Formal 代码。
+- 外部示例数据、示例图和示例数字不能作为比赛证据。
+- 选中算法线索后，必须回到当前项目中重写数据接口、单位、约束、随机种子、输出合同和验证流程，并由当前项目运行产生证据。
+- `references/algorithm-sources/cards/` 与 `skeletons/` 是主工作台的决策摘要和项目重写骨架，优先于直接浏览镜像目录。
 
 ## 快速查询
 
@@ -23,9 +23,9 @@ scripts/reference-library.ps1 -Action status
 
 | source_id | 仓库 | 许可状态 | 定位 |
 |---|---|---|---|
-| `github-jingfeizhang-1` | [JingfeiZhang/1](https://github.com/JingfeiZhang/1) | `NO_LICENSE` | 本地固定 commit 的 Python 算法示例，适合 P1-P3 速查 |
+| `github-jingfeizhang-1` | [JingfeiZhang/1](https://github.com/JingfeiZhang/1) | `NO_LICENSE` | 固定 commit 的 repo-tracked Python 算法镜像，仅用于 P1-P3 study-only 速查 |
 
-本机代码目录由 `references/algorithm-sources/sources.yaml` 的 `mirror_relpath` 指定，当前为工作区下的 `代码库`。执行 `reference-library.ps1 -Action sync` 后，索引和镜像状态写入被忽略的 `tools/algorithm-sources/`；索引缺失时查询只返回 warning，不联网、不执行外部脚本。
+镜像目录由 `references/algorithm-sources/sources.yaml` 的 `mirror_relpath` 指定，当前为工作区下的 `代码库`。`reference-library.ps1 -Action sync` 只维护被忽略的 `tools/algorithm-sources/` 索引状态，不改变 Formal Evidence；索引缺失时查询只返回 warning，不联网、不执行外部脚本。
 
 ## 算法卡
 
@@ -43,9 +43,9 @@ scripts/reference-library.ps1 -Action status
 | 启发式、NSGA-II | [metaheuristic-search](cards/metaheuristic-search.md) |
 | 验证、稳健性 | [validation-diagnostics](cards/validation-diagnostics.md) |
 
-算法卡是决策摘要，不是代码拷贝。选中候选后，回到当前项目的 runner 和证据合同中重新实现。
+算法卡是决策摘要，不是代码拷贝。选中候选后，回到当前项目 runner 和证据合同中重新实现。
 
-每张卡的 `skeleton_path` 指向一个项目自有重写骨架。骨架只定义输入输出、baseline、约束回查和验证回执，不包含外部仓库代码；正式运行前必须将其实现复制到当前项目并重新记录代码、数据和环境哈希。
+每张卡的 `skeleton_path` 指向项目自有重写骨架。骨架只定义输入输出、baseline、约束回查和验证回执；正式运行前必须在当前项目中完成实现并重新记录代码、数据和环境哈希。
 
 ## 覆盖边界
 
