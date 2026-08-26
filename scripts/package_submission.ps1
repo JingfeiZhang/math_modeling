@@ -6,6 +6,23 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot '_environment.ps1')
+
+function Resolve-WinRarExecutable {
+    $command = Get-Command 'WinRAR.exe' -ErrorAction SilentlyContinue
+    if ($command) { return $command.Source }
+
+    $candidates = @()
+    $programFiles = [Environment]::GetEnvironmentVariable('ProgramFiles')
+    $programFilesX86 = [Environment]::GetEnvironmentVariable('ProgramFiles(x86)')
+    if ($programFiles) { $candidates += (Join-Path $programFiles 'WinRAR\WinRAR.exe') }
+    if ($programFilesX86) { $candidates += (Join-Path $programFilesX86 'WinRAR\WinRAR.exe') }
+
+    foreach ($candidate in $candidates) {
+        if (Test-Path -LiteralPath $candidate -PathType Leaf) { return $candidate }
+    }
+    throw 'Supporting archive policy requires WinRAR, but WinRAR.exe was not found in PATH or the standard Program Files locations.'
+}
+
 $hub = Get-ModelingRoot
 $root = if ($ProjectRoot) { [System.IO.Path]::GetFullPath($ProjectRoot) } else { $hub }
 $sharedRoot = if ($WorkspaceRoot) { [System.IO.Path]::GetFullPath($WorkspaceRoot) } else { $hub }
@@ -14,6 +31,7 @@ $selected = $resolved.Selected
 if ($selected.CorePrefixMissing.Count -gt 0 -or -not $selected.Coverage['pypdf']) {
     throw "Submission packaging requires an independent prefix with pypdf; missing: $($selected.CorePrefixMissing -join ', ')"
 }
+$winRar = Resolve-WinRarExecutable
 
 # Rebuild concise AI disclosure from the latest internal log immediately before
 # staging so the support archive cannot contain a stale details PDF.
@@ -25,7 +43,7 @@ if (Test-Path -LiteralPath $releaseManifest) {
     throw 'A sealed release already exists. Verify or archive it before rebuilding the package.'
 }
 
-# The formal package is sourced from one explicit tree.  Its contents become
+# The formal package is sourced from one explicit tree. Its contents become
 # the archive root so the support ZIP stays concise; paper/code_manifest.yaml
 # maps project paths to archive members through support_path.
 $submissionSource = Join-Path $root 'src\submission'
@@ -46,7 +64,7 @@ $packageAudit = Join-Path $output 'package_audit.json'
 if (Test-Path -LiteralPath $stage) { Remove-Item -LiteralPath $stage -Recurse -Force }
 New-Item -ItemType Directory -Force -Path $stage | Out-Null
 try {
-    # The archive is assembled from an explicit allow-list.  In particular,
+    # The archive is assembled from an explicit allow-list. In particular,
     # generated MATLAB MAT/report files and Python bytecode never enter it.
     $entries = @()
     foreach ($name in @('README.md','requirements.txt','run.py')) {
@@ -114,7 +132,23 @@ try {
     }
     $manifestLines | Set-Content -LiteralPath $manifestPath -Encoding ASCII
     if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force }
-    Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip -CompressionLevel Optimal
+
+    # CUMCM 2026 requires the support archive to be created with WinRAR.
+    # Run WinRAR from inside the staging directory so the archive root contains
+    # only the curated allow-list members rather than the staging folder itself.
+    Push-Location $stage
+    try {
+        & $winRar 'a' '-afzip' '-ep1' '-m5' '-r' '-y' $zip '*' | Out-Null
+        $winRarExitCode = $LASTEXITCODE
+        if ($winRarExitCode -ne 0) {
+            throw "WinRAR failed to create supporting.zip (exit code $winRarExitCode)."
+        }
+    } finally {
+        Pop-Location
+    }
+    if (-not (Test-Path -LiteralPath $zip -PathType Leaf)) {
+        throw 'WinRAR completed without producing supporting.zip.'
+    }
 } finally {
     if (Test-Path -LiteralPath $stage) { Remove-Item -LiteralPath $stage -Recurse -Force }
 }
@@ -143,4 +177,4 @@ $md5Lines | Set-Content -LiteralPath $overallMd5Manifest -Encoding ASCII
 & (Join-Path $PSScriptRoot 'audit_submission.ps1') -EnvironmentName $selected.Prefix -Strict -ProjectRoot $root -WorkspaceRoot $sharedRoot
 if ($LASTEXITCODE -ne 0) { throw 'Submission audit failed; package is not ready.' }
 $zipBytes = (Get-Item -LiteralPath $zip).Length
-Write-Host "Supporting archive: $zip ($zipBytes bytes)"
+Write-Host "Supporting archive: $zip ($zipBytes bytes; compressor=WinRAR)"
