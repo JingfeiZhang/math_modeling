@@ -179,8 +179,8 @@ roles:
     stop_conditions: [普通任务已安排或需要根Agent决策]
     decisions: [主模型, fallback, claim范围, 规则冲突, 发布阻断]
   solver:
-    objective: 推进拆题、模型、baseline、算法和实验；默认采用“baseline → 结构匹配主模型 → 针对已识别失败点的一次升级 → challenger验证 → 保留或回退”的质量路线，优先提高题面适配、样本外/压力场景表现、可解释性和决策价值，而不是追求模型复杂度。
-    read_scope: [question.yaml, contracts, experiments, results, literature/model_evidence_brief.yaml, references/competition-knowledge/playbooks/award-oriented-modeling.md]
+    objective: 推进拆题、数据诊断、模型、baseline、算法和实验；默认采用“问题驱动的数据处理 → baseline → 结构匹配主模型 → 针对已识别失败点的一次升级 → challenger验证 → 保留或回退”的质量路线，优先提高题面适配、样本外/压力场景表现、可解释性和决策价值，而不是追求模型复杂度。
+    read_scope: [question.yaml, contracts, experiments, results, literature/model_evidence_brief.yaml, references/competition-knowledge/playbooks/award-oriented-modeling.md, references/competition-knowledge/playbooks/data-and-feature-quality.md, references/competition-knowledge/playbooks/algorithm-routing-quality.md, references/competition-knowledge/playbooks/experiment-design-quality.md]
     write_scope: ["experiments/{problem}/{question}", output/_verification/model-verification, work]
     inputs: [question interface, quality contracts, known-answer fixture, candidate evidence, literature evidence]
     outputs: [requirement coverage map, problem semantics contract, metric contract, data profile, analysis route, assumption probes, effect-size and interval summary, algorithm evidence contract, known-answer verification, baseline-main-challenger comparison, type-specific validation, model card, run receipt, risk probes, candidate proposal, Formal model verification report]
@@ -197,17 +197,17 @@ roles:
     stop_conditions: [时间预算到达或模型证据足够]
     decisions: [未解决文献冲突, 需改变模型选择]
   visualization:
-    objective: 先判断评委真正需要比较、识别趋势还是读取精确数字，再决定figure/table/text/none；优先生成能直接支撑主结论、baseline差异、机制或权衡的高信息密度视觉表达。
-    read_scope: [figure_data_manifest.yaml, visual_intent.yaml, figure_briefs, frozen claims, quality contract hashes, output/_verification/model-verification]
+    objective: 从 reader question 出发先决定 figure/table/text/none，再识别 comparison、trend、distribution、uncertainty、tradeoff、spatial、network、schedule 或 mechanism 等关系类型；优先生成能直接支撑主结论、baseline差异、失败模式、机制或权衡的高信息密度视觉表达。
+    read_scope: [figure_data_manifest.yaml, visual_intent.yaml, figure_briefs, frozen claims, quality contract hashes, output/_verification/model-verification, references/competition-knowledge/playbooks/visual-evidence-quality.md, templates/figures/recipe_catalog.yaml]
     write_scope: ["experiments/{problem}/{question}/{level}/{run-id}/figure-staging", output/_verification]
     inputs: [formal data manifest, model verification status, current quality contract hashes, reader question, claim and baseline]
     outputs: [visual intent, figure brief, figure QA proposal]
     protected: [state/decision_log.json, "problems/{problem}/questions/{question}/contracts", "results/{problem}/claims.json", paper/main.tex, paper/figure_contracts.yaml, paper/figures]
-    stop_conditions: [设计决策完成或明确table/text/none]
+    stop_conditions: [设计决策完成或明确table/text/none；候选图不能提供表格或正文无法高效提供的信息时删除]
     decisions: []
   paper:
     objective: 只消费冻结claims和合格Paper Evidence完成正文；默认采用“先结论、后证据与解释”的高信息密度写法，突出模型适配理由、baseline定量比较、关键机制、实际决策价值和适用边界，压缩算法常识与工程流水账。
-    read_scope: [question.yaml, templates/prompts/paper/cumcm-2026.yaml, references/cumcm-paper-quality-playbook.md, results, paper-evidence, paper/figures, literature cards and bib]
+    read_scope: [question.yaml, templates/prompts/paper/cumcm-2026.yaml, references/cumcm-paper-quality-playbook.md, references/competition-knowledge/playbooks/visual-evidence-quality.md, results, paper-evidence, paper/figures, literature cards and bib]
     write_scope: [paper/sections, paper/generated, paper/tables, output/_verification]
     inputs: [frozen evidence, approved briefs, citation handoff]
     outputs: [section draft, evidence locator map, internal compact receipt, Markdown summary]
@@ -224,8 +224,8 @@ roles:
     stop_conditions: [G5/G6通过或阻断项明确]
     decisions: [发布阻断修复路径]
   reviewer:
-    objective: 只做独立内容审阅并输出review JSON；优先以评委视角检查每问是否快速回答题目、模型选择是否由证据驱动、主结果是否有baseline和解释、验证是否有区分度，以及摘要和正文是否具有足够的信息密度与结论边界。
-    read_scope: [project outputs, paper, formal evidence, references/cumcm-paper-quality-playbook.md, references/competition-knowledge/playbooks/award-oriented-modeling.md]
+    objective: 只做独立内容审阅并输出review JSON；优先以评委视角检查每问是否快速回答题目、数据处理是否服务于模型、模型选择是否由证据驱动、主结果是否有baseline和解释、实验是否针对最可能失败点、图表是否回答明确 reader question，以及摘要和正文是否具有足够的信息密度与结论边界。
+    read_scope: [project outputs, paper, formal evidence, references/cumcm-paper-quality-playbook.md, references/competition-knowledge/playbooks/award-oriented-modeling.md, references/competition-knowledge/playbooks/data-and-feature-quality.md, references/competition-knowledge/playbooks/algorithm-routing-quality.md, references/competition-knowledge/playbooks/experiment-design-quality.md, references/competition-knowledge/playbooks/visual-evidence-quality.md]
     write_scope: [output/_verification/reviews]
     inputs: [指定审阅对象, gate]
     outputs: [review JSON]
