@@ -1,236 +1,212 @@
 # -*- coding: utf-8 -*-
 """
-================================================================================
-05 残差诊断与假设检验 (Residual Diagnostics & Assumption Tests)
-================================================================================
-功能：
-    回归/预测模型建完后，检验其残差是否满足经典假设。不满足则结论(系数显著性、
-    置信区间)可能失真。本模板对残差做四项标准检验，每项给“通过/未通过/需改进”
-    判定与改进建议：
-      1. 正态性     —— Shapiro-Wilk 检验（残差是否近似正态）。
-      2. 方差齐性   —— Levene 检验（把残差按预测值分组，看各组方差是否一致）。
-      3. 独立性     —— Durbin-Watson 统计量（残差是否自相关，时序数据尤其重要）。
-      4. 异方差     —— Breusch-Pagan 检验（残差方差是否随自变量变化）。
-    另可选做游程检验(随机性)。最后打印一份汇总判定表。
+残差诊断与假设检查（study-only reference）
 
-适用竞赛场景：
-    - 线性/多项式回归、时间序列残差检验；论文里“模型假设检验”小节直接用。
-    - 呼应 2026 自查表对模型合理性/误差分析的要求。
-
-输入格式：
-    - y_true, y_pred：真实值与预测值（一维，等长）——最常用，内部自动算残差。
-    - 或直接传 residuals（残差数组）与 X（自变量矩阵，供 BP 异方差检验，可选）。
-
-输出：
-    - 控制台逐项打印统计量、p 值、判定与建议，末尾给汇总表。
-    - 保存 05_残差诊断图.png（残差vs预测 + 残差自相关）。
-
-依赖：numpy, scipy, statsmodels, (可选) matplotlib
-================================================================================
+本模板不输出“模型通过/未通过”的总分。统计检验只能提供针对某项假设的证据，
+不能证明模型整体正确、稳健或具有因果效力。是否需要某项诊断取决于当前模型的
+推断目标、数据结构和失败风险。
 """
-
-import sys
-try:
-    sys.stdout.reconfigure(encoding='utf-8')
-except Exception:
-    pass
 
 import numpy as np
 from scipy import stats
-
-# statsmodels 提供 Durbin-Watson 与 Breusch-Pagan
 import statsmodels.api as sm
-from statsmodels.stats.stattools import durbin_watson
 from statsmodels.stats.diagnostic import het_breuschpagan
+from statsmodels.stats.stattools import durbin_watson
 
-try:
-    import matplotlib
-    matplotlib.use('Agg')
-    import matplotlib.pyplot as plt
-    plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei']
-    plt.rcParams['axes.unicode_minus'] = False
-    _HAS_PLT = True
-except Exception:
-    _HAS_PLT = False
-
-ALPHA = 0.05   # 显著性水平：p<ALPHA 视为“拒绝原假设”
+ALPHA = 0.05
 
 
-# ----------------------------------------------------------------------
-# 1. 正态性检验：Shapiro-Wilk
-# ----------------------------------------------------------------------
+def _pvalue_status(p, null_name):
+    if not np.isfinite(p):
+        return "not_available"
+    if p < ALPHA:
+        return f"evidence_against_{null_name}"
+    return f"insufficient_evidence_against_{null_name}"
+
+
 def test_normality(resid):
-    """Shapiro-Wilk 正态性检验。H0：残差服从正态分布。
-    p≥0.05 → 不能拒绝正态（通过）；p<0.05 → 非正态（未通过）。"""
+    """
+    Shapiro-Wilk: H0 为样本来自正态分布。
+    p>=alpha 只能解释为“没有足够证据拒绝 H0”，不能写成“证明正态”。
+    """
     resid = np.asarray(resid, dtype=float).ravel()
-    # Shapiro 对 n>5000 不稳，样本大时抽样
-    r = resid if resid.size <= 5000 else np.random.RandomState(0).choice(resid, 5000, replace=False)
-    stat, p = stats.shapiro(r)
-    passed = p >= ALPHA
-    print("① 正态性 (Shapiro-Wilk)   W=%.4f  p=%.4g" % (stat, p))
-    if passed:
-        print("   判定：通过 —— 残差近似正态，系数显著性/置信区间可信。")
-    else:
-        print("   判定：未通过 —— 残差非正态。建议：对 y 做对数/Box-Cox 变换、")
-        print("        检查异常值、或改用稳健回归；样本大时轻微偏离影响不大。")
-    return {'name': '正态性', 'stat': stat, 'p': p, 'passed': passed}
+    if resid.size < 3:
+        raise ValueError("Shapiro-Wilk 至少需要 3 个残差")
+    sample = (
+        resid
+        if resid.size <= 5000
+        else np.random.default_rng(0).choice(resid, 5000, replace=False)
+    )
+    stat, p = stats.shapiro(sample)
+    status = _pvalue_status(float(p), "normality")
+    print(f"Shapiro-Wilk: W={stat:.4f}, p={p:.4g}, status={status}")
+    return {
+        "name": "normality",
+        "stat": float(stat),
+        "p": float(p),
+        "status": status,
+        "interpretation": (
+            "存在反对正态假设的证据；若推断依赖正态性，考虑稳健/Bootstrap/变换。"
+            if p < ALPHA
+            else "未发现足够证据拒绝正态假设；这不等于证明残差正态。"
+        ),
+    }
 
 
-# ----------------------------------------------------------------------
-# 2. 方差齐性：Levene（按预测值分箱）
-# ----------------------------------------------------------------------
 def test_homoscedasticity_levene(resid, y_pred, n_groups=3):
-    """Levene 方差齐性检验。把残差按预测值大小分成 n_groups 组，检验各组方差是否相等。
-    H0：各组方差相等。p≥0.05 → 方差齐（通过）；p<0.05 → 异方差（未通过）。"""
+    """
+    按预测值分组的 Levene 探针。分组方式本身是诊断设计的一部分，
+    不应把 p>=alpha 写成“同方差已证明”。
+    """
     resid = np.asarray(resid, dtype=float).ravel()
     y_pred = np.asarray(y_pred, dtype=float).ravel()
+    if len(resid) != len(y_pred):
+        raise ValueError("resid 与 y_pred 长度必须一致")
+    if n_groups < 2 or len(resid) < n_groups * 2:
+        raise ValueError("样本量不足以进行当前分组 Levene 诊断")
     order = np.argsort(y_pred)
     groups = np.array_split(resid[order], n_groups)
     stat, p = stats.levene(*groups)
-    passed = p >= ALPHA
-    print("② 方差齐性 (Levene, 按预测值分%d组)   W=%.4f  p=%.4g" % (n_groups, stat, p))
-    if passed:
-        print("   判定：通过 —— 残差方差稳定，满足同方差假设。")
-    else:
-        print("   判定：未通过 —— 存在异方差。建议：对 y 做变换、加权最小二乘(WLS)、")
-        print("        或用异方差稳健标准误(HC)。")
-    return {'name': '方差齐性', 'stat': stat, 'p': p, 'passed': passed}
+    status = _pvalue_status(float(p), "equal_variance")
+    print(f"Levene: W={stat:.4f}, p={p:.4g}, status={status}")
+    return {
+        "name": "equal_variance",
+        "stat": float(stat),
+        "p": float(p),
+        "status": status,
+        "interpretation": (
+            "存在组间方差差异信号；考虑稳健标准误、WLS、变换或重新建模。"
+            if p < ALPHA
+            else "当前分组下未发现足够证据拒绝等方差；仍应结合残差图判断。"
+        ),
+    }
 
 
-# ----------------------------------------------------------------------
-# 3. 独立性：Durbin-Watson
-# ----------------------------------------------------------------------
 def test_independence_dw(resid):
-    """Durbin-Watson 检验残差自相关。DW∈[0,4]，≈2 表示无自相关（通过）；
-    <1.5 正自相关、>2.5 负自相关（未通过，时序数据常见）。"""
+    """
+    Durbin-Watson 是自相关诊断量，不是“独立性通过证书”。
+    1.5~2.5 仅作为粗略筛查区间。
+    """
     resid = np.asarray(resid, dtype=float).ravel()
     dw = float(durbin_watson(resid))
-    passed = 1.5 <= dw <= 2.5
-    print("③ 独立性 (Durbin-Watson)   DW=%.4f" % dw)
-    if passed:
-        print("   判定：通过 —— DW≈2，残差无明显自相关。")
+    if dw < 1.5:
+        status = "possible_positive_autocorrelation"
+    elif dw > 2.5:
+        status = "possible_negative_autocorrelation"
     else:
-        direction = '正自相关' if dw < 1.5 else '负自相关'
-        print("   判定：未通过 —— 存在%s。建议：时序数据改用 ARIMA/加滞后项、" % direction)
-        print("        或用广义最小二乘(GLS)；检查是否漏了时间趋势/季节项。")
-    return {'name': '独立性', 'stat': dw, 'p': np.nan, 'passed': passed}
+        status = "no_obvious_first_order_signal"
+    print(f"Durbin-Watson: DW={dw:.4f}, status={status}")
+    return {
+        "name": "first_order_autocorrelation",
+        "stat": dw,
+        "p": np.nan,
+        "status": status,
+        "interpretation": (
+            "DW 只用于初步筛查；时序/面板数据应结合残差 ACF、Ljung-Box、"
+            "分组结构或相应模型诊断。"
+        ),
+    }
 
 
-# ----------------------------------------------------------------------
-# 4. 异方差：Breusch-Pagan（需自变量 X）
-# ----------------------------------------------------------------------
 def test_heteroscedasticity_bp(resid, X):
-    """Breusch-Pagan 检验：残差方差是否随自变量线性变化。
-    H0：同方差。p≥0.05 → 通过；p<0.05 → 异方差（未通过）。需提供自变量矩阵 X。"""
+    """Breusch-Pagan: H0 为误差方差不随给定解释变量系统变化。"""
     resid = np.asarray(resid, dtype=float).ravel()
     X = np.asarray(X, dtype=float)
     if X.ndim == 1:
         X = X.reshape(-1, 1)
+    if len(resid) != len(X):
+        raise ValueError("resid 与 X 行数必须一致")
     Xc = sm.add_constant(X)
     lm_stat, lm_p, f_stat, f_p = het_breuschpagan(resid, Xc)
-    passed = lm_p >= ALPHA
-    print("④ 异方差 (Breusch-Pagan)   LM=%.4f  p=%.4g" % (lm_stat, lm_p))
-    if passed:
-        print("   判定：通过 —— 无证据表明存在异方差。")
-    else:
-        print("   判定：未通过 —— 残差方差随自变量变化(异方差)。建议：y 做对数变换、")
-        print("        WLS 加权回归、或用稳健标准误。")
-    return {'name': '异方差', 'stat': lm_stat, 'p': lm_p, 'passed': passed}
+    status = _pvalue_status(float(lm_p), "homoscedasticity")
+    print(f"Breusch-Pagan: LM={lm_stat:.4f}, p={lm_p:.4g}, status={status}")
+    return {
+        "name": "heteroscedasticity",
+        "stat": float(lm_stat),
+        "p": float(lm_p),
+        "f_stat": float(f_stat),
+        "f_p": float(f_p),
+        "status": status,
+        "interpretation": (
+            "存在异方差信号；检查模型形式并考虑稳健标准误/WLS/变换。"
+            if lm_p < ALPHA
+            else "未发现足够证据拒绝同方差；不代表模型其他假设成立。"
+        ),
+    }
 
 
-# ----------------------------------------------------------------------
-# 汇总 + 绘图
-# ----------------------------------------------------------------------
-def diagnose_residuals(y_true=None, y_pred=None, residuals=None, X=None,
-                       save_path='05_残差诊断图.png'):
-    """一站式残差诊断：传 (y_true, y_pred) 或直接传 residuals。
-    若提供 X，则额外做 Breusch-Pagan 异方差检验。"""
+def diagnose_residuals(
+    y_true=None,
+    y_pred=None,
+    residuals=None,
+    X=None,
+    run_normality=True,
+    run_levene=True,
+    run_dw=True,
+    run_bp=True,
+):
+    """
+    按需要执行残差诊断。调用方应根据模型目标选择测试，而不是机械全跑。
+
+    返回 diagnostics 列表，不生成“总通过率”。
+    """
     if residuals is None:
         if y_true is None or y_pred is None:
-            raise ValueError("请提供 (y_true, y_pred) 或 residuals 之一。")
+            raise ValueError("请提供 (y_true, y_pred) 或 residuals")
         y_true = np.asarray(y_true, dtype=float).ravel()
         y_pred = np.asarray(y_pred, dtype=float).ravel()
+        if len(y_true) != len(y_pred):
+            raise ValueError("y_true 与 y_pred 长度必须一致")
         residuals = y_true - y_pred
     else:
         residuals = np.asarray(residuals, dtype=float).ravel()
+        if y_pred is not None:
+            y_pred = np.asarray(y_pred, dtype=float).ravel()
+
+    diagnostics = []
+
+    if run_normality:
+        diagnostics.append(test_normality(residuals))
+
+    if run_levene:
         if y_pred is None:
-            # 没给预测值时，用序号占位（残差vs顺序），DW/正态仍有效
-            y_pred = np.arange(residuals.size, dtype=float)
+            print("Levene: skipped（未提供 y_pred，无法按预测水平分组）")
+        else:
+            diagnostics.append(test_homoscedasticity_levene(residuals, y_pred))
 
-    print("=" * 64)
-    print("残差诊断与假设检验（显著性水平 α=%.2f）" % ALPHA)
-    print("=" * 64)
-    results = []
-    results.append(test_normality(residuals))
-    results.append(test_homoscedasticity_levene(residuals, y_pred))
-    results.append(test_independence_dw(residuals))
-    if X is not None:
-        results.append(test_heteroscedasticity_bp(residuals, X))
-    else:
-        print("④ 异方差 (Breusch-Pagan)：跳过（未提供自变量 X）。")
+    if run_dw:
+        diagnostics.append(test_independence_dw(residuals))
 
-    # 汇总表
+    if run_bp:
+        if X is None:
+            print("Breusch-Pagan: skipped（未提供 X）")
+        else:
+            diagnostics.append(test_heteroscedasticity_bp(residuals, X))
+
     print("-" * 64)
-    print("汇总判定表：")
-    n_pass = 0
-    for r in results:
-        flag = '通过' if r['passed'] else '未通过(需改进)'
-        n_pass += int(r['passed'])
-        pstr = ('p=%.4g' % r['p']) if not np.isnan(r['p']) else ('统计量=%.4f' % r['stat'])
-        print("   %-8s %-10s (%s)" % (r['name'], flag, pstr))
-    print("   通过 %d / %d 项。" % (n_pass, len(results)))
-    if n_pass == len(results):
-        print("   总体：模型残差满足经典假设，检验通过，结论稳健可信。")
-    else:
-        print("   总体：部分假设未满足，按上方建议修正后重估，或在论文中说明其影响。")
+    print("诊断摘要（不是模型总分）：")
+    for item in diagnostics:
+        print(f"  {item['name']}: {item['status']}")
+        print(f"    {item['interpretation']}")
 
-    # 绘图：残差vs预测 + 残差滞后自相关散点
-    if _HAS_PLT:
-        try:
-            fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5))
-            ax1.scatter(y_pred, residuals, s=18, alpha=0.6, color='#3b78c3')
-            ax1.axhline(0, color='r', ls='--', lw=1.5)
-            ax1.set_xlabel('预测值/顺序'); ax1.set_ylabel('残差')
-            ax1.set_title('残差 vs 预测值（看方差齐性/系统偏差）'); ax1.grid(alpha=0.3)
-            # 残差滞后图 e_t vs e_{t-1}，看独立性
-            ax2.scatter(residuals[:-1], residuals[1:], s=18, alpha=0.6, color='#5aa469')
-            ax2.set_xlabel('残差 e(t-1)'); ax2.set_ylabel('残差 e(t)')
-            ax2.set_title('残差滞后图（无规律=独立；有斜率=自相关）'); ax2.grid(alpha=0.3)
-            plt.tight_layout(); plt.savefig(save_path, dpi=120); plt.close(fig)
-            print("[图已保存] %s" % save_path)
-        except Exception as e:
-            print("绘图跳过：", e)
-    return results
+    print(
+        "结论边界：以上结果只说明特定残差风险是否被观察到；"
+        "模型是否可信还需结合样本外表现、baseline、数据生成结构和任务专项验证。"
+    )
+    return diagnostics
 
 
-if __name__ == '__main__':
-    # ========================================================================
-    # 👉 用你自己的国赛模型残差：把下面【示例数据】整段注释掉，改用这段
-    #   import pandas as pd
-    #   df = pd.read_csv('附件1.csv', encoding='gbk')  # 乱码就换 utf-8 / gb18030
-    #   y_true = df['真实列'].values          # 观测值
-    #   y_pred = df['预测列'].values          # 你模型的预测值
-    #   X = df[['特征1','特征2']].values      # 自变量(做异方差 BP 检验用，可不给)
-    #   diagnose_residuals(y_true=y_true, y_pred=y_pred, X=X)
-    #   详见 01_数据预处理与可视化/00_CSV数据导入完全指南.py
-    # ------------------------------------------------------------------------
-    # 【示例数据】(仅供演示，替换为上面的真实数据后可删除)
-    rng = np.random.RandomState(42)
+if __name__ == "__main__":
+    # 【Study-only example】
+    rng = np.random.default_rng(42)
     n = 150
     X = rng.uniform(0, 10, (n, 2))
-    y_true = X @ np.array([2.0, -1.0]) + 5
+    y = X @ np.array([2.0, -1.0]) + 5
+    pred = y + rng.normal(0, 1.0, n)
 
-    print("\n########## 演示 1：良好残差（正态、同方差、独立）##########")
-    y_pred_good = y_true + rng.normal(0, 1.0, n)
-    diagnose_residuals(y_true=y_true, y_pred=y_pred_good, X=X,
-                       save_path='05_残差诊断图_好.png')
+    diagnose_residuals(y_true=y, y_pred=pred, X=X)
 
-    print("\n########## 演示 2：问题残差（异方差 + 自相关）##########")
-    # 异方差：噪声随第一个特征放大；自相关：叠加累积项
-    hetero_noise = rng.normal(0, 0.3 + 0.5 * X[:, 0], n)
-    ar_term = np.cumsum(rng.normal(0, 0.3, n))       # 制造正自相关
-    y_pred_bad = y_true + hetero_noise + ar_term
-    diagnose_residuals(y_true=y_true, y_pred=y_pred_bad, X=X,
-                       save_path='05_残差诊断图_差.png')
-
-    print("\n演示完成。把 y_true、y_pred（及可选 X）换成你模型的输出即可复用。")
+    print(
+        "\n正式赛题不要把‘p>=0.05’写成模型通过。"
+        "先说明当前模型最可能违反哪项假设，再选择对应诊断。"
+    )
