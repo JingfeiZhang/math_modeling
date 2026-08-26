@@ -44,6 +44,8 @@ format:
   min_margin_cm: 2.5
   abstract_max_pages: 1
   paper_body_max_pages: 30
+  paper_body_limit_policy: required
+  paper_total_hard_max_pages: null
   appendix_page_limit: null
   paper_max_mb: 20
   support_max_mb: 20
@@ -59,7 +61,7 @@ format:
     - document_metadata
   searchable_pdf_min_chars_per_page: 20
   searchable_pdf_min_page_ratio: 0.8
-  searchable_pdf_policy: internal_recommendation
+  searchable_pdf_policy: recommended
   provisional: false
 
 submission:
