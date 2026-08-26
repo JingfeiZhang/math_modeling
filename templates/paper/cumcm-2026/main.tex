@@ -41,10 +41,14 @@
   }
 \fi
 \input{sections/model_evaluation.tex}
-\typeout{MATHMODEL:CUMCM_BODY_PAGES=\number\numexpr\value{page}-\value{MathModelBodyStartPage}\relax}
 \ifRequireAIStatement
   \input{sections/ai_statement.tex}
 \fi
 \input{sections/references.tex}
+
+% The official 30-page limit applies to the body before the appendix.  Force
+% the appendix onto a fresh page, then count the completed body pages.
+\clearpage
+\typeout{MATHMODEL:CUMCM_BODY_PAGES=\number\numexpr\value{page}-\value{MathModelBodyStartPage}\relax}
 \input{sections/appendix.tex}
 \end{document}
