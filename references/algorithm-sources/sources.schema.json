@@ -35,6 +35,7 @@
           "source_paths": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
           "last_checked": {"type": "string", "format": "date"},
           "mirror_mode": {"type": "string", "enum": ["git_clone", "local_directory"]},
+          "local_content_policy": {"type": "string", "enum": ["byte_exact_upstream", "curated_derivative"]},
           "mirror_relpath": {"type": "string", "pattern": "^(?!/)(?![A-Za-z]:)[^\\\\]+$"},
           "index_relpath": {"type": "string", "pattern": "^(?!/)(?![A-Za-z]:)[^\\\\]+$"}
         },
