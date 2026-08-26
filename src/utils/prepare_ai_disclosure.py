@@ -9,7 +9,10 @@ import shutil
 import subprocess
 from pathlib import Path
 
-import aggregate_ai_usage
+try:
+    from . import aggregate_ai_usage  # type: ignore
+except ImportError:  # direct script execution
+    import aggregate_ai_usage  # type: ignore
 
 
 STAGE_PARAGRAPHS = {
