@@ -14,7 +14,7 @@
         "contest_evidence_eligible": {"const": false},
         "allowed_use": {"type": "array", "items": {"type": "string"}, "minItems": 4, "uniqueItems": true},
         "forbidden_use": {"type": "array", "items": {"type": "string"}, "minItems": 6, "uniqueItems": true},
-        "original_code_in_repository": {"const": false}
+        "original_code_in_repository": {"type": "boolean"}
       },
       "additionalProperties": false
     },
