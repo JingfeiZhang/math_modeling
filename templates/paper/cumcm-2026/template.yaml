@@ -6,8 +6,8 @@ margin_mm: 25
 automatic_toc: false
 identity_fields: false
 abstract_separate_page: true
-rule_status: verify_against_official_2026_rules_before_submission
-contract_version: "3.0"
+rule_status: verified_2026-08-27
+contract_version: "3.1"
 prompt_policy_version: 1
 paper_prompt_mode: external
 standard_paper_profile: cumcm-standard-v1
@@ -25,11 +25,17 @@ structure_contract:
   generated_question_structure: paper/generated/question_structure.tex
   generated_build_mode: paper/generated/build_mode.tex
   generated_build_mode_rule: 正式初始化后写入 MathModelPreviewfalse；模板副本默认保持预览模式
+  generated_ai_statement: paper/generated/ai_usage_statement.tex
   no_parallel_markdown_manuscript: true
   automatic_toc: false
   notation_location: front_body
   appendix_symbol_table: false
-  ai_statement: only_when_current_rules_require
+  ai_statement: always_required_for_cumcm_2026
+  ai_statement_location: immediately_before_references
+  ai_details_pdf:
+    required_when_ai_used: true
+    filename: AI工具使用详情.pdf
+    destination: supporting_materials
   section_order:
     - abstract_keywords
     - problem_restatement
@@ -38,7 +44,7 @@ structure_contract:
     - data_processing_metrics
     - generated_questions
     - model_evaluation
-    - conditional_ai_statement
+    - ai_statement
     - references
     - appendix
   question_count:
@@ -101,6 +107,7 @@ structure_contract:
     question_heading_fixed_by_template: false
     current_official_page_limit_overrides_template: true
 notes:
+  - Synced against the official 2026 competition rules, paper format specification, first notice, and AI-use regulation on 2026-08-27.
   - The official current-year rule overrides this template.
   - Initialize the generated question structure only after a real problem is supplied.
   - Replace result prompts only with frozen evidence; problem-analysis prompts may be completed earlier.
