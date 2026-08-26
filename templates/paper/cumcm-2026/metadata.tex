@@ -9,9 +9,10 @@
 \newif\ifMathModelPreview
 \MathModelPreviewtrue
 
-% 当届官方规则要求时，由项目初始化或人工核验结果开启。
+% 2026 官方 AI 工具使用规定要求每支参赛队均在参考文献之前设置声明，
+% 无论实际是否使用 AI 均必须保留本节。
 \newif\ifRequireAIStatement
-\RequireAIStatementfalse
+\RequireAIStatementtrue
 
 % initialize 会根据题面实际子问题数量写入以下开关。
 % 默认按三问赛题预览；四问赛题将 HasQuestionFour 设为 true。

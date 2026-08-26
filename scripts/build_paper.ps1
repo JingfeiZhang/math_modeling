@@ -89,6 +89,10 @@ if ($PreviewCheckpoint) {
     $selected = $resolved.Selected
     if ($selected.CoreMissing.Count -gt 0) { throw "Selected environment lacks core packages: $($selected.CoreMissing -join ', ')" }
 
+    # Keep AI disclosure derived from the latest internal evidence and build it
+    # before the manuscript so the PDF can never contain a stale placeholder.
+    & (Join-Path $PSScriptRoot 'prepare_ai_disclosure.ps1') -EnvironmentName $EnvironmentName -ProjectRoot $root -WorkspaceRoot $sharedRoot
+
     $statePath = Join-Path $root 'state\decision_log.json'
     if (Test-Path -LiteralPath $statePath) {
         $state = Get-Content -LiteralPath $statePath -Raw -Encoding UTF8 | ConvertFrom-Json

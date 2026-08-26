@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CUMCM internal AI usage event",
+  "type": "object",
+  "required": [
+    "timestamp",
+    "tool",
+    "model_version",
+    "purpose",
+    "stage",
+    "prompt_summary",
+    "output_used",
+    "human_verification"
+  ],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1},
+    "timestamp": {"type": "string", "minLength": 1},
+    "tool": {"type": "string", "minLength": 1},
+    "model_version": {"type": "string", "minLength": 1},
+    "purpose": {"type": "string", "minLength": 1},
+    "stage": {"type": "string", "minLength": 1},
+    "disclosure_stage": {
+      "enum": [
+        "problem_analysis",
+        "modeling_implementation",
+        "experiment_validation",
+        "paper_writing"
+      ]
+    },
+    "prompt_summary": {"type": "string", "minLength": 1},
+    "ai_role": {
+      "oneOf": [
+        {"type": "string", "minLength": 1},
+        {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true}
+      ]
+    },
+    "output_used": {
+      "oneOf": [
+        {"type": "boolean"},
+        {"type": "string", "minLength": 1}
+      ]
+    },
+    "human_verification": {
+      "oneOf": [
+        {"type": "string", "minLength": 1},
+        {"type": "object", "minProperties": 1}
+      ]
+    },
+    "human_modification": {"type": "string"},
+    "reviewer": {"type": "string"},
+    "evidence_locator": {"type": "string"},
+    "question": {"type": "string"}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,34 @@
+schema_version: 1
+competition: CUMCM
+year: 2026
+title: 全国大学生数学建模竞赛人工智能工具使用规定（2026年试行）
+status: verified
+published_date: '2026-08-03'
+effective_date: '2026-09-01'
+official_page: https://www.mcm.edu.cn/html_cn/node/fef94648f2836ab6cc81586f4c38512b.html
+official_pdf: https://www.mcm.edu.cn/upload_cn/node/785/Glps6mBh6563c55c45300fede72ddbf6eb33d3a8.pdf
+requirements:
+  applies_to:
+    - large_language_models
+    - generative_ai
+    - code_assistance
+    - ai_agents
+  core_modeling_and_analysis_team_led: true
+  all_ai_assisted_content_manual_review: true
+  declaration:
+    required: true
+    location: before_references
+    no_ai_text: 本参赛队在竞赛过程中未使用任何AI工具。
+    used_ai_template: 本参赛队在竞赛过程中使用了AI工具，主要用于【简要用途】，详细使用情况见支撑材料。
+  details_pdf:
+    required_when_ai_used: true
+    filename: AI工具使用详情.pdf
+    format: pdf
+    required_content:
+      - tool_name_and_version_or_model
+      - purpose_and_stage
+      - prompting_approach_and_usage_process
+      - adoption_manual_modification_and_verification
+  violation_policy:
+    concealment_or_false_declaration: award_eligibility_revoked
+    unreviewed_ai_core_modeling_or_analysis: award_eligibility_revoked

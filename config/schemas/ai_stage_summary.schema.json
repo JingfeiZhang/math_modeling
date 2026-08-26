@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CUMCM AI disclosure stage summary",
+  "type": "object",
+  "required": ["schema_version", "mode", "tools", "stages", "unclassified_events"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "mode": {"enum": ["used", "not_used"]},
+    "source_log": {"type": ["string", "null"]},
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tool", "model_version"],
+        "properties": {
+          "tool": {"type": "string", "minLength": 1},
+          "model_version": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "stages": {
+      "type": "object",
+      "required": ["problem_analysis", "modeling_implementation", "experiment_validation", "paper_writing"],
+      "additionalProperties": false,
+      "properties": {
+        "problem_analysis": {"$ref": "#/$defs/stage"},
+        "modeling_implementation": {"$ref": "#/$defs/stage"},
+        "experiment_validation": {"$ref": "#/$defs/stage"},
+        "paper_writing": {"$ref": "#/$defs/stage"}
+      }
+    },
+    "unclassified_events": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "stage": {
+      "type": "object",
+      "required": ["used", "event_count", "ai_roles", "purposes", "prompt_themes", "human_actions", "verification_notes"],
+      "properties": {
+        "used": {"type": "boolean"},
+        "event_count": {"type": "integer", "minimum": 0},
+        "ai_roles": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "purposes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "prompt_themes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "human_actions": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "verification_notes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

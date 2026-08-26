@@ -15,6 +15,10 @@ if ($selected.CorePrefixMissing.Count -gt 0 -or -not $selected.Coverage['pypdf']
     throw "Submission packaging requires an independent prefix with pypdf; missing: $($selected.CorePrefixMissing -join ', ')"
 }
 
+# Rebuild concise AI disclosure from the latest internal log immediately before
+# staging so the support archive cannot contain a stale details PDF.
+& (Join-Path $PSScriptRoot 'prepare_ai_disclosure.ps1') -EnvironmentName $EnvironmentName -ProjectRoot $root -WorkspaceRoot $sharedRoot
+
 $output = Join-Path $root 'output'
 $releaseManifest = Join-Path $output 'release\release_manifest.json'
 if (Test-Path -LiteralPath $releaseManifest) {
