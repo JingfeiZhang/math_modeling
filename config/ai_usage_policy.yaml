@@ -16,6 +16,30 @@ state:
   required_in_formal_project: true
   allowed_modes: [used, not_used]
 
+recording:
+  owner: agent
+  helper: src/utils/record_ai_usage.py
+  humans_edit_raw_jsonl: false
+  precontest_tbd_writes_forbidden: true
+  agent_autofill:
+    - timestamp
+    - tool
+    - model_version
+    - purpose
+    - stage
+    - prompt_summary
+    - disclosure_stage
+    - ai_role
+    - question
+  human_confirmation_fields:
+    - output_used
+    - human_verification
+    - human_modification_when_modified
+  preferred_adoption_states:
+    - rejected
+    - modified
+    - verified_accepted
+
 log:
   # Internal evidence only. This file must never be copied into the support archive.
   path: output/ai/raw_usage.jsonl
