@@ -1,144 +1,59 @@
----
-playbook_id: visual-evidence-quality
-playbook_version: 1
-tags: [visualization, evidence, reader-question, figure-design, paper-quality]
-stage_scope: [P3a, P3b, P4, P5]
-evidence_status: guidance-only
-contest_evidence_eligible: false
-allowed_use: [artifact_selection, figure_design, table_design, caption_design, visual_hierarchy]
-forbidden_use: [synthetic_evidence, manual_result_creation]
----
+# 学术化可视化与证据设计手册
 
-# 可视化证据与图表设计手册
+正式可视化帮助评委完成一个判断，不展示绘图能力。
 
-本手册不改变现有 `figure_data_manifest → visual_intent → figure_brief → render/QA` 生命周期。它只提升“什么时候该画、该画什么、怎样让图真正证明结论”的决策质量。
+## 1. 先写 Reader Question
 
-## 1. 第一问不是“画什么图”，而是 Reader Question
+任何正式图前先回答：读者看完应能判断什么？无法回答时优先 table/text/none。
 
-每个候选图表先写一句：
+## 2. 图表职责
 
-> 评委看完这个视觉证据后，应该能回答什么问题？
+Result Figure 展示预测、方案、空间结构、调度、状态轨迹、Pareto；Validation Figure 展示 residual、calibration、sensitivity、robustness、group error；Mechanism Figure 展示变量关系、状态转移、网络流、资源瓶颈、贡献结构。一图最好一个主职责。
 
-如果无法写出明确 reader question，就不画。
+## 3. Figure / Table / Text / None
 
-## 2. Figure / Table / Text / None 路由
+精确数字/指标/参数 → Table；趋势、分布、关系、不确定性、空间、网络、权衡 → Figure；1–3 个数字 → Text；不增加理解 → None。避免同一数据“表 + 柱状图 + 正文逐项复述”。
 
-- **Table**：需要精确读取模型指标、参数、方案明细、排名或多指标比较；
-- **Figure**：需要识别趋势、分布、关系、不确定性、空间、网络、调度、权衡或机制；
-- **Text**：只有 1–3 个核心数字；
-- **None**：不能增加结论信息，只是装饰或重复。
+## 4. 图型路由
 
-同一批数字不默认同时做表、柱状图和逐项文字复述。
+模型优于 baseline → dot-whisker/紧凑表；预测一致性 → observed-vs-predicted/prediction interval；失败群体 → error-by-group；完整分布 → ECDF/box+raw points；参数影响 → sensitivity；场景稳健 → heatmap；多目标 → Pareto；排名稳定 → rank-stability；调度 → Gantt；资源瓶颈 → resource-profile；网络 → network flow；空间 → map/spatial residual；收敛 → convergence（辅助）。
 
-## 3. 三类论文图
+## 5. 视觉语义
 
-### Result Figure
-回答“得到了什么”：预测轨迹、方案、资源配置、空间分布、Pareto、状态轨迹。
+baseline 中性/弱化，main 主强调，challenger 次强调，violation/failure 警示，uncertainty 用 band/interval。颜色不是唯一编码，同时用 line style/marker/shape。
 
-### Validation Figure
-回答“为什么可信”：校准、残差、误差分组、敏感性、鲁棒性、排名稳定性。
+## 6. 学术图形规范
 
-### Mechanism Figure
-回答“为什么产生这个结果”：特征效应、资源贡献、网络流、机制图、状态转移。
+白底、2D、少量网格、无装饰性 3D、无彩虹 colormap、无渐变阴影、字体最终版面可读、轴写变量与单位、图例不遮挡数据。
 
-不要求每问三类齐全；优先覆盖最关键证据缺口。
+## 7. 不确定性
 
-## 4. Reader Question → 推荐视觉
+有重复实验、估计区间或模型不确定性时优先 confidence/credible interval、quantile band、multi-seed distribution、scenario range。没有统计含义的误差棒不画。
 
-| Reader Question | 优先形式 |
-|---|---|
-| 哪个模型更好且差异是否稳定？ | dot/interval 或紧凑表 |
-| 随时间/有序变量如何变化？ | line + interval |
-| 预测值与真实值是否一致？ | observed-vs-predicted + identity line |
-| 误差集中在哪些群体/时段？ | error-by-group |
-| 两组分布是否真正不同？ | ECDF / box+raw points |
-| 分类性能是否适合不平衡数据？ | PR + confusion + calibration |
-| 参数影响是否存在阈值/非线性？ | sensitivity curve |
-| 多参数谁最重要？ | sensitivity ranking |
-| 场景下是否稳健？ | robustness/scenario matrix |
-| 多目标如何权衡？ | Pareto scatter |
-| 排名是否随权重改变？ | rank-stability |
-| 调度方案如何安排？ | Gantt |
-| 资源何时拥塞？ | resource profile |
-| 网络流量如何变化？ | network flow |
-| 空间差异在哪里？ | spatial distribution |
-| 算法是否稳定收敛？ | convergence，仅作辅助算法证据 |
+## 8. 模型比较与预测
 
-## 5. 模型比较不要默认柱状图
+有估计与区间时优先 dot-whisker；指标多时优先紧凑表或 small multiples。预测主图通常只保留 Observed + Main + Baseline + Interval（需要时），其他候选进表。
 
-有均值与区间时优先 dot-whisker/forest style；它能同时表达中心、不确定性、baseline 和 primary。柱状图只适合无区间的少量非负总量比较，且通常从零开始。
+## 9. 优化
 
-## 6. 预测图主线简化
+优先展示方案、资源、调度、路径、Pareto 和压力场景，收敛曲线只说明求解行为。
 
-正文主图优先保留：Observed、Primary、Baseline、Interval。其他模型放比较表，不把 5–10 条模型曲线叠成 spaghetti plot。
+## 10. 排序/聚类/网络/空间
 
-预测可信度应由时间外误差、校准/区间覆盖、error-by-group 等证据补充，而不是仅展示拟合曲线。
+排名最终值适合表格，稳定性更适合图；聚类投影不能替代稳定性；网络节点多时聚合或筛关键边；地图只在空间位置本身有解释作用时使用。
 
-## 7. 优化结果优先画“方案”，不是只画收敛
+## 11. Annotation 与 Multi-panel
 
-优化论文图的优先级：
+只标推荐方案、knee、阈值、峰值、约束边界、重要异常。多 panel 只有共同回答一个 reader question 才组合。
 
-```text
-方案/资源/调度/权衡
-> robustness/sensitivity
-> convergence
-```
+## 12. Caption 与图前图后
 
-收敛曲线说明求解行为，不能替代方案价值。
+高质量 caption 包含对象 + 条件 + 编码/区间 + 主要比较。图前说明为什么需要证据；图后写结果、比较、原因、意义、边界。避免连续“由图 X 可知”。
 
-## 8. 排名/评价优先画稳定性
+## 13. 数据完整性
 
-最终排名通常用表即可。更有论文价值的是：权重/标准化/删项变化后 top-k 是否稳定、何时发生排名翻转。
+正式图只读真实 artifact，不手填论文数字、不 synthetic fallback；源数据、脚本、claim locator 可追溯。
 
-## 9. 空间和网络图避免“有坐标就画地图”“有边就画网络”
+## 14. 信息密度检查
 
-若读者需要精确比较数值，排序表或 dot plot 可能优于地图。高密度网络应优先聚合、top-flow、community summary 或矩阵，避免毛线球。
-
-## 10. Visual hierarchy
-
-默认语义：
-
-- Primary model/推荐方案：主强调；
-- Baseline：中性、虚线/方形等第二编码；
-- Challenger/context：次强调；
-- Failure/violation：仅在表达风险时使用警示语义。
-
-颜色不能是唯一编码，同时利用线型、marker、填充或直接标签，保证灰度打印和色觉异常仍可读。
-
-## 11. 视觉风格
-
-正式论文图默认：白底、2D、少网格、无 3D、无渐变装饰、无阴影、无彩虹色谱、避免过多 legend。
-
-坐标轴必须使用“变量 + 单位”。双 Y 轴默认不用；对数轴必须显式说明。最终尺寸文字优先保持至少 9 pt 可读。
-
-## 12. Annotation
-
-只标真正具有解释价值的点：推荐方案、阈值、knee、约束边界、峰值、异常失败点。不要给每个点都贴数值。
-
-## 13. Multipanel
-
-只有多个 panel 共同证明同一结论时组合，例如 prediction + residual + error distribution。不同问题的图不要仅为省图号强行拼在一起。
-
-## 14. Plot-ready data
-
-绘图脚本只消费从真实实验 artifact 派生的 tidy table，不手填论文数字。转换应为只读：筛选、排序、单位换算、聚合、区间计算等必须可复现并在 figure manifest/brief 中记录。
-
-## 15. Caption 质量
-
-Caption 不只是“图 X 预测结果”。应简洁说明：比较对象、数据/场景、关键视觉编码和读图边界。正文负责给结论与意义。
-
-例如：
-
-> 滚动测试期主模型与季节朴素基线的预测结果，阴影表示95%预测区间；峰值时段仍是主要误差来源。
-
-## 16. 论文中的引用顺序
-
-图前：说明为什么需要该证据。
-
-图后：按“结果 → baseline比较 → 原因/机制 → 实际意义 → 边界”解释。
-
-禁止连续写“如图X所示”而只复述视觉形状。
-
-## 17. 停止规则
-
-一张图如果不能提供表格/正文无法高效提供的信息，删除。每问优先保留少量高信息量主结果和验证图，而不是追求图数。
+删掉只重复表格的柱状图、装饰流程图、无 reader question 热力图、不能改变判断的相关图、只有算法迭代没有方案质量的收敛图。
