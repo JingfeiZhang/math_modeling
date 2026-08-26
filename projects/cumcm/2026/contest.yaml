@@ -1,52 +1,131 @@
 competition: CUMCM
 display_name: 全国大学生数学建模竞赛
 language: zh-CN
-rules:
-  status: verified
-  require_verification_before_submission: true
-  sources:
-  - https://www.mcm.edu.cn/html_cn/node/9d8e511fe7a1447b35f53a82c908e2e0.html
-  - https://www.mcm.edu.cn/html_cn/node/4cd596519c9eb9fbd866398f6df0caa3.html
-paper:
-  template_family: cumcm-2026
-  template_status: verified
-format:
-  paper_body_max_pages: 30
-  abstract_max_pages: 1
-  paper_max_mb: 20
-  support_max_mb: 20
-  min_margin_cm: 2.5
-  searchable_pdf_min_chars_per_page: 20
-  searchable_pdf_min_page_ratio: 0.8
-  require_anonymous: true
-  electronic_pdf_excludes_commitment_pages: true
-  provisional: false
-submission:
-  searchable_pdf_policy: recommended
-  hash_algorithms:
-  - md5
-  - sha256
-  separate_paper_and_support: true
-  source_code_in_appendix_and_support: true
-  hash_deadline: '2026-09-13T20:00:00+08:00'
-  upload_start: '2026-09-13T20:30:00+08:00'
-  upload_deadline: '2026-09-14T14:00:00+08:00'
-  release_manifest: output/release/release_manifest.json
-  release_checklist: output/release/submission_checklist.yaml
-deadline: '2026-09-13T20:00:00+08:00'
-schema_version: 1
+schema_version: 2
 project_id: cumcm-2026
 profile_id: cumcm
 year: 2026
 problem: TBD
+
+rules:
+  status: verified
+  verified_on: '2026-08-27'
+  require_verification_before_submission: true
+  precedence: official_current_year_overrides_workspace_defaults
+  sources:
+    - name: 2026参赛规则
+      url: https://www.mcm.edu.cn/upload_cn/node/774/FlQt6kJV6f5d5b4603e06c3c60acf89b72d7f298.pdf
+    - name: 2026论文格式规范
+      url: https://www.mcm.edu.cn/upload_cn/node/775/cQMeL0YY905244c8bd4b9af832f1699446d8385e.pdf
+    - name: 2026人工智能工具使用规定
+      url: https://www.mcm.edu.cn/html_cn/node/fef94648f2836ab6cc81586f4c38512b.html
+      attachment: https://www.mcm.edu.cn/upload_cn/node/785/Glps6mBh6563c55c45300fede72ddbf6eb33d3a8.pdf
+      effective_date: '2026-09-01'
+    - name: 2026第一次通知及报名参赛须知
+      url: https://www.mcm.edu.cn/html_cn/node/d6fd7a0ee8f3a3d525e30af1c365fcec.html
+      attachment: https://www.mcm.edu.cn/upload_cn/node/779/D3txF20S95f4041e22b41b4a1f9e0e22ac8a1389.pdf
+
+competition_timing:
+  start: '2026-09-10T18:00:00+08:00'
+  end: '2026-09-13T20:00:00+08:00'
+  registration_deadline_mainland: '2026-09-07T20:00:00+08:00'
+
+paper:
+  template_family: cumcm-2026
+  template_status: verified
+  electronic_first_page: abstract
+  no_table_of_contents: true
+  paper_copy_commitment_page: 1
+  paper_copy_number_page: 2
+  electronic_excludes_commitment_and_number_pages: true
+
+format:
+  paper_size: A4
+  min_margin_cm: 2.5
+  abstract_max_pages: 1
+  paper_body_max_pages: 30
+  appendix_page_limit: null
+  paper_max_mb: 20
+  support_max_mb: 20
+  electronic_formats: [pdf, docx]
+  electronic_preferred_format: pdf
+  require_anonymous: true
+  anonymity_scope:
+    - abstract
+    - body
+    - appendix
+    - support_members
+    - filenames
+    - document_metadata
+  searchable_pdf_min_chars_per_page: 20
+  searchable_pdf_min_page_ratio: 0.8
+  searchable_pdf_policy: internal_recommendation
+  provisional: false
+
+submission:
+  system: https://cumcm.cnki.net
+  separate_paper_and_support: true
+  paper_must_not_be_compressed: true
+  support_archive_formats: [zip, rar]
+  support_compressor: WinRAR
+  paper_filename_unrestricted_by_system: true
+  support_filename_unrestricted_by_system: true
+  support_materials:
+    include_all_runnable_source_code: true
+    include_self_collected_or_nonpublic_data_used: true
+    exclude_problem_provided_original_data: true
+    include_large_intermediate_tables_or_figures_when_needed: true
+    file_list_must_appear_in_paper_appendix: true
+    source_code_must_also_appear_in_paper_appendix: true
+    source_code_must_run_and_match_paper_results: true
+    optional_only_when_truly_no_supporting_material_exists: true
+  ai_usage:
+    declaration_required_for_every_team: true
+    declaration_location: before_references
+    details_required_when_ai_used: true
+    details_filename: AI工具使用详情.pdf
+    details_format: pdf
+    core_modeling_and_analysis_team_led: true
+    all_ai_assisted_content_manually_reviewed: true
+  official_hash_algorithm: md5
+  internal_integrity_algorithms: [md5, sha256]
+  hash_deadline: '2026-09-13T20:00:00+08:00'
+  upload_start: '2026-09-13T20:30:00+08:00'
+  upload_deadline: '2026-09-14T14:00:00+08:00'
+  operator_role: first_registered_student
+  release_manifest: output/release/release_manifest.json
+  release_checklist: output/release/submission_checklist.yaml
+
+discipline:
+  independent_team_work_required: true
+  advisor_guidance_during_contest_forbidden: true
+  outside_person_discussion_forbidden: true
+  contest_related_content_on_communication_platforms_forbidden: true
+  explicitly_named_platform_examples:
+    - 贴吧
+    - QQ群
+    - 微信群
+    - 网络直播间
+    - 知乎
+    - 小红书
+    - CSDN
+    - GitHub
+  public_sources_may_be_used_with_proper_citation: true
+
+deadline: '2026-09-13T20:00:00+08:00'
+
 rules_sources:
-- https://www.mcm.edu.cn/html_cn/node/9d8e511fe7a1447b35f53a82c908e2e0.html
-- https://www.mcm.edu.cn/html_cn/node/4cd596519c9eb9fbd866398f6df0caa3.html
+  - https://www.mcm.edu.cn/upload_cn/node/774/FlQt6kJV6f5d5b4603e06c3c60acf89b72d7f298.pdf
+  - https://www.mcm.edu.cn/upload_cn/node/775/cQMeL0YY905244c8bd4b9af832f1699446d8385e.pdf
+  - https://www.mcm.edu.cn/html_cn/node/fef94648f2836ab6cc81586f4c38512b.html
+  - https://www.mcm.edu.cn/html_cn/node/d6fd7a0ee8f3a3d525e30af1c365fcec.html
+
 paths:
   paper_tex: paper/main.tex
   paper_pdf: output/submission.pdf
   support_zip: output/supporting.zip
   audit_json: output/audit.json
+
 workflow:
   workflow_config: config/workflow.yaml
   workflow_status: output/workflow_status.json
