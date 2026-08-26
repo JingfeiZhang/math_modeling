@@ -53,10 +53,12 @@ $codeParityArguments = @(
 if ($SkipPackage) { $codeParityArguments += '--skip-support' }
 $codeParityRun = Invoke-CondaCommand -Conda $resolved.Conda -Arguments $codeParityArguments -CaptureOutput -DisableUserSite
 $codeParityExit = $codeParityRun.ExitCode
-$aiUsageRun = Invoke-CondaCommand -Conda $resolved.Conda -Arguments @(
+$aiUsageArguments = @(
     'run', '--no-capture-output', '-p', $selected.Prefix, 'python', '-s', (Join-Path $sharedRoot 'src\utils\audit_ai_usage.py'),
     '--root', $root, '--policy', (Join-Path $sharedRoot 'config\ai_usage_policy.yaml'), '--output', $aiUsageAudit
-) -CaptureOutput -DisableUserSite
+)
+if ($SkipPackage) { $aiUsageArguments += '--skip-support' }
+$aiUsageRun = Invoke-CondaCommand -Conda $resolved.Conda -Arguments $aiUsageArguments -CaptureOutput -DisableUserSite
 $aiUsageExit = $aiUsageRun.ExitCode
 if ($SkipPackage) {
     $packageExit = 0
@@ -74,7 +76,6 @@ if ($Strict) { $submissionArgs += '--strict' }
 if ($SkipPackage) { $submissionArgs += '--skip-package' }
 $submissionRun = Invoke-CondaCommand -Conda $resolved.Conda -Arguments $submissionArgs -DisableUserSite
 $submissionExit = $submissionRun.ExitCode
-$failed = ($latexExit -ne 0 -or $figureExit -ne 0 -or $submissionExit -ne 0)
 Write-Host "Audit exits: latex=$latexExit figures=$figureExit submission=$submissionExit"
 Write-Host "Audit exits: visual=$visualExit style=$styleExit codeParity=$codeParityExit aiUsage=$aiUsageExit package=$packageExit"
 if ($latexExit -ne 0 -or $figureExit -ne 0 -or $visualExit -ne 0 -or $styleExit -ne 0 -or $codeParityExit -ne 0 -or $aiUsageExit -ne 0 -or $packageExit -ne 0 -or $submissionExit -ne 0) { exit 1 }
