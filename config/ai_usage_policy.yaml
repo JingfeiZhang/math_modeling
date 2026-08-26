@@ -1,4 +1,4 @@
-schema_version: 2
+schema_version: 3
 competition: CUMCM
 year: 2026
 source:
@@ -10,12 +10,17 @@ source:
   attachment_url: https://www.mcm.edu.cn/upload_cn/node/785/Glps6mBh6563c55c45300fede72ddbf6eb33d3a8.pdf
   pinned_snapshot: config/rules/cumcm_ai_2026.yaml
   pinned_snapshot_sha256: dd0ac755f026a87711d1b18b7f6ee419635aa6e5ed79dac99ef521e2af33a9d8
+
 state:
   path: output/ai_usage_state.yaml
   required_in_formal_project: true
   allowed_modes: [used, not_used]
+
 log:
-  path: output/ai_usage_log.jsonl
+  # Internal evidence only. This file must never be copied into the support archive.
+  path: output/ai/raw_usage.jsonl
+  legacy_paths:
+    - output/ai_usage_log.jsonl
   required_when_used: true
   required_fields:
     - timestamp
@@ -27,9 +32,54 @@ log:
     - output_used
     - human_verification
   recommended_fields:
+    - disclosure_stage
+    - ai_role
     - human_modification
     - reviewer
     - evidence_locator
+  ai_roles:
+    - candidate_generation
+    - concept_explanation
+    - literature_assistance
+    - formula_check
+    - code_generation_assistance
+    - code_debugging
+    - experiment_suggestion
+    - result_interpretation
+    - robustness_suggestion
+    - visualization_assistance
+    - writing_assistance
+    - language_polishing
+
+aggregation:
+  schema: config/schemas/ai_stage_summary.schema.json
+  output: output/ai/stage_summary.yaml
+  disclosure_stages:
+    problem_analysis:
+      title: 问题分析与思路拓展
+    modeling_implementation:
+      title: 模型与算法实现辅助
+    experiment_validation:
+      title: 实验检查与结果分析
+    paper_writing:
+      title: 论文表达辅助
+  prompt_themes_per_stage_max: 2
+  purposes_per_stage_max: 6
+  human_actions_per_stage_max: 4
+  unclassified_events_block_release: true
+  do_not_publish_call_counts: true
+  do_not_publish_raw_prompts: true
+
+human_control:
+  core_modeling_and_analysis_team_led: true
+  all_ai_assisted_content_manual_review: true
+  explicit_human_verification_required_for_non_polishing_use: true
+  reuse_existing_workflow_gate: G2
+  reuse_existing_decision_log: state/decision_log.json
+  separate_ai_decision_system_required: false
+  formal_evidence_must_come_from_runs_not_ai_text: true
+  frozen_claims_must_precede_paper_numbers: true
+
 disclosure:
   required: true
   location: before_references
@@ -37,16 +87,34 @@ disclosure:
   generated_statement_locator: paper/generated/ai_usage_statement.tex
   no_ai_text: 本参赛队在竞赛过程中未使用任何AI工具。
   used_ai_required_markers: [本参赛队在竞赛过程中使用了AI工具, 支撑材料]
+  style: concise_stage_summary
+  truthful_material_coverage_required: true
+  full_chat_history_required: false
+  full_prompt_log_required: false
+
 details:
   required_when_used: true
   filename: AI工具使用详情.pdf
+  generated_tex: output/ai/generated/AI工具使用详情.tex
+  generated_pdf: output/ai/generated/AI工具使用详情.pdf
+  package_source: src/submission/manifest/AI工具使用详情.pdf
   support_archive: output/supporting.zip
+  package_member: manifest/AI工具使用详情.pdf
+  target_pages: 1
+  target_pages_policy: preferred_not_hard_limit
+  typical_examples_max: 2
   required_content:
     - tool_name_and_version_or_model
     - purpose_and_stage
     - prompting_approach_and_usage_process
     - adoption_manual_modification_and_verification
-human_control:
-  core_modeling_and_analysis_team_led: true
-  all_ai_assisted_content_manual_review: true
-  explicit_human_verification_required_for_non_polishing_use: true
+  required_section_markers:
+    - 使用工具及模型
+    - 人工审核与验证
+
+release:
+  prepare_before_build: true
+  prepare_before_audit: true
+  prepare_before_package: true
+  raw_internal_log_must_not_be_packaged: true
+  summary_must_cover_all_material_used_stages: true
