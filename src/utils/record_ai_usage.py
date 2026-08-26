@@ -98,19 +98,36 @@ def build_event(args: argparse.Namespace) -> dict:
 
 def validate_event(event: dict, policy: dict) -> list[str]:
     required = list(policy.get("log", {}).get("required_fields", []))
-    missing: list[str] = []
+    problems: list[str] = []
     for field in required:
         value = event.get(field)
         if value is None or (isinstance(value, str) and not value.strip()):
-            missing.append(field)
+            problems.append(field)
     allowed_roles = set(policy.get("log", {}).get("ai_roles", []))
     roles = event.get("ai_role", [])
     if isinstance(roles, str):
         roles = [roles]
     invalid_roles = [role for role in roles if allowed_roles and role not in allowed_roles]
     if invalid_roles:
-        missing.append("invalid ai_role: " + ", ".join(invalid_roles))
-    return missing
+        problems.append("invalid ai_role: " + ", ".join(invalid_roles))
+    return problems
+
+
+def ensure_used_state(root: Path, policy: dict) -> Path:
+    state_cfg = policy.get("state", {})
+    state_path = (root / state_cfg.get("path", "output/ai_usage_state.yaml")).resolve()
+    if state_path.is_file():
+        state = load_yaml(state_path)
+        mode = str(state.get("mode") or "").strip().lower()
+        if mode == "not_used":
+            raise SystemExit("AI usage cannot be recorded because the project state is explicitly not_used")
+        if mode != "used":
+            raise SystemExit(f"invalid AI usage state in {state_path}: {mode or '<empty>'}")
+        return state_path
+
+    state_path.parent.mkdir(parents=True, exist_ok=True)
+    state_path.write_text("mode: used\n", encoding="utf-8")
+    return state_path
 
 
 def main() -> int:
@@ -145,9 +162,15 @@ def main() -> int:
     if problems:
         raise SystemExit("invalid AI usage event: " + "; ".join(problems))
 
+    state_path = ensure_used_state(root, policy)
     target = (root / policy.get("log", {}).get("path", "output/ai/raw_usage.jsonl")).resolve()
     append_event(target, event)
-    print(json.dumps({"status": "RECORDED", "event_id": event["event_id"], "path": str(target)}, ensure_ascii=False))
+    print(
+        json.dumps(
+            {"status": "RECORDED", "event_id": event["event_id"], "path": str(target), "state": str(state_path)},
+            ensure_ascii=False,
+        )
+    )
     return 0
 
 
