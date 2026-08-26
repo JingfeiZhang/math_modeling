@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import shutil
 import subprocess
@@ -51,6 +52,14 @@ def dump_yaml(path: Path, value: dict) -> None:
 
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(yaml.safe_dump(value, allow_unicode=True, sort_keys=False), encoding="utf-8")
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def latex_escape(text: str) -> str:
@@ -180,7 +189,9 @@ def prepare(root: Path, policy_path: Path, compile_pdf: bool) -> dict:
     disclosure = policy.get("disclosure", {})
     statement_path = (root / disclosure.get("generated_statement_locator", "paper/generated/ai_usage_statement.tex")).resolve()
     statement_path.parent.mkdir(parents=True, exist_ok=True)
-    statement_path.write_text(make_statement(policy, mode, summary), encoding="utf-8")
+    statement_text = make_statement(policy, mode, summary)
+    if not statement_path.is_file() or statement_path.read_text(encoding="utf-8") != statement_text:
+        statement_path.write_text(statement_text, encoding="utf-8")
 
     details_cfg = policy.get("details", {})
     tex_path = (root / details_cfg.get("generated_tex", "output/ai/generated/AI工具使用详情.tex")).resolve()
@@ -200,12 +211,23 @@ def prepare(root: Path, policy_path: Path, compile_pdf: bool) -> dict:
             "details_pdf": None,
         }
 
+    details_text = make_details_tex(summary)
+    previous_text = tex_path.read_text(encoding="utf-8") if tex_path.is_file() else None
+    source_changed = previous_text != details_text
     tex_path.parent.mkdir(parents=True, exist_ok=True)
-    tex_path.write_text(make_details_tex(summary), encoding="utf-8")
-    if compile_pdf:
+    if source_changed:
+        tex_path.write_text(details_text, encoding="utf-8")
+
+    needs_compile = source_changed or not pdf_path.is_file()
+    if compile_pdf and needs_compile:
         compile_details(tex_path, pdf_path)
+
+    if compile_pdf:
+        if not pdf_path.is_file():
+            raise RuntimeError("AI details PDF is missing after preparation")
         package_source.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(pdf_path, package_source)
+        if not package_source.is_file() or sha256_file(package_source) != sha256_file(pdf_path):
+            shutil.copy2(pdf_path, package_source)
 
     return {
         "status": "READY" if (not compile_pdf or pdf_path.is_file()) else "INCOMPLETE",
@@ -216,6 +238,7 @@ def prepare(root: Path, policy_path: Path, compile_pdf: bool) -> dict:
         "details_tex": str(tex_path),
         "details_pdf": str(pdf_path) if pdf_path.is_file() else None,
         "package_source": str(package_source) if package_source.is_file() else None,
+        "details_rebuilt": bool(compile_pdf and needs_compile),
     }
 
 
