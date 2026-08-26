@@ -11,10 +11,16 @@ from src.workflow import reference_library
 
 ROOT = Path(__file__).resolve().parents[1]
 LIBRARY = ROOT / "references" / "competition-knowledge"
+ALGORITHM_LIBRARY = ROOT / "references" / "algorithm-sources"
 
 
 def _copy_library(tmp_path: Path) -> Path:
     shutil.copytree(LIBRARY, tmp_path / "references" / "competition-knowledge")
+    return tmp_path
+
+
+def _copy_algorithm_library(tmp_path: Path) -> Path:
+    shutil.copytree(ALGORITHM_LIBRARY, tmp_path / "references" / "algorithm-sources")
     return tmp_path
 
 
@@ -36,6 +42,123 @@ def test_sources_schema_and_all_cards_are_valid() -> None:
     assert len(records) == 29
     assert issues == []
     assert all(record["valid"] for record in records)
+
+
+def test_algorithm_sources_schema_and_cards_are_valid() -> None:
+    sources = reference_library.load_algorithm_sources(ROOT)
+    schema = yaml.safe_load((ALGORITHM_LIBRARY / "sources.schema.json").read_text(encoding="utf-8"))
+    assert list(Draft202012Validator(schema).iter_errors(sources)) == []
+    records, issues = reference_library.algorithm_records(ROOT)
+    assert len(sources["sources"]) == 1
+    assert set(sources["sources"][0]["source_paths"]) >= {
+        "04_分类与聚类", "07_统计分析", "08_图论与网络模型",
+        "09_机理建模", "11_组合模型（创新加分）",
+    }
+    assert len(records) == 11
+    assert issues == []
+    assert all(record["valid"] for record in records)
+    assert all(record["license_status"] == "NO_LICENSE" for record in records)
+    assert {record["algorithm_card_id"] for record in records} >= {
+        "classification-clustering", "statistics-inference", "graph-network",
+        "mechanistic-ode", "hybrid-models",
+    }
+    assert all((ROOT / record["skeleton_path"]).is_file() for record in records)
+
+
+def test_algorithm_lookup_covers_new_high_frequency_families() -> None:
+    expected = {
+        "classification": "classification-clustering",
+        "statistics": "statistics-inference",
+        "graph": "graph-network",
+        "mechanism": "mechanistic-ode",
+        "hybrid": "hybrid-models",
+    }
+    for tag, card_id in expected.items():
+        result = reference_library.lookup(ROOT, [tag], limit=20, layer="code")
+        assert any(item["algorithm_card_id"] == card_id for item in result["results"])
+
+
+def test_algorithm_cards_point_to_existing_local_skeletons() -> None:
+    records, issues = reference_library.algorithm_records(ROOT)
+    assert issues == []
+    for record in records:
+        skeleton = ROOT / record["skeleton_path"]
+        assert skeleton.is_file(), record["skeleton_path"]
+        assert skeleton.is_relative_to(ROOT / "references" / "algorithm-sources" / "skeletons")
+
+
+def test_algorithm_code_lookup_returns_pinned_non_evidence_metadata() -> None:
+    result = reference_library.lookup(ROOT, ["forecasting", "time-series"], limit=10, layer="code")
+    assert result["results"]
+    row = result["results"][0]
+    assert row["kind"] == "code"
+    assert row["algorithm_card_id"] == "forecasting-time-series"
+    assert row["source_commit"] == "8abaef8c9262017925099d1463ebc78c1ab6a956"
+    assert row["contest_evidence_eligible"] is False
+    assert row["license_status"] == "NO_LICENSE"
+
+
+def test_algorithm_card_rejects_commit_drift_and_absolute_source_path(tmp_path: Path) -> None:
+    root = _copy_algorithm_library(tmp_path)
+    card = root / "references" / "algorithm-sources" / "cards" / "forecasting-time-series.md"
+    original = card.read_text(encoding="utf-8")
+    card.write_text(original.replace("source_commit: 8abaef8c9262017925099d1463ebc78c1ab6a956", "source_commit: " + "a" * 40), encoding="utf-8")
+    _, issues = reference_library.algorithm_records(root)
+    assert any("source_commit" in issue for issue in issues)
+    card.write_text(original.replace('source_path: "03_预测类模型"', 'source_path: "D:/outside"'), encoding="utf-8")
+    _, issues = reference_library.algorithm_records(root)
+    assert any("source_path" in issue for issue in issues)
+
+    card.write_text(original.replace(
+        'skeleton_path: "references/algorithm-sources/skeletons/forecasting/forecast_contract.py"',
+        'skeleton_path: "D:/outside.py"',
+    ), encoding="utf-8")
+    _, issues = reference_library.algorithm_records(root)
+    assert any("skeleton_path" in issue for issue in issues)
+
+    card.write_text(original.replace(
+        'skeleton_path: "references/algorithm-sources/skeletons/forecasting/forecast_contract.py"',
+        'skeleton_path: "references/algorithm-sources/cards/forecast_contract.py"',
+    ), encoding="utf-8")
+    _, issues = reference_library.algorithm_records(root)
+    assert any("skeleton_path" in issue for issue in issues)
+
+    card.write_text(original.replace(
+        'skeleton_path: "references/algorithm-sources/skeletons/forecasting/forecast_contract.py"',
+        'skeleton_path: "references/algorithm-sources/skeletons/../cards/forecast_contract.py"',
+    ), encoding="utf-8")
+    _, issues = reference_library.algorithm_records(root)
+    assert any("skeleton_path" in issue for issue in issues)
+
+
+def test_local_algorithm_mirror_hash_drift_is_stale(tmp_path: Path) -> None:
+    root = _copy_library(tmp_path)
+    shutil.copytree(ALGORITHM_LIBRARY, root / "references" / "algorithm-sources")
+    mirror = root / "代码库"
+    mirror.mkdir(parents=True)
+    source_file = mirror / "03_预测类模型" / "02_ARIMA时间序列.py"
+    source_file.parent.mkdir(parents=True)
+    source_file.write_text("def arima_forecast(x):\n    return x\n", encoding="utf-8")
+
+    synced = reference_library.sync_algorithm_source(root, "github-jingfeizhang-1")
+    assert synced["passed"] is True
+    report = reference_library.status(root)
+    mirror_report = report["algorithm_mirrors"][0]
+    assert mirror_report["status"] == "READY"
+
+    source_file.write_text("def arima_forecast(x):\n    return list(reversed(x))\n", encoding="utf-8")
+    drifted = reference_library.status(root)
+    mirror_report = drifted["algorithm_mirrors"][0]
+    assert mirror_report["status"] == "STALE"
+    lookup = reference_library.lookup(root, ["forecasting", "time-series"], layer="code")
+    assert lookup["results"][0]["mirror_status"] == "STALE"
+
+
+def test_algorithm_layer_is_optional_for_legacy_library_copies(tmp_path: Path) -> None:
+    root = _copy_library(tmp_path)
+    result = reference_library.lookup(root, ["optimization"], layer="code")
+    assert result["results"] == []
+    assert any("algorithm source manifest" in warning for warning in result["warnings"])
 
 
 def test_all_modules_and_playbooks_are_valid_and_non_evidence() -> None:

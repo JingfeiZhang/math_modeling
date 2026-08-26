@@ -11,6 +11,13 @@ problem:
   evaluation_metrics: []
   dependencies: []
   key_conflicts: []
+question_profile:
+  task_types: []
+  feature_tags: []
+  active_checks: []
+  not_applicable_checks: []
+  status: DRAFT
+  source: manual_and_derived
 model_selection:
   primary: ""
   rationale: ""
@@ -46,6 +53,16 @@ literature:
   status: NOT_STARTED
 paper:
   section: sections/question_1.tex
+  heading_strategy: dynamic
+  section_map:
+    objective_interface: [问题目标与关键口径]
+    data_mechanism: [数据特征与机理依据]
+    model_choice: [模型与求解方案]
+    formulation: [模型与求解方案]
+    algorithm: [模型与求解方案]
+    result: [结果、检验与决策含义]
+    validation: [结果、检验与决策含义]
+    conclusion: [结论与适用边界]
   table_ids: []
   figure_ids: []
   code_refs: []

@@ -1,4 +1,4 @@
 interface:
   display_name: "Literature-Guided Modeling"
   short_description: "Find and extract academic evidence for model design"
-  default_prompt: "Use $literature-guided-modeling with config/prompt_policy.yaml for the current project, stage, and Qx. Keep literature parallel to baseline/Scratch, respect formal-evidence ownership, and return the V7 compact receipt."
+  default_prompt: "Use $literature-guided-modeling with the current assembled literature packet to turn verified academic sources into question-scoped model and validation evidence without modifying formal project evidence."

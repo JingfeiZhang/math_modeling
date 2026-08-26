@@ -1,4 +1,4 @@
 interface:
   display_name: "Visualization Design"
   short_description: "Design evidence-grounded figures before rendering"
-  default_prompt: "Use $visualization-design with config/prompt_policy.yaml for the current project, stage, and Qx. Decide figure/table/text/none before rendering, do not freeze claims or promote formal figures, and return the V7 compact receipt."
+  default_prompt: "Use $visualization-design with the current assembled visualization packet to choose figure/table/text/none, prepare an evidence-bound design handoff, and review only staged previews."

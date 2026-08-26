@@ -80,6 +80,36 @@
       },
       "additionalProperties": false
     },
+    "questionProfile": {
+      "type": "object",
+      "properties": {
+        "task_types": {
+          "type": "array",
+          "items": {
+            "enum": ["analysis", "prediction", "classification", "evaluation", "optimization", "scheduling", "mechanism", "simulation", "decision", "scenario", "multi_objective", "other"]
+          },
+          "uniqueItems": true
+        },
+        "feature_tags": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "active_checks": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"},
+          "uniqueItems": true
+        },
+        "not_applicable_checks": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"},
+          "uniqueItems": true
+        },
+        "status": {"enum": ["DRAFT", "REVIEWED", "READY", "STALE"]},
+        "source": {"enum": ["manual", "derived", "manual_and_derived"]}
+      },
+      "additionalProperties": false
+    },
     "v1": {
       "type": "object",
       "required": ["schema_version", "problem_id", "question_id", "problem", "method", "assumptions", "risk_probes", "decisions", "evidence", "paper", "status"],
@@ -184,6 +214,16 @@
           "required": ["section", "table_ids", "figure_ids", "code_refs", "downstream_interfaces", "argument_contract"],
           "properties": {
             "section": {"type": "string", "pattern": "^sections/question_[1-9][0-9]*\\.tex$"},
+            "heading_strategy": {"enum": ["fixed_legacy", "dynamic"]},
+            "section_map": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {"type": "string", "minLength": 1},
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            },
             "table_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
             "figure_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
             "code_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
@@ -192,6 +232,7 @@
               "type": "object",
               "required": ["objective_interface", "model_choice", "formulation", "algorithm", "result", "validation", "conclusion"],
               "properties": {
+                "data_mechanism": {"enum": ["pending", "complete"]},
                 "objective_interface": {"enum": ["pending", "complete"]},
                 "model_choice": {"enum": ["pending", "complete"]},
                 "formulation": {"enum": ["pending", "complete"]},
@@ -206,6 +247,7 @@
           "additionalProperties": false
         },
         "literature": {"$ref": "#/$defs/literature"},
+        "question_profile": {"$ref": "#/$defs/questionProfile"},
         "quality_contracts": {"$ref": "#/$defs/qualityContracts"},
         "status": {"$ref": "#/$defs/status"}
       },

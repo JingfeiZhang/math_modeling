@@ -86,7 +86,11 @@ def configure_matplotlib(profile: str | None = None) -> None:
         {
             "figure.dpi": 120,
             "savefig.dpi": int(style["export"]["png_dpi"]),
-            "font.family": "sans-serif",
+            # Keep the ordered family list explicit so Matplotlib can perform
+            # per-glyph fallback (e.g. Times New Roman for Latin and a CJK
+            # family for Chinese). Using the generic ``sans-serif`` family
+            # selects only its first entry and emits missing-glyph warnings.
+            "font.family": list(style["font_family"]),
             "font.sans-serif": list(style["font_family"]),
             "font.size": float(style["font_size_pt"]),
             "axes.titlesize": float(style["font_size_pt"]) + 1,

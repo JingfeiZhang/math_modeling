@@ -29,7 +29,11 @@ LABEL_RE = re.compile(r"\\label\s*\{([^{}]+)\}")
 GRAPHICS_RE = re.compile(r"\\includegraphics(?:\s*\[[^]]*\])?\s*\{([^{}]+)\}")
 INCLUDE_RE = re.compile(r"\\(input|include)\s*\{([^{}]+)\}")
 SECTION_RE = re.compile(r"\\section\*?\s*\{([^{}]*)\}")
+# Keep ``SUBSECTION_RE`` for callers that only need visible titles.  The
+# metadata-aware expression is used by the strict structure audit so a paper
+# may use a question-specific title while declaring which argument it covers.
 SUBSECTION_RE = re.compile(r"\\subsection\*?\s*\{([^{}]*)\}")
+SUBSECTION_WITH_META_RE = re.compile(r"\\subsection\*?\s*(?:\[([^]]*)\])?\s*\{([^{}]*)\}")
 QUESTION_TITLE_RE = re.compile(r"^\s*问题\s*([一二三四五六七八九十\d]+)")
 ARTIFACT_RE = re.compile(r"\\begin\{(figure|table)\*?\}(.*?)\\end\{\1\*?\}", re.S)
 AUTHORING_PROMPT_RE = re.compile(
@@ -61,7 +65,58 @@ QUESTION_ARGUMENT_HEADINGS = (
     "模型检验",
     "本问结论与适用边界",
 )
+# The paper contract has historically omitted ``data_mechanism`` from the
+# status map even though the manuscript contract requires that responsibility.
+# Keep both lists: the eight responsibilities drive heading coverage, while
+# ``QUESTION_ARGUMENT_KEYS`` remains the backwards-compatible status contract.
+QUESTION_RESPONSIBILITY_KEYS = (
+    "objective_interface",
+    "data_mechanism",
+    "model_choice",
+    "formulation",
+    "algorithm",
+    "result",
+    "validation",
+    "conclusion",
+)
+RESPONSIBILITY_KEY_ALIASES = {
+    "objective": "objective_interface",
+    "objective_interface": "objective_interface",
+    "interface": "objective_interface",
+    "data": "data_mechanism",
+    "data_mechanism": "data_mechanism",
+    "mechanism": "data_mechanism",
+    "model": "model_choice",
+    "model_choice": "model_choice",
+    "choice": "model_choice",
+    "formulation": "formulation",
+    "model_formulation": "formulation",
+    "algorithm": "algorithm",
+    "method": "algorithm",
+    "result": "result",
+    "core_result": "result",
+    "validation": "validation",
+    "check": "validation",
+    "conclusion": "conclusion",
+    "boundary": "conclusion",
+}
 COMPLETED_STATES = {"complete", "completed", "done", "frozen", "verified", "pass", "passed", "完成", "已完成"}
+RESPONSIBILITY_MAP_FIELDS = (
+    "responsibility_map",
+    "responsibility_headings",
+    "argument_heading_map",
+    "heading_map",
+    "section_map",
+    "argument_sections",
+    "subsection_responsibilities",
+    "section_responsibilities",
+)
+RESPONSIBILITY_MAP_RE = re.compile(
+    r"\\(?:ResponsibilityMap|ArgumentSection)\s*\{([^{}]+)\}\s*\{([^{}]+)\}", re.I
+)
+RESPONSIBILITY_COMMENT_RE = re.compile(
+    r"(?:%|<!--)\s*(?:responsibility|argument)\s*[:=]\s*([A-Za-z][A-Za-z0-9_-]*)\s*[:=]\s*([^%\-\-\n>]+)", re.I
+)
 
 
 def load_yaml(path: Path) -> dict:
@@ -195,6 +250,115 @@ def _manifest_tokens(manifest: dict, field: str) -> list[str]:
     evidence = manifest.get("evidence") if isinstance(manifest.get("evidence"), dict) else {}
     values = evidence.get(field) if isinstance(evidence, dict) else []
     return [str(value).strip() for value in values or [] if str(value).strip()]
+
+
+def _responsibility_key(value: object) -> str | None:
+    token = re.sub(r"[^a-z0-9]+", "_", str(value or "").strip().lower()).strip("_")
+    return RESPONSIBILITY_KEY_ALIASES.get(token)
+
+
+def _responsibility_pairs(value: object) -> list[tuple[str, str]]:
+    """Read tolerant responsibility-map shapes without changing the schema."""
+    pairs: list[tuple[str, str]] = []
+    if isinstance(value, dict):
+        # A wrapper such as {"sections": [...]} is common in hand-authored
+        # manifests; recurse through non-map containers as well.
+        for raw_key, raw_value in value.items():
+            key = _responsibility_key(raw_key)
+            if isinstance(raw_value, dict):
+                nested_key = _responsibility_key(
+                    raw_value.get("responsibility") or raw_value.get("key") or raw_value.get("id") or raw_key
+                )
+                title = raw_value.get("heading") or raw_value.get("title") or raw_value.get("section")
+                if nested_key and isinstance(title, str) and title.strip():
+                    pairs.append((nested_key, title.strip()))
+                else:
+                    pairs.extend(_responsibility_pairs(raw_value))
+            elif isinstance(raw_value, (list, tuple)):
+                for title in raw_value:
+                    if key and isinstance(title, str) and title.strip():
+                        pairs.append((key, title.strip()))
+                    elif isinstance(title, dict):
+                        pairs.extend(_responsibility_pairs({raw_key: title}))
+            elif isinstance(raw_value, str):
+                value_key = _responsibility_key(raw_value)
+                if key:
+                    pairs.append((key, raw_value.strip()))
+                elif value_key:
+                    pairs.append((value_key, str(raw_key).strip()))
+    elif isinstance(value, (list, tuple)):
+        for item in value:
+            if not isinstance(item, dict):
+                continue
+            key = _responsibility_key(item.get("responsibility") or item.get("key") or item.get("id"))
+            title = item.get("heading") or item.get("title") or item.get("section")
+            if key and isinstance(title, str) and title.strip():
+                pairs.append((key, title.strip()))
+            else:
+                pairs.extend(_responsibility_pairs(item))
+    return pairs
+
+
+def _manifest_responsibility_map(manifest: dict) -> dict[str, list[str]]:
+    mapped: dict[str, list[str]] = {}
+    containers = [manifest]
+    paper = manifest.get("paper")
+    if isinstance(paper, dict):
+        containers.append(paper)
+    for container in containers:
+        for field in RESPONSIBILITY_MAP_FIELDS:
+            if field not in container:
+                continue
+            for key, title in _responsibility_pairs(container[field]):
+                normalized = plain_text(title)
+                if normalized:
+                    mapped.setdefault(key, []).append(normalized)
+        # Some manifests attach the visible heading beside each legacy status
+        # in ``paper.argument_contract``.  Do not treat ordinary status strings
+        # (for example ``complete``) as headings.
+        contract = container.get("argument_contract")
+        if isinstance(contract, dict):
+            for raw_key, spec in contract.items():
+                if not isinstance(spec, dict):
+                    continue
+                key = _responsibility_key(raw_key)
+                title = spec.get("heading") or spec.get("title") or spec.get("section")
+                if key and isinstance(title, str) and title.strip():
+                    mapped.setdefault(key, []).append(plain_text(title))
+    return mapped
+
+
+def _section_responsibility_map(body: str) -> tuple[list[str], dict[str, list[str]]]:
+    titles: list[str] = []
+    mapped: dict[str, list[str]] = {}
+    for match in SUBSECTION_WITH_META_RE.finditer(body):
+        metadata, raw_title = match.groups()
+        title = plain_text(raw_title)
+        titles.append(title)
+        if metadata:
+            key_match = re.search(r"(?:responsibility|role|argument|key)\s*[:=]\s*([A-Za-z][A-Za-z0-9_-]*)", metadata, re.I)
+            key = _responsibility_key(key_match.group(1) if key_match else metadata)
+            if key:
+                mapped.setdefault(key, []).append(title)
+    for match in RESPONSIBILITY_MAP_RE.finditer(body):
+        first, second = match.groups()
+        first_key, second_key = _responsibility_key(first), _responsibility_key(second)
+        if first_key and not second_key:
+            key, title = first_key, second
+        elif second_key and not first_key:
+            key, title = second_key, first
+        else:
+            continue
+        mapped.setdefault(key, []).append(plain_text(title))
+    for match in RESPONSIBILITY_COMMENT_RE.finditer(body):
+        key = _responsibility_key(match.group(1))
+        if key:
+            mapped.setdefault(key, []).append(plain_text(match.group(2)))
+    return titles, mapped
+
+
+def _canonical_responsibility_headings() -> dict[str, str]:
+    return dict(zip(QUESTION_RESPONSIBILITY_KEYS, QUESTION_ARGUMENT_HEADINGS))
 
 
 def strip_comments(text: str) -> str:
@@ -434,10 +598,24 @@ def audit_structure(
         if record is None:
             add(errors, "QUESTION_SECTION_MISSING", f"manifest {qid} has no matching paper section", "error", str(path))
             continue
-        subsection_titles = [plain_text(value) for value in SUBSECTION_RE.findall(record["body"])]
-        for heading in QUESTION_ARGUMENT_HEADINGS:
-            if not any(heading in title for title in subsection_titles):
-                add(errors, "ARGUMENT_SECTION_MISSING", f"{qid} is missing argument section: {heading}", "error", str(path))
+        subsection_titles, section_map = _section_responsibility_map(record["body"])
+        manifest_map = _manifest_responsibility_map(manifest)
+        canonical_map = _canonical_responsibility_headings()
+        responsibility_map_metrics: dict[str, list[str]] = {}
+        for key in QUESTION_RESPONSIBILITY_KEYS:
+            # A declared map takes precedence over the canonical title. This
+            # permits titles such as ``滚动窗口检验`` while preserving the old
+            # fixed-heading behavior when no map is supplied.
+            mapped_titles = list(dict.fromkeys(manifest_map.get(key, []) + section_map.get(key, [])))
+            expected_titles = mapped_titles or [canonical_map[key]]
+            responsibility_map_metrics[key] = expected_titles
+            if not any(
+                any(expected in title or title in expected for title in subsection_titles)
+                for expected in expected_titles
+            ):
+                rendered = " / ".join(expected_titles)
+                add(errors, "ARGUMENT_SECTION_MISSING", f"{qid} is missing argument section: {rendered}", "error", str(path))
+        metrics.setdefault("question_responsibility_maps", {})[qid] = responsibility_map_metrics
         if len(plain_text(record["body"])) < 180:
             add(errors, "QUESTION_SECTION_EMPTY", f"{qid} contains too little substantive text", "error", str(path))
 

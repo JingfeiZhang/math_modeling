@@ -5,9 +5,18 @@
   "required": ["schema_version", "problem_id", "question_id", "source_question", "search_mode", "objective_mode", "search_space", "termination", "evidence_type", "scope", "status"],
   "properties": {
     "schema_version": {"const": 1},
+    "verification_profile": {"const": 1},
     "problem_id": {"type": "string", "minLength": 1},
     "question_id": {"type": "string", "pattern": "^Q[1-9][0-9]*$"},
-    "source_question": {"type": "object", "required": ["path", "sha256"], "properties": {"path": {"type": "string", "pattern": "^(?![A-Za-z]:|/|\\\\).+"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}, "additionalProperties": false},
+    "source_question": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^(?![A-Za-z]:|/|\\\\).+"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
     "search_mode": {"enum": ["exact", "heuristic", "stochastic", "forecast", "hybrid"]},
     "objective_mode": {"enum": ["single", "weighted", "pareto", "epsilon-constraint"]},
     "search_space": {"type": "string", "minLength": 1},
@@ -21,8 +30,119 @@
     "seed_count": {"type": "integer", "minimum": 0},
     "seed_runs": {"type": "array", "items": {"type": "string"}},
     "baseline": {"type": "string"},
-    "scenario_coverage": {"type": "array", "items": {"type": "object", "required": ["scenario_id", "covered", "scope"], "properties": {"scenario_id": {"type": "string"}, "covered": {"type": "boolean"}, "scope": {"enum": ["full", "sampled", "local-window"]}, "result_locator": {"type": "string"}, "parameter_value": {}, "objective_vector": {"type": "array", "items": {"type": "number"}}, "non_dominated": {"type": "boolean"}}, "additionalProperties": false}},
-    "scope": {"type": "object", "required": ["coverage_mode", "claim_language"], "properties": {"coverage_mode": {"enum": ["full", "sampled", "local-window"]}, "window": {"type": "string"}, "claim_language": {"type": "array", "items": {"type": "string"}}, "forbidden_language": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false},
+    "challenger_not_applicable_reason": {"type": "string"},
+    "scenario_coverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["scenario_id", "covered", "scope"],
+        "properties": {
+          "scenario_id": {"type": "string"},
+          "covered": {"type": "boolean"},
+          "scope": {"enum": ["full", "sampled", "local-window"]},
+          "result_locator": {"type": "string"},
+          "parameter_value": {},
+          "objective_vector": {"type": "array", "items": {"type": "number"}},
+          "non_dominated": {"type": "boolean"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "oracle_cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "applicable"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "applicable": {"type": "boolean"},
+          "not_applicable_reason": {"type": "string", "minLength": 1},
+          "purpose": {"type": "string"},
+          "method": {"enum": ["hand-calculation", "enumeration", "exact-solver", "analytical", "known-limit"]},
+          "input_locator": {"type": "string", "pattern": "^(?![A-Za-z]:|/|\\\\).+"},
+          "expected_result": {"type": "string", "minLength": 1},
+          "tolerance": {"type": ["number", "string"]},
+          "passed": {"type": "boolean"},
+          "evidence_locator": {"type": "string", "pattern": "^(?![A-Za-z]:|/|\\\\).+"}
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"applicable": {"const": true}}, "required": ["applicable"]},
+            "then": {"required": ["method", "expected_result"]}
+          },
+          {
+            "if": {"properties": {"applicable": {"const": false}}, "required": ["applicable"]},
+            "then": {"required": ["not_applicable_reason"]}
+          }
+        ],
+        "additionalProperties": false
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "statement", "check_method"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["feasibility", "conservation", "boundary", "dimensional", "nonnegativity", "monotonicity", "interface", "custom"]},
+          "statement": {"type": "string", "minLength": 1},
+          "check_method": {"type": "string", "minLength": 1},
+          "tolerance": {"type": ["number", "string"]},
+          "passed": {"type": "boolean"},
+          "evidence_locator": {"type": "string", "pattern": "^(?![A-Za-z]:|/|\\\\).+"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "model_comparison": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "model_id", "role", "comparable_output", "primary_metric"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "model_id": {"type": "string", "minLength": 1},
+          "role": {"enum": ["baseline", "main", "challenger", "fallback"]},
+          "comparable_output": {"type": "boolean"},
+          "primary_metric": {"type": "string", "minLength": 1},
+          "metric_value": {"type": ["number", "string"]},
+          "improvement": {"type": ["number", "string"]},
+          "retained": {"type": "boolean"},
+          "retained_reason": {"type": "string"},
+          "evidence_locator": {"type": "string", "pattern": "^(?![A-Za-z]:|/|\\\\).+"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "robustness": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "perturbation", "metric", "result", "boundary"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "perturbation": {"type": "string", "minLength": 1},
+          "metric": {"type": "string", "minLength": 1},
+          "result": {"type": "string", "minLength": 1},
+          "boundary": {"type": "string", "minLength": 1},
+          "passed": {"type": "boolean"},
+          "evidence_locator": {"type": "string", "pattern": "^(?![A-Za-z]:|/|\\\\).+"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "scope": {
+      "type": "object",
+      "required": ["coverage_mode", "claim_language"],
+      "properties": {
+        "coverage_mode": {"enum": ["full", "sampled", "local-window"]},
+        "window": {"type": "string"},
+        "claim_language": {"type": "array", "items": {"type": "string"}},
+        "forbidden_language": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
     "status": {"enum": ["DRAFT", "READY", "LOCKED", "STALE"]}
   },
   "additionalProperties": false

@@ -39,3 +39,16 @@ def test_v4_workflow_templates_validate() -> None:
     for template_name, schema_name in cases:
         instance = yaml.safe_load((TEMPLATE_ROOT / template_name).read_text(encoding="utf-8"))
         Draft202012Validator(load_schema(schema_name)).validate(instance)
+
+
+def test_question_profile_is_optional_and_task_conditional() -> None:
+    instance = yaml.safe_load((TEMPLATE_ROOT / "question.yaml").read_text(encoding="utf-8"))
+    instance["question_profile"] = {
+        "task_types": ["optimization"],
+        "feature_tags": ["integer_constraints"],
+        "active_checks": ["problem_interface", "baseline_comparison"],
+        "not_applicable_checks": ["prediction_delivery"],
+        "status": "READY",
+        "source": "manual_and_derived",
+    }
+    Draft202012Validator(load_schema("question.schema.json")).validate(instance)

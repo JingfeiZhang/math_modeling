@@ -13,7 +13,12 @@
     },
     "warnings": {"type": "array", "items": {"type": "string"}},
     "next_action": {"type": "string"},
-    "decision_request": {"type": ["null", "string"]}
+    "decision_request": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "主模型|模型选择|模型取舍|fallback|回退|claim|主张|结论边界|适用范围|官方规则|规则冲突|模板冲突|发布阻断|交付结果"}
+      ]
+    }
   },
   "additionalProperties": false
 }

@@ -23,11 +23,59 @@ AUTHORITY_ORDER = (
 RECEIPT_FIELDS = ("status", "objective", "conclusion", "evidence", "warnings", "next_action", "decision_request")
 QUESTION_RE = re.compile(r"^Q[1-9][0-9]*$")
 RECEIPT_STATUSES = ("PROGRESS", "PASS", "PASS_WITH_WARNINGS", "BLOCK_TRANSITION", "REOPEN_REQUIRED", "READY")
-GATES = {"P0": "G0", "P1": "G0", "P2": "G1", "P3a": "G1", "P3b": "G2", "P4": "G4", "P5": "G5", "P6": "G6"}
+DECISION_REQUEST_RE = re.compile(
+    r"主模型|模型选择|模型取舍|fallback|回退|claim|主张|结论边界|适用范围|官方规则|规则冲突|模板冲突|发布阻断|交付结果",
+    re.I,
+)
+GATES = {"P0": "G0", "P1": "G0", "P2": "G1", "P3a": "G1", "P3b": "G2", "P4": "G4", "P5": "G4", "P6": "G6"}
+GATE_SEQUENCES = {
+    "P0": ("G0",), "P1": ("G0",), "P2": ("G1",), "P3a": ("G1",),
+    "P3b": ("G2",), "P4": ("G3", "G4"), "P5": ("G4",), "P6": ("G5", "G6"),
+}
+ROLE_STAGES = {
+    "P0": ("orchestrator",),
+    "P1": ("orchestrator", "solver", "literature", "paper"),
+    "P2": ("orchestrator", "solver", "literature"),
+    "P3a": ("orchestrator", "solver", "literature", "visualization"),
+    "P3b": ("orchestrator", "solver", "literature", "visualization"),
+    "P4": ("orchestrator", "solver", "paper", "reviewer"),
+    "P5": ("orchestrator", "paper", "visualization", "literature", "reviewer"),
+    "P6": ("orchestrator", "studio_release", "reviewer"),
+}
+EXECUTION_SEMANTICS = {
+    "warning": "record-and-continue",
+    "blocking": "current-transition-only",
+    "deferred": "do-not-run-before-owner-stage",
+    "hash_drift": "affected-question-only",
+    "reaudit": "no-recursive-reaudit",
+    "continuation": "continue-editing-replay-and-recheckpoint",
+    "note": "当前检查只阻断本次阶段转换，不阻断本问题继续建模、修改、复跑或重新 checkpoint。",
+}
 SHARED_KNOWLEDGE_PHASES = ("P1", "P2", "P3a", "P3b")
 SHARED_KNOWLEDGE_ROLES = ("solver", "literature")
 SHARED_KNOWLEDGE_MODULES = "references/competition-knowledge/modules"
 SHARED_KNOWLEDGE_PLAYBOOKS_INDEX = "references/competition-knowledge/playbooks/index.md"
+ALGORITHM_SOURCE_PHASES = ("P1", "P2", "P3a", "P3b")
+ALGORITHM_SOURCE_ROLES = ("solver",)
+ALGORITHM_SOURCE_CARDS = "references/algorithm-sources/cards"
+STATISTICS_GUIDANCE_PHASES = ("P1", "P2", "P3a", "P3b")
+STATISTICS_GUIDANCE_ROLES = ("solver",)
+STATISTICS_GUIDANCE_ROUTES = (
+    "data_profile", "relation_selection", "assumption_diagnostics",
+    "effect_size_interval", "result_interpretation_boundary",
+)
+STATISTICS_GUIDANCE_STAGE_ROUTES = {
+    "P1": ("data_profile", "relation_selection"),
+    "P2": ("analysis_route", "assumption_diagnostics", "effect_size_interval"),
+    "P3a": ("statistical_diagnostics", "robust_alternative", "result_interpretation"),
+    "P3b": ("statistical_diagnostics", "result_interpretation_boundary"),
+}
+STATISTICS_GUIDANCE_OUTPUTS = {
+    "P1": ("观测单位、响应类型、特征类型和分组结构", "候选关系分析路线"),
+    "P2": ("同输出统计baseline", "假设探针", "效应量或区间摘要"),
+    "P3a": ("残差或校准诊断", "稳健替代建议", "结果—原因—意义—边界草案"),
+    "P3b": ("统计诊断结论", "适用范围和结果边界"),
+}
 
 
 def _load_yaml(path: Path) -> dict[str, Any]:
@@ -85,15 +133,67 @@ def validate_policy(policy: dict[str, Any]) -> list[str]:
             issues.append("shared_knowledge must never be contest evidence")
         if knowledge.get("formal_stages") != ["P4", "P5", "P6"]:
             issues.append("shared_knowledge.formal_stages must be P4-P6")
+    statistics = policy.get("statistics_guidance")
+    statistics_fields = {
+        "index", "modules", "cards", "phases", "roles", "contest_evidence_eligible",
+        "missing_behavior", "routes", "stage_routes",
+    }
+    if not isinstance(statistics, dict) or set(statistics) != statistics_fields:
+        issues.append("statistics_guidance fields are incomplete or contain extras")
+    else:
+        for field in ("index", "modules", "cards"):
+            if not isinstance(statistics.get(field), str) or not _relative_ref(statistics[field]):
+                issues.append(f"statistics_guidance.{field} must be a safe relative path")
+        if statistics.get("phases") != list(STATISTICS_GUIDANCE_PHASES):
+            issues.append("statistics_guidance.phases must cover P1-P3 only")
+        if statistics.get("roles") != list(STATISTICS_GUIDANCE_ROLES):
+            issues.append("statistics_guidance.roles must be solver only")
+        if statistics.get("contest_evidence_eligible") is not False:
+            issues.append("statistics_guidance must never be contest evidence")
+        if statistics.get("missing_behavior") != "warning":
+            issues.append("statistics_guidance.missing_behavior must be warning")
+        if statistics.get("routes") != list(STATISTICS_GUIDANCE_ROUTES):
+            issues.append("statistics_guidance.routes are invalid")
+        if statistics.get("stage_routes") != {stage: list(routes) for stage, routes in STATISTICS_GUIDANCE_STAGE_ROUTES.items()}:
+            issues.append("statistics_guidance.stage_routes are invalid")
+    algorithm_sources = policy.get("algorithm_sources")
+    algorithm_source_fields = {
+        "mirror", "index", "index_relpath", "sources", "cards", "skeletons", "phases",
+        "roles", "contest_evidence_eligible", "formal_stages", "local_only", "sync_action",
+    }
+    if not isinstance(algorithm_sources, dict) or set(algorithm_sources) != algorithm_source_fields:
+        issues.append("algorithm_sources fields are incomplete or contain extras")
+    else:
+        for field in ("mirror", "index", "index_relpath", "sources", "cards", "skeletons"):
+            if not isinstance(algorithm_sources.get(field), str) or not _relative_ref(algorithm_sources[field]):
+                issues.append(f"algorithm_sources.{field} must be a safe relative path")
+        if algorithm_sources.get("phases") != list(ALGORITHM_SOURCE_PHASES):
+            issues.append("algorithm_sources.phases must cover P1-P3 only")
+        if algorithm_sources.get("roles") != list(ALGORITHM_SOURCE_ROLES):
+            issues.append("algorithm_sources.roles must be solver only")
+        if algorithm_sources.get("contest_evidence_eligible") is not False:
+            issues.append("algorithm_sources must never be contest evidence")
+        if algorithm_sources.get("formal_stages") != ["P4", "P5", "P6"]:
+            issues.append("algorithm_sources.formal_stages must be P4-P6")
+        if algorithm_sources.get("local_only") is not True:
+            issues.append("algorithm_sources.local_only must be true")
+        if algorithm_sources.get("sync_action") != "sync":
+            issues.append("algorithm_sources.sync_action must be sync")
     response = policy.get("response") if isinstance(policy.get("response"), dict) else {}
-    if response.get("format") != "compact_receipt" or response.get("detail_mode") != "on_request":
+    if response.get("format") != "compact_receipt" or response.get("chat_format") != "markdown_summary" or response.get("detail_mode") != "on_request":
         issues.append("response format/detail_mode are invalid")
     if response.get("required_fields") != list(RECEIPT_FIELDS):
         issues.append("response.required_fields must use the compact receipt contract")
+    if response.get("omit_empty_sections") is not True:
+        issues.append("response.omit_empty_sections must be true")
     if list(policy.get("stages", {})) != list(STAGES):
         issues.append("stages must define P0,P1,P2,P3a,P3b,P4,P5,P6 in order")
     if set(policy.get("roles", {})) != set(ROLES):
         issues.append("roles must define exactly the seven V7 roles")
+    if policy.get("role_stages") != {stage: list(roles) for stage, roles in ROLE_STAGES.items()}:
+        issues.append("role_stages must use the V7 stage-role compatibility matrix")
+    if policy.get("gate_sequence") != {stage: list(gates) for stage, gates in GATE_SEQUENCES.items()}:
+        issues.append("gate_sequence must use the V7 stage gate sequence")
     stage_fields = {
         "gate", "objective", "allowed_actions", "blocking", "warning", "deferred",
         "stop_conditions", "escalation_conditions", "expected_artifacts",
@@ -121,9 +221,12 @@ def validate_policy(policy: dict[str, Any]) -> list[str]:
         "deferred_not_run_before_owner_stage",
         "hash_drift_invalidates_affected_question_only",
         "no_recursive_reaudit",
+        "execution_semantics",
     }
     if set(policy.get("rules", {})) != required_rules:
         issues.append("global rules are incomplete")
+    elif policy["rules"].get("execution_semantics") != EXECUTION_SEMANTICS:
+        issues.append("rules.execution_semantics must use the progress-first semantics")
     return issues
 
 
@@ -202,6 +305,9 @@ def assemble_packet(
         raise ValueError(f"unsupported prompt stage: {stage}")
     if role not in ROLES:
         raise ValueError(f"unsupported prompt role: {role}")
+    if role not in ROLE_STAGES.get(stage, ()):
+        allowed = ", ".join(ROLE_STAGES.get(stage, ()))
+        raise ValueError(f"role {role} is not allowed for {stage}; allowed roles: {allowed}")
     if stage not in ("P0", "P1") and not question_id:
         raise ValueError(f"{stage} requires an explicit question_id")
     workspace_root = workspace_root or project_root
@@ -220,14 +326,23 @@ def assemble_packet(
     read_scope = _expand_scope(list(role_rules["read_scope"]), scope_question, problem_id)
     write_scope = _expand_scope(list(role_rules["write_scope"]), scope_question, problem_id)
     context_refs = [
-        "project:project.yaml", "project:contest.yaml", "project:config/workflow.yaml",
-        "shared:config/workflow.yaml", "shared:config/prompt_policy.yaml",
+        "project:project.yaml", "project:contest.yaml",
         f"shared:templates/prompts/stages/{stage}.yaml", f"shared:templates/prompts/roles/{role}.yaml",
         *(f"project:{item}" for item in question_refs),
     ]
     knowledge = policy["shared_knowledge"]
     knowledge_enabled = stage in knowledge["phases"] and role in SHARED_KNOWLEDGE_ROLES
-    knowledge_notice = "共享教材速查卡仅用于 P1-P3 的模型方向、检索关键词和风险探针；不属于学术文献、Formal 证据或竞赛 claims。"
+    knowledge_notice = "共享教材速查卡仅用于 P1-P3 的模型方向、检索关键词和风险探针；统计资料优先支持数据画像、变量关系到检验/回归/分类的路线选择、假设诊断、效应量和结果—原因—意义—边界表达；不属于学术文献、Formal 证据或竞赛 claims。"
+    algorithm_sources = policy["algorithm_sources"]
+    algorithm_sources_enabled = stage in algorithm_sources["phases"] and role in algorithm_sources["roles"]
+    algorithm_sources_notice = "外部算法卡仅用于 P1-P3 的候选算法、baseline 设计和风险探针；不执行外部代码，也不属于 Formal 证据、claims 或发布材料。"
+    statistics_guidance = policy["statistics_guidance"]
+    statistics_enabled = stage in statistics_guidance["phases"] and role in statistics_guidance["roles"]
+    statistics_notice = (
+        "统计资料仅用于 P1-P3 的数据画像、变量关系路线、假设诊断、效应量/区间、稳健替代和结果边界；"
+        "不属于学术文献、Formal 证据、claims 或发布材料。经验阈值只能作为风险提示。"
+    )
+    assembly_warnings: list[str] = []
     if knowledge_enabled:
         read_scope.append(knowledge["index"])
         if role == "solver":
@@ -240,6 +355,7 @@ def assemble_packet(
         "project_id": project_id,
         "stage": stage,
         "gate": derive_gate(stage),
+        "gate_sequence": list(GATE_SEQUENCES[stage]),
         "role": role,
         "question_id": resolved_question,
         "objective": f"{stage_rules['objective']} {role_rules['objective']}",
@@ -255,13 +371,41 @@ def assemble_packet(
         "protected_paths": _expand_scope(list(role_rules["protected"]), scope_question, problem_id),
         "output_contract": {
             "format": "compact_receipt",
+            "chat_format": "markdown_summary",
             "expected_artifacts": list(stage_rules["expected_artifacts"]),
             "role_outputs": list(role_rules["outputs"]),
             "question_scope": "all" if not resolved_question else resolved_question,
             "project_profile": project.get("profile_id") or contest.get("competition"),
         },
         "escalation_rules": [*stage_rules["escalation_conditions"], *role_rules["decisions"]],
+        "execution_semantics": deepcopy(EXECUTION_SEMANTICS),
+        "assembly_warnings": assembly_warnings,
     }
+    if statistics_enabled:
+        for ref in (statistics_guidance["index"], statistics_guidance["modules"], statistics_guidance["cards"]):
+            if ref not in read_scope:
+                read_scope.append(ref)
+            shared_ref = f"shared:{ref}"
+            if shared_ref not in context_refs:
+                context_refs.append(shared_ref)
+        packet["output_contract"]["statistics_guidance"] = {
+            "index": statistics_guidance["index"],
+            "modules": statistics_guidance["modules"],
+            "cards": statistics_guidance["cards"],
+            "route_ids": list(statistics_guidance["stage_routes"][stage]),
+            "expected_outputs": list(STATISTICS_GUIDANCE_OUTPUTS[stage]),
+            "contest_evidence_eligible": False,
+            "usage": statistics_notice,
+        }
+        for ref, label in (
+            (statistics_guidance["index"], "统计指导索引"),
+            (statistics_guidance["modules"], "统计指导模块"),
+            (statistics_guidance["cards"], "统计指导卡片"),
+        ):
+            if not (workspace_root / ref).exists():
+                assembly_warnings.append(f"{label}不可用；继续当前任务，不以此阻断探索。")
+    elif role == "literature" and stage in statistics_guidance["phases"]:
+        packet["warning_conditions"].append("统计资料仅可转化为检索关键词，不作为学术文献或模型证据。")
     if knowledge_enabled:
         packet["output_contract"]["shared_knowledge"] = {
             "index": knowledge["index"],
@@ -270,13 +414,40 @@ def assemble_packet(
         }
         if role == "solver":
             packet["output_contract"]["shared_knowledge"]["solver_support"] = [
+                knowledge["index"],
+                "references/competition-knowledge/cards",
                 SHARED_KNOWLEDGE_MODULES,
                 SHARED_KNOWLEDGE_PLAYBOOKS_INDEX,
             ]
         if not (workspace_root / knowledge["index"]).is_file():
-            packet["warning_conditions"].append("共享教材速查索引不可用；继续当前任务，不以此阻断探索。")
+            assembly_warnings.append("共享教材速查索引不可用；继续当前任务，不以此阻断探索。")
         if role == "literature":
             packet["warning_conditions"].append(knowledge_notice)
+    if algorithm_sources_enabled:
+        read_scope.extend([
+            algorithm_sources["mirror"], algorithm_sources["index"], algorithm_sources["index_relpath"],
+            algorithm_sources["cards"], algorithm_sources["skeletons"],
+        ])
+        context_refs.extend([
+            f"shared:{algorithm_sources['mirror']}", f"shared:{algorithm_sources['index']}",
+            f"shared:{algorithm_sources['index_relpath']}", f"shared:{algorithm_sources['cards']}",
+            f"shared:{algorithm_sources['skeletons']}",
+        ])
+        packet["output_contract"]["algorithm_sources"] = {
+            "mirror": algorithm_sources["mirror"],
+            "index": algorithm_sources["index"],
+            "index_relpath": algorithm_sources["index_relpath"],
+            "cards": algorithm_sources["cards"],
+            "skeletons": algorithm_sources["skeletons"],
+            "local_only": True,
+            "sync_action": "sync",
+            "contest_evidence_eligible": False,
+            "usage": algorithm_sources_notice + " 仅在显式 sync 后读取本地镜像；缺失时记录 warning，不联网。",
+        }
+        if not (workspace_root / algorithm_sources["mirror"]).is_dir():
+            assembly_warnings.append("本地算法镜像目录不可用；请显式执行 reference-library sync，继续当前任务，不以此阻断探索。")
+        if not (workspace_root / algorithm_sources["index"]).is_file():
+            assembly_warnings.append("外部算法速查索引不可用；继续当前任务，不以此阻断探索。")
     issues = validate_packet(packet)
     if issues:
         raise ValueError("invalid assembled prompt packet: " + "; ".join(issues))
@@ -289,7 +460,7 @@ def validate_packet(packet: dict[str, Any]) -> list[str]:
         "packet_version", "project_id", "stage", "gate", "role", "question_id", "objective",
         "read_scope", "write_scope", "context_refs", "blocking_conditions", "warning_conditions",
         "deferred_conditions", "allowed_actions", "stop_conditions", "input_contract", "protected_paths",
-        "output_contract", "escalation_rules",
+        "output_contract", "escalation_rules", "gate_sequence", "execution_semantics", "assembly_warnings",
     }
     issues.extend(f"packet missing {key}" for key in sorted(required - set(packet)))
     if packet.get("packet_version") != 1:
@@ -299,6 +470,10 @@ def validate_packet(packet: dict[str, Any]) -> list[str]:
     stage = packet.get("stage")
     if stage not in GATES or packet.get("gate") != derive_gate(stage):
         issues.append("gate does not match stage")
+    if stage in GATE_SEQUENCES and packet.get("gate_sequence") != list(GATE_SEQUENCES[stage]):
+        issues.append("gate_sequence does not match stage")
+    if stage in ROLE_STAGES and packet.get("role") not in ROLE_STAGES[stage]:
+        issues.append("role is not allowed for stage")
     if packet.get("question_id") and not QUESTION_RE.fullmatch(str(packet["question_id"])):
         issues.append("question_id is invalid")
     if stage in GATES and stage not in ("P0", "P1") and not packet.get("question_id"):
@@ -311,6 +486,47 @@ def validate_packet(packet: dict[str, Any]) -> list[str]:
     overlap = set(packet.get("blocking_conditions", [])) & set(packet.get("deferred_conditions", []))
     if overlap:
         issues.append(f"blocking/deferred overlap: {sorted(overlap)}")
+    if packet.get("execution_semantics") != EXECUTION_SEMANTICS:
+        issues.append("execution_semantics does not match the progress-first policy")
+    if not isinstance(packet.get("assembly_warnings"), list):
+        issues.append("assembly_warnings must be a list")
+    output_contract = packet.get("output_contract")
+    if not isinstance(output_contract, dict):
+        issues.append("output_contract must be an object")
+    else:
+        if output_contract.get("format") != "compact_receipt" or output_contract.get("chat_format") != "markdown_summary":
+            issues.append("output_contract format is invalid")
+        knowledge = output_contract.get("shared_knowledge")
+        if isinstance(knowledge, dict) and knowledge.get("contest_evidence_eligible") is not False:
+            issues.append("shared knowledge cannot be contest evidence")
+        statistics = output_contract.get("statistics_guidance")
+        statistics_enabled = stage in STATISTICS_GUIDANCE_PHASES and packet.get("role") in STATISTICS_GUIDANCE_ROLES
+        if statistics_enabled and not isinstance(statistics, dict):
+            issues.append("early solver packets must include statistics_guidance")
+        if not statistics_enabled and statistics is not None:
+            issues.append("statistics_guidance is only allowed for P1-P3 solver packets")
+        if isinstance(statistics, dict):
+            if statistics.get("contest_evidence_eligible") is not False:
+                issues.append("statistics guidance cannot be contest evidence")
+            for field in ("index", "modules", "cards"):
+                value = statistics.get(field)
+                if not isinstance(value, str) or not _relative_ref(value):
+                    issues.append(f"statistics_guidance.{field} must be a safe relative path")
+                if isinstance(value, str) and any(
+                    value == scope or value.startswith(f"{scope}/") or scope.startswith(f"{value}/")
+                    for scope in packet.get("write_scope", [])
+                ):
+                    issues.append("statistics guidance must not overlap project write_scope")
+            if not isinstance(statistics.get("route_ids"), list) or not statistics.get("route_ids"):
+                issues.append("statistics_guidance.route_ids must be non-empty")
+            if not isinstance(statistics.get("expected_outputs"), list) or not statistics.get("expected_outputs"):
+                issues.append("statistics_guidance.expected_outputs must be non-empty")
+        algorithm_sources = output_contract.get("algorithm_sources")
+        if isinstance(algorithm_sources, dict):
+            if algorithm_sources.get("contest_evidence_eligible") is not False:
+                issues.append("algorithm sources cannot be contest evidence")
+            if algorithm_sources.get("local_only") is not True or algorithm_sources.get("sync_action") != "sync":
+                issues.append("algorithm sources must be local-only and explicitly synced")
     return issues
 
 
@@ -322,7 +538,7 @@ def format_receipt(payload: dict[str, Any] | None = None) -> dict[str, Any]:
     decision = payload.get("decision_request")
     if decision is not None and not isinstance(decision, str):
         raise ValueError("decision_request must be null or a string")
-    if decision is not None and not re.search(r"主模型|fallback|回退|claim|主张|官方规则|规则冲突|发布阻断", decision, re.I):
+    if decision is not None and not DECISION_REQUEST_RE.search(decision):
         raise ValueError("decision_request is limited to a critical decision")
     evidence = [str(item) for item in payload.get("evidence", [])]
     if any(not re.fullmatch(r"[^#]+#sha256=[0-9a-fA-F]{64}", item) for item in evidence):
@@ -336,6 +552,31 @@ def format_receipt(payload: dict[str, Any] | None = None) -> dict[str, Any]:
         "next_action": str(payload.get("next_action", "")),
         "decision_request": decision,
     }
+
+
+def format_receipt_markdown(receipt: dict[str, Any]) -> str:
+    """Render the machine receipt as a compact, human-readable chat summary."""
+    normalized = format_receipt(receipt)
+    status_labels = {
+        "PROGRESS": "进行中", "PASS": "通过", "PASS_WITH_WARNINGS": "通过，但有提醒",
+        "BLOCK_TRANSITION": "阻断本次转换", "REOPEN_REQUIRED": "需要局部重开", "READY": "已就绪",
+    }
+    lines = [f"**{status_labels[normalized['status']]}**"]
+    if normalized["objective"]:
+        lines.extend(["", f"**目标**：{normalized['objective']}"])
+    if normalized["conclusion"]:
+        lines.extend(["", f"**结论**：{normalized['conclusion']}"])
+    if normalized["evidence"]:
+        lines.extend(["", "**依据**"])
+        lines.extend(f"- `{item}`" for item in normalized["evidence"])
+    if normalized["warnings"]:
+        lines.extend(["", "**提醒**"])
+        lines.extend(f"- {item}" for item in normalized["warnings"])
+    if normalized["next_action"]:
+        lines.extend(["", f"**下一步**：{normalized['next_action']}"])
+    if normalized["decision_request"]:
+        lines.extend(["", f"**需要确认**：{normalized['decision_request']}"])
+    return "\n".join(lines) + "\n"
 
 
 def packet_json(packet: dict[str, Any]) -> str:

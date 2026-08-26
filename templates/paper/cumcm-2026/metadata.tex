@@ -3,6 +3,12 @@
 \newcommand{\PaperTitle}{赛题发布后填写论文题目}
 \newcommand{\PaperKeywords}{关键词一；关键词二；关键词三}
 
+% The repository template is previewable before a real problem is supplied.
+% initialize writes generated/build_mode.tex with \MathModelPreviewfalse for
+% formal project papers, so a missing real question structure is a hard error.
+\newif\ifMathModelPreview
+\MathModelPreviewtrue
+
 % 当届官方规则要求时，由项目初始化或人工核验结果开启。
 \newif\ifRequireAIStatement
 \RequireAIStatementfalse

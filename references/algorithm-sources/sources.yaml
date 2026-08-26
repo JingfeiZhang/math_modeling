@@ -1,0 +1,32 @@
+schema_version: 1
+library_id: algorithm-sources-v1
+description: "只读登记可用于 P1-P3 算法速查的外部代码源；仓库只保存元数据和自写风险卡。"
+evidence_policy:
+  contest_evidence_eligible: false
+  allowed_use: [model_direction, assumption_check, baseline_design, risk_probe]
+  forbidden_use: [formal_claim, paper_number, figure_contract, submission, release, direct_copy]
+  original_code_in_repository: false
+sources:
+  - source_id: github-jingfeizhang-1
+    repository: "https://github.com/JingfeiZhang/1"
+    commit: 8abaef8c9262017925099d1463ebc78c1ab6a956
+    commit_url: "https://github.com/JingfeiZhang/1/commit/8abaef8c9262017925099d1463ebc78c1ab6a956"
+    language: python
+    license_status: NO_LICENSE
+    scope: study_only
+    mirror_mode: local_directory
+    mirror_relpath: "代码库"
+    index_relpath: "tools/algorithm-sources/github-jingfeizhang-1/8abaef8c9262017925099d1463ebc78c1ab6a956"
+    source_paths:
+      - "01_数据预处理与可视化"
+      - "02_评价类模型"
+      - "03_预测类模型"
+      - "04_分类与聚类"
+      - "05_规划与优化"
+      - "06_智能优化算法"
+      - "07_统计分析"
+      - "08_图论与网络模型"
+      - "09_机理建模"
+      - "10_模型检验"
+      - "11_组合模型（创新加分）"
+    last_checked: "2026-08-25"

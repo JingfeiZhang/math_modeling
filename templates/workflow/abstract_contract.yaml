@@ -11,11 +11,13 @@ questions:
   - question_id: Q1
     method_required: true
     subject_required: true
+    result_required: true
     conclusion_required: true
     validation_required: true
     boundary_required: true
     method: ""
     subject: ""
+    result: ""
     conclusion: ""
     validation: ""
     boundary: ""

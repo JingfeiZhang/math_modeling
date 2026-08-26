@@ -1,55 +1,52 @@
 ---
 name: literature-guided-modeling
-description: "Plan, screen, verify, read, and synthesize academic literature for mathematical-modeling algorithm and model exploration. Use when a contest subproblem needs literature-grounded model candidates, parameter ranges, comparable baselines, validation methods, targeted paper extraction, a model evidence matrix, experiment feedback, or citation handoff without delaying Scratch and baseline work."
+description: "Plan, verify, read, and synthesize academic literature for a named mathematical-modeling contest Qx when model choice, parameter basis, baseline or challenger design, validation, or citation handoff needs scholarly support. Do not use for generic literature reviews, contest-paper mining, or project result generation."
 ---
 
 # Literature-Guided Modeling
 
-Turn academic papers into bounded modeling decisions and testable experiment ideas. Own the search plan, reference cards, and model evidence brief; never own contest state, frozen claims, formal experiment results, or final paper approval.
+Turn verified academic papers into question-scoped model choices and testable experiment ideas. Consume the current assembled `literature` prompt packet; do not load or restate the full prompt policy. The packet owns stage behavior, budgets, transition semantics, and stopping conditions.
 
 ## Boundaries
 
-- Use `mathmodel-skill` as the only owner of P0-P6, G0-G6, official rules, human decisions, and `state/decision_log.json`.
-- Invoke `nature-academic-search` for multi-source discovery, metadata verification, deduplication, and BibTeX work. Follow its router and loaded workflow fragments instead of recreating provider logic.
-- Use `math-modeling-solver` to map extracted evidence to candidate models, comparable baselines, parameter probes, and executable Scratch work.
-- Use the PDF skill to inspect a supplied full-text PDF, preserve page-aware locators, and distinguish text extraction from visual evidence.
-- Use `math-modeling-paper` and `modeling-paper-studio` only for manuscript integration and G5 citation/evidence audits.
-- Accept journal articles, conference papers, preprints, and theses. Do not use prior contest papers to choose the model.
-- Keep paper PDFs, HTML snapshots, and search caches outside Git, submission packages, and release directories.
-- Never copy an external performance number into project claims. Project numbers must come from frozen Formal or eligible Paper Evidence.
+- Require the packet's explicit project and Qx. Read only its authorized project-local inputs and write only the canonical literature artifacts for that Qx.
+- Own search plans, receipts, Academic Reference Cards, and the Model Evidence Brief. Never own contest state, human decisions, quality contracts, experiment results, frozen claims, Figure Contracts, manuscript sources, or release artifacts.
+- Use `nature-academic-search` for discovery, metadata verification, deduplication, and BibTeX work; use the PDF skill for page-aware full-text evidence; use `math-modeling-solver` to turn findings into proposed Scratch probes.
+- Accept journal articles, conference papers, preprints, and theses. Prior contest papers cannot support model selection in this skill.
+- `references/competition-knowledge/` is a separate, read-only textbook quick-reference layer. Do not load it automatically. When the current packet supplies a relevant card, it may suggest search terms, assumption checks, or risk probes only; it never becomes an Academic Reference Card, BibTeX entry, Formal evidence, claim, or paper citation.
+- Keep source PDFs, HTML snapshots, and search caches outside Git, submission, and release directories.
+- Never copy an external performance number into a project claim. Project numbers come only from frozen Formal evidence or eligible Paper Evidence.
 
-## Workflow
+## Routing
 
-1. **Read the question interface.** Require an explicit project and Qx. Read the current `question.yaml`; extract the domain object, mathematical task, inputs, outputs, data conditions, and dominant constraints. Do not create a second workflow state.
-2. **Plan a bounded search.** Create `literature/search_plan.yaml` from the canonical template. Include one scenario-task query and one method-constraint query, source priority, a 20-minute per-question limit, a 90-minute project limit, and explicit stopping rules.
-3. **Search in parallel with modeling.** Let baseline and Scratch work continue. Search CrossRef, OpenAlex, and arXiv first; use Semantic Scholar next; use Google Scholar, CNKI, and Wanfang as manual supplements. Save a receipt and raw-result hash for every query.
-4. **Deduplicate and screen.** Prefer DOI identity; otherwise match normalized title, first author, and year. Screen title and abstract, retain at most 10 candidates, and rank task/output fit before venue prestige or recency.
-5. **Read only what the decision needs.** Target 2-4 papers and expand to at most 6 when central evidence is missing. Extract formula, algorithm, parameter, baseline, validation, limitation, and code details only from page- or section-located full text. Read [search-and-reading.md](references/search-and-reading.md) for source and reading rules.
-6. **Create evidence cards.** Write one `academic_reference_card` per retained paper. Mark the depth honestly. `METADATA_ONLY` and `ABSTRACT_SCREENED` cards discover candidates only; they cannot support exact formulas, parameters, algorithm steps, or performance claims.
-7. **Synthesize model evidence.** Compare candidate families in `model_evidence_brief.yaml`. Record matched and mismatched conditions, implementation cost, baseline, risk probes, rejection triggers, one primary recommendation, and at most one conditional fallback. The recommendation remains provisional until project experiments support it.
-8. **Feed experiments back into search.** Add a focused follow-up query only when Scratch exposes a concrete gap such as non-convergence, unsupported parameter bounds, an unfair baseline, an unresolved constraint, or missing robustness evidence. Update only the affected Qx.
-9. **Hand off citations.** Map verified BibTeX keys to problem analysis, model selection, parameter basis, or model validation. Do not create a separate literature-review chapter for CUMCM. Read [evidence-contract.md](references/evidence-contract.md) before synthesis or G5 handoff.
+1. **Establish the literature need.** Read `question.yaml` and the literature packet. When authorized, read the question's referenced semantic, metric, and algorithm-evidence contracts only to identify unresolved verification needs; never edit those contracts.
+2. **Plan, search, screen, or read.** Before any of these actions, read [search-and-reading.md](references/search-and-reading.md). Use the question interface and named V7.2 gaps to form bounded queries, then create canonical search receipts and depth-labelled cards.
+3. **Respond to experiments.** Add a focused query only for a concrete Qx gap exposed by Scratch or Candidate evidence. Keep modeling work independent of literature completion.
+4. **Synthesize or hand off citations.** Before either action, read [evidence-contract.md](references/evidence-contract.md). Build a Model Evidence Brief that distinguishes paper evidence from current-problem fit and proposes experiments rather than results.
 
-## Lifecycle and Gates
+## V7.2 Verification Inputs
 
-Use the project workflow commands when available:
+Treat the following as read-only search inputs when present:
 
-```text
-literature-plan -> literature-search -> literature-register
--> literature-read -> literature-synthesize -> literature-audit
-```
+- uncovered requirement mappings between the problem statement, model element, required output, primary metric, validation method, and paper location;
+- missing known-answer, hand-calculated, exhaustive, exact-solver, analytical-limit, or benchmark cases;
+- the need for a same-output baseline, a lightweight challenger, or a reviewed reason that a challenger is not useful;
+- unresolved feasibility, conservation, boundary, dimensional, nonnegativity, monotonicity, or interface invariants;
+- missing task-specific validation, including prediction leakage and out-of-sample design, optimization bounds or gaps, mechanistic calibration and limits, or ranking stability.
 
-Derive status from artifacts:
+Translate these gaps into literature queries, located evidence, and proposed Scratch checks. Do not mark a contract check as passed, populate an evidence locator, or decide that project evidence is sufficient.
 
-```text
-PLAN_READY -> DISCOVERED -> SOURCES_VERIFIED
--> CARDS_READY -> SYNTHESIS_READY -> CITATION_READY
-```
+## Outputs
 
-Compute `source_question_manifest_sha256` from the canonical P1 problem interface only: `schema_version`, `problem_id`, `question_id`, `source_problem`, and `problem`. Exclude downstream model selection, experiments, paper handoffs, status, and the top-level `literature` block. This avoids a self-referential hash cycle and prevents ordinary downstream progress from invalidating the original search question.
+- Search plan and provider receipts with stable identifiers, raw-result hashes, and recorded metadata conflicts.
+- Academic Reference Cards with honest depth labels and page, section, equation, table, figure, appendix, or repository locators.
+- Model Evidence Brief covering matched and mismatched conditions, implementation cost, parameter basis, comparable baseline, lightweight challenger or omission rationale, risk probes, task-specific validation, rejection triggers, one provisional primary recommendation, and at most one conditional fallback.
+- Citation handoff that maps substantive statements to verified cards and BibTeX keys without creating a separate CUMCM literature-review chapter.
 
-Any question-interface, metadata snapshot, source document, card, or brief hash drift makes only the affected Qx literature chain `STALE`. Literature incompleteness is a warning through G4 and must not block baseline, Scratch, Candidate, or Formal work. G5 requires verified metadata, targeted-read support for substantive citations, current card and brief hashes, referenced BibTeX keys, explained conflicts, and separation between external results and project evidence.
+The recommendation remains provisional until the project's own experiments support it. A literature contradiction becomes a review suggestion, not a project result or an automatic model change.
 
-## Canonical Contracts
+## Artifact Integrity
 
-Use the schema files under `config/schemas/` and start from the corresponding `templates/workflow/literature_*.yaml` files. Treat an action `-Config` file as semantic template payload only; let the workflow command derive the fixed project path, current hashes, timestamps, and lifecycle status. Do not trust caller-supplied provenance fields, invent aliases, use absolute paths, create duplicate status files, or introduce untracked result numbers.
+Use the schemas under `config/schemas/` and the corresponding `templates/workflow/literature_*.yaml` templates. Workflow commands derive canonical paths, hashes, timestamps, and lifecycle status; action configuration supplies semantic content only. Do not trust caller-supplied provenance, use absolute paths, create another state file, or invent untracked result numbers.
+
+Compute `source_question_manifest_sha256` from the canonical question interface fields only: `schema_version`, `problem_id`, `question_id`, `source_problem`, and `problem`. Exclude downstream model selection, experiments, paper handoffs, status, and the top-level `literature` block. Drift invalidates only the affected Qx literature artifacts; the current packet determines the appropriate response.

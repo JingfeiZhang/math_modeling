@@ -171,6 +171,67 @@ def test_v3_abstract_requires_per_question_method_result_and_validation(tmp_path
     assert "Q2" in coverage_errors[0]["message"]
 
 
+def test_v3_accepts_manifest_mapped_dynamic_argument_headings(tmp_path: Path) -> None:
+    paper, log = _write_valid_project(tmp_path, VALID_ABSTRACT)
+    main = paper / "main.tex"
+    text = main.read_text(encoding="utf-8")
+    dynamic = {
+        "objective_interface": "任务接口与交付物",
+        "data_mechanism": "输入数据画像",
+        "model_choice": "候选方法筛选",
+        "formulation": "决策变量与约束体系",
+        "algorithm": "滚动求解流程",
+        "result": "方案结果与原因",
+        "validation": "稳健性与误差检验",
+        "conclusion": "适用范围与交接",
+    }
+    for key, old in zip(dynamic, ARGUMENT_HEADINGS):
+        text = text.replace(f"\\subsection{{{old}}}", f"\\subsection{{{dynamic[key]}}}")
+    main.write_text(text, encoding="utf-8")
+    for qid in ("Q1", "Q2"):
+        manifest_path = tmp_path / "problems" / "C" / "questions" / qid / "question.yaml"
+        manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
+        manifest["paper"]["heading_strategy"] = "dynamic"
+        manifest["paper"]["section_map"] = {key: [title] for key, title in dynamic.items()}
+        manifest_path.write_text(yaml.safe_dump(manifest, allow_unicode=True, sort_keys=False), encoding="utf-8")
+
+    result = audit_latex.audit(_args(paper, log))
+
+    assert result["passed"] is True, result["errors"]
+    assert result["metrics"]["question_responsibility_maps"]["Q1"]["algorithm"] == [dynamic["algorithm"]]
+
+
+def test_v3_manifest_mapped_heading_must_occur_in_question_section(tmp_path: Path) -> None:
+    paper, log = _write_valid_project(tmp_path, VALID_ABSTRACT)
+    manifest_path = tmp_path / "problems" / "C" / "questions" / "Q1" / "question.yaml"
+    manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
+    manifest["paper"]["heading_strategy"] = "dynamic"
+    manifest["paper"]["section_map"] = {"validation": ["不存在的验证标题"]}
+    manifest_path.write_text(yaml.safe_dump(manifest, allow_unicode=True, sort_keys=False), encoding="utf-8")
+
+    result = audit_latex.audit(_args(paper, log))
+    missing = [item for item in result["errors"] if item["code"] == "ARGUMENT_SECTION_MISSING"]
+
+    assert any("不存在的验证标题" in item["message"] for item in missing)
+
+
+def test_v3_accepts_question_local_responsibility_map(tmp_path: Path) -> None:
+    paper, log = _write_valid_project(tmp_path, VALID_ABSTRACT)
+    main = paper / "main.tex"
+    text = main.read_text(encoding="utf-8")
+    text = text.replace(
+        "\\subsection{求解算法}",
+        "\\ResponsibilityMap{algorithm}{滚动求解流程}\n\\subsection{滚动求解流程}",
+        1,
+    )
+    main.write_text(text, encoding="utf-8")
+
+    result = audit_latex.audit(_args(paper, log))
+
+    assert result["passed"] is True, result["errors"]
+    assert result["metrics"]["question_responsibility_maps"]["Q1"]["algorithm"] == ["滚动求解流程"]
+
+
 def test_v3_structure_reports_contract_and_log_failures(tmp_path: Path) -> None:
     paper = tmp_path / "paper"
     paper.mkdir()

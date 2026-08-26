@@ -3,11 +3,13 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import warnings
 from pathlib import Path
 
 import yaml
+import pytest
 
-from src.utils.figure_style import load_style, palette, publication_profile, validate_grayscale
+from src.utils.figure_style import configure_matplotlib, load_style, palette, publication_profile, validate_grayscale
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +31,41 @@ def test_palette_is_shared_and_grayscale_safe() -> None:
     assert profile["max_legend_entries"] == 3
 
 
+def _cjk_font_available(font_families: list[str]) -> bool:
+    """Return whether this host has a configured font containing a CJK glyph."""
+    from matplotlib import font_manager
+    from matplotlib.ft2font import FT2Font
+
+    for family in font_families:
+        try:
+            path = font_manager.findfont(family, fallback_to_default=False)
+            if FT2Font(path).get_char_index(ord("测")):
+                return True
+        except (OSError, RuntimeError, ValueError):
+            continue
+    return False
+
+
+def test_matplotlib_font_chain_handles_cjk_without_glyph_warnings() -> None:
+    config = load_style()
+    families = list(config["style"]["font_family"])
+    if not _cjk_font_available(families):
+        pytest.skip("No configured CJK-capable font is installed on this host")
+
+    import matplotlib.pyplot as plt
+
+    configure_matplotlib()
+    figure, axis = plt.subplots()
+    axis.set_title("测试 CJK fallback")
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        figure.canvas.draw()
+    plt.close(figure)
+
+    glyph_warnings = [item for item in caught if "Glyph" in str(item.message)]
+    assert not glyph_warnings
+
+
 def test_matlab_palette_matches_yaml() -> None:
     config = yaml.safe_load((ROOT / "config" / "figure_style.yaml").read_text(encoding="utf-8"))
     matlab = (ROOT / "matlab" / "plotting" / "applyModelingStyle.m").read_text(encoding="utf-8")
@@ -46,6 +83,7 @@ def test_no_unregistered_source_hex_colors() -> None:
         capture_output=True,
         text=True,
         encoding="utf-8",
+        errors="replace",
         check=False,
     )
     assert result.returncode == 0, result.stdout + result.stderr
@@ -60,6 +98,7 @@ def test_palette_preview_exports_triplet() -> None:
         capture_output=True,
         text=True,
         encoding="utf-8",
+        errors="replace",
         check=False,
     )
     assert result.returncode == 0, result.stdout + result.stderr
@@ -79,6 +118,7 @@ def test_contract_palette_metadata_warns_legacy_and_blocks_strict(tmp_path: Path
         capture_output=True,
         text=True,
         encoding="utf-8",
+        errors="replace",
         check=False,
     )
     assert legacy.returncode == 0
@@ -89,6 +129,7 @@ def test_contract_palette_metadata_warns_legacy_and_blocks_strict(tmp_path: Path
         capture_output=True,
         text=True,
         encoding="utf-8",
+        errors="replace",
         check=False,
     )
     assert strict.returncode == 1

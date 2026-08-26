@@ -1,4 +1,5 @@
 schema_version: 1
+verification_profile: 1
 problem_id: DEMO
 question_id: Q1
 source_question:
@@ -17,7 +18,12 @@ substantive_search: true
 seed_count: 0
 seed_runs: []
 baseline: ""
+challenger_not_applicable_reason: ""
 scenario_coverage: []
+oracle_cases: []
+invariants: []
+model_comparison: []
+robustness: []
 scope:
   coverage_mode: full
   window: ""

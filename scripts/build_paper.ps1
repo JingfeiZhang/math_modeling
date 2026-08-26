@@ -57,6 +57,16 @@ if (-not (Test-Path -LiteralPath (Join-Path $paperDir 'main.tex') -PathType Leaf
     throw "Paper entrypoint is missing: $(Join-Path $paperDir 'main.tex')"
 }
 
+# A full build for an initialized project must consume the real parsed
+# question structure. Preview checkpoints use a temporary generated structure
+# and remain allowed to compile without this source file.
+$formalStatePath = Join-Path $root 'state\decision_log.json'
+$formalStructurePath = Join-Path $paperDir 'generated\question_structure.tex'
+if (-not $PreviewCheckpoint -and (Test-Path -LiteralPath $formalStatePath -PathType Leaf) -and
+    -not (Test-Path -LiteralPath $formalStructurePath -PathType Leaf)) {
+    throw "Formal paper build requires generated question structure: $formalStructurePath"
+}
+
 if ($PreviewCheckpoint) {
     $temporaryBuildRoot = Join-Path ([System.IO.Path]::GetTempPath()) ("mathmodel-paper-preview-" + [guid]::NewGuid().ToString('N'))
     New-Item -ItemType Directory -Path $temporaryBuildRoot | Out-Null

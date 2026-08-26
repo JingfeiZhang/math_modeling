@@ -31,7 +31,8 @@ function Get-CondaMutexName {
 function Enter-CondaLock {
     param(
         [Parameter(Mandatory)][string]$Conda,
-        [int]$TimeoutSeconds = 900
+        [int]$TimeoutSeconds = 900,
+        [switch]$Quiet
     )
     $name = Get-CondaMutexName -Conda $Conda
     $mutex = [System.Threading.Mutex]::new($false, $name)
@@ -47,7 +48,7 @@ function Enter-CondaLock {
             throw "Timed out after $TimeoutSeconds seconds waiting for Conda lock: $name"
         }
         $waited = [Math]::Round(([DateTimeOffset]::UtcNow - $started).TotalSeconds, 3)
-        if ($waited -ge 0.5) { Write-Host "Conda lock acquired after ${waited}s: $name" }
+        if ($waited -ge 0.5 -and -not $Quiet) { Write-Host "Conda lock acquired after ${waited}s: $name" }
         return [pscustomobject]@{ Mutex = $mutex; Name = $name; WaitSeconds = $waited; Released = $false }
     } catch {
         if ($mutex) { $mutex.Dispose() }
@@ -115,7 +116,7 @@ function Invoke-CondaCommand {
         [switch]$DisableUserSite,
         [int]$TimeoutSeconds = 900
     )
-    $lock = Enter-CondaLock -Conda $Conda -TimeoutSeconds $TimeoutSeconds
+    $lock = Enter-CondaLock -Conda $Conda -TimeoutSeconds $TimeoutSeconds -Quiet:$CaptureOutput
     $temporaryDirectory = $null
     $process = $null
     $commandResult = $null

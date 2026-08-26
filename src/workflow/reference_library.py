@@ -12,6 +12,10 @@ import hashlib
 import json
 import os
 import re
+import shutil
+import subprocess
+import tempfile
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -32,6 +36,17 @@ PLAYBOOK_FIELDS = {
     "playbook_id", "playbook_version", "tags", "modules", "stage_scope",
     "evidence_status", "contest_evidence_eligible", "allowed_use",
     "forbidden_use",
+}
+ALGORITHM_SOURCE_FIELDS = {
+    "source_id", "repository", "commit", "commit_url", "language",
+    "license_status", "scope", "source_paths", "last_checked",
+}
+ALGORITHM_CARD_FIELDS = {
+    "algorithm_card_id", "source_id", "source_commit", "source_path",
+    "tags", "stage_scope", "evidence_status", "contest_evidence_eligible",
+    "allowed_use", "forbidden_use", "language", "license_status",
+    "interface", "baseline_required", "baseline_options", "known_risks", "adaptation_required",
+    "entry_points", "skeleton_path",
 }
 REQUIRED_CARD_SECTIONS = (
     "适用信号", "必要前提", "最小建模骨架", "算法/代码入口", "同输出 baseline",
@@ -59,8 +74,23 @@ CORE_TAGS = ("optimization", "metaheuristic", "uncertainty", "statistics", "nume
 EARLY_STAGES = ("P1", "P2", "P3a", "P3b")
 ALLOWED_USES = {"model_direction", "assumption_check", "baseline_design", "risk_probe"}
 FORBIDDEN_USES = {"academic_citation", "formal_evidence", "claim_support", "figure_contract", "submission"}
-LAYERS = ("card", "module", "playbook", "all")
-ABSOLUTE_PATH = re.compile(r"(?:[A-Za-z]:[\\/]|/Users/|/home/|C:/Users/)")
+LAYERS = ("card", "module", "playbook", "code", "all")
+ALGORITHM_ENTRY_KINDS = {"function", "class", "script"}
+MIRROR_IGNORED_DIRS = {".git", ".venv", "venv", "__pycache__", "node_modules", ".pytest_cache", ".mypy_cache"}
+MIRROR_TEXT_SUFFIXES = {
+    ".py", ".pyi", ".m", ".mlx", ".ipynb", ".md", ".txt", ".yaml", ".yml", ".json",
+    ".toml", ".ini", ".cfg", ".csv", ".tsv", ".tex", ".r", ".R", ".jl", ".cpp", ".h",
+}
+MIRROR_MAX_TEXT_BYTES = 2 * 1024 * 1024
+MIRROR_QUERY_LIMIT = 20
+# Require a path boundary before a Windows drive prefix so URLs such as
+# ``https://...`` are not mistaken for ``s:/...``.
+ABSOLUTE_PATH = re.compile(r"(?<![A-Za-z0-9])(?:[A-Za-z]:[\\/]|/Users/|/home/|C:/Users/)")
+
+
+def _relative_ref(value: str) -> bool:
+    path = Path(value)
+    return not path.is_absolute() and not re.match(r"^[A-Za-z]:", value) and ".." not in path.parts
 
 
 def _read_yaml(path: Path) -> dict[str, Any]:
@@ -371,6 +401,432 @@ def playbook_records(workspace_root: Path) -> tuple[list[dict[str, Any]], list[s
     return records, issues
 
 
+def _algorithm_root(workspace_root: Path) -> Path:
+    return library_root(workspace_root) / "references" / "algorithm-sources"
+
+
+def _algorithm_mirror_path(workspace_root: Path, source: dict[str, Any]) -> Path:
+    relative = str(source.get("mirror_relpath") or "")
+    if not relative:
+        relative = f"tools/algorithm-sources/{source['source_id']}/{source['commit']}"
+    if not _relative_ref(relative):
+        raise ValueError(f"algorithm mirror path is unsafe: {relative}")
+    root = library_root(workspace_root)
+    target = (root / relative).resolve()
+    if root not in target.parents:
+        raise ValueError(f"algorithm mirror path escapes workspace: {relative}")
+    return target
+
+
+def _mirror_state_path(mirror_path: Path) -> Path:
+    return mirror_path / "mirror_state.json"
+
+
+def _algorithm_index_root(workspace_root: Path, source: dict[str, Any]) -> Path:
+    relative = str(source.get("index_relpath") or f"tools/algorithm-sources/{source['source_id']}/{source['commit']}")
+    if not _relative_ref(relative):
+        raise ValueError(f"algorithm index path is unsafe: {relative}")
+    root = library_root(workspace_root)
+    target = (root / relative).resolve()
+    if root not in target.parents:
+        raise ValueError(f"algorithm index path escapes workspace: {relative}")
+    return target
+
+
+def _run_git(arguments: list[str], *, cwd: Path | None = None, env: dict[str, str] | None = None) -> subprocess.CompletedProcess[str]:
+    command = ["git", *arguments]
+    return subprocess.run(
+        command,
+        cwd=cwd,
+        env=env,
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+
+
+def _git_head(mirror_path: Path) -> str | None:
+    if not (mirror_path / ".git").exists():
+        return None
+    result = _run_git(["rev-parse", "HEAD"], cwd=mirror_path)
+    if result.returncode != 0:
+        return None
+    return result.stdout.strip().lower()
+
+
+def _mirror_relpath(workspace_root: Path, mirror_path: Path) -> str:
+    return mirror_path.resolve().relative_to(library_root(workspace_root)).as_posix()
+
+
+def _license_files(mirror_path: Path) -> list[str]:
+    candidates: list[str] = []
+    for path in mirror_path.iterdir() if mirror_path.is_dir() else []:
+        if path.is_file() and re.fullmatch(r"(?i)(license|copying)(?:\.[A-Za-z0-9._-]+)?", path.name):
+            candidates.append(path.name)
+    return sorted(candidates)
+
+
+def _extract_symbols(text: str, suffix: str) -> list[dict[str, Any]]:
+    patterns: list[tuple[str, str]] = []
+    if suffix in {".py", ".pyi"}:
+        patterns = [("function", r"^\s*(?:async\s+)?def\s+([A-Za-z_]\w*)\s*\("), ("class", r"^\s*class\s+([A-Za-z_]\w*)\s*[:(]")]
+    elif suffix in {".m", ".mlx"}:
+        patterns = [("function", r"^\s*function(?:\s+\[[^\]]*\]|\s+[^=]+\s*=)?\s*([A-Za-z_]\w*)\s*\(")]
+    symbols: list[dict[str, Any]] = []
+    for line_number, line in enumerate(text.splitlines(), 1):
+        for kind, pattern in patterns:
+            match = re.search(pattern, line)
+            if match:
+                symbols.append({"symbol": match.group(1), "kind": kind, "line": line_number})
+    return symbols
+
+
+def _build_mirror_index(workspace_root: Path, source: dict[str, Any], mirror_path: Path) -> dict[str, Any]:
+    files: list[dict[str, Any]] = []
+    root = mirror_path.resolve()
+    for path in sorted(root.rglob("*")):
+        if not path.is_file() or any(part in MIRROR_IGNORED_DIRS for part in path.relative_to(root).parts):
+            continue
+        relative = path.relative_to(root).as_posix()
+        digest = _sha256_file(path)
+        suffix = path.suffix
+        text_readable = suffix in MIRROR_TEXT_SUFFIXES and path.stat().st_size <= MIRROR_MAX_TEXT_BYTES
+        symbols: list[dict[str, Any]] = []
+        if text_readable:
+            try:
+                symbols = _extract_symbols(path.read_text(encoding="utf-8"), suffix)
+            except (OSError, UnicodeDecodeError):
+                text_readable = False
+        files.append({
+            "path": relative,
+            "suffix": suffix,
+            "bytes": path.stat().st_size,
+            "sha256": digest,
+            "text_readable": text_readable,
+            "symbols": symbols,
+        })
+    synced_at = datetime.now(timezone.utc).isoformat()
+    payload = {
+        "schema_version": 1,
+        "source_id": source["source_id"],
+        "commit": source["commit"],
+        "mirror_mode": source.get("mirror_mode", "git_clone"),
+        "mirror_path": _mirror_relpath(workspace_root, mirror_path),
+        "head_verified": _git_head(mirror_path) == str(source["commit"]).lower(),
+        "generated_at_utc": synced_at,
+        "synced_at": synced_at,
+        "file_count": len(files),
+        "files": files,
+    }
+    index_root = _algorithm_index_root(workspace_root, source)
+    index_root.mkdir(parents=True, exist_ok=True)
+    index_path = index_root / "algorithm_index.json"
+    index_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return payload
+
+
+def _mirror_status(workspace_root: Path, source: dict[str, Any]) -> dict[str, Any]:
+    mirror_path = _algorithm_mirror_path(workspace_root, source)
+    relative = _mirror_relpath(workspace_root, mirror_path)
+    if not mirror_path.exists():
+        return {"status": "NOT_SYNCED", "mirror_path": relative, "head": None, "index_path": None}
+    mirror_mode = str(source.get("mirror_mode", "git_clone"))
+    head = _git_head(mirror_path)
+    if mirror_mode == "git_clone":
+        if not (mirror_path / ".git").exists():
+            return {"status": "INVALID", "mirror_path": relative, "head": None, "index_path": None}
+        if head != str(source["commit"]).lower():
+            return {"status": "STALE", "mirror_path": relative, "head": head, "index_path": None}
+    elif mirror_mode != "local_directory":
+        return {"status": "INVALID", "mirror_path": relative, "head": head, "index_path": None}
+    index_root = _algorithm_index_root(workspace_root, source)
+    index = _load_mirror_index(index_root)
+    if index is None:
+        return {"status": "STALE", "mirror_path": relative, "head": head, "index_path": relative + "/algorithm_index.json"}
+    if str(index.get("source_id")) != str(source.get("source_id")) or str(index.get("commit")).lower() != str(source.get("commit")).lower():
+        return {"status": "STALE", "mirror_path": relative, "head": head, "index_path": str(source.get("index_relpath") or relative) + "/algorithm_index.json"}
+    expected_files = {
+        str(row.get("path")): str(row.get("sha256", "")).lower()
+        for row in index.get("files", [])
+        if isinstance(row, dict) and row.get("path")
+    }
+    current_files: dict[str, str] = {}
+    for path in sorted(mirror_path.rglob("*")):
+        if not path.is_file() or any(part in MIRROR_IGNORED_DIRS for part in path.relative_to(mirror_path).parts):
+            continue
+        if path.name in {"mirror_state.json", "algorithm_index.json"}:
+            continue
+        current_files[path.relative_to(mirror_path).as_posix()] = _sha256_file(path)
+    if current_files != expected_files:
+        return {"status": "STALE", "mirror_path": relative, "head": head, "index_path": str(source.get("index_relpath") or relative) + "/algorithm_index.json"}
+    return {"status": "READY", "mirror_path": relative, "head": head, "index_path": str(source.get("index_relpath") or relative) + "/algorithm_index.json"}
+
+
+def sync_algorithm_source(workspace_root: Path, source_id: str) -> dict[str, Any]:
+    """Clone and index one pinned source; never execute files from the source."""
+
+    sources = load_algorithm_sources(workspace_root)
+    source = next((item for item in sources["sources"] if item.get("source_id") == source_id), None)
+    if source is None:
+        raise ValueError(f"unknown algorithm source_id: {source_id}")
+    target = _algorithm_mirror_path(workspace_root, source)
+    if str(source.get("mirror_mode", "git_clone")) == "local_directory":
+        if not target.is_dir():
+            return {"schema_version": 1, "passed": False, "status": "NOT_FOUND", "mirror_path": _mirror_relpath(workspace_root, target)}
+        index = _build_mirror_index(workspace_root, source, target)
+        index["license_status"] = str(source.get("license_status", "UNKNOWN"))
+        index["license_files"] = _license_files(target)
+        index_root = _algorithm_index_root(workspace_root, source)
+        index_root.mkdir(parents=True, exist_ok=True)
+        state_path = index_root / "mirror_state.json"
+        state_path.write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        state = _mirror_status(workspace_root, source)
+        return {"schema_version": 1, "passed": state["status"] == "READY", "status": state["status"], **state}
+    if shutil.which("git") is None:
+        raise RuntimeError("git is required to sync algorithm sources")
+    parent = target.parent
+    parent.mkdir(parents=True, exist_ok=True)
+    existing_status = _mirror_status(workspace_root, source)
+    if existing_status["status"] == "STALE":
+        return {"schema_version": 1, "passed": False, "status": "MIRROR_COMMIT_MISMATCH", **existing_status}
+    if existing_status["status"] == "INVALID":
+        return {"schema_version": 1, "passed": False, "status": "MIRROR_INVALID", **existing_status}
+    if existing_status["status"] == "NOT_SYNCED":
+        temporary = Path(tempfile.mkdtemp(prefix=f".{source_id}-", dir=parent))
+        try:
+            env = os.environ.copy()
+            env["GIT_LFS_SKIP_SMUDGE"] = "1"
+            clone = _run_git(["clone", "--no-tags", "--depth", "1", "--no-checkout", str(source["repository"]), str(temporary)], env=env)
+            if clone.returncode != 0:
+                raise RuntimeError(f"git clone failed: {clone.stderr.strip() or clone.stdout.strip()}")
+            checkout = _run_git(["checkout", "--detach", "--force", str(source["commit"])], cwd=temporary, env=env)
+            if checkout.returncode != 0:
+                raise RuntimeError(f"git checkout failed: {checkout.stderr.strip() or checkout.stdout.strip()}")
+            if _git_head(temporary) != str(source["commit"]).lower():
+                raise RuntimeError("cloned source HEAD does not match the pinned commit")
+            temporary_state = _build_mirror_index(workspace_root, source, temporary)
+            temporary_state["license_status"] = str(source.get("license_status", "UNKNOWN"))
+            temporary_state["license_files"] = _license_files(temporary)
+            _mirror_state_path(temporary).write_text(json.dumps(temporary_state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            shutil.move(str(temporary), str(target))
+        except Exception:
+            shutil.rmtree(temporary, ignore_errors=True)
+            raise
+    else:
+        index = _build_mirror_index(workspace_root, source, target)
+        index["license_status"] = str(source.get("license_status", "UNKNOWN"))
+        index["license_files"] = _license_files(target)
+        _mirror_state_path(target).write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    state = _mirror_status(workspace_root, source)
+    final_status = "READY" if state["status"] == "READY" else "INVALID"
+    return {"schema_version": 1, "passed": final_status == "READY", "status": final_status, **state}
+
+
+def load_algorithm_sources(workspace_root: Path) -> dict[str, Any]:
+    """Load pinned GitHub metadata; syncing is always an explicit action."""
+
+    root = _algorithm_root(workspace_root)
+    path = root / "sources.yaml"
+    if not path.is_file():
+        raise FileNotFoundError(f"algorithm source manifest is missing: {path}")
+    payload = _read_yaml(path)
+    issues = validate_algorithm_sources(payload)
+    schema_path = root / "sources.schema.json"
+    if not schema_path.is_file():
+        issues.append(f"algorithm source schema is missing: {schema_path}")
+    else:
+        from jsonschema import Draft202012Validator
+
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+        issues.extend(error.message for error in Draft202012Validator(schema).iter_errors(payload))
+    if issues:
+        raise ValueError("invalid algorithm source manifest: " + "; ".join(issues))
+    return payload
+
+
+def validate_algorithm_sources(payload: dict[str, Any]) -> list[str]:
+    issues: list[str] = []
+    if payload.get("schema_version") != 1:
+        issues.append("algorithm source schema_version must be 1")
+    policy = payload.get("evidence_policy")
+    if not isinstance(policy, dict) or policy.get("contest_evidence_eligible") is not False:
+        issues.append("algorithm sources must never be contest evidence")
+    sources = payload.get("sources")
+    if not isinstance(sources, list) or not sources:
+        return [*issues, "algorithm sources must be a non-empty list"]
+    seen: set[str] = set()
+    for index, source in enumerate(sources):
+        if not isinstance(source, dict):
+            issues.append(f"algorithm sources[{index}] must be an object")
+            continue
+        missing = sorted(ALGORITHM_SOURCE_FIELDS - set(source))
+        if missing:
+            issues.append(f"algorithm sources[{index}] missing {missing}")
+        source_id = str(source.get("source_id", ""))
+        if not SAFE_SOURCE_ID.fullmatch(source_id):
+            issues.append(f"algorithm sources[{index}] has invalid source_id")
+        if source_id in seen:
+            issues.append(f"duplicate algorithm source_id: {source_id}")
+        seen.add(source_id)
+        repository = str(source.get("repository", ""))
+        if not re.fullmatch(r"https://github\.com/[^/]+/[^/]+/?", repository):
+            issues.append(f"algorithm sources[{index}] repository must be a GitHub HTTPS URL")
+        commit = str(source.get("commit", ""))
+        if not re.fullmatch(r"[0-9a-fA-F]{40}", commit):
+            issues.append(f"algorithm sources[{index}] commit must be a 40-character SHA")
+        paths = source.get("source_paths")
+        if not isinstance(paths, list) or not paths:
+            issues.append(f"algorithm sources[{index}] source_paths must be non-empty")
+        else:
+            for value in paths:
+                if not isinstance(value, str) or not _relative_ref(value):
+                    issues.append(f"algorithm sources[{index}] contains an unsafe source path")
+        mirror_relpath = source.get("mirror_relpath")
+        if mirror_relpath is not None and (not isinstance(mirror_relpath, str) or not _relative_ref(mirror_relpath)):
+            issues.append(f"algorithm sources[{index}] mirror_relpath must be a safe relative path")
+        index_relpath = source.get("index_relpath")
+        if index_relpath is not None and (not isinstance(index_relpath, str) or not _relative_ref(index_relpath)):
+            issues.append(f"algorithm sources[{index}] index_relpath must be a safe relative path")
+        mirror_mode = source.get("mirror_mode", "git_clone")
+        if mirror_mode not in {"git_clone", "local_directory"}:
+            issues.append(f"algorithm sources[{index}] mirror_mode is invalid")
+    return issues
+
+
+REQUIRED_ALGORITHM_CARD_SECTIONS = (
+    "适用信号", "输入输出", "baseline 与升级", "验证要求",
+    "已知风险", "停止与回退", "适配步骤", "来源与边界",
+)
+
+
+def validate_algorithm_card(card_path: Path, sources_by_id: dict[str, dict[str, Any]]) -> list[str]:
+    issues: list[str] = []
+    try:
+        front, body = _frontmatter(card_path)
+    except (OSError, ValueError, yaml.YAMLError) as exc:
+        return [str(exc)]
+    missing = sorted(ALGORITHM_CARD_FIELDS - set(front))
+    if missing:
+        issues.append(f"{card_path.name} missing {missing}")
+    card_id = str(front.get("algorithm_card_id", ""))
+    if not SAFE_SOURCE_ID.fullmatch(card_id):
+        issues.append(f"{card_path.name} has invalid algorithm_card_id")
+    source_id = str(front.get("source_id", ""))
+    source = sources_by_id.get(source_id)
+    if source is None:
+        issues.append(f"{card_path.name} references unknown algorithm source_id: {source_id}")
+    else:
+        if str(front.get("source_commit", "")).lower() != str(source["commit"]).lower():
+            issues.append(f"{card_path.name} source_commit does not match sources.yaml")
+        if str(front.get("license_status", "")) != str(source["license_status"]):
+            issues.append(f"{card_path.name} license_status does not match sources.yaml")
+    tags = front.get("tags")
+    if not isinstance(tags, list) or not tags or any(not isinstance(tag, str) for tag in tags):
+        issues.append(f"{card_path.name} tags must be a non-empty string list")
+    stage_scope = front.get("stage_scope")
+    if not isinstance(stage_scope, list) or not stage_scope or any(stage not in EARLY_STAGES for stage in stage_scope):
+        issues.append(f"{card_path.name} stage_scope must stay within P1-P3")
+    if front.get("evidence_status") != "P1-P3-non-evidence":
+        issues.append(f"{card_path.name} evidence_status must be P1-P3-non-evidence")
+    if front.get("contest_evidence_eligible") is not False:
+        issues.append(f"{card_path.name} must never be contest evidence")
+    if set(front.get("allowed_use", [])) != ALLOWED_USES:
+        issues.append(f"{card_path.name} allowed_use must use the fixed exploration roles")
+    if not {"formal_evidence", "claim_support", "figure_contract", "submission", "release", "direct_copy"} <= set(front.get("forbidden_use", [])):
+        issues.append(f"{card_path.name} forbidden_use is incomplete")
+    source_path = str(front.get("source_path", ""))
+    if not source_path or not _relative_ref(source_path):
+        issues.append(f"{card_path.name} source_path must be a safe relative path")
+    entry_points = front.get("entry_points")
+    if not isinstance(entry_points, list) or not entry_points:
+        issues.append(f"{card_path.name} entry_points must be a non-empty list")
+    else:
+        for index, entry in enumerate(entry_points):
+            if not isinstance(entry, dict):
+                issues.append(f"{card_path.name} entry_points[{index}] must be an object")
+                continue
+            required_entry = {"path", "symbol", "kind", "purpose", "input", "output", "file_sha256"}
+            missing_entry = sorted(required_entry - set(entry))
+            if missing_entry:
+                issues.append(f"{card_path.name} entry_points[{index}] missing {missing_entry}")
+            if not _relative_ref(str(entry.get("path", ""))):
+                issues.append(f"{card_path.name} entry_points[{index}] path must be relative")
+            if str(entry.get("kind", "")) not in ALGORITHM_ENTRY_KINDS:
+                issues.append(f"{card_path.name} entry_points[{index}] kind is invalid")
+            if not SHA256.fullmatch(str(entry.get("file_sha256", ""))):
+                issues.append(f"{card_path.name} entry_points[{index}] file_sha256 is invalid")
+            locator = str(entry.get("locator_url", ""))
+            pinned_commit = str(front.get("source_commit", ""))
+            if locator and not any(
+                marker in locator
+                for marker in (f"/blob/{pinned_commit}/", f"/tree/{pinned_commit}/", f"/commit/{pinned_commit}")
+            ):
+                issues.append(f"{card_path.name} entry_points[{index}] locator_url must use the pinned commit")
+    skeleton_path = str(front.get("skeleton_path", ""))
+    if not skeleton_path or not _relative_ref(skeleton_path) or not skeleton_path.startswith("references/algorithm-sources/skeletons/"):
+        issues.append(f"{card_path.name} skeleton_path must point to a safe local skeleton")
+    baseline_options = front.get("baseline_options")
+    if not isinstance(baseline_options, list) or not baseline_options:
+        issues.append(f"{card_path.name} baseline_options must be a non-empty list")
+    elif any(not isinstance(item, dict) or not {"id", "when", "required"} <= set(item) for item in baseline_options):
+        issues.append(f"{card_path.name} baseline_options entries are incomplete")
+    if not body.strip():
+        issues.append(f"{card_path.name} body is empty")
+    for section in REQUIRED_ALGORITHM_CARD_SECTIONS:
+        if not re.search(rf"^##\s+{re.escape(section)}\s*$", body, re.MULTILINE):
+            issues.append(f"{card_path.name} missing section: {section}")
+    if ABSOLUTE_PATH.search(card_path.read_text(encoding="utf-8")):
+        issues.append(f"{card_path.name} contains an absolute path")
+    return issues
+
+
+def algorithm_records(workspace_root: Path) -> tuple[list[dict[str, Any]], list[str]]:
+    try:
+        sources = load_algorithm_sources(workspace_root)
+    except FileNotFoundError as exc:
+        return [], [str(exc)]
+    sources_by_id = {str(item["source_id"]): item for item in sources["sources"]}
+    card_dir = _algorithm_root(workspace_root) / "cards"
+    records: list[dict[str, Any]] = []
+    issues: list[str] = []
+    seen_ids: set[str] = set()
+    for path in sorted(card_dir.glob("*.md")) if card_dir.is_dir() else []:
+        card_issues = validate_algorithm_card(path, sources_by_id)
+        try:
+            front, body = _frontmatter(path)
+        except (OSError, ValueError, yaml.YAMLError):
+            issues.extend(card_issues)
+            continue
+        card_id = str(front.get("algorithm_card_id", path.stem))
+        if card_id in seen_ids:
+            card_issues.append(f"duplicate algorithm_card_id: {card_id}")
+        seen_ids.add(card_id)
+        issues.extend(card_issues)
+        records.append({
+            "path": path,
+            "algorithm_card_id": card_id,
+            "source_id": str(front.get("source_id", "")),
+            "source_commit": str(front.get("source_commit", "")).lower(),
+            "source_path": str(front.get("source_path", "")),
+            "tags": [str(item).lower() for item in front.get("tags", []) if isinstance(item, str)],
+            "stage_scope": list(front.get("stage_scope", [])),
+            "language": str(front.get("language", "")),
+            "license_status": str(front.get("license_status", "")),
+            "interface": str(front.get("interface", "")),
+            "baseline_required": list(front.get("baseline_required", [])),
+            "baseline_options": list(front.get("baseline_options", [])),
+            "known_risks": list(front.get("known_risks", [])),
+            "adaptation_required": list(front.get("adaptation_required", [])),
+            "entry_points": list(front.get("entry_points", [])),
+            "skeleton_path": str(front.get("skeleton_path", "")),
+            "body": body,
+            "valid": not card_issues,
+        })
+    return records, issues
+
+
 def _local_mapping(workspace_root: Path) -> dict[str, Any]:
     mapping_path = library_root(workspace_root) / "work" / "reference-library" / "sources.local.yaml"
     if mapping_path.is_file():
@@ -460,11 +916,102 @@ def verify(workspace_root: Path) -> dict[str, Any]:
     }
 
 
+def _algorithm_source_map(workspace_root: Path) -> dict[str, dict[str, Any]]:
+    try:
+        payload = load_algorithm_sources(workspace_root)
+    except FileNotFoundError:
+        return {}
+    return {str(item["source_id"]): item for item in payload.get("sources", [])}
+
+
+def _load_mirror_index(mirror_path: Path) -> dict[str, Any] | None:
+    index_path = mirror_path / "algorithm_index.json"
+    if not index_path.is_file():
+        return None
+    try:
+        payload = json.loads(index_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    return payload if isinstance(payload, dict) and isinstance(payload.get("files"), list) else None
+
+
+def _local_entry_points(workspace_root: Path, item: dict[str, Any], source: dict[str, Any] | None) -> tuple[dict[str, Any], list[str]]:
+    if source is None:
+        return {"status": "INVALID", "mirror_path": None, "entry_points": [], "file_matches": []}, [f"unknown algorithm source: {item['source_id']}"]
+    mirror = _mirror_status(workspace_root, source)
+    result: dict[str, Any] = {
+        "status": mirror["status"],
+        "mirror_path": mirror["mirror_path"],
+        "entry_points": [],
+        "file_matches": [],
+    }
+    warnings: list[str] = []
+    if mirror["status"] != "READY":
+        warnings.append(f"ALGORITHM_SOURCE_NOT_SYNCED: {item['source_id']} ({mirror['status']})")
+        return result, warnings
+    index = _load_mirror_index(_algorithm_index_root(workspace_root, source))
+    if index is None:
+        result["status"] = "STALE"
+        warnings.append(f"ALGORITHM_SOURCE_INDEX_MISSING: {item['source_id']}")
+        return result, warnings
+    files = {str(row.get("path")): row for row in index["files"] if isinstance(row, dict) and row.get("path")}
+    for entry in item.get("entry_points", []):
+        if not isinstance(entry, dict):
+            continue
+        path = str(entry.get("path", ""))
+        file_row = files.get(path)
+        local_entry = {**entry, "local_path": f"{mirror['mirror_path']}/{path}"}
+        if file_row is None:
+            local_entry["status"] = "MISSING"
+        elif str(file_row.get("sha256", "")).lower() != str(entry.get("file_sha256", "")).lower():
+            local_entry["status"] = "STALE"
+        else:
+            local_entry["status"] = "READY"
+            symbols = file_row.get("symbols") if isinstance(file_row.get("symbols"), list) else []
+            match = next((symbol for symbol in symbols if symbol.get("symbol") == entry.get("symbol")), None)
+            if match:
+                local_entry["line"] = match.get("line")
+        result["entry_points"].append(local_entry)
+    return result, warnings
+
+
+def _search_local_mirror(workspace_root: Path, source: dict[str, Any], query: str, limit: int = MIRROR_QUERY_LIMIT) -> list[dict[str, Any]]:
+    mirror = _mirror_status(workspace_root, source)
+    if mirror["status"] != "READY":
+        return []
+    index = _load_mirror_index(_algorithm_index_root(workspace_root, source))
+    if index is None:
+        return []
+    needle = query.casefold()
+    matches: list[dict[str, Any]] = []
+    mirror_path = _algorithm_mirror_path(workspace_root, source)
+    for row in index.get("files", []):
+        if len(matches) >= limit or not isinstance(row, dict) or row.get("text_readable") is not True:
+            continue
+        path = str(row.get("path", ""))
+        source_file = mirror_path / path
+        try:
+            lines = source_file.read_text(encoding="utf-8").splitlines()
+        except (OSError, UnicodeDecodeError):
+            continue
+        for line_number, line in enumerate(lines, 1):
+            if needle in line.casefold():
+                matches.append({
+                    "path": f"{mirror['mirror_path']}/{path}",
+                    "line": line_number,
+                    "snippet": line.strip()[:240],
+                })
+                if len(matches) >= limit:
+                    break
+    return matches
+
+
 def lookup(
     workspace_root: Path,
     tags: list[str],
     limit: int = 5,
     layer: str = "all",
+    query: str = "",
 ) -> dict[str, Any]:
     if not tags or limit < 1:
         raise ValueError("lookup requires at least one tag")
@@ -473,6 +1020,7 @@ def lookup(
     wanted = {tag.strip().lower() for tag in tags if tag.strip()}
     ranked: list[tuple[int, int, str, dict[str, Any]]] = []
     issues: list[str] = []
+    algorithm_sources = _algorithm_source_map(workspace_root)
     item_sets: list[tuple[str, list[dict[str, Any]], str]] = []
     if layer in {"card", "all"}:
         records, record_issues = card_records(workspace_root)
@@ -486,8 +1034,12 @@ def lookup(
         records, record_issues = playbook_records(workspace_root)
         item_sets.append(("playbook", records, "playbook_id"))
         issues.extend(record_issues)
+    if layer in {"code", "all"}:
+        records, record_issues = algorithm_records(workspace_root)
+        item_sets.append(("code", records, "algorithm_card_id"))
+        issues.extend(record_issues)
 
-    kind_priority = {"module": 0, "playbook": 1, "card": 2}
+    kind_priority = {"module": 0, "playbook": 1, "code": 2, "card": 3}
     for kind, records, identity_key in item_sets:
         for item in records:
             matched = sorted(wanted & set(item["tags"]))
@@ -518,8 +1070,30 @@ def lookup(
             })
         elif item["kind"] == "module":
             row["source_cards"] = item["source_cards"]
-        else:
+        elif item["kind"] == "playbook":
             row["modules"] = item["modules"]
+        else:
+            source = algorithm_sources.get(str(item["source_id"]))
+            local_data, local_warnings = _local_entry_points(workspace_root, item, source)
+            issues.extend(local_warnings)
+            file_matches = _search_local_mirror(workspace_root, source, query) if source and query else []
+            row.update({
+                "source_id": item["source_id"],
+                "source_commit": item["source_commit"],
+                "source_path": item["source_path"],
+                "language": item["language"],
+                "license_status": item["license_status"],
+                "interface": item["interface"],
+                "baseline_required": item["baseline_required"],
+                "baseline_options": item["baseline_options"],
+                "known_risks": item["known_risks"],
+                "adaptation_required": item["adaptation_required"],
+                "local_mirror": local_data["mirror_path"],
+                "mirror_status": local_data["status"],
+                "entry_points": local_data["entry_points"],
+                "file_matches": file_matches,
+                "skeleton_path": item["skeleton_path"],
+            })
         results.append(row)
     return {
         "schema_version": 1,
@@ -535,6 +1109,7 @@ def status(workspace_root: Path) -> dict[str, Any]:
     records, card_issues = card_records(workspace_root)
     modules, module_issues = module_records(workspace_root)
     playbooks, playbook_issues = playbook_records(workspace_root)
+    algorithms, algorithm_issues = algorithm_records(workspace_root)
     coverage = {
         tag: {
             "cards": sum(tag in record["tags"] and record["valid"] for record in records),
@@ -564,7 +1139,33 @@ def status(workspace_root: Path) -> dict[str, Any]:
             playbook["status"] = "STALE"
         else:
             playbook["status"] = "READY"
-    passed = not card_issues and not module_issues and not playbook_issues and verification["passed"]
+    passed = not card_issues and not module_issues and not playbook_issues and not algorithm_issues and verification["passed"]
+    try:
+        algorithm_sources_payload = load_algorithm_sources(workspace_root)
+        algorithm_source_count = len(algorithm_sources_payload["sources"])
+    except FileNotFoundError:
+        algorithm_sources_payload = {"sources": []}
+        algorithm_source_count = 0
+    mirror_reports = []
+    for source in algorithm_sources_payload.get("sources", []):
+        mirror = _mirror_status(workspace_root, source)
+        state_path = _algorithm_index_root(workspace_root, source) / "mirror_state.json"
+        state_payload: dict[str, Any] = {}
+        if state_path.is_file():
+            try:
+                loaded = json.loads(state_path.read_text(encoding="utf-8"))
+                state_payload = loaded if isinstance(loaded, dict) else {}
+            except (OSError, json.JSONDecodeError):
+                state_payload = {}
+        mirror_reports.append({
+            "source_id": source["source_id"],
+            **mirror,
+            "head_verified": state_payload.get("head_verified", False),
+            "synced_at": state_payload.get("synced_at"),
+            "license_status": state_payload.get("license_status", source.get("license_status", "UNKNOWN")),
+            "license_files": state_payload.get("license_files", []),
+            "indexed_file_count": state_payload.get("file_count", 0),
+        })
     return {
         "schema_version": 1,
         "passed": passed,
@@ -575,6 +1176,9 @@ def status(workspace_root: Path) -> dict[str, Any]:
         "valid_module_count": sum(item["valid"] for item in modules),
         "playbook_count": len(playbooks),
         "valid_playbook_count": sum(item["valid"] for item in playbooks),
+        "algorithm_source_count": algorithm_source_count,
+        "algorithm_card_count": len(algorithms),
+        "valid_algorithm_card_count": sum(item["valid"] for item in algorithms),
         "coverage": coverage,
         "card_issues": card_issues,
         "module_issues": sorted(set(module_issues) - set(card_issues)),
@@ -591,6 +1195,18 @@ def status(workspace_root: Path) -> dict[str, Any]:
             {"playbook_id": item["playbook_id"], "modules": item["modules"], "status": item["status"]}
             for item in playbooks
         ],
+        "algorithm_issues": sorted(set(algorithm_issues)),
+        "algorithm_cards": [
+            {
+                "algorithm_card_id": item["algorithm_card_id"],
+                "source_id": item["source_id"],
+                "status": "READY" if item["valid"] else "INVALID",
+                "entrypoint_count": len(item.get("entry_points", [])),
+                "skeleton_path": item.get("skeleton_path", ""),
+            }
+            for item in algorithms
+        ],
+        "algorithm_mirrors": mirror_reports,
         "pdf_verification": verification,
     }
 
@@ -612,6 +1228,9 @@ def main() -> int:
     lookup_parser.add_argument("--tags", required=True)
     lookup_parser.add_argument("--limit", type=int, default=5)
     lookup_parser.add_argument("--layer", choices=LAYERS, default="all")
+    lookup_parser.add_argument("--query", default="")
+    sync_parser = sub.add_parser("sync")
+    sync_parser.add_argument("--source", required=True)
     sub.add_parser("status")
     args = parser.parse_args()
     root = args.workspace_root.resolve()
@@ -624,7 +1243,10 @@ def main() -> int:
                 [item.strip() for item in args.tags.split(",")],
                 args.limit,
                 args.layer,
+                args.query,
             )
+        elif args.action == "sync":
+            result = sync_algorithm_source(root, args.source)
         else:
             result = status(root)
     except Exception as exc:

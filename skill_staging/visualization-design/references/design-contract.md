@@ -6,6 +6,16 @@ Treat `config/schemas/figure_data_manifest.schema.json`,
 from the matching files in `templates/workflow/`; do not invent aliases. Quote ISO
 timestamps such as `"2026-08-11T08:00:00+00:00"` so YAML keeps them as strings.
 
+## V7.2 approval prerequisite
+
+The visualization schemas describe the design handoff; they do not prove that the
+underlying model is valid. Before changing a Formal or Paper Evidence Brief to
+`APPROVED`, confirm outside the Brief that the matching V7.2 model verification
+report is `READY`, points to the same question/run/source manifest, and was built
+from current `verification_profile: 1` semantic, metric, and algorithm-evidence
+contracts. Do not invent Figure Brief fields for these checks. When the prerequisite
+is not current, keep the Brief `DRAFT` and the render in staging.
+
 ## Required intent
 
 `visual_intent.yaml` is the fast design record. Keep it short enough to write during model exploration:
@@ -130,7 +140,7 @@ contest_evidence_eligible: true
 created_at_utc: "2026-08-11T08:05:00+00:00"
 ```
 
-For `table`, `text`, or `none`, retain the decision, source fields, units, and rationale in `visual_intent.yaml`; do not create a Figure Brief merely to satisfy a figure count. `claim_id` may be null only for non-formal work or an eligible diagnostic that does not assert a frozen result claim.
+For `table`, `text`, or `none`, retain the decision, source fields, units, and rationale in `visual_intent.yaml`; do not create a Figure Brief merely to satisfy a figure count. `claim_id` may be null only for non-formal work or an eligible diagnostic that does not assert a frozen result claim. Candidate briefs remain `DRAFT` or `REVIEWED`; approval requires the V7.2 prerequisite above.
 
 ## Lifecycle
 
@@ -141,4 +151,4 @@ DATA_READY → INTENT_READY → BRIEF_READY → DESIGN_APPROVED
 
 Derive status from the artifacts. Any source, parent Formal manifest, code, input, or design hash drift makes the handoff `STALE`. A promoted contract must carry `design_handoff` paths and hashes; it must not duplicate frozen result values.
 
-Run `scripts/validate_handoff.py` with the workspace Python environment that provides PyYAML and jsonschema. The validator checks schema shape and current provenance only. It deliberately does not inspect rendered files or replace `figure-qa` and G5/G6.
+Run `scripts/validate_handoff.py` with the workspace Python environment that provides PyYAML and jsonschema. Pass `--root` when automatic workspace discovery is not possible. The validator checks schema shape and local file provenance only; it does not inspect model-verification readiness, approve a Brief, inspect manuscript pages, or replace the formal workflow.

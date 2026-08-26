@@ -10,6 +10,8 @@ rule_status: verify_against_official_2026_rules_before_submission
 contract_version: "3.0"
 prompt_policy_version: 1
 paper_prompt_mode: external
+standard_paper_profile: cumcm-standard-v1
+standard_paper_profile_source: templates/prompts/paper/cumcm-2026.yaml
 contract_evidence:
   report: corpus/reports/cumcm-c-writing-template-2021-2025.md
   sha256: EB36D0D70F6DA29F21A13C4551F8C93997292E72C139DD9B2159E7878B8A5603
@@ -21,6 +23,8 @@ rule_precedence:
 structure_contract:
   source_of_truth: paper/sections/*.tex
   generated_question_structure: paper/generated/question_structure.tex
+  generated_build_mode: paper/generated/build_mode.tex
+  generated_build_mode_rule: 正式初始化后写入 MathModelPreviewfalse；模板副本默认保持预览模式
   no_parallel_markdown_manuscript: true
   automatic_toc: false
   notation_location: front_body
@@ -39,40 +43,52 @@ structure_contract:
     - appendix
   question_count:
     source: parsed_real_problem
-    minimum: 2
-    maximum: 4
+    minimum: 1
+    maximum: null
+    rule: 由真实题面解析得到；不得为了套用模板补齐或删减问题
     empty_question_sections_forbidden: true
   question_argument_contract:
-    - id: objective_interface
-      heading: 目标与上下游接口
-      evidence_role: problem_requirement_and_question_manifest
-    - id: data_mechanism
-      heading: 数据特征或机理依据
-      evidence_role: verified_data_profile_or_domain_relation
-    - id: model_choice
-      heading: 模型选择与备选方案比较
-      evidence_role: problem_fit_baseline_and_verified_literature
-    - id: formulation
-      heading: 模型建立
-      evidence_role: variables_objective_constraints_units_and_boundaries
-    - id: algorithm
-      heading: 求解算法
-      evidence_role: executable_runner_parameters_stopping_and_replay
-    - id: result
-      heading: 核心结果与解释
-      evidence_role: frozen_claims_tables_figures_and_baseline
-    - id: validation
-      heading: 模型检验
-      evidence_role: error_feasibility_sensitivity_or_robustness
-    - id: conclusion
-      heading: 本问结论与适用边界
-      evidence_role: frozen_conclusion_boundary_and_downstream_interface
+    heading_strategy:
+      mode: dynamic
+      default: 责任固定、标题动态
+      rules:
+        - 可按题型合并相邻责任
+        - 可按模型链拆分复杂责任
+        - 可调整顺序，但结果与检验须位于公式和求解之后
+        - 小标题应优先描述研究对象、状态、决策或结果，不机械复述合同字段
+      audit: 通过 question.yaml.paper.section_map 映射责任覆盖；旧项目无映射时兼容固定标题检查
+    responsibilities:
+      - id: objective_interface
+        heading: 目标与上下游接口
+        evidence_role: problem_requirement_and_question_manifest
+      - id: data_mechanism
+        heading: 数据特征或机理依据
+        evidence_role: verified_data_profile_or_domain_relation
+      - id: model_choice
+        heading: 模型选择与备选方案比较
+        evidence_role: problem_fit_baseline_and_verified_literature
+      - id: formulation
+        heading: 模型建立
+        evidence_role: variables_objective_constraints_units_and_boundaries
+      - id: algorithm
+        heading: 求解算法
+        evidence_role: executable_runner_parameters_stopping_and_replay
+      - id: result
+        heading: 核心结果与解释
+        evidence_role: frozen_claims_tables_figures_and_baseline
+      - id: validation
+        heading: 模型检验
+        evidence_role: error_feasibility_sensitivity_or_robustness
+      - id: conclusion
+        heading: 本问结论与适用边界
+        evidence_role: frozen_conclusion_boundary_and_downstream_interface
   abstract_contract:
-    per_question_required: [method, quantitative_result, validation]
+    per_question_required: [subject, method, result, validation, boundary]
+    result_policy: 每问至少保留一个带单位且可追溯的主要结果；没有数值结果时必须给出可核验的分类、排序、可行性或边界结论
     first_page_only: true
   figure_table_contract:
     first_reference_near_artifact: true
-    explanation_required: [result, mechanism, problem_meaning]
+    explanation_required: [result, cause_or_mechanism, problem_meaning, boundary]
     decorative_figures_forbidden: true
   citation_contract:
     order: first_use
@@ -82,6 +98,7 @@ structure_contract:
     unverified_numbers_forbidden: true
     internal_workflow_narration_forbidden: true
     algorithm_name_fixed_by_template: false
+    question_heading_fixed_by_template: false
     current_official_page_limit_overrides_template: true
 notes:
   - The official current-year rule overrides this template.

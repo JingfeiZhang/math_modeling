@@ -554,7 +554,10 @@ def _sensitivity(folder: Path, rng: np.random.Generator, seed: int):
         capsize=2,
         elinewidth=0.85,
         linestyle="none",
-        label="总效应 $S_T$",
+        # Keep mixed Chinese/Latin labels in the normal text renderer.  A
+        # MathText fragment would route the surrounding CJK glyphs through
+        # Matplotlib's math font (which has no CJK coverage).
+        label="总效应 (S_T)",
         zorder=3,
     )
     ax.errorbar(
@@ -570,7 +573,7 @@ def _sensitivity(folder: Path, rng: np.random.Generator, seed: int):
         capsize=1.8,
         elinewidth=0.75,
         linestyle="none",
-        label="一阶效应 $S_1$",
+        label="一阶效应 (S_1)",
         zorder=4,
     )
     ax.set_yticks(y, labels=frame["parameter"])

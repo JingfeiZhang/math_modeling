@@ -6,7 +6,7 @@ from pathlib import Path
 
 import yaml
 
-from src.workflow.competition_workflow import checkpoint, initialize, promote, quickcheck, record_run
+from src.workflow.competition_workflow import checkpoint, initialize, model_verify, promote, quickcheck, record_run
 from src.workflow.quality_contracts import (
     abstract_text_issues,
     metric_evidence_issues,
@@ -209,6 +209,42 @@ def test_abstract_contract_requires_method_result_validation_and_boundary_for_ea
     assert any("abstract question coverage is incomplete" in item for item in issues)
 
 
+def test_abstract_contract_requires_result_when_result_tracking_is_enabled(tmp_path: Path) -> None:
+    question_path = make_v7_root(tmp_path)
+    question = yaml.safe_load(question_path.read_text(encoding="utf-8"))
+    path = tmp_path / question["quality_contracts"]["abstract"]["path"]
+    value = yaml.safe_load(path.read_text(encoding="utf-8"))
+    value.update(
+        {
+            "status": "READY",
+            "questions": [
+                {
+                    "question_id": "Q1",
+                    "method_required": True,
+                    "subject_required": True,
+                    "result_required": True,
+                    "conclusion_required": True,
+                    "validation_required": True,
+                    "boundary_required": True,
+                    "method": "method",
+                    "subject": "subject",
+                    "result": "",
+                    "conclusion": "conclusion",
+                    "validation": "validation",
+                    "boundary": "boundary",
+                    "claim_ids": ["q1"],
+                }
+            ],
+            "final_summary": {"contribution": "contribution", "limitation": "limitation"},
+        }
+    )
+    path.write_text(yaml.safe_dump(value, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    refresh_quality_contract_references(tmp_path, "C", "Q1")
+    question = yaml.safe_load(question_path.read_text(encoding="utf-8"))
+    issues = transition_contract_issues(tmp_path, question, transition="g5", workspace_root=ROOT)
+    assert any("abstract synthesis fields are incomplete" in item and "result" in item for item in issues)
+
+
 def prepare_candidate_contracts(root: Path, *, unit: str = "u", fixed_input: bool = False) -> Path:
     question_path = root / "problems/C/questions/Q1/question.yaml"
     question = yaml.safe_load(question_path.read_text(encoding="utf-8"))
@@ -344,6 +380,207 @@ def test_quickcheck_warns_but_does_not_block_draft_quality_contracts(tmp_path: P
     assert any(item["name"] == "QUALITY_CONTRACT_INCOMPLETE" for item in report["warnings"])
 
 
+def test_model_verify_writes_only_a_derived_candidate_report(tmp_path: Path) -> None:
+    make_v7_root(tmp_path)
+    prepare_candidate_contracts(tmp_path)
+    write_candidate_run(tmp_path)
+    state_before = (tmp_path / "state/decision_log.json").read_bytes()
+
+    report = model_verify(tmp_path, "C", "Q1", "run-quality")
+
+    assert report["passed"] is True
+    assert report["status"] == "PASS_WITH_WARNINGS"
+    assert (tmp_path / report["report"]).is_file()
+    assert (tmp_path / "state/decision_log.json").read_bytes() == state_before
+
+
+def test_checkpoint_blocks_an_explicit_failed_oracle_only_for_that_transition(tmp_path: Path) -> None:
+    question_path = make_v7_root(tmp_path)
+    prepare_candidate_contracts(tmp_path)
+    question = yaml.safe_load(question_path.read_text(encoding="utf-8"))
+    algorithm_path = tmp_path / question["quality_contracts"]["algorithm_evidence"]["path"]
+    algorithm = yaml.safe_load(algorithm_path.read_text(encoding="utf-8"))
+    algorithm["oracle_cases"] = [
+        {
+            "id": "tiny",
+            "applicable": True,
+            "method": "hand-calculation",
+            "expected_result": "score=0",
+            "passed": False,
+            "evidence_locator": "experiments/C/Q1/evidence/solver.json",
+        }
+    ]
+    algorithm_path.write_text(yaml.safe_dump(algorithm, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    refresh_quality_contract_references(tmp_path, "C", "Q1")
+    write_candidate_run(tmp_path)
+
+    report = checkpoint(tmp_path, "C", "Q1")
+
+    assert report["passed"] is False
+    assert any("small-instance oracle" in item["detail"] for item in report["checks"])
+    assert (tmp_path / "experiments/C/Q1/candidate/run-quality/run_manifest.json").is_file()
+
+
+def test_promote_creates_formal_run_but_leaves_incomplete_verification_for_g3(tmp_path: Path) -> None:
+    make_v7_root(tmp_path)
+    prepare_candidate_contracts(tmp_path)
+    write_candidate_run(tmp_path)
+    assert checkpoint(tmp_path, "C", "Q1")["passed"] is True
+
+    report = promote(tmp_path, "C", "Q1", "run-quality")
+
+    assert report["status"] == "FORMAL"
+    assert report["outcome"] == "G3_REVIEW_REQUIRED"
+    assert report["model_verification_status"] == "BLOCK_TRANSITION"
+    assert (tmp_path / report["model_verification"]).is_file()
+
+
+def test_promote_rewrites_quality_contract_evidence_locators_to_formal_run(tmp_path: Path) -> None:
+    question_path = make_v7_root(tmp_path)
+    prepare_candidate_contracts(tmp_path)
+    write_candidate_run(tmp_path)
+    question = yaml.safe_load(question_path.read_text(encoding="utf-8"))
+    candidate_prefix = "experiments/C/Q1/candidate/run-quality"
+    formal_prefix = "experiments/C/Q1/formal/run-quality"
+    result_locator = f"{candidate_prefix}/results.json:score"
+
+    semantics_path = tmp_path / question["quality_contracts"]["semantics"]["path"]
+    semantics = yaml.safe_load(semantics_path.read_text(encoding="utf-8"))
+    semantics["requirement_coverage"] = [
+        {
+            "requirement_id": "answer-required",
+            "source_locator": "problem statement",
+            "output_id": "answer",
+            "metric_id": "score",
+            "validation_method": "known result",
+            "evidence_locator": result_locator,
+            "status": "verified",
+        }
+    ]
+    semantics["outputs"][0]["source_locator"] = f"{candidate_prefix}/statement-only.txt"
+    dump_yaml(semantics_path, semantics)
+
+    metrics_path = tmp_path / question["quality_contracts"]["metrics"]["path"]
+    metrics = yaml.safe_load(metrics_path.read_text(encoding="utf-8"))
+    metrics["metrics"][0].update(
+        {
+            "evidence_locator": result_locator,
+            "run_metric_locator": result_locator,
+            "reference_actual_locator": result_locator,
+        }
+    )
+    metrics["validation_protocol"] = {
+        "status": "VERIFIED",
+        "applicable": True,
+        "strategy": "scenario",
+        "primary_metric_ids": ["score"],
+        "acceptance_criteria": [
+            {
+                "id": "score-check",
+                "metric_id": "score",
+                "comparator": "baseline",
+                "operator": "less-or-equal",
+                "rationale": "compare the same output",
+            }
+        ],
+        "evidence_locator": result_locator,
+    }
+    dump_yaml(metrics_path, metrics)
+
+    algorithm_path = tmp_path / question["quality_contracts"]["algorithm_evidence"]["path"]
+    algorithm = yaml.safe_load(algorithm_path.read_text(encoding="utf-8"))
+    algorithm.update(
+        {
+            "trace_locator": result_locator,
+            "solver_evidence_locator": result_locator,
+            "seed_runs": [result_locator, result_locator],
+            "scenario_coverage": [
+                {"scenario_id": "base", "covered": True, "scope": "full", "result_locator": result_locator}
+            ],
+            "oracle_cases": [
+                {
+                    "id": "tiny",
+                    "applicable": True,
+                    "method": "hand-calculation",
+                    "input_locator": result_locator,
+                    "expected_result": "score=12",
+                    "passed": True,
+                    "evidence_locator": result_locator,
+                }
+            ],
+            "invariants": [
+                {
+                    "id": "feasible",
+                    "kind": "feasibility",
+                    "statement": "all hard constraints hold",
+                    "check_method": "direct check",
+                    "passed": True,
+                    "evidence_locator": result_locator,
+                }
+            ],
+            "model_comparison": [
+                {
+                    "id": "baseline",
+                    "model_id": "base",
+                    "role": "baseline",
+                    "comparable_output": True,
+                    "primary_metric": "score",
+                    "metric_value": 15.0,
+                    "evidence_locator": result_locator,
+                },
+                {
+                    "id": "main",
+                    "model_id": "main",
+                    "role": "main",
+                    "comparable_output": True,
+                    "primary_metric": "score",
+                    "metric_value": 12.0,
+                    "retained": True,
+                    "retained_reason": "lower score",
+                    "evidence_locator": result_locator,
+                },
+            ],
+            "robustness": [
+                {
+                    "id": "load-perturbation",
+                    "perturbation": "load +/- 5%",
+                    "metric": "score",
+                    "result": "feasible",
+                    "boundary": "+/- 5%",
+                    "passed": True,
+                    "evidence_locator": result_locator,
+                }
+            ],
+        }
+    )
+    dump_yaml(algorithm_path, algorithm)
+    refresh_quality_contract_references(tmp_path, "C", "Q1")
+    assert checkpoint(tmp_path, "C", "Q1")["passed"] is True
+
+    report = promote(tmp_path, "C", "Q1", "run-quality")
+
+    assert set(report["quality_contracts_rewritten"]) == {
+        question["quality_contracts"]["semantics"]["path"],
+        question["quality_contracts"]["metrics"]["path"],
+        question["quality_contracts"]["algorithm_evidence"]["path"],
+    }
+    for contract_path in (semantics_path, metrics_path, algorithm_path):
+        contract_text = contract_path.read_text(encoding="utf-8")
+        assert result_locator not in contract_text
+        assert f"{formal_prefix}/results.json:score" in contract_text
+    promoted_semantics = yaml.safe_load(semantics_path.read_text(encoding="utf-8"))
+    assert promoted_semantics["outputs"][0]["source_locator"] == f"{candidate_prefix}/statement-only.txt"
+    promoted_manifest = json.loads((tmp_path / report["manifest"]).read_text(encoding="utf-8"))
+    refreshed_question = yaml.safe_load(question_path.read_text(encoding="utf-8"))
+    assert promoted_manifest["quality_contract_snapshot"]["contract_hashes"] == {
+        name: refreshed_question["quality_contracts"][name]["sha256"]
+        for name in ("semantics", "metrics", "algorithm_evidence")
+    }
+    verification = json.loads((tmp_path / report["model_verification"]).read_text(encoding="utf-8"))
+    assert not any(item["code"] == "EVIDENCE_LOCATOR_MISSING" for item in verification["blocking_issues"])
+    assert (tmp_path / formal_prefix / "results.json").is_file()
+
+
 def test_checkpoint_can_bind_reviewed_contracts_after_candidate_run(tmp_path: Path) -> None:
     make_v7_root(tmp_path)
     write_candidate_run(tmp_path)
@@ -429,6 +666,33 @@ def test_prediction_contract_requires_target_horizon_and_window(tmp_path: Path) 
     question = yaml.safe_load(question_path.read_text(encoding="utf-8"))
     issues = transition_contract_issues(tmp_path, question, transition="candidate", workspace_root=ROOT)
     assert any("prediction metric lacks target" in item for item in issues)
+
+
+def test_question_profile_can_disable_heuristic_prediction_detection(tmp_path: Path) -> None:
+    question_path = make_v7_root(tmp_path)
+    question = yaml.safe_load(question_path.read_text(encoding="utf-8"))
+    question["problem"]["type"] = "optimization"
+    question["problem"]["target"] = "预测压力下的资源配置"
+    question["question_profile"] = {
+        "task_types": ["optimization"],
+        "feature_tags": [],
+        "active_checks": ["problem_interface"],
+        "not_applicable_checks": ["prediction_delivery"],
+        "status": "READY",
+        "source": "manual_and_derived",
+    }
+    question_path.write_text(yaml.safe_dump(question, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    refresh_quality_contract_references(tmp_path, "C", "Q1")
+    question = yaml.safe_load(question_path.read_text(encoding="utf-8"))
+    metrics_path = tmp_path / question["quality_contracts"]["metrics"]["path"]
+    metrics = yaml.safe_load(metrics_path.read_text(encoding="utf-8"))
+    metrics["status"] = "READY"
+    metrics["metrics"] = [{"id": "score", "name": "score", "formula": "x", "direction": "minimize", "unit": "u", "required": True, "baseline": "base"}]
+    metrics_path.write_text(yaml.safe_dump(metrics, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    refresh_quality_contract_references(tmp_path, "C", "Q1")
+    question = yaml.safe_load(question_path.read_text(encoding="utf-8"))
+    issues = transition_contract_issues(tmp_path, question, transition="candidate", workspace_root=ROOT)
+    assert not any("prediction metric lacks target" in item for item in issues)
 
 
 def test_reference_range_requires_explanation_when_formal_value_is_outside(tmp_path: Path) -> None:

@@ -56,6 +56,17 @@ V7 使用 `config/prompt_policy.yaml` 按当前 P 阶段和角色装配短提示
 
 新项目还会在每个问题下生成四类质量合同：`semantic_contract` 锁定题面输出、固定/决策变量和场景；`metric_contract` 锁定公式、单位、分母、时间范围和 baseline；`algorithm_evidence` 锁定搜索、收敛或最优性证据及结论边界；`abstract_contract` 锁定摘要的背景、逐问覆盖和冻结 claim。合同在 Scratch 阶段只提示，在 Candidate 晋升和 Formal/G5 转换前阻断真正的语义或证据不一致。复盘资料见 `references/retrospectives/huashu-cup-2026-review.md`，不属于正式证据。
 
+模型正确性使用一条轻量验证闭环，不增加新的赛事状态：P1 建立“题面要求 -> 模型元素 -> 输出字段 -> 指标 -> 验证 -> 论文位置”的需求覆盖映射；P2 为 baseline 和核心约束准备一个人工可算、可穷举或可由精确求解器核对的已知答案小实例；P3 用同输出 baseline、主模型和一个轻量挑战模型判断复杂度是否值得，并按题型完成样本外或场景验证；P4 汇总为统一模型验证报告后再进入 G3/G4 和 claims 冻结。轻量挑战模型只是正确性与增益参照，不是第二个正式主模型，也不占用条件 fallback。
+
+Scratch 中的验证缺口一律作为 warning 记录，允许继续修改和试跑。Candidate 的 checkpoint 只因题面指标或单位错误、固定输入被优化、baseline 不可比、已知答案小实例失败或核心硬约束失败而阻断当前晋升；修正后可立即复跑。P4 才严格要求需求覆盖、小实例、模型比较、题型专项验证、复跑或 gap 证据与结论边界完整。P1--P3 不执行 PDF、字体、附件或发布深审。
+
+| 题型 | P3 最小专项验证 |
+|---|---|
+| 预测 | 时间滚动、分组或空间阻断验证；泄漏检查；残差、偏差及区间覆盖 |
+| 优化 | 小规模精确解或上下界；可行率；gap、求解状态或收敛轨迹；随机算法多种子 |
+| 机理 | 量纲、初始与边界条件、守恒、极限情形及参数敏感性 |
+| 评价排序 | 指标方向与标准化、权重扰动、删项稳定性及简单排序 baseline |
+
 G5 中承载合同指标的正文和表格必须使用映射的 `\FrozenClaim{claim-id}`；表格单位使用合同单位或 `\FrozenClaimUnit{claim-id}`。正式图件的 Figure Contract 必须绑定同一 claim 和指标单位，避免摘要、正文、表格与图件各自手填结果。
 
 人工核对并修改合同后，通过受控命令刷新项目内哈希；该动作不冻结 claims，也不改变比赛状态。摘要合同由各问共享，局部刷新只接受指定 Qx 的接口变化，发现其他问题同时漂移时会拒绝刷新。
@@ -81,7 +92,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
   -Project cumcm-2026 -Action prompt -Stage P3a -Role solver -Question Q1
 ```
 
-命令只写入 `output/_verification/prompts/`。默认回执固定为 `status/objective/conclusion/evidence/warnings/next_action/decision_request`；只有主模型、fallback、claim 范围、官方规则冲突和发布阻断请求人工决策。
+命令只写入 `output/_verification/prompts/`。机器层继续保存 `prompt_receipt.json`，对话层默认渲染为正常 Markdown 摘要；空的提醒、证据和决策段落不显示。只有主模型、fallback、claim 范围、官方规则冲突和发布阻断请求人工决策。阶段阻断只影响当前转换，不阻断本问题继续修改、复跑或重新 checkpoint。
 
 ### 最短可执行路径
 
@@ -93,7 +104,7 @@ initialize
   -> run scratch + quickcheck
   -> run candidate + checkpoint
   -> promote
-  -> formal G3/G4 + freeze
+  -> model-verify -> formal G3/G4 + freeze
   -> paper-evidence（仅在论文确有诊断量缺口时）
   -> figure-data -> figure-intent
   -> figure-brief -> figure-render -> figure-qa -> figure-promote（仅当决定绘图时）
@@ -102,7 +113,7 @@ initialize
   -> archive-work
 ```
 
-`quickcheck` 当前检查已经生成的 `scratch/candidate` run manifest，因此第一次非正式 `run` 之前单独执行不会通过。可比较 baseline 也不是独立命令：它必须写入实验配置的 `methods`，并与主模型产生同类输出；默认 `checkpoint` 只检查输入输出和单位合同、输出守恒、指标定义、核心硬约束、同输出 baseline 与晋升价值。固定种子、确定性复跑、完整哈希、图件 Brief、文献和排版会以 warning/deferred 记录，不拖慢候选探索；输出中的 `PASS_WITH_WARNINGS` 表示当前动作通过但仍有正式化待办，`BLOCK_TRANSITION` 只阻断当前转换。新配置默认是 `run_mode: scratch`，需要形成候选时显式使用 `run_mode: candidate`；schema v2 的 `run_mode: formal` 禁止直接运行，正式目录只能由 `promote` 创建。实验 schema v1 仅用于旧项目兼容，新实验必须使用 v2；新建问题清单使用 question schema v3，v1/v2 继续兼容读取。
+`quickcheck` 当前检查已经生成的 `scratch/candidate` run manifest，因此第一次非正式 `run` 之前单独执行不会通过。可比较 baseline 也不是独立命令：它必须写入实验配置的 `methods`，并与主模型产生同类输出；默认 `checkpoint` 只检查输入输出和单位合同、输出守恒、指标定义、核心硬约束、同输出 baseline 与晋升价值。固定种子、确定性复跑、完整哈希、图件 Brief、文献和排版会以 warning/deferred 记录，不拖慢候选探索；输出中的 `PASS_WITH_WARNINGS` 表示当前动作通过但仍有正式化待办，`BLOCK_TRANSITION` 只阻断当前转换。`model-verify` 将派生报告写入 `output/_verification/model-verification/<problem>/<question>/<run-id>/`，不会修改状态或正式证据。新配置默认是 `run_mode: scratch`，需要形成候选时显式使用 `run_mode: candidate`；schema v2 的 `run_mode: formal` 禁止直接运行，正式目录只能由 `promote` 创建。实验 schema v1 仅用于旧项目兼容，新实验必须使用 v2；新建问题清单使用 question schema v3，v1/v2 继续兼容读取。
 
 ```powershell
 # 1. 用真实题面初始化，只生成实际存在的 Q1--Qn
@@ -128,7 +139,10 @@ powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
 powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
   -Project cumcm-2026 -Action promote -Question Q1 -RunId <candidate-run-id>
 
-# 5. 正式 run 通过 G3，冻结已核验 claims，再复核 G4
+# 5. 生成问题级模型验证报告；补齐阻断项后通过 G3、冻结 claims 并复核 G4
+powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
+  -Project cumcm-2026 -Action model-verify -Question Q1 `
+  -RunId <candidate-run-id> -StrictManifest
 powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
   -Project cumcm-2026 -Action validate -Gate G3 -Question Q1 -StrictManifest
 powershell -ExecutionPolicy Bypass -File .\scripts\workflow.ps1 `
@@ -177,7 +191,7 @@ P 层表示时间预算，G 层表示证据成熟度，两者不是一一对应�
 | P3a | 20%--45% | 最小主模型、第一套完整结果和围绕候选模型的定向精读 |
 | P3b | 45%--60% | 稳健性、候选比较和模型收束；60% 时锁定主模型 |
 | P4 | 60%--75% | formal run、冻结 claims 和正文主干 |
-| P5 | 75%--85% | 图表、表格、增量排版和受控 paper evidence |
+| P5 | 75%--85% | 图表、表格、增量排版和受控 paper evidence；仍处于 G4 收束，不执行 G5 深审 |
 | P6 | 85%--100% | 85%--95% 完成 G5/G6、白名单附件和封存；最后 5% 只修阻断项，不引入新模型或新主结果 |
 
 | 门禁 | 证明对象 | 是否执行深度 PDF/附件审计 |
@@ -396,7 +410,8 @@ MATLAB R2026a Update 4 is the main numerical, statistical, optimization, symboli
 - `math-modeling-solver`: problem decomposition, model selection, algorithms, and runnable optimization/prediction/evaluation templates.
 - `math-modeling-paper`: Chinese/English contest paper structure, abstracts, validation, citations, and self-review.
 - `modeling-paper-miner`: pinned-source discovery, A-D authenticity grading, content-vs-award deep-read gates, page evidence, PDF hashing, paper-code pairing, and MATLAB static screening.
-- `skill_staging/visualization-design`: local combination Skill for evidence-form selection (`figure/table/text/none`), chart archetype and encoding decisions, Visual Intent, Figure Brief, and pre-render design review; it does not own claims or release state.
+- `literature-guided-modeling`: local combination Skill for verified academic reference cards, model evidence briefs, and validation-oriented follow-up searches; it does not own quality contracts or Formal evidence.
+- `visualization-design`: local combination Skill for evidence-form selection (`figure/table/text/none`), chart archetype and encoding decisions, Visual Intent, Figure Brief, and staged design review; it does not own claims, Formal figure approval, or release state.
 - `modeling-paper-studio`: evidence handoff, Figure Contract v2, template families, publication figures, XeLaTeX, PDF visual QA, and deep anonymous package audit.
 - `matlab-build-chart`: MathWorks chart construction, `tiledlayout`, axes-first plotting, annotations, and `exportgraphics`.
 - `matlab-solve-optimization`: MathWorks optimization formulation, solver selection, and result validation.
@@ -414,6 +429,8 @@ Repositories without an explicit license are indexed for method study only; thei
 
 Pinned sources and audit evidence are recorded in `skills.lock.yaml` and `reports/github_skill_audit.md`. Newly installed global skills become discoverable on the next conversation turn.
 
+The two workspace-local combination Skills are discoverable through `.agents/skills/` shims. Their canonical instructions and supporting resources remain only in `skill_staging/literature-guided-modeling/` and `skill_staging/visualization-design/`, so stage policy is not duplicated.
+
 The cluster intentionally keeps one orchestrator and does not install overlapping upstream suites wholesale. Patterns reviewed from Lupynow, MathModelAgent, and zhnnky are consolidated in `skill_staging/modeling-paper-studio/references/upstream-skill-patterns.md`: per-question handoffs, runnable baselines, risk probes, human decision points, frozen claims, scoped re-audits, and figure-template selection. This adds capability without introducing duplicate global names or a second state file.
 
 Recommended prompts:
@@ -421,8 +438,9 @@ Recommended prompts:
 ```text
 Use $mathmodel-skill to start the 2026 CUMCM workflow and read contest.yaml.
 Use $math-modeling-solver to propose a main model, baseline, validation plan, and runnable code.
+Use $literature-guided-modeling to find academic evidence for model candidates and validation probes without creating Formal results.
 Use $math-modeling-paper to write from verified experiment artifacts without hand-entering result numbers.
-Use the local visualization-design skill to decide whether verified model output needs a figure, table, text, or no artifact, then prepare its Visual Intent and Figure Brief.
+Use $visualization-design to decide whether verified model output needs a figure, table, text, or no artifact, then prepare its Visual Intent and Figure Brief.
 Use $matlab-build-chart with $modeling-paper-studio to create a Figure Contract and export PDF/SVG/PNG.
 ```
 
@@ -439,6 +457,8 @@ Reusable chart code lives under `matlab/plotting/`:
 Generated examples and evidence are in `output/_demos/matlab/`. The current R2026a installation passes graphics, Optimization Toolbox, Global Optimization Toolbox, Symbolic Math Toolbox, and Statistics and Machine Learning Toolbox checks. The smoke test executes `fitlm` and `fitctree` as well as checking that their functions are present.
 
 ## Evidence-grounded paper corpus
+
+The national CUMCM authoring standard is maintained as a task-conditional paper contract. Read [references/cumcm-standard-paper-contract.md](references/cumcm-standard-paper-contract.md) for the stable rules and [templates/prompts/paper/cumcm-2026.yaml](templates/prompts/paper/cumcm-2026.yaml) for the machine-readable author card. Prediction, multi-objective, physical-state, uncertainty, and scenario checks are activated only after the real question profile is derived; non-applicable checks are not blockers.
 
 The retained base corpus contains the historical cards and 17 official 2024-2025 CUMCM display records. A separate 42-paper evidence program covers 24 CUMCM papers, 12 MCM/ICM papers, and 6 GMCM papers. It currently has 38 content-level deep reads and 4 key-page reviews; authenticity is A=6, B=12, C=24, with 14 award-verified deep reads. Two large public repositories are pinned by full commit and synchronized as read-only Git-tree manifests; repository names and filenames never count as award evidence.
 

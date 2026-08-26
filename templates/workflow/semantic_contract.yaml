@@ -1,4 +1,5 @@
 schema_version: 1
+verification_profile: 1
 problem_id: DEMO
 question_id: Q1
 source_problem:
@@ -32,4 +33,5 @@ scenarios:
 dependencies: []
 model_variable_map: []
 state_conditions: []
+requirement_coverage: []
 status: DRAFT

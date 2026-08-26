@@ -187,6 +187,18 @@ def test_strict_package_audit_rejects_outside_whitelist(tmp_path: Path) -> None:
     assert any(item["code"] == "OUTSIDE_WHITELIST" for item in result["errors"])
 
 
+def test_submission_packager_reads_only_curated_source_tree() -> None:
+    script = (Path(__file__).resolve().parents[1] / "scripts" / "package_submission.ps1").read_text(encoding="utf-8")
+    assert "$submissionSource = Join-Path $root 'src\\submission'" in script
+    assert "Get-ChildItem -LiteralPath $root" not in script
+    assert "Get-ChildItem -LiteralPath $sharedRoot" not in script
+    assert "Copy-Item -LiteralPath $root" not in script
+    assert "scratch" not in script.lower()
+    assert "prompts" not in script.lower()
+    assert "literature" not in script.lower()
+    assert "_verification" not in script.lower()
+
+
 def test_strict_package_audit_requires_exact_embedded_manifest(tmp_path: Path) -> None:
     support = tmp_path / "support"
     (support / "manifest").mkdir(parents=True)

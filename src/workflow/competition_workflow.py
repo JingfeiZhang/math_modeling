@@ -19,9 +19,14 @@ from pathlib import Path
 from typing import Any
 
 try:
-    from src.workflow.prompt_policy import assemble_packet, format_receipt
+    from src.workflow.prompt_policy import assemble_packet, format_receipt, format_receipt_markdown
 except ModuleNotFoundError:  # Direct file execution from scripts/workflow.ps1.
-    from prompt_policy import assemble_packet, format_receipt
+    from prompt_policy import assemble_packet, format_receipt, format_receipt_markdown
+
+try:
+    from src.workflow.model_verification import evaluate_model_verification, write_model_verification_report
+except ModuleNotFoundError:  # Direct file execution from scripts/workflow.ps1.
+    from model_verification import evaluate_model_verification, write_model_verification_report
 
 try:
     from src.workflow.quality_contracts import (
@@ -47,6 +52,12 @@ QUESTION_V2_ROOT_FIELDS = {
     "method", "assumptions", "risk_probes", "decisions", "evidence", "paper", "status", "quality_contracts",
 }
 QUESTION_V3_ROOT_FIELDS = QUESTION_V2_ROOT_FIELDS | {"literature"}
+QUESTION_PROFILE_TASK_TYPES = {
+    "analysis", "prediction", "classification", "evaluation", "optimization", "scheduling",
+    "mechanism", "simulation", "decision", "scenario", "multi_objective", "other",
+}
+QUESTION_PROFILE_STATES = {"DRAFT", "REVIEWED", "READY", "STALE"}
+QUESTION_PROFILE_SOURCES = {"manual", "derived", "manual_and_derived"}
 QUESTION_ARGUMENT_FIELDS = (
     "objective_interface", "model_choice", "formulation", "algorithm", "result", "validation", "conclusion",
 )
@@ -351,6 +362,74 @@ def _sync_visual_handoff_after_lifecycle_transition(
         dump_yaml(brief_path, brief)
 
 
+_QUALITY_CONTRACT_LIFECYCLE_LOCATOR_FIELDS = frozenset(
+    {
+        "evidence_locator",
+        "input_locator",
+        "trace_locator",
+        "solver_evidence_locator",
+        "result_locator",
+        "run_metric_locator",
+        "reference_actual_locator",
+    }
+)
+
+
+def _rewrite_quality_contract_lifecycle_locators(
+    payload: Any,
+    old_prefix: str,
+    new_prefix: str,
+) -> int:
+    """Rewrite only evidence locators owned by a moved lifecycle run."""
+
+    rewritten = 0
+    if isinstance(payload, dict):
+        for key, value in payload.items():
+            if key in _QUALITY_CONTRACT_LIFECYCLE_LOCATOR_FIELDS:
+                updated = _rewrite_visual_path(value, old_prefix, new_prefix)
+                if updated != value:
+                    payload[key] = updated
+                    rewritten += 1
+                continue
+            if key == "seed_runs" and isinstance(value, list):
+                updated_runs = [_rewrite_visual_path(item, old_prefix, new_prefix) for item in value]
+                rewritten += sum(before != after for before, after in zip(value, updated_runs, strict=True))
+                payload[key] = updated_runs
+                continue
+            rewritten += _rewrite_quality_contract_lifecycle_locators(value, old_prefix, new_prefix)
+    elif isinstance(payload, list):
+        for item in payload:
+            rewritten += _rewrite_quality_contract_lifecycle_locators(item, old_prefix, new_prefix)
+    return rewritten
+
+
+def _sync_quality_contracts_after_lifecycle_transition(
+    root: Path,
+    question_path: Path,
+    old_prefix: str,
+    new_prefix: str,
+) -> list[str]:
+    """Keep reviewed contract evidence locators valid after a run directory move."""
+
+    question_payload = load_yaml(question_path)
+    references = question_payload.get("quality_contracts")
+    if not isinstance(references, dict):
+        return []
+    updated: list[str] = []
+    for name in ("semantics", "metrics", "algorithm_evidence"):
+        reference = references.get(name)
+        if not isinstance(reference, dict) or not isinstance(reference.get("path"), str):
+            continue
+        contract_path = workspace_path(root, reference["path"], f"{name} quality contract")
+        if not contract_path.is_file():
+            continue
+        contract = load_yaml(contract_path)
+        if _rewrite_quality_contract_lifecycle_locators(contract, old_prefix, new_prefix):
+            dump_yaml(contract_path, contract)
+            updated.append(relative_path(root, contract_path))
+    return updated
+
+
 def shared_asset(root: Path, workspace_root: Path | None, relative: str) -> Path:
     """Resolve a project-local asset first, then a shared workbench asset."""
 
@@ -477,6 +556,45 @@ def _string_list_issues(value: Any, label: str) -> list[str]:
     return []
 
 
+def _question_profile_issues(value: Any) -> list[str]:
+    """Validate the optional question profile used to activate conditional checks.
+
+    The profile is deliberately optional so v1/v2/v3 manifests remain readable.  It
+    describes applicability only; it never makes a legacy manifest require a new
+    contract or artifact.
+    """
+
+    if value is None:
+        return []
+    if not isinstance(value, dict):
+        return ["question_profile must be an object"]
+    allowed = {
+        "task_types", "feature_tags", "active_checks", "not_applicable_checks", "status", "source",
+    }
+    unexpected = sorted(set(value) - allowed)
+    issues = [f"question_profile has unexpected fields {unexpected}"] if unexpected else []
+    for field in ("task_types", "feature_tags", "active_checks", "not_applicable_checks"):
+        if field not in value:
+            continue
+        issues.extend(_string_list_issues(value[field], f"question_profile.{field}"))
+    task_types = value.get("task_types", [])
+    if isinstance(task_types, list):
+        invalid = sorted(set(task_types) - QUESTION_PROFILE_TASK_TYPES)
+        if invalid:
+            issues.append(f"question_profile.task_types has invalid values {invalid}")
+    active = value.get("active_checks", [])
+    inactive = value.get("not_applicable_checks", [])
+    if isinstance(active, list) and isinstance(inactive, list):
+        overlap = sorted(set(active) & set(inactive))
+        if overlap:
+            issues.append(f"question_profile check appears in active and not_applicable: {overlap}")
+    if "status" in value and value["status"] not in QUESTION_PROFILE_STATES:
+        issues.append("question_profile.status is invalid")
+    if "source" in value and value["source"] not in QUESTION_PROFILE_SOURCES:
+        issues.append("question_profile.source is invalid")
+    return issues
+
+
 def question_v2_shape_issues(payload: dict[str, Any]) -> list[str]:
     """Validate the strict v2 handoff shape without adding a runtime dependency."""
 
@@ -484,11 +602,12 @@ def question_v2_shape_issues(payload: dict[str, Any]) -> list[str]:
     if payload.get("schema_version") != 2:
         return ["schema_version must be 2"]
     missing = sorted((QUESTION_V2_ROOT_FIELDS - {"quality_contracts"}) - set(payload))
-    unexpected = sorted(set(payload) - QUESTION_V2_ROOT_FIELDS)
+    unexpected = sorted(set(payload) - (QUESTION_V2_ROOT_FIELDS | {"question_profile"}))
     if missing:
         issues.append(f"root missing {missing}")
     if unexpected:
         issues.append(f"root has unexpected fields {unexpected}")
+    issues.extend(_question_profile_issues(payload.get("question_profile")))
     if not isinstance(payload.get("problem_id"), str) or not str(payload.get("problem_id", "")):
         issues.append("problem_id must be a non-empty string")
     if not re.fullmatch(r"Q[1-9][0-9]*", str(payload.get("question_id", ""))):
@@ -554,12 +673,23 @@ def question_v2_shape_issues(payload: dict[str, Any]) -> list[str]:
     if "robustness" in evidence and not isinstance(evidence["robustness"], str):
         issues.append("evidence.robustness must be a string")
 
-    paper_fields = {"section", "table_ids", "figure_ids", "code_refs", "downstream_interfaces", "argument_contract"}
+    paper_fields = {"section", "heading_strategy", "section_map", "table_ids", "figure_ids", "code_refs", "downstream_interfaces", "argument_contract"}
     paper, nested = _mapping_issues(payload.get("paper"), "paper", paper_fields)
     issues.extend(nested)
     if "section" in paper and not isinstance(paper["section"], str):
         issues.append("paper.section must be a string")
-    for field in paper_fields - {"section", "argument_contract"}:
+    if "heading_strategy" in paper and paper["heading_strategy"] not in {"fixed_legacy", "dynamic"}:
+        issues.append("paper.heading_strategy must be fixed_legacy or dynamic")
+    if "section_map" in paper:
+        if not isinstance(paper["section_map"], dict):
+            issues.append("paper.section_map must be an object")
+        else:
+            for key, headings in paper["section_map"].items():
+                if not isinstance(key, str) or not isinstance(headings, list) or not headings or any(not isinstance(item, str) or not item.strip() for item in headings):
+                    issues.append(f"paper.section_map.{key} must be a non-empty string array")
+    # ``heading_strategy`` and ``section_map`` are structured compatibility
+    # fields, not the legacy string-list fields used by table/figure/code refs.
+    for field in paper_fields - {"section", "heading_strategy", "section_map", "argument_contract"}:
         if field in paper:
             issues.extend(_string_list_issues(paper[field], f"paper.{field}"))
     argument, nested = _mapping_issues(payload.get("paper", {}).get("argument_contract") if isinstance(payload.get("paper"), dict) else None, "paper.argument_contract", set(QUESTION_ARGUMENT_FIELDS))
@@ -593,12 +723,13 @@ def question_v3_shape_issues(payload: dict[str, Any]) -> list[str]:
     if payload.get("schema_version") != 3:
         return ["schema_version must be 3"]
     missing = sorted((QUESTION_V3_ROOT_FIELDS - {"quality_contracts"}) - set(payload))
-    unexpected = sorted(set(payload) - QUESTION_V3_ROOT_FIELDS)
+    unexpected = sorted(set(payload) - (QUESTION_V3_ROOT_FIELDS | {"question_profile"}))
     issues: list[str] = []
     if missing:
         issues.append(f"root missing {missing}")
     if unexpected:
         issues.append(f"root has unexpected fields {unexpected}")
+    issues.extend(_question_profile_issues(payload.get("question_profile")))
     legacy = deepcopy(payload)
     legacy.pop("literature", None)
     legacy["schema_version"] = 2
@@ -794,6 +925,14 @@ def write_paper_blueprint(root: Path, problem: str, source_problem: str, questio
 
     generated = root / "paper" / "generated"
     generated.mkdir(parents=True, exist_ok=True)
+    # A real problem switches the copied paper template out of preview mode.
+    # The marker is deliberately derived and local to the paper build; it does
+    # not create a second competition state file.
+    (generated / "build_mode.tex").write_text(
+        "% Generated after a real problem was initialized; do not edit.\n"
+        "\\MathModelPreviewfalse\n",
+        encoding="utf-8",
+    )
     structure_path = generated / "question_structure.tex"
     structure_lines = [
         "% Generated from the real problem markers by competition_workflow.py.",
@@ -1297,12 +1436,41 @@ def gate_checks(root: Path, problem: str, gate: str, question: str | None = None
                     bundle, _ = load_quality_bundle(root, payload)
                     contract_payload = dict(payload)
                     contract_payload["_quality_bundle"] = bundle
+                    run_manifest: dict[str, Any] = {}
                     try:
                         run_manifest = load_json(run_path)
                         run_contract = run_contract_issues(contract_payload, run_manifest, strict=gate in {"G3", "G4", "G5", "G6"}, root=root)
                     except (OSError, json.JSONDecodeError) as exc:
                         run_contract = [str(exc)]
                     add_check(checks, "quality_metric_handoff", not run_contract, "; ".join(run_contract) if run_contract else "required metrics declared", str(run_path))
+                    try:
+                        verification_report = _evaluate_run_model_verification(
+                            root,
+                            payload,
+                            run_path,
+                            run_manifest,
+                            phase="formal",
+                            strict=True,
+                        )
+                        verification_issues = [
+                            f"{item['code']}: {item['detail']}"
+                            for item in verification_report["blocking_issues"]
+                        ]
+                        verification_detail = (
+                            "; ".join(verification_issues)
+                            if verification_issues
+                            else f"{verification_report['status']} ({verification_report['task_type']})"
+                        )
+                    except (OSError, ValueError, json.JSONDecodeError) as exc:
+                        verification_issues = [str(exc)]
+                        verification_detail = str(exc)
+                    add_check(
+                        checks,
+                        "G3_model_verification",
+                        not verification_issues,
+                        verification_detail,
+                        str(run_path),
+                    )
                 _add_run_visual_design_checks(root, run_path, declared_figures, gate, checks, required=visual_strict)
             if payload.get("schema_version") in {2, 3}:
                 argument = paper.get("argument_contract", {}) if isinstance(paper.get("argument_contract"), dict) else {}
@@ -1558,7 +1726,15 @@ def gate_checks(root: Path, problem: str, gate: str, question: str | None = None
             if contest_path.is_file():
                 command.extend(("--contest-config", str(contest_path)))
             try:
-                completed = subprocess.run(command, cwd=root, capture_output=True, text=True, check=False)
+                completed = subprocess.run(
+                    command,
+                    cwd=root,
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    check=False,
+                )
                 static_report = json.loads(completed.stdout)
                 static_passed = static_report.get("passed") is True
                 error_codes = [str(item.get("code")) for item in static_report.get("errors", []) if item.get("code")]
@@ -1677,23 +1853,24 @@ def prompt(
     receipt_path = folder / "prompt_receipt.json"
     dump_yaml(packet_path, packet)
     receipt = format_receipt({
-        "status": "READY",
+        "status": "PASS_WITH_WARNINGS" if packet.get("assembly_warnings") else "READY",
         "objective": packet["objective"],
-        "conclusion": "Prompt packet assembled; no competition state or formal evidence was modified.",
+        "conclusion": "提示包已生成；未修改赛事状态或正式证据。",
         "evidence": [f"{relative_path(root, packet_path)}#sha256={sha256(packet_path)}"],
-        "warnings": [],
-        "next_action": "Run the role task using this packet and return the compact receipt.",
+        "warnings": list(packet.get("assembly_warnings") or []),
+        "next_action": "按当前阶段和角色执行任务，并以正常 Markdown 摘要返回结果。",
         "decision_request": None,
     })
     dump_json(receipt_path, receipt)
     return {
-        "status": "READY",
+        "status": receipt["status"],
         "packet": relative_path(root, packet_path),
         "receipt": relative_path(root, receipt_path),
         "project_id": project_id,
         "stage": stage,
         "role": role,
         "question_id": question or "",
+        "markdown": format_receipt_markdown(receipt),
     }
 
 
@@ -2127,6 +2304,24 @@ def quickcheck(root: Path, problem: str, question: str | None = None, strict: bo
                 issues.extend(lifecycle_warnings)
             elif lifecycle_warnings:
                 add_warning(warnings, "quickcheck_contract_incomplete", "; ".join(lifecycle_warnings), relative_path(root, path))
+        question_path = root / "problems" / problem / "questions" / str(manifest.get("question_id")) / "question.yaml"
+        if contracts_enabled(root) and question_path.is_file():
+            question_payload = load_yaml(question_path)
+            verification_report = _evaluate_run_model_verification(
+                root,
+                question_payload,
+                path,
+                manifest,
+                phase="exploration",
+                strict=False,
+            )
+            for item in (*verification_report["blocking_issues"], *verification_report["warnings"]):
+                add_warning(
+                    warnings,
+                    f"MODEL_VERIFICATION_{item['code']}",
+                    item["detail"],
+                    relative_path(root, path),
+                )
         data_path = path.parent / "figure_data_manifest.yaml"
         intent_path = path.parent / "visual_intent.yaml"
         if data_path.is_file():
@@ -2190,6 +2385,75 @@ def lifecycle_manifests(root: Path, problem: str, question: str | None = None, l
     return sorted(set(found))
 
 
+def _evaluate_run_model_verification(
+    root: Path,
+    question_payload: dict[str, Any],
+    manifest_path: Path,
+    manifest: dict[str, Any],
+    *,
+    phase: str,
+    strict: bool,
+) -> dict[str, Any]:
+    bundle, bundle_issues = load_quality_bundle(root, question_payload)
+    report = evaluate_model_verification(
+        root,
+        question_payload,
+        bundle,
+        manifest,
+        manifest_path,
+        strict=strict,
+        phase=phase,
+    )
+    if bundle_issues:
+        target = report["blocking_issues"] if strict else report["warnings"]
+        target.extend(
+            {
+                "code": "QUALITY_CONTRACT_INVALID",
+                "section": "contracts",
+                "detail": detail,
+            }
+            for detail in bundle_issues
+        )
+        report["status"] = "BLOCK_TRANSITION" if report["blocking_issues"] else "PASS_WITH_WARNINGS"
+    return report
+
+
+def model_verify(
+    root: Path,
+    problem: str,
+    question: str,
+    run_id: str,
+    *,
+    strict: bool = False,
+) -> dict[str, Any]:
+    """Create a derived verification report without changing competition state."""
+
+    manifest_path = _manifest_path_for_run(root, problem, question, run_id)
+    manifest = load_json(manifest_path)
+    question_path = root / "problems" / problem / "questions" / question / "question.yaml"
+    if not question_path.is_file():
+        raise FileNotFoundError(f"question manifest is missing: {question_path}")
+    question_payload = load_yaml(question_path)
+    lifecycle = manifest.get("lifecycle", {}) if isinstance(manifest.get("lifecycle"), dict) else {}
+    phase = "formal" if manifest.get("run_mode") == "formal" or lifecycle.get("formal") is True else "candidate"
+    report = _evaluate_run_model_verification(
+        root,
+        question_payload,
+        manifest_path,
+        manifest,
+        phase=phase,
+        strict=strict or phase == "formal",
+    )
+    report_path = write_model_verification_report(root, report)
+    return {
+        **report,
+        "action": "model-verify",
+        "passed": not report["blocking_issues"],
+        "report": relative_path(root, report_path),
+        "report_sha256": sha256(report_path),
+    }
+
+
 def checkpoint(root: Path, problem: str, question: str | None = None, strict: bool = False) -> dict[str, Any]:
     manifests = lifecycle_manifests(root, problem, question, levels=NONFORMAL_LEVELS)
     receipts: list[str] = []
@@ -2199,6 +2463,7 @@ def checkpoint(root: Path, problem: str, question: str | None = None, strict: bo
         original = load_json(manifest_path)
         original_version = original.get("schema_version")
         manifest = _upgrade_manifest_v2(root, manifest_path, original)
+        verification_question_payload: dict[str, Any] | None = None
         issues = _manifest_integrity_issues(
             root,
             manifest,
@@ -2210,6 +2475,7 @@ def checkpoint(root: Path, problem: str, question: str | None = None, strict: bo
         question_path = root / "problems" / problem / "questions" / str(manifest.get("question_id")) / "question.yaml"
         if contracts_enabled(root) and question_path.is_file():
             question_payload = load_yaml(question_path)
+            verification_question_payload = question_payload
             contract_issues = transition_contract_issues(root, question_payload, transition="candidate")
             issues.extend(contract_issues)
             bundle, _ = load_quality_bundle(root, question_payload)
@@ -2217,6 +2483,22 @@ def checkpoint(root: Path, problem: str, question: str | None = None, strict: bo
             contract_payload["_quality_bundle"] = bundle
             manifest["quality_contract_snapshot"] = build_quality_contract_snapshot(contract_payload)
             issues.extend(run_contract_issues(contract_payload, manifest, strict=True, root=root))
+            verification_report = _evaluate_run_model_verification(
+                root,
+                question_payload,
+                manifest_path,
+                manifest,
+                phase="candidate",
+                strict=False,
+            )
+            issues.extend(item["detail"] for item in verification_report["blocking_issues"])
+            for item in verification_report["warnings"]:
+                add_warning(
+                    warnings,
+                    item["code"],
+                    item["detail"],
+                    relative_path(root, manifest_path),
+                )
         determinism_issues = _lifecycle_check_issues(manifest, ("deterministic",))
         if strict:
             issues.extend(determinism_issues)
@@ -2311,6 +2593,16 @@ def checkpoint(root: Path, problem: str, question: str | None = None, strict: bo
             "archived_at_utc": None,
         }
         dump_json(manifest_path, manifest)
+        if verification_question_payload is not None:
+            verification_report = _evaluate_run_model_verification(
+                root,
+                verification_question_payload,
+                manifest_path,
+                manifest,
+                phase="candidate",
+                strict=False,
+            )
+            write_model_verification_report(root, verification_report)
         transition_prefix = original_prefix if original_prefix != relative_path(root, manifest_path.parent) else None
         _sync_visual_handoff_after_lifecycle_transition(root, manifest_path, manifest, transition_prefix)
         manifest_prefix = relative_path(root, manifest_path)
@@ -2338,6 +2630,7 @@ def checkpoint(root: Path, problem: str, question: str | None = None, strict: bo
 def promote(root: Path, problem: str, question: str, run_id: str) -> dict[str, Any]:
     source_path = _manifest_path_for_run(root, problem, question, run_id)
     manifest = _upgrade_manifest_v2(root, source_path, load_json(source_path))
+    verification_question_payload: dict[str, Any] | None = None
     lifecycle = manifest.get("lifecycle", {}) if isinstance(manifest.get("lifecycle"), dict) else {}
     if lifecycle.get("state") == "ARCHIVED":
         raise ValueError("archived work cannot be promoted")
@@ -2369,12 +2662,22 @@ def promote(root: Path, problem: str, question: str, run_id: str) -> dict[str, A
         raise FileNotFoundError(f"question manifest is missing: {question_path}")
     if contracts_enabled(root):
         question_payload = load_yaml(question_path)
+        verification_question_payload = question_payload
         contract_issues = transition_contract_issues(root, question_payload, transition="formal")
         issues.extend(contract_issues)
         bundle, _ = load_quality_bundle(root, question_payload)
         contract_payload = dict(question_payload)
         contract_payload["_quality_bundle"] = bundle
         issues.extend(run_contract_issues(contract_payload, manifest, strict=True, root=root))
+        verification_report = _evaluate_run_model_verification(
+            root,
+            question_payload,
+            source_path,
+            manifest,
+            phase="candidate",
+            strict=False,
+        )
+        issues.extend(item["detail"] for item in verification_report["blocking_issues"])
     if issues:
         raise ValueError("run is not promotion-ready: " + "; ".join(issues))
     destination = root / "experiments" / problem / question / "formal" / run_id / "run_manifest.json"
@@ -2395,13 +2698,13 @@ def promote(root: Path, problem: str, question: str, run_id: str) -> dict[str, A
         "promoted_at_utc": promoted_at,
         "archived_at_utc": None,
     }
+    source_prefix = relative_path(root, source_path.parent)
+    destination_prefix = relative_path(root, destination.parent)
     if destination.resolve() == source_path.resolve():
         dump_json(destination, manifest)
         _sync_visual_handoff_after_lifecycle_transition(root, destination, manifest)
     else:
         shutil.move(str(source_path.parent), str(destination.parent))
-        source_prefix = relative_path(root, source_path.parent)
-        destination_prefix = relative_path(root, destination.parent)
         for artifact in manifest.get("artifacts", []):
             if isinstance(artifact, dict) and str(artifact.get("path", "")).startswith(source_prefix + "/"):
                 artifact["path"] = destination_prefix + str(artifact["path"])[len(source_prefix):]
@@ -2421,7 +2724,48 @@ def promote(root: Path, problem: str, question: str, run_id: str) -> dict[str, A
         runs.append(ref)
     question_data["status"] = "RUN"
     dump_yaml(question_path, question_data)
-    return {"schema_version": 1, "status": "FORMAL", "problem": problem, "question": question, "run_id": run_id, "manifest": ref, "question_evidence_updated": True}
+    quality_contracts_rewritten: list[str] = []
+    if verification_question_payload is not None:
+        if source_prefix != destination_prefix:
+            quality_contracts_rewritten = _sync_quality_contracts_after_lifecycle_transition(
+                root,
+                question_path,
+                source_prefix,
+                destination_prefix,
+            )
+        refresh_quality_contract_references(root, problem, question)
+        verification_question_payload = load_yaml(question_path)
+        quality_bundle, _ = load_quality_bundle(root, verification_question_payload)
+        contract_payload = dict(verification_question_payload)
+        contract_payload["_quality_bundle"] = quality_bundle
+        manifest["quality_contract_snapshot"] = build_quality_contract_snapshot(contract_payload)
+        dump_json(destination, manifest)
+    verification_path: Path | None = None
+    verification_status = "NOT_APPLICABLE"
+    if verification_question_payload is not None:
+        verification_report = _evaluate_run_model_verification(
+            root,
+            verification_question_payload,
+            destination,
+            manifest,
+            phase="formal",
+            strict=True,
+        )
+        verification_path = write_model_verification_report(root, verification_report)
+        verification_status = str(verification_report["status"])
+    return {
+        "schema_version": 1,
+        "status": "FORMAL",
+        "outcome": "G3_REVIEW_REQUIRED" if verification_status == "BLOCK_TRANSITION" else "READY_FOR_G3",
+        "problem": problem,
+        "question": question,
+        "run_id": run_id,
+        "manifest": ref,
+        "model_verification": relative_path(root, verification_path) if verification_path else None,
+        "model_verification_status": verification_status,
+        "question_evidence_updated": True,
+        "quality_contracts_rewritten": quality_contracts_rewritten,
+    }
 
 
 def paper_evidence(root: Path, problem: str, question: str, config_path: Path, strict: bool = False) -> dict[str, Any]:
@@ -4105,7 +4449,16 @@ def figure_render(root: Path, problem: str, question: str, run_id: str, brief_pa
         "MATHMODEL_FIGURE_OUTPUT_DIR": str(output_dir),
     })
     protected_before = _render_protected_snapshot(root, stage_root)
-    completed = subprocess.run(resolved_command, cwd=root, env=environment, capture_output=True, text=True, check=False)
+    completed = subprocess.run(
+        resolved_command,
+        cwd=root,
+        env=environment,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        check=False,
+    )
     protected_after = _render_protected_snapshot(root, stage_root)
     if protected_after != protected_before:
         changed = sorted(
@@ -4944,6 +5297,7 @@ def preflight(root: Path, workspace_root: Path | None = None) -> dict[str, Any]:
             "templates/workflow/metric_contract.yaml",
             "templates/workflow/algorithm_evidence.yaml",
             "templates/workflow/abstract_contract.yaml",
+            "src/workflow/model_verification.py",
             "references/retrospectives/huashu-cup-2026-review.md",
         ))
     if _project_requires_literature_handoff(root):
@@ -5025,6 +5379,11 @@ def main() -> int:
     quality_refresh_parser = sub.add_parser("refresh-quality-contracts")
     quality_refresh_parser.add_argument("--problem", required=True)
     quality_refresh_parser.add_argument("--question")
+    model_verify_parser = sub.add_parser("model-verify")
+    model_verify_parser.add_argument("--problem", required=True)
+    model_verify_parser.add_argument("--question", required=True)
+    model_verify_parser.add_argument("--run-id", required=True)
+    model_verify_parser.add_argument("--strict", action="store_true")
     literature_plan_parser = sub.add_parser("literature-plan")
     literature_plan_parser.add_argument("--problem", required=True)
     literature_plan_parser.add_argument("--question", required=True)
@@ -5134,6 +5493,8 @@ def main() -> int:
             result = paper_evidence(root, args.problem, args.question, args.config, args.strict)
         elif args.action == "refresh-quality-contracts":
             result = refresh_quality_contract_references(root, args.problem, args.question)
+        elif args.action == "model-verify":
+            result = model_verify(root, args.problem, args.question, args.run_id, strict=args.strict)
         elif args.action == "literature-plan":
             result = literature_plan(root, args.problem, args.question, args.config)
         elif args.action == "literature-search":
@@ -5173,7 +5534,10 @@ def main() -> int:
     except Exception as exc:
         print(json.dumps({"status": "ERROR", "error": str(exc)}, ensure_ascii=False, indent=2))
         return 1
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    if args.action == "prompt" and result.get("markdown"):
+        print(result["markdown"], end="")
+    else:
+        print(json.dumps(result, ensure_ascii=False, indent=2))
     if result.get("status") == "REOPEN_REQUIRED":
         return 2
     return 0 if result.get("passed", True) else 1

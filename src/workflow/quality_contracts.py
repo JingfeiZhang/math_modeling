@@ -170,11 +170,13 @@ def create_quality_contracts(
                     "question_id": f"Q{index}",
                     "method_required": True,
                     "subject_required": True,
+                    "result_required": True,
                     "conclusion_required": True,
                     "validation_required": True,
                     "boundary_required": True,
                     "method": "",
                     "subject": "",
+                    "result": "",
                     "conclusion": "",
                     "validation": "",
                     "boundary": "",
@@ -425,6 +427,19 @@ def _semantic_issues(payload: dict[str, Any], strict: bool) -> list[str]:
 
 
 def _prediction_task(question_payload: dict[str, Any] | None, semantic_payload: dict[str, Any] | None = None) -> bool:
+    if question_payload:
+        profile = question_payload.get("question_profile", {})
+        if isinstance(profile, dict):
+            active = {str(item).strip().casefold() for item in profile.get("active_checks", []) if str(item).strip()}
+            inactive = {str(item).strip().casefold() for item in profile.get("not_applicable_checks", []) if str(item).strip()}
+            if "prediction_delivery" in active:
+                return True
+            if "prediction_delivery" in inactive:
+                return False
+            task_types = {str(item).strip().casefold() for item in profile.get("task_types", []) if str(item).strip()}
+            feature_tags = {str(item).strip().casefold() for item in profile.get("feature_tags", []) if str(item).strip()}
+            if "prediction" in task_types or "forecast_target" in feature_tags:
+                return True
     values: list[str] = []
     if question_payload:
         problem = question_payload.get("problem", {})
@@ -593,13 +608,22 @@ def _abstract_issues(payload: dict[str, Any], strict: bool) -> list[str]:
         "validation_required",
         "boundary_required",
     )
+    result_tracking = any(
+        isinstance(item, dict) and "result_required" in item
+        for item in payload.get("questions", [])
+    )
     for item in payload.get("questions", []):
         if isinstance(item, dict) and not all(item.get(flag) is True for flag in required_flags):
             issues.append(f"abstract question coverage is incomplete: {item.get('question_id', 'unknown')}")
         if isinstance(item, dict):
-            missing = [field for field in ("method", "subject", "conclusion", "validation", "boundary") if not str(item.get(field, "")).strip()]
+            required_text = ["method", "subject", "conclusion", "validation", "boundary"]
+            if result_tracking and item.get("result_required") is True:
+                required_text.insert(2, "result")
+            missing = [field for field in required_text if not str(item.get(field, "")).strip()]
             if missing:
                 issues.append(f"abstract synthesis fields are incomplete: {item.get('question_id', 'unknown')} ({', '.join(missing)})")
+            if result_tracking and item.get("result_required") is not True:
+                issues.append(f"abstract result coverage is incomplete: {item.get('question_id', 'unknown')}")
             if not item.get("claim_ids"):
                 issues.append(f"abstract has no frozen-claim allowlist: {item.get('question_id', 'unknown')}")
     final_summary = payload.get("final_summary", {})
@@ -681,7 +705,10 @@ def abstract_text_issues(root: Path, question_payload: dict[str, Any]) -> list[s
     for item in contract.get("questions", []):
         if not isinstance(item, dict):
             continue
-        for field in ("method", "subject", "conclusion", "validation", "boundary"):
+        fields = ["method", "subject", "conclusion", "validation", "boundary"]
+        if item.get("result_required") is True:
+            fields.insert(2, "result")
+        for field in fields:
             anchor = str(item.get(field, "")).strip().lower()
             if anchor and anchor not in text:
                 result.append(f"abstract is missing {item.get('question_id')}/{field} anchor")

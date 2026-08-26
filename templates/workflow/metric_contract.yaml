@@ -1,4 +1,5 @@
 schema_version: 1
+verification_profile: 1
 problem_id: DEMO
 question_id: Q1
 source_question:
@@ -24,4 +25,14 @@ metrics:
     claim_ids: []
     table_ids: []
     figure_ids: []
+validation_protocol:
+  status: DRAFT
+  applicable: true
+  strategy: not-selected
+  split_unit: ""
+  holdout_scope: ""
+  leakage_checks: []
+  primary_metric_ids: []
+  uncertainty_outputs: []
+  acceptance_criteria: []
 status: DRAFT

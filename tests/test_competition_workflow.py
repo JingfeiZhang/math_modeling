@@ -81,6 +81,8 @@ def test_precontest_protection_and_real_problem_initialization(tmp_path: Path) -
     contracts = yaml.safe_load((tmp_path / "paper" / "figure_contracts.yaml").read_text(encoding="utf-8"))
     assert contracts == {"schema_version": "2.0", "figures": []}
     structure = (tmp_path / "paper" / "generated" / "question_structure.tex").read_text(encoding="utf-8")
+    build_mode = (tmp_path / "paper" / "generated" / "build_mode.tex").read_text(encoding="utf-8")
+    assert "\\MathModelPreviewfalse" in build_mode
     assert "\\MathModelQuestionCount}{2}" in structure
     assert "\\input{sections/question_1.tex}" in structure
     assert "\\input{sections/question_2.tex}" in structure

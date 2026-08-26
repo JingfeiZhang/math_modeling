@@ -53,6 +53,7 @@ projects/**/output/_archive/
 projects/**/output/_preview/
 projects/**/output/_package_staging/
 projects/**/output/package_audit_staging.json
+projects/**/output/workflow_status.json
 projects/**/problems/**/questions/Q*/literature/cache/
 projects/**/problems/**/questions/Q*/literature/searches/**/raw/
 work/cache/literature/
@@ -110,6 +111,9 @@ package-staging/
 tmp/
 tools/**/node_modules/
 tools/mcp/matlab/*.exe
+tools/algorithm-sources/
+代码库/
+统计和数据挖掘 建模/
 
 # Pinned upstream repositories are referenced by lock/source manifests.
 # Keep their nested Git metadata and worktrees outside the root repository index.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate V5 visualization handoff shape and current project provenance."""
+"""Validate V7.2 visualization handoff shape and local project provenance."""
 
 from __future__ import annotations
 
@@ -25,6 +25,7 @@ SCHEMAS = {
     "intent": "visual_intent.schema.json",
     "brief": "figure_brief.schema.json",
 }
+WORKSPACE_SCHEMA_FILES = tuple(SCHEMAS.values())
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -50,8 +51,56 @@ def project_path(root: Path, value: str, label: str) -> Path:
     return resolved
 
 
-def validate_schema(root: Path, kind: str, payload: dict[str, Any]) -> list[str]:
-    schema_path = root / "config" / "schemas" / SCHEMAS[kind]
+def is_workspace_root(path: Path) -> bool:
+    return (path / "config" / "projects.json").is_file() and all(
+        (path / "config" / "schemas" / name).is_file() for name in WORKSPACE_SCHEMA_FILES
+    )
+
+
+def discover_workspace_root(explicit: Path | None, manifest: Path) -> Path:
+    if explicit is not None:
+        root = explicit.resolve()
+        if not is_workspace_root(root):
+            raise ValueError(
+                f"--root is not a modeling workspace with config/projects.json and visualization schemas: {root}"
+            )
+        return root
+    starts = (manifest.resolve().parent, Path.cwd().resolve())
+    seen: set[Path] = set()
+    for start in starts:
+        for candidate in (start, *start.parents):
+            if candidate in seen:
+                continue
+            seen.add(candidate)
+            if is_workspace_root(candidate):
+                return candidate
+    raise ValueError(
+        "modeling workspace root was not found from the current directory or manifest path; pass --root explicitly"
+    )
+
+
+def resolve_input_path(value: Path, *bases: Path) -> Path:
+    if value.is_absolute():
+        return value.resolve()
+    candidates = [(base / value).resolve() for base in bases]
+    return next((candidate for candidate in candidates if candidate.exists()), candidates[0])
+
+
+def discover_project_root(workspace_root: Path, manifest_path: Path) -> Path:
+    for candidate in (manifest_path.parent, *manifest_path.parent.parents):
+        try:
+            candidate.relative_to(workspace_root)
+        except ValueError:
+            break
+        if (candidate / "project.yaml").is_file():
+            return candidate
+        if candidate == workspace_root:
+            break
+    return workspace_root
+
+
+def validate_schema(workspace_root: Path, kind: str, payload: dict[str, Any]) -> list[str]:
+    schema_path = workspace_root / "config" / "schemas" / SCHEMAS[kind]
     if not schema_path.is_file():
         return [f"schema is missing: {schema_path}"]
     schema = json.loads(schema_path.read_text(encoding="utf-8"))
@@ -79,10 +128,10 @@ def current_file(root: Path, value: Any, expected_hash: Any, label: str) -> tupl
     return path, []
 
 
-def manifest_issues(root: Path, payload: dict[str, Any]) -> list[str]:
-    issues = validate_schema(root, "manifest", payload)
+def manifest_issues(workspace_root: Path, project_root: Path, payload: dict[str, Any]) -> list[str]:
+    issues = validate_schema(workspace_root, "manifest", payload)
     _, source_issues = current_file(
-        root,
+        project_root,
         payload.get("source_run_manifest"),
         payload.get("source_run_manifest_sha256"),
         "source run manifest",
@@ -92,7 +141,7 @@ def manifest_issues(root: Path, payload: dict[str, Any]) -> list[str]:
         if not isinstance(item, dict):
             continue
         _, artifact_issues = current_file(
-            root,
+            project_root,
             item.get("path"),
             item.get("sha256"),
             f"source_artifacts[{index}]",
@@ -101,10 +150,15 @@ def manifest_issues(root: Path, payload: dict[str, Any]) -> list[str]:
     return issues
 
 
-def intent_issues(root: Path, payload: dict[str, Any], manifest_path: Path) -> list[str]:
-    issues = validate_schema(root, "intent", payload)
+def intent_issues(
+    workspace_root: Path,
+    project_root: Path,
+    payload: dict[str, Any],
+    manifest_path: Path,
+) -> list[str]:
+    issues = validate_schema(workspace_root, "intent", payload)
     current, source_issues = current_file(
-        root,
+        project_root,
         payload.get("source_data_manifest"),
         payload.get("source_data_manifest_sha256"),
         "intent source data manifest",
@@ -115,21 +169,32 @@ def intent_issues(root: Path, payload: dict[str, Any], manifest_path: Path) -> l
     return issues
 
 
-def brief_issues(root: Path, payload: dict[str, Any], manifest_path: Path, intent_path: Path) -> list[str]:
-    issues = validate_schema(root, "brief", payload)
+def brief_issues(
+    workspace_root: Path,
+    project_root: Path,
+    payload: dict[str, Any],
+    manifest_path: Path,
+    intent_path: Path,
+) -> list[str]:
+    issues = validate_schema(workspace_root, "brief", payload)
     for value, expected_hash, label, expected_path in (
         (payload.get("source_data_manifest"), payload.get("source_data_manifest_sha256"), "brief source data manifest", manifest_path),
         (payload.get("visual_intent"), payload.get("visual_intent_sha256"), "brief visual intent", intent_path),
         (payload.get("source_script"), payload.get("source_script_sha256"), "brief source script", None),
     ):
-        current, source_issues = current_file(root, value, expected_hash, label)
+        current, source_issues = current_file(project_root, value, expected_hash, label)
         issues.extend(source_issues)
         if current is not None and expected_path is not None and current.resolve() != expected_path.resolve():
             issues.append(f"{label} references a different file")
     for index, item in enumerate(payload.get("data_integrity", {}).get("source_hashes", [])):
         if not isinstance(item, dict):
             continue
-        _, source_issues = current_file(root, item.get("path"), item.get("sha256"), f"data_integrity.source_hashes[{index}]")
+        _, source_issues = current_file(
+            project_root,
+            item.get("path"),
+            item.get("sha256"),
+            f"data_integrity.source_hashes[{index}]",
+        )
         issues.extend(source_issues)
     return issues
 
@@ -139,30 +204,47 @@ def main() -> int:
     parser.add_argument("manifest", type=Path)
     parser.add_argument("--intent", type=Path)
     parser.add_argument("--brief", type=Path)
-    parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[3])
+    parser.add_argument(
+        "--root",
+        type=Path,
+        help="workspace root containing config/projects.json and config/schemas (auto-discovered when omitted)",
+    )
     args = parser.parse_args()
-    root = args.root.resolve()
     problems: list[str] = []
     try:
-        manifest_path = args.manifest.resolve()
+        manifest_hint = args.manifest if args.manifest.is_absolute() else Path.cwd() / args.manifest
+        workspace_root = discover_workspace_root(args.root, manifest_hint)
+        manifest_path = resolve_input_path(args.manifest, Path.cwd(), workspace_root)
+        project_root = discover_project_root(workspace_root, manifest_path)
         manifest = load_yaml(manifest_path)
-        problems.extend(manifest_issues(root, manifest))
+        problems.extend(manifest_issues(workspace_root, project_root, manifest))
         intent_path: Path | None = None
         if args.intent:
-            intent_path = args.intent.resolve()
-            problems.extend(intent_issues(root, load_yaml(intent_path), manifest_path))
+            intent_path = resolve_input_path(args.intent, Path.cwd(), project_root, workspace_root)
+            problems.extend(
+                intent_issues(workspace_root, project_root, load_yaml(intent_path), manifest_path)
+            )
         if args.brief:
             if intent_path is None:
                 problems.append("--brief requires --intent")
             else:
-                problems.extend(brief_issues(root, load_yaml(args.brief.resolve()), manifest_path, intent_path))
+                brief_path = resolve_input_path(args.brief, Path.cwd(), project_root, workspace_root)
+                problems.extend(
+                    brief_issues(
+                        workspace_root,
+                        project_root,
+                        load_yaml(brief_path),
+                        manifest_path,
+                        intent_path,
+                    )
+                )
     except (OSError, ValueError, yaml.YAMLError, json.JSONDecodeError) as exc:
         problems.append(str(exc))
     if problems:
         for problem in problems:
             print(f"ERROR: {problem}")
         return 1
-    print("OK: V5 visualization handoff shape and provenance checks passed")
+    print("OK: V7.2 visualization handoff shape and local provenance checks passed")
     return 0
 
 

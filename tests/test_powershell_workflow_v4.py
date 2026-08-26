@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import os
 import shutil
 import subprocess
@@ -23,6 +24,27 @@ def sha256(path: Path) -> str:
 
 @unittest.skipUnless(POWERSHELL, "Windows PowerShell is unavailable")
 class PowerShellWorkflowV4Tests(unittest.TestCase):
+    def test_reference_library_accepts_powerShell_array_tags(self) -> None:
+        script = ROOT / "scripts" / "reference-library.ps1"
+        command = (
+            f"$result = & '{script}' -Action lookup -Tags @('optimization','milp') "
+            "-Limit 1 -Layer card; "
+            "if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; "
+            "$result | Out-String"
+        )
+        result = subprocess.run(
+            [POWERSHELL, "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", command],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=60,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["tags"], ["milp", "optimization"])
+        self.assertEqual(payload["results"][0]["card_id"], "optimization-lp-milp")
+
     def test_entrypoints_parse_with_powershell_ast(self) -> None:
         for path in (BUILD_SCRIPT, WORKFLOW_SCRIPT, RUN_SCRIPT):
             command = (
@@ -47,6 +69,7 @@ class PowerShellWorkflowV4Tests(unittest.TestCase):
             "checkpoint",
             "promote",
             "paper-evidence",
+            "model-verify",
             "layout-check",
             "archive-work",
             "prepare-sprint",
@@ -69,6 +92,7 @@ class PowerShellWorkflowV4Tests(unittest.TestCase):
         self.assertIn("[string]$Qa", text)
         self.assertIn("[string]$FigureId", text)
         self.assertIn("promote requires -Question and -RunId", text)
+        self.assertIn("model-verify requires -Question and -RunId", text)
         self.assertIn("paper-evidence requires -Question and -Config", text)
         self.assertIn("figure-data requires -Question, -RunId, and -Config", text)
         self.assertIn("figure-intent requires -Question, -RunId, and -Config", text)
@@ -85,6 +109,7 @@ class PowerShellWorkflowV4Tests(unittest.TestCase):
             "checkpoint": ("--problem", "--question", "--strict"),
             "promote": ("--problem", "--question", "--run-id"),
             "paper-evidence": ("--problem", "--question", "--config", "--strict"),
+            "model-verify": ("--problem", "--question", "--run-id", "--strict"),
             "archive-work": ("--problem", "--question"),
             "figure-data": ("--problem", "--question", "--run-id", "--config"),
             "figure-intent": ("--problem", "--question", "--run-id", "--config"),
@@ -109,7 +134,7 @@ class PowerShellWorkflowV4Tests(unittest.TestCase):
 
     def test_low_cost_routes_do_not_invoke_pdf_or_package_scripts(self) -> None:
         text = WORKFLOW_SCRIPT.read_text(encoding="utf-8")
-        for action in ("quickcheck", "checkpoint", "figure-data", "figure-intent", "figure-brief"):
+        for action in ("quickcheck", "checkpoint", "model-verify", "figure-data", "figure-intent", "figure-brief"):
             start = text.index(f"    '{action}' {{")
             end = text.index("\n    }", start)
             block = text[start:end]
@@ -262,6 +287,35 @@ class PowerShellWorkflowV4Tests(unittest.TestCase):
             self.assertEqual(current_hashes, original_hashes)
             self.assertFalse((paper / "main.pdf").exists())
             self.assertFalse((paper / "main.aux").exists())
+
+    def test_formal_build_rejects_missing_generated_question_structure(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            project = Path(temporary) / "project"
+            (project / "paper").mkdir(parents=True)
+            (project / "state").mkdir(parents=True)
+            (project / "paper" / "main.tex").write_text("\\documentclass{article}\n", encoding="utf-8")
+            (project / "state" / "decision_log.json").write_text('{"problem":"C"}\n', encoding="utf-8")
+            result = subprocess.run(
+                [
+                    POWERSHELL,
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(BUILD_SCRIPT),
+                    "-ProjectRoot",
+                    str(project),
+                    "-WorkspaceRoot",
+                    str(ROOT),
+                ],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=60,
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("Formal paper build requires generated question structure", result.stdout + result.stderr)
 
 
 if __name__ == "__main__":

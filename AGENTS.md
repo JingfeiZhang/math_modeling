@@ -1,6 +1,6 @@
 # Mathematics Modeling Workspace
 
-`config/prompt_policy.yaml` is the only workspace prompt-strategy source. Load only the current P-stage and role packet; do not duplicate stage rules in Skills, TeX, or task handoffs. Return the V7 compact receipt unless the user asks for detail.
+`config/prompt_policy.yaml` is the only workspace prompt-strategy source. Load only the current P-stage and role packet; do not duplicate stage rules in Skills, TeX, or task handoffs. Save the V7 compact receipt internally, but return a normal Markdown summary to the user unless detail is requested. A warning does not stop exploration; a blocking item stops only the current transition, and the affected question may be edited, rerun, and checkpointed again.
 
 ## Workflow ownership
 
@@ -9,6 +9,8 @@
 - Use `math-modeling-paper` for contest-paper structure, section drafting, model-validation prose, and manuscript review.
 - Use `modeling-paper-studio` for evidence handoff, Figure Contracts, publication figures, XeLaTeX, PDF visual QA, and submission audits.
 - Use `modeling-paper-miner` for pinned-source discovery, authenticity grading, PDF/OCR evidence cards, deduplication, and paper-code pairing. It never owns contest state.
+- Use `literature-guided-modeling` for academic search plans, verified reference cards, model evidence briefs, and validation-oriented follow-up searches. It never writes Formal evidence or quality contracts.
+- Use `visualization-design` for figure/table/text/none decisions, visual encoding, and staged Figure Brief review. It never approves a Formal figure or owns release QA.
 - Use the installed MATLAB skills only for MATLAB charts, optimization, symbolic work, and performance work. Do not create a second workflow state file.
 - Use journal-spectrum-v2 for all self-authored data colors. The categorical order is fixed as #CC247C, #E95351, #F7A24F, #FBEB66, #4EA660, #79CAFB, #5292F7, #AA77E9; semantic roles must use the shared mapping in config/figure_style.yaml.
 - Do not introduce a new data color in Python, MATLAB, LaTeX, Origin, or an MCP output. Text, axes, grids, fills, and backgrounds may use only the registered neutral colors.
@@ -47,6 +49,7 @@
 - A fallback is optional, limited to one per subproblem, and must have an explicit activation trigger.
 - Mechanical checks belong in scripts. Ask the user only when ambiguity or a tradeoff changes the model, claim scope, or fallback decision.
 - `references/competition-knowledge/` is a shared, read-only P1--P3 textbook quick-reference layer. Its cards support only model direction, assumption checks, algorithm keywords, and risk probes; they are neither academic literature nor Formal evidence and never enter claims, Figure Contracts, paper citations, submission, or release.
+- Project-discoverable entries for the two local combination Skills live under `.agents/skills/`; their only canonical method sources remain under `skill_staging/`.
 
 ## Multi-agent collaboration
 

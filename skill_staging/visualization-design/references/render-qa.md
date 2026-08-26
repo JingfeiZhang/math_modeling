@@ -34,13 +34,12 @@ Record pass/fail and evidence in `figure_qa.json`:
 - no clipping, overlapping annotations, legend collisions, or unreadable tick labels;
 - line styles and markers remain distinguishable in grayscale and for common color-vision deficiencies;
 - no unregistered colors, gradients, 3-D effects, chartjunk, or unexplained dual axes;
-- caption plan states object, conditions, comparison, and conclusion and the manuscript cites the figure.
+- caption plan states object, conditions, comparison, and conclusion.
 
 ## Manual review
 
-Open the rendered PDF and the figure at final manuscript size. Verify that the primary evidence is visually dominant, reference/background layers are subdued, labels do not collide, and the figure can be understood without reading plotting code. Check the surrounding page for float drift, excessive white space, caption separation, and text smaller than the declared minimum.
+Open the staged PDF and inspect the figure at its declared final size. Verify that the primary evidence is visually dominant, reference/background layers are subdued, labels do not collide, and the figure can be understood without reading plotting code. Defer surrounding-page flow, float placement, caption separation, and manuscript citation checks to `modeling-paper-studio`.
 
-## Promotion conditions
+## Studio handoff conditions
 
-`figure-promote` requires an approved brief, passing QA, unchanged source hashes, and a valid frozen claim or eligible diagnostic Paper Evidence. Promotion updates the formal Figure Contract only; it does not change claims or the primary model. If the parent Formal run changes or the main metric, units, hard constraints, or deterministic replay changes, mark the handoff `STALE` and return `REOPEN_REQUIRED`.
-
+This Skill stops after staged-preview review and a design/QA handoff. Send only an approved, unchanged Brief with passing staged QA and qualified upstream evidence to `modeling-paper-studio`. The root agent and studio own Figure Contract promotion, manuscript-page inspection, and release QA. If the upstream V7.2 model verification report or any referenced quality-contract/data hash is no longer current, keep the handoff out of formal promotion and return it to the current packet owner.
