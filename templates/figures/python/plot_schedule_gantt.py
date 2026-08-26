@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Patch
 
-from recipe_common import COLORS, boolean_series, configure_style, export_triplet, label, load_verified_csv, new_figure, numeric, safe_legend
+from recipe_common import COLORS, boolean_series, configure_style, export_triplet, label, load_verified_csv, new_figure, numeric
 
 
 def main() -> int:
