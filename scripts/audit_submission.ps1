@@ -16,6 +16,11 @@ $selected = $resolved.Selected
 if ($selected.CorePrefixMissing.Count -gt 0 -or -not $selected.Coverage['pypdf']) {
     throw "PDF audit requires an independent prefix with pypdf; missing: $($selected.CorePrefixMissing -join ', ')"
 }
+
+# Refresh the concise AI statement, stage summary and details PDF from the
+# latest internal evidence before any formal audit. Precontest projects no-op.
+& (Join-Path $PSScriptRoot 'prepare_ai_disclosure.ps1') -EnvironmentName $EnvironmentName -ProjectRoot $root -WorkspaceRoot $sharedRoot
+
 $paperDir = Join-Path $root 'paper'
 $pdf = Join-Path $root 'output\submission.pdf'
 $latexAudit = Join-Path $root 'output\paper_audit.json'
