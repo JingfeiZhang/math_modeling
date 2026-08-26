@@ -1,16 +1,24 @@
 # 算法速查源
 
-这是一个只读的 P1–P3 算法方法源索引。当前仓库包含 `JingfeiZhang/1` 固定提交的本地镜像 `代码库/`，用于离线学习、候选模型发现和 baseline 原型设计；该镜像仍然不是比赛 Formal Evidence，也不是论文数字、Figure Contract、submission 或 release 的结果来源。
+这是一个只读的 P1–P3 算法方法源索引。当前仓库以 `JingfeiZhang/1` 的固定提交作为**来源锚点**，并维护 `代码库/` 这一 repo-tracked **curated derivative**：其中可继续修正泄漏、fallback、接口和学术表达问题，因此不保证与上游固定提交字节一致。它仍然不是比赛 Formal Evidence，也不是论文数字、Figure Contract、submission 或 release 的结果来源。
 
 所有算法卡、代码模板和分类 README 统一遵守 [算法参考与模板质量标准](QUALITY_STANDARD.md)，并服从 `references/competition-knowledge/playbooks/academic-quality-standard.md` 的总体学术质量原则。
+
+## 来源与本地修订的区别
+
+- `repository + commit + source_path + source_file_sha256` 描述上游来源和可追溯定位；
+- `代码库/` 描述在本仓库继续维护的 study-only 修订版本；
+- 本地修订可以修正数据泄漏、静默 fallback、错误统计解释或接口问题，但不改变上游来源记录；
+- `reference-library.ps1 -Action sync` 对 `local_directory` 重新索引**当前本地文件**，用于发现本地漂移和检索，不把本地文件冒充上游原始 blob；
+- 若需要核对上游原实现，以算法卡的固定 commit URL/sha 为准。
 
 ## 权威边界
 
 - 竞赛规则以当年官方文件和当前项目 `contest.yaml` 为最高权威；`代码库/` 中的 README、自检清单和历史经验不具有规则优先级。
 - `NO_LICENSE` 源按 `study_only` 处理：可阅读、运行示例、理解算法接口，但不得把其原始实现未经项目内重写与验证直接作为 Formal 代码。
-- 外部示例数据、示例图和示例数字不能作为比赛证据。
+- 外部或本地参考示例的数据、图和数值不能作为比赛证据。
 - 选中算法线索后，必须回到当前项目中重写数据接口、单位、约束、随机种子、输出合同和验证流程，并由当前项目运行产生证据。
-- `references/algorithm-sources/cards/` 与 `skeletons/` 是主工作台的决策摘要和项目重写骨架，优先于直接浏览镜像目录。
+- `references/algorithm-sources/cards/` 与 `skeletons/` 是主工作台的决策摘要和项目重写骨架，优先于直接浏览 `代码库/`。
 
 ## 高质量使用路径
 
@@ -39,11 +47,11 @@ scripts/reference-library.ps1 -Action status
 
 ## 当前来源
 
-| source_id | 仓库 | 许可状态 | 定位 |
-|---|---|---|---|
-| `github-jingfeizhang-1` | [JingfeiZhang/1](https://github.com/JingfeiZhang/1) | `NO_LICENSE` | 固定 commit 的 repo-tracked Python 算法镜像，仅用于 P1–P3 study-only 速查 |
+| source_id | 上游 | 许可状态 | 本地内容策略 | 定位 |
+|---|---|---|---|---|
+| `github-jingfeizhang-1` | [JingfeiZhang/1](https://github.com/JingfeiZhang/1) @ `8abaef8...` | `NO_LICENSE` | `curated_derivative` | P1–P3 study-only 速查 |
 
-镜像目录由 `references/algorithm-sources/sources.yaml` 的 `mirror_relpath` 指定，当前为工作区下的 `代码库`。`reference-library.ps1 -Action sync` 只维护被忽略的 `tools/algorithm-sources/` 索引状态，不改变 Formal Evidence；索引缺失时查询只返回 warning，不联网、不执行外部脚本。
+本地目录由 `references/algorithm-sources/sources.yaml` 的 `mirror_relpath` 指定，当前为 `代码库/`；索引目录仍使用固定上游 commit 作为 provenance namespace，但其中的文件哈希对应当前本地 curated 内容。
 
 ## 算法卡
 
@@ -61,7 +69,7 @@ scripts/reference-library.ps1 -Action status
 | 启发式、NSGA-II | [metaheuristic-search](cards/metaheuristic-search.md) |
 | 验证、稳健性 | [validation-diagnostics](cards/validation-diagnostics.md) |
 
-算法卡是决策摘要，不是代码拷贝。选中候选后，回到当前项目 runner 和证据合同中重新实现。
+算法卡是决策摘要，不是代码拷贝。卡中的上游 entry-point SHA/URL 用于 provenance；当前本地 curated 文件可能已经发生质量修订。选中候选后仍需回到当前项目 runner 和证据合同中重新实现。
 
 每张卡的 `skeleton_path` 指向项目自有重写骨架。骨架只定义输入输出、baseline、约束回查和验证回执；正式运行前必须在当前项目中完成实现并重新记录代码、数据和环境哈希。
 
