@@ -112,8 +112,6 @@ tmp/
 tools/**/node_modules/
 tools/mcp/matlab/*.exe
 tools/algorithm-sources/
-代码库/
-统计和数据挖掘 建模/
 
 # Pinned upstream repositories are referenced by lock/source manifests.
 # Keep their nested Git metadata and worktrees outside the root repository index.

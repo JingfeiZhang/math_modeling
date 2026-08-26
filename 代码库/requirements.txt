@@ -1,0 +1,39 @@
+# ============================================================
+# 国赛 C 题代码库 —— 已验证可跑的依赖版本(冻结快照)
+# 环境: Python 3.12.9 (miniconda3 base, ~/miniconda3/python.exe)
+# 快照日期: 2026-08-23  —— 此组合下 _run_all_tests.py 实测 68/68 通过
+# ------------------------------------------------------------
+# 用途: 换机器 / 开赛当天 / conda 偷偷升级导致模板报错时,
+#       用它把环境还原到已验证状态:
+#   pip install -r requirements.txt
+# 注意: 这些是"已验证能跑"的版本,不是"必须最新"。开赛前别乱升级。
+# ============================================================
+
+# —— 核心科学计算(必需) ——
+numpy==2.5.2
+pandas==3.0.5
+scipy==1.18.0
+matplotlib==3.11.1
+
+# —— 机器学习 / 统计建模(必需) ——
+scikit-learn==1.9.0
+statsmodels==0.14.6
+seaborn==0.13.2
+
+# —— 预测 / 优化 / 关联规则(常用) ——
+xgboost==3.0.5          # 05 预测类 XGBoost(未装自动退回 sklearn GBDT)
+pulp==3.0.2             # 05 规划类 线性/整数规划
+scikit-opt==0.6.6       # 06 智能优化 GA/PSO/SA/ACO(未装则跳过 sko 演示)
+mlxtend==0.25.0         # 07 FP-Growth 关联规则(未装则退回手写 Apriori)
+
+# ============================================================
+# 已知"版本升级会崩"的坑(2026-08-23 全部已在代码里适配):
+#   - factor_analyzer  : 与 sklearn>=1.8 的 check_array 冲突 → 已弃用,06 改用 statsmodels
+#   - pandas 3.0       : fillna(method=) 移除 → 用 .ffill()/.bfill(); 字符串默认 str dtype,
+#                        送入 patsy/statsmodels 前需 .astype(object)
+#   - matplotlib 3.9   : plt.cm.get_cmap 移除 → 用 plt.get_cmap; boxplot(labels=) → tick_labels=
+#   - numpy 2.x        : 禁止对非 0 维数组 float() → 用 float(np.ravel(x)[0])
+#   - scipy 新版        : kstest(dist, args=) 传参变更 → 传冻结分布的 .cdf
+#   - sklearn 1.7+     : LogisticRegression(multi_class=) 移除 → 删掉(多分类自动 softmax)
+# 详见同目录《_环境与版本排错速查.md》
+# ============================================================
