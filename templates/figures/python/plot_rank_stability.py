@@ -4,7 +4,6 @@ import argparse
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 
 from recipe_common import COLORS, boolean_series, configure_style, export_triplet, load_verified_csv, new_figure, numeric
 
