@@ -31,6 +31,9 @@ output/*.jsonl
 output/*.png
 output/*.svg
 output/*.sha256
+output/ai/
+output/ai_usage_state.yaml
+output/ai_usage_log.jsonl
 output/.conda-tmp/
 output/_verification/
 output/_demos/
@@ -48,6 +51,9 @@ projects/**/paper/.preview-build/
 projects/**/sprints/**/staging/
 projects/**/sprints/**/retry-staging/
 projects/**/output/.support-staging/
+projects/**/output/ai/
+projects/**/output/ai_usage_state.yaml
+projects/**/output/ai_usage_log.jsonl
 projects/**/output/_verification/
 projects/**/output/_archive/
 projects/**/output/_preview/
