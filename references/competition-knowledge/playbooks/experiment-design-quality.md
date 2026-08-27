@@ -39,6 +39,21 @@ forbidden_use: [academic_citation, direct_claim_support]
 
 可用启发式：实验优先级 ≈ 结论变化概率 × 论文价值 / 计算成本。无需计算数值，只用于排序。
 
+### 2.1 先验证 formulation，再验证算法表现
+
+任何涉及决策或约束的实验，先检查：
+
+```text
+objective 是否对应题面
+→ hard constraints 是否完整
+→ 变量域/单位是否正确
+→ solution feasibility
+→ baseline comparison
+→ objective / optimality evidence
+```
+
+如果 formulation 本身错误，后续调参、收敛曲线和模型比较都没有意义。
+
 ## 3. Baseline comparison
 
 比较必须满足：同输出、同样本/场景、同指标、同单位、同决策时点信息。优先报告绝对差和相对差，并检查改善是否集中在少数样本或极端场景。
@@ -93,6 +108,25 @@ rolling/out-of-sample validation
 
 重点检查峰值、高代价区间、趋势转折、不同 horizon 和数据漂移。平均指标不能掩盖关键时段系统失败。
 
+### 7.1 上游估计进入下游决策时，必须增加端到端实验
+
+如果预测、参数估计或分类概率会成为后续优化/决策输入，至少比较：
+
+```text
+simple upstream baseline + downstream decision
+vs
+main upstream model + same downstream decision
+```
+
+并观察：
+
+- 最终方案是否变化；
+- 成本/收益/服务水平是否变化；
+- 可行率或尾部风险是否变化；
+- 哪些上游误差真正驱动下游损失。
+
+上游统计指标改善但最终决策不改善时，不把该复杂度作为主要贡献。必要时把上游残差、区间或场景传播到下游，而不是把 point estimate 当作无误差真值。
+
 ## 8. 分类实验
 
 优先：
@@ -112,7 +146,8 @@ prevalence baseline
 优先：
 
 ```text
-feasibility audit
+formulation / known-answer check
+→ feasibility audit
 → rule/greedy baseline
 → small exact instance / lower bound / gap
 → scenario stress
@@ -120,7 +155,9 @@ feasibility audit
 → multi-seed if stochastic
 ```
 
-收敛曲线只证明算法行为，不能替代方案质量、可行性或业务价值。
+任何 objective 比较都必须以同一硬约束下可行为前提。收敛曲线只证明算法行为，不能替代方案质量、可行性或业务价值。
+
+若未来需求、价格、容量等存在不确定性，先对确定性方案做有依据的压力场景；只有方案翻转、不可行、尾部损失或服务失控等现象真实存在时，才值得增加 robust/stochastic 复杂度。
 
 ## 10. 多目标实验
 
@@ -152,14 +189,26 @@ feasibility audit
 
 每个主模型至少主动寻找一种失败情形：高峰、边界、稀有类别、极端场景、密集网络、参数漂移等。失败分析的目的不是证明模型差，而是给论文提供可信边界和改进方向。
 
-## 15. 实验停止规则
+## 15. 跨问接口验证
+
+当 Q_i 的输出成为 Q_j 的输入时，至少检查：
+
+- 字段含义、单位和粒度是否一致；
+- 聚合/拆分是否守恒；
+- 上游不确定性是否需要传播；
+- 上游模型变化是否真的改变下游结论。
+
+如果上游输出只是辅助分析、并不改变后续模型，不为“多问联动”人为制造依赖。
+
+## 16. 实验停止规则
 
 当以下问题都有答案时停止扩张实验：
 
-- 模型是否正确？
+- 模型/formulation 是否正确？
 - 比 baseline 好在哪里？
 - 最可能在哪里失败？
 - 主要结论对合理扰动是否稳定？
 - 为什么产生主要改善？
+- 若存在上下游接口，最终决策是否真正受益？
 
 之后优先把证据转换为 Formal、图表和论文，不继续为了“实验数量”消耗时间。

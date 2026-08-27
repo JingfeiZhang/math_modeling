@@ -24,6 +24,30 @@ forbidden_use: [academic_citation, formal_evidence, claim_support]
 - 不确定性：参数误差、需求波动、场景、随机过程；
 - 规模：变量/约束/样本数量及比赛时间预算。
 
+### 1.1 Formulation-first：先把问题建对，再讨论求解器
+
+对于包含决策、约束或多阶段接口的题目，至少先写清：
+
+```text
+Sets / indices
+Parameters
+Observed states
+Decision variables
+Derived quantities
+Objective / evaluation target
+Hard constraints
+Soft preferences
+Information timing
+Output contract
+```
+
+其中必须优先核对两件事：
+
+1. **Objective correctness**：优化/评价的量是否真的是题目要求的目标，而不是方便计算的替代指标；
+2. **Constraint completeness**：容量、兼容、时间、守恒、逻辑、服务水平、变量域等题面硬条件是否完整进入模型。
+
+先写“使用 MILP/GA/XGBoost”再补变量和约束，属于错误路由顺序。
+
 ## 2. 默认复杂度预算
 
 每问默认最多维护：
@@ -51,6 +75,21 @@ Mean/Persistence/Seasonal Naive
 保留复杂模型的条件：样本规模足够、简单模型存在稳定结构残差、滚动样本外指标稳定改善且改善对题目有实际意义。
 
 深度模型不是默认终点。数据很小、时间很短、解释要求高时，经典模型通常更有比赛价值。
+
+### 3.1 Estimate → Decide：只有下游决策真正依赖上游估计时才串联
+
+当预测、参数估计、分类概率或评价得分会成为后一问的成本、需求、容量、风险或约束参数时，使用：
+
+```text
+upstream estimate
+→ uncertainty/error representation
+→ downstream decision
+→ end-to-end decision evaluation
+```
+
+此时模型选择不能只看上游 MAE/RMSE/AUC。若更复杂的上游模型虽然提高统计指标，却不改变方案、成本、服务水平、风险或可行率，则通常不值得继续增加复杂度。
+
+反之，如果总体误差改善不大，但明显减少高代价时段/关键场景误差，并稳定改善最终决策指标，则可以保留。若上游结果根本不影响下游方案，不为“跨问联动”强行串联。
 
 ## 4. 回归与解释型分析
 
@@ -121,7 +160,39 @@ Prevalence/规则 baseline
 
 能精确建模并求解时，不先使用 GA/PSO/SA/ACO。启发式只在强非凸、组合爆炸、黑箱目标、大规模或精确求解器在预算内不可用时进入主候选。
 
+### 8.1 Feasibility first
+
+优化结果统一按以下顺序解释：
+
+```text
+模型语义正确
+→ 硬约束完整
+→ 解可行
+→ 与 baseline 比较
+→ 再讨论 objective / optimality
+```
+
+因此：
+
+- solver success 不等于业务可行；
+- feasible 不等于已证明最优；
+- heuristic 最好一次不等于全局最优；
+- objective 更好但违反硬约束的方案没有比较资格。
+
 使用启发式时必须保留至少一种可信坐标：小规模精确解、松弛下界、规则 baseline、solver gap/界、重复种子或可行率。
+
+### 8.2 确定性模型先闭合，再按失败证据升级不确定性
+
+存在未来波动并不自动意味着必须上 robust/stochastic。优先：
+
+```text
+完整确定性 formulation
+→ 合理场景/参数压力测试
+→ 观察方案翻转、不可行、尾部损失或服务失控
+→ 有证据时才升级 robust/stochastic/recourse
+```
+
+如果压力测试不改变主要方案或结论，保留简单确定性主模型并报告边界即可。若不确定性的来源、范围或概率没有依据，不以复杂概率模型掩盖信息缺口。
 
 ## 9. 多目标
 
