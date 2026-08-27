@@ -15,8 +15,10 @@ QUALITY_PLAYBOOKS = {
 CURATED_PLAYBOOKS = {
     "references/competition-knowledge/playbooks/constraint-modeling-quality.md",
     "references/competition-knowledge/playbooks/data-to-decision-modeling.md",
-    "references/competition-knowledge/playbooks/contest-paper-reviewer-perspective.md",
-    "references/competition-knowledge/playbooks/rehearsal-and-contest-control.md",
+}
+CURATED_GUIDES = {
+    "references/competition-knowledge/guides/contest-paper-reviewer-perspective.md",
+    "references/competition-knowledge/guides/rehearsal-and-contest-control.md",
 }
 CURATION_SOURCE_NOTE = "references/competition-knowledge/source-notes/training-materials-curation.md"
 VISUAL_PLAYBOOK = "references/competition-knowledge/playbooks/visual-evidence-quality.md"
@@ -67,7 +69,7 @@ def test_quality_playbooks_are_wired_into_prompt_policy() -> None:
         assert (ROOT / relative).is_file(), relative
 
 
-def test_curated_training_playbooks_are_indexed_and_non_evidence() -> None:
+def test_curated_training_assets_preserve_reference_library_boundaries() -> None:
     knowledge_index = (ROOT / "references/competition-knowledge/index.md").read_text(encoding="utf-8")
     playbook_index = (ROOT / "references/competition-knowledge/playbooks/index.md").read_text(encoding="utf-8")
     source_note = ROOT / CURATION_SOURCE_NOTE
@@ -76,21 +78,38 @@ def test_curated_training_playbooks_are_indexed_and_non_evidence() -> None:
     source_text = source_note.read_text(encoding="utf-8")
     assert "不是 2026 官方规则" in source_text
     assert "不是标准答案" in source_text
+    assert "playbook 与 guide" in source_text
+
+    allowed_stages = {"P1", "P2", "P3a", "P3b"}
+    expected_allowed_use = {
+        "model_direction",
+        "assumption_check",
+        "baseline_design",
+        "risk_probe",
+    }
 
     for relative in CURATED_PLAYBOOKS:
         path = ROOT / relative
         assert path.is_file(), relative
-        name = path.name
-        assert name in knowledge_index
-        assert name in playbook_index
+        assert path.name in knowledge_index
+        assert path.name in playbook_index
 
         meta = _load_frontmatter(path)
         assert meta["contest_evidence_eligible"] is False
-        assert meta["forbidden_use"]
+        assert meta["evidence_status"] == "P1-P3-non-evidence"
+        assert set(meta["stage_scope"]) <= allowed_stages
+        assert set(meta["allowed_use"]) == expected_allowed_use
         assert "formal_evidence" in meta["forbidden_use"]
         assert "claim_support" in meta["forbidden_use"]
-        assert meta["stage_scope"]
+        assert meta["modules"]
         assert meta["tags"]
+
+    for relative in CURATED_GUIDES:
+        path = ROOT / relative
+        assert path.is_file(), relative
+        assert path.name in knowledge_index
+        assert path.name in playbook_index
+        assert relative not in CURATED_PLAYBOOKS
 
 
 def test_figure_recipe_catalog_points_to_existing_parseable_scripts() -> None:
