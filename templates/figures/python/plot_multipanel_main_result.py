@@ -3,9 +3,8 @@ from __future__ import annotations
 import argparse
 import math
 
-import matplotlib.pyplot as plt
-
-from recipe_common import COLORS, configure_style, export_triplet, label, load_verified_csv, numeric, style_axis
+from publication_helpers import export_publication_triplet, new_panel_figure, shared_legend
+from recipe_common import COLORS, configure_style, label, load_verified_csv, numeric, style_axis
 
 
 def main() -> int:
@@ -28,10 +27,8 @@ def main() -> int:
         raise ValueError("Split figures with more than six panels")
     columns = 2 if len(panels) > 1 else 1
     rows = math.ceil(len(panels) / columns)
-    fig, axes = plt.subplots(rows, columns, figsize=(6.8, 2.65 * rows), squeeze=False, sharex=True, constrained_layout=True)
+    fig, axes = new_panel_figure(rows, columns, height_mm=112, sharex=True)
     palette = [COLORS["primary"], COLORS["secondary"], COLORS["positive"], COLORS["risk"]]
-    legend_handles = None
-    legend_labels = None
     for panel_index, panel_name in enumerate(panels):
         ax = axes.flat[panel_index]
         subset = frame[frame["panel"].astype(str) == panel_name]
@@ -39,19 +36,35 @@ def main() -> int:
         ax.plot(baseline["x"], baseline["baseline"], color=COLORS["neutral"], linestyle="--", label="Baseline")
         for series_index, (series_name, series) in enumerate(subset.groupby("series", sort=True)):
             series = series.sort_values("x")
-            ax.plot(series["x"], series["value"], color=palette[series_index % len(palette)], marker="o", markersize=2.5, label=str(series_name))
+            ax.plot(
+                series["x"],
+                series["value"],
+                color=palette[series_index % len(palette)],
+                marker="o",
+                markersize=2.5,
+                label=str(series_name),
+            )
         ax.set_title(f"({chr(97 + panel_index)}) {panel_name}")
         ax.set_ylabel(label(args.y_label, args.y_unit))
         style_axis(ax)
-        legend_handles, legend_labels = ax.get_legend_handles_labels()
     for empty_index in range(len(panels), rows * columns):
         axes.flat[empty_index].set_visible(False)
     for ax in axes[-1, :]:
         if ax.get_visible():
             ax.set_xlabel(label(args.x_label, args.x_unit))
-    if legend_handles:
-        fig.legend(legend_handles, legend_labels, loc="outside upper center", ncols=min(len(legend_labels), 5))
-    export_triplet(fig, args.output_dir, args.stem)
+
+    visible_axes = [ax for ax in axes.flat if ax.get_visible()]
+    # A shared legend avoids repeating the same legend box in every panel.
+    # Compatibility figures may contain baseline plus up to four series, so
+    # any request above five entries should be split or redesigned.
+    shared_legend(fig, visible_axes, location="top", max_entries=5)
+    export_publication_triplet(
+        fig,
+        args.output_dir,
+        args.stem,
+        margins=(0.10, 0.97, 0.13, 0.86),
+        allow_multiple_primary_axes=True,
+    )
     return 0
 
 

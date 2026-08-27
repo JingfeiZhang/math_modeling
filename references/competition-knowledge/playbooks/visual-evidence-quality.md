@@ -1,11 +1,11 @@
 ---
 playbook_id: visual-evidence-quality
-playbook_version: 1
+playbook_version: 2
 tags: [visualization, evidence, reader-question, figure-design, paper-quality]
 stage_scope: [P3a, P3b, P4, P5]
 evidence_status: guidance-only
 contest_evidence_eligible: false
-allowed_use: [artifact_selection, figure_design, table_design, caption_design, visual_hierarchy]
+allowed_use: [artifact_selection, figure_design, table_design, caption_design, visual_hierarchy, publication_rendering]
 forbidden_use: [synthetic_evidence, manual_result_creation]
 ---
 
@@ -119,6 +119,8 @@ forbidden_use: [synthetic_evidence, manual_result_creation]
 
 只有多个 panel 共同证明同一结论时组合，例如 prediction + residual + error distribution。不同问题的图不要仅为省图号强行拼在一起。
 
+多 panel 必须直接按论文最终物理尺寸创建，不允许先制作超宽/超大画布再缩放。重复 legend 应优先合并为一个共享 legend，并在画布内预留空间。
+
 ## 14. Plot-ready data
 
 绘图脚本只消费从真实实验 artifact 派生的 tidy table，不手填论文数字。转换应为只读：筛选、排序、单位换算、聚合、区间计算等必须可复现并在 figure manifest/brief 中记录。
@@ -142,3 +144,17 @@ Caption 不只是“图 X 预测结果”。应简洁说明：比较对象、数
 ## 17. 停止规则
 
 一张图如果不能提供表格/正文无法高效提供的信息，删除。每问优先保留少量高信息量主结果和验证图，而不是追求图数。
+
+## 18. Publication rendering 模式
+
+在 Figure Brief 已经确定证据语义以后，renderer 可以使用以下内部模式提升最终成图质量：
+
+- 多 panel 使用 `publication_helpers.new_panel_figure()` 在最终物理尺寸直接排版；
+- 重复 legend 使用 `shared_legend()` 去重并放在预留画布区域；
+- 柱状图在确有需要时使用 `print_safe_bar_style()` 增加 hatch/edge 第二编码，但颜色仍必须来自 `config/figure_style.yaml`；
+- 数值标注使用 `annotate_bars()`，默认只允许少量高价值 annotation，精确数字较多时改用表格；
+- 正式 multi-panel 使用 `export_publication_triplet(..., allow_multiple_primary_axes=True)`，单图仍保持单主轴严格检查；
+- 不把 `bbox_inches='tight'` 设成全局默认，以免保存阶段改变已经通过审核的物理 PDF/SVG 尺寸；
+- 不因为外部 publication 示例而机械收紧 Y 轴、改 palette、使用超宽画布或装饰性 3D。
+
+这些模式来自 publication-figure 工程经验的选择性吸收；本项目的证据语义、颜色、物理尺寸和 Figure Contract 始终优先。来源与明确拒绝项记录在 `references/figure-sources/figures4papers-integration.md`。
