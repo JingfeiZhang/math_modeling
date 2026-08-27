@@ -1,245 +1,244 @@
 # -*- coding: utf-8 -*-
 """
-==============================================================================
-02 假设检验 (参数检验 + 非参数检验)
-==============================================================================
-功能：
-    参数检验:
-        1. 单样本 t 检验 (样本均值 vs 已知总体均值)
-        2. 双样本(独立) t 检验 (两组均值差异, 自动判断方差齐性 → Welch)
-        3. 配对 t 检验 (同一对象前后/配对数据)
-    非参数检验(不要求正态):
-        4. Mann-Whitney U 检验 (独立双样本, 对应独立 t 检验)
-        5. Wilcoxon 符号秩检验 (配对样本, 对应配对 t 检验)
-    分类数据:
-        6. 卡方独立性检验 (列联表, 两分类变量是否独立)
-        7. 卡方拟合优度检验 / Fisher 精确检验(2x2 小样本)
+02 假设检验：效应量、区间与检验证据
+=====================================
 
-参数检验 vs 非参数检验 如何选择:
-    - 参数检验(t检验/方差分析): 要求数据近似【正态】; 独立双样本还要求【方差齐性】。
-      优点: 正态时功效更高。
-    - 非参数检验(Mann-Whitney/Wilcoxon): 不要求正态, 基于秩(排序), 对离群值稳健。
-      当样本量小、明显偏态、或正态性检验不通过时使用。
-    - 决策流程: 先做正态性检验(见 01 文件) → 正态且方差齐 → 参数检验;
-      否则 → 非参数检验。
+本文件是 study-only 统计模板。推荐报告顺序：
 
-输入格式:
-    一维 array-like(单样本); 两个一维 array(双样本/配对);
-    列联表 2D array 或由 pd.crosstab 生成。
+    效应方向/大小 -> 置信区间 -> p 值 -> 设计与假设边界
 
-输出:
-    统计量、p 值、α=0.05 下的中文结论解释。
-
-依赖库: numpy, pandas, scipy
-==============================================================================
+关键原则：
+- 独立两组均值比较默认使用 Welch t，不再“先 Levene、再按 p 值切换 t 检验”。
+- 参数/非参数方法由研究问题、量表、分布形态、异常值、样本量和估计目标共同决定，
+  不使用“正态性检验 p<0.05 -> 全部改非参数”的机械流程。
+- Mann-Whitney U 不是一般意义上的“中位数检验”；分布形状不同时应谨慎解释。
+- p<0.05 不等于效果大、实际意义强或存在因果；p>=0.05 也不证明两组相同。
+- 大量并行检验需要预先定义主比较或控制 FWER/FDR。
 """
 
+from __future__ import annotations
+
+import math
 import numpy as np
-import pandas as pd
 from scipy import stats
 
 ALPHA = 0.05
 
 
-def _conclude(p, h1_desc, alpha=ALPHA):
-    """根据 p 值给出统一的中文结论。"""
+def _clean_1d(data):
+    x = np.asarray(data, dtype=float).ravel()
+    return x[np.isfinite(x)]
+
+
+def _evidence_text(p, alpha=ALPHA):
+    if not np.isfinite(p):
+        return "p 值不可用"
     if p < alpha:
-        return '拒绝H0, 在α=%.2f下【显著】: %s' % (alpha, h1_desc)
-    return '不能拒绝H0, 在α=%.2f下【不显著】: 无充分证据支持 %s' % (alpha, h1_desc)
+        return f"在 α={alpha:.2f} 下有反对 H0 的统计证据"
+    return f"在 α={alpha:.2f} 下未发现足够证据拒绝 H0"
+
+
+def _mean_ci(x, alpha=ALPHA):
+    x = _clean_1d(x)
+    n = len(x)
+    if n < 2:
+        return float("nan"), float("nan")
+    mean = float(np.mean(x))
+    se = float(stats.sem(x))
+    q = stats.t.ppf(1 - alpha / 2, n - 1)
+    return mean - q * se, mean + q * se
+
+
+def _cohen_d_one_sample(x, popmean):
+    x = _clean_1d(x)
+    sd = np.std(x, ddof=1)
+    return float((np.mean(x) - popmean) / sd) if sd > 0 else float("nan")
+
+
+def _hedges_g_independent(a, b):
+    """近似 Hedges g；仅是标准化组间差异，不是因果效应。"""
+    a, b = _clean_1d(a), _clean_1d(b)
+    n1, n2 = len(a), len(b)
+    if n1 < 2 or n2 < 2:
+        return float("nan")
+    s1, s2 = np.var(a, ddof=1), np.var(b, ddof=1)
+    pooled = math.sqrt(((n1 - 1) * s1 + (n2 - 1) * s2) / (n1 + n2 - 2))
+    if pooled == 0:
+        return float("nan")
+    d = (np.mean(a) - np.mean(b)) / pooled
+    correction = 1 - 3 / (4 * (n1 + n2) - 9)
+    return float(correction * d)
+
+
+def _welch_diff_ci(a, b, alpha=ALPHA):
+    """Welch-Satterthwaite 区间，目标为 mean(a)-mean(b)。"""
+    a, b = _clean_1d(a), _clean_1d(b)
+    n1, n2 = len(a), len(b)
+    m1, m2 = np.mean(a), np.mean(b)
+    v1, v2 = np.var(a, ddof=1), np.var(b, ddof=1)
+    se2 = v1 / n1 + v2 / n2
+    if se2 <= 0:
+        return float(m1 - m2), (float("nan"), float("nan")), float("nan")
+    df = se2 ** 2 / ((v1 / n1) ** 2 / (n1 - 1) + (v2 / n2) ** 2 / (n2 - 1))
+    q = stats.t.ppf(1 - alpha / 2, df)
+    diff = float(m1 - m2)
+    se = math.sqrt(se2)
+    return diff, (diff - q * se, diff + q * se), float(df)
+
 
 def one_sample_ttest(data, popmean, alpha=ALPHA):
-    """
-    单样本 t 检验: 检验样本均值是否等于已知总体均值 popmean。
-    H0: 样本总体均值 = popmean;  H1: 不相等(双侧)。
-    前提: 数据近似正态。
-    """
-    x = np.asarray(data, dtype=float)
+    x = _clean_1d(data)
     t, p = stats.ttest_1samp(x, popmean)
-    print('=' * 60)
-    print('【单样本 t 检验】 H0: 均值 = %.4f' % popmean)
-    print('  样本均值 = %.4f, n = %d' % (np.mean(x), len(x)))
-    print('  t 统计量 = %.4f,  p 值 = %.4g' % (t, p))
-    print('  结论: %s' % _conclude(p, '样本均值与 %.4f 存在显著差异' % popmean, alpha))
-    print('=' * 60)
-    return t, p
+    ci = _mean_ci(x, alpha)
+    d = _cohen_d_one_sample(x, popmean)
+    result = {
+        "test": "one_sample_t", "n": len(x), "mean": float(np.mean(x)),
+        "reference": float(popmean), "mean_ci": tuple(map(float, ci)),
+        "cohen_d": d, "stat": float(t), "p": float(p), "alpha": alpha,
+    }
+    print("【单样本 t】")
+    print(f"  mean={result['mean']:.4f}, {100*(1-alpha):.0f}% CI=[{ci[0]:.4f}, {ci[1]:.4f}]")
+    print(f"  相对参考值 {popmean:.4f} 的 Cohen d={d:.4f}")
+    print(f"  t={t:.4f}, p={p:.4g}; {_evidence_text(p, alpha)}")
+    return result
 
 
 def two_sample_ttest(a, b, alpha=ALPHA):
-    """
-    独立双样本 t 检验: 比较两独立组的均值。
-    自动用 Levene 检验判断方差齐性:
-        方差齐 → 标准 t 检验; 方差不齐 → Welch t 检验(equal_var=False)。
-    前提: 两组数据近似正态。
-    """
-    a = np.asarray(a, dtype=float)
-    b = np.asarray(b, dtype=float)
-    lev_stat, lev_p = stats.levene(a, b)          # H0: 方差相等
-    equal_var = lev_p > alpha
-    t, p = stats.ttest_ind(a, b, equal_var=equal_var)
-    print('=' * 60)
-    print('【独立双样本 t 检验】 H0: 两组均值相等')
-    print('  组A均值=%.4f(n=%d), 组B均值=%.4f(n=%d)' % (np.mean(a), len(a), np.mean(b), len(b)))
-    print('  Levene方差齐性: 统计量=%.4f, p=%.4g → %s' %
-          (lev_stat, lev_p, '方差齐(用标准t)' if equal_var else '方差不齐(用Welch t)'))
-    print('  t 统计量 = %.4f,  p 值 = %.4g' % (t, p))
-    print('  结论: %s' % _conclude(p, '两组均值存在显著差异', alpha))
-    print('=' * 60)
-    return t, p
+    """独立两组均值比较，默认 Welch t，并返回原始差、区间和 Hedges g。"""
+    a, b = _clean_1d(a), _clean_1d(b)
+    t, p = stats.ttest_ind(a, b, equal_var=False)
+    diff, ci, df = _welch_diff_ci(a, b, alpha)
+    g = _hedges_g_independent(a, b)
+    result = {
+        "test": "welch_t", "n_a": len(a), "n_b": len(b),
+        "mean_a": float(np.mean(a)), "mean_b": float(np.mean(b)),
+        "mean_difference_a_minus_b": diff, "difference_ci": tuple(map(float, ci)),
+        "hedges_g": g, "df": df, "stat": float(t), "p": float(p), "alpha": alpha,
+    }
+    print("【独立双样本 Welch t】")
+    print(f"  A mean={np.mean(a):.4f} (n={len(a)}), B mean={np.mean(b):.4f} (n={len(b)})")
+    print(f"  A-B={diff:.4f}, {100*(1-alpha):.0f}% CI=[{ci[0]:.4f}, {ci[1]:.4f}], Hedges g={g:.4f}")
+    print(f"  t={t:.4f}, df≈{df:.2f}, p={p:.4g}; {_evidence_text(p, alpha)}")
+    return result
 
 
 def paired_ttest(x, y, alpha=ALPHA):
-    """
-    配对 t 检验: 同一对象的两次测量(如治疗前后)。
-    H0: 配对差值的均值 = 0。 前提: 差值近似正态。
-    """
-    x = np.asarray(x, dtype=float)
-    y = np.asarray(y, dtype=float)
-    t, p = stats.ttest_rel(x, y)
+    x, y = _clean_1d(x), _clean_1d(y)
+    if len(x) != len(y):
+        raise ValueError("配对样本必须等长，且缺失值应按配对共同删除。")
     diff = x - y
-    print('=' * 60)
-    print('【配对 t 检验】 H0: 配对差值均值 = 0')
-    print('  差值均值 = %.4f, n对 = %d' % (np.mean(diff), len(diff)))
-    print('  t 统计量 = %.4f,  p 值 = %.4g' % (t, p))
-    print('  结论: %s' % _conclude(p, '配对前后存在显著差异', alpha))
-    print('=' * 60)
-    return t, p
+    t, p = stats.ttest_rel(x, y)
+    ci = _mean_ci(diff, alpha)
+    sd = np.std(diff, ddof=1)
+    dz = float(np.mean(diff) / sd) if sd > 0 else float("nan")
+    result = {
+        "test": "paired_t", "n_pairs": len(diff),
+        "mean_difference": float(np.mean(diff)), "difference_ci": tuple(map(float, ci)),
+        "cohen_dz": dz, "stat": float(t), "p": float(p), "alpha": alpha,
+    }
+    print("【配对 t】")
+    print(f"  配对差均值={np.mean(diff):.4f}, {100*(1-alpha):.0f}% CI=[{ci[0]:.4f}, {ci[1]:.4f}], dz={dz:.4f}")
+    print(f"  t={t:.4f}, p={p:.4g}; {_evidence_text(p, alpha)}")
+    return result
 
 
 def mann_whitney(a, b, alpha=ALPHA):
-    """
-    Mann-Whitney U 检验(非参数): 独立双样本, t 检验的非参数替代。
-    不要求正态; H0: 两总体分布相同(位置无差异)。
-    """
-    a = np.asarray(a, dtype=float)
-    b = np.asarray(b, dtype=float)
-    u, p = stats.mannwhitneyu(a, b, alternative='two-sided')
-    print('=' * 60)
-    print('【Mann-Whitney U 检验 (非参数, 独立双样本)】')
-    print('  组A中位数=%.4f, 组B中位数=%.4f' % (np.median(a), np.median(b)))
-    print('  U 统计量 = %.4f,  p 值 = %.4g' % (u, p))
-    print('  结论: %s' % _conclude(p, '两组分布(位置)存在显著差异', alpha))
-    print('=' * 60)
-    return u, p
+    a, b = _clean_1d(a), _clean_1d(b)
+    u, p = stats.mannwhitneyu(a, b, alternative="two-sided")
+    rank_biserial = float(2 * u / (len(a) * len(b)) - 1)
+    result = {
+        "test": "mann_whitney_u", "n_a": len(a), "n_b": len(b),
+        "median_a": float(np.median(a)), "median_b": float(np.median(b)),
+        "rank_biserial": rank_biserial, "stat": float(u), "p": float(p), "alpha": alpha,
+    }
+    print("【Mann-Whitney U】")
+    print(f"  median(A)={np.median(a):.4f}, median(B)={np.median(b):.4f}, rank-biserial={rank_biserial:.4f}")
+    print(f"  U={u:.4f}, p={p:.4g}; {_evidence_text(p, alpha)}")
+    print("  注意：若两组分布形状不同，不应把该检验简单解释为‘中位数检验’。")
+    return result
 
 
 def wilcoxon_signed(x, y, alpha=ALPHA):
-    """
-    Wilcoxon 符号秩检验(非参数): 配对样本, 配对 t 检验的非参数替代。
-    不要求正态; H0: 配对差值的分布关于 0 对称(无差异)。
-    """
-    x = np.asarray(x, dtype=float)
-    y = np.asarray(y, dtype=float)
-    w, p = stats.wilcoxon(x, y)
-    print('=' * 60)
-    print('【Wilcoxon 符号秩检验 (非参数, 配对)】')
-    print('  差值中位数 = %.4f' % np.median(x - y))
-    print('  W 统计量 = %.4f,  p 值 = %.4g' % (w, p))
-    print('  结论: %s' % _conclude(p, '配对前后存在显著差异', alpha))
-    print('=' * 60)
-    return w, p
+    x, y = _clean_1d(x), _clean_1d(y)
+    if len(x) != len(y):
+        raise ValueError("配对样本必须等长，且缺失值应按配对共同删除。")
+    diff = x - y
+    w, p = stats.wilcoxon(diff)
+    result = {
+        "test": "wilcoxon_signed_rank", "n_pairs": len(diff),
+        "median_difference": float(np.median(diff)), "stat": float(w),
+        "p": float(p), "alpha": alpha,
+    }
+    print("【Wilcoxon 符号秩】")
+    print(f"  配对差中位数={np.median(diff):.4f}, W={w:.4f}, p={p:.4g}; {_evidence_text(p, alpha)}")
+    return result
 
 
 def chi2_independence(table, alpha=ALPHA):
-    """
-    卡方独立性检验: 两个分类变量是否独立。
-    输入 table: 列联表(2D array 或 DataFrame)。
-    当 2x2 且样本量小(期望频数<5)时自动提示改用 Fisher。
-    H0: 两变量相互独立。
-    """
     table = np.asarray(table)
-    correction = table.shape == (2, 2)   # 2x2 用 Yates 连续性校正
+    correction = table.shape == (2, 2)
     chi2, p, dof, expected = stats.chi2_contingency(table, correction=correction)
-    print('=' * 60)
-    print('【卡方独立性检验】 H0: 两分类变量相互独立')
-    print('  卡方统计量 = %.4f, 自由度 = %d, p 值 = %.4g' % (chi2, dof, p))
+    n = table.sum()
+    phi2 = chi2 / n if n > 0 else float("nan")
+    k = min(table.shape[0] - 1, table.shape[1] - 1)
+    cramers_v = math.sqrt(phi2 / k) if k > 0 and np.isfinite(phi2) else float("nan")
+    result = {
+        "test": "chi2_independence", "chi2": float(chi2), "p": float(p),
+        "dof": int(dof), "cramers_v": float(cramers_v),
+        "expected_min": float(np.min(expected)),
+        "expected_lt5_fraction": float(np.mean(expected < 5)), "alpha": alpha,
+    }
+    print("【卡方独立性】")
+    print(f"  chi2={chi2:.4f}, dof={dof}, p={p:.4g}, Cramer's V={cramers_v:.4f}")
+    print(f"  {_evidence_text(p, alpha)}")
     if (expected < 5).any():
-        print('  * 注意: 存在期望频数<5, 若为2x2建议用 Fisher 精确检验')
-    print('  结论: %s' % _conclude(p, '两分类变量存在显著关联(不独立)', alpha))
-    print('=' * 60)
-    return chi2, p, dof, expected
+        print("  警告：存在较小期望频数；2x2 可考虑 Fisher，较大表需检查卡方近似是否可靠。")
+    return result
 
 
 def chi2_goodness(observed, expected=None, alpha=ALPHA):
-    """
-    卡方拟合优度检验: 观测频数是否符合某理论分布。
-    expected 缺省为均匀分布。 H0: 观测符合理论分布。
-    """
     observed = np.asarray(observed, dtype=float)
     chi2, p = stats.chisquare(observed, expected)
-    print('=' * 60)
-    print('【卡方拟合优度检验】 H0: 观测频数符合理论分布')
-    print('  卡方统计量 = %.4f,  p 值 = %.4g' % (chi2, p))
-    print('  结论: %s' % _conclude(p, '观测分布与理论分布存在显著偏离', alpha))
-    print('=' * 60)
-    return chi2, p
+    result = {"test": "chi2_goodness", "chi2": float(chi2), "p": float(p), "alpha": alpha}
+    print("【卡方拟合优度】")
+    print(f"  chi2={chi2:.4f}, p={p:.4g}; {_evidence_text(p, alpha)}")
+    return result
 
 
 def fisher_exact_test(table, alpha=ALPHA):
-    """Fisher 精确检验: 仅适用于 2x2 列联表, 小样本(期望频数<5)时优于卡方。"""
     table = np.asarray(table)
-    odds, p = stats.fisher_exact(table, alternative='two-sided')
-    print('=' * 60)
-    print('【Fisher 精确检验 (2x2)】')
-    print('  优势比 OR = %.4f,  p 值 = %.4g' % (odds, p))
-    print('  结论: %s' % _conclude(p, '两变量存在显著关联', alpha))
-    print('=' * 60)
-    return odds, p
+    odds, p = stats.fisher_exact(table, alternative="two-sided")
+    result = {"test": "fisher_exact", "odds_ratio": float(odds), "p": float(p), "alpha": alpha}
+    print("【Fisher 精确检验】")
+    print(f"  OR={odds:.4f}, p={p:.4g}; {_evidence_text(p, alpha)}")
+    print("  OR 是关联强度，不因检验显著而自动具有因果解释。")
+    return result
 
 
-if __name__ == '__main__':
-    np.random.seed(0)
+if __name__ == "__main__":
+    rng = np.random.default_rng(0)
 
-    # ========================================================================
-    # 👉 用你自己的国赛附件数据：把下面【示例数据】整段注释掉，改用这段
-    #   假设检验的关键是"按分组列把一列指标拆成几组"再比较：
-    #   import pandas as pd
-    #   df = pd.read_csv('附件1.csv', encoding='gbk')  # 乱码就换 utf-8 / gb18030
-    #   weights = df['重量'].dropna().values          # 单样本：直接取一列
-    #   # 独立双样本：按分组列拆成两组（如按'组别'列的 A/B 分组）
-    #   group_a = df[df['组别'] == 'A']['指标'].values
-    #   group_b = df[df['组别'] == 'B']['指标'].values
-    #   # 配对样本：同一对象两次测量，取两列（如治疗前/后）
-    #   before = df['治疗前'].values;  after = df['治疗后'].values
-    #   # 卡方独立性：两个分类列先做列联表
-    #   contingency = pd.crosstab(df['性别'], df['是否购买']).values
-    #   详见 01_数据预处理与可视化/00_CSV数据导入完全指南.py
-    # ------------------------------------------------------------------------
-    # 【示例数据】(仅供演示，替换为上面的真实数据后可删除)
-    print('\n########## 参数检验示例 ##########')
-    # 单样本: 检验某产品重量均值是否为 100
-    weights = np.random.normal(102, 5, 30)
+    print("\n########## 均值比较：先看效应和区间 ##########")
+    weights = rng.normal(102, 5, 30)
     one_sample_ttest(weights, popmean=100)
 
-    # 独立双样本: 两种工艺的产品强度
-    group_a = np.random.normal(50, 6, 40)
-    group_b = np.random.normal(54, 6, 40)
+    group_a = rng.normal(50, 6, 40)
+    group_b = rng.normal(54, 9, 35)
     two_sample_ttest(group_a, group_b)
 
-    # 配对: 培训前后成绩
-    before = np.random.normal(70, 8, 25)
-    after = before + np.random.normal(3, 4, 25)
+    before = rng.normal(70, 8, 25)
+    after = before + rng.normal(3, 4, 25)
     paired_ttest(after, before)
 
-    print('\n########## 非参数检验示例(偏态数据) ##########')
-    # 偏态数据, 不满足正态假设 → 用非参数
-    skew_a = np.random.exponential(5, 30)
-    skew_b = np.random.exponential(7, 30)
+    print("\n########## 秩检验：解释范围与设计匹配 ##########")
+    skew_a = rng.exponential(5, 30)
+    skew_b = rng.exponential(7, 30)
     mann_whitney(skew_a, skew_b)
     wilcoxon_signed(after, before)
 
-    print('\n########## 分类数据检验示例 ##########')
-    # 卡方独立性: 性别 x 是否购买
-    contingency = np.array([[30, 20],
-                            [15, 35]])
+    print("\n########## 分类变量关联 ##########")
+    contingency = np.array([[30, 20], [15, 35]])
     chi2_independence(contingency)
+    fisher_exact_test(contingency)
 
-    # 卡方拟合优度: 骰子是否均匀
-    dice = np.array([18, 22, 16, 14, 12, 18])
-    chi2_goodness(dice)
-
-    # Fisher 精确检验(小样本 2x2)
-    small_table = np.array([[8, 2],
-                            [1, 5]])
-    fisher_exact_test(small_table)
-
-
+    print("\n注意：正式分析应先定义主要比较；大量变量逐个检验时需控制多重比较。")
