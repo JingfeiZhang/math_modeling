@@ -7,7 +7,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[3]
 POLICY = ROOT / "config" / "prompt_policy.yaml"
-ACADEMIC = ROOT / "references" / "competition-knowledge" / "playbooks" / "academic-quality-standard.md"
+ACADEMIC = ROOT / "references" / "competition-knowledge" / "guides" / "academic-quality-standard.md"
 ALGORITHM_STANDARD = ROOT / "references" / "algorithm-sources" / "QUALITY_STANDARD.md"
 TEMPLATE_STANDARD = ROOT / "代码库" / "_模板编写规范.md"
 
@@ -20,7 +20,7 @@ def test_academic_quality_profile_is_connected_to_prompt_roles() -> None:
     policy = _load_policy()
     quality = policy["academic_quality"]
 
-    assert quality["profile"] == "references/competition-knowledge/playbooks/academic-quality-standard.md"
+    assert quality["profile"] == "references/competition-knowledge/guides/academic-quality-standard.md"
     assert quality["corpus_report"] == "corpus/reports/cumcm-c-writing-template-2021-2025.md"
 
     required_roles = {"solver", "literature", "visualization", "paper", "reviewer"}
