@@ -26,8 +26,17 @@ ROUTABLE_PLAYBOOKS = {
     "references/competition-knowledge/playbooks/resource-allocation-under-uncertainty.md",
     "references/competition-knowledge/playbooks/mechanism-fit-and-scenario.md",
 }
+LEGACY_NONROUTABLE_PLAYBOOKS = {
+    "academic-quality-standard.md",
+    "award-oriented-modeling.md",
+    "data-and-feature-quality.md",
+    "algorithm-routing-quality.md",
+    "experiment-design-quality.md",
+    "visual-evidence-quality.md",
+}
 CURATION_SOURCE_NOTE = "references/competition-knowledge/source-notes/training-materials-curation.md"
 VISUAL_GUIDE = "references/competition-knowledge/guides/visual-evidence-quality.md"
+REFERENCE_LIBRARY_ADAPTER = "src/workflow/reference_library_cli.py"
 RENDERING_HELPER = "templates/figures/python/publication_helpers.py"
 FIGURE_SOURCE_NOTE = "references/figure-sources/figures4papers-integration.md"
 NEW_RECIPES = {
@@ -79,6 +88,19 @@ def _load_frontmatter(path: Path) -> dict:
     return payload
 
 
+def _adapter_routable_filenames() -> set[str]:
+    adapter = ROOT / REFERENCE_LIBRARY_ADAPTER
+    tree = ast.parse(adapter.read_text(encoding="utf-8"), filename=str(adapter))
+    for node in tree.body:
+        if not isinstance(node, ast.Assign):
+            continue
+        if not any(isinstance(target, ast.Name) and target.id == "ROUTABLE_PLAYBOOK_FILENAMES" for target in node.targets):
+            continue
+        value = ast.literal_eval(node.value)
+        return {str(item) for item in value}
+    raise AssertionError("ROUTABLE_PLAYBOOK_FILENAMES is missing from reference_library_cli.py")
+
+
 def test_quality_guides_are_wired_into_prompt_policy() -> None:
     policy = _load_yaml(ROOT / "config" / "prompt_policy.yaml")
     roles = policy["roles"]
@@ -115,14 +137,16 @@ def test_quality_guides_are_wired_into_prompt_policy() -> None:
         assert old not in policy_text, f"stale quality-guide path remains: {old}"
 
 
-def test_playbook_directory_is_strict_l3_only() -> None:
-    playbook_dir = ROOT / "references/competition-knowledge/playbooks"
-    actual = {
-        path.relative_to(ROOT).as_posix()
-        for path in playbook_dir.glob("*.md")
-        if path.name != "index.md"
-    }
-    assert actual == ROUTABLE_PLAYBOOKS
+def test_reference_library_runtime_boundary_is_strict_l3_only() -> None:
+    adapter = ROOT / REFERENCE_LIBRARY_ADAPTER
+    script = (ROOT / "scripts/reference-library.ps1").read_text(encoding="utf-8")
+    assert adapter.is_file()
+    ast.parse(adapter.read_text(encoding="utf-8"), filename=str(adapter))
+    assert "reference_library_cli.py" in script
+
+    expected_names = {Path(relative).name for relative in ROUTABLE_PLAYBOOKS}
+    assert _adapter_routable_filenames() == expected_names
+    assert not (_adapter_routable_filenames() & LEGACY_NONROUTABLE_PLAYBOOKS)
 
     for relative in sorted(ROUTABLE_PLAYBOOKS):
         path = ROOT / relative
@@ -166,7 +190,7 @@ def test_curated_training_assets_preserve_reference_library_boundaries() -> None
         assert path.name in guides_index
         assert relative not in ROUTABLE_PLAYBOOKS
 
-    assert "只承载 **reference-library 可自动路由的 P1–P3 L3 战术手册**" in playbook_index
+    assert "reference-library 可自动路由" in playbook_index
     assert "不会被 `reference_library.py` 当成 L3 Playbook 自动路由" in guides_index
 
 
