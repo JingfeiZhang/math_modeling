@@ -14,6 +14,10 @@
 | 决定该跑什么算法、何时升级模型 | [algorithm-routing-quality](algorithm-routing-quality.md) | 预测、分类、排序、聚类、优化、多目标、机理、网络路由 |
 | 决定哪些实验最值得跑 | [experiment-design-quality](experiment-design-quality.md) | baseline、challenger、ablation、robustness、failure case、实验停止 |
 | 决定用图、表还是文字以及画什么图 | [visual-evidence-quality](visual-evidence-quality.md) | reader question、证据图型、视觉层级、caption、论文图表信息密度 |
+| 复杂优化题：把自然语言规则转成变量、目标、约束和验证 | [constraint-modeling-quality](constraint-modeling-quality.md) | constraint inventory、索引变量、确定性→不确定性、feasibility audit |
+| 销售/需求/库存/定价：数据分析最终要落到决策 | [data-to-decision-modeling](data-to-decision-modeling.md) | 数据语义、时间验证、响应关系、预测误差传播、决策评价 |
+| Formal/论文前从评阅者角度审目标、约束和证据边界 | [contest-paper-reviewer-perspective](contest-paper-reviewer-perspective.md) | objective correctness、constraint completeness、model-code-result parity、feasibility-first |
+| 赛前 Smoke / 模拟赛 / 比赛过程控制 | [rehearsal-and-contest-control](rehearsal-and-contest-control.md) | 早闭环、过程指标、团队交叉、论文同步、赛后复盘 |
 | 先预测需求/负荷，再配置资源或制定方案 | [predict-then-optimize](predict-then-optimize.md) | forecasting、LP/MILP、不确定性规划 |
 | 资源配置同时面对需求、价格或供给波动 | [resource-allocation-under-uncertainty](resource-allocation-under-uncertainty.md) | LP/MILP、不确定性规划 |
 | 建立动力学/扩散模型，标定参数并做情景 | [mechanism-fit-and-scenario](mechanism-fit-and-scenario.md) | 机理标定、不确定性规划 |
@@ -24,15 +28,17 @@
 题意/接口
 → academic-quality-standard
 → data-and-feature-quality
+→ （按题面触发 constraint-modeling-quality / data-to-decision-modeling）
 → baseline
 → algorithm-routing-quality
 → experiment-design-quality
+→ contest-paper-reviewer-perspective（晋升/论文前对抗性检查）
 → Formal / frozen claims
 → visual-evidence-quality
 → cumcm-paper-quality-playbook
 ```
 
-`award-oriented-modeling` 用于控制全局时间、复杂度和候选收敛；专项手册只在题面结构真正触发时使用。不要为了匹配某份手册改变题意。
+`award-oriented-modeling` 用于控制全局时间、复杂度和候选收敛；`rehearsal-and-contest-control` 只用于赛前演练与过程复盘。专项手册只在题面结构真正触发时使用，不要为了匹配某份手册改变题意。
 
 ## 决策优先级
 
@@ -41,7 +47,14 @@
 1. 题面与官方规则；
 2. 语义、单位和指标正确性；
 3. 学术质量总标准；
-4. 题型专项模型/验证要求；
-5. 可视化和写作表达。
+4. 目标/约束/数据接口等结构性正确性；
+5. 题型专项模型/验证要求；
+6. 可视化和写作表达。
 
 如果题面不满足专项手册触发条件，返回通用质量手册、L1 卡片或单个 L2 模块，不新增无必要流程。
+
+## 培训资料提炼边界
+
+本轮新增的 `constraint-modeling-quality`、`data-to-decision-modeling`、`contest-paper-reviewer-perspective`、`rehearsal-and-contest-control` 来自培训/赛题讲解材料的选择性提炼。来源与排除规则记录在 `../source-notes/training-materials-curation.md`。
+
+这些手册不把历史题具体解法当成标准答案，也不吸收特定软件偏好、“多算法即加分”、固定灵敏度比例等经验性规则。
