@@ -171,6 +171,14 @@ def test_all_modules_and_playbooks_are_valid_and_non_evidence() -> None:
     assert all(item["valid"] for item in modules)
     assert all(item["valid"] for item in playbooks)
     assert all(set(item["stage_scope"]) <= {"P1", "P2", "P3a", "P3b"} for item in [*modules, *playbooks])
+    runtime_paths = {item["path"].name for item in playbooks}
+    assert runtime_paths == {
+        "mechanism-fit-and-scenario.md",
+        "predict-then-optimize.md",
+        "resource-allocation-under-uncertainty.md",
+    }
+    assert "academic-quality-standard.md" not in runtime_paths
+    assert "visual-evidence-quality.md" not in runtime_paths
 
 
 def test_sources_and_cards_reject_absolute_paths_wrong_hash_and_missing_fields(tmp_path: Path) -> None:

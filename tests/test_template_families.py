@@ -89,8 +89,8 @@ class FigureRecipeTests(unittest.TestCase):
     def test_catalog_declares_single_backend_recipes_and_legacy_compatibility(self) -> None:
         catalog = yaml.safe_load((FIGURE_TEMPLATES / "recipe_catalog.yaml").read_text(encoding="utf-8"))
         recipes = catalog["recipes"]
-        self.assertEqual(len(recipes), 14)
-        self.assertEqual(len({recipe["id"] for recipe in recipes}), 14)
+        self.assertEqual(len(recipes), 20)
+        self.assertEqual(len({recipe["id"] for recipe in recipes}), 20)
         self.assertIn("model-comparison", {recipe["id"] for recipe in recipes})
         self.assertTrue(catalog["policy"]["one_backend_per_figure"])
         self.assertEqual(catalog["policy"]["input"], "real_experiment_artifacts_only")

@@ -59,6 +59,8 @@ def scaffold_workspace(root: Path) -> None:
 def test_precontest_protection_and_real_problem_initialization(tmp_path: Path) -> None:
     scaffold_workspace(tmp_path)
     assert preflight(tmp_path)["passed"] is True
+    preflight_receipt = tmp_path / "output" / "_verification" / "preflight.json"
+    assert json.loads(preflight_receipt.read_text(encoding="utf-8"))["passed"] is True
     assert not (tmp_path / "state" / "decision_log.json").exists()
     assert not (tmp_path / "paper" / "figure_contracts.yaml").exists()
     problem_file = tmp_path / "problems" / "problem.txt"

@@ -104,9 +104,27 @@ def test_algorithm_source_policy_is_solver_only_and_non_authoritative() -> None:
     assert sources["roles"] == ["solver"]
     assert sources["phases"] == ["P1", "P2", "P3a", "P3b"]
     assert sources["contest_evidence_eligible"] is False
+    assert sources["quality_standard"] == "references/algorithm-sources/QUALITY_STANDARD.md"
     mutated = dict(policy)
     mutated["algorithm_sources"] = {**sources, "cards": "D:/outside/cards"}
     assert any("algorithm_sources.cards" in item for item in validate_policy(mutated))
+    mutated["algorithm_sources"] = {**sources, "quality_standard": "D:/outside/QUALITY_STANDARD.md"}
+    assert any("algorithm_sources.quality_standard" in item for item in validate_policy(mutated))
+
+
+def test_academic_quality_policy_is_safe_non_evidence_and_role_bound() -> None:
+    policy = load_policy(ROOT)
+    quality = policy["academic_quality"]
+    assert quality["phases"] == ["P1", "P2", "P3a", "P3b", "P4", "P5"]
+    assert quality["roles"] == ["solver", "literature", "visualization", "paper", "reviewer"]
+    assert quality["contest_evidence_eligible"] is False
+    for role in quality["roles"]:
+        assert quality["profile"] in policy["roles"][role]["read_scope"]
+    mutated = dict(policy)
+    mutated["academic_quality"] = {**quality, "profile": "D:/outside/academic.md"}
+    assert any("academic_quality.profile" in item for item in validate_policy(mutated))
+    mutated["academic_quality"] = {**quality, "contest_evidence_eligible": True}
+    assert any("academic_quality must never be contest evidence" in item for item in validate_policy(mutated))
 
 
 def test_yaml_packet_round_trips_through_validator(tmp_path: Path) -> None:

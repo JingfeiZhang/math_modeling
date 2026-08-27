@@ -10,7 +10,7 @@ import yaml
 from src.utils import audit_ai_usage, audit_code_parity, audit_package, audit_submission, release_submission
 
 
-def test_ai_audit_is_always_advisory_for_formal_problem(tmp_path: Path) -> None:
+def test_ai_audit_blocks_formal_problem_when_required_evidence_is_missing(tmp_path: Path) -> None:
     (tmp_path / "config").mkdir()
     (tmp_path / "contest.yaml").write_text(
         yaml.safe_dump({"problem": "C"}, allow_unicode=True), encoding="utf-8"
@@ -26,12 +26,13 @@ def test_ai_audit_is_always_advisory_for_formal_problem(tmp_path: Path) -> None:
     result = audit_ai_usage.audit(tmp_path, policy_path)
 
     assert result["formal"] is True
-    assert result["passed"] is True
-    assert result["blocking"] is False
-    assert result["errors"] == []
-    assert {item["code"] for item in result["warnings"]} >= {
-        "AI_POLICY_SOURCE_PENDING",
-        "AI_LOG_MISSING",
+    assert result["passed"] is False
+    assert result["blocking"] is True
+    assert {item["code"] for item in result["errors"]} >= {
+        "AI_POLICY_SOURCE_UNVERIFIED",
+        "AI_POLICY_SNAPSHOT_MISMATCH",
+        "AI_STATE_MISSING",
+        "AI_STATE_INVALID",
         "AI_DISCLOSURE_MISSING",
     }
 
@@ -72,36 +73,58 @@ def _submission_fixture(tmp_path: Path, policy: str) -> None:
 
 def test_recommended_searchable_pdf_is_warning_under_strict(tmp_path: Path, monkeypatch) -> None:
     _submission_fixture(tmp_path, "recommended")
-    monkeypatch.setattr(audit_submission, "pdf_pages", lambda _: ["", "x" * 40, "y" * 40])
+    monkeypatch.setattr(audit_submission, "pdf_pages", lambda _: ["摘要" + "x" * 40, "", "y" * 40])
     monkeypatch.setattr(audit_submission, "pdf_metadata", lambda _: ([], None))
 
     result = audit_submission.audit(tmp_path, strict=True, skip_package=True)
 
     assert result["status"] == "PASS"
     assert result["searchable_pdf"]["policy"] == "recommended"
-    assert {item["name"] for item in result["warnings"]} >= {"searchable_pdf", "abstract_on_first_page"}
+    assert {item["name"] for item in result["warnings"]} >= {"searchable_pdf"}
 
 
 def test_required_searchable_pdf_still_blocks_low_ratio(tmp_path: Path, monkeypatch) -> None:
     _submission_fixture(tmp_path, "required")
+    monkeypatch.setattr(audit_submission, "pdf_pages", lambda _: ["摘要" + "x" * 40, "", "y" * 40])
+    monkeypatch.setattr(audit_submission, "pdf_metadata", lambda _: ([], None))
+
+    result = audit_submission.audit(tmp_path, strict=True, skip_package=True)
+
+    assert result["status"] == "FAIL"
+    assert any(item["name"] == "searchable_pdf" and not item["passed"] for item in result["checks"])
+
+
+def test_zero_searchable_pages_is_advisory_when_policy_is_recommended(tmp_path: Path, monkeypatch) -> None:
+    _submission_fixture(tmp_path, "recommended")
+    monkeypatch.setattr(audit_submission, "pdf_pages", lambda _: ["摘要", "", ""])
+    monkeypatch.setattr(audit_submission, "pdf_metadata", lambda _: ([], None))
+
+    result = audit_submission.audit(tmp_path, strict=True, skip_package=True)
+
+    assert result["status"] == "PASS"
+    assert any(item["name"] == "searchable_pdf" for item in result["warnings"])
+
+
+def test_zero_searchable_pages_blocks_when_policy_is_required(tmp_path: Path, monkeypatch) -> None:
+    _submission_fixture(tmp_path, "required")
+    monkeypatch.setattr(audit_submission, "pdf_pages", lambda _: ["摘要", "", ""])
+    monkeypatch.setattr(audit_submission, "pdf_metadata", lambda _: ([], None))
+
+    result = audit_submission.audit(tmp_path, strict=True, skip_package=True)
+
+    assert result["status"] == "FAIL"
+    assert any(item["name"] == "searchable_pdf" and not item["passed"] for item in result["checks"])
+
+
+def test_blank_first_page_blocks_even_when_searchability_is_recommended(tmp_path: Path, monkeypatch) -> None:
+    _submission_fixture(tmp_path, "recommended")
     monkeypatch.setattr(audit_submission, "pdf_pages", lambda _: ["", "x" * 40, "y" * 40])
     monkeypatch.setattr(audit_submission, "pdf_metadata", lambda _: ([], None))
 
     result = audit_submission.audit(tmp_path, strict=True, skip_package=True)
 
     assert result["status"] == "FAIL"
-    assert any(item["name"] == "searchable_pdf" and not item["passed"] for item in result["checks"])
-
-
-def test_zero_searchable_pages_always_blocks(tmp_path: Path, monkeypatch) -> None:
-    _submission_fixture(tmp_path, "recommended")
-    monkeypatch.setattr(audit_submission, "pdf_pages", lambda _: ["", "", ""])
-    monkeypatch.setattr(audit_submission, "pdf_metadata", lambda _: ([], None))
-
-    result = audit_submission.audit(tmp_path, strict=True, skip_package=True)
-
-    assert result["status"] == "FAIL"
-    assert any(item["name"] == "searchable_pdf" and not item["passed"] for item in result["checks"])
+    assert any(item["name"] == "abstract_on_first_page" and not item["passed"] for item in result["checks"])
 
 
 def test_release_verify_detects_md5_and_sha256_changes(tmp_path: Path) -> None:

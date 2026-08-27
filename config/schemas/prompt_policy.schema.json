@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Mathematical modeling prompt policy",
   "type": "object",
-  "required": ["schema_version", "locale", "mode", "authority_order", "shared_knowledge", "statistics_guidance", "algorithm_sources", "response", "stages", "roles", "role_stages", "gate_sequence", "rules"],
+  "required": ["schema_version", "locale", "mode", "authority_order", "shared_knowledge", "statistics_guidance", "algorithm_sources", "academic_quality", "response", "stages", "roles", "role_stages", "gate_sequence", "rules"],
   "properties": {
     "schema_version": {"const": 1},
     "locale": {"const": "zh-CN"},
@@ -62,7 +62,7 @@
     },
     "algorithm_sources": {
       "type": "object",
-      "required": ["mirror", "index", "index_relpath", "sources", "cards", "skeletons", "phases", "roles", "contest_evidence_eligible", "formal_stages", "local_only", "sync_action"],
+      "required": ["mirror", "index", "index_relpath", "sources", "cards", "skeletons", "quality_standard", "phases", "roles", "contest_evidence_eligible", "formal_stages", "local_only", "sync_action"],
       "properties": {
         "mirror": {"type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"},
         "index": {"type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$"},
@@ -70,12 +70,28 @@
         "sources": {"type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$"},
         "cards": {"type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$"},
         "skeletons": {"type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$"},
+        "quality_standard": {"type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$"},
         "phases": {"type": "array", "items": {"enum": ["P1", "P2", "P3a", "P3b"]}, "uniqueItems": true},
         "roles": {"const": ["solver"]},
         "contest_evidence_eligible": {"const": false},
         "formal_stages": {"type": "array", "items": {"enum": ["P4", "P5", "P6"]}, "uniqueItems": true},
         "local_only": {"const": true},
         "sync_action": {"const": "sync"}
+      },
+      "additionalProperties": false
+    },
+    "academic_quality": {
+      "type": "object",
+      "required": ["profile", "corpus_report", "paper_profile", "phases", "roles", "contest_evidence_eligible", "principles", "candidate_questions"],
+      "properties": {
+        "profile": {"type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$"},
+        "corpus_report": {"type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$"},
+        "paper_profile": {"type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$"},
+        "phases": {"const": ["P1", "P2", "P3a", "P3b", "P4", "P5"]},
+        "roles": {"const": ["solver", "literature", "visualization", "paper", "reviewer"]},
+        "contest_evidence_eligible": {"const": false},
+        "principles": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true},
+        "candidate_questions": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true}
       },
       "additionalProperties": false
     },

@@ -13,7 +13,7 @@ TEMPLATE = ROOT / "templates" / "paper" / "cumcm-2026"
 class CumcmTemplateV3Tests(unittest.TestCase):
     def test_machine_readable_structure_contract(self) -> None:
         config = yaml.safe_load((TEMPLATE / "template.yaml").read_text(encoding="utf-8"))
-        self.assertEqual(config["contract_version"], "3.0")
+        self.assertEqual(config["contract_version"], "3.1")
         self.assertEqual(config["standard_paper_profile"], "cumcm-standard-v1")
         self.assertEqual(config["standard_paper_profile_source"], "templates/prompts/paper/cumcm-2026.yaml")
         self.assertEqual(

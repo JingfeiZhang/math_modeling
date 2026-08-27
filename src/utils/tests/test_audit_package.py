@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import io
 import sys
 import zipfile
@@ -20,15 +21,19 @@ def write_zip(path: Path, members: dict[str, bytes | str]) -> None:
 
 
 def valid_members() -> dict[str, str]:
-    return {
+    members = {
         "README.md": "# Reproduction guide\n",
         "requirements.txt": "numpy==2.0.0\n",
         "run.py": "print('run')\n",
         "code/q1/model.py": "print('q1')\n",
         "input/README.md": "Derived inputs only.\n",
         "results/q1/summary.json": "{\"status\": \"ok\"}\n",
-        "manifest/files.sha256": "0  code/q1/model.py\n",
     }
+    members["manifest/package_manifest.sha256"] = "".join(
+        f"{hashlib.sha256(payload.encode('utf-8')).hexdigest()}  {name}\n"
+        for name, payload in sorted(members.items())
+    )
+    return members
 
 
 def test_strict_accepts_curated_zip_root_structure(tmp_path: Path) -> None:
@@ -46,7 +51,7 @@ def test_strict_accepts_same_curated_directory_structure(tmp_path: Path) -> None
     for name, payload in valid_members().items():
         target = tmp_path / name
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(payload, encoding="utf-8")
+        target.write_bytes(payload.encode("utf-8"))
 
     result = audit_package.audit(tmp_path, strict=True)
 

@@ -68,6 +68,11 @@ REQUIRED_PLAYBOOK_SECTIONS = (
     "触发与排除", "输入输出合同", "分阶段行动", "baseline 与升级",
     "联合诊断", "停止与回退", "Candidate 交接", "禁止事项",
 )
+QUICK_REFERENCE_PLAYBOOKS = (
+    "mechanism-fit-and-scenario.md",
+    "predict-then-optimize.md",
+    "resource-allocation-under-uncertainty.md",
+)
 SAFE_SOURCE_ID = re.compile(r"^[a-z0-9-]+$")
 SHA256 = re.compile(r"^[0-9a-fA-F]{64}$")
 CORE_TAGS = ("optimization", "metaheuristic", "uncertainty", "statistics", "numerical", "machine-learning", "dynamics", "mechanism")
@@ -376,7 +381,14 @@ def playbook_records(workspace_root: Path) -> tuple[list[dict[str, Any]], list[s
     records: list[dict[str, Any]] = []
     issues = list(module_issues)
     seen_ids: set[str] = set()
-    playbook_paths = [path for path in sorted(playbook_dir.glob("*.md")) if path.name != "index.md"] if playbook_dir.is_dir() else []
+    playbook_paths: list[Path] = []
+    if playbook_dir.is_dir():
+        for filename in QUICK_REFERENCE_PLAYBOOKS:
+            path = playbook_dir / filename
+            if path.is_file():
+                playbook_paths.append(path)
+            else:
+                issues.append(f"quick-reference playbook is missing: {filename}")
     for path in playbook_paths:
         playbook_issues = validate_playbook(path, modules_by_id)
         try:

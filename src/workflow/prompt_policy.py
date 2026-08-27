@@ -58,6 +58,8 @@ SHARED_KNOWLEDGE_PLAYBOOKS_INDEX = "references/competition-knowledge/playbooks/i
 ALGORITHM_SOURCE_PHASES = ("P1", "P2", "P3a", "P3b")
 ALGORITHM_SOURCE_ROLES = ("solver",)
 ALGORITHM_SOURCE_CARDS = "references/algorithm-sources/cards"
+ACADEMIC_QUALITY_PHASES = ("P1", "P2", "P3a", "P3b", "P4", "P5")
+ACADEMIC_QUALITY_ROLES = ("solver", "literature", "visualization", "paper", "reviewer")
 STATISTICS_GUIDANCE_PHASES = ("P1", "P2", "P3a", "P3b")
 STATISTICS_GUIDANCE_ROLES = ("solver",)
 STATISTICS_GUIDANCE_ROUTES = (
@@ -158,13 +160,13 @@ def validate_policy(policy: dict[str, Any]) -> list[str]:
             issues.append("statistics_guidance.stage_routes are invalid")
     algorithm_sources = policy.get("algorithm_sources")
     algorithm_source_fields = {
-        "mirror", "index", "index_relpath", "sources", "cards", "skeletons", "phases",
+        "mirror", "index", "index_relpath", "sources", "cards", "skeletons", "quality_standard", "phases",
         "roles", "contest_evidence_eligible", "formal_stages", "local_only", "sync_action",
     }
     if not isinstance(algorithm_sources, dict) or set(algorithm_sources) != algorithm_source_fields:
         issues.append("algorithm_sources fields are incomplete or contain extras")
     else:
-        for field in ("mirror", "index", "index_relpath", "sources", "cards", "skeletons"):
+        for field in ("mirror", "index", "index_relpath", "sources", "cards", "skeletons", "quality_standard"):
             if not isinstance(algorithm_sources.get(field), str) or not _relative_ref(algorithm_sources[field]):
                 issues.append(f"algorithm_sources.{field} must be a safe relative path")
         if algorithm_sources.get("phases") != list(ALGORITHM_SOURCE_PHASES):
@@ -179,6 +181,27 @@ def validate_policy(policy: dict[str, Any]) -> list[str]:
             issues.append("algorithm_sources.local_only must be true")
         if algorithm_sources.get("sync_action") != "sync":
             issues.append("algorithm_sources.sync_action must be sync")
+    academic_quality = policy.get("academic_quality")
+    academic_quality_fields = {
+        "profile", "corpus_report", "paper_profile", "phases", "roles",
+        "contest_evidence_eligible", "principles", "candidate_questions",
+    }
+    if not isinstance(academic_quality, dict) or set(academic_quality) != academic_quality_fields:
+        issues.append("academic_quality fields are incomplete or contain extras")
+    else:
+        for field in ("profile", "corpus_report", "paper_profile"):
+            if not isinstance(academic_quality.get(field), str) or not _relative_ref(academic_quality[field]):
+                issues.append(f"academic_quality.{field} must be a safe relative path")
+        if academic_quality.get("phases") != list(ACADEMIC_QUALITY_PHASES):
+            issues.append("academic_quality.phases must cover P1-P5")
+        if academic_quality.get("roles") != list(ACADEMIC_QUALITY_ROLES):
+            issues.append("academic_quality.roles are invalid")
+        if academic_quality.get("contest_evidence_eligible") is not False:
+            issues.append("academic_quality must never be contest evidence")
+        for field in ("principles", "candidate_questions"):
+            values = academic_quality.get(field)
+            if not isinstance(values, list) or not values or any(not isinstance(value, str) or not value.strip() for value in values):
+                issues.append(f"academic_quality.{field} must be a non-empty string list")
     response = policy.get("response") if isinstance(policy.get("response"), dict) else {}
     if response.get("format") != "compact_receipt" or response.get("chat_format") != "markdown_summary" or response.get("detail_mode") != "on_request":
         issues.append("response format/detail_mode are invalid")

@@ -119,6 +119,9 @@ tools/**/node_modules/
 tools/mcp/matlab/*.exe
 tools/algorithm-sources/
 
+# Local training materials are reference-only and must not enter the repository.
+/8月26号建模集训课件-优化/
+
 # Pinned upstream repositories are referenced by lock/source manifests.
 # Keep their nested Git metadata and worktrees outside the root repository index.
 tools/originlab-mcp/

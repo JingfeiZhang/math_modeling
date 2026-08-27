@@ -5317,6 +5317,7 @@ def preflight(root: Path, workspace_root: Path | None = None) -> dict[str, Any]:
     else:
         checks.append({"name": "formal_figure_contract_present", "passed": (root / "paper" / "figure_contracts.yaml").is_file()})
     report = {"schema_version": 1, "passed": all(item["passed"] for item in checks), "checks": checks, "state_exists": state_exists}
+    dump_json(root / "output" / "_verification" / "preflight.json", report)
     return report
 
 
