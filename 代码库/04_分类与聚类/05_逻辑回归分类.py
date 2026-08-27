@@ -1,164 +1,147 @@
 # -*- coding: utf-8 -*-
 """
-逻辑回归分类 (Logistic Regression) —— 国赛C题模板（二分类 / 多分类）
-================================================================
-功能：
-    1. 训练集/测试集划分（分层抽样）+ 标准化
-    2. 逻辑回归分类（二分类；多分类用 OvR/multinomial）
-    3. 分类评价指标：准确率 Accuracy、精确率 Precision、召回率 Recall、
-       F1、混淆矩阵、分类报告
-    4. ROC 曲线 + AUC（二分类直接画；多分类画每类 + micro 平均）
-    5. 输出回归系数（可解释：正系数增大该类概率）
+05 逻辑回归分类：baseline、阈值与概率质量
+=====================================
 
-逻辑回归特点：
-    - 线性模型、可解释性强（系数=对数几率的影响），是分类的 baseline 首选
-    - 输出概率（predict_proba），天然适合画 ROC / 设阈值
-    - 核心参数：C(正则化强度倒数,越小正则越强) / penalty(l1,l2) / solver
+study-only 模板。逻辑回归适合作为可解释分类 baseline，但高质量分类不能只报告
+Accuracy，也不能默认 0.5 阈值适合所有题目。
 
-输入格式：
-    X : (n_samples, n_features) 数值特征；y : (n_samples,) 类别标签(整数/字符串)
-
-适用 C题场景：
-    有标签的二分类/多分类（如 2022 玻璃“风化/未风化”、企业违约与否、
-    是否达标），需要概率与可解释系数时。
-
-依赖：numpy pandas scikit-learn matplotlib
-================================================================
+本模板强调：
+- stratified holdout；
+- StandardScaler 与模型放入 Pipeline，防止未来扩展 CV 时预处理泄漏；
+- 二分类显式 positive_label 与 threshold；
+- Accuracy + balanced accuracy + Precision/Recall/F1 + ROC-AUC + PR-AUC；
+- 概率进入决策时报告 Brier score，并把 calibration 作为后续验证；
+- 系数解释为标准化特征对应的 log-odds association，不自动写成因果效应。
 """
 
-import os
+from __future__ import annotations
+
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import StandardScaler, label_binarize
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import (accuracy_score, precision_score, recall_score,
-                             f1_score, confusion_matrix, classification_report,
-                             roc_curve, auc)
-
-plt.rcParams['font.sans-serif'] = ['SimHei']
-plt.rcParams['axes.unicode_minus'] = False
-SAVE_DIR = os.path.dirname(os.path.abspath(__file__))
+from sklearn.metrics import (accuracy_score, balanced_accuracy_score, precision_score,
+                             recall_score, f1_score, confusion_matrix, roc_auc_score,
+                             average_precision_score, brier_score_loss)
 
 
-def evaluate_classification(y_true, y_pred, class_names=None, title='混淆矩阵',
-                            fname='混淆矩阵.png', save=True):
-    """通用分类评价：打印四大指标 + 分类报告，绘制混淆矩阵热力图。
-    可被所有分类模板复用。"""
-    avg = 'binary' if len(np.unique(y_true)) == 2 else 'macro'
-    acc = accuracy_score(y_true, y_pred)
-    prec = precision_score(y_true, y_pred, average=avg, zero_division=0)
-    rec = recall_score(y_true, y_pred, average=avg, zero_division=0)
-    f1 = f1_score(y_true, y_pred, average=avg, zero_division=0)
-    print('-' * 45)
-    print(f'准确率 Accuracy : {acc:.4f}')
-    print(f'精确率 Precision: {prec:.4f}  ({avg})')
-    print(f'召回率 Recall   : {rec:.4f}  ({avg})')
-    print(f'F1 分数         : {f1:.4f}  ({avg})')
-    print('分类报告:\n', classification_report(y_true, y_pred, zero_division=0))
-
-    cm = confusion_matrix(y_true, y_pred)
-    plt.figure(figsize=(6, 5))
-    plt.imshow(cm, cmap='Blues')
-    plt.colorbar()
-    ticks = np.arange(len(np.unique(y_true)))
-    names = class_names if class_names else ticks
-    plt.xticks(ticks, names); plt.yticks(ticks, names)
-    for i in range(cm.shape[0]):
-        for j in range(cm.shape[1]):
-            plt.text(j, i, cm[i, j], ha='center',
-                     color='white' if cm[i, j] > cm.max() / 2 else 'black')
-    plt.xlabel('预测类别'); plt.ylabel('真实类别'); plt.title(title)
-    plt.tight_layout()
-    if save:
-        plt.savefig(os.path.join(SAVE_DIR, fname), dpi=150, bbox_inches='tight')
-    plt.show()
-    return {'accuracy': acc, 'precision': prec, 'recall': rec, 'f1': f1}
+def _binary_metrics(y_true, proba_pos, positive_label, threshold):
+    y_true = np.asarray(y_true)
+    y_bin = (y_true == positive_label).astype(int)
+    pred_bin = (np.asarray(proba_pos) >= threshold).astype(int)
+    return {
+        "accuracy": float(accuracy_score(y_bin, pred_bin)),
+        "balanced_accuracy": float(balanced_accuracy_score(y_bin, pred_bin)),
+        "precision": float(precision_score(y_bin, pred_bin, zero_division=0)),
+        "recall": float(recall_score(y_bin, pred_bin, zero_division=0)),
+        "f1": float(f1_score(y_bin, pred_bin, zero_division=0)),
+        "roc_auc": float(roc_auc_score(y_bin, proba_pos)),
+        "pr_auc": float(average_precision_score(y_bin, proba_pos)),
+        "brier": float(brier_score_loss(y_bin, proba_pos)),
+        "confusion_matrix": confusion_matrix(y_bin, pred_bin).tolist(),
+        "threshold": float(threshold),
+        "positive_label": positive_label.item() if hasattr(positive_label, "item") else positive_label,
+        "prevalence": float(y_bin.mean()),
+    }
 
 
-def plot_roc(y_test, y_score, n_classes, save=True):
-    """绘制 ROC 曲线并计算 AUC。
-    二分类: y_score 为正类概率 (1D)；多分类: y_score 为各类概率 (2D) + y_test 独热。"""
-    plt.figure(figsize=(8, 6))
-    if n_classes == 2:
-        fpr, tpr, _ = roc_curve(y_test, y_score)
-        roc_auc = auc(fpr, tpr)
-        plt.plot(fpr, tpr, lw=2.5, color='#d94f04', label=f'ROC (AUC={roc_auc:.3f})')
-    else:
-        colors = plt.get_cmap('tab10', n_classes)   # matplotlib 3.9 起 cm.get_cmap 已移除
-        for i in range(n_classes):
-            fpr, tpr, _ = roc_curve(y_test[:, i], y_score[:, i])
-            plt.plot(fpr, tpr, lw=2, color=colors(i),
-                     label=f'类 {i} (AUC={auc(fpr, tpr):.3f})')
-        # micro 平均
-        fpr, tpr, _ = roc_curve(y_test.ravel(), y_score.ravel())
-        plt.plot(fpr, tpr, lw=3, ls=':', color='deeppink',
-                 label=f'micro平均 (AUC={auc(fpr, tpr):.3f})')
-    plt.plot([0, 1], [0, 1], 'k--', lw=1.5)
-    plt.xlabel('假阳率 FPR'); plt.ylabel('真阳率 TPR')
-    plt.title('ROC 曲线'); plt.legend(loc='lower right'); plt.grid(alpha=0.3)
-    if save:
-        plt.savefig(os.path.join(SAVE_DIR, '逻辑回归_ROC.png'), dpi=150, bbox_inches='tight')
-    plt.show()
+def _multiclass_metrics(y_true, y_pred, proba, classes):
+    return {
+        "accuracy": float(accuracy_score(y_true, y_pred)),
+        "balanced_accuracy": float(balanced_accuracy_score(y_true, y_pred)),
+        "precision_macro": float(precision_score(y_true, y_pred, average="macro", zero_division=0)),
+        "recall_macro": float(recall_score(y_true, y_pred, average="macro", zero_division=0)),
+        "f1_macro": float(f1_score(y_true, y_pred, average="macro", zero_division=0)),
+        "roc_auc_ovr_macro": float(roc_auc_score(y_true, proba, labels=classes, multi_class="ovr", average="macro")),
+        "confusion_matrix": confusion_matrix(y_true, y_pred, labels=classes).tolist(),
+    }
 
 
-def run_logistic(X, y, C=1.0, test_size=0.3):
-    """训练逻辑回归并完成评价 + ROC。自动判断二/多分类。"""
+def run_logistic(X, y, C=1.0, test_size=0.3, seed=42,
+                 class_weight=None, positive_label=None, threshold=0.5):
+    X = np.asarray(X, dtype=float)
+    y = np.asarray(y)
+    if X.ndim != 2 or len(X) != len(y) or not np.isfinite(X).all():
+        raise ValueError("X/y 形状或数值非法")
     classes = np.unique(y)
-    n_classes = len(classes)
+    if len(classes) < 2:
+        raise ValueError("分类至少需要两个类别")
+
     X_tr, X_te, y_tr, y_te = train_test_split(
-        X, y, test_size=test_size, random_state=42, stratify=y)
+        X, y, test_size=test_size, random_state=seed, stratify=y
+    )
+    model = Pipeline([
+        ("scale", StandardScaler()),
+        ("logit", LogisticRegression(C=C, max_iter=2000, class_weight=class_weight)),
+    ])
+    model.fit(X_tr, y_tr)
+    proba = model.predict_proba(X_te)
+    fitted_classes = model.named_steps["logit"].classes_
 
-    scaler = StandardScaler().fit(X_tr)
-    X_tr, X_te = scaler.transform(X_tr), scaler.transform(X_te)
-
-    # sklearn 1.7+ 移除了 multi_class 形参: 多分类默认即用 multinomial(softmax),
-    # 二分类自动用 OvR, 无需再指定
-    clf = LogisticRegression(C=C, max_iter=1000)
-    clf.fit(X_tr, y_tr)
-    y_pred = clf.predict(X_te)
-
-    print('=' * 45)
-    print(f'逻辑回归 (C={C}, {"多分类" if n_classes>2 else "二分类"})')
-    print(f'训练集准确率: {clf.score(X_tr, y_tr):.4f}')
-    evaluate_classification(y_te, y_pred, title='逻辑回归-混淆矩阵',
-                            fname='逻辑回归_混淆矩阵.png')
-    print('回归系数 shape:', clf.coef_.shape, '（每行对应一个类别的特征权重）')
-    print('=' * 45)
-
-    # ROC
-    if n_classes == 2:
-        y_score = clf.predict_proba(X_te)[:, 1]
-        plot_roc(y_te, y_score, n_classes)
+    if len(fitted_classes) == 2:
+        pos = fitted_classes[1] if positive_label is None else positive_label
+        matches = np.where(fitted_classes == pos)[0]
+        if len(matches) != 1:
+            raise ValueError(f"positive_label={pos!r} 不在训练类别 {fitted_classes.tolist()} 中")
+        pos_idx = int(matches[0])
+        metrics = _binary_metrics(y_te, proba[:, pos_idx], pos, threshold)
+        y_pred = np.where(proba[:, pos_idx] >= threshold, pos,
+                          fitted_classes[1 - pos_idx])
     else:
-        y_te_bin = label_binarize(y_te, classes=classes)
-        y_score = clf.predict_proba(X_te)
-        plot_roc(y_te_bin, y_score, n_classes)
-    return clf
+        y_pred = fitted_classes[np.argmax(proba, axis=1)]
+        metrics = _multiclass_metrics(y_te, y_pred, proba, fitted_classes)
+
+    scaler = model.named_steps["scale"]
+    clf = model.named_steps["logit"]
+    result = {
+        "model": model,
+        "classes": fitted_classes.tolist(),
+        "metrics": metrics,
+        "test_size": int(len(y_te)),
+        "train_size": int(len(y_tr)),
+        "coefficients_on_standardized_features": clf.coef_.copy(),
+        "feature_scale": scaler.scale_.copy(),
+        "claim_boundary": "系数描述给定模型与协变量集合下的 log-odds association；分类性能来自当前 holdout，不自动代表其他时间/群体/场景",
+    }
+
+    print("【逻辑回归 holdout】")
+    for key, value in metrics.items():
+        if isinstance(value, (float, int)):
+            print(f"  {key}: {value:.4f}" if isinstance(value, float) else f"  {key}: {value}")
+    if len(fitted_classes) == 2:
+        print("  阈值必须由误判代价/决策用途决定；0.5 只是默认候选，不是自然真值。")
+        print("  若概率用于资源配置/风险决策，应进一步做 calibration curve / calibration-in-the-large。")
+    print("  系数在标准化特征尺度上解释，且不是因果系数。")
+    return result
 
 
-if __name__ == '__main__':
-    # ========================================================================
-    # 👉 用你自己的国赛附件数据：把下面【示例数据】整段注释掉，改用这段
-    #   import pandas as pd
-    #   df = pd.read_csv('附件1.csv', encoding='gbk')  # 乱码就换 utf-8 / gb18030
-    #   # 分类是【有监督】：需要特征矩阵 X + 类别标签列 y
-    #   X = df[['特征1', '特征2', '特征3']].values   # 特征矩阵 (n_samples, n_features)
-    #   y = df['标签列'].values                      # 类别标签 (n_samples,) 二/多分类均可
-    #   run_logistic(X, y, C=1.0)
-    #   详见 01_数据预处理与可视化/00_CSV数据导入完全指南.py
-    # ------------------------------------------------------------------------
-    # 【示例数据】(仅供演示，替换为上面的真实数据后可删除)
+def threshold_sweep(result, X_test, y_test, positive_label, thresholds=None):
+    """辅助比较阈值；正式选择阈值应基于题面误判代价，不能只最大化 F1。"""
+    thresholds = np.linspace(0.1, 0.9, 17) if thresholds is None else np.asarray(thresholds, dtype=float)
+    model = result["model"]
+    classes = np.asarray(result["classes"])
+    idx = np.where(classes == positive_label)[0]
+    if len(idx) != 1:
+        raise ValueError("positive_label 不唯一或不存在")
+    proba = model.predict_proba(X_test)[:, int(idx[0])]
+    rows = []
+    for threshold in thresholds:
+        row = _binary_metrics(y_test, proba, positive_label, float(threshold))
+        rows.append(row)
+    return rows
+
+
+if __name__ == "__main__":
     from sklearn.datasets import load_breast_cancer, load_iris
 
-    print('\n########## 示例1：二分类（乳腺癌数据）##########')
+    print("########## 二分类 ##########")
     data = load_breast_cancer()
-    run_logistic(data.data, data.target, C=1.0)
+    binary = run_logistic(data.data, data.target, positive_label=1, threshold=0.5)
 
-    print('\n########## 示例2：多分类（鸢尾花3类）##########')
+    print("\n########## 多分类 ##########")
     iris = load_iris()
-    run_logistic(iris.data, iris.target, C=1.0)
+    multi = run_logistic(iris.data, iris.target)
 
-    print('\n提示：C 越小正则化越强(防过拟合)；类别不平衡可加 class_weight="balanced"。')
-
+    print("\n正式竞赛若有时间/主体/空间结构，应把随机 holdout 换成 time/group/spatial split。")

@@ -1,153 +1,247 @@
 # -*- coding: utf-8 -*-
 """
-Prophet 风格：STL 分解 + 外生变量回归（可加式趋势/季节/回归）
-================================================================
-功能：
-    复现 Facebook Prophet 的核心思想——把序列拆成
-        y(t) = 趋势 g(t) + 季节 s(t) + 外生回归 β·x(t) + 残差
-    但只用 statsmodels + numpy，Windows 上零编译、必跑（Prophet 常装不上）。
-    适合“带价格等外生变量的销量预测”（如 2023C 用价格解释销量）。
-    若环境已装 prophet，末尾注释给出等价调用，可直接替换升级。
+STL 分解 + 外生变量回归（study-only reference）
 
-做法：
-    1) STL 稳健分解出 趋势 + 周期季节（自动扣除）
-    2) 对 (趋势+残差) 用 线性回归 拟合 时间 + 外生变量
-    3) 预测时：趋势用回归外推、季节用历史同相位复用、外生用给定的未来值
-    支持返回近似预测区间（基于残差标准差 ±1.96σ）。
+结构：y(t) = trend/regression(t, x_t) + seasonal(t) + residual。
 
-输入：
-    y            : pd.Series，DatetimeIndex 或等间隔数值索引
-    period       : 季节周期（周数据日频=7）
-    exog         : 训练期外生变量 DataFrame（可 None）
-    future_exog  : 未来期外生变量 DataFrame（与预测步数等长；无则自动持平/线性延展）
-
-输出：预测均值 + 上下界 DataFrame；打印各成分贡献与拟合优度
-
-依赖：numpy, pandas, statsmodels（STL、OLS）
-运行：PYTHONIOENCODING=utf-8 python 09_Prophet风格STL分解回归.py
-================================================================
+Academic boundaries
+    - 先做尾部 holdout，再在验证后用全量已观测数据重拟合未来模型；
+    - 外生变量系数是条件预测关联，不自动是因果“边际效应”；
+    - 未来存在外生变量时必须显式提供 future_exog，不静默假设末值持平；
+    - 近似区间基于残差尺度，只是简单不确定性参考，正式使用应检查覆盖率；
+    - 与 seasonal-naive baseline 比较。
 """
+
+from dataclasses import dataclass
+
 import numpy as np
 import pandas as pd
-from statsmodels.tsa.seasonal import STL
 import statsmodels.api as sm
-
-try:
-    import matplotlib.pyplot as plt
-    plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei']
-    plt.rcParams['axes.unicode_minus'] = False
-    _HAS_PLT = True
-except Exception:
-    _HAS_PLT = False
+from statsmodels.tsa.seasonal import STL
 
 
-def stl_regression_forecast(y, period=7, exog=None, future_exog=None,
-                            n_forecast=7, seasonal_deg=1):
-    """STL 分解 + 趋势/外生回归预测。返回含 预测/下界/上界 的 DataFrame。"""
-    y = pd.Series(np.asarray(y, dtype=float))
-    n = len(y)
+@dataclass
+class STLRegressionFit:
+    stl: object
+    ols: object
+    period: int
+    seasonal_cycle: np.ndarray
+    exog_columns: list[str]
+    n_train: int
+    residual_sigma: float
 
-    # 1) STL 稳健分解
-    stl = STL(y.values, period=period, robust=True).fit()
-    trend = stl.trend
-    seasonal = stl.seasonal
-    resid = stl.resid
-    deseason = y.values - seasonal          # 去季节后的序列 = 趋势 + 残差
 
-    # 2) 用 时间 t + 外生变量 拟合去季节序列
-    t = np.arange(n)
-    X_cols = [t]
-    names = ['t']
-    if exog is not None:
-        exog = pd.DataFrame(exog).reset_index(drop=True)
-        for c in exog.columns:
-            X_cols.append(exog[c].values.astype(float))
+def forecast_metrics(y_true, y_pred):
+    y_true = np.asarray(y_true, dtype=float).ravel()
+    y_pred = np.asarray(y_pred, dtype=float).ravel()
+    err = y_true - y_pred
+    mask = y_true != 0
+    return {
+        "RMSE": float(np.sqrt(np.mean(err ** 2))),
+        "MAE": float(np.mean(np.abs(err))),
+        "MAPE(%)": float(np.mean(np.abs(err[mask] / y_true[mask])) * 100)
+        if mask.any() else np.nan,
+    }
+
+
+def _validate_exog(exog, n, name):
+    if exog is None:
+        return None
+    frame = pd.DataFrame(exog).reset_index(drop=True)
+    if len(frame) != n:
+        raise ValueError(f"{name} 行数必须与对应 y 长度一致")
+    if frame.isna().any().any():
+        raise ValueError(f"{name} 含缺失；模板不自动插补")
+    return frame.astype(float)
+
+
+def _fit_model(y_train, period, exog_train=None):
+    y_train = pd.Series(np.asarray(y_train, dtype=float)).reset_index(drop=True)
+    if period < 2:
+        raise ValueError("period 必须 >= 2")
+    if len(y_train) < max(3 * period, 20):
+        raise ValueError("训练样本过少，无法可靠进行当前 STL 分解；请简化模型")
+
+    exog_train = _validate_exog(exog_train, len(y_train), "exog_train")
+
+    stl = STL(y_train.to_numpy(), period=period, robust=True).fit()
+    deseason = y_train.to_numpy() - stl.seasonal
+    t = np.arange(len(y_train), dtype=float)
+
+    columns = [t]
+    names = ["t"]
+    exog_columns: list[str] = []
+    if exog_train is not None:
+        exog_columns = [str(c) for c in exog_train.columns]
+        for c in exog_train.columns:
+            columns.append(exog_train[c].to_numpy(dtype=float))
             names.append(str(c))
-    X = np.column_stack(X_cols)
-    X = sm.add_constant(X)
+
+    X = sm.add_constant(np.column_stack(columns), has_constant="add")
     ols = sm.OLS(deseason, X).fit()
-    print(f"[拟合] 去季节回归 R²={ols.rsquared:.4f}, 调整R²={ols.rsquared_adj:.4f}")
-    coef = dict(zip(['const'] + names, ols.params))
-    print("  系数：", {k: round(v, 4) for k, v in coef.items()})
-    if exog is not None:
-        for c in exog.columns:
-            print(f"  -> 外生变量[{c}] 边际效应 = {coef[str(c)]:+.4f}（每单位变化对去季节销量的影响）")
+    seasonal_cycle = np.asarray(stl.seasonal[-period:], dtype=float)
+    sigma = float(np.std(stl.resid, ddof=1))
 
-    # 3) 构造未来外生变量
-    if exog is not None:
-        if future_exog is None:                       # 未给则用末值持平
-            future_exog = pd.DataFrame(
-                np.tile(exog.iloc[-1].values, (n_forecast, 1)), columns=exog.columns)
-            print("  [提示] 未提供 future_exog，默认外生变量持平于最后一期")
+    print(f"STL-regression train R2={ols.rsquared:.4f}, adj.R2={ols.rsquared_adj:.4f}")
+    coef = dict(zip(["const", *names], ols.params))
+    for c in exog_columns:
+        print(
+            f"  {c}: conditional predictive coefficient={coef[c]:+.4f} "
+            "(非因果效应结论)"
+        )
+
+    return STLRegressionFit(
+        stl=stl,
+        ols=ols,
+        period=period,
+        seasonal_cycle=seasonal_cycle,
+        exog_columns=exog_columns,
+        n_train=len(y_train),
+        residual_sigma=sigma,
+    )
+
+
+def _predict(fit: STLRegressionFit, n_steps, future_exog=None):
+    if n_steps <= 0:
+        raise ValueError("n_steps 必须 > 0")
+
+    if fit.exog_columns:
+        if future_exog is None:
+            raise ValueError(
+                "模型使用了外生变量，必须显式提供对应未来期 exog；"
+                "模板不会假设未来外生变量自动持平。"
+            )
         future_exog = pd.DataFrame(future_exog).reset_index(drop=True)
+        missing = [c for c in fit.exog_columns if c not in future_exog.columns]
+        if missing:
+            raise ValueError(f"future_exog 缺少列: {missing}")
+        future_exog = future_exog[fit.exog_columns].astype(float)
+        if len(future_exog) != n_steps:
+            raise ValueError("future_exog 行数必须等于预测步数")
+    elif future_exog is not None:
+        raise ValueError("训练模型没有使用外生变量，不应额外传 future_exog")
 
-    # 4) 外推：趋势由回归给出，季节按周期复用历史同相位
-    tf = np.arange(n, n + n_forecast)
-    Xf_cols = [tf]
-    if exog is not None:
-        for c in exog.columns:
-            Xf_cols.append(future_exog[c].values.astype(float))
-    Xf = sm.add_constant(np.column_stack(Xf_cols), has_constant='add')
-    trend_resid_pred = ols.predict(Xf)
-    season_future = np.array([seasonal[(n + i) % period - period] for i in range(n_forecast)])
-    # 更稳妥：用最后一个完整周期的季节形状
-    last_cycle = seasonal[-period:]
-    season_future = np.array([last_cycle[i % period] for i in range(n_forecast)])
+    t_future = np.arange(fit.n_train, fit.n_train + n_steps, dtype=float)
+    columns = [t_future]
+    if fit.exog_columns:
+        for c in fit.exog_columns:
+            columns.append(future_exog[c].to_numpy(dtype=float))
 
-    yhat = trend_resid_pred + season_future
-    sigma = np.std(resid, ddof=1)
-    out = pd.DataFrame({
-        '预测': yhat,
-        '下界95': yhat - 1.96 * sigma,
-        '上界95': yhat + 1.96 * sigma,
-    })
-    out = out.clip(lower=0)          # 销量非负兜底
-    print(f"\n[未来 {n_forecast} 步预测]（残差σ={sigma:.3f}）")
-    print(out.round(3).to_string())
-    return out, stl, ols
+    Xf = sm.add_constant(np.column_stack(columns), has_constant="add")
+    deseason_pred = np.asarray(fit.ols.predict(Xf), dtype=float)
+    seasonal_pred = np.asarray(
+        [fit.seasonal_cycle[i % fit.period] for i in range(n_steps)],
+        dtype=float,
+    )
+    yhat = deseason_pred + seasonal_pred
+    return yhat
 
 
-if __name__ == '__main__':
-    # 演示：150 天销量 = 趋势 + 周季节 + 价格负向影响 + 噪声
+def stl_regression_forecast(
+    y,
+    period=7,
+    exog=None,
+    future_exog=None,
+    n_forecast=7,
+    test_size=None,
+):
+    """
+    training-only fit -> tail holdout evaluation -> seasonal-naive baseline ->
+    full observed-data refit -> future forecast。
+
+    保持旧返回接口：return (future_dataframe, full_stl, full_ols)。
+    详细诊断写入 `full_ols._study_diagnostics`。
+    """
+    y = pd.Series(np.asarray(y, dtype=float)).reset_index(drop=True)
+    if y.isna().any():
+        raise ValueError("y 含缺失；模板不自动插补")
+    exog = _validate_exog(exog, len(y), "exog")
+
+    if test_size is None:
+        test_size = period
+    test_size = int(test_size)
+    if test_size <= 0 or test_size >= len(y) // 2:
+        raise ValueError("test_size 必须 >0 且应小于样本长度的一半")
+
+    split = len(y) - test_size
+    y_train, y_test = y.iloc[:split], y.iloc[split:]
+    exog_train = exog.iloc[:split] if exog is not None else None
+    exog_test = exog.iloc[split:] if exog is not None else None
+
+    train_fit = _fit_model(y_train, period=period, exog_train=exog_train)
+    pred_test = _predict(train_fit, test_size, future_exog=exog_test)
+    metrics = forecast_metrics(y_test.to_numpy(), pred_test)
+
+    # seasonal naive baseline：仅复用训练期最后一个周期。
+    last_cycle = y_train.to_numpy()[-period:]
+    baseline_pred = np.asarray([last_cycle[i % period] for i in range(test_size)])
+    baseline_metrics = forecast_metrics(y_test.to_numpy(), baseline_pred)
+
+    print("=" * 72)
+    print("Tail holdout evaluation")
+    print("  STL-regression:", {k: round(v, 4) for k, v in metrics.items()})
+    print("  Seasonal-naive:", {k: round(v, 4) for k, v in baseline_metrics.items()})
+
+    # 只有在完成 holdout 之后，才对全部已观测数据重拟合未来模型。
+    full_fit = _fit_model(y, period=period, exog_train=exog)
+    future_pred = _predict(full_fit, n_forecast, future_exog=future_exog)
+
+    sigma = full_fit.residual_sigma
+    out = pd.DataFrame(
+        {
+            "prediction": future_pred,
+            "lower_approx_95": future_pred - 1.96 * sigma,
+            "upper_approx_95": future_pred + 1.96 * sigma,
+        }
+    )
+
+    diagnostics = {
+        "method": "STL_regression",
+        "status": "ok",
+        "selection_scope": "train_only_holdout",
+        "metrics": metrics,
+        "baseline_method": "seasonal_naive",
+        "baseline_metrics": baseline_metrics,
+        "test_size": test_size,
+        "period": period,
+        "interval_method": "residual_normal_approximation_not_calibrated",
+        "coefficient_boundary": "predictive_association_not_causal",
+    }
+    setattr(full_fit.ols, "_study_diagnostics", diagnostics)
+
+    print(
+        "区间说明：±1.96*residual_sigma 是近似参考，不等于已校准 prediction interval；"
+        "正式论文应在滚动/样本外窗口检查 coverage 与 width。"
+    )
+    return out, full_fit.stl, full_fit.ols
+
+
+if __name__ == "__main__":
+    # 【Study-only example】不作为比赛证据。
     rng = np.random.default_rng(0)
     n = 150
     t = np.arange(n)
-    price = 6 + 1.5 * np.sin(t / 20) + rng.normal(0, 0.3, n)   # 波动的价格
-    trend = 40 + 0.15 * t
-    season = 8 * np.sin(2 * np.pi * t / 7)
-    y = trend + season - 4.0 * (price - price.mean()) + rng.normal(0, 3, n)
-    y = np.clip(y, 0, None)
+    price = 6 + 1.5 * np.sin(t / 20) + rng.normal(0, 0.3, n)
+    y = (
+        40
+        + 0.15 * t
+        + 8 * np.sin(2 * np.pi * t / 7)
+        - 4.0 * (price - price.mean())
+        + rng.normal(0, 3, n)
+    )
+    exog = pd.DataFrame({"price": price})
+    future_exog = pd.DataFrame({"price": np.full(7, 5.5)})
 
-    exog = pd.DataFrame({'价格': price})
-    # 未来一周价格：假设促销降价到 5.5
-    future_price = pd.DataFrame({'价格': np.full(7, 5.5)})
-
-    print("=" * 60)
-    print("Prophet 风格 STL 分解 + 价格外生回归 演示")
-    print("=" * 60)
-    out, stl, ols = stl_regression_forecast(
-        pd.Series(y), period=7, exog=exog, future_exog=future_price, n_forecast=7)
-
-    if _HAS_PLT:
-        try:
-            fig, axes = plt.subplots(4, 1, figsize=(11, 9), sharex=False)
-            axes[0].plot(y, color='steelblue'); axes[0].set_title('原始销量')
-            axes[1].plot(stl.trend, color='darkorange'); axes[1].set_title('STL 趋势')
-            axes[2].plot(stl.seasonal, color='green'); axes[2].set_title('STL 周季节')
-            axes[3].plot(range(n, n + 7), out['预测'], 'r--o', ms=4, label='预测')
-            axes[3].fill_between(range(n, n + 7), out['下界95'], out['上界95'],
-                                 alpha=0.2, color='red', label='95%区间')
-            axes[3].set_title('未来一周预测'); axes[3].legend()
-            for ax in axes:
-                ax.grid(alpha=0.3)
-            plt.tight_layout()
-            plt.savefig('Prophet风格_分解预测.png', dpi=120, bbox_inches='tight')
-            print("\n[图] 已保存 Prophet风格_分解预测.png")
-        except Exception as e:
-            print(f"绘图跳过: {e}")
-
-    # ===== 若已安装真正的 Prophet，可直接替换为： =====
-    # from prophet import Prophet
-    # dfp = pd.DataFrame({'ds': pd.date_range('2023-01-01', periods=n), 'y': y, '价格': price})
-    # m = Prophet(weekly_seasonality=True); m.add_regressor('价格'); m.fit(dfp)
-    # future = m.make_future_dataframe(periods=7); future['价格'] = ...; m.predict(future)
+    out, _, ols = stl_regression_forecast(
+        y,
+        period=7,
+        exog=exog,
+        future_exog=future_exog,
+        n_forecast=7,
+        test_size=14,
+    )
+    print(out.round(3).to_string(index=False))
+    print(
+        "\n正式赛题中，未来外生变量必须来自题面、已知计划或独立预测/场景；"
+        "OLS 系数不自动解释为价格变化的因果效应。"
+    )

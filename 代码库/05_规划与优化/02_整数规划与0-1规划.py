@@ -1,156 +1,135 @@
 # -*- coding: utf-8 -*-
 """
-================================================================================
-整数规划 / 0-1 规划（Integer & Binary Programming）—— pulp 建模求解
-================================================================================
-功能：
-    求解决策变量必须取整数（整数规划 IP）或只能取 0/1（0-1 规划）的线性优化。
-    典型问题：指派问题、背包问题、选址、排班、投资项目选择、切割下料等。
-    凡是"选或不选 / 做几个（必须整数）"的决策，都属于本类。
+02 整数规划 / 0-1 规划：状态、可行性与结构化结果
+=================================================
 
-为什么不用 scipy.optimize.linprog？
-    linprog 只解【连续】线性规划，不支持整数约束（把结果四舍五入往往不可行
-    或非最优）。整数规划需要分支定界等专门算法。这里用 pulp（自带 CBC 求解器，
-    开箱即用），也可换 cvxpy / gurobipy / ortools。
-        安装：pip install pulp
+study-only 模板。整数规划最重要的不是“变量能取整数”，而是：
 
-数学模型（0-1 背包为例）：
-        max   sum(value_i * x_i)
-        s.t.  sum(weight_i * x_i) <= 容量
-              x_i ∈ {0, 1}
+- 变量类型与题面语义一致；
+- 求解器状态明确；
+- 只有得到可接受状态后才读取解；
+- 关键硬约束重新回查；
+- 连续松弛解不能靠四舍五入冒充整数最优解。
 
-pulp 建模三步走：
-    1) prob = LpProblem('名字', LpMaximize/LpMinimize)   # 定义问题与优化方向
-    2) x = LpVariable(...) / LpVariable.dicts(...)        # 定义变量，指定 cat 类型
-       cat='Continuous'(连续) / 'Integer'(整数) / 'Binary'(0-1)
-    3) prob += 目标表达式 ; prob += 约束表达式 ; prob.solve()
-
-依赖：pulp（pip install pulp），numpy
-================================================================================
+正式项目若使用 CBC/Gurobi/CPLEX/SCIP 等，还应保存 solver status、时间限制、gap/bound
+（可取得时）以及当前项目自己的约束审计。
 """
+
+from __future__ import annotations
 
 import numpy as np
 import pulp
 
 
+def _solve(prob, solver=None):
+    solver = solver or pulp.PULP_CBC_CMD(msg=0)
+    prob.solve(solver)
+    status = pulp.LpStatus.get(prob.status, str(prob.status))
+    accepted = status == "Optimal"
+    return status, accepted
+
+
 def knapsack_01(values, weights, capacity):
-    """0-1 背包：在容量限制下选择物品，使总价值最大（每件物品选或不选）。
+    values = np.asarray(values, dtype=float)
+    weights = np.asarray(weights, dtype=float)
+    if values.ndim != 1 or weights.ndim != 1 or len(values) != len(weights):
+        raise ValueError("values/weights 必须是一维等长向量")
+    if np.any(weights < 0) or capacity < 0:
+        raise ValueError("重量和容量必须非负")
 
-    参数:
-        values   : 各物品价值列表
-        weights  : 各物品重量列表
-        capacity : 背包容量上限
-    返回:
-        chosen   : 被选中物品的索引列表
-        total_v  : 最大总价值
-    """
     n = len(values)
-    prob = pulp.LpProblem('knapsack_01', pulp.LpMaximize)
-    # 定义 0-1 变量 x0..x_{n-1}
-    x = [pulp.LpVariable(f'x{i}', cat='Binary') for i in range(n)]
-    # 目标函数：最大化总价值（lpDot = 向量点积）
+    prob = pulp.LpProblem("knapsack_01", pulp.LpMaximize)
+    x = [pulp.LpVariable(f"x{i}", cat="Binary") for i in range(n)]
     prob += pulp.lpDot(values, x)
-    # 约束：总重量不超过容量
-    prob += pulp.lpDot(weights, x) <= capacity
-    prob.solve(pulp.PULP_CBC_CMD(msg=0))  # msg=0 关闭求解器日志
+    prob += pulp.lpDot(weights, x) <= float(capacity)
 
-    chosen = [i for i in range(n) if x[i].value() > 0.5]
-    return chosen, pulp.value(prob.objective)
+    status, accepted = _solve(prob)
+    result = {"status": status, "accepted": accepted, "chosen": None, "objective": None,
+              "total_weight": None, "capacity": float(capacity)}
+    if not accepted:
+        return result
+
+    chosen = [i for i in range(n) if float(x[i].value()) > 0.5]
+    total_weight = float(weights[chosen].sum()) if chosen else 0.0
+    feasible = total_weight <= capacity + 1e-8
+    result.update({
+        "accepted": bool(feasible), "chosen": chosen,
+        "objective": float(pulp.value(prob.objective)), "total_weight": total_weight,
+        "feasible": bool(feasible),
+    })
+    return result
 
 
 def assignment_problem(cost):
-    """指派问题：n 个人分配 n 项任务，每人一任务、每任务一人，使总成本最小。
+    cost = np.asarray(cost, dtype=float)
+    if cost.ndim != 2 or cost.shape[0] != cost.shape[1]:
+        raise ValueError("示例函数要求方阵成本矩阵；非方阵指派需显式定义虚拟任务/人员或改模型")
+    if not np.isfinite(cost).all():
+        raise ValueError("成本矩阵含非有限值")
 
-    参数:
-        cost : (n, n) 成本矩阵，cost[i][j] = 第 i 人做第 j 任务的成本
-    返回:
-        assign  : 列表，assign[i] = 第 i 人被分配到的任务编号
-        total_c : 最小总成本
-    """
-    cost = np.array(cost, dtype=float)
     n = cost.shape[0]
-    prob = pulp.LpProblem('assignment', pulp.LpMinimize)
-    # 0-1 变量 x[i][j]：第 i 人是否做第 j 任务
-    x = pulp.LpVariable.dicts('x', (range(n), range(n)), cat='Binary')
-    # 目标：总成本最小
-    prob += pulp.lpSum(cost[i][j] * x[i][j] for i in range(n) for j in range(n))
-    # 约束1：每人恰好做一项任务
+    prob = pulp.LpProblem("assignment", pulp.LpMinimize)
+    x = pulp.LpVariable.dicts("x", (range(n), range(n)), cat="Binary")
+    prob += pulp.lpSum(cost[i, j] * x[i][j] for i in range(n) for j in range(n))
     for i in range(n):
         prob += pulp.lpSum(x[i][j] for j in range(n)) == 1
-    # 约束2：每项任务恰好由一人完成
     for j in range(n):
         prob += pulp.lpSum(x[i][j] for i in range(n)) == 1
-    prob.solve(pulp.PULP_CBC_CMD(msg=0))
 
-    assign = [None] * n
+    status, accepted = _solve(prob)
+    result = {"status": status, "accepted": accepted, "assignment": None, "objective": None}
+    if not accepted:
+        return result
+
+    assignment = [None] * n
     for i in range(n):
-        for j in range(n):
-            if x[i][j].value() > 0.5:
-                assign[i] = j
-    return assign, pulp.value(prob.objective)
+        selected = [j for j in range(n) if float(x[i][j].value()) > 0.5]
+        if len(selected) != 1:
+            result["accepted"] = False
+            result["feasible"] = False
+            return result
+        assignment[i] = selected[0]
+    feasible = len(set(assignment)) == n
+    result.update({
+        "accepted": bool(feasible), "feasible": bool(feasible),
+        "assignment": assignment, "objective": float(pulp.value(prob.objective)),
+    })
+    return result
 
 
 def integer_program_demo():
-    """一般整数规划示例：变量取非负整数。
-        max  5 x1 + 4 x2
-        s.t. 6 x1 + 4 x2 <= 24
-             x1 + 2 x2 <= 6
-             x1, x2 >= 0 且为整数
-    """
-    prob = pulp.LpProblem('IP_demo', pulp.LpMaximize)
-    # cat='Integer' 且 lowBound=0 表示非负整数变量
-    x1 = pulp.LpVariable('x1', lowBound=0, cat='Integer')
-    x2 = pulp.LpVariable('x2', lowBound=0, cat='Integer')
-    prob += 5 * x1 + 4 * x2               # 目标函数
-    prob += 6 * x1 + 4 * x2 <= 24         # 约束1
-    prob += x1 + 2 * x2 <= 6              # 约束2
-    prob.solve(pulp.PULP_CBC_CMD(msg=0))
-    return {'x1': x1.value(), 'x2': x2.value(),
-            'obj': pulp.value(prob.objective),
-            'status': pulp.LpStatus[prob.status]}
+    prob = pulp.LpProblem("IP_demo", pulp.LpMaximize)
+    x1 = pulp.LpVariable("x1", lowBound=0, cat="Integer")
+    x2 = pulp.LpVariable("x2", lowBound=0, cat="Integer")
+    prob += 5 * x1 + 4 * x2
+    prob += 6 * x1 + 4 * x2 <= 24
+    prob += x1 + 2 * x2 <= 6
+
+    status, accepted = _solve(prob)
+    result = {"status": status, "accepted": accepted, "x1": None, "x2": None, "objective": None}
+    if not accepted:
+        return result
+    v1, v2 = float(x1.value()), float(x2.value())
+    feasible = (v1 >= -1e-8 and v2 >= -1e-8 and
+                6 * v1 + 4 * v2 <= 24 + 1e-8 and v1 + 2 * v2 <= 6 + 1e-8 and
+                abs(v1 - round(v1)) <= 1e-8 and abs(v2 - round(v2)) <= 1e-8)
+    result.update({"accepted": bool(feasible), "feasible": bool(feasible),
+                   "x1": v1, "x2": v2, "objective": float(pulp.value(prob.objective))})
+    return result
 
 
-if __name__ == '__main__':
-    print('=' * 60)
-    print('示例1：0-1 背包问题')
-    print('=' * 60)
-    # ========================================================================
-    # 👉 用你自己的国赛附件数据：把下面【示例数据】整段注释掉，改用这段
-    #   整数/0-1 规划同样是"从附件读参数表 → 填进模型系数"。
-    #   import pandas as pd
-    #   df = pd.read_csv('附件1.csv', encoding='gbk')  # 乱码就换 utf-8 / gb18030
-    #   values = df['价值'].values                # 每件物品的价值（目标系数）
-    #   weights = df['重量'].values               # 每件物品的重量（约束系数）
-    #   capacity = 50                             # 容量上限（来自题目或附件单元格）
-    #   # 指派问题：成本矩阵可由附件透视得到，如
-    #   #   cost = df.pivot(index='人', columns='任务', values='成本').values
-    #   详见 01_数据预处理与可视化/00_CSV数据导入完全指南.py
-    # ------------------------------------------------------------------------
-    # 【示例数据】(仅供演示，替换为上面的真实数据后可删除)
-    values = [60, 100, 120, 80]     # 物品价值
-    weights = [10, 20, 30, 15]      # 物品重量
-    capacity = 50                    # 背包容量
-    chosen, total_v = knapsack_01(values, weights, capacity)
-    print(f'容量 {capacity} 下，选中物品索引: {chosen}')
-    print(f'选中物品总重: {sum(weights[i] for i in chosen)}，总价值: {total_v}')
+if __name__ == "__main__":
+    print("########## 0-1 背包 ##########")
+    r = knapsack_01([60, 100, 120, 80], [10, 20, 30, 15], 50)
+    print(r)
 
-    print('\n' + '=' * 60)
-    print('示例2：指派问题（3 人 3 任务，成本最小）')
-    print('=' * 60)
-    cost = [[9, 2, 7],
-            [6, 4, 3],
-            [5, 8, 1]]
-    assign, total_c = assignment_problem(cost)
-    for i, j in enumerate(assign):
-        print(f'  第{i}人 -> 任务{j}（成本 {cost[i][j]}）')
-    print(f'最小总成本: {total_c}')
+    print("\n########## 指派 ##########")
+    cost = [[9, 2, 7], [6, 4, 3], [5, 8, 1]]
+    r = assignment_problem(cost)
+    print(r)
 
-    print('\n' + '=' * 60)
-    print('示例3：一般整数规划（变量取非负整数）')
-    print('=' * 60)
+    print("\n########## 一般整数规划 ##########")
     r = integer_program_demo()
-    print(f"求解状态: {r['status']}")
-    print(f"最优解 x1={r['x1']}, x2={r['x2']}，最大目标值={r['obj']}")
+    print(r)
 
-    print('\n提示：混合整数（部分变量连续、部分整数）只需对不同变量指定不同 '
-          "cat（'Continuous'/'Integer'/'Binary'）即可，其余建模方式相同。")
+    print("\n正式使用时：先看 status/feasible，再解释目标值；若有时间限制或 gap，必须一并报告。")

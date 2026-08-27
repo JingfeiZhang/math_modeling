@@ -1,137 +1,150 @@
 # -*- coding: utf-8 -*-
 """
-================================================================================
-非线性规划 NLP（Nonlinear Programming）—— scipy.optimize.minimize 求解
-================================================================================
-功能：
-    求解目标函数或约束中含有非线性项（平方、乘积、除法、指数、三角等）的
-    最优化问题。国赛中大量"投资收益率、非线性成本、几何/物理约束"的建模
-    最终都归结为 NLP。
+03 非线性规划 NLP：多起点、可行性与局部最优边界
+================================================
 
-数学模型：
-        min   f(x)                     （目标函数，可非线性）
-        s.t.  g_i(x) <= 0              （不等式约束）
-              h_j(x)  = 0              （等式约束）
-              lb <= x <= ub            （变量边界）
+study-only 模板。核心原则：
 
-scipy.optimize.minimize 关键用法：
-    - method 选择（有约束时二选一）：
-        'SLSQP'       序列二次规划，支持等式/不等式约束+边界，最常用、快
-        'trust-constr' 信赖域内点法，支持约束，鲁棒性更好、适合较难问题
-      无约束光滑问题可用 'BFGS' / 'Nelder-Mead'（后者不需梯度）
-    - constraints：约束以字典列表给出，每项 {'type': 'ineq'/'eq', 'fun': 函数}
-        注意约定：'ineq' 表示 fun(x) >= 0；'eq' 表示 fun(x) == 0
-        （与 linprog 的 <= 方向相反！写约束时务必转成 >= 0 的形式）
-    - bounds：变量边界 [(lb, ub), ...]
-    - 多初值策略：非凸问题 minimize 只保证局部最优，需用多个随机初值 x0
-      分别求解，取目标最小的那个，逼近全局最优。
-
-输入格式：
-    fun         : 目标函数 f(x)，x 为一维数组
-    x0 / bounds : 初值与边界
-    constraints : 约束字典列表
-输出：
-    res.x（最优解）, res.fun（最优目标值）, res.success（是否收敛）
-
-依赖：numpy, scipy（pip install scipy）
-================================================================================
+- scipy.optimize.minimize 的 SLSQP/trust-constr 默认提供局部数值解，不自动证明全局最优。
+- 多起点可以暴露初值敏感性、降低漏掉更好局部解的风险，但仍不是全局性证明。
+- 无界变量不能为了随机起点悄悄假设 [-10, 10]；必须显式给 sampling_bounds 或 x0 列表。
+- success 之后仍要回查 bounds/constraints；正式论文应报告求解状态、可行性和初值敏感性。
 """
+
+from __future__ import annotations
 
 import numpy as np
 from scipy.optimize import minimize
 
+FEAS_TOL = 1e-7
+
+
+def constraint_violation(x, bounds, constraints=None):
+    x = np.asarray(x, dtype=float)
+    values = [0.0]
+    for value, (lo, hi) in zip(x, bounds):
+        if lo is not None:
+            values.append(max(0.0, float(lo) - float(value)))
+        if hi is not None:
+            values.append(max(0.0, float(value) - float(hi)))
+    for cons in list(constraints or []):
+        v = np.asarray(cons["fun"](x), dtype=float)
+        if cons.get("type") == "ineq":
+            values.append(float(np.max(np.maximum(-v, 0.0))))
+        elif cons.get("type") == "eq":
+            values.append(float(np.max(np.abs(v))))
+        else:
+            raise ValueError(f"未知约束类型: {cons.get('type')}")
+    return float(max(values))
+
+
+def _sampling_box(bounds, sampling_bounds=None):
+    if sampling_bounds is not None:
+        box = list(sampling_bounds)
+        if len(box) != len(bounds):
+            raise ValueError("sampling_bounds 与变量维度不一致")
+    else:
+        box = list(bounds)
+    checked = []
+    for i, (lo, hi) in enumerate(box):
+        if lo is None or hi is None or not np.isfinite([lo, hi]).all() or hi <= lo:
+            raise ValueError(
+                f"变量 {i} 缺少有限的多起点采样范围；请显式提供 sampling_bounds，"
+                "不要让模板擅自假设搜索域。"
+            )
+        checked.append((float(lo), float(hi)))
+    return checked
+
 
 def solve_nlp_multistart(fun, bounds, constraints=None, n_starts=30,
-                         method='SLSQP', seed=42):
-    """多初值非线性规划求解，缓解"陷入局部最优"问题。
-
-    参数:
-        fun         : 目标函数（最小化）；求最大化则传入 -f 或在外层取负
-        bounds      : 变量边界列表 [(lb, ub), ...]，用于生成随机初值
-        constraints : 约束字典列表，每项 {'type':'ineq'/'eq','fun':...}
-                      约定 'ineq' 为 fun(x) >= 0
-        n_starts    : 随机初值个数，越多越可能命中全局最优（但更慢）
-        method      : 'SLSQP' 或 'trust-constr'
-        seed        : 随机种子，保证结果可复现
-    返回:
-        dict：{'x': 最优解, 'fun': 最优目标值, 'success': 是否成功}
-    """
-    rng = np.random.default_rng(seed)
+                         method="SLSQP", seed=42, sampling_bounds=None,
+                         x0_list=None, feas_tol=FEAS_TOL):
+    """运行多个局部求解起点，返回全部接受结果与最好局部候选。"""
     bounds = list(bounds)
-    # 为随机采样处理无穷边界（用有限范围替代 None）
-    lows = [b[0] if b[0] is not None else -10.0 for b in bounds]
-    highs = [b[1] if b[1] is not None else 10.0 for b in bounds]
+    constraints = list(constraints or [])
+    if n_starts < 1:
+        raise ValueError("n_starts 必须 >= 1")
 
-    best = None
-    for _ in range(n_starts):
-        x0 = np.array([rng.uniform(lo, hi) for lo, hi in zip(lows, highs)])
-        res = minimize(fun, x0, method=method,
-                       bounds=bounds, constraints=constraints or ())
-        if res.success and (best is None or res.fun < best.fun):
-            best = res
-    if best is None:
-        return {'x': None, 'fun': None, 'success': False}
-    return {'x': best.x, 'fun': best.fun, 'success': True}
+    starts = []
+    if x0_list is not None:
+        starts = [np.asarray(x0, dtype=float) for x0 in x0_list]
+        if not starts:
+            raise ValueError("x0_list 不能为空")
+    else:
+        box = _sampling_box(bounds, sampling_bounds)
+        rng = np.random.default_rng(seed)
+        for _ in range(n_starts):
+            starts.append(np.array([rng.uniform(lo, hi) for lo, hi in box]))
+
+    runs = []
+    accepted = []
+    for idx, x0 in enumerate(starts):
+        if x0.shape != (len(bounds),):
+            raise ValueError(f"起点 {idx} 维度不一致")
+        res = minimize(fun, x0, method=method, bounds=bounds, constraints=constraints)
+        violation = constraint_violation(res.x, bounds, constraints)
+        ok = bool(res.success and np.isfinite(res.fun) and violation <= feas_tol)
+        record = {
+            "start_index": idx, "x0": np.asarray(x0), "success": bool(res.success),
+            "accepted": ok, "fun": float(res.fun) if np.isfinite(res.fun) else None,
+            "x": np.asarray(res.x), "constraint_violation": violation,
+            "message": str(res.message),
+        }
+        runs.append(record)
+        if ok:
+            accepted.append(record)
+
+    if not accepted:
+        return {
+            "accepted": False, "best": None, "runs": runs,
+            "n_starts": len(starts), "n_accepted": 0,
+            "claim_boundary": "未获得满足当前容差的可接受局部解",
+        }
+
+    best = min(accepted, key=lambda row: row["fun"])
+    objective_values = np.array([row["fun"] for row in accepted], dtype=float)
+    spread = {
+        "min": float(objective_values.min()), "median": float(np.median(objective_values)),
+        "max": float(objective_values.max()), "std": float(objective_values.std(ddof=0)),
+    }
+    return {
+        "accepted": True, "best": best, "runs": runs,
+        "n_starts": len(starts), "n_accepted": len(accepted),
+        "objective_spread": spread,
+        "claim_boundary": "多起点中最好的可行局部候选；无全局性证据时不得称全局最优",
+    }
 
 
-if __name__ == '__main__':
-    print('=' * 60)
-    print('示例1：带约束的非线性规划（SLSQP）')
-    print('=' * 60)
-    # min  f(x) = (x1-1)^2 + (x2-2.5)^2
-    # s.t.   x1 - 2 x2 + 2 >= 0
-    #       -x1 - 2 x2 + 6 >= 0
-    #       -x1 + 2 x2 + 2 >= 0
-    #        x1, x2 >= 0
-    # ========================================================================
-    # 👉 用你自己的国赛附件数据：把下面【示例数据】整段注释掉，改用这段
-    #   非线性规划里，目标/约束函数中的"系数"往往来自附件（成本、价格、系数表）。
-    #   import pandas as pd
-    #   df = pd.read_csv('附件1.csv', encoding='gbk')  # 乱码就换 utf-8 / gb18030
-    #   price = df['单价'].values                  # 例如把附件某列读成参数向量
-    #   cost  = df['成本'].values
-    #   def f(x):                                  # 目标函数里直接引用上面的参数
-    #       return np.sum(cost * x ** 2) - np.sum(price * x)
-    #   bnds = [(0, None)] * len(price)            # 变量边界
-    #   cons = [{'type': 'ineq', 'fun': lambda x: 资源上限 - np.sum(x)}]  # 约束写成 >=0
-    #   详见 01_数据预处理与可视化/00_CSV数据导入完全指南.py
-    # ------------------------------------------------------------------------
-    # 【示例数据】(仅供演示，替换为上面的真实数据后可删除)
+if __name__ == "__main__":
+    print("########## 带约束 NLP ##########")
+
     def f(x):
         return (x[0] - 1) ** 2 + (x[1] - 2.5) ** 2
 
-    # 约束统一写成 fun(x) >= 0 的形式
     cons = [
-        {'type': 'ineq', 'fun': lambda x: x[0] - 2 * x[1] + 2},
-        {'type': 'ineq', 'fun': lambda x: -x[0] - 2 * x[1] + 6},
-        {'type': 'ineq', 'fun': lambda x: -x[0] + 2 * x[1] + 2},
+        {"type": "ineq", "fun": lambda x: x[0] - 2 * x[1] + 2},
+        {"type": "ineq", "fun": lambda x: -x[0] - 2 * x[1] + 6},
+        {"type": "ineq", "fun": lambda x: -x[0] + 2 * x[1] + 2},
     ]
-    bnds = [(0, None), (0, None)]
-    r = solve_nlp_multistart(f, bnds, cons, n_starts=20, method='SLSQP')
-    print('最优解 x =', np.round(r['x'], 4))
-    print('最优目标值 f =', round(r['fun'], 6), '（理论最优约 0.8）')
+    # 原模型只有非负下界，随机起点需要额外给有限 sampling_bounds；这只是搜索设置，
+    # 不会被偷偷当成题面硬约束。
+    result = solve_nlp_multistart(
+        f, [(0, None), (0, None)], cons, n_starts=20,
+        sampling_bounds=[(0, 5), (0, 5)], seed=42,
+    )
+    print("accepted=", result["accepted"], "n_accepted=", result["n_accepted"])
+    if result["accepted"]:
+        print("best x=", np.round(result["best"]["x"], 4))
+        print("best f=", round(result["best"]["fun"], 6))
+        print("objective spread=", result["objective_spread"])
+        print("boundary=", result["claim_boundary"])
 
-    print('\n' + '=' * 60)
-    print('示例2：多峰函数 —— 单初值 vs 多初值（体现局部最优陷阱）')
-    print('=' * 60)
-    # 目标：f(x) = x*sin(x) + 0.5*x，在 [0, 20] 上有多个局部极小
+    print("\n########## 多峰函数：初值敏感性 ##########")
+
     def g(x):
         return x[0] * np.sin(x[0]) + 0.5 * x[0]
 
-    # 单初值（从 x0=2 出发，容易停在局部最优）
-    single = minimize(g, x0=[2.0], method='SLSQP', bounds=[(0, 20)])
-    # 多初值（更接近全局最优）
-    multi = solve_nlp_multistart(g, [(0, 20)], n_starts=50, method='SLSQP')
-    print(f"单初值(x0=2): x={single.x[0]:.4f}, f={single.fun:.4f}")
-    print(f"多初值(50次): x={multi['x'][0]:.4f}, f={multi['fun']:.4f}")
-    print('结论：非凸问题务必多初值，否则结果依赖初值、可能非全局最优。')
-
-    print('\n' + '=' * 60)
-    print('示例3：等式约束（trust-constr）')
-    print('=' * 60)
-    # min  x1^2 + x2^2   s.t.  x1 + x2 = 1
-    r3 = minimize(lambda x: x[0] ** 2 + x[1] ** 2, x0=[0.0, 0.0],
-                  method='trust-constr',
-                  constraints=[{'type': 'eq', 'fun': lambda x: x[0] + x[1] - 1}])
-    print('最优解 x =', np.round(r3.x, 4), '（理论 [0.5, 0.5]）')
-    print('最优目标值 =', round(r3.fun, 6))
+    result = solve_nlp_multistart(g, [(0, 20)], n_starts=50, seed=7)
+    print("best=", result["best"] and {"x": result["best"]["x"], "fun": result["best"]["fun"]})
+    print("spread=", result.get("objective_spread"))
+    print("结论只应写：在这些起点和当前局部求解设置中找到的最好可行候选，而非全局最优。")

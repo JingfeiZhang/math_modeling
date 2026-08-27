@@ -1,214 +1,273 @@
 # -*- coding: utf-8 -*-
 """
-08 VAR 向量自回归 (Vector AutoRegression)
-================================================================
-功能：
-    面向国赛 C 题的“多个相互影响的时间序列联合预测”。当几条序列彼此
-    有反馈关系（如 销量↔损耗↔销售次数、价格↔需求↔进货量）时，单独对每条
-    做 ARIMA 会丢掉“互相影响”，VAR 让每个变量同时对【所有变量的滞后值】回归：
-        y_t = c + A_1 y_{t-1} + ... + A_p y_{t-p} + e_t   （y_t 为 k 维向量）
+VAR 向量自回归（study-only reference）
 
-    流程：
-      1. ADF 平稳性检验；不平稳则差分（VAR 要求平稳，否则考虑 VECM）；
-      2. 定阶 p：信息准则 AIC/BIC/HQIC 自动选，或按业务逻辑指定
-         （2023C_C126 的经典做法：蔬菜“当日未售隔日难卖”≈2天保质期 → 直接定 2 阶，
-          用业务常识定阶，答辩无可辩驳）；
-      3. 拟合 + Granger 因果检验（谁影响谁）；
-      4. 训练/测试评估 + 向后多步预测；
-      5. 可选：脉冲响应 IRF（一个变量受冲击后其它变量怎么反应）。
+Use when
+    多个等间隔时间序列存在动态联动，需要联合预测。
+Do not use when
+    样本相对参数量过小、非平稳关系更适合协整/VECM、变量含义或时间对齐不清楚。
 
-输入格式：
-    - 宽表 DataFrame，每列一个变量，每行一个时间点（等间隔）。
-
-输出：
-    - 平稳性结论、最优滞后阶 p、Granger 因果、测试集误差、未来多步预测。
-
-依赖：numpy, pandas, statsmodels, (可选) matplotlib
-运行：python 08_VAR向量自回归.py
-
-⚠️ 常见坑（国赛现场高频）：
-    - VAR 预测可能出现负值：对销量/进货量这类非负量，预测后需 clip(下限0)，
-      或先对数变换 ln(1+y) 建模、预测后 expm1 还原（推荐，天然保证非负）。
-    - 序列必须平稳：非平稳直接建 VAR 会伪回归；差分后建模、预测再累加还原。
-    - 样本不能太短：参数量 = k²p + k，k 个变量 p 阶就要 k²p 个系数，样本少会过拟合。
+Academic boundaries
+    - Granger 检验只表示“历史信息有助于预测”，不自动证明机制因果；
+    - 定阶只使用训练窗口；
+    - 对数变换和非负约束必须显式选择，不能默认改变变量语义；
+    - 与 last-value multivariate baseline 比较；
+    - 正式赛题建议使用 rolling/out-of-time 验证。
 """
 
-import sys
-try:
-    sys.stdout.reconfigure(encoding='utf-8')
-except Exception:
-    pass
-
 import warnings
+
 import numpy as np
 import pandas as pd
-warnings.filterwarnings('ignore')
-
 from statsmodels.tsa.api import VAR
 from statsmodels.tsa.stattools import adfuller, grangercausalitytests
 
-try:
-    import matplotlib.pyplot as plt
-    plt.rcParams['font.sans-serif'] = ['SimHei']
-    plt.rcParams['axes.unicode_minus'] = False
-    _HAS_PLT = True
-except Exception:
-    _HAS_PLT = False
+warnings.filterwarnings("ignore")
 
-def adf_test(series, name=''):
-    """ADF 单位根检验：p<0.05 认为平稳。返回 (是否平稳, p值)。"""
-    r = adfuller(series.dropna(), autolag='AIC')
-    stat, p = r[0], r[1]
-    print(f"  ADF[{name}]: 统计量={stat:.3f}, p={p:.4f} -> {'平稳' if p < 0.05 else '非平稳(建议差分)'}")
-    return p < 0.05, p
+
+def adf_test(series, name=""):
+    s = pd.Series(series, dtype=float).dropna()
+    if len(s) < 8:
+        return False, np.nan
+    stat, p = adfuller(s, autolag="AIC")[:2]
+    stable = bool(p < 0.05)
+    print(f"ADF[{name}]: stat={stat:.3f}, p={p:.4f}, stable_signal={stable}")
+    return stable, float(p)
+
+
+def difference_n(df, d):
+    out = pd.DataFrame(df, dtype=float).copy()
+    for _ in range(d):
+        out = out.diff().dropna()
+    return out
 
 
 def make_stationary(df, max_diff=2):
-    """逐列检验平稳性；只要有列非平稳就整体差分一次，最多 max_diff 次。
-       返回 (平稳后的df, 差分阶数d)。预测时需按 d 累加还原。"""
-    d = 0
-    cur = df.copy()
-    for _ in range(max_diff + 1):
-        allst = True
-        print(f"[平稳性检验] 差分阶 d={d}")
-        for c in cur.columns:
-            st, _ = adf_test(cur[c], c)
-            allst = allst and st
-        if allst:
-            print(f"  -> 全部平稳，采用 d={d}\n")
+    """逐次一阶差分，返回训练数据的平稳化版本与差分阶数。"""
+    base = pd.DataFrame(df, dtype=float).copy()
+    for d in range(max_diff + 1):
+        cur = difference_n(base, d)
+        flags = [adf_test(cur[c], c)[0] for c in cur.columns]
+        if flags and all(flags):
             return cur, d
-        cur = cur.diff().dropna()
-        d += 1
-    print(f"  -> 达最大差分次数，采用 d={d}（仍可能非平稳，考虑 VECM）\n")
-    return cur, d
+    raise RuntimeError(
+        f"在 0..{max_diff} 阶逐次差分后仍有序列未判为平稳；"
+        "不要继续机械差分，考虑趋势/季节项、协整/VECM或重新定义模型。"
+    )
 
 
 def select_order(df_stat, maxlags=10, force_p=None):
-    """按信息准则自动定阶；force_p 不为空则直接用业务逻辑指定的阶。"""
+    """只在传入的训练平稳序列上选 lag order。"""
     if force_p is not None:
-        print(f"[定阶] 业务逻辑强制 p={force_p}（如蔬菜2天保质期→2阶）\n")
-        return force_p
-    model = VAR(df_stat)
-    maxlags = min(maxlags, len(df_stat) // (df_stat.shape[1] + 1) - 1)
-    maxlags = max(maxlags, 1)
-    sel = model.select_order(maxlags=maxlags)
-    print("[定阶] 各准则建议：")
-    print(f"  AIC={sel.aic}, BIC={sel.bic}, HQIC={sel.hqic}, FPE={sel.fpe}")
-    p = sel.aic if sel.aic and sel.aic > 0 else 1
-    print(f"  -> 采用 AIC 建议 p={p}\n")
+        p = int(force_p)
+        if p < 1:
+            raise ValueError("force_p 必须 >= 1")
+        print(
+            f"使用预先给定 p={p}；业务机制只能作为候选依据，"
+            "仍需用样本外表现和残差诊断验证。"
+        )
+        return p
+
+    n, k = df_stat.shape
+    safe_max = min(int(maxlags), max(1, n // (k + 1) - 1))
+    sel = VAR(df_stat).select_order(maxlags=safe_max)
+    p = int(sel.aic) if sel.aic is not None and sel.aic > 0 else 1
+    print(f"training-only lag selection: AIC={sel.aic}, BIC={sel.bic}, chosen={p}")
     return p
 
 
-def granger_causality(df, maxlag, verbose=True):
-    """两两 Granger 因果检验：X 的滞后是否有助于预测 Y（p<0.05 认为有因果）。"""
-    cols = df.columns
-    print("[Granger 因果检验] (行→列，p<0.05 表示行变量的历史有助预测列变量)")
-    res = pd.DataFrame(np.zeros((len(cols), len(cols))), index=cols, columns=cols)
-    for c1 in cols:      # 被预测
-        for c2 in cols:  # 预测者
-            if c1 == c2:
-                res.loc[c2, c1] = np.nan
+def granger_predictive_relation(df, maxlag, verbose=True):
+    """
+    两两 Granger predictive relation：X 的历史是否改善对 Y 的预测。
+    该统计关系不是机制因果结论。
+    """
+    cols = list(df.columns)
+    out = pd.DataFrame(np.nan, index=cols, columns=cols, dtype=float)
+    for target in cols:
+        for predictor in cols:
+            if target == predictor:
                 continue
             try:
-                t = grangercausalitytests(df[[c1, c2]].dropna(), maxlag=maxlag, verbose=False)
-                pvals = [t[i + 1][0]['ssr_ftest'][1] for i in range(maxlag)]
-                res.loc[c2, c1] = round(min(pvals), 4)
+                tests = grangercausalitytests(
+                    df[[target, predictor]].dropna(),
+                    maxlag=maxlag,
+                    verbose=False,
+                )
+                pvals = [tests[i + 1][0]["ssr_ftest"][1] for i in range(maxlag)]
+                out.loc[predictor, target] = float(np.min(pvals))
             except Exception:
-                res.loc[c2, c1] = np.nan
+                out.loc[predictor, target] = np.nan
     if verbose:
-        print(res.to_string())
-        print()
-    return res
+        print("Granger predictive relation p-values (row history -> column prediction):")
+        print(out.round(4).to_string())
+        print("注意：预测信息关系不自动等于机制因果。")
+    return out
 
 
-def fit_var_forecast(df, force_p=None, test_size=7, n_forecast=7,
-                     log_transform=True, maxlags=10):
-    """VAR 主流程：对数变换(可选)→平稳化→定阶→拟合→测试评估→未来预测。
-       log_transform=True 时对 ln(1+y) 建模，预测 expm1 还原，天然保证非负。"""
-    cols = list(df.columns)
-    work = np.log1p(df) if log_transform else df.copy()
+# 兼容旧调用名称，但语义在文档中明确为 predictive relation。
+def granger_causality(df, maxlag, verbose=True):
+    return granger_predictive_relation(df, maxlag=maxlag, verbose=verbose)
+
+
+def _invert_differences(fc_diff, hist_level, d):
+    """按真实逐阶差分历史正确还原 d 阶差分预测。"""
+    fc = pd.DataFrame(fc_diff).copy()
+    history_layers = [pd.DataFrame(hist_level, dtype=float).copy()]
+    for _ in range(d):
+        history_layers.append(history_layers[-1].diff().dropna())
+
+    # d-th diff -> (d-1)-th diff -> ... -> level
+    for k in range(d - 1, -1, -1):
+        base = history_layers[k].iloc[-1].to_numpy(dtype=float)
+        fc = fc.cumsum() + base
+    return fc
+
+
+def _to_model_scale(df, log_transform):
+    work = pd.DataFrame(df, dtype=float).copy()
     if log_transform:
-        print("[变换] 已对 ln(1+y) 建模（预测自动还原，保证非负）\n")
+        if (work <= -1).any().any():
+            raise ValueError("log1p 需要所有值 > -1；不要对含更小负值的变量强行变换")
+        work = np.log1p(work)
+    return work
 
-    # 留出测试集
-    train, test = work.iloc[:-test_size], work.iloc[-test_size:]
 
-    # 平稳化（记录差分阶用于还原）
-    train_stat, d = make_stationary(train)
+def _from_model_scale(df, log_transform, nonnegative):
+    out = np.expm1(df) if log_transform else pd.DataFrame(df).copy()
+    if nonnegative:
+        out = out.clip(lower=0)
+    return out
+
+
+def _metric_table(actual, predicted):
+    rows = {}
+    for c in actual.columns:
+        a = actual[c].to_numpy(dtype=float)
+        p = predicted[c].to_numpy(dtype=float)
+        err = a - p
+        mask = a != 0
+        rows[c] = {
+            "RMSE": float(np.sqrt(np.mean(err ** 2))),
+            "MAE": float(np.mean(np.abs(err))),
+            "MAPE(%)": float(np.mean(np.abs(err[mask] / a[mask])) * 100)
+            if mask.any() else np.nan,
+        }
+    return rows
+
+
+def fit_var_forecast(
+    df,
+    force_p=None,
+    test_size=7,
+    n_forecast=7,
+    log_transform=False,
+    nonnegative=False,
+    maxlags=10,
+    max_diff=2,
+):
+    """
+    VAR 主流程：尾部 holdout -> 训练段变换/差分/定阶 -> 测试预测 -> baseline ->
+    同一阶数在全部已观测数据重拟合未来模型。
+
+    返回 (full_fitted_model, future_forecast) 保持旧接口兼容。
+    详细评估同时挂在 fitted model 的 `_study_diagnostics` 属性上。
+    """
+    raw = pd.DataFrame(df).astype(float)
+    if raw.isna().any().any():
+        raise ValueError("VAR 模板不自动插补缺失值；请先在项目中定义缺失处理")
+    if test_size <= 0 or test_size >= len(raw) // 2:
+        raise ValueError("test_size 必须 >0 且应小于样本长度的一半")
+    if n_forecast <= 0:
+        raise ValueError("n_forecast 必须 >0")
+
+    work = _to_model_scale(raw, log_transform)
+    train = work.iloc[:-test_size].copy()
+    test = work.iloc[-test_size:].copy()
+
+    train_stat, d = make_stationary(train, max_diff=max_diff)
     p = select_order(train_stat, maxlags=maxlags, force_p=force_p)
+    if len(train_stat) <= p:
+        raise ValueError("平稳化后的训练样本不足以拟合所选 VAR 阶数")
 
-    # 拟合
-    model = VAR(train_stat)
-    res = model.fit(p)
-    print(f"[拟合] VAR({p})，变量数 k={len(cols)}，估计系数≈{len(cols)**2 * p + len(cols)} 个")
+    fitted = VAR(train_stat).fit(p)
+    lag = fitted.k_ar
+    fc_stat = pd.DataFrame(
+        fitted.forecast(train_stat.to_numpy()[-lag:], steps=test_size),
+        columns=raw.columns,
+    )
+    fc_train_scale = _invert_differences(fc_stat, train, d)
+    predicted = _from_model_scale(fc_train_scale, log_transform, nonnegative)
+    actual = _from_model_scale(test.reset_index(drop=True), log_transform, nonnegative)
 
-    # Granger 因果（在平稳序列上做）
-    if len(train_stat) > p * len(cols) + 10:
-        granger_causality(train_stat, maxlag=p)
+    metrics = _metric_table(actual, predicted)
 
-    # ---- 测试集滚动预测评估（差分序列上预测，再累加还原到原尺度）----
-    lag = res.k_ar
-    fc_stat = res.forecast(train_stat.values[-lag:], steps=test_size)
-    fc_stat = pd.DataFrame(fc_stat, columns=cols)
-    fc_level = _invert(fc_stat, train, d, log_transform)
-    actual = np.expm1(test) if log_transform else test
-    print("\n[测试集评估] (末 %d 期)" % test_size)
-    for c in cols:
-        a, f = actual[c].values, fc_level[c].values
-        mape = np.mean(np.abs((a - f) / np.clip(np.abs(a), 1e-9, None))) * 100
-        rmse = np.sqrt(np.mean((a - f) ** 2))
-        print(f"  {c}: RMSE={rmse:.3f}, MAPE={mape:.2f}%")
+    # multivariate last-value baseline
+    last_level = _from_model_scale(train.iloc[[-1]].reset_index(drop=True), log_transform, nonnegative)
+    baseline = pd.DataFrame(
+        np.repeat(last_level.to_numpy(), test_size, axis=0),
+        columns=raw.columns,
+    )
+    baseline_metrics = _metric_table(actual, baseline)
 
-    # ---- 用全量数据重拟合，向后预测 n_forecast 步 ----
-    full_stat, d2 = make_stationary(work)
-    res2 = VAR(full_stat).fit(p)
-    fc2 = pd.DataFrame(res2.forecast(full_stat.values[-res2.k_ar:], steps=n_forecast), columns=cols)
-    fc2_level = _invert(fc2, work, d2, log_transform)
-    print(f"\n[未来 {n_forecast} 步预测]（已还原到原尺度）")
-    print(fc2_level.round(3).to_string())
-    return res2, fc2_level
+    print("=" * 72)
+    print(f"VAR({p}), d={d}, selection=train_only, log_transform={log_transform}")
+    for c in raw.columns:
+        print(f"  {c}: VAR={metrics[c]} | LastValue={baseline_metrics[c]}")
+
+    if len(train_stat) > p * len(raw.columns) + 10:
+        granger_predictive_relation(train_stat, maxlag=p)
+
+    # 固定已验证的 p，用全量已观测数据重拟合；差分阶数重新从全量观测确定。
+    full_stat, d_full = make_stationary(work, max_diff=max_diff)
+    full_fit = VAR(full_stat).fit(p)
+    fc_future_stat = pd.DataFrame(
+        full_fit.forecast(full_stat.to_numpy()[-full_fit.k_ar:], steps=n_forecast),
+        columns=raw.columns,
+    )
+    fc_future_scale = _invert_differences(fc_future_stat, work, d_full)
+    future = _from_model_scale(fc_future_scale, log_transform, nonnegative)
+
+    diagnostics = {
+        "method": "VAR",
+        "status": "ok",
+        "selection_scope": "train_only",
+        "order": p,
+        "difference_order_train": d,
+        "difference_order_full": d_full,
+        "metrics": metrics,
+        "baseline_method": "multivariate_last_value",
+        "baseline_metrics": baseline_metrics,
+        "log_transform": bool(log_transform),
+        "nonnegative": bool(nonnegative),
+    }
+    setattr(full_fit, "_study_diagnostics", diagnostics)
+    return full_fit, future
 
 
-def _invert(fc_diff, hist_before_diff, d, log_transform):
-    """把差分预测累加还原到原尺度；再按需 expm1 反对数。hist 为(可能对数后的)未差分序列。"""
-    fc = fc_diff.copy()
-    for _ in range(d):  # 每差分一次，还原时累加一次上一层最后的水平值
-        last = hist_before_diff.iloc[-1]
-        fc = fc.cumsum() + last.values
-    if log_transform:
-        fc = np.expm1(fc)
-    return fc.clip(lower=0)  # 非负量兜底
-
-
-if __name__ == '__main__':
-    # ===== 演示：造 3 条相互影响的序列（销量、损耗、销售次数）=====
+if __name__ == "__main__":
+    # 【Study-only example】仅演示联合预测接口。
     rng = np.random.default_rng(42)
     n = 120
-    sales = np.zeros(n); loss = np.zeros(n); freq = np.zeros(n)
-    sales[:2] = [50, 52]; loss[:2] = [5, 5]; freq[:2] = [30, 31]
+    a = np.zeros(n)
+    b = np.zeros(n)
+    c = np.zeros(n)
+    a[:2], b[:2], c[:2] = [50, 52], [5, 5], [30, 31]
     for t in range(2, n):
-        # 销量受自身滞后 + 上期销售次数正向影响；损耗滞后销量；次数跟随销量
-        sales[t] = 10 + 0.6 * sales[t-1] + 0.3 * freq[t-1] + rng.normal(0, 3)
-        loss[t] = 1 + 0.5 * loss[t-1] + 0.05 * sales[t-1] + rng.normal(0, 0.5)
-        freq[t] = 5 + 0.5 * freq[t-1] + 0.3 * sales[t-1] + rng.normal(0, 2)
-    df = pd.DataFrame({'销量': sales, '损耗': loss, '销售次数': freq})
+        a[t] = 10 + 0.6 * a[t - 1] + 0.3 * c[t - 1] + rng.normal(0, 3)
+        b[t] = 1 + 0.5 * b[t - 1] + 0.05 * a[t - 1] + rng.normal(0, 0.5)
+        c[t] = 5 + 0.5 * c[t - 1] + 0.3 * a[t - 1] + rng.normal(0, 2)
+    demo = pd.DataFrame({"series_a": a, "series_b": b, "series_c": c})
 
-    print("=" * 64)
-    print("VAR 向量自回归演示：销量↔损耗↔销售次数 联合预测")
-    print("=" * 64)
-    # force_p=2 演示业务定阶（蔬菜2天保质期）；设 None 则自动按 AIC
-    res, fc = fit_var_forecast(df, force_p=2, test_size=7, n_forecast=7, log_transform=True)
-
-    if _HAS_PLT:
-        try:
-            fig, axes = plt.subplots(1, 3, figsize=(15, 4))
-            for ax, c in zip(axes, df.columns):
-                ax.plot(range(len(df)), df[c], label='历史', color='steelblue')
-                ax.plot(range(len(df), len(df) + len(fc)), fc[c], 'r--o', label='预测', ms=3)
-                ax.set_title(c); ax.legend(); ax.grid(alpha=0.3)
-            plt.tight_layout()
-            plt.savefig('VAR_预测.png', dpi=120, bbox_inches='tight')
-            print("\n[图] 已保存 VAR_预测.png")
-        except Exception as e:
-            print(f"绘图跳过: {e}")
-
+    model, future = fit_var_forecast(
+        demo,
+        force_p=None,
+        test_size=12,
+        n_forecast=7,
+        log_transform=False,
+        nonnegative=False,
+    )
+    print(future.round(3).to_string(index=False))
+    print(
+        "\n正式赛题必须结合变量语义决定是否允许负值/对数变换；"
+        "Granger predictive relation 不写成机制因果。"
+    )

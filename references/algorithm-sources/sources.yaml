@@ -1,6 +1,6 @@
 schema_version: 1
 library_id: algorithm-sources-v1
-description: "只读登记可用于 P1-P3 算法速查的外部代码源；仓库包含固定提交的本地镜像，但该镜像不属于比赛正式证据。"
+description: "登记 P1-P3 算法速查的外部来源锚点；仓库内代码库是基于固定上游提交整理并继续做质量修订的 curated derivative，不是字节级上游镜像，也不属于比赛正式证据。"
 evidence_policy:
   contest_evidence_eligible: false
   allowed_use: [model_direction, assumption_check, baseline_design, risk_probe]
@@ -15,6 +15,7 @@ sources:
     license_status: NO_LICENSE
     scope: study_only
     mirror_mode: local_directory
+    local_content_policy: curated_derivative
     mirror_relpath: "代码库"
     index_relpath: "tools/algorithm-sources/github-jingfeizhang-1/8abaef8c9262017925099d1463ebc78c1ab6a956"
     source_paths:
