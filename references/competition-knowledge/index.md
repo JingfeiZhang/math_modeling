@@ -17,6 +17,7 @@ L1 路由卡：30 秒筛出 3-5 个方向
 5. `locator_confidence: low` 或 `formula_manual_check_required: true` 时，回看本机 PDF 对应页后再写公式或页码。
 6. P4 以后不自动加载本库作为模型知识来源，不把任何资料项升级为 Formal 证据，也不加入论文 BibTeX、claims、Figure Contract 或附件；可视化质量手册仅作为 P4/P5 表达指导使用。
 7. 原始 PDF 不在仓库中。配置 `MATHMODEL_REFERENCE_LIBRARY_ROOT` 或维护 `work/reference-library/sources.local.yaml` 后可运行本地校验；未配置时仍可检索本索引。
+8. 培训/赛题讲解材料只经过选择性提炼进入专项 playbook；它们不是官方规则、不是标准答案，来源和排除规则见 `source-notes/training-materials-curation.md`。
 
 ## 通用质量手册
 
@@ -25,6 +26,10 @@ L1 路由卡：30 秒筛出 3-5 个方向
 - [算法路由与模型升级](playbooks/algorithm-routing-quality.md)：预测、分类、评价、聚类、优化、多目标、机理和网络模型梯子。
 - [高信息量实验设计](playbooks/experiment-design-quality.md)：baseline comparison、专项验证、robustness、failure case、消融与停止规则。
 - [可视化证据设计](playbooks/visual-evidence-quality.md)：reader question、figure/table/text 路由、图型选择、视觉层级和论文图表表达。
+- [约束建模质量](playbooks/constraint-modeling-quality.md)：自然语言规则→索引变量/目标/约束→确定性/不确定性升级→独立可行性审计。
+- [数据到决策](playbooks/data-to-decision-modeling.md)：交易/运营数据语义、时间验证、预测/响应关系、误差传播和最终决策评价。
+- [评阅者视角](playbooks/contest-paper-reviewer-perspective.md)：目标定义、约束完整性、模型-代码-结果一致、可行性优先和 claim 边界。
+- [模拟赛与过程控制](playbooks/rehearsal-and-contest-control.md)：Smoke/Full rehearsal、早闭环、团队交叉、论文同步和赛后复盘。
 
 ## 按任务检索
 
@@ -38,6 +43,15 @@ L1 路由卡：30 秒筛出 3-5 个方向
 | 插值、拟合、根、积分、线性方程 | [numerical-interpolation-fitting](cards/numerical-interpolation-fitting.md), [numerical-root-linear](cards/numerical-root-linear.md), [numerical-integration](cards/numerical-integration.md) |
 | 动态演化、迭代、增长、离散时间 | [dynamics-difference](cards/dynamics-difference.md), [dynamics-stability](cards/dynamics-stability.md) |
 | 扩散、传热、波动、边界条件、空间机制 | [mechanism-ode](cards/mechanism-ode.md), [mechanism-pde](cards/mechanism-pde.md) |
+
+### 题面结构触发的专项手册
+
+| 结构信号 | 专项手册 |
+|---|---|
+| 规则密集、跨期、整数/0-1、兼容性、轮作、容量 | `constraint-modeling-quality` |
+| 销售/需求/库存/定价/补货、上游预测影响下游方案 | `data-to-decision-modeling` |
+| 需要判断 objective/constraint 是否建对、heuristic claim 是否越界 | `contest-paper-reviewer-perspective` |
+| 赛前历史题 Smoke、完整模拟、团队/论文/发布节奏 | `rehearsal-and-contest-control` |
 
 ## 按约束检索
 
@@ -66,7 +80,7 @@ L1 路由卡：30 秒筛出 3-5 个方向
 
 ### 通用质量链
 
-`award-oriented-modeling → data-and-feature-quality → algorithm-routing-quality → experiment-design-quality → Formal/claims → visual-evidence-quality`
+`award-oriented-modeling → data-and-feature-quality → [constraint-modeling-quality / data-to-decision-modeling as triggered] → algorithm-routing-quality → experiment-design-quality → contest-paper-reviewer-perspective → Formal/claims → visual-evidence-quality`
 
 这条链只改变每一步的决策质量，不建立新的 Formal 状态或 Gate。
 
