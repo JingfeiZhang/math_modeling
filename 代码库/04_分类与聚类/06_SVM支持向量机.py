@@ -1,162 +1,115 @@
 # -*- coding: utf-8 -*-
 """
-支持向量机 SVM (Support Vector Machine) 分类 —— 国赛C题模板
-================================================================
-功能：
-    1. 训练/测试划分（分层）+ 标准化（SVM 对量纲极敏感，必做）
-    2. 核函数选择说明 + GridSearchCV 网格搜索调参 (C, gamma, kernel)
-    3. 分类评价：准确率/精确率/召回率/F1/混淆矩阵/分类报告
-    4. 决策边界可视化（二维特征时）
-    5. （对应 2022 C题）SVM 判别分类思路
+06 SVM：折内预处理、可配置调参与分类证据
+=====================================
 
-核函数（kernel）选择：
-    linear  —— 线性可分或特征维数很高时（文本/高维），速度快、可解释
-    rbf     —— 高斯核，默认首选，能拟合非线性边界（绝大多数情况用它）
-    poly    —— 多项式核，有明显多项式关系时
-    sigmoid —— 类神经网络，较少用
+study-only 模板。SVM 对尺度敏感，但 scaler 必须放在 CV Pipeline 内；先对整个训练集
+fit scaler 再 GridSearchCV，会让各验证折的信息进入预处理参数，形成隐蔽泄漏。
 
-核心参数：
-    C     : 惩罚系数。大→对误分类惩罚重，间隔小，易过拟合；小→间隔大，易欠拟合。
-    gamma : rbf/poly 核系数。大→单样本影响范围小，决策边界复杂易过拟合；
-            小→边界平滑。常用 'scale'(默认) 或网格搜索。
-
-输入格式：
-    X : (n_samples, n_features) 数值；y : (n_samples,) 类别标签。
-
-适用 C题场景：
-    中小样本、特征间非线性关系的分类判别（2022 玻璃类型判别的经典方法）。
-
-依赖：numpy pandas scikit-learn matplotlib
-================================================================
+模型选择应由样本规模、边界结构、误判代价和验证结果决定；RBF 不是“绝大多数问题的
+默认最优核”。Accuracy 也不是类别不平衡任务的默认调参指标。
 """
 
-import os
+from __future__ import annotations
+
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.metrics import (accuracy_score, precision_score, recall_score,
-                             f1_score, confusion_matrix, classification_report)
-
-plt.rcParams['font.sans-serif'] = ['SimHei']
-plt.rcParams['axes.unicode_minus'] = False
-SAVE_DIR = os.path.dirname(os.path.abspath(__file__))
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedKFold
+from sklearn.metrics import (accuracy_score, balanced_accuracy_score, precision_score,
+                             recall_score, f1_score, confusion_matrix)
 
 
-def evaluate_classification(y_true, y_pred, title='混淆矩阵', fname='混淆矩阵.png', save=True):
-    """通用分类评价：四大指标 + 分类报告 + 混淆矩阵图。"""
-    avg = 'binary' if len(np.unique(y_true)) == 2 else 'macro'
-    metrics = {
-        '准确率Accuracy': accuracy_score(y_true, y_pred),
-        '精确率Precision': precision_score(y_true, y_pred, average=avg, zero_division=0),
-        '召回率Recall': recall_score(y_true, y_pred, average=avg, zero_division=0),
-        'F1': f1_score(y_true, y_pred, average=avg, zero_division=0),
+def classification_metrics(y_true, y_pred):
+    y_true, y_pred = np.asarray(y_true), np.asarray(y_pred)
+    average = "binary" if len(np.unique(y_true)) == 2 else "macro"
+    return {
+        "accuracy": float(accuracy_score(y_true, y_pred)),
+        "balanced_accuracy": float(balanced_accuracy_score(y_true, y_pred)),
+        "precision": float(precision_score(y_true, y_pred, average=average, zero_division=0)),
+        "recall": float(recall_score(y_true, y_pred, average=average, zero_division=0)),
+        "f1": float(f1_score(y_true, y_pred, average=average, zero_division=0)),
+        "confusion_matrix": confusion_matrix(y_true, y_pred).tolist(),
+        "average": average,
     }
-    print('-' * 45)
-    for k, v in metrics.items():
-        print(f'  {k}: {v:.4f}')
-    print('分类报告:\n', classification_report(y_true, y_pred, zero_division=0))
-
-    cm = confusion_matrix(y_true, y_pred)
-    plt.figure(figsize=(6, 5))
-    plt.imshow(cm, cmap='Blues'); plt.colorbar()
-    ticks = np.arange(len(np.unique(y_true)))
-    plt.xticks(ticks); plt.yticks(ticks)
-    for i in range(cm.shape[0]):
-        for j in range(cm.shape[1]):
-            plt.text(j, i, cm[i, j], ha='center',
-                     color='white' if cm[i, j] > cm.max() / 2 else 'black')
-    plt.xlabel('预测类别'); plt.ylabel('真实类别'); plt.title(title)
-    plt.tight_layout()
-    if save:
-        plt.savefig(os.path.join(SAVE_DIR, fname), dpi=150, bbox_inches='tight')
-    plt.show()
-    return metrics
 
 
-def grid_search_svm(X_tr, y_tr):
-    """网格搜索最优 (kernel, C, gamma)，5 折交叉验证。"""
+def build_svm_pipeline(C=1.0, kernel="rbf", gamma="scale", class_weight=None):
+    return Pipeline([
+        ("scale", StandardScaler()),
+        ("svc", SVC(C=C, kernel=kernel, gamma=gamma, class_weight=class_weight)),
+    ])
+
+
+def grid_search_svm(X_train, y_train, scoring="balanced_accuracy", cv_splits=5,
+                    class_weight=None, n_jobs=1):
+    """scaler 在每个 CV 训练子折内部拟合。"""
+    pipe = build_svm_pipeline(class_weight=class_weight)
     param_grid = [
-        {'kernel': ['linear'], 'C': [0.1, 1, 10, 100]},
-        {'kernel': ['rbf'], 'C': [0.1, 1, 10, 100],
-         'gamma': ['scale', 0.01, 0.1, 1]},
+        {"svc__kernel": ["linear"], "svc__C": [0.1, 1, 10, 100]},
+        {"svc__kernel": ["rbf"], "svc__C": [0.1, 1, 10, 100],
+         "svc__gamma": ["scale", 0.01, 0.1, 1]},
     ]
-    # n_jobs=1 保证各平台稳定；本机 CPU 多核时可改 -1 加速
-    grid = GridSearchCV(SVC(), param_grid, cv=5, scoring='accuracy', n_jobs=1)
-    grid.fit(X_tr, y_tr)
-    print(f'最优参数: {grid.best_params_}')
-    print(f'交叉验证最优准确率: {grid.best_score_:.4f}')
-    return grid.best_estimator_, grid.best_params_
+    cv = StratifiedKFold(n_splits=cv_splits, shuffle=True, random_state=42)
+    grid = GridSearchCV(pipe, param_grid, cv=cv, scoring=scoring,
+                        n_jobs=n_jobs, return_train_score=True)
+    grid.fit(X_train, y_train)
+    return {
+        "model": grid.best_estimator_,
+        "best_params": dict(grid.best_params_),
+        "best_cv_score": float(grid.best_score_),
+        "scoring": scoring,
+        "cv_splits": cv_splits,
+        "cv_results": grid.cv_results_,
+    }
 
 
-def plot_decision_boundary(model, X, y, save=True):
-    """二维特征时绘制 SVM 决策边界。"""
-    if X.shape[1] != 2:
-        print('特征非二维，跳过决策边界绘制。')
-        return
-    h = 0.02
-    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
-    xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
-    Z = model.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)
-    plt.figure(figsize=(8, 6))
-    plt.contourf(xx, yy, Z, alpha=0.3, cmap='coolwarm')
-    plt.scatter(X[:, 0], X[:, 1], c=y, cmap='coolwarm', edgecolors='k', s=30)
-    plt.xlabel('特征1'); plt.ylabel('特征2')
-    plt.title('SVM 决策边界')
-    if save:
-        plt.savefig(os.path.join(SAVE_DIR, 'SVM_决策边界.png'), dpi=150, bbox_inches='tight')
-    plt.show()
+def run_svm(X, y, test_size=0.3, do_grid=True, scoring="balanced_accuracy",
+            class_weight=None, seed=42):
+    X = np.asarray(X, dtype=float)
+    y = np.asarray(y)
+    if X.ndim != 2 or len(X) != len(y) or not np.isfinite(X).all():
+        raise ValueError("X/y 形状或数值非法")
+    if len(np.unique(y)) < 2:
+        raise ValueError("至少需要两个类别")
 
-
-def run_svm(X, y, test_size=0.3, do_grid=True, draw_boundary=False):
-    """SVM 分类完整流程：标准化 → 调参 → 评价。"""
-    X_tr, X_te, y_tr, y_te = train_test_split(
-        X, y, test_size=test_size, random_state=42, stratify=y)
-    scaler = StandardScaler().fit(X_tr)
-    X_tr, X_te = scaler.transform(X_tr), scaler.transform(X_te)
-
-    print('=' * 45)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=test_size, random_state=seed, stratify=y
+    )
     if do_grid:
-        model, best = grid_search_svm(X_tr, y_tr)
+        search = grid_search_svm(X_train, y_train, scoring=scoring,
+                                 class_weight=class_weight)
+        model = search["model"]
     else:
-        model = SVC(kernel='rbf', C=1.0, gamma='scale').fit(X_tr, y_tr)
-    y_pred = model.predict(X_te)
-    print(f'测试集准确率: {accuracy_score(y_te, y_pred):.4f}')
-    evaluate_classification(y_te, y_pred, title='SVM-混淆矩阵', fname='SVM_混淆矩阵.png')
-    print('支持向量个数(每类):', model.n_support_)
-    print('=' * 45)
+        model = build_svm_pipeline(class_weight=class_weight)
+        model.fit(X_train, y_train)
+        search = None
 
-    if draw_boundary and X.shape[1] == 2:
-        plot_decision_boundary(model, np.vstack([X_tr, X_te]),
-                               np.concatenate([y_tr, y_te]))
-    return model
+    pred = model.predict(X_test)
+    metrics = classification_metrics(y_test, pred)
+    svc = model.named_steps["svc"]
+    result = {
+        "model": model,
+        "search": search,
+        "metrics": metrics,
+        "train_size": len(y_train),
+        "test_size": len(y_test),
+        "support_vectors_per_class": svc.n_support_.tolist(),
+        "claim_boundary": "性能来自当前 holdout/CV 结构；若数据按时间、主体或空间相关，应改用对应 split，随机分层并不代表真实部署能力",
+    }
+    print("【SVM holdout】")
+    if search:
+        print("  CV scoring:", search["scoring"], "best:", search["best_cv_score"])
+        print("  params:", search["best_params"])
+    for key, value in metrics.items():
+        if isinstance(value, float):
+            print(f"  {key}: {value:.4f}")
+    return result
 
 
-if __name__ == '__main__':
-    # ========================================================================
-    # 👉 用你自己的国赛附件数据：把下面【示例数据】整段注释掉，改用这段
-    #   import pandas as pd
-    #   df = pd.read_csv('附件1.csv', encoding='gbk')  # 乱码就换 utf-8 / gb18030
-    #   # 分类是【有监督】：需要特征矩阵 X + 类别标签列 y
-    #   X = df[['特征1', '特征2', '特征3']].values   # 特征矩阵 (n_samples, n_features)
-    #   y = df['标签列'].values                      # 类别标签 (n_samples,)
-    #   run_svm(X, y)     # (SVM 必须标准化，run_svm 内部已内置)
-    #   详见 01_数据预处理与可视化/00_CSV数据导入完全指南.py
-    # ------------------------------------------------------------------------
-    # 【示例数据】(仅供演示，替换为上面的真实数据后可删除)
-    from sklearn.datasets import load_iris, load_wine
-
-    print('\n########## 示例1：鸢尾花取前2特征（可画决策边界）##########')
-    iris = load_iris()
-    run_svm(iris.data[:, :2], iris.target, do_grid=True, draw_boundary=True)
-
-    print('\n########## 示例2：红酒数据（多分类，全特征）##########')
-    wine = load_wine()
-    run_svm(wine.data, wine.target, do_grid=True, draw_boundary=False)
-
-    print('\n提示：SVM 必须标准化；rbf 核最通用，C 控过拟合、gamma 控边界复杂度；'
-          '样本量大(>1万)时 SVM 慢，可换随机森林。')
-
+if __name__ == "__main__":
+    from sklearn.datasets import load_wine
+    data = load_wine()
+    result = run_svm(data.data, data.target, scoring="balanced_accuracy")
+    print("\n关键点：scaler 在 Pipeline 里，因此 GridSearchCV 每折只用该折训练数据估计均值/方差。")
