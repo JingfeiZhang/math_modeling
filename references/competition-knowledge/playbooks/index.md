@@ -1,65 +1,63 @@
-# 赛题战术手册索引
+# L3 赛题战术手册索引
 
-L3 战术手册只在 P1–P3 串联多个决策模块，帮助形成“题面映射 → 学术质量标准 → 数据质量 → baseline → 结构匹配主模型 → 高信息量实验”的最短执行路径。它们不是 Formal 证据或论文来源。
+`playbooks/` 顶层现在只承载 **reference-library 可自动路由的 P1–P3 L3 战术手册**。除本 `index.md` 外，每个 `.md` 都必须满足 `src/workflow/reference_library.py` 的严格 playbook 合同：
 
-## 默认质量入口
+- `playbook_version: 1`；
+- `stage_scope` 仅包含 `P1 / P2 / P3a / P3b`；
+- `evidence_status: P1-P3-non-evidence`；
+- `contest_evidence_eligible: false`；
+- `allowed_use` 固定为 `model_direction / assumption_check / baseline_design / risk_probe`；
+- `forbidden_use` 至少禁止 academic citation、Formal evidence、claim support、Figure Contract 和 submission；
+- 必须包含“触发与排除、输入输出合同、分阶段行动、baseline 与升级、联合诊断、停止与回退、Candidate 交接、禁止事项”八段。
 
-所有真实赛题优先读取 [academic-quality-standard](academic-quality-standard.md)。该总标准用于统一题意抽象、模型选择、证据、学术表达和停止规则；它不是官方评分细则，不覆盖当届官方规则。
+因此，本目录不再放学术总标准、通用数据/算法/实验质量指南、可视化规范、评阅指南或模拟赛指南；这些统一放到 [`../guides/`](../guides/index.md)。
 
-| 题面结构 / 质量任务 | L3 战术手册 | 主要模块 |
+## 当前可路由 L3 Playbook
+
+| 触发结构 | Playbook | 连接模块 |
 |---|---|---|
-| 任意国赛题：统一学术质量标准 | [academic-quality-standard](academic-quality-standard.md) | 题意、数学抽象、证据梯子、自我反驳、论文学术性、边界 |
-| 任意国赛题：控制复杂度并提高整体建模质量 | [award-oriented-modeling](award-oriented-modeling.md) | 题意抽象、候选梯子、复杂度升级、结果解释、停止规则 |
-| 数据清洗、泄漏、特征工程与模型输入设计 | [data-and-feature-quality](data-and-feature-quality.md) | 数据风险、缺失/异常、尺度、时间/空间泄漏、三级特征工程 |
-| 决定该跑什么算法、何时升级模型 | [algorithm-routing-quality](algorithm-routing-quality.md) | 预测、分类、排序、聚类、优化、多目标、机理、网络路由 |
-| 决定哪些实验最值得跑 | [experiment-design-quality](experiment-design-quality.md) | baseline、challenger、ablation、robustness、failure case、实验停止 |
-| 决定用图、表还是文字以及画什么图 | [visual-evidence-quality](visual-evidence-quality.md) | reader question、证据图型、视觉层级、caption、论文图表信息密度 |
-| 复杂优化题：把自然语言规则转成变量、目标、约束和验证 | [constraint-modeling-quality](constraint-modeling-quality.md) | constraint inventory、索引变量、确定性→不确定性、feasibility audit |
-| 销售/需求/库存/定价：数据分析最终要落到决策 | [data-to-decision-modeling](data-to-decision-modeling.md) | 数据语义、时间验证、响应关系、预测误差传播、决策评价 |
-| 先预测需求/负荷，再配置资源或制定方案 | [predict-then-optimize](predict-then-optimize.md) | forecasting、LP/MILP、不确定性规划 |
+| 规则密集、跨期、整数/0-1、兼容性、容量、轮作 | [constraint-modeling-quality](constraint-modeling-quality.md) | LP/MILP、网络/排程、不确定性规划 |
+| 销售/需求/库存/定价/补货，数据分析最终落到决策 | [data-to-decision-modeling](data-to-decision-modeling.md) | 预测、小样本回归、LP/MILP、不确定性规划 |
+| 前一问预测需求/负荷/价格，后一问据此做配置或方案 | [predict-then-optimize](predict-then-optimize.md) | 预测、LP/MILP、不确定性规划 |
 | 资源配置同时面对需求、价格或供给波动 | [resource-allocation-under-uncertainty](resource-allocation-under-uncertainty.md) | LP/MILP、不确定性规划 |
-| 建立动力学/扩散模型，标定参数并做情景 | [mechanism-fit-and-scenario](mechanism-fit-and-scenario.md) | 机理标定、不确定性规划 |
+| 动力学/扩散方程 + 参数标定 + 情景分析 | [mechanism-fit-and-scenario](mechanism-fit-and-scenario.md) | 机理标定、不确定性规划 |
 
-## 跨阶段质量指南
-
-以下文件不属于 reference-library 的 L3 playbook 层，因此不受 P1–P3 playbook schema 路由；它们用于人工或指定角色审阅：
-
-- [评阅者视角](../guides/contest-paper-reviewer-perspective.md)：objective correctness、constraint completeness、model-code-result parity、feasibility-first、claim boundary。
-- [模拟赛与比赛过程控制](../guides/rehearsal-and-contest-control.md)：Smoke / Full Rehearsal、早闭环、团队交叉、论文同步、赛后复盘。
-
-## 默认执行顺序
+## 路由原则
 
 ```text
-题意/接口
-→ academic-quality-standard
-→ data-and-feature-quality
-→ （按题面触发 constraint-modeling-quality / data-to-decision-modeling）
-→ baseline
-→ algorithm-routing-quality
-→ experiment-design-quality
-→ Candidate / Formal 晋升前人工对抗性复核
-→ Formal / frozen claims
-→ visual-evidence-quality
-→ cumcm-paper-quality-playbook
+题面结构
+→ L1 路由卡 / L2 决策模块
+→ 只有存在跨模块结构时触发一个最匹配 L3 playbook
+→ Candidate
 ```
 
-`award-oriented-modeling` 用于控制全局时间、复杂度和候选收敛；`rehearsal-and-contest-control` 只用于赛前演练与过程复盘。专项手册只在题面结构真正触发时使用，不要为了匹配某份手册改变题意。
+不要为了使用 Playbook 改变题意，也不要同时加载多个高度重叠的 L3。若单个 L2 模块已经足够回答问题，就停在 L2。
 
-## 决策优先级
+## 与 Guides 的关系
 
-当多份手册同时适用时，统一按以下顺序处理：
+全局质量链不属于 L3 schema：
 
-1. 题面与官方规则；
-2. 语义、单位和指标正确性；
-3. 学术质量总标准；
-4. 目标/约束/数据接口等结构性正确性；
-5. 题型专项模型/验证要求；
-6. 可视化和写作表达。
+```text
+academic-quality-standard
+→ award-oriented-modeling
+→ data-and-feature-quality
+→ algorithm-routing-quality
+→ experiment-design-quality
+→ [按题面触发一个 L3 playbook]
+→ Formal / claims
+→ visual-evidence-quality
+```
 
-如果题面不满足专项手册触发条件，返回通用质量手册、L1 卡片或单个 L2 模块，不新增无必要流程。
+这些全局指南由 Prompt Policy 或指定角色直接读取，入口见 [`../guides/index.md`](../guides/index.md)。
 
-## 培训资料提炼边界
+## 证据边界
 
-本轮从培训/赛题讲解材料中提炼两份合规 L3 playbook（`constraint-modeling-quality`、`data-to-decision-modeling`）和两份跨阶段 guide。来源与排除规则记录在 `../source-notes/training-materials-curation.md`。
+L3 Playbook 只用于 P1–P3 的模型方向、假设检查、baseline 设计和风险探针；其中任何文字、历史题经验或示例都不能作为：
 
-这些材料不把历史题具体解法当成标准答案，也不吸收特定软件偏好、“多算法即加分”、固定灵敏度比例等经验性规则。
+- 学术引用；
+- Formal evidence；
+- claim support；
+- Figure Contract 数据；
+- submission / release 材料。
+
+正式数字仍必须来自当前项目的 Scratch / Candidate / Formal 实际运行和冻结证据。
