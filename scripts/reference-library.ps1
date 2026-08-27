@@ -31,7 +31,7 @@ if ($resolved.Selected.CoreMissing.Count -gt 0) {
 
 $arguments = @(
     'run', '--no-capture-output', '-p', $resolved.Selected.Prefix, 'python', '-s',
-    (Join-Path $root 'src\workflow\reference_library.py'), '--workspace-root', $root, $Action
+    (Join-Path $root 'src\workflow\reference_library_cli.py'), '--workspace-root', $root, $Action
 )
 if ($Action -eq 'lookup') {
     $arguments += @('--tags', ($Tags -join ','), '--limit', [string]$Limit, '--layer', $Layer)
@@ -43,9 +43,11 @@ if ($Action -eq 'sync') {
     $arguments += @('--source', $Source)
 }
 
-# The Python module reads local source mappings and performs explicit sync only
-# for the pinned Git source. It never runs repository scripts, OCR, MATLAB, or
-# upstream example code. Lookup never performs network requests.
+# The Python adapter installs the strict P1-P3 L3 playbook boundary and then
+# reuses the mature reference_library implementation. It reads local source
+# mappings and performs explicit sync only for the pinned algorithm source.
+# It never runs repository scripts, OCR, MATLAB, or upstream example code.
+# Lookup never performs network requests.
 $run = Invoke-CondaCommand -Conda $resolved.Conda -Arguments $arguments -CaptureOutput -DisableUserSite
 foreach ($line in @($run.Output)) { [Console]::Out.WriteLine([string]$line) }
 foreach ($line in @($run.ErrorOutput)) { [Console]::Error.WriteLine([string]$line) }
