@@ -40,23 +40,35 @@
 
 ## 4. 来源 → 知识层映射
 
-| 来源 | 选择性吸收 | 落地位置 |
+| 来源 | 选择性吸收 | Canonical 落地位置 |
 |---|---|---|
-| 参赛准备 | 现实问题与数学方法的对应关系；模型储备是结构识别能力 | 现有 `algorithm-routing-quality` / `academic-quality-standard` |
+| 参赛准备 | 现实问题与数学方法的对应关系；模型储备是结构识别能力 | `guides/algorithm-routing-quality.md` / `guides/academic-quality-standard.md` |
 | 经验分享 | 选最合适模型；写作者理解模型；完整模拟赛；赛后复盘 | `guides/rehearsal-and-contest-control.md` |
 | 优化模型简介 | 决策变量/参数—约束—目标函数的建模骨架；启发式不保证最优 | `playbooks/constraint-modeling-quality.md`、`guides/contest-paper-reviewer-perspective.md` |
 | 2023C 讲解 | 异常/时间结构；销量—价格/补货关系；替代/互补；外部数据价值 | `playbooks/data-to-decision-modeling.md` |
 | 2024C 讲解 | 多资源/多季次/兼容/跨期约束；确定性→不确定性→关联结构 | `playbooks/constraint-modeling-quality.md` |
 | 赛题选讲 | objective correctness；constraint completeness；一般模型优先；模型-程序-结果一致；可行性优先；heuristic 需额外测试 | `guides/contest-paper-reviewer-perspective.md` |
 
-## 5. 为什么分成 playbook 与 guide
+## 5. Playbook 与 Guide 的严格边界
 
-现有 `reference_library.py` 对 L3 playbook 有明确合同：只用于 P1–P3 探索、固定 non-evidence 权限和固定章节结构。因此：
+现有 `reference_library.py` 对 L3 Playbook 有明确合同：只用于 P1–P3 探索、固定 non-evidence 权限和固定八段章节结构。因此：
 
-- `constraint-modeling-quality`、`data-to-decision-modeling`：需要在 P1–P3 被 tag 路由，严格遵守 L3 playbook 合同；
-- `contest-paper-reviewer-perspective`、`rehearsal-and-contest-control`：跨 P4–P6 或人工复盘使用，放在 `guides/`，不改变 reference-library 的早期探索边界。
+- `constraint-modeling-quality`、`data-to-decision-modeling` 以及三份既有组合题手册：属于 tag-routable L3；
+- 学术总标准、数据/算法/实验/可视化质量规范、评阅者视角、模拟赛控制：属于 `guides/`，由 Prompt Policy 或指定角色直接读取。
 
-这比放宽 reference-library 验证规则更安全。
+正式 CLI `scripts/reference-library.ps1` 通过 `src/workflow/reference_library_cli.py` 安装严格的 L3 discovery 边界，只有以下 5 个文件进入 `lookup -Layer playbook`：
+
+```text
+constraint-modeling-quality.md
+data-to-decision-modeling.md
+mechanism-fit-and-scenario.md
+predict-then-optimize.md
+resource-allocation-under-uncertainty.md
+```
+
+历史 `playbooks/<quality-guide>.md` 路径如果因兼容原因仍存在，不再是 canonical 引用，也不会进入上述 routable set；不得新增对这些旧路径的依赖。
+
+这种做法不放宽原有 schema，不新增 Gate，也不让跨 P4–P6 的指南污染 P1–P3 教材速查路由。
 
 ## 6. 与现有体系的关系
 
@@ -66,8 +78,9 @@
 当届官方规则
 → project contest.yaml
 → prompt_policy / Formal contracts
-→ academic-quality-standard
-→ 本次提炼的专项 playbooks / guides
+→ Formal / frozen evidence
+→ guides/academic-quality-standard
+→ 专项 Guides / L3 Playbooks
 → 原始培训资料
 ```
 
@@ -87,5 +100,6 @@
 2. 区分“可迁移原则”和“特定实例经验”；
 3. 与当前 academic-quality-standard 比较，避免重复；
 4. 只新增能改变实际决策的内容；
-5. 优先更新已有 playbook / guide，而不是不断新增文件；
-6. 若内容与当届官方规则冲突，直接以官方规则为准。
+5. 优先更新已有 Guide / L3 Playbook，而不是不断新增文件；
+6. 新 L3 必须同时进入 `reference_library_cli.py` 的 routable set 并通过既有 `validate_playbook`；
+7. 若内容与当届官方规则冲突，直接以官方规则为准。
