@@ -1,3 +1,15 @@
+---
+playbook_id: data-to-decision-modeling
+playbook_version: 1
+tags: [data-quality, forecasting, pricing, inventory, replenishment, predict-then-optimize, decision]
+modules: [statistics-forecasting, statistics-regression-small-sample, optimization-lp-milp, optimization-uncertainty-planning]
+stage_scope: [P1, P2, P3a, P3b, P4]
+evidence_status: P1-P4-non-evidence
+contest_evidence_eligible: false
+allowed_use: [data_semantics, temporal_validation, response_modeling, interface_design, error_propagation, decision_evaluation]
+forbidden_use: [academic_citation, formal_evidence, claim_support, figure_contract, submission]
+---
+
 # 数据 → 预测/关系 → 决策：数据驱动建模手册
 
 > 定位：P1–P4 的“数据分析最终要落到决策”的专项手册，适用于销售、库存、需求、定价、补货、资源配置等题。
