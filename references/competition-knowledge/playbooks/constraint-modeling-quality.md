@@ -1,3 +1,15 @@
+---
+playbook_id: constraint-modeling-quality
+playbook_version: 1
+tags: [optimization, constraints, milp, scheduling, formulation, uncertainty, feasibility]
+modules: [optimization-lp-milp, optimization-network-scheduling, optimization-uncertainty-planning]
+stage_scope: [P1, P2, P3a, P3b, P4]
+evidence_status: P1-P4-non-evidence
+contest_evidence_eligible: false
+allowed_use: [problem_formulation, constraint_inventory, variable_design, baseline_design, feasibility_audit, uncertainty_upgrade]
+forbidden_use: [academic_citation, formal_evidence, claim_support, figure_contract, submission]
+---
+
 # 自然语言约束 → 数学规划：约束建模质量手册
 
 > 定位：P1–P4 的优化/调度/资源配置专项手册。用于把题面中的自然语言规则可靠地转换为决策变量、参数、目标、约束和验证。
@@ -73,7 +85,6 @@ S = 季次集合
 
 ```text
 x[l,c,t,s] = 地块 l 在年份 t、季次 s 分配给作物 c 的数量/面积
-
 y[l,c,t,s] = 是否启用该组合（如确有逻辑或固定成本需要）
 ```
 
