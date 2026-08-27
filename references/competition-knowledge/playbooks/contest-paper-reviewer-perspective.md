@@ -1,3 +1,15 @@
+---
+playbook_id: contest-paper-reviewer-perspective
+playbook_version: 1
+tags: [reviewer, objective, constraints, feasibility, parity, heuristic, claims, paper]
+modules: [optimization-lp-milp, optimization-network-scheduling, optimization-uncertainty-planning]
+stage_scope: [P1, P3a, P3b, P4, P5]
+evidence_status: P1-P5-non-evidence
+contest_evidence_eligible: false
+allowed_use: [problem_review, objective_review, constraint_review, model_code_result_parity, claim_boundary, paper_review]
+forbidden_use: [academic_citation, formal_evidence, claim_support, figure_contract, submission]
+---
+
 # 国赛评阅者视角：模型—证据—论文一致性
 
 > 定位：P1–P5 的非正式质量手册。用于帮助 Solver、Paper、Reviewer 从“评阅者会因什么降分”反推建模与论文决策。
