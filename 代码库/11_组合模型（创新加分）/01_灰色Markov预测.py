@@ -1,222 +1,172 @@
 # -*- coding: utf-8 -*-
 """
-================================================================================
-灰色-马尔可夫组合预测（Grey-Markov：GM(1,1) 定趋势 + 马尔可夫链修正）
-================================================================================
-功能：
-    把灰色预测的"趋势外推"能力与马尔可夫链的"状态转移修正"能力组合起来：
-      1. GM(1,1) 对小样本序列做趋势预测（一次累加→最小二乘估参→时间响应还原）；
-      2. 计算实际值相对 GM 拟合值的相对残差，把残差按大小划分为若干"状态区间"；
-      3. 统计历史状态转移频率得到马尔可夫转移矩阵，据最近状态预测下一期落在哪个状态，
-         用该状态的残差中点去修正 GM 的趋势预测值。
-    结论：GM 管大方向，Markov 管围绕趋势的上下波动，组合后对"有趋势又有波动"
-    的小样本序列比单用 GM 更准。纯 numpy 实现，轻量、可复现。
+01 Grey-Markov：趋势模型 + 残差状态修正的可消融候选
+==================================================
 
-适用竞赛场景：
-    - 小样本（10~30 点）且围绕上升/下降趋势上下波动的序列：
-      如商品月销量、原材料价格、客流量等的短期预测。
+study-only 模板。组合模型不因“GM+Markov”名称就更高级。只有当 GM 在训练期暴露出
+可重复的残差状态结构，且修正项在样本外稳定改善同输出 baseline 时才保留。
 
-输入格式：
-    - 一维正序列（list / np.ndarray），等时间间隔、整体有趋势但含波动。
-
-输出：
-    - GM 趋势预测、马尔可夫状态划分与转移矩阵、组合修正后的预测值。
-
-依赖：numpy, (可选) matplotlib
-运行：python 01_灰色Markov预测.py
-================================================================================
+关键边界：
+- GM 负责趋势候选；Markov 只建模 GM 残差状态，不是独立真值模型；
+- 状态划分、转移矩阵只能在训练窗口估计；
+- 某状态无历史转移时不能用数组 argmax 人为选第 0 状态；必须显式回退；
+- n_states 若通过测试集反复试选，会发生模型选择泄漏；
+- 正式证据至少比较 naive、GM、GM+Markov 三者。
 """
 
-import sys
-try:
-    sys.stdout.reconfigure(encoding='utf-8')
-except Exception:
-    pass
+from __future__ import annotations
 
 import numpy as np
 
-try:
-    import matplotlib
-    matplotlib.use('Agg')            # 无界面环境安全（测试用；用户本地可删）
-    import matplotlib.pyplot as plt
-    plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei']  # 中文
-    plt.rcParams['axes.unicode_minus'] = False                        # 负号
-    _HAS_PLT = True
-except Exception:
-    _HAS_PLT = False
 
-
-# ----------------------------------------------------------------------
-# 1. GM(1,1) 趋势预测
-# ----------------------------------------------------------------------
-def gm11(x, n_predict=1):
-    """GM(1,1) 建模并向后预测 n_predict 个点，返回拟合值与预测值。"""
+def _validate_series(x, min_points=6):
     x = np.asarray(x, dtype=float).ravel()
-    n = len(x)
-    x1 = np.cumsum(x)                          # 1-AGO 一次累加
-    z1 = (x1[:-1] + x1[1:]) / 2.0              # 紧邻均值
-    B = np.column_stack([-z1, np.ones(n - 1)])
-    Y = x[1:].reshape(-1, 1)
-    a, b = np.linalg.solve(B.T @ B, B.T @ Y).ravel()   # 发展系数 a、灰作用量 b
+    if len(x) < min_points or not np.isfinite(x).all() or np.any(x <= 0):
+        raise ValueError(f"序列至少 {min_points} 个有限正值")
+    return x
 
-    total = n + n_predict
-    x1_hat = (x[0] - b / a) * np.exp(-a * np.arange(total)) + b / a
-    x0_hat = np.empty(total)
+
+def gm11(x, n_predict=1):
+    x = _validate_series(x, min_points=4)
+    n = len(x)
+    x1 = np.cumsum(x)
+    z1 = 0.5 * (x1[:-1] + x1[1:])
+    B = np.column_stack([-z1, np.ones(n - 1)])
+    params, _, rank, singular = np.linalg.lstsq(B, x[1:], rcond=None)
+    if rank < 2:
+        raise ValueError("GM 参数矩阵秩不足")
+    a, b = map(float, params)
+    if abs(a) < 1e-10:
+        raise ValueError("GM 发展系数过接近 0，时间响应不稳定")
+    k = np.arange(n + int(n_predict), dtype=float)
+    x1_hat = (x[0] - b / a) * np.exp(-a * k) + b / a
+    x0_hat = np.empty_like(x1_hat)
     x0_hat[0] = x1_hat[0]
     x0_hat[1:] = np.diff(x1_hat)
-    return {'a': a, 'b': b, 'fitted': x0_hat[:n], 'predict': x0_hat[n:]}
+    return {
+        "a": a, "b": b, "fitted": x0_hat[:n], "predict": x0_hat[n:],
+        "condition": float(singular[0] / singular[-1]) if singular[-1] > 0 else np.inf,
+    }
 
 
-# ----------------------------------------------------------------------
-# 2. 马尔可夫残差状态划分与转移矩阵
-# ----------------------------------------------------------------------
-def build_states(rel_resid, n_states=4):
-    """把相对残差序列等分为 n_states 个状态区间。
-
-    参数:
-        rel_resid: 相对残差序列 (实际-拟合)/拟合。
-        n_states : 状态数（区间个数），常用 3~5；样本少用 3，样本多可用 4~5。
-    返回:
-        edges(区间边界), mids(各状态残差中点), state_seq(每期所属状态索引)。
-    """
-    rel_resid = np.asarray(rel_resid, dtype=float)
-    lo, hi = rel_resid.min(), rel_resid.max()
-    # 稍微外扩边界，避免最值恰好落在边界上分不进区间
-    span = (hi - lo) if hi > lo else 1.0
-    lo -= span * 1e-6
-    hi += span * 1e-6
-    edges = np.linspace(lo, hi, n_states + 1)
-    mids = (edges[:-1] + edges[1:]) / 2.0       # 每个状态用中点代表其残差水平
-    # np.digitize 返回 1..n_states，转成 0..n_states-1
-    state_seq = np.clip(np.digitize(rel_resid, edges) - 1, 0, n_states - 1)
-    return edges, mids, state_seq
+def build_states(rel_residual, n_states=4):
+    r = np.asarray(rel_residual, dtype=float).ravel()
+    if not 2 <= n_states <= max(2, len(r) // 2):
+        raise ValueError("n_states 相对样本量过大；每个状态至少应有合理支持")
+    lo, hi = float(np.min(r)), float(np.max(r))
+    if np.isclose(lo, hi):
+        return {
+            "edges": np.array([lo - 1e-12, hi + 1e-12]),
+            "mids": np.array([0.0]),
+            "states": np.zeros(len(r), dtype=int),
+            "n_states": 1,
+            "occupancy": np.array([len(r)]),
+        }
+    edges = np.linspace(lo - 1e-12, hi + 1e-12, n_states + 1)
+    states = np.clip(np.digitize(r, edges[1:-1]), 0, n_states - 1)
+    mids = 0.5 * (edges[:-1] + edges[1:])
+    occupancy = np.bincount(states, minlength=n_states)
+    return {"edges": edges, "mids": mids, "states": states,
+            "n_states": n_states, "occupancy": occupancy}
 
 
-def transition_matrix(state_seq, n_states):
-    """由状态序列统计一步转移概率矩阵 P[i,j]=P(下一步=j | 当前=i)。"""
-    P = np.zeros((n_states, n_states))
-    for cur, nxt in zip(state_seq[:-1], state_seq[1:]):
-        P[cur, nxt] += 1.0
-    row_sum = P.sum(axis=1, keepdims=True)
-    # 没有出现过的状态行：设为均匀分布，避免除零
+def estimate_transition(states, n_states, empty_row_policy="global"):
+    states = np.asarray(states, dtype=int).ravel()
+    counts = np.zeros((n_states, n_states), dtype=float)
+    for cur, nxt in zip(states[:-1], states[1:]):
+        counts[cur, nxt] += 1
+    support = counts.sum(axis=1)
+    global_freq = np.bincount(states[1:], minlength=n_states).astype(float)
+    global_prob = global_freq / global_freq.sum() if global_freq.sum() > 0 else np.ones(n_states) / n_states
+    P = np.zeros_like(counts)
+    fallback_rows = []
     for i in range(n_states):
-        if row_sum[i, 0] == 0:
-            P[i, :] = 1.0 / n_states
+        if support[i] > 0:
+            P[i] = counts[i] / support[i]
         else:
-            P[i, :] /= row_sum[i, 0]
-    return P
+            fallback_rows.append(i)
+            if empty_row_policy == "global":
+                P[i] = global_prob
+            elif empty_row_policy == "identity":
+                P[i, i] = 1.0
+            elif empty_row_policy == "uniform":
+                P[i] = 1.0 / n_states
+            else:
+                raise ValueError("empty_row_policy 必须为 global/identity/uniform")
+    return {"P": P, "counts": counts, "support": support,
+            "fallback_rows": fallback_rows, "empty_row_policy": empty_row_policy}
 
 
-# ----------------------------------------------------------------------
-# 3. 灰色-马尔可夫组合预测（主接口）
-# ----------------------------------------------------------------------
-def grey_markov(x, n_predict=1, n_states=4):
-    """灰色-马尔可夫组合预测。
-
-    步骤: GM(1,1) 出趋势 → 算相对残差 → 划状态、建转移矩阵 →
-          由最近状态预测下一状态 → 用该状态残差中点修正 GM 预测值。
-
-    调参说明:
-        - n_states 状态数: 样本少(<15)用 3, 中等用 4, 较多用 5;
-          太多会导致每个状态样本过少、转移矩阵不稳。
-        - 组合只对"有趋势+围绕趋势波动"的数据有增益; 纯单调无波动时
-          残差极小, 马尔可夫修正≈0, 退化为普通 GM。
-    """
-    x = np.asarray(x, dtype=float).ravel()
-    n = len(x)
-
+def grey_markov(x, n_predict=1, n_states=4, empty_row_policy="global"):
+    x = _validate_series(x)
     gm = gm11(x, n_predict=n_predict)
-    fitted = gm['fitted']
-    rel_resid = (x - fitted) / fitted                       # 相对残差
+    fitted = gm["fitted"]
+    if np.any(np.abs(fitted) < 1e-12):
+        raise ValueError("GM 拟合值接近 0，无法稳定定义相对残差状态")
+    rel_residual = (x - fitted) / fitted
+    state_model = build_states(rel_residual, n_states=n_states)
+    transition = estimate_transition(state_model["states"], state_model["n_states"], empty_row_policy)
 
-    edges, mids, state_seq = build_states(rel_resid, n_states)
-    P = transition_matrix(state_seq, n_states)
+    # 用状态概率分布递推，采用“期望残差”修正，避免 argmax 在概率近似时造成跳变。
+    p = np.zeros(state_model["n_states"], dtype=float)
+    p[int(state_model["states"][-1])] = 1.0
+    corrected = []
+    expected_residual = []
+    for gm_value in gm["predict"]:
+        p = p @ transition["P"]
+        correction = float(p @ state_model["mids"])
+        expected_residual.append(correction)
+        corrected.append(float(gm_value * (1.0 + correction)))
 
-    # 从最近状态出发逐步预测未来状态，取转移概率最大的状态
-    gm_pred = gm['predict']
-    cur_state = int(state_seq[-1])
-    corrected = np.empty(n_predict)
-    pred_states = []
-    for k in range(n_predict):
-        next_state = int(np.argmax(P[cur_state]))
-        pred_states.append(next_state)
-        # 用预测状态的残差中点修正: 实际≈GM趋势×(1+相对残差)
-        corrected[k] = gm_pred[k] * (1.0 + mids[next_state])
-        cur_state = next_state
-
-    return {'gm': gm, 'rel_resid': rel_resid, 'edges': edges, 'mids': mids,
-            'state_seq': state_seq, 'P': P, 'gm_predict': gm_pred,
-            'corrected': corrected, 'pred_states': pred_states, 'fitted': fitted}
+    return {
+        "gm": gm,
+        "rel_residual": rel_residual,
+        "state_model": state_model,
+        "transition": transition,
+        "gm_predict": np.asarray(gm["predict"]),
+        "corrected": np.asarray(corrected),
+        "expected_residual": np.asarray(expected_residual),
+        "claim_boundary": "Markov 修正来自训练残差状态的有限频数估计；低支持状态与状态划分会显著影响结果",
+    }
 
 
-# ----------------------------------------------------------------------
-# 演示
-# ----------------------------------------------------------------------
-if __name__ == '__main__':
-    # ========================================================================
-    # 👉 用你自己的国赛附件数据：把下面【示例数据】整段注释掉，改用这段
-    #   import pandas as pd
-    #   df = pd.read_csv('附件1.csv', encoding='gbk')  # 乱码就换 utf-8 / gb18030
-    #   df = df.sort_values('时间列')                   # 【务必按时间排序】
-    #   data = df['数值列'].values.astype(float)        # 一维正序列(需为正)
-    #   # 适合: 有整体趋势又上下波动的小样本(如月销量/价格)
-    #   详见 01_数据预处理与可视化/00_CSV数据导入完全指南.py
-    # ------------------------------------------------------------------------
-    # 【示例数据】(仅供演示，替换为上面的真实数据后可删除)
-    # 上升趋势 + 明显波动的小样本（如某商品逐月销量，单位百件）
+def metrics(y_true, y_pred):
+    y_true = np.asarray(y_true, dtype=float)
+    y_pred = np.asarray(y_pred, dtype=float)
+    err = y_true - y_pred
+    return {"RMSE": float(np.sqrt(np.mean(err ** 2))),
+            "MAE": float(np.mean(np.abs(err))),
+            "MAPE(%)": float(np.mean(np.abs(err / y_true)) * 100)}
+
+
+def holdout_ablation(series, test_size=3, n_states=4, empty_row_policy="global"):
+    series = _validate_series(series, min_points=max(8, test_size + 6))
+    train, test = series[:-test_size], series[-test_size:]
+    hybrid = grey_markov(train, n_predict=test_size, n_states=n_states,
+                         empty_row_policy=empty_row_policy)
+    naive = np.repeat(train[-1], test_size)
+    comparison = {
+        "naive": metrics(test, naive),
+        "gm": metrics(test, hybrid["gm_predict"]),
+        "gm_markov": metrics(test, hybrid["corrected"]),
+    }
+    improvement_vs_gm = comparison["gm"]["RMSE"] - comparison["gm_markov"]["RMSE"]
+    return {
+        "train": train, "test": test,
+        "hybrid": hybrid,
+        "comparison": comparison,
+        "hybrid_rmse_improvement_vs_gm": float(improvement_vs_gm),
+        "keep_hybrid_on_this_holdout": bool(improvement_vs_gm > 0),
+        "claim_boundary": "一次 holdout 改善仍不足以证明组合稳定增益；条件允许时应做多个滚动窗口/起点的 ablation",
+    }
+
+
+if __name__ == "__main__":
     rng = np.random.default_rng(7)
-    base = 50 * np.exp(0.05 * np.arange(20))           # 指数上升趋势
-    data = base * (1 + rng.normal(0, 0.06, size=20))   # 叠加 6% 波动
-
-    print("########## 灰色-马尔可夫组合预测演示 ##########")
-    print("序列长度：%d  （有上升趋势 + 波动）" % len(data))
-
-    # 留最后 3 个点做验证
-    train, test = data[:-3], data[-3:]
-    res = grey_markov(train, n_predict=3, n_states=4)
-
-    print("\n【GM(1,1) 趋势】发展系数 a=%.4f" % res['gm']['a'])
-    print("平均相对残差 = %.2f%%（残差越大，马尔可夫修正越有价值）"
-          % (np.mean(np.abs(res['rel_resid'])) * 100))
-    print("\n马尔可夫转移矩阵 P（行=当前状态，列=下一状态）：")
-    print(np.round(res['P'], 3))
-    print("最近所处状态：%d  ->  预测未来状态序列：%s"
-          % (res['state_seq'][-1], res['pred_states']))
-
-    # 对比两种预测与真实值
-    def metrics(y_true, y_pred):
-        e = np.asarray(y_true) - np.asarray(y_pred)
-        return (float(np.sqrt(np.mean(e ** 2))),
-                float(np.mean(np.abs(e / y_true)) * 100))
-    rmse_gm, mape_gm = metrics(test, res['gm_predict'])
-    rmse_gk, mape_gk = metrics(test, res['corrected'])
-
-    print("\n【留出验证：预测最后 3 期】")
-    print("  真实值      ：", np.round(test, 2))
-    print("  单用GM      ：", np.round(res['gm_predict'], 2),
-          " RMSE=%.2f MAPE=%.2f%%" % (rmse_gm, mape_gm))
-    print("  灰色-马尔可夫：", np.round(res['corrected'], 2),
-          " RMSE=%.2f MAPE=%.2f%%" % (rmse_gk, mape_gk))
-    better = "组合模型更优" if rmse_gk < rmse_gm else "本例组合与GM相近"
-    print("  ->", better, "（马尔可夫修正了 GM 系统性偏差）")
-
-    if _HAS_PLT:
-        try:
-            n = len(train)
-            plt.figure(figsize=(10, 5))
-            plt.plot(range(len(data)), data, 'ko-', ms=4, label='真实数据')
-            plt.plot(range(n), res['fitted'], 'g^--', ms=4, label='GM拟合')
-            fx = range(n, n + 3)
-            plt.plot(fx, res['gm_predict'], 'bs--', label='GM预测')
-            plt.plot(fx, res['corrected'], 'r*--', ms=10, label='灰色-马尔可夫修正')
-            plt.axvline(n - 0.5, color='gray', ls=':', alpha=0.6)
-            plt.xlabel('期'); plt.ylabel('数值')
-            plt.title('灰色-马尔可夫组合预测')
-            plt.legend(); plt.grid(alpha=0.3)
-            plt.tight_layout()
-            plt.savefig('01_灰色Markov示例.png', dpi=120)
-            print("\n[图已保存] 01_灰色Markov示例.png")
-        except Exception as e:
-            print("绘图跳过：", e)
-
-    print("\n演示完成。要点：GM 定趋势、Markov 修波动，适合小样本+波动序列。")
+    base = 50 * np.exp(0.05 * np.arange(20))
+    data = base * (1 + rng.normal(0, 0.06, size=20))
+    result = holdout_ablation(data, test_size=3, n_states=4)
+    print("comparison:", result["comparison"])
+    print("transition support:", result["hybrid"]["transition"]["support"])
+    print("fallback rows:", result["hybrid"]["transition"]["fallback_rows"])
+    print("\n组合只有在多个样本外窗口相对 GM/naive 都有稳定增益时才值得保留。")
