@@ -1,3 +1,15 @@
+---
+playbook_id: rehearsal-and-contest-control
+playbook_version: 1
+tags: [rehearsal, contest-control, workflow, paper, team, release]
+modules: []
+stage_scope: [P0, P1, P2, P3a, P3b, P4, P5, P6]
+evidence_status: P0-P6-non-evidence
+contest_evidence_eligible: false
+allowed_use: [rehearsal_design, process_metrics, team_handoff, paper_timing, postmortem]
+forbidden_use: [academic_citation, formal_evidence, claim_support, figure_contract, submission]
+---
+
 # 模拟赛与比赛过程控制手册
 
 > 定位：P0–P6 的赛前演练与比赛节奏参考，不新增 Gate、不规定死板小时表。
