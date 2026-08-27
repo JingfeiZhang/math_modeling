@@ -5,7 +5,7 @@
 ```text
 L1 路由卡：30 秒筛出 3-5 个方向
   -> L2 决策模块：完成变量映射、baseline、一次升级、三项诊断和回退
-  -> L3 战术手册：串联数据质量、算法路由、实验设计、可视化证据和组合题路径
+  -> L3 战术手册：串联数据质量、算法路由、实验设计和组合题路径
 ```
 
 ## 使用规则
@@ -13,11 +13,11 @@ L1 路由卡：30 秒筛出 3-5 个方向
 1. 先按任务、数据特征和约束检索 L1，最多保留 3-5 张卡；不要按书名通读。
 2. 选一个最匹配的 L2 模块执行 P2/P3：写变量账本，跑最窄 baseline，只做一次有诊断依据的升级，再决定保留、降阶或回退。
 3. 遇到数据处理、模型选择、实验优先级和图表表达问题时，优先读取通用质量手册；只有题目存在“预测→优化”“分配→不确定性”或“机理→标定→情景”等跨模块结构时再进入专项组合题手册。
-4. 卡片、模块和手册只支撑候选模型、假设检查、baseline 设计和风险探针；数值结果必须来自本项目 Scratch/Candidate/Formal 运行。
+4. 卡片、模块和 L3 手册只支撑候选模型、假设检查、baseline 设计和风险探针；数值结果必须来自本项目 Scratch/Candidate/Formal 运行。
 5. `locator_confidence: low` 或 `formula_manual_check_required: true` 时，回看本机 PDF 对应页后再写公式或页码。
-6. P4 以后不自动加载本库作为模型知识来源，不把任何资料项升级为 Formal 证据，也不加入论文 BibTeX、claims、Figure Contract 或附件；可视化质量手册仅作为 P4/P5 表达指导使用。
+6. P4 以后不自动加载本库作为模型知识来源，不把任何资料项升级为 Formal 证据，也不加入论文 BibTeX、claims、Figure Contract 或附件；跨阶段 guides 只能作为内容审阅/演练参考。
 7. 原始 PDF 不在仓库中。配置 `MATHMODEL_REFERENCE_LIBRARY_ROOT` 或维护 `work/reference-library/sources.local.yaml` 后可运行本地校验；未配置时仍可检索本索引。
-8. 培训/赛题讲解材料只经过选择性提炼进入专项 playbook；它们不是官方规则、不是标准答案，来源和排除规则见 `source-notes/training-materials-curation.md`。
+8. 培训/赛题讲解材料只经过选择性提炼进入专项 playbook 或 guide；它们不是官方规则、不是标准答案，来源和排除规则见 `source-notes/training-materials-curation.md`。
 
 ## 通用质量手册
 
@@ -28,8 +28,13 @@ L1 路由卡：30 秒筛出 3-5 个方向
 - [可视化证据设计](playbooks/visual-evidence-quality.md)：reader question、figure/table/text 路由、图型选择、视觉层级和论文图表表达。
 - [约束建模质量](playbooks/constraint-modeling-quality.md)：自然语言规则→索引变量/目标/约束→确定性/不确定性升级→独立可行性审计。
 - [数据到决策](playbooks/data-to-decision-modeling.md)：交易/运营数据语义、时间验证、预测/响应关系、误差传播和最终决策评价。
-- [评阅者视角](playbooks/contest-paper-reviewer-perspective.md)：目标定义、约束完整性、模型-代码-结果一致、可行性优先和 claim 边界。
-- [模拟赛与过程控制](playbooks/rehearsal-and-contest-control.md)：Smoke/Full rehearsal、早闭环、团队交叉、论文同步和赛后复盘。
+
+## 跨阶段质量指南
+
+这些指南不属于 reference-library 的 L3 playbook 层，不参与 P1–P3 自动模型知识校验；由指定角色或人工在需要时读取：
+
+- [评阅者视角](guides/contest-paper-reviewer-perspective.md)：目标定义、约束完整性、模型-代码-结果一致、可行性优先和 claim 边界。
+- [模拟赛与过程控制](guides/rehearsal-and-contest-control.md)：Smoke / Full rehearsal、早闭环、团队交叉、论文同步和赛后复盘。
 
 ## 按任务检索
 
@@ -46,12 +51,12 @@ L1 路由卡：30 秒筛出 3-5 个方向
 
 ### 题面结构触发的专项手册
 
-| 结构信号 | 专项手册 |
-|---|---|
-| 规则密集、跨期、整数/0-1、兼容性、轮作、容量 | `constraint-modeling-quality` |
-| 销售/需求/库存/定价/补货、上游预测影响下游方案 | `data-to-decision-modeling` |
-| 需要判断 objective/constraint 是否建对、heuristic claim 是否越界 | `contest-paper-reviewer-perspective` |
-| 赛前历史题 Smoke、完整模拟、团队/论文/发布节奏 | `rehearsal-and-contest-control` |
+| 结构信号 | 自动路由层 | 专项内容 |
+|---|---|---|
+| 规则密集、跨期、整数/0-1、兼容性、轮作、容量 | L3 playbook | `constraint-modeling-quality` |
+| 销售/需求/库存/定价/补货、上游预测影响下游方案 | L3 playbook | `data-to-decision-modeling` |
+| 需要判断 objective/constraint 是否建对、heuristic claim 是否越界 | cross-stage guide | `guides/contest-paper-reviewer-perspective.md` |
+| 赛前历史题 Smoke、完整模拟、团队/论文/发布节奏 | cross-stage guide | `guides/rehearsal-and-contest-control.md` |
 
 ## 按约束检索
 
@@ -80,7 +85,17 @@ L1 路由卡：30 秒筛出 3-5 个方向
 
 ### 通用质量链
 
-`award-oriented-modeling → data-and-feature-quality → [constraint-modeling-quality / data-to-decision-modeling as triggered] → algorithm-routing-quality → experiment-design-quality → contest-paper-reviewer-perspective → Formal/claims → visual-evidence-quality`
+```text
+award-oriented-modeling
+→ data-and-feature-quality
+→ [constraint-modeling-quality / data-to-decision-modeling，按题面触发]
+→ algorithm-routing-quality
+→ experiment-design-quality
+→ Candidate
+→ （需要时执行评阅者视角对抗性复核）
+→ Formal / claims
+→ visual-evidence-quality
+```
 
 这条链只改变每一步的决策质量，不建立新的 Formal 状态或 Gate。
 
