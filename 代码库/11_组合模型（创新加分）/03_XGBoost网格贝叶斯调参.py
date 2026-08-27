@@ -1,154 +1,161 @@
 # -*- coding: utf-8 -*-
 """
-================================================================================
-XGBoost + 自动超参数搜索（基模型 + 网格/随机搜索调参组合套路）
-================================================================================
-功能：
-    展示"强基模型 + 自动调参"的组合建模套路（很多创新组合的通用范式，如
-    XGBoost+贝叶斯优化、RF+GA 本质都是"模型+参数搜索器"）：
-      1. 基模型：优先用 XGBoost（梯度提升树，Kaggle/建模竞赛主力）；
-         若环境没装 xgboost，自动优雅退化为 sklearn 的 GradientBoosting；
-      2. 调参器：用 sklearn 自带的 GridSearchCV（网格穷举）与
-         RandomizedSearchCV（随机采样，等价"轻量贝叶斯式"高效搜索），
-         交叉验证自动选出最优超参，避免手动试参的盲目性；
-      3. 对比"默认参数 vs 调参后"的测试集表现，量化调参增益。
-    只用 sklearn(+可选 xgboost)，不依赖冷门贝叶斯库，稳妥可跑、可复现。
+03 Gradient Boosting + 超参数搜索：测试集只评估一次
+================================================
 
-适用竞赛场景：
-    - C 题里的回归/分类预测：销量、价格、次品率、违约概率等，
-      高维特征 + 强非线性时，梯度提升树 + 自动调参是稳健高分选择。
+study-only 模板。GridSearchCV 与 RandomizedSearchCV 都是超参数搜索器；后者不是贝叶斯优化。
+真正的贝叶斯优化需要独立的 surrogate/acquisition 机制或相应库。
 
-输入格式：
-    - 特征矩阵 X（n_samples × n_features）、目标向量 y（回归连续值）。
+核心实验边界：
+1. 先切出最终 holdout/test；
+2. 默认模型、网格搜索、随机搜索的选择全部只看 training 内 CV；
+3. 根据预先规定的 CV 指标选定一个候选；
+4. 只对这个最终候选读取一次 test；
+5. 如果看过 test 后又换模型/搜索空间，test 已成为开发集，应另留最终评估集。
 
-输出：
-    - 最优超参数、交叉验证得分、默认 vs 调参后测试集 RMSE/R² 对比。
-
-依赖：numpy, scikit-learn；(可选) xgboost —— 未装会自动退化，不影响运行。
-运行：python 03_XGBoost网格贝叶斯调参.py
-================================================================================
+若没有 xgboost，本模板会明确改用 sklearn GradientBoostingRegressor；不会仍把结果称为 XGBoost。
 """
 
-import sys
-try:
-    sys.stdout.reconfigure(encoding='utf-8')
-except Exception:
-    pass
+from __future__ import annotations
 
 import numpy as np
-from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.model_selection import (train_test_split, GridSearchCV,
+                                     RandomizedSearchCV, KFold, cross_val_score)
 from sklearn.metrics import mean_squared_error, r2_score
 
-# ---- 基模型：优先 XGBoost，未装则退化到 sklearn GradientBoosting ----
 try:
     from xgboost import XGBRegressor
-    _HAS_XGB = True
+    HAS_XGBOOST = True
 except Exception:
-    _HAS_XGB = False
-    from sklearn.ensemble import GradientBoostingRegressor
+    HAS_XGBOOST = False
 
 
-def make_base_model():
-    """构造基模型 + 返回配套的超参数搜索空间。"""
-    if _HAS_XGB:
-        model = XGBRegressor(objective='reg:squarederror',
-                             random_state=42, n_jobs=1, verbosity=0)
-        # XGBoost 关键超参：学习率、树深、树数量、子采样
+def make_base_model(engine="auto", seed=42):
+    if engine == "auto":
+        engine = "xgboost" if HAS_XGBOOST else "sklearn_gbdt"
+    if engine == "xgboost":
+        if not HAS_XGBOOST:
+            raise RuntimeError("请求 xgboost，但当前环境未安装；请安装依赖或显式选择 sklearn_gbdt")
+        model = XGBRegressor(objective="reg:squarederror", random_state=seed,
+                             n_jobs=1, verbosity=0)
         grid = {
-            'n_estimators': [100, 200, 300],
-            'max_depth': [3, 4, 5],
-            'learning_rate': [0.05, 0.1, 0.2],
-            'subsample': [0.8, 1.0],
+            "n_estimators": [100, 200, 300],
+            "max_depth": [3, 4, 5],
+            "learning_rate": [0.05, 0.1, 0.2],
+            "subsample": [0.8, 1.0],
         }
-        name = 'XGBoost'
+    elif engine == "sklearn_gbdt":
+        model = GradientBoostingRegressor(random_state=seed)
+        grid = {
+            "n_estimators": [100, 200, 300],
+            "max_depth": [2, 3, 4],
+            "learning_rate": [0.05, 0.1, 0.2],
+            "subsample": [0.8, 1.0],
+        }
     else:
-        model = GradientBoostingRegressor(random_state=42)
-        grid = {
-            'n_estimators': [100, 200, 300],
-            'max_depth': [2, 3, 4],
-            'learning_rate': [0.05, 0.1, 0.2],
-            'subsample': [0.8, 1.0],
-        }
-        name = 'sklearn GradientBoosting (xgboost 未安装, 已自动退化)'
-    return model, grid, name
+        raise ValueError("engine 必须为 auto/xgboost/sklearn_gbdt")
+    return model, grid, engine
 
 
-def evaluate(model, X_test, y_test):
-    """返回测试集 RMSE 与 R²。"""
-    pred = model.predict(X_test)
-    rmse = float(np.sqrt(mean_squared_error(y_test, pred)))
-    r2 = float(r2_score(y_test, pred))
-    return rmse, r2
+def regression_metrics(model, X, y):
+    pred = model.predict(X)
+    return {
+        "RMSE": float(np.sqrt(mean_squared_error(y, pred))),
+        "R2": float(r2_score(y, pred)),
+    }
 
 
-# ----------------------------------------------------------------------
-# 演示
-# ----------------------------------------------------------------------
-if __name__ == '__main__':
-    # ========================================================================
-    # 👉 用你自己的国赛附件数据：把下面【示例数据】整段注释掉，改用这段
-    #   import pandas as pd
-    #   df = pd.read_csv('附件1.csv', encoding='gbk')  # 乱码就换 utf-8 / gb18030
-    #   feature_cols = ['特征1', '特征2', '特征3']       # 选做特征的列
-    #   X = df[feature_cols].values.astype(float)        # 特征矩阵
-    #   y = df['目标列'].values.astype(float)            # 回归目标(连续值)
-    #   # 分类任务改用 XGBClassifier / GradientBoostingClassifier + 分类评分
-    #   详见 01_数据预处理与可视化/00_CSV数据导入完全指南.py
-    # ------------------------------------------------------------------------
-    # 【示例数据】(仅供演示，替换为上面的真实数据后可删除)
-    # 造一个非线性回归数据集（含交互项与噪声），模拟高维特征预测场景
+def tune_on_training(X_train, y_train, engine="auto", seed=42,
+                     cv_splits=5, randomized_iter=12):
+    """只在训练数据内部比较 default / grid / randomized 三个开发方案。"""
+    X_train = np.asarray(X_train, dtype=float)
+    y_train = np.asarray(y_train, dtype=float).ravel()
+    cv = KFold(n_splits=cv_splits, shuffle=True, random_state=seed)
+
+    default_model, grid, engine_id = make_base_model(engine, seed)
+    default_scores = cross_val_score(default_model, X_train, y_train, cv=cv,
+                                     scoring="neg_root_mean_squared_error", n_jobs=1)
+    candidates = [{
+        "name": "default",
+        "cv_rmse_mean": float(-default_scores.mean()),
+        "cv_rmse_std": float(default_scores.std()),
+        "estimator": default_model,
+        "params": default_model.get_params(),
+    }]
+
+    grid_model, grid_space, _ = make_base_model(engine_id, seed)
+    gs = GridSearchCV(grid_model, grid_space, cv=cv,
+                      scoring="neg_root_mean_squared_error", n_jobs=1,
+                      return_train_score=True)
+    gs.fit(X_train, y_train)
+    candidates.append({
+        "name": "grid_search",
+        "cv_rmse_mean": float(-gs.best_score_),
+        "cv_rmse_std": float(gs.cv_results_["std_test_score"][gs.best_index_]),
+        "estimator": gs.best_estimator_,
+        "params": dict(gs.best_params_),
+    })
+
+    random_model, random_space, _ = make_base_model(engine_id, seed)
+    rs = RandomizedSearchCV(random_model, random_space, n_iter=randomized_iter, cv=cv,
+                            scoring="neg_root_mean_squared_error",
+                            random_state=seed, n_jobs=1, return_train_score=True)
+    rs.fit(X_train, y_train)
+    candidates.append({
+        "name": "random_search",
+        "cv_rmse_mean": float(-rs.best_score_),
+        "cv_rmse_std": float(rs.cv_results_["std_test_score"][rs.best_index_]),
+        "estimator": rs.best_estimator_,
+        "params": dict(rs.best_params_),
+    })
+
+    # 仅按 training-CV 选择；test 此时完全未读取。
+    selected = min(candidates, key=lambda row: row["cv_rmse_mean"])
+    selected["estimator"].fit(X_train, y_train)
+    return {
+        "engine": engine_id,
+        "candidates": candidates,
+        "selected_name": selected["name"],
+        "selected_cv_rmse": selected["cv_rmse_mean"],
+        "selected_estimator": selected["estimator"],
+        "selection_rule": "minimum mean training-CV RMSE",
+    }
+
+
+def train_select_test(X, y, test_size=0.25, engine="auto", seed=42):
+    X = np.asarray(X, dtype=float)
+    y = np.asarray(y, dtype=float).ravel()
+    if X.ndim != 2 or len(X) != len(y) or not np.isfinite(X).all() or not np.isfinite(y).all():
+        raise ValueError("X/y 非法")
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=test_size, random_state=seed
+    )
+    development = tune_on_training(X_train, y_train, engine=engine, seed=seed)
+    # 唯一一次 final holdout evaluation。
+    test_metrics = regression_metrics(development["selected_estimator"], X_test, y_test)
+    return {
+        "engine": development["engine"],
+        "selected_name": development["selected_name"],
+        "selected_cv_rmse": development["selected_cv_rmse"],
+        "candidates": [{k: v for k, v in row.items() if k != "estimator"}
+                       for row in development["candidates"]],
+        "test_metrics": test_metrics,
+        "train_size": len(y_train), "test_size": len(y_test),
+        "claim_boundary": "最终 test 只用于选定模型的一次评估；搜索范围本身若反复根据 test 修改，需要新的独立评估集或 nested CV",
+    }
+
+
+if __name__ == "__main__":
     rng = np.random.default_rng(42)
-    n, p = 400, 6
-    X = rng.uniform(-2, 2, size=(n, p))
-    y = (np.sin(X[:, 0]) * 3 + X[:, 1] ** 2 - 2 * X[:, 2] * X[:, 3]
-         + 0.5 * X[:, 4] + rng.normal(0, 0.3, size=n))
-
-    X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.25, random_state=42)
-
-    model, grid, name = make_base_model()
-    print("########## XGBoost + 自动调参 组合套路演示 ##########")
-    print("基模型：%s" % name)
-    print("训练/测试样本：%d / %d，特征数：%d" % (len(X_tr), len(X_te), p))
-
-    # ---- 基线：默认参数 ----
-    model.fit(X_tr, y_tr)
-    base_rmse, base_r2 = evaluate(model, X_te, y_te)
-    print("\n【基线】默认参数：RMSE=%.4f  R2=%.4f" % (base_rmse, base_r2))
-
-    # ---- 调参器一：网格搜索（穷举，适合搜索空间小时）----
-    base_est, _, _ = make_base_model()
-    gs = GridSearchCV(base_est, grid, cv=3,
-                      scoring='neg_root_mean_squared_error', n_jobs=1)
-    gs.fit(X_tr, y_tr)
-    gs_rmse, gs_r2 = evaluate(gs.best_estimator_, X_te, y_te)
-    print("\n【网格搜索 GridSearchCV】")
-    print("  最优超参：", gs.best_params_)
-    print("  交叉验证 RMSE=%.4f" % (-gs.best_score_))
-    print("  测试集：RMSE=%.4f  R2=%.4f" % (gs_rmse, gs_r2))
-
-    # ---- 调参器二：随机搜索（在同空间随机采样，等价轻量贝叶斯式高效搜索）----
-    base_est2, _, _ = make_base_model()
-    rs = RandomizedSearchCV(base_est2, grid, n_iter=12, cv=3,
-                            scoring='neg_root_mean_squared_error',
-                            random_state=42, n_jobs=1)
-    rs.fit(X_tr, y_tr)
-    rs_rmse, rs_r2 = evaluate(rs.best_estimator_, X_te, y_te)
-    print("\n【随机搜索 RandomizedSearchCV】(只试 12 组, 更省时)")
-    print("  最优超参：", rs.best_params_)
-    print("  测试集：RMSE=%.4f  R2=%.4f" % (rs_rmse, rs_r2))
-
-    # ---- 小结 ----
-    print("\n【调参增益对比】")
-    print("  默认参数     ：RMSE=%.4f  R2=%.4f" % (base_rmse, base_r2))
-    print("  网格搜索调参 ：RMSE=%.4f  R2=%.4f" % (gs_rmse, gs_r2))
-    print("  随机搜索调参 ：RMSE=%.4f  R2=%.4f" % (rs_rmse, rs_r2))
-    best = min([('默认', base_rmse), ('网格', gs_rmse), ('随机', rs_rmse)],
-               key=lambda t: t[1])
-    print("  -> 最优方案：%s搜索（RMSE 最低）。" % best[0]
-          if best[0] != '默认' else "  -> 本例默认已足够好，调参空间可再放宽。")
-
-    print("\n调参说明：")
-    print("  - n_estimators↑、max_depth↑ 拟合更强但易过拟合；learning_rate 小则需更多树。")
-    print("  - 搜索空间大用 RandomizedSearchCV(省时)，空间小用 GridSearchCV(穷举更全)。")
-    print("  - 这套'基模型+自动调参'即 RF+GA、XGBoost+贝叶斯优化等组合的通用范式。")
-    print("\n演示完成。")
+    X = rng.uniform(-2, 2, size=(400, 6))
+    y = (3 * np.sin(X[:, 0]) + X[:, 1] ** 2 - 2 * X[:, 2] * X[:, 3]
+         + 0.5 * X[:, 4] + rng.normal(0, 0.3, size=len(X)))
+    result = train_select_test(X, y)
+    print("engine:", result["engine"])
+    print("training-CV candidates:")
+    for row in result["candidates"]:
+        print(" ", row["name"], "CV RMSE=", round(row["cv_rmse_mean"], 4))
+    print("selected before test:", result["selected_name"])
+    print("final test once:", result["test_metrics"])
+    print("\nRandomizedSearchCV 是随机超参数搜索，不应在论文里改名为贝叶斯优化。")
