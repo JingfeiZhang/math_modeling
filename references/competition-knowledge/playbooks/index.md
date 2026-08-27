@@ -1,6 +1,8 @@
 # L3 赛题战术手册索引
 
-`playbooks/` 顶层现在只承载 **reference-library 可自动路由的 P1–P3 L3 战术手册**。除本 `index.md` 外，每个 `.md` 都必须满足 `src/workflow/reference_library.py` 的严格 playbook 合同：
+`playbooks/` 的**运行时 L3 边界**只包含 reference-library 可自动路由的 P1–P3 战术手册。正式入口 `scripts/reference-library.ps1` 通过 `src/workflow/reference_library_cli.py` 明确声明 routable set；旧质量文档即使因兼容原因仍保留同目录历史路径，也不会进入 `lookup -Layer playbook`，其 canonical 版本统一位于 [`../guides/`](../guides/index.md)。
+
+每个 routable L3 必须满足 `src/workflow/reference_library.py` 的严格合同：
 
 - `playbook_version: 1`；
 - `stage_scope` 仅包含 `P1 / P2 / P3a / P3b`；
@@ -10,9 +12,7 @@
 - `forbidden_use` 至少禁止 academic citation、Formal evidence、claim support、Figure Contract 和 submission；
 - 必须包含“触发与排除、输入输出合同、分阶段行动、baseline 与升级、联合诊断、停止与回退、Candidate 交接、禁止事项”八段。
 
-因此，本目录不再放学术总标准、通用数据/算法/实验质量指南、可视化规范、评阅指南或模拟赛指南；这些统一放到 [`../guides/`](../guides/index.md)。
-
-## 当前可路由 L3 Playbook
+## 当前唯一 Routable L3 Set
 
 | 触发结构 | Playbook | 连接模块 |
 |---|---|---|
@@ -21,6 +21,8 @@
 | 前一问预测需求/负荷/价格，后一问据此做配置或方案 | [predict-then-optimize](predict-then-optimize.md) | 预测、LP/MILP、不确定性规划 |
 | 资源配置同时面对需求、价格或供给波动 | [resource-allocation-under-uncertainty](resource-allocation-under-uncertainty.md) | LP/MILP、不确定性规划 |
 | 动力学/扩散方程 + 参数标定 + 情景分析 | [mechanism-fit-and-scenario](mechanism-fit-and-scenario.md) | 机理标定、不确定性规划 |
+
+这 5 个文件名同时固化在 `reference_library_cli.py::ROUTABLE_PLAYBOOK_FILENAMES` 和静态回归测试中；缺失、越权或 schema 漂移都会被报告。
 
 ## 路由原则
 
@@ -48,7 +50,7 @@ academic-quality-standard
 → visual-evidence-quality
 ```
 
-这些全局指南由 Prompt Policy 或指定角色直接读取，入口见 [`../guides/index.md`](../guides/index.md)。
+这些全局指南由 Prompt Policy 或指定角色直接读取，canonical 入口见 [`../guides/index.md`](../guides/index.md)。历史 `playbooks/<guide>.md` 路径不再作为 Prompt 或 reference-library 路由入口，后续只做兼容保留，不应新增依赖。
 
 ## 证据边界
 
