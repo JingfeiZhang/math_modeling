@@ -51,7 +51,7 @@ algorithm_sources:
   local_only: true
   sync_action: sync
 academic_quality:
-  profile: references/competition-knowledge/playbooks/academic-quality-standard.md
+  profile: references/competition-knowledge/guides/academic-quality-standard.md
   corpus_report: corpus/reports/cumcm-c-writing-template-2021-2025.md
   paper_profile: references/cumcm-paper-quality-playbook.md
   phases: [P1, P2, P3a, P3b, P4, P5]
@@ -202,7 +202,7 @@ roles:
     decisions: [主模型, fallback, claim范围, 规则冲突, 发布阻断]
   solver:
     objective: 推进拆题、数据诊断、模型、baseline、算法和实验；默认采用“问题驱动的数据处理 → baseline → 结构匹配主模型 → 针对已识别失败点的一次升级 → 可证伪实验 → challenger验证 → 保留或回退”的质量路线。每个候选都要说明触发条件、关键假设、最可能失败点、验证方法和回退条件；优先提高题面适配、样本外/压力场景表现、可解释性和决策价值，而不是追求模型复杂度。
-    read_scope: [question.yaml, contracts, experiments, results, literature/model_evidence_brief.yaml, references/competition-knowledge/playbooks/academic-quality-standard.md, references/competition-knowledge/playbooks/award-oriented-modeling.md, references/competition-knowledge/playbooks/data-and-feature-quality.md, references/competition-knowledge/playbooks/algorithm-routing-quality.md, references/competition-knowledge/playbooks/experiment-design-quality.md, references/algorithm-sources/QUALITY_STANDARD.md]
+    read_scope: [question.yaml, contracts, experiments, results, literature/model_evidence_brief.yaml, references/competition-knowledge/guides/academic-quality-standard.md, references/competition-knowledge/guides/award-oriented-modeling.md, references/competition-knowledge/guides/data-and-feature-quality.md, references/competition-knowledge/guides/algorithm-routing-quality.md, references/competition-knowledge/guides/experiment-design-quality.md, references/algorithm-sources/QUALITY_STANDARD.md]
     write_scope: ["experiments/{problem}/{question}", output/_verification/model-verification, work]
     inputs: [question interface, quality contracts, known-answer fixture, candidate evidence, literature evidence]
     outputs: [requirement coverage map, problem semantics contract, metric contract, data profile, analysis route, assumption probes, effect-size and interval summary, algorithm evidence contract, known-answer verification, baseline-main-challenger comparison, falsification probe, type-specific validation, model card, run receipt, risk probes, candidate proposal, Formal model verification report]
@@ -211,7 +211,7 @@ roles:
     decisions: [主模型实质取舍, fallback启用, claim范围]
   literature:
     objective: 与baseline和Scratch并行完成学术文献检索、精读和模型证据综合；优先寻找模型适用条件、关键假设、参数依据、验证方法、已知失败边界和题目背景机制，不做与当前决策无关的算法百科式综述。
-    read_scope: [question.yaml, contracts, literature, work/cache/literature, references/competition-knowledge/playbooks/academic-quality-standard.md]
+    read_scope: [question.yaml, contracts, literature, work/cache/literature, references/competition-knowledge/guides/academic-quality-standard.md]
     write_scope: ["problems/{problem}/questions/{question}/literature", "work/cache/literature"]
     inputs: [question interface, requirement coverage gaps, metric and algorithm verification gaps, search plan, experiment gap]
     outputs: [search receipt, reference card, model evidence brief, validation probe suggestions, assumption and boundary evidence]
@@ -220,7 +220,7 @@ roles:
     decisions: [未解决文献冲突, 需改变模型选择]
   visualization:
     objective: 从 reader question 和 frozen claim 出发先决定 figure/table/text/none，再识别 comparison、trend、distribution、uncertainty、tradeoff、spatial、network、schedule 或 mechanism 等关系类型；只生成能直接承担结果、验证或机制证据的高信息密度视觉表达，删除装饰性、重复性或无法改变读者判断的图。
-    read_scope: [figure_data_manifest.yaml, visual_intent.yaml, figure_briefs, frozen claims, quality contract hashes, output/_verification/model-verification, references/competition-knowledge/playbooks/academic-quality-standard.md, references/competition-knowledge/playbooks/visual-evidence-quality.md, templates/figures/recipe_catalog.yaml]
+    read_scope: [figure_data_manifest.yaml, visual_intent.yaml, figure_briefs, frozen claims, quality contract hashes, output/_verification/model-verification, references/competition-knowledge/guides/academic-quality-standard.md, references/competition-knowledge/guides/visual-evidence-quality.md, templates/figures/recipe_catalog.yaml]
     write_scope: ["experiments/{problem}/{question}/{level}/{run-id}/figure-staging", output/_verification]
     inputs: [formal data manifest, model verification status, current quality contract hashes, reader question, claim and baseline]
     outputs: [visual intent, figure brief, figure QA proposal]
@@ -229,7 +229,7 @@ roles:
     decisions: []
   paper:
     objective: 只消费冻结claims和合格Paper Evidence完成正文；以优秀论文常见的学术闭环组织每问，默认采用“先结论、后证据与解释”的高信息密度写法，突出模型适配理由、核心数学关系、baseline定量比较、关键机制、实际决策价值和适用边界，压缩算法常识、工程流水账和无证据形容词。
-    read_scope: [question.yaml, templates/prompts/paper/cumcm-2026.yaml, references/competition-knowledge/playbooks/academic-quality-standard.md, references/cumcm-paper-quality-playbook.md, references/competition-knowledge/playbooks/visual-evidence-quality.md, results, paper-evidence, paper/figures, literature cards and bib]
+    read_scope: [question.yaml, templates/prompts/paper/cumcm-2026.yaml, references/competition-knowledge/guides/academic-quality-standard.md, references/cumcm-paper-quality-playbook.md, references/competition-knowledge/guides/visual-evidence-quality.md, results, paper-evidence, paper/figures, literature cards and bib]
     write_scope: [paper/sections, paper/generated, paper/tables, output/_verification]
     inputs: [frozen evidence, approved briefs, citation handoff]
     outputs: [section draft, evidence locator map, internal compact receipt, Markdown summary]
@@ -247,7 +247,7 @@ roles:
     decisions: [发布阻断修复路径]
   reviewer:
     objective: 只做独立内容审阅并输出review JSON；以优秀国赛论文和学术论证标准进行对抗性审阅：检查每问是否直接回答题面、假设/变量/公式/代码是否闭环、模型选择是否由证据驱动、是否存在更简单足够的baseline、实验是否真正证伪主要失败风险、统计与因果措辞是否过强、局部/样本内/固定权重结果是否被过度推广、图表是否承担明确证据，以及摘要与正文是否具有足够的信息密度。
-    read_scope: [project outputs, paper, formal evidence, references/competition-knowledge/playbooks/academic-quality-standard.md, references/cumcm-paper-quality-playbook.md, references/competition-knowledge/playbooks/award-oriented-modeling.md, references/competition-knowledge/playbooks/data-and-feature-quality.md, references/competition-knowledge/playbooks/algorithm-routing-quality.md, references/competition-knowledge/playbooks/experiment-design-quality.md, references/competition-knowledge/playbooks/visual-evidence-quality.md]
+    read_scope: [project outputs, paper, formal evidence, references/competition-knowledge/guides/academic-quality-standard.md, references/cumcm-paper-quality-playbook.md, references/competition-knowledge/guides/award-oriented-modeling.md, references/competition-knowledge/guides/data-and-feature-quality.md, references/competition-knowledge/guides/algorithm-routing-quality.md, references/competition-knowledge/guides/experiment-design-quality.md, references/competition-knowledge/guides/visual-evidence-quality.md]
     write_scope: [output/_verification/reviews]
     inputs: [指定审阅对象, gate]
     outputs: [review JSON]
